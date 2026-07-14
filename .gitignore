@@ -5,4 +5,7 @@ dist
 .DS_Store
 *.log
 *.tsbuildinfo
+.wrangler
+.dev.vars
+.dev.vars.*
 /PKUni_Latinex-source.zip
