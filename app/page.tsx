@@ -51,10 +51,11 @@ import {
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
+import { apiFetch, supabase } from "@/lib/supabase";
 
 type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
-type Session = { authenticated: boolean; persistence?: boolean; user: null | { email: string; name: string; role: "student" | "admin" } };
+type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
 
 const STORAGE = {
@@ -118,17 +119,25 @@ export default function App() {
   useEffect(() => {
     if (isStaticPublic) return;
     Promise.all([
-      fetch("/api/me").then((r) => r.ok ? r.json() : null),
-      fetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
+      apiFetch("/api/me").then((r) => r.ok ? r.json() : null),
+      apiFetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
     ]).then(([me, remote]) => {
       if (me) setSession(me);
       setOverrides(remote?.overrides || []);
       if (me?.authenticated) {
-        fetch("/api/stats").then((r) => r.ok ? r.json() : null).then((stats) => {
+        apiFetch("/api/stats").then((r) => r.ok ? r.json() : null).then((stats) => {
           if (stats?.progress) setProgress((local) => ({ ...local, ...stats.progress }));
         });
       }
     }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
+
+    if (authMode !== "supabase") return;
+    const { data } = supabase.auth.onAuthStateChange(() => {
+      window.setTimeout(() => {
+        apiFetch("/api/me").then((r) => r.ok ? r.json() : null).then((me) => me && setSession(me)).catch(() => {});
+      }, 0);
+    });
+    return () => data.subscription.unsubscribe();
   }, [setProgress]);
 
   const questionBank = useMemo(() => {
@@ -139,7 +148,7 @@ export default function App() {
 
   const recordProgress = (question: Question, status: Progress[string]) => {
     setProgress((current) => ({ ...current, [question.id]: status }));
-    if (session.authenticated) fetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) }).catch(() => {});
+    if (session.authenticated) apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) }).catch(() => {});
   };
 
   const answered = Object.keys(progress).length;
@@ -221,7 +230,7 @@ export default function App() {
             <span><Target size={17} /> 正确率 <b>{accuracy}%</b></span>
           </div>
           <a className="repo-link" href="https://github.com/Etymodes/PKUni_Latinex" target="_blank" rel="noreferrer" title="查看原始 GitHub 仓库"><GitBranch size={16} /><span>源代码</span></a>
-          <Account session={session} />
+          <Account session={session} onSession={setSession} />
         </header>
 
         <main id="main-content">
@@ -233,18 +242,123 @@ export default function App() {
           {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
           {view === "scope" && <Scope openPractice={openPractice} />}
           {view === "archive" && <Archive />}
-          {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={questionBank} onChanged={() => fetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
+          {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={questionBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
         </main>
       </div>
     </div>
   );
 }
 
-function Account({ session }: { session: Session }) {
+function Account({ session, onSession }: { session: Session; onSession: (session: Session) => void }) {
   if (isStaticPublic) return <span className="public-badge"><User size={15} /><span>公开版 · 本机记录</span></span>;
-  if (authMode === "disabled") return <span className="public-badge"><User size={15} /><span>公开测试 · 本机进度</span></span>;
+  if (authMode === "supabase") return <SupabaseAccount session={session} onSession={onSession} />;
   if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
   return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
+}
+
+function SupabaseAccount({ session, onSession }: { session: Session; onSession: (session: Session) => void }) {
+  const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
+  const [error, setError] = useState(session.authError || "");
+
+  useEffect(() => {
+    if (!session.authError) return;
+    setError(session.authError);
+    setOpen(true);
+    void supabase.auth.signOut();
+  }, [session.authError]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
+
+  const refresh = async () => {
+    const response = await apiFetch("/api/me");
+    if (response.ok) onSession(await response.json());
+  };
+
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError("");
+    setNotice("");
+    if (!email.trim() || password.length < 10 || (mode === "register" && name.trim().length < 2)) {
+      setError(mode === "register" ? "请填写姓名、有效邮箱和至少 10 位密码。" : "请输入邮箱和至少 10 位密码。");
+      return;
+    }
+    setBusy(true);
+    const result = mode === "register"
+      ? await supabase.auth.signUp({ email: email.trim(), password, options: { data: { display_name: name.trim() }, emailRedirectTo: window.location.origin } })
+      : await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    setBusy(false);
+    if (result.error) {
+      setError(result.error.message);
+      return;
+    }
+    if (mode === "register" && !result.data.session) {
+      setNotice("注册成功。请打开验证邮件完成确认，然后返回登录。测试邮件每小时有发送上限。");
+      return;
+    }
+    await refresh();
+    setOpen(false);
+    setPassword("");
+  };
+
+  const githubLogin = async () => {
+    setError("");
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: { redirectTo: window.location.origin },
+    });
+    if (oauthError) setError(oauthError.message);
+  };
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+    onSession({ authenticated: false, persistence: true, user: null });
+  };
+
+  if (session.authenticated && session.user) {
+    return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "GitHub 管理员" : "学习账号"}</small></span><button onClick={logout} title="退出后可登录其他账号"><LogOut size={15} />退出 / 换号</button></div>;
+  }
+
+  return <>
+    <button className="account-button" onClick={() => setOpen(true)}><LogIn size={16} /><span>登录 / 注册</span></button>
+    {open && <div className="auth-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setOpen(false)}>
+      <section className="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button className="icon-button auth-close" onClick={() => setOpen(false)} aria-label="关闭登录窗口"><X size={19} /></button>
+        <span className="eyebrow">Ratio studiorum · 学习账户</span>
+        <h2 id="auth-title">{mode === "login" ? "登录比丘拟" : "创建学习账号"}</h2>
+        <p>学习者使用邮箱账号；GitHub 入口仅供已列入白名单的开发者和管理员。</p>
+        <div className="auth-tabs">
+          <button className={mode === "login" ? "active" : ""} onClick={() => { setMode("login"); setError(""); setNotice(""); }}>登录</button>
+          <button className={mode === "register" ? "active" : ""} onClick={() => { setMode("register"); setError(""); setNotice(""); }}>注册</button>
+        </div>
+        <form className="auth-form" onSubmit={submit}>
+          {mode === "register" && <label>显示姓名<input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" maxLength={60} /></label>}
+          <label>邮箱<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" /></label>
+          <label>密码<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={10} /></label>
+          {error && <p className="auth-error" role="alert">{error}</p>}
+          {notice && <p className="auth-notice" role="status">{notice}</p>}
+          <button className="primary-button" disabled={busy}>{busy ? "处理中…" : mode === "login" ? "登录并同步进度" : "注册账号"}</button>
+        </form>
+        <div className="auth-divider"><span>开发者 / 管理员</span></div>
+        <button className="github-auth-button" onClick={githubLogin}><GitBranch size={17} />使用 GitHub 登录</button>
+      </section>
+    </div>}
+  </>;
 }
 
 function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: { bank: Question[]; level: Level; progress: Progress; bookmarks: string[]; openPractice: (l?: Level, c?: Category | "all") => void; setView: (v: View) => void }) {
@@ -503,7 +617,7 @@ function VocabularyLab({ level, session }: { level: Level; session: Session }) {
   const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
   const submit = () => {
     setFinished(true);
-    if (session.authenticated) fetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ answers: test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })) }) }).catch(() => {});
+    if (session.authenticated) apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ answers: test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })) }) }).catch(() => {});
   };
 
   return <div className="page vocab-page">
@@ -527,12 +641,12 @@ function AdminPanel({ bank, onChanged }: { bank: Question[]; onChanged: () => vo
   const [message, setMessage] = useState("");
   const choose = (id: string) => { setSelectedId(id); setDraft(id === "new" ? { ...emptyAdminQuestion, id: `custom-${Date.now()}` } : { ...bank.find((q) => q.id === id)! }); setMessage(""); };
   const save = async () => {
-    const response = await fetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(draft) });
+    const response = await apiFetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(draft) });
     const data = await response.json(); setMessage(response.ok ? "已保存并立即写入题库覆盖层。" : data.error || "保存失败"); if (response.ok) onChanged();
   };
   const remove = async () => {
     if (!window.confirm(`停用题目 ${draft.id}？`)) return;
-    const response = await fetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "DELETE" });
+    const response = await apiFetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "DELETE" });
     setMessage(response.ok ? "题目已停用。" : "停用失败"); if (response.ok) onChanged();
   };
   return <div className="page admin-page"><div className="practice-header"><div><span className="eyebrow">OFFICĪNA ADMINISTRĀTŌRIS</span><h1>管理员题库后台</h1><p>内置题可用同 ID 覆盖；自建题建议使用 custom- 前缀。所有权限均由服务端再次校验。</p></div></div>

@@ -4,7 +4,7 @@
 
 - GitHub Pages 公开版：<https://etymodes.github.io/PKUni_Latinex/>
 - 完整账号版：<https://pkuni-latinex.peterpig123456.chatgpt.site>
-- Cloudflare Workers 正式公开版：首次成功部署后使用 Cloudflare 分配的 `*.workers.dev` 地址
+- Cloudflare Workers 正式公开版：<https://pkuni-latinex.kimdac.workers.dev/>
 
 ## 已实现
 
@@ -12,7 +12,7 @@
 - 形态、句法、句式、词典回溯、古典阅读、分句翻译六类题目
 - 客观题即时判分与翻译题对照自评
 - 有序选题、随机洗牌与 180 分钟随机组卷
-- ChatGPT 登录/注册、退出换号与 D1 云端学习进度
+- Cloudflare 版邮箱密码注册、GitHub 管理员登录、退出换号与 D1 云端学习进度；ChatGPT Sites 版保留 ChatGPT 登录
 - 分难度词汇量测量、词头掌握统计和每日词源知识
 - 依据北大考纲对 Wheelock 与 LLPSI 内容进行双轴映射
 - Wheelock 全 40 章、LLPSI 全 35 章教材覆盖矩阵
@@ -55,7 +55,20 @@ Cloudflare Workers Builds 连接本仓库后，需要在 **Settings → Builds**
 npm run db:migrate:cloudflare
 ```
 
-R2 通过 Worker Binding 访问，不需要创建或提交 Access Key / Secret Access Key。当前 Cloudflare 公开测试版保留匿名刷题和本机进度；ChatGPT Sites 版继续使用 ChatGPT 登录。Cloudflare 学习账号将在独立的认证 PR 中启用，避免把尚未可用的 ChatGPT 登录链接暴露到 `workers.dev`。
+R2 通过 Worker Binding 访问，不需要创建或提交 Access Key / Secret Access Key。未登录用户仍可匿名刷题并使用本机进度；登录后由 D1 同步学习记录。ChatGPT Sites 版继续使用 ChatGPT 登录。
+
+### Supabase Auth
+
+Cloudflare 正式版使用 Supabase Auth：普通学习者通过邮箱与密码注册，GitHub OAuth 只允许 `GITHUB_ADMIN_LOGINS` 白名单内的账号进入管理员后台。前端只使用可公开的 Publishable key；代码、Cloudflare 和 GitHub 中均不需要 Supabase Secret key、`service_role` 或数据库密码。
+
+Supabase 项目需要配置：
+
+- Site URL：`https://pkuni-latinex.kimdac.workers.dev`
+- Redirect URL：`https://pkuni-latinex.kimdac.workers.dev/**`
+- Email provider：开启邮箱注册与邮箱确认
+- GitHub provider：OAuth App callback 使用 Supabase Dashboard 显示的 callback URL
+
+Supabase 内置测试邮件服务默认仅适合初期验证，并有较低的项目级发送频率限制；正式开放注册前应配置自有 SMTP。
 
 ## 验证
 
