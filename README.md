@@ -4,6 +4,7 @@
 
 - GitHub Pages 公开版：<https://etymodes.github.io/PKUni_Latinex/>
 - 完整账号版：<https://pkuni-latinex.peterpig123456.chatgpt.site>
+- Cloudflare Workers 正式公开版：首次成功部署后使用 Cloudflare 分配的 `*.workers.dev` 地址
 
 ## 已实现
 
@@ -40,10 +41,28 @@ npm run dev
 
 访问 `http://localhost:3000`。
 
+## Cloudflare Workers 部署
+
+项目采用 Next.js 静态导出 + 自定义 Worker API，不使用 OpenNext。`wrangler.jsonc` 已绑定：
+
+- D1 `DB` → `pkuni-latinex-db`
+- R2 `BUCKET` → `pkuni-latinex-assets`
+- 静态资源 `ASSETS` → `out/`
+
+Cloudflare Workers Builds 连接本仓库后，使用默认部署命令 `npx wrangler deploy`；Wrangler 会先执行 `npm run build:cloudflare`。首次上线前执行一次 D1 迁移：
+
+```bash
+npm run db:migrate:cloudflare
+```
+
+R2 通过 Worker Binding 访问，不需要创建或提交 Access Key / Secret Access Key。当前 Cloudflare 公开测试版保留匿名刷题和本机进度；ChatGPT Sites 版继续使用 ChatGPT 登录。Cloudflare 学习账号将在独立的认证 PR 中启用，避免把尚未可用的 ChatGPT 登录链接暴露到 `workers.dev`。
+
 ## 验证
 
 ```bash
 npm run lint
 npm run build
+npm run build:cloudflare
 npm run build:pages
+npx wrangler deploy --dry-run
 ```
