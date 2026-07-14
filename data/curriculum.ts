@@ -74,6 +74,98 @@ export const curriculumDomains: CurriculumDomain[] = [
   },
 ];
 
+export type TextbookCoverage = {
+  book: "Wheelock" | "LLPSI";
+  chapter: string;
+  title: string;
+  topics: string;
+  examDomain: QuestionLevel;
+  stage: "奠基" | "核心" | "全范围" | "原典进阶";
+};
+
+const wheelockCoverage: TextbookCoverage[] = [
+  ["1", "现在主动：第一、第二变位", "不定式、直陈式、命令式；基本翻译", "奠基"],
+  ["2", "名词与格；第一变格", "六格功能、形容词一致、基本句法", "奠基"],
+  ["3", "第二变格阳性", "同位语与拉丁词序", "奠基"],
+  ["4", "第二变格中性；sum", "表语名词/形容词与形容词名词化", "奠基"],
+  ["5", "将来时与未完成时", "第一、第二变位；-er 形容词", "奠基"],
+  ["6", "sum 与 possum", "补足不定式", "奠基"],
+  ["7", "第三变格名词", "词干识别与格功能", "核心"],
+  ["8", "第三变位动词", "现在系统主动形态", "核心"],
+  ["9", "指示代词", "hic/ille/iste 与 -īus 代词形容词", "核心"],
+  ["10", "第四变位与第三变位 -iō", "现在系统主动形态", "核心"],
+  ["11", "人称代词与 is/idem", "代词格功能", "核心"],
+  ["12", "完成主动系统", "完成、愈过去、将来完成", "核心"],
+  ["13", "反身与强调", "反身代词、物主形容词、ipse", "核心"],
+  ["14", "第三变格 i-词干", "手段、伴随、方式夺格", "核心"],
+  ["15", "数词与时间", "部分属格；时间夺格/宾格", "核心"],
+  ["16", "第三变格形容词", "i-词干形容词与副词", "核心"],
+  ["17", "关系代词", "先行词、格选择与关系从句", "核心"],
+  ["18", "第一、二变位现在被动", "施事夺格", "核心"],
+  ["19", "完成被动系统", "疑问代词与疑问形容词", "核心"],
+  ["20", "第四变格", "来源与分离夺格", "核心"],
+  ["21", "第三、四变位现在被动", "完整现在被动系统", "核心"],
+  ["22", "第五变格", "处所夺格与夺格用法归纳", "核心"],
+  ["23", "分词", "现在主动、完成被动、将来主动", "全范围"],
+  ["24", "独立夺格与被动迂说", "动形容词；施事与格", "全范围"],
+  ["25", "不定式与间接陈述", "宾格不定式及时态关系", "全范围"],
+  ["26", "比较级", "比较夺格与 quam 结构", "全范围"],
+  ["27", "不规则比较", "bonus/malus/magnus/parvus/multus", "全范围"],
+  ["28", "现在虚拟式", "命令/劝告主句；目的从句", "全范围"],
+  ["29", "未完成虚拟式", "结果从句", "全范围"],
+  ["30", "完成与愈过去虚拟式", "间接疑问与时态呼应", "全范围"],
+  ["31", "cum 从句与 ferō", "历史背景、原因、让步", "全范围"],
+  ["32", "副词；volō/mālō/nōlō", "限制条件从句", "全范围"],
+  ["33", "条件句", "开放、未来、现在/过去反事实", "全范围"],
+  ["34", "异相动词", "形式被动、意义主动", "全范围"],
+  ["35", "特殊与格", "形容词、特殊动词及复合动词支配与格", "全范围"],
+  ["36", "命令名词从句与 fīō", "事实/命令结构入门", "全范围"],
+  ["37", "eō 与地点表达", "处所格、城市名方向/来源", "全范围"],
+  ["38", "关系特征与目的分词", "参照与格；-um/-ū supine 入门", "全范围"],
+  ["39", "动名词与动形容词", "形式替换与必要结构", "全范围"],
+  ["40", "疑问、恐惧与描述", "直接问句粒子；属格/夺格描述", "全范围"],
+].map(([chapter, title, topics, stage]) => ({ book: "Wheelock", chapter, title, topics, examDomain: "elementary", stage: stage as TextbookCoverage["stage"] }));
+
+const llpsiCoverage: TextbookCoverage[] = [
+  ["I", "Imperium Rōmānum", "地理、sum、主宾格与单复数", "奠基"],
+  ["II", "Familia Rōmāna", "家庭、属格、阳阴中性", "奠基"],
+  ["III", "Puer Improbus", "宾格、第三人称与基本对话", "奠基"],
+  ["IV", "Dominus et Servī", "命令式、呼格、物主与代词", "奠基"],
+  ["V", "Vīlla et Hortus", "处所、夺格、被动入门", "奠基"],
+  ["VI", "Via Latīna", "运动、介词、eō 与地点", "奠基"],
+  ["VII", "Puella et Rosa", "指示代词、与格、给予结构", "奠基"],
+  ["VIII", "Taberna Rōmāna", "关系代词、价钱与交易词汇", "核心"],
+  ["IX", "Pāstor et Ovēs", "异相词汇、田野与动物", "核心"],
+  ["X", "Bēstiae et Hominēs", "第三变格、动物与人类", "核心"],
+  ["XI", "Corpus Hūmānum", "身体、感知、宾格不定式入门", "核心"],
+  ["XII", "Mīles Rōmānus", "军队、第四变格、比较", "核心"],
+  ["XIII", "Annus et Mēnsēs", "历法、数词、时间表达", "核心"],
+  ["XIV", "Novus Diēs", "日常活动、分词与命令", "核心"],
+  ["XV", "Magister et Discipulī", "学校、补足不定式、命令结构", "核心"],
+  ["XVI", "Tempestās", "海上叙事、异相动词、天气", "核心"],
+  ["XVII", "Numerī Difficilēs", "数词、比较与间接疑问", "核心"],
+  ["XVIII", "Litterae Latīnae", "字母、书写、被动与语法术语", "核心"],
+  ["XIX", "Marītus et Uxor", "比较、关系与家庭叙事", "核心"],
+  ["XX", "Parentēs", "未来时、愿望与 volō/nōlō", "核心"],
+  ["XXI", "Pugna Discipulōrum", "完成时系统与叙事", "核心"],
+  ["XXII", "Cavē Canem", "supine、警告与复合动词", "全范围"],
+  ["XXIII", "Epistula Magistrī", "被动不定式、fīō 与书信", "全范围"],
+  ["XXIV", "Puer Aegrōtus", "完成分词、身体与医疗", "全范围"],
+  ["XXV", "Thēseus et Mīnōtaurus", "神话叙事、间接陈述、关系链", "全范围"],
+  ["XXVI", "Daedalus et Īcarus", "动名词、异相动词与叙事", "全范围"],
+  ["XXVII", "Rēs Rūsticae", "现在虚拟式、农业与目的", "全范围"],
+  ["XXVIII", "Perīcula Maris", "未完成虚拟式、恐惧与航海", "全范围"],
+  ["XXIX", "Nāvigāre Necesse Est", "结果、间接疑问与必要表达", "全范围"],
+  ["XXX", "Convivium", "完成虚拟式、宴饮与嵌套从句", "全范围"],
+  ["XXXI", "Inter Pōcula", "动形容词与被动迂说", "全范围"],
+  ["XXXII", "Classis Rōmāna", "间接话语、历史叙事与海军", "全范围"],
+  ["XXXIII", "Exercitus Rōmānus", "愈过去虚拟式、军队与条件", "全范围"],
+  ["XXXIV", "Dē Arte Poēticā", "诗体、格律、词序与省略", "原典进阶"],
+  ["XXXV", "Ars Grammatica", "拉丁语法术语与体系化复盘", "原典进阶"],
+].map(([chapter, title, topics, stage], index) => ({ book: "LLPSI", chapter, title, topics, examDomain: index < 33 ? "elementary" : "advanced", stage: stage as TextbookCoverage["stage"] }));
+
+export const textbookCoverage: TextbookCoverage[] = [...wheelockCoverage, ...llpsiCoverage];
+
 export type EtymologyFact = {
   latin: string;
   meaning: string;
