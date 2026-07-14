@@ -95,6 +95,7 @@ const staticQuestions = [...questions, ...completeQuestions];
 const allVocabItems = [...vocabItems, ...completeVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
+const authMode = process.env.NEXT_PUBLIC_AUTH_MODE ?? "chatgpt";
 const assetPath = (path: string) => `${publicBasePath}${path}`;
 
 function formatTime(seconds: number) {
@@ -241,6 +242,7 @@ export default function App() {
 
 function Account({ session }: { session: Session }) {
   if (isStaticPublic) return <span className="public-badge"><User size={15} /><span>公开版 · 本机记录</span></span>;
+  if (authMode === "disabled") return <span className="public-badge"><User size={15} /><span>公开测试 · 本机进度</span></span>;
   if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
   return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
 }
