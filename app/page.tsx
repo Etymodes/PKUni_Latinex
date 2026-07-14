@@ -48,7 +48,8 @@ import {
   type Question,
 } from "@/data/questions";
 import { archiveEntries } from "@/data/archive";
-import { curriculumDomains, etymologyFacts, vocabItems } from "@/data/curriculum";
+import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
+import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
 
 type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
@@ -89,6 +90,8 @@ function usePersistentState<T>(key: string, initialValue: T) {
 }
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
+const staticQuestions = [...questions, ...completeQuestions];
+const allVocabItems = [...vocabItems, ...completeVocabItems];
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -123,7 +126,7 @@ export default function App() {
   }, [setProgress]);
 
   const questionBank = useMemo(() => {
-    const map = new Map(questions.map((question) => [question.id, question]));
+    const map = new Map(staticQuestions.map((question) => [question.id, question]));
     overrides.forEach((override) => override.deleted ? map.delete(override.id) : override.question && map.set(override.id, override.question));
     return [...map.values()];
   }, [overrides]);
@@ -437,6 +440,7 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   const [seconds, setSeconds] = useState(180 * 60);
   const [examQuestions, setExamQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
+  const [paperType, setPaperType] = useState<"official" | "diagnostic">("official");
 
   useEffect(() => {
     if (!started || finished || seconds <= 0) return;
@@ -446,6 +450,11 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   useEffect(() => { if (seconds === 0 && started) setFinished(true); }, [seconds, started]);
 
   const start = () => {
+    if (paperType === "official") {
+      const matching = bank.filter((q) => q.id.startsWith("pku-mock-") && (level === "mixed" ? q.level !== "advanced" : q.level === level));
+      const fallback = bank.filter((q) => q.id.startsWith("pku-mock-"));
+      setExamQuestions(shuffle(matching.length ? matching : fallback).slice(0, 1)); setIndex(0); setSeconds(180 * 60); setFinished(false); setStarted(true); return;
+    }
     const objective = shuffle(bank.filter((q) => matchesLevel(q, level) && q.type === "choice")).slice(0, 8);
     const translation = shuffle(bank.filter((q) => matchesLevel(q, level) && q.type === "self-check")).slice(0, 1);
     setExamQuestions([...objective, ...translation]); setIndex(0); setSeconds(180 * 60); setFinished(false); setStarted(true);
@@ -453,8 +462,9 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
 
   if (!started) return (
     <div className="page exam-start">
-      <div className="exam-intro-icon"><TimerReset /></div><span className="eyebrow">SIMULATIO EXAMINIS</span><h1>180 分钟模拟</h1><p>正式考试核心任务是完成约 180 词原文英译。本站模拟先以 8 道诊断题热身，再进入一段翻译自评，帮助暴露形态与句法薄弱点。</p>
-      <div className="exam-facts"><div><Clock3 /><strong>180</strong><span>分钟倒计时</span></div><div><FileText /><strong>9</strong><span>道诊断任务</span></div><div><BookOpen /><strong>1</strong><span>段翻译自评</span></div></div>
+      <div className="exam-intro-icon"><TimerReset /></div><span className="eyebrow">SIMULATIO EXAMINIS</span><h1>180 分钟随机组卷</h1><p>{paperType === "official" ? "北大制式只抽取一篇约 180 词的连续原文英译任务，作者语体按初级 Caesar/Nepos、中级 Sallust/Cicero 编排。" : "诊断组卷以 8 道客观题检查词汇、形态和句法，再进入一段短篇翻译自评。"}</p>
+      <div className="paper-type"><button className={paperType === "official" ? "active" : ""} onClick={() => setPaperType("official")}><Landmark size={17} />北大正式制式</button><button className={paperType === "diagnostic" ? "active" : ""} onClick={() => setPaperType("diagnostic")}><BarChart3 size={17} />知识诊断组卷</button></div>
+      <div className="exam-facts"><div><Clock3 /><strong>180</strong><span>分钟倒计时</span></div><div><FileText /><strong>{paperType === "official" ? 1 : 9}</strong><span>{paperType === "official" ? "篇完整英译" : "道诊断任务"}</span></div><div><BookOpen /><strong>{paperType === "official" ? "≈180" : 1}</strong><span>{paperType === "official" ? "词连续文本" : "段翻译自评"}</span></div></div>
       <div className="exam-level"><span>选择难度</span>{(["elementary", "intermediate", "mixed", "advanced"] as Level[]).map((l) => <button key={l} className={level === l ? "active" : ""} onClick={() => setLevel(l)}>{levelLabels[l]}</button>)}</div>
       <button className="primary-button large" onClick={start}>开始模拟 <ArrowRight size={18} /></button>
       <p className="fine-print">模拟成绩不等同于北京大学官方考试成绩。</p>
@@ -475,11 +485,12 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
 }
 
 function VocabularyLab({ level, session }: { level: Level; session: Session }) {
-  const [test, setTest] = useState(() => shuffle(vocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level)).slice(0, 12));
+  const [test, setTest] = useState(() => shuffle(allVocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level)).slice(0, 20));
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [finished, setFinished] = useState(false);
-  const eligible = vocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level);
-  const restart = () => { setTest(shuffle(eligible).slice(0, 12)); setAnswers({}); setFinished(false); };
+  const eligible = allVocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level);
+  const restart = () => { setTest(shuffle(eligible).slice(0, 20)); setAnswers({}); setFinished(false); };
+  useEffect(() => { setTest(shuffle(allVocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level)).slice(0, 20)); setAnswers({}); setFinished(false); }, [level]);
   const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
   const submit = () => {
     setFinished(true);
@@ -535,7 +546,15 @@ function Scope({ openPractice }: { openPractice: (l?: Level, c?: Category | "all
     <div className="page scope-page">
       <div className="practice-header"><div><span className="eyebrow">FINĒS EXAMINIS</span><h1>考试范围</h1><p>以下摘要依据北京大学历史学系 2025 年公开考试说明整理。</p></div></div>
       <div className="official-note"><Landmark /><div><strong>正式考试的核心不是选择题</strong><p>初级与中级均为 3 小时，将一段约 180 词的拉丁原文译成正确英文；可使用指定拉英词典，并需能从文中词形回溯词典形。</p></div></div>
+      <section className="bank-summary">
+        <div><span>完整教材题库</span><strong>{completeBankStats.total + questions.length}</strong><small>道可练任务</small></div>
+        <div><span>词汇与回溯</span><strong>{completeBankStats.vocabularyQuestions}</strong><small>{completeBankStats.vocabularyEntries} 个核心词头</small></div>
+        <div><span>形态识别</span><strong>{completeBankStats.morphologyQuestions}</strong><small>覆盖全套变格变位</small></div>
+        <div><span>句法/句式/古典</span><strong>{completeBankStats.structureQuestions}</strong><small>按北大清单编排</small></div>
+        <div><span>翻译自评</span><strong>{completeBankStats.translationQuestions + staticQuestions.filter((q) => q.category === "translation" && !q.id.startsWith("tb-tra")).length}</strong><small>英译为正式方向</small></div>
+      </section>
       <div className="scope-grid curriculum-grid">{curriculumDomains.map((domain, index) => <section key={domain.level}><div className="scope-number">{["I", "II", "M", "A"][index]}</div><span>{domain.latin}</span><h2>{domain.title}</h2><p className="authors">{domain.authors}</p><p>{domain.examUse}</p><details><summary>教材映射</summary><p><strong>Wheelock：</strong>{domain.wheelock}</p><p><strong>LLPSI：</strong>{domain.llpsi}</p></details><div className="domain-columns"><div><b>词汇</b><ul>{domain.vocabulary.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>形态</b><ul>{domain.morphology.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>句法</b><ul>{domain.syntax.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>句式</b><ul>{domain.patterns.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>古典</b><ul>{domain.classics.map((v) => <li key={v}>{v}</li>)}</ul></div></div><button className="secondary-button" onClick={() => openPractice(domain.level, "all")}>练习{domain.title}范围 <ArrowRight size={17} /></button></section>)}</div>
+      <section className="coverage-section"><div className="section-heading"><div><span>INDEX DISCIPLINAE</span><h2>75 章教材覆盖矩阵</h2></div></div><p>章节表示学习来源，难度域按北大考试能力要求判定。Wheelock 后半部分仍属于北大初级正式范围；LLPSI 最后两章的诗艺与语法术语进入原典进阶。</p><div className="coverage-books">{(["Wheelock", "LLPSI"] as const).map((book) => <details key={book}><summary><strong>{book}</strong><span>{textbookCoverage.filter((unit) => unit.book === book).length} 章 · 点击展开</span></summary><div>{textbookCoverage.filter((unit) => unit.book === book).map((unit) => <article key={`${book}-${unit.chapter}`}><b>{unit.chapter}</b><span>{unit.title}</span><p>{unit.topics}</p><small>{unit.stage} · {levelLabels[unit.examDomain]}</small></article>)}</div></details>)}</div></section>
       <div className="source-card"><BookOpen /><div><strong>编排说明</strong><p>本站题目用于建立“见词形 → 找主干 → 判结构 → 成句翻译”的阅读链条，均为自拟或仿古典散文练习，并非历年真题，也不代表北京大学官方立场。</p></div></div>
     </div>
   );
