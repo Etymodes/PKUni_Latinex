@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "比丘拟 PKUni_Latinex · 真题模拟网站",
   description: "面向北京大学拉丁语标准化考试公开范围的非官方真题制式模拟与阅读训练工具",
-  icons: { icon: "/pkuni-latinex-logo-final.png" },
+  icons: { icon: `${publicBasePath}/pkuni-latinex-logo-final.png` },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
