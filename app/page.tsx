@@ -39,6 +39,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   categoryLabels,
   levelLabels,
@@ -336,7 +337,7 @@ function SupabaseAccount({ session, onSession }: { session: Session; onSession: 
 
   return <>
     <button className="account-button" onClick={() => setOpen(true)}><LogIn size={16} /><span>登录 / 注册</span></button>
-    {open && <div className="auth-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setOpen(false)}>
+    {open && typeof document !== "undefined" && createPortal(<div className="auth-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setOpen(false)}>
       <section className="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
         <button className="icon-button auth-close" onClick={() => setOpen(false)} aria-label="关闭登录窗口"><X size={19} /></button>
         <span className="eyebrow">Ratio studiorum · 学习账户</span>
@@ -357,7 +358,7 @@ function SupabaseAccount({ session, onSession }: { session: Session; onSession: 
         <div className="auth-divider"><span>开发者 / 管理员</span></div>
         <button className="github-auth-button" onClick={githubLogin}><GitBranch size={17} />使用 GitHub 登录</button>
       </section>
-    </div>}
+    </div>, document.body)}
   </>;
 }
 
