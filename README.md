@@ -68,6 +68,8 @@ Supabase 项目需要配置：
 - Email provider：开启邮箱注册与邮箱确认
 - GitHub provider：OAuth App callback 使用 Supabase Dashboard 显示的 callback URL
 
+Supabase 内置测试邮件服务默认仅适合初期验证，并有较低的项目级发送频率限制；正式开放注册前应配置自有 SMTP。
+
 ## 验证
 
 ```bash
