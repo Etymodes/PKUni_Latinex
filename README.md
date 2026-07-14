@@ -49,7 +49,7 @@ npm run dev
 - R2 `BUCKET` → `pkuni-latinex-assets`
 - 静态资源 `ASSETS` → `out/`
 
-Cloudflare Workers Builds 连接本仓库后，使用默认部署命令 `npx wrangler deploy`；Wrangler 会先执行 `npm run build:cloudflare`。首次上线前执行一次 D1 迁移：
+Cloudflare Workers Builds 连接本仓库后，需要在 **Settings → Builds** 中将 Build command 设为 `npm run build:cloudflare`，Deploy command 设为 `npx wrangler deploy`，Non-production branch deploy command 设为 `npx wrangler versions upload`。`wrangler.jsonc` 内的 custom build 仍用于本地 Wrangler 部署。首次上线前执行一次 D1 迁移：
 
 ```bash
 npm run db:migrate:cloudflare
