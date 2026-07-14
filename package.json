@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/build-sites.mjs && node scripts/validate-sites.mjs",
+    "build:cloudflare": "NEXT_PUBLIC_AUTH_MODE=disabled next build",
     "build:pages": "next build",
+    "deploy:cloudflare": "wrangler deploy",
+    "db:migrate:cloudflare": "wrangler d1 migrations apply pkuni-latinex-db --remote",
     "start": "next start",
     "lint": "tsc --noEmit"
   },
@@ -20,6 +23,7 @@
     "@types/node": "24.10.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wrangler": "^4.110.0"
   }
 }
