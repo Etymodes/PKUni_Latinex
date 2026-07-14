@@ -18,13 +18,22 @@ import {
   Home,
   Landmark,
   Layers3,
+  Languages,
+  ListOrdered,
+  LogIn,
+  LogOut,
   Menu,
   RotateCcw,
   ScrollText,
   Sparkles,
+  Save,
+  Settings,
+  Shuffle,
   Target,
   TimerReset,
+  Trash2,
   Trophy,
+  User,
   X,
   XCircle,
 } from "lucide-react";
@@ -39,9 +48,12 @@ import {
   type Question,
 } from "@/data/questions";
 import { archiveEntries } from "@/data/archive";
+import { curriculumDomains, etymologyFacts, vocabItems } from "@/data/curriculum";
 
-type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "scope" | "archive";
+type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
+type Session = { authenticated: boolean; persistence?: boolean; user: null | { email: string; name: string; role: "student" | "admin" } };
+type Override = { id: string; deleted: boolean; question: Question | null };
 
 const STORAGE = {
   progress: "latin-practica-progress-v1",
@@ -92,6 +104,34 @@ export default function App() {
   const [progress, setProgress] = usePersistentState<Progress>(STORAGE.progress, {});
   const [bookmarks, setBookmarks] = usePersistentState<string[]>(STORAGE.bookmarks, []);
   const [mobileNav, setMobileNav] = useState(false);
+  const [session, setSession] = useState<Session>({ authenticated: false, user: null });
+  const [overrides, setOverrides] = useState<Override[]>([]);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/me").then((r) => r.ok ? r.json() : null),
+      fetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
+    ]).then(([me, remote]) => {
+      if (me) setSession(me);
+      setOverrides(remote?.overrides || []);
+      if (me?.authenticated) {
+        fetch("/api/stats").then((r) => r.ok ? r.json() : null).then((stats) => {
+          if (stats?.progress) setProgress((local) => ({ ...local, ...stats.progress }));
+        });
+      }
+    }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
+  }, [setProgress]);
+
+  const questionBank = useMemo(() => {
+    const map = new Map(questions.map((question) => [question.id, question]));
+    overrides.forEach((override) => override.deleted ? map.delete(override.id) : override.question && map.set(override.id, override.question));
+    return [...map.values()];
+  }, [overrides]);
+
+  const recordProgress = (question: Question, status: Progress[string]) => {
+    setProgress((current) => ({ ...current, [question.id]: status }));
+    if (session.authenticated) fetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) }).catch(() => {});
+  };
 
   const answered = Object.keys(progress).length;
   const correct = Object.values(progress).filter((v) => v === "correct").length;
@@ -106,12 +146,14 @@ export default function App() {
 
   const navItems: { id: View; label: string; icon: typeof Home; count?: number }[] = [
     { id: "home", label: "今日概览", icon: Home },
-    { id: "practice", label: "专项练习", icon: Layers3 },
-    { id: "exam", label: "考试模拟", icon: Clock3 },
+    { id: "practice", label: "有序选题", icon: ListOrdered },
+    { id: "exam", label: "随机组卷", icon: Shuffle },
+    { id: "vocabulary", label: "词汇量测量", icon: Languages },
     { id: "mistakes", label: "错题回炉", icon: RotateCcw, count: Object.values(progress).filter((v) => v === "wrong" || v === "review").length },
     { id: "bookmarks", label: "我的收藏", icon: Bookmark, count: bookmarks.length },
     { id: "archive", label: "真题档案", icon: History },
     { id: "scope", label: "考试范围", icon: ScrollText },
+    ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: "管理员后台", icon: Settings }] : []),
   ];
 
   return (
@@ -169,32 +211,42 @@ export default function App() {
             <span><Flame size={17} /> 今日目标 <b>{Math.min(answered, 12)}/12</b></span>
             <span><Target size={17} /> 正确率 <b>{accuracy}%</b></span>
           </div>
+          <Account session={session} />
         </header>
 
         <main id="main-content">
-          {view === "home" && <Dashboard level={level} progress={progress} bookmarks={bookmarks} openPractice={openPractice} setView={setView} />}
-          {view === "practice" && <Practice level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} setProgress={setProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
-          {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questions.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} setProgress={setProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
-          {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={questions.filter((q) => bookmarks.includes(q.id))} progress={progress} setProgress={setProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
-          {view === "exam" && <ExamMode level={level} setLevel={setLevel} progress={progress} setProgress={setProgress} />}
+          {view === "home" && <Dashboard bank={questionBank} level={level} progress={progress} bookmarks={bookmarks} openPractice={openPractice} setView={setView} />}
+          {view === "practice" && <Practice bank={questionBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
+          {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questionBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
+          {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={questionBank.filter((q) => bookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
+          {view === "exam" && <ExamMode bank={questionBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} />}
+          {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
           {view === "scope" && <Scope openPractice={openPractice} />}
           {view === "archive" && <Archive />}
+          {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={questionBank} onChanged={() => fetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
         </main>
       </div>
     </div>
   );
 }
 
-function Dashboard({ level, progress, bookmarks, openPractice, setView }: { level: Level; progress: Progress; bookmarks: string[]; openPractice: (l?: Level, c?: Category | "all") => void; setView: (v: View) => void }) {
-  const levelQs = questions.filter((q) => matchesLevel(q, level));
+function Account({ session }: { session: Session }) {
+  if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
+  return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
+}
+
+function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: { bank: Question[]; level: Level; progress: Progress; bookmarks: string[]; openPractice: (l?: Level, c?: Category | "all") => void; setView: (v: View) => void }) {
+  const levelQs = bank.filter((q) => matchesLevel(q, level));
   const done = levelQs.filter((q) => progress[q.id]).length;
   const right = levelQs.filter((q) => progress[q.id] === "correct").length;
-  const percent = Math.round((done / levelQs.length) * 100);
+  const percent = levelQs.length ? Math.round((done / levelQs.length) * 100) : 0;
+  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * etymologyFacts.length));
+  const fact = etymologyFacts[factIndex];
 
   const modes = [
-    { category: "morphology" as Category, icon: Layers3, title: "形态快练", latin: "Fōrmae", copy: "变格、变位与不规则词形", meta: `${questions.filter((q) => matchesLevel(q, level) && q.category === "morphology").length} 题` },
-    { category: "syntax" as Category, icon: ScrollText, title: "句法拆解", latin: "Syntaxis", copy: "从主干定位到从句层级", meta: `${questions.filter((q) => matchesLevel(q, level) && q.category === "syntax").length} 题` },
-    { category: "translation" as Category, icon: FileText, title: "分句翻译", latin: "Interpretātiō", copy: "对照参考译文进行自评", meta: `${questions.filter((q) => matchesLevel(q, level) && q.category === "translation").length} 篇` },
+    { category: "morphology" as Category, icon: Layers3, title: "形态快练", latin: "Fōrmae", copy: "变格、变位与不规则词形", meta: `${bank.filter((q) => matchesLevel(q, level) && q.category === "morphology").length} 题` },
+    { category: "syntax" as Category, icon: ScrollText, title: "句法拆解", latin: "Syntaxis", copy: "从主干定位到从句层级", meta: `${bank.filter((q) => matchesLevel(q, level) && q.category === "syntax").length} 题` },
+    { category: "classics" as Category, icon: Landmark, title: "古典阅读", latin: "Auctōrēs", copy: "按作者语体定位句子骨架", meta: `${bank.filter((q) => matchesLevel(q, level) && q.category === "classics").length} 题` },
   ];
 
   return (
@@ -216,6 +268,12 @@ function Dashboard({ level, progress, bookmarks, openPractice, setView }: { leve
           </svg>
           <div><strong>{percent}%</strong><span>{levelLabels[level]}进度</span></div>
         </div>
+      </section>
+
+      <section className="etymology-card">
+        <div><span className="eyebrow"><Languages size={14} /> RADĪX HODIERNA · 今日词源</span><h2>{fact.latin} <small>{fact.meaning}</small></h2><p>{fact.note}</p></div>
+        <div className="word-family"><span>英语</span><strong>{fact.english.join(" · ")}</strong><span>罗曼语族</span><strong>{fact.romance.join(" · ")}</strong></div>
+        <button className="secondary-button" onClick={() => setFactIndex((factIndex + 1) % etymologyFacts.length)}>换一条 <Shuffle size={15} /></button>
       </section>
 
       <section className="stat-grid" aria-label="学习概览">
@@ -251,8 +309,13 @@ function Dashboard({ level, progress, bookmarks, openPractice, setView }: { leve
   );
 }
 
-function Practice({ level, setLevel, category, setCategory, progress, setProgress, bookmarks, setBookmarks }: { level: Level; setLevel: (l: Level) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; setProgress: (p: Progress | ((p: Progress) => Progress)) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
-  const pool = useMemo(() => questions.filter((q) => matchesLevel(q, level) && (category === "all" || q.category === category)), [level, category]);
+function Practice({ bank, level, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: Level; setLevel: (l: Level) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
+  const [order, setOrder] = useState<"ordered" | "random">("ordered");
+  const [randomSeed, setRandomSeed] = useState(0);
+  const pool = useMemo(() => {
+    const selected = bank.filter((q) => matchesLevel(q, level) && (category === "all" || q.category === category));
+    return order === "random" ? shuffle(selected) : selected;
+  }, [bank, level, category, order, randomSeed]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => setIndex(0), [level, category]);
@@ -265,13 +328,14 @@ function Practice({ level, setLevel, category, setCategory, progress, setProgres
         <div className="filter-row">
           <label>难度<select value={level} onChange={(e) => setLevel(e.target.value as Level)}><option value="elementary">初级</option><option value="intermediate">中级</option><option value="mixed">混合难度</option><option value="advanced">进阶</option></select></label>
           <label>模块<select value={category} onChange={(e) => setCategory(e.target.value as Category | "all")}><option value="all">全部模块</option>{Object.entries(categoryLabels).map(([key, value]) => <option key={key} value={key}>{value}</option>)}</select></label>
+          <label>顺序<select value={order} onChange={(e) => { setOrder(e.target.value as "ordered" | "random"); setRandomSeed((s) => s + 1); }}><option value="ordered">教材域有序</option><option value="random">随机洗牌</option></select></label>
         </div>
       </div>
 
       {question ? (
         <>
           <div className="question-progress"><span>第 {index + 1} / {pool.length} 题</span><div><i style={{ width: `${((index + 1) / pool.length) * 100}%` }} /></div><span>{category === "all" ? "综合" : categoryLabels[category]}</span></div>
-          <QuestionCard key={question.id} question={question} status={progress[question.id]} onResult={(status) => setProgress((p) => ({ ...p, [question.id]: status }))} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} />
+          <QuestionCard key={question.id} question={question} status={progress[question.id]} onResult={(status) => onResult(question, status)} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} />
           <div className="question-nav">
             <button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> 上一题</button>
             <button className="primary-button" onClick={() => setIndex((i) => Math.min(pool.length - 1, i + 1))} disabled={index === pool.length - 1}>下一题 <ArrowRight size={17} /></button>
@@ -359,15 +423,15 @@ function Feedback({ correct, explanation }: { correct: boolean; explanation: str
   return <div className={`feedback ${correct ? "correct" : "wrong"}`}><div>{correct ? <CheckCircle2 /> : <XCircle />}<strong>{correct ? "Recte! 回答正确" : "再看一次形态线索"}</strong></div><p>{explanation}</p></div>;
 }
 
-function QuestionCollection({ title, empty, questions: items, progress, setProgress, bookmarks, setBookmarks }: { title: string; empty: string; questions: Question[]; progress: Progress; setProgress: (p: Progress | ((p: Progress) => Progress)) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
+function QuestionCollection({ title, empty, questions: items, progress, onResult, bookmarks, setBookmarks }: { title: string; empty: string; questions: Question[]; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
   const [index, setIndex] = useState(0);
   useEffect(() => setIndex(0), [items.length]);
   if (!items.length) return <div className="page"><div className="practice-header"><div><span className="eyebrow">REPETĪTIŌ</span><h1>{title}</h1></div></div><EmptyState text={empty} /></div>;
   const question = items[Math.min(index, items.length - 1)];
-  return <div className="page"><div className="practice-header"><div><span className="eyebrow">REPETĪTIŌ</span><h1>{title}</h1><p>共 {items.length} 题，按顺序逐一处理。</p></div></div><div className="question-progress"><span>第 {index + 1} / {items.length} 题</span><div><i style={{ width: `${((index + 1) / items.length) * 100}%` }} /></div></div><QuestionCard key={question.id} question={question} status={progress[question.id]} onResult={(status) => setProgress((p) => ({ ...p, [question.id]: status }))} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} /><div className="question-nav"><button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> 上一题</button><button className="primary-button" onClick={() => setIndex((i) => Math.min(items.length - 1, i + 1))} disabled={index === items.length - 1}>下一题 <ArrowRight size={17} /></button></div></div>;
+  return <div className="page"><div className="practice-header"><div><span className="eyebrow">REPETĪTIŌ</span><h1>{title}</h1><p>共 {items.length} 题，按顺序逐一处理。</p></div></div><div className="question-progress"><span>第 {index + 1} / {items.length} 题</span><div><i style={{ width: `${((index + 1) / items.length) * 100}%` }} /></div></div><QuestionCard key={question.id} question={question} status={progress[question.id]} onResult={(status) => onResult(question, status)} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} /><div className="question-nav"><button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> 上一题</button><button className="primary-button" onClick={() => setIndex((i) => Math.min(items.length - 1, i + 1))} disabled={index === items.length - 1}>下一题 <ArrowRight size={17} /></button></div></div>;
 }
 
-function ExamMode({ level, setLevel, progress, setProgress }: { level: Level; setLevel: (l: Level) => void; progress: Progress; setProgress: (p: Progress | ((p: Progress) => Progress)) => void }) {
+function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Question[]; level: Level; setLevel: (l: Level) => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void }) {
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
   const [seconds, setSeconds] = useState(180 * 60);
@@ -382,8 +446,8 @@ function ExamMode({ level, setLevel, progress, setProgress }: { level: Level; se
   useEffect(() => { if (seconds === 0 && started) setFinished(true); }, [seconds, started]);
 
   const start = () => {
-    const objective = shuffle(questions.filter((q) => matchesLevel(q, level) && q.type === "choice")).slice(0, 8);
-    const translation = shuffle(questions.filter((q) => matchesLevel(q, level) && q.type === "self-check")).slice(0, 1);
+    const objective = shuffle(bank.filter((q) => matchesLevel(q, level) && q.type === "choice")).slice(0, 8);
+    const translation = shuffle(bank.filter((q) => matchesLevel(q, level) && q.type === "self-check")).slice(0, 1);
     setExamQuestions([...objective, ...translation]); setIndex(0); setSeconds(180 * 60); setFinished(false); setStarted(true);
   };
 
@@ -404,10 +468,66 @@ function ExamMode({ level, setLevel, progress, setProgress }: { level: Level; se
   return (
     <div className="page exam-live">
       <div className="exam-toolbar"><div><span>{levelLabels[level]}模拟</span><strong>第 {index + 1} / {examQuestions.length} 题</strong></div><div className={`timer ${seconds < 600 ? "urgent" : ""}`}><Clock3 size={18} />{formatTime(seconds)}</div><button className="secondary-button" onClick={() => setFinished(true)}>交卷</button></div>
-      <QuestionCard key={current.id} question={current} status={progress[current.id]} onResult={(status) => setProgress((p) => ({ ...p, [current.id]: status }))} bookmarked={false} onBookmark={() => {}} />
+      <QuestionCard key={current.id} question={current} status={progress[current.id]} onResult={(status) => onResult(current, status)} bookmarked={false} onBookmark={() => {}} />
       <div className="question-nav"><button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> 上一题</button>{index < examQuestions.length - 1 ? <button className="primary-button" onClick={() => setIndex((i) => i + 1)}>下一题 <ArrowRight size={17} /></button> : <button className="primary-button" onClick={() => setFinished(true)}>完成并交卷 <Check size={17} /></button>}</div>
     </div>
   );
+}
+
+function VocabularyLab({ level, session }: { level: Level; session: Session }) {
+  const [test, setTest] = useState(() => shuffle(vocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level)).slice(0, 12));
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [finished, setFinished] = useState(false);
+  const eligible = vocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level);
+  const restart = () => { setTest(shuffle(eligible).slice(0, 12)); setAnswers({}); setFinished(false); };
+  const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
+  const submit = () => {
+    setFinished(true);
+    if (session.authenticated) fetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ answers: test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })) }) }).catch(() => {});
+  };
+
+  return <div className="page vocab-page">
+    <div className="practice-header"><div><span className="eyebrow">COPIA VERBŌRUM</span><h1>词汇量测量与统计</h1><p>按当前难度抽取核心词头，测试“见词头辨义”；结果是本站题库覆盖估计，不是标准化总词汇量。</p></div><button className="secondary-button" onClick={restart}><Shuffle size={16} />重新抽样</button></div>
+    <div className="official-note"><Languages /><div><strong>{levelLabels[level]}词库 · 本轮 {test.length} 词</strong><p>登录后每个词头的见题次数和正确次数会同步到云端；匿名状态也可完成本轮测试，但不会跨设备统计。</p></div></div>
+    <div className="vocab-grid">
+      {test.map((item, index) => {
+        const options = [item.gloss, ...item.distractors].sort((a, b) => (a + item.lemma).localeCompare(b + item.lemma));
+        return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {item.family}</span><h2 lang="la">{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{option}</button>)}</div></article>;
+      })}
+    </div>
+    {!finished ? <button className="primary-button vocab-submit" disabled={Object.keys(answers).length !== test.length} onClick={submit}>提交测量</button> : <section className="vocab-result"><Trophy /><div><span>本轮结果</span><h2>{score} / {test.length}</h2><p>按当前抽样估计，你掌握了本难度本站核心词库约 <strong>{Math.round((score / Math.max(test.length, 1)) * eligible.length)}</strong> / {eligible.length} 个词头。扩大题库后估计会随之更新。</p></div><button className="secondary-button" onClick={restart}>再测一次</button></section>}
+  </div>;
+}
+
+const emptyAdminQuestion: Question = { id: "custom-", level: "elementary", category: "vocabulary", type: "choice", prompt: "", latin: "", options: ["", "", "", ""], answer: 0, explanation: "", tags: [], source: "管理员自建" };
+
+function AdminPanel({ bank, onChanged }: { bank: Question[]; onChanged: () => void }) {
+  const [selectedId, setSelectedId] = useState(bank[0]?.id || "new");
+  const [draft, setDraft] = useState<Question>(bank[0] || emptyAdminQuestion);
+  const [message, setMessage] = useState("");
+  const choose = (id: string) => { setSelectedId(id); setDraft(id === "new" ? { ...emptyAdminQuestion, id: `custom-${Date.now()}` } : { ...bank.find((q) => q.id === id)! }); setMessage(""); };
+  const save = async () => {
+    const response = await fetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(draft) });
+    const data = await response.json(); setMessage(response.ok ? "已保存并立即写入题库覆盖层。" : data.error || "保存失败"); if (response.ok) onChanged();
+  };
+  const remove = async () => {
+    if (!window.confirm(`停用题目 ${draft.id}？`)) return;
+    const response = await fetch(`/api/admin/questions/${encodeURIComponent(draft.id)}`, { method: "DELETE" });
+    setMessage(response.ok ? "题目已停用。" : "停用失败"); if (response.ok) onChanged();
+  };
+  return <div className="page admin-page"><div className="practice-header"><div><span className="eyebrow">OFFICĪNA ADMINISTRĀTŌRIS</span><h1>管理员题库后台</h1><p>内置题可用同 ID 覆盖；自建题建议使用 custom- 前缀。所有权限均由服务端再次校验。</p></div></div>
+    <div className="admin-layout"><aside><button className="primary-button" onClick={() => choose("new")}>＋ 新建题目</button><select value={selectedId} onChange={(e) => choose(e.target.value)}><option value="new">新建题目</option>{bank.map((q) => <option key={q.id} value={q.id}>{q.id} · {q.prompt.slice(0, 28)}</option>)}</select></aside>
+      <section className="admin-form">
+        <label>题目 ID<input value={draft.id} onChange={(e) => setDraft({ ...draft, id: e.target.value })} /></label>
+        <div className="admin-row"><label>难度<select value={draft.level} onChange={(e) => setDraft({ ...draft, level: e.target.value as Question["level"] })}>{["elementary", "intermediate", "advanced"].map((v) => <option key={v} value={v}>{levelLabels[v as Question["level"]]}</option>)}</select></label><label>模块<select value={draft.category} onChange={(e) => setDraft({ ...draft, category: e.target.value as Category })}>{Object.entries(categoryLabels).map(([v, label]) => <option key={v} value={v}>{label}</option>)}</select></label><label>题型<select value={draft.type} onChange={(e) => setDraft({ ...draft, type: e.target.value as Question["type"] })}><option value="choice">选择题</option><option value="self-check">翻译自评</option></select></label></div>
+        <label>题干<textarea rows={2} value={draft.prompt} onChange={(e) => setDraft({ ...draft, prompt: e.target.value })} /></label>
+        <label>拉丁文<textarea rows={2} value={draft.latin || ""} onChange={(e) => setDraft({ ...draft, latin: e.target.value })} /></label>
+        {draft.type === "choice" ? <><label>选项（每行一个）<textarea rows={5} value={(draft.options || []).join("\n")} onChange={(e) => setDraft({ ...draft, options: e.target.value.split("\n") })} /></label><label>正确选项序号（从 1 开始）<input type="number" min="1" value={(draft.answer ?? 0) + 1} onChange={(e) => setDraft({ ...draft, answer: Math.max(0, Number(e.target.value) - 1) })} /></label></> : <label>参考译文<textarea rows={4} value={draft.modelAnswer || ""} onChange={(e) => setDraft({ ...draft, modelAnswer: e.target.value })} /></label>}
+        <label>解析<textarea rows={4} value={draft.explanation} onChange={(e) => setDraft({ ...draft, explanation: e.target.value })} /></label>
+        <div className="admin-row"><label>来源<input value={draft.source} onChange={(e) => setDraft({ ...draft, source: e.target.value })} /></label><label>标签（逗号分隔）<input value={draft.tags.join(",")} onChange={(e) => setDraft({ ...draft, tags: e.target.value.split(",").map((v) => v.trim()).filter(Boolean) })} /></label></div>
+        <div className="admin-actions"><button className="primary-button" onClick={save}><Save size={16} />保存</button><button className="secondary-button danger" onClick={remove}><Trash2 size={16} />停用</button>{message && <span>{message}</span>}</div>
+      </section></div>
+  </div>;
 }
 
 function Scope({ openPractice }: { openPractice: (l?: Level, c?: Category | "all") => void }) {
@@ -415,12 +535,7 @@ function Scope({ openPractice }: { openPractice: (l?: Level, c?: Category | "all
     <div className="page scope-page">
       <div className="practice-header"><div><span className="eyebrow">FINĒS EXAMINIS</span><h1>考试范围</h1><p>以下摘要依据北京大学历史学系 2025 年公开考试说明整理。</p></div></div>
       <div className="official-note"><Landmark /><div><strong>正式考试的核心不是选择题</strong><p>初级与中级均为 3 小时，将一段约 180 词的拉丁原文译成正确英文；可使用指定拉英词典，并需能从文中词形回溯词典形。</p></div></div>
-      <div className="scope-grid">
-        <section><div className="scope-number">I</div><span>ELEMENTARY LATIN</span><h2>初级拉丁语</h2><p className="authors">Caesar · Cornelius Nepos</p><ul><li>所有名词、形容词变格及比较级</li><li>主要时态、语气、语态与异相动词</li><li>不定式、分词、动名词与动形容词</li><li>独立夺格、宾格不定式、时态呼应</li><li>目的、结果、cum、条件、恐惧等从句</li></ul><button className="secondary-button" onClick={() => openPractice("elementary", "all")}>练习初级范围 <ArrowRight size={17} /></button></section>
-        <section><div className="scope-number">II</div><span>INTERMEDIATE LATIN</span><h2>中级拉丁语</h2><p className="authors">Sallust · Cicero</p><ul><li>包含全部初级要求</li><li>希腊式名词、目的分词及特殊词形</li><li>主句虚拟式与复合主语一致</li><li>间接命令、疑问、愿望和间接引语</li><li>限制、时间、主观原因与关系从句</li></ul><button className="secondary-button" onClick={() => openPractice("intermediate", "all")}>练习中级范围 <ArrowRight size={17} /></button></section>
-        <section><div className="scope-number">M</div><span>GRADUS MIXTUS</span><h2>混合难度</h2><p className="authors">Elementary ↔ Intermediate</p><ul><li>从初级与中级题库交错抽题</li><li>训练在未知文本中快速判断难度</li><li>避免只熟悉单一作者或单一结构</li><li>适合考前综合诊断与错题回炉</li><li>不额外引入官方范围以外语法</li></ul><button className="secondary-button" onClick={() => openPractice("mixed", "all")}>开始混合练习 <ArrowRight size={17} /></button></section>
-        <section><div className="scope-number">A</div><span>ULTRĀ FINĒS</span><h2>进阶</h2><p className="authors">Long syntax · textual nuance</p><ul><li>古式与罕见词形的词典回溯</li><li>多层间接引语与信息来源判断</li><li>语气选择、歧义消解与长距离一致</li><li>反事实、迂说结构和限时长句</li><li>明确超出官方中级最低要求</li></ul><button className="secondary-button" onClick={() => openPractice("advanced", "all")}>挑战进阶训练 <ArrowRight size={17} /></button></section>
-      </div>
+      <div className="scope-grid curriculum-grid">{curriculumDomains.map((domain, index) => <section key={domain.level}><div className="scope-number">{["I", "II", "M", "A"][index]}</div><span>{domain.latin}</span><h2>{domain.title}</h2><p className="authors">{domain.authors}</p><p>{domain.examUse}</p><details><summary>教材映射</summary><p><strong>Wheelock：</strong>{domain.wheelock}</p><p><strong>LLPSI：</strong>{domain.llpsi}</p></details><div className="domain-columns"><div><b>词汇</b><ul>{domain.vocabulary.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>形态</b><ul>{domain.morphology.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>句法</b><ul>{domain.syntax.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>句式</b><ul>{domain.patterns.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>古典</b><ul>{domain.classics.map((v) => <li key={v}>{v}</li>)}</ul></div></div><button className="secondary-button" onClick={() => openPractice(domain.level, "all")}>练习{domain.title}范围 <ArrowRight size={17} /></button></section>)}</div>
       <div className="source-card"><BookOpen /><div><strong>编排说明</strong><p>本站题目用于建立“见词形 → 找主干 → 判结构 → 成句翻译”的阅读链条，均为自拟或仿古典散文练习，并非历年真题，也不代表北京大学官方立场。</p></div></div>
     </div>
   );

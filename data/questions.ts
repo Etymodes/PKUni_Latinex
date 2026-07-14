@@ -1,6 +1,6 @@
 export type Level = "elementary" | "intermediate" | "mixed" | "advanced";
 export type QuestionLevel = Exclude<Level, "mixed">;
-export type Category = "morphology" | "syntax" | "vocabulary" | "translation";
+export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
 
 export type Question = {
   id: string;
@@ -204,13 +204,51 @@ export const questions: Question[] = [
     prompt: "限时 10 分钟：拆解多层条件、让步与间接疑问。", latin: "Etiamsī concedāmus cōnsulem, nisi tempestās impedīvisset, maturius ventūrum fuisse, quaerendum tamen est utrum eius adventus tantam calamitatem āvertere potuerit.",
     modelAnswer: "即便我们承认：若非风暴阻挠，执政官本会更早抵达；仍须追问，他的到来是否真能避免如此巨大的灾难。 / Even if we grant that the consul would have arrived earlier had the storm not prevented him, it must still be asked whether his arrival could have averted so great a disaster.",
     explanation: "concedāmus 为让步/假设承认；cōnsulem…ventūrum fuisse 是过去反事实的间接表达；nisi…impedīvisset 为内嵌条件；quaerendum est 是无人称被动迂说；utrum 引间接疑问。", tags: ["反事实", "被动迂说"], source: "进阶 · 长句自拟"
+  },
+  {
+    id: "e-pat-01", level: "elementary", category: "sentencePattern", type: "choice",
+    prompt: "哪一组词最直接标记‘如此……以至于……’的结果句式？", latin: "Tanta erat tempestās ut nāvēs portum petere nōn possent.",
+    options: ["tanta … ut", "erat … possent", "nāvēs … portum", "ut … nōn"], answer: 0,
+    explanation: "程度词 tantus 与 ut + 虚拟式呼应，后句陈述实际结果；结果从句的否定是 ut nōn。", tags: ["结果句式", "关联词"], source: "Wheelock 29 · 北大初级"
+  },
+  {
+    id: "e-cla-01", level: "elementary", category: "classics", type: "choice",
+    prompt: "在 Caesar 式军事叙事中，句子的叙事主干是哪一项？", latin: "Explōrātōribus missīs, Caesar, priusquam hostēs advenīrent, castra mūnīvit.",
+    options: ["Caesar castra mūnīvit", "explōrātōribus missīs", "priusquam hostēs advenīrent", "hostēs castra mūnīvērunt"], answer: 0,
+    explanation: "先摘出主格主语 Caesar 与限定动词 mūnīvit；独立夺格和时间从句随后分层处理。", tags: ["Caesar", "叙事主干"], source: "仿 Caesar · 北大初级"
+  },
+  {
+    id: "i-pat-01", level: "intermediate", category: "sentencePattern", type: "choice",
+    prompt: "选择最准确的结构骨架。", latin: "Nōn dubitō quīn, sī adsīs, cīvitās servārī possit.",
+    options: ["nōn dubitō + quīn 从句，内嵌条件从句", "目的从句内嵌结果从句", "间接命令内嵌让步从句", "宾格不定式内嵌关系从句"], answer: 0,
+    explanation: "否定的怀疑表达后用 quīn + 虚拟式；sī adsīs 是嵌入其中的开放条件。", tags: ["quin", "嵌套结构"], source: "北大中级 · 句式专题"
+  },
+  {
+    id: "i-cla-01", level: "intermediate", category: "classics", type: "choice",
+    prompt: "这句话最值得保留的 Sallust 式语义对照是什么？", latin: "Aliī glōriae, aliī avāritiae serviēbant.",
+    options: ["有人追逐荣耀，有人受贪欲驱使", "所有人都拒绝荣耀与财富", "荣耀服务于贪欲", "士兵分别服侍两位主人"], answer: 0,
+    explanation: "aliī … aliī 构成分组对举；servīre + 与格。Sallust 常以抽象道德词压缩人物动机。", tags: ["Sallust", "对举"], source: "仿 Sallust · 北大中级"
+  },
+  {
+    id: "a-pat-01", level: "advanced", category: "sentencePattern", type: "choice",
+    prompt: "此句最外层的信息来源标记是什么？", latin: "Ferunt eum, quae pollicitus sit, factūrum esse.",
+    options: ["ferunt：‘人们说／据说’", "quae：作者断言", "sit：目的语气", "factūrum：命令"], answer: 0,
+    explanation: "先保留 ferunt 的传闻框架，再处理 eum … factūrum esse；关系从句被吸收到间接话语范围。", tags: ["信息来源", "间接话语"], source: "进阶 · 语篇层级"
+  },
+  {
+    id: "a-cla-01", level: "advanced", category: "classics", type: "choice",
+    prompt: "在诗句 arma virumque canō 中，-que 的作用是什么？", latin: "Arma virumque canō.",
+    options: ["后附连词，连接 arma 与 virum", "疑问后缀", "夺格标记", "格律填充而无句法作用"], answer: 0,
+    explanation: "-que 后附于第二个并列项，等于 arma et virum。进阶阅读还会观察词序、格律与开篇主题。", tags: ["诗歌", "后附连词"], source: "Vergilius · Aeneis 1.1"
   }
 ];
 
 export const categoryLabels: Record<Category, string> = {
   morphology: "形态识别",
   syntax: "句法结构",
+  sentencePattern: "句式专题",
   vocabulary: "词典回溯",
+  classics: "古典阅读",
   translation: "分句翻译",
 };
 

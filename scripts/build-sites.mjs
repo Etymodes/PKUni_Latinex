@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
@@ -13,28 +13,7 @@ await cp(
   resolve(dist, ".openai", "hosting.json"),
 );
 
-const worker = `export default {
-  async fetch(request, env, ctx) {
-    void ctx;
-    const url = new URL(request.url);
-    const pathname = url.pathname.endsWith("/")
-      ? url.pathname + "index.html"
-      : url.pathname;
-    const assetUrl = new URL(pathname, request.url);
-    let response = await env.ASSETS.fetch(new Request(assetUrl, request));
-
-    if (response.status === 404 && !url.pathname.split("/").pop()?.includes(".")) {
-      response = await env.ASSETS.fetch(
-        new Request(new URL("/index.html", request.url), request),
-      );
-    }
-
-    return response;
-  },
-};
-`;
-
-await writeFile(resolve(dist, "server", "index.js"), worker, "utf8");
+await cp(resolve(root, "worker", "index.js"), resolve(dist, "server", "index.js"));
 
 const manifest = JSON.parse(
   await readFile(resolve(dist, ".openai", "hosting.json"), "utf8"),
