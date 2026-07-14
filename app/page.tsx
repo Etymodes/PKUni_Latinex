@@ -273,6 +273,18 @@ function SupabaseAccount({ session, onSession }: { session: Session; onSession: 
     void supabase.auth.signOut();
   }, [session.authError]);
 
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
+
   const refresh = async () => {
     const response = await apiFetch("/api/me");
     if (response.ok) onSession(await response.json());
