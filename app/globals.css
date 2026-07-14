@@ -215,6 +215,9 @@ h1, h2, h3, p { margin-top: 0; }
 .exam-level > span { color: var(--muted); font-size: 11px; margin-right: 5px; }
 .exam-level button { border: 1px solid var(--line-strong); background: var(--panel); padding: 8px 18px; border-radius: 4px; cursor: pointer; }
 .exam-level button.active { color: white; background: var(--crimson); border-color: var(--crimson); }
+.paper-type { max-width: 620px; margin: 24px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.paper-type button { min-height: 48px; border: 1px solid var(--line-strong); background: var(--panel); display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 5px; cursor: pointer; }
+.paper-type button.active { color: #fff; background: var(--crimson); border-color: var(--crimson); }
 .primary-button.large { min-height: 48px; padding: 0 26px; }
 .fine-print { font-size: 9px !important; margin-top: 13px !important; }
 .exam-toolbar { max-width: 880px; margin: 0 auto 13px; display: flex; align-items: center; gap: 20px; }
@@ -256,6 +259,11 @@ h1, h2, h3, p { margin-top: 0; }
 .official-note svg, .source-card svg { flex: 0 0 auto; color: var(--gold); }
 .official-note strong, .source-card strong { font: 600 14px var(--serif-cn); }
 .official-note p, .source-card p { margin: 5px 0 0; color: #625846; font-size: 11px; line-height: 1.7; }
+.bank-summary { display: grid; grid-template-columns: repeat(5, 1fr); background: var(--panel); border: 1px solid var(--line); margin-bottom: 22px; }
+.bank-summary > div { padding: 18px; border-right: 1px solid var(--line); }
+.bank-summary > div:last-child { border-right: 0; }
+.bank-summary span, .bank-summary small { display: block; color: var(--muted); font-size: 9px; }
+.bank-summary strong { display: block; font: 600 24px var(--serif-la); margin: 4px 0; color: var(--crimson); }
 .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
 .scope-grid section { background: var(--panel); border: 1px solid var(--line); padding: 30px; position: relative; overflow: hidden; }
 .scope-number { position: absolute; right: 20px; top: 5px; color: #eee9df; font: 600 66px var(--serif-la); }
@@ -271,6 +279,19 @@ h1, h2, h3, p { margin-top: 0; }
 .domain-columns > div { border-top: 2px solid var(--gold); background: #faf8f3; padding: 13px; }
 .domain-columns b { font: 600 12px var(--serif-cn); }
 .domain-columns ul { margin: 8px 0 0; padding-left: 15px; font-size: 10px; line-height: 1.65; }
+.coverage-section { margin-top: 30px; }
+.coverage-section > p { color: var(--muted); font-size: 11px; line-height: 1.8; max-width: 900px; }
+.coverage-books { display: grid; gap: 12px; }
+.coverage-books > details { background: var(--panel); border: 1px solid var(--line); }
+.coverage-books > details > summary { padding: 17px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+.coverage-books > details > summary strong { font: 600 17px var(--serif-la); }
+.coverage-books > details > summary span { color: var(--muted); font-size: 10px; }
+.coverage-books > details > div { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.coverage-books article { min-height: 130px; padding: 17px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.coverage-books article b { color: var(--gold); font: 600 12px var(--serif-la); }
+.coverage-books article > span { display: block; font: 600 13px var(--serif-cn); margin: 5px 0; }
+.coverage-books article p { color: var(--muted); font-size: 10px; line-height: 1.6; margin: 0 0 9px; }
+.coverage-books article small { color: var(--crimson); font-size: 9px; }
 .source-card { margin-top: 18px; border-left-color: var(--crimson); background: var(--crimson-soft); }
 .source-card svg { color: var(--crimson); }
 
@@ -331,6 +352,9 @@ h1, h2, h3, p { margin-top: 0; }
   .question-card { padding: 24px 18px; }
   .question-card blockquote { padding: 18px; }
   .scope-grid { grid-template-columns: 1fr; }
+  .bank-summary { grid-template-columns: 1fr 1fr; }
+  .bank-summary > div { border-bottom: 1px solid var(--line); }
+  .coverage-books > details > div { grid-template-columns: 1fr 1fr; }
   .domain-columns { grid-template-columns: 1fr 1fr; }
   .etymology-card { grid-template-columns: 1fr; gap: 14px; }
   .vocab-grid { grid-template-columns: 1fr; }
@@ -365,6 +389,10 @@ h1, h2, h3, p { margin-top: 0; }
   .timer { margin-left: auto; }
   .archive-row { grid-template-columns: 1fr; gap: 8px; }
   .archive-status { grid-column: 1; }
+  .paper-type { grid-template-columns: 1fr; }
+  .bank-summary { grid-template-columns: 1fr; }
+  .bank-summary > div { border-right: 0; }
+  .coverage-books > details > div { grid-template-columns: 1fr; }
   .domain-columns { grid-template-columns: 1fr; }
   .vocab-item > div { grid-template-columns: 1fr; }
   .vocab-result { align-items: flex-start; flex-wrap: wrap; }
