@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/build-sites.mjs && node scripts/validate-sites.mjs",
-    "build:cloudflare": "NEXT_PUBLIC_AUTH_MODE=disabled next build",
+    "build:cloudflare": "NEXT_PUBLIC_AUTH_MODE=supabase next build",
     "build:pages": "next build",
     "deploy:cloudflare": "wrangler deploy",
     "db:migrate:cloudflare": "wrangler d1 migrations apply pkuni-latinex-db --remote",
@@ -14,6 +14,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.4",
     "lucide-react": "1.24.0",
     "next": "16.2.10",
     "react": "19.2.7",
