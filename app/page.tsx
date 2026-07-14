@@ -14,6 +14,7 @@ import {
   FileText,
   Flame,
   GraduationCap,
+  GitBranch,
   History,
   Home,
   Landmark,
@@ -92,6 +93,9 @@ function usePersistentState<T>(key: string, initialValue: T) {
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const staticQuestions = [...questions, ...completeQuestions];
 const allVocabItems = [...vocabItems, ...completeVocabItems];
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
+const assetPath = (path: string) => `${publicBasePath}${path}`;
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -111,6 +115,7 @@ export default function App() {
   const [overrides, setOverrides] = useState<Override[]>([]);
 
   useEffect(() => {
+    if (isStaticPublic) return;
     Promise.all([
       fetch("/api/me").then((r) => r.ok ? r.json() : null),
       fetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
@@ -164,7 +169,7 @@ export default function App() {
       <a className="skip-link" href="#main-content">跳到主要内容</a>
       <aside className={`sidebar ${mobileNav ? "sidebar-open" : ""}`} aria-label="主导航">
         <div className="brand">
-          <div className="brand-mark"><img src="/pkuni-latinex-logo-final.png" alt="" /></div>
+          <div className="brand-mark"><img src={assetPath("/pkuni-latinex-logo-final.png")} alt="" /></div>
           <div>
             <strong>比丘拟</strong>
             <span>PKUni_LATINEX</span>
@@ -192,7 +197,7 @@ export default function App() {
         </nav>
 
         <div className="mascot-note">
-          <img src="/pkuni-latinex-logo-final.png" alt="哔丘 Pikku 做翅膀赞" />
+          <img src={assetPath("/pkuni-latinex-logo-final.png")} alt="哔丘 Pikku 做翅膀赞" />
           <div><strong>哔丘 Pikku</strong><span>你的拉丁文刷题搭子</span></div>
         </div>
         <div className="sidebar-note">
@@ -214,6 +219,7 @@ export default function App() {
             <span><Flame size={17} /> 今日目标 <b>{Math.min(answered, 12)}/12</b></span>
             <span><Target size={17} /> 正确率 <b>{accuracy}%</b></span>
           </div>
+          <a className="repo-link" href="https://github.com/Etymodes/PKUni_Latinex" target="_blank" rel="noreferrer" title="查看原始 GitHub 仓库"><GitBranch size={16} /><span>源代码</span></a>
           <Account session={session} />
         </header>
 
@@ -234,6 +240,7 @@ export default function App() {
 }
 
 function Account({ session }: { session: Session }) {
+  if (isStaticPublic) return <span className="public-badge"><User size={15} /><span>公开版 · 本机记录</span></span>;
   if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
   return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
 }

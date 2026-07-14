@@ -2,6 +2,9 @@
 
 面向北京大学拉丁语标准化考试公开范围的非官方真题制式模拟网站。
 
+- GitHub Pages 公开版：<https://etymodes.github.io/PKUni_Latinex/>
+- 完整账号版：<https://pkuni-latinex.peterpig123456.chatgpt.site>
+
 ## 已实现
 
 - 初级、中级、混合难度、进阶四档训练
@@ -42,4 +45,5 @@ npm run dev
 ```bash
 npm run lint
 npm run build
+npm run build:pages
 ```
