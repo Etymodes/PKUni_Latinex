@@ -24,6 +24,7 @@ import {
   LogIn,
   LogOut,
   Menu,
+  QrCode,
   RotateCcw,
   ScrollText,
   Sparkles,
@@ -116,8 +117,29 @@ export default function App() {
   const [mobileNav, setMobileNav] = useState(false);
   const [session, setSession] = useState<Session>({ authenticated: false, user: null });
   const [overrides, setOverrides] = useState<Override[]>([]);
+  const [wechatEnabled, setWechatEnabled] = useState(false);
   const [syncStatus, setSyncStatus] = useState<"idle" | "syncing" | "error">("idle");
-  const pendingProgressSyncs = useRef<Set<Promise<void>>>(new Set());
+  const pendingAccountSyncs = useRef<Set<Promise<void>>>(new Set());
+  const accountSyncChain = useRef<Promise<void>>(Promise.resolve());
+  const bookmarksRef = useRef(bookmarks);
+
+  useEffect(() => {
+    bookmarksRef.current = bookmarks;
+  }, [bookmarks]);
+
+  const queueAccountSync = useCallback((operation: () => Promise<void>) => {
+    setSyncStatus("syncing");
+    const sync = accountSyncChain.current.catch(() => {}).then(operation);
+    accountSyncChain.current = sync;
+    pendingAccountSyncs.current.add(sync);
+    void sync.then(
+      () => {},
+      () => setSyncStatus("error"),
+    ).finally(() => {
+      pendingAccountSyncs.current.delete(sync);
+      if (pendingAccountSyncs.current.size === 0) setSyncStatus((current) => current === "error" ? "error" : "idle");
+    });
+  }, []);
 
   const refreshAccount = useCallback(async (providedSession?: Session) => {
     const nextSession = providedSession ?? await apiFetch("/api/me").then((response) => response.ok ? response.json() : null);
@@ -131,32 +153,46 @@ export default function App() {
     setSyncStatus("syncing");
     const response = await apiFetch("/api/stats");
     if (!response.ok) {
-      setProgress({});
       setSyncStatus("error");
       return;
     }
     const stats = await response.json();
     setProgress(stats?.progress || {});
+    const remoteBookmarks = Array.isArray(stats?.bookmarks) ? stats.bookmarks.filter((id: unknown) => typeof id === "string") : [];
+    const mergedBookmarks = [...new Set([...remoteBookmarks, ...bookmarksRef.current])];
+    bookmarksRef.current = mergedBookmarks;
+    setBookmarks(mergedBookmarks);
+    if (mergedBookmarks.length !== remoteBookmarks.length) {
+      const migrated = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionIds: mergedBookmarks }) });
+      if (!migrated.ok) {
+        setSyncStatus("error");
+        return;
+      }
+    }
     setSyncStatus("idle");
-  }, [setProgress]);
+  }, [setBookmarks, setProgress]);
 
-  const waitForProgressSync = useCallback(async () => {
-    await Promise.allSettled([...pendingProgressSyncs.current]);
+  const waitForAccountSync = useCallback(async () => {
+    await Promise.allSettled([...pendingAccountSyncs.current]);
   }, []);
 
-  const clearAccountProgress = useCallback(() => {
+  const clearAccountData = useCallback(() => {
     setSession({ authenticated: false, persistence: true, user: null });
     setProgress({});
+    bookmarksRef.current = [];
+    setBookmarks([]);
     setSyncStatus("idle");
-  }, [setProgress]);
+  }, [setBookmarks, setProgress]);
 
   useEffect(() => {
     if (isStaticPublic) return;
     Promise.all([
       apiFetch("/api/me").then((r) => r.ok ? r.json() : null),
       apiFetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
-    ]).then(([me, remote]) => {
+      apiFetch("/api/auth-config").then((r) => r.ok ? r.json() : { wechat: false }),
+    ]).then(([me, remote, authConfig]) => {
       setOverrides(remote?.overrides || []);
+      setWechatEnabled(Boolean(authConfig?.wechat));
       if (me) void refreshAccount(me);
     }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
 
@@ -178,20 +214,23 @@ export default function App() {
   const recordProgress = (question: Question, status: Progress[string]) => {
     setProgress((current) => ({ ...current, [question.id]: status }));
     if (!session.authenticated) return;
-    setSyncStatus("syncing");
-    const sync = (async () => {
+    queueAccountSync(async () => {
       const response = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) });
       if (!response.ok) throw new Error("进度同步失败");
-    })();
-    pendingProgressSyncs.current.add(sync);
-    void sync.then(
-      () => {},
-      () => setSyncStatus("error"),
-    ).finally(() => {
-      pendingProgressSyncs.current.delete(sync);
-      if (pendingProgressSyncs.current.size === 0) setSyncStatus((current) => current === "error" ? "error" : "idle");
     });
   };
+
+  const updateBookmarks = useCallback((next: string[] | ((current: string[]) => string[])) => {
+    const resolved = typeof next === "function" ? next(bookmarksRef.current) : next;
+    const unique = [...new Set(resolved)];
+    bookmarksRef.current = unique;
+    setBookmarks(unique);
+    if (!session.authenticated) return;
+    queueAccountSync(async () => {
+      const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionIds: unique }) });
+      if (!response.ok) throw new Error("收藏同步失败");
+    });
+  }, [queueAccountSync, session.authenticated, setBookmarks]);
 
   const answered = Object.keys(progress).length;
   const correct = Object.values(progress).filter((v) => v === "correct").length;
@@ -272,15 +311,15 @@ export default function App() {
             <span><Target size={17} /> 正确率 <b>{accuracy}%</b></span>
           </div>
           <a className="repo-link" href="https://github.com/Etymodes/PKUni_Latinex" target="_blank" rel="noreferrer" title="查看原始 GitHub 仓库"><GitBranch size={16} /><span>源代码</span></a>
-          {syncStatus !== "idle" && <span className={`sync-indicator ${syncStatus}`} role={syncStatus === "error" ? "alert" : "status"}>{syncStatus === "syncing" ? "进度同步中…" : "进度同步失败，请保持登录并重试"}</span>}
-          <Account session={session} onSession={refreshAccount} beforeLogout={waitForProgressSync} onLogout={clearAccountProgress} />
+          {syncStatus !== "idle" && <span className={`sync-indicator ${syncStatus}`} role={syncStatus === "error" ? "alert" : "status"}>{syncStatus === "syncing" ? "账户记录同步中…" : "记录同步失败，请保持登录并重试"}</span>}
+          <Account session={session} onSession={refreshAccount} beforeLogout={waitForAccountSync} onLogout={clearAccountData} wechatEnabled={wechatEnabled} />
         </header>
 
         <main id="main-content">
           {view === "home" && <Dashboard bank={questionBank} level={level} progress={progress} bookmarks={bookmarks} openPractice={openPractice} setView={setView} />}
-          {view === "practice" && <Practice bank={questionBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
-          {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questionBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
-          {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={questionBank.filter((q) => bookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={setBookmarks} />}
+          {view === "practice" && <Practice bank={questionBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
+          {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questionBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
+          {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={questionBank.filter((q) => bookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
           {view === "exam" && <ExamMode bank={questionBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} />}
           {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
           {view === "scope" && <Scope openPractice={openPractice} />}
@@ -292,14 +331,14 @@ export default function App() {
   );
 }
 
-function Account({ session, onSession, beforeLogout, onLogout }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void }) {
+function Account({ session, onSession, beforeLogout, onLogout, wechatEnabled }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void; wechatEnabled: boolean }) {
   if (isStaticPublic) return <span className="public-badge"><User size={15} /><span>公开版 · 本机记录</span></span>;
-  if (authMode === "supabase") return <SupabaseAccount session={session} onSession={onSession} beforeLogout={beforeLogout} onLogout={onLogout} />;
+  if (authMode === "supabase") return <SupabaseAccount session={session} onSession={onSession} beforeLogout={beforeLogout} onLogout={onLogout} wechatEnabled={wechatEnabled} />;
   if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
   return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
 }
 
-function SupabaseAccount({ session, onSession, beforeLogout, onLogout }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void }) {
+function SupabaseAccount({ session, onSession, beforeLogout, onLogout, wechatEnabled }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void; wechatEnabled: boolean }) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
@@ -368,6 +407,16 @@ function SupabaseAccount({ session, onSession, beforeLogout, onLogout }: { sessi
     if (oauthError) setError(oauthError.message);
   };
 
+  const wechatLogin = async () => {
+    if (!wechatEnabled) return;
+    setError("");
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: "custom:wechat",
+      options: { redirectTo: window.location.origin },
+    });
+    if (oauthError) setError(oauthError.message);
+  };
+
   const logout = async () => {
     setBusy(true);
     await beforeLogout();
@@ -405,6 +454,8 @@ function SupabaseAccount({ session, onSession, beforeLogout, onLogout }: { sessi
           {notice && <p className="auth-notice" role="status">{notice}</p>}
           <button className="primary-button" disabled={busy}>{busy ? "处理中…" : mode === "login" ? "登录并同步进度" : "注册账号"}</button>
         </form>
+        <div className="auth-divider"><span>其他登录方式</span></div>
+        <button className="wechat-auth-button" onClick={wechatLogin} disabled={!wechatEnabled} title={wechatEnabled ? "打开微信二维码完成登录" : "配置正式域名和微信开放平台后启用"}><QrCode size={17} />{wechatEnabled ? "使用微信扫码登录" : "微信扫码登录 · 配置中"}</button>
         <div className="auth-divider"><span>开发者 / 管理员</span></div>
         <button className="github-auth-button" onClick={githubLogin}><GitBranch size={17} />使用 GitHub 登录</button>
       </section>
