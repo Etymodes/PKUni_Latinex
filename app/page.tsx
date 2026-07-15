@@ -38,7 +38,7 @@ import {
   X,
   XCircle,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   categoryLabels,
@@ -116,6 +116,39 @@ export default function App() {
   const [mobileNav, setMobileNav] = useState(false);
   const [session, setSession] = useState<Session>({ authenticated: false, user: null });
   const [overrides, setOverrides] = useState<Override[]>([]);
+  const [syncStatus, setSyncStatus] = useState<"idle" | "syncing" | "error">("idle");
+  const pendingProgressSyncs = useRef<Set<Promise<void>>>(new Set());
+
+  const refreshAccount = useCallback(async (providedSession?: Session) => {
+    const nextSession = providedSession ?? await apiFetch("/api/me").then((response) => response.ok ? response.json() : null);
+    if (!nextSession) return;
+    setSession(nextSession);
+    if (!nextSession.authenticated) {
+      setSyncStatus("idle");
+      return;
+    }
+
+    setSyncStatus("syncing");
+    const response = await apiFetch("/api/stats");
+    if (!response.ok) {
+      setProgress({});
+      setSyncStatus("error");
+      return;
+    }
+    const stats = await response.json();
+    setProgress(stats?.progress || {});
+    setSyncStatus("idle");
+  }, [setProgress]);
+
+  const waitForProgressSync = useCallback(async () => {
+    await Promise.allSettled([...pendingProgressSyncs.current]);
+  }, []);
+
+  const clearAccountProgress = useCallback(() => {
+    setSession({ authenticated: false, persistence: true, user: null });
+    setProgress({});
+    setSyncStatus("idle");
+  }, [setProgress]);
 
   useEffect(() => {
     if (isStaticPublic) return;
@@ -123,23 +156,18 @@ export default function App() {
       apiFetch("/api/me").then((r) => r.ok ? r.json() : null),
       apiFetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
     ]).then(([me, remote]) => {
-      if (me) setSession(me);
       setOverrides(remote?.overrides || []);
-      if (me?.authenticated) {
-        apiFetch("/api/stats").then((r) => r.ok ? r.json() : null).then((stats) => {
-          if (stats?.progress) setProgress((local) => ({ ...local, ...stats.progress }));
-        });
-      }
+      if (me) void refreshAccount(me);
     }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
 
     if (authMode !== "supabase") return;
     const { data } = supabase.auth.onAuthStateChange(() => {
       window.setTimeout(() => {
-        apiFetch("/api/me").then((r) => r.ok ? r.json() : null).then((me) => me && setSession(me)).catch(() => {});
+        void refreshAccount();
       }, 0);
     });
     return () => data.subscription.unsubscribe();
-  }, [setProgress]);
+  }, [refreshAccount]);
 
   const questionBank = useMemo(() => {
     const map = new Map(staticQuestions.map((question) => [question.id, question]));
@@ -149,7 +177,20 @@ export default function App() {
 
   const recordProgress = (question: Question, status: Progress[string]) => {
     setProgress((current) => ({ ...current, [question.id]: status }));
-    if (session.authenticated) apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) }).catch(() => {});
+    if (!session.authenticated) return;
+    setSyncStatus("syncing");
+    const sync = (async () => {
+      const response = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) });
+      if (!response.ok) throw new Error("进度同步失败");
+    })();
+    pendingProgressSyncs.current.add(sync);
+    void sync.then(
+      () => {},
+      () => setSyncStatus("error"),
+    ).finally(() => {
+      pendingProgressSyncs.current.delete(sync);
+      if (pendingProgressSyncs.current.size === 0) setSyncStatus((current) => current === "error" ? "error" : "idle");
+    });
   };
 
   const answered = Object.keys(progress).length;
@@ -231,7 +272,8 @@ export default function App() {
             <span><Target size={17} /> 正确率 <b>{accuracy}%</b></span>
           </div>
           <a className="repo-link" href="https://github.com/Etymodes/PKUni_Latinex" target="_blank" rel="noreferrer" title="查看原始 GitHub 仓库"><GitBranch size={16} /><span>源代码</span></a>
-          <Account session={session} onSession={setSession} />
+          {syncStatus !== "idle" && <span className={`sync-indicator ${syncStatus}`} role={syncStatus === "error" ? "alert" : "status"}>{syncStatus === "syncing" ? "进度同步中…" : "进度同步失败，请保持登录并重试"}</span>}
+          <Account session={session} onSession={refreshAccount} beforeLogout={waitForProgressSync} onLogout={clearAccountProgress} />
         </header>
 
         <main id="main-content">
@@ -250,14 +292,14 @@ export default function App() {
   );
 }
 
-function Account({ session, onSession }: { session: Session; onSession: (session: Session) => void }) {
+function Account({ session, onSession, beforeLogout, onLogout }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void }) {
   if (isStaticPublic) return <span className="public-badge"><User size={15} /><span>公开版 · 本机记录</span></span>;
-  if (authMode === "supabase") return <SupabaseAccount session={session} onSession={onSession} />;
+  if (authMode === "supabase") return <SupabaseAccount session={session} onSession={onSession} beforeLogout={beforeLogout} onLogout={onLogout} />;
   if (!session.authenticated || !session.user) return <a className="account-button" href="/signin-with-chatgpt?return_to=/"><LogIn size={16} /><span>登录 / 注册</span></a>;
   return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "管理员" : "学习账号"}</small></span><a href="/signout-with-chatgpt?return_to=/" title="退出后可切换 ChatGPT 账号"><LogOut size={15} />退出 / 换号</a></div>;
 }
 
-function SupabaseAccount({ session, onSession }: { session: Session; onSession: (session: Session) => void }) {
+function SupabaseAccount({ session, onSession, beforeLogout, onLogout }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void }) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
@@ -288,7 +330,7 @@ function SupabaseAccount({ session, onSession }: { session: Session; onSession: 
 
   const refresh = async () => {
     const response = await apiFetch("/api/me");
-    if (response.ok) onSession(await response.json());
+    if (response.ok) await onSession(await response.json());
   };
 
   const submit = async (event: React.FormEvent) => {
@@ -327,12 +369,20 @@ function SupabaseAccount({ session, onSession }: { session: Session; onSession: 
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
-    onSession({ authenticated: false, persistence: true, user: null });
+    setBusy(true);
+    await beforeLogout();
+    const { error: logoutError } = await supabase.auth.signOut();
+    if (logoutError) {
+      setError(logoutError.message);
+      setBusy(false);
+      return;
+    }
+    onLogout();
+    setBusy(false);
   };
 
   if (session.authenticated && session.user) {
-    return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "GitHub 管理员" : "学习账号"}</small></span><button onClick={logout} title="退出后可登录其他账号"><LogOut size={15} />退出 / 换号</button></div>;
+    return <div className="account-menu"><User size={16} /><span><strong>{session.user.name}</strong><small>{session.user.role === "admin" ? "GitHub 管理员" : "学习账号"}</small></span><button onClick={logout} disabled={busy} title="退出前会等待当前进度同步完成"><LogOut size={15} />{busy ? "同步中…" : "退出 / 换号"}</button></div>;
   }
 
   return <>
