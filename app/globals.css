@@ -104,6 +104,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .auth-divider::before, .auth-divider::after { content: ""; height: 1px; flex: 1; background: var(--line); }
 .github-auth-button { width: 100%; min-height: 42px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #2d2925; color: #fff; background: #2d2925; border-radius: 4px; cursor: pointer; }
 .github-auth-button:hover { background: #151310; }
+.wechat-auth-button { width: 100%; min-height: 42px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #168544; color: #fff; background: #1aad5b; border-radius: 4px; cursor: pointer; }
+.wechat-auth-button:hover:not(:disabled) { background: #168f4d; }
+.wechat-auth-button:disabled { color: #668273; background: #edf6f0; border-color: #c7ddce; }
 
 .page { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 46px 0 70px; }
 h1, h2, h3, p { margin-top: 0; }
