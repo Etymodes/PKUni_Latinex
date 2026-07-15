@@ -15,6 +15,11 @@ const schema = [
     correct INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(user_email, lemma)
   )`,
+  `CREATE TABLE IF NOT EXISTS bookmarks (
+    user_email TEXT NOT NULL, question_id TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(user_email, question_id)
+  )`,
   `CREATE TABLE IF NOT EXISTS question_overrides (
     id TEXT PRIMARY KEY, payload TEXT, deleted INTEGER NOT NULL DEFAULT 0,
     updated_by TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -115,6 +120,10 @@ async function api(request, env, url) {
     return json({ authenticated: Boolean(user), user: publicUser, persistence: hasDb, authError: auth?.rejected || undefined });
   }
 
+  if (url.pathname === "/api/auth-config" && request.method === "GET") {
+    return json({ wechat: String(env.WECHAT_LOGIN_ENABLED || "").toLowerCase() === "true" });
+  }
+
   if (url.pathname === "/api/questions" && request.method === "GET") {
     if (!hasDb) return json({ overrides: [] });
     const result = await env.DB.prepare("SELECT id, payload, deleted, updated_at FROM question_overrides ORDER BY updated_at DESC").all();
@@ -123,13 +132,14 @@ async function api(request, env, url) {
 
   if (url.pathname === "/api/stats" && request.method === "GET") {
     if (!user) return json({ error: "请先登录" }, 401);
-    const [attempts, vocab] = await env.DB.batch([
+    const [attempts, vocab, bookmarks] = await env.DB.batch([
       env.DB.prepare(`SELECT a.question_id, a.status FROM attempts a
         JOIN (SELECT question_id, MAX(id) id FROM attempts WHERE user_email=? GROUP BY question_id) latest ON latest.id=a.id`).bind(user.id),
       env.DB.prepare("SELECT lemma, seen, correct FROM vocab_stats WHERE user_email=?").bind(user.id),
+      env.DB.prepare("SELECT question_id FROM bookmarks WHERE user_email=? ORDER BY created_at").bind(user.id),
     ]);
     const progress = Object.fromEntries(attempts.results.map((row) => [row.question_id, row.status]));
-    return json({ progress, vocab: vocab.results });
+    return json({ progress, vocab: vocab.results, bookmarks: bookmarks.results.map((row) => row.question_id) });
   }
 
   if (url.pathname === "/api/progress" && request.method === "POST") {
@@ -139,6 +149,19 @@ async function api(request, env, url) {
     await env.DB.prepare("INSERT INTO attempts (user_email, question_id, status, level, category) VALUES (?, ?, ?, ?, ?)")
       .bind(user.id, body.questionId, body.status, body.level || null, body.category || null).run();
     return json({ ok: true });
+  }
+
+  if (url.pathname === "/api/bookmarks" && request.method === "PUT") {
+    if (!user) return json({ error: "请先登录" }, 401);
+    const body = await request.json();
+    const questionIds = [...new Set(Array.isArray(body.questionIds) ? body.questionIds : [])]
+      .filter((id) => typeof id === "string" && id.length > 0 && id.length <= 80)
+      .slice(0, 500);
+    await env.DB.batch([
+      env.DB.prepare("DELETE FROM bookmarks WHERE user_email=?").bind(user.id),
+      ...questionIds.map((id) => env.DB.prepare("INSERT INTO bookmarks (user_email, question_id) VALUES (?, ?)").bind(user.id, id)),
+    ]);
+    return json({ ok: true, bookmarks: questionIds });
   }
 
   if (url.pathname === "/api/vocab" && request.method === "POST") {
