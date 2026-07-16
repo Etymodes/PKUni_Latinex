@@ -418,6 +418,10 @@ async function api(request, env, url) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.protocol === "http:" && url.hostname !== "localhost" && url.hostname !== "127.0.0.1") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 308);
+    }
     if (url.pathname.startsWith("/api/oauth/wechat/")) {
       try { return await wechatOauth(request, env, url); }
       catch { return oauthError("server_error", "微信登录服务暂时不可用", 500); }
