@@ -345,6 +345,66 @@ h1, h2, h3, p { margin-top: 0; }
 .archive-status { color: #856931; background: var(--gold-soft); padding: 6px 9px; border-radius: 3px; font-size: 9px; white-space: nowrap; }
 .archive-status.neutral { color: var(--muted); background: #efede8; }
 
+.hub-tabs { width: min(1180px, calc(100% - 48px)); margin: 22px auto -10px; display: flex; gap: 4px; border-bottom: 1px solid var(--line); }
+.hub-tabs button, .resource-tabs button { border: 0; border-bottom: 2px solid transparent; background: transparent; padding: 10px 14px; color: var(--muted); cursor: pointer; font-size: 11px; }
+.hub-tabs button.active, .resource-tabs button.active { color: var(--crimson); border-bottom-color: var(--crimson); font-weight: 700; }
+.resource-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.textbook-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.textbook-grid > article { padding: 23px; background: var(--panel); border: 1px solid var(--line); }
+.resource-card-head { display: flex; justify-content: space-between; color: var(--muted); font-size: 9px; text-transform: uppercase; }
+.resource-card-head span { color: var(--green); background: var(--green-soft); padding: 4px 7px; border-radius: 10px; }
+.textbook-grid h2 { margin: 13px 0 4px; font: 600 17px var(--serif-cn); }
+.textbook-grid > article > p { color: var(--muted); font-size: 10px; line-height: 1.7; }
+.resource-byline { color: var(--crimson) !important; font-family: var(--serif-la); }
+.textbook-grid details { margin: 15px 0; padding: 12px; background: #faf8f3; }
+.textbook-grid summary { cursor: pointer; font-size: 10px; font-weight: 700; }
+.textbook-grid dl { display: grid; grid-template-columns: 42px 1fr; gap: 7px 10px; margin-bottom: 0; font-size: 9px; line-height: 1.6; }
+.textbook-grid dt { color: var(--crimson); font-weight: 700; }
+.textbook-grid dd { margin: 0; color: var(--muted); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-row span, .dictionary-checks span { padding: 4px 7px; background: var(--gold-soft); color: #765a2d; border-radius: 3px; font-size: 8px; }
+.resource-metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 20px; background: #2d2925; color: white; }
+.resource-metrics div { padding: 20px; border-right: 1px solid #514b45; }
+.resource-metrics strong { display: block; color: #d0a85f; font: 600 26px var(--serif-la); }
+.resource-metrics span { color: #c7beb3; font-size: 9px; }
+.author-timeline { display: grid; gap: 18px; }
+.author-timeline > section > h2 { font: 600 18px var(--serif-cn); border-bottom: 2px solid var(--gold); padding-bottom: 9px; }
+.author-timeline > section > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.author-timeline article { background: var(--panel); border: 1px solid var(--line); padding: 17px; }
+.author-timeline article > span, .author-timeline article > small { color: var(--crimson); font-size: 8px; }
+.author-timeline h3 { font: 600 14px var(--serif-la); margin: 5px 0; }
+.author-timeline p, .author-timeline li { color: var(--muted); font-size: 9px; line-height: 1.6; }
+.author-timeline ul { padding-left: 16px; }
+.dictionary-sources { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 18px; }
+.dictionary-sources article { padding: 14px; background: var(--gold-soft); }
+.dictionary-sources strong { font: 600 11px var(--serif-la); }
+.dictionary-sources p, .dictionary-sources small { display: block; color: #625846; font-size: 8px; line-height: 1.55; }
+.resource-search { min-height: 45px; display: flex; align-items: center; gap: 9px; padding: 0 14px; background: white; border: 1px solid var(--line-strong); }
+.resource-search input { flex: 1; border: 0; outline: 0; font-size: 11px; }
+.lexicon-list { display: grid; gap: 10px; margin-top: 14px; }
+.lexicon-list article { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 16px; padding: 18px; background: var(--panel); border: 1px solid var(--line); }
+.lexicon-list h2 { font: 600 21px var(--serif-la); margin: 0; }
+.lexicon-list article > div > span, .lexicon-list article > div > b { display: block; font-size: 9px; margin-top: 3px; }
+.lexicon-list p { color: var(--muted); font-size: 9px; line-height: 1.65; margin: 0; }
+.lexicon-list p strong { display: block; color: var(--ink); }
+.dictionary-checks { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; }
+.etymology-progress { display: flex; gap: 15px; align-items: center; padding: 22px; background: #2d2925; color: white; }
+.etymology-progress svg { color: #d0a85f; }
+.etymology-progress strong { font: 600 24px var(--serif-la); }
+.etymology-progress p { color: #c7beb3; font-size: 10px; margin: 4px 0 0; }
+.fact-library { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+.fact-library article { padding: 20px; background: var(--panel); border: 1px solid var(--line); }
+.fact-library span { color: var(--gold); font-size: 8px; }
+.fact-library h2 { font: 600 17px var(--serif-la); }
+.fact-library p, .fact-library small { color: var(--muted); font-size: 9px; line-height: 1.7; }
+.community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.community-grid article { min-height: 270px; padding: 30px; background: var(--panel); border: 1px solid var(--line); }
+.community-grid svg { color: var(--gold); }
+.community-grid span { display: block; color: var(--crimson); font: 600 9px var(--serif-la); letter-spacing: .12em; margin-top: 22px; }
+.community-grid h2 { font: 600 22px var(--serif-cn); }
+.community-grid p { color: var(--muted); font-size: 11px; line-height: 1.8; }
+.community-grid button { margin-top: 20px; border: 1px solid var(--line); background: #f2efe9; padding: 9px 15px; }
+
 @media (max-width: 1000px) {
   .app-shell { grid-template-columns: 220px minmax(0, 1fr); }
   .sidebar { padding-left: 12px; padding-right: 12px; }
@@ -397,6 +457,11 @@ h1, h2, h3, p { margin-top: 0; }
   .admin-row { grid-template-columns: 1fr; }
   .archive-row { grid-template-columns: 85px 1fr; }
   .archive-status { grid-column: 2; width: fit-content; }
+  .textbook-grid, .community-grid, .fact-library { grid-template-columns: 1fr; }
+  .author-timeline > section > div { grid-template-columns: 1fr 1fr; }
+  .dictionary-sources { grid-template-columns: 1fr 1fr; }
+  .lexicon-list article { grid-template-columns: 1fr; }
+  .dictionary-checks { grid-column: 1; }
 }
 
 @media (max-width: 480px) {
@@ -430,6 +495,10 @@ h1, h2, h3, p { margin-top: 0; }
   .domain-columns { grid-template-columns: 1fr; }
   .vocab-item > div { grid-template-columns: 1fr; }
   .vocab-result { align-items: flex-start; flex-wrap: wrap; }
+  .hub-tabs { width: calc(100% - 28px); overflow-x: auto; }
+  .resource-metrics { grid-template-columns: 1fr; }
+  .resource-metrics div { border-right: 0; border-bottom: 1px solid #514b45; }
+  .author-timeline > section > div, .dictionary-sources { grid-template-columns: 1fr; }
 }
 
 @media (max-height: 700px), (max-width: 480px) {
