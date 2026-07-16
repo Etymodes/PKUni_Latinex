@@ -82,6 +82,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .account-menu a:hover { color: var(--crimson); }
 .account-menu button { color: var(--muted); border: 0; background: transparent; display: inline-flex; align-items: center; gap: 4px; padding: 0; cursor: pointer; font-size: 10px; white-space: nowrap; }
 .account-menu button:hover { color: var(--crimson); }
+.sync-indicator { min-height: 30px; padding: 0 9px; border-radius: 5px; display: inline-flex; align-items: center; color: #356a9f; background: #eef8ff; border: 1px solid #c7deef; font-size: 9px; white-space: nowrap; }
+.sync-indicator.error { color: #963c35; background: var(--red-soft); border-color: #e8c4bf; }
 
 .auth-overlay { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; overflow-y: auto; overscroll-behavior: contain; padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: max(20px, env(safe-area-inset-bottom)); background: rgba(25, 21, 18, .58); backdrop-filter: blur(5px); }
 .auth-dialog { width: min(430px, 100%); max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; position: relative; flex: 0 0 auto; padding: 34px; background: var(--panel); border: 1px solid var(--line-strong); box-shadow: 0 24px 70px rgba(25, 21, 18, .25); }
@@ -102,6 +104,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .auth-divider::before, .auth-divider::after { content: ""; height: 1px; flex: 1; background: var(--line); }
 .github-auth-button { width: 100%; min-height: 42px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #2d2925; color: #fff; background: #2d2925; border-radius: 4px; cursor: pointer; }
 .github-auth-button:hover { background: #151310; }
+.wechat-auth-button { width: 100%; min-height: 42px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #168544; color: #fff; background: #1aad5b; border-radius: 4px; cursor: pointer; }
+.wechat-auth-button:hover:not(:disabled) { background: #168f4d; }
+.wechat-auth-button:disabled { color: #668273; background: #edf6f0; border-color: #c7ddce; }
 
 .page { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 46px 0 70px; }
 h1, h2, h3, p { margin-top: 0; }
@@ -363,6 +368,9 @@ h1, h2, h3, p { margin-top: 0; }
   .account-menu > span, .account-menu > svg { display: none; }
   .account-button span { display: none; }
   .repo-link span, .public-badge span { display: none; }
+  .sync-indicator { max-width: 32px; overflow: hidden; color: transparent; position: relative; }
+  .sync-indicator::after { content: "↻"; color: #356a9f; position: absolute; inset: 0; display: grid; place-items: center; font-size: 14px; }
+  .sync-indicator.error::after { content: "!"; color: #963c35; }
   .page { width: min(100% - 28px, 640px); padding-top: 26px; }
   .welcome-panel { padding: 28px 24px; min-height: 420px; align-items: start; }
   .welcome-copy h1 { font-size: 32px; }
