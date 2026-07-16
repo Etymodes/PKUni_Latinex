@@ -56,7 +56,7 @@ import {
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
-import { classicalAuthors, dictionarySources, lexiconSeed, textbookCatalog } from "@/data/resources";
+import { classicalAuthors, dictionarySources, lexiconSeed, scholarCatalog, textbookCatalog } from "@/data/resources";
 import { apiFetch, supabase } from "@/lib/supabase";
 
 type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "admin";
@@ -476,8 +476,10 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   const done = levelQs.filter((q) => progress[q.id]).length;
   const right = levelQs.filter((q) => progress[q.id] === "correct").length;
   const percent = levelQs.length ? Math.round((done / levelQs.length) * 100) : 0;
-  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * etymologyFacts.length));
+  const [factIndex, setFactIndex] = useState(0);
   const fact = etymologyFacts[factIndex];
+
+  useEffect(() => setFactIndex(Math.floor(Math.random() * etymologyFacts.length)), []);
 
   const modes = [
     { category: "morphology" as Category, icon: Layers3, title: "形态快练", latin: "Fōrmae", copy: "变格、变位与不规则词形", meta: `${bank.filter((q) => matchesLevel(q, level) && q.category === "morphology").length} 题` },
@@ -821,14 +823,14 @@ function HubTabs({ items, view, setView }: { items: [View, string][]; view: View
 }
 
 function ResourceLibrary() {
-  const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
+  const [tab, setTab] = useState<"textbooks" | "authors" | "scholars" | "dictionary" | "etymology">("textbooks");
   const [query, setQuery] = useState("");
   const periods = [...new Set(classicalAuthors.map((author) => author.period))];
   const lexicon = lexiconSeed.filter((entry) => `${entry.lemma} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase()));
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
     <div className="resource-tabs" role="tablist">
-      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', '拉丁语辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
+      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['scholars', '译者与研究者'], ['dictionary', '拉丁语辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
     </div>
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>版权与改编原则</strong><p>只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。</p></div></div>
@@ -837,6 +839,10 @@ function ResourceLibrary() {
     {tab === "authors" && <>
       <div className="resource-metrics"><div><strong>{classicalAuthors.length}</strong><span>位首批作者</span></div><div><strong>{classicalAuthors.reduce((total, author) => total + author.works.length, 0)}</strong><span>条作者—作品关系</span></div><div><strong>{periods.length}</strong><span>个历史分期</span></div></div>
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
+    </>}
+    {tab === "scholars" && <>
+      <div className="source-card"><CircleHelp /><div><strong>现代研究者不是古典作者</strong><p>本层记录译者、语文学者与中文／日文解释传统。引用时将精确关联“研究者—著作—版本—所解读的古典作品或段落”；当前空缺书目不参与题目解析。</p></div></div>
+      <div className="scholar-grid">{scholarCatalog.map((scholar) => <article key={scholar.id}><div><span>{scholar.region}</span><small className={scholar.status === "部分核验" ? "verified" : ""}>{scholar.status}</small></div><h2>{scholar.name}</h2><p>{scholar.focus.join(" · ")}</p><div className="tag-row">{scholar.languages.map((language) => <span key={language}>{language}</span>)}</div>{scholar.verifiedWorks.length > 0 ? <ul>{scholar.verifiedWorks.map((work) => <li key={work}>{work}</li>)}</ul> : <p className="pending-biblio">著作目录正在逐条核验</p>}</article>)}</div>
     </>}
     {tab === "dictionary" && <>
       <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>
