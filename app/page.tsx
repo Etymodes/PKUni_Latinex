@@ -19,6 +19,7 @@ import {
   Home,
   Landmark,
   Layers3,
+  Library,
   Languages,
   ListOrdered,
   LogIn,
@@ -26,6 +27,7 @@ import {
   Menu,
   QrCode,
   RotateCcw,
+  Search,
   ScrollText,
   Sparkles,
   Save,
@@ -36,6 +38,7 @@ import {
   Trash2,
   Trophy,
   User,
+  Users,
   X,
   XCircle,
 } from "lucide-react";
@@ -53,9 +56,10 @@ import {
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
+import { classicalAuthors, dictionarySources, lexiconSeed, textbookCatalog } from "@/data/resources";
 import { apiFetch, supabase } from "@/lib/supabase";
 
-type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "admin";
+type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
@@ -245,15 +249,14 @@ export default function App() {
 
   const navItems: { id: View; label: string; icon: typeof Home; count?: number }[] = [
     { id: "home", label: "今日概览", icon: Home },
-    { id: "practice", label: "有序选题", icon: ListOrdered },
-    { id: "exam", label: "随机组卷", icon: Shuffle },
-    { id: "vocabulary", label: "词汇量测量", icon: Languages },
-    { id: "mistakes", label: "错题回炉", icon: RotateCcw, count: Object.values(progress).filter((v) => v === "wrong" || v === "review").length },
-    { id: "bookmarks", label: "我的收藏", icon: Bookmark, count: bookmarks.length },
-    { id: "archive", label: "真题档案", icon: History },
-    { id: "scope", label: "考试范围", icon: ScrollText },
+    { id: "practice", label: "训练中心", icon: ListOrdered },
+    { id: "mistakes", label: "复习中心", icon: RotateCcw, count: Object.values(progress).filter((v) => v === "wrong" || v === "review").length + bookmarks.length },
+    { id: "scope", label: "考试与资源", icon: Library },
+    { id: "community", label: "拉丁语社区", icon: Users },
     ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: "管理员后台", icon: Settings }] : []),
   ];
+  const activeSection: View = (["exam", "vocabulary"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
+  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: "拉丁语资源库" };
 
   return (
     <div className="app-shell">
@@ -279,7 +282,7 @@ export default function App() {
         <nav className="nav-list">
           <p className="nav-kicker">学习台</p>
           {navItems.map(({ id, label, icon: Icon, count }) => (
-            <button key={id} className={view === id ? "nav-item active" : "nav-item"} onClick={() => { setView(id); setMobileNav(false); }}>
+            <button key={id} className={activeSection === id ? "nav-item active" : "nav-item"} onClick={() => { setView(id); setMobileNav(false); }}>
               <Icon size={18} strokeWidth={1.8} />
               <span>{label}</span>
               {typeof count === "number" && count > 0 && <b>{count}</b>}
@@ -304,7 +307,7 @@ export default function App() {
           <button className="icon-button menu-button" onClick={() => setMobileNav(true)} aria-label="打开导航"><Menu size={21} /></button>
           <div className="topbar-title">
             <span className="breadcrumb">拉丁语标准化考试训练</span>
-            <strong>{navItems.find((item) => item.id === view)?.label}</strong>
+            <strong>{viewTitles[view] ?? navItems.find((item) => item.id === activeSection)?.label}</strong>
           </div>
           <div className="topbar-stats" aria-label="学习统计">
             <span><Flame size={17} /> 今日目标 <b>{Math.min(answered, 12)}/12</b></span>
@@ -316,6 +319,9 @@ export default function App() {
         </header>
 
         <main id="main-content">
+          {(["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+          {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
+          {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
           {view === "home" && <Dashboard bank={questionBank} level={level} progress={progress} bookmarks={bookmarks} openPractice={openPractice} setView={setView} />}
           {view === "practice" && <Practice bank={questionBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
           {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questionBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
@@ -324,6 +330,8 @@ export default function App() {
           {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
           {view === "scope" && <Scope openPractice={openPractice} />}
           {view === "archive" && <Archive />}
+          {view === "resources" && <ResourceLibrary />}
+          {view === "community" && <CommunityPreview />}
           {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={questionBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
         </main>
       </div>
@@ -806,6 +814,44 @@ function Archive() {
       <div className="source-card"><CircleHelp /><div><strong>什么条件下才能标为“历年真题”？</strong><p>至少满足其一：北大或联合考点正式公开；试卷扫描件带有可核验年份与考务信息；或考生回忆能由两个独立来源确认具体作者、篇章与选段边界。在此之前，本站只提供“按真题制式模拟”，不会反推或冒认原题。</p></div></div>
     </div>
   );
+}
+
+function HubTabs({ items, view, setView }: { items: [View, string][]; view: View; setView: (view: View) => void }) {
+  return <div className="hub-tabs" aria-label="栏目分页">{items.map(([id, label]) => <button key={id} className={view === id ? "active" : ""} onClick={() => setView(id)}>{label}</button>)}</div>;
+}
+
+function ResourceLibrary() {
+  const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
+  const [query, setQuery] = useState("");
+  const periods = [...new Set(classicalAuthors.map((author) => author.period))];
+  const lexicon = lexiconSeed.filter((entry) => `${entry.lemma} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase()));
+  return <div className="page resource-page">
+    <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
+    <div className="resource-tabs" role="tablist">
+      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', '拉丁语辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
+    </div>
+    {tab === "textbooks" && <>
+      <div className="source-card"><BookOpen /><div><strong>版权与改编原则</strong><p>只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。</p></div></div>
+      <div className="textbook-grid">{textbookCatalog.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{book.edition}</small></div><h2>{book.title}</h2><p className="resource-byline">{book.authors}</p><p>{book.accessNote}</p><details><summary>四级难度映射</summary><dl><dt>初级</dt><dd>{book.alignment.elementary}</dd><dt>中级</dt><dd>{book.alignment.intermediate}</dd><dt>混合</dt><dd>从初级与中级任务按能力域抽取，不另造教材进度。</dd><dt>进阶</dt><dd>{book.alignment.advanced}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div>
+    </>}
+    {tab === "authors" && <>
+      <div className="resource-metrics"><div><strong>{classicalAuthors.length}</strong><span>位首批作者</span></div><div><strong>{classicalAuthors.reduce((total, author) => total + author.works.length, 0)}</strong><span>条作者—作品关系</span></div><div><strong>{periods.length}</strong><span>个历史分期</span></div></div>
+      <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
+    </>}
+    {tab === "dictionary" && <>
+      <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>
+      <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索词头、中文义或派生词" /></label>
+      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.lemma}`} key={entry.lemma}><div><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生提示</strong>{entry.derivatives.join(" · ")}</p><div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div></article>)}</div>
+    </>}
+    {tab === "etymology" && <>
+      <div className="etymology-progress"><Sparkles /><div><strong>{etymologyFacts.length} / 365</strong><p>现有词源知识已接入首页随机栏目；后续条目会按“拉丁词—英语／罗曼语后裔—语义变化—可核来源”逐条扩充。</p></div></div>
+      <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {fact.meaning}</h2><p>{fact.note}</p><small>英语：{fact.english.join(" · ")}　罗曼语：{fact.romance.join(" · ")}</small></article>)}</div>
+    </>}
+  </div>;
+}
+
+function CommunityPreview() {
+  return <div className="page community-page"><div className="practice-header"><div><span className="eyebrow">FORUM PIKKU</span><h1>拉丁语交流社区</h1><p>频道结构已预留；账号、举报、限流与审核规则完成后再开放发帖。</p></div></div><div className="community-grid"><article><Languages /><span>CANĀLIS LATĪNUS</span><h2>公共拉丁语频道</h2><p>正文只使用拉丁语。可交流日常、阅读原典、主动拉丁语写作与翻译；引用其他语言时需附拉丁语说明。</p><button disabled>即将开放</button></article><article><Users /><span>DE SITŪ ET STUDIĪS</span><h2>网站与学习频道</h2><p>可使用中文等语言，只讨论网站设计、功能优化、报错、学习方法和使用心得。</p><button disabled>即将开放</button></article></div><div className="source-card"><CircleHelp /><div><strong>为什么暂不直接开放？</strong><p>公共社区需要先具备内容举报、管理员审核、频率限制、隐私说明和数据保留规则，避免测试功能变成安全缺口。</p></div></div></div>;
 }
 
 function EmptyState({ text }: { text: string }) {
