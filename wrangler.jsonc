@@ -8,7 +8,9 @@
   "vars": {
     "SUPABASE_URL": "https://tudwzkosrzrusxgpjkfe.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_egUjJAxCx5wnNT4yZUk6DQ_d_4m-XQ5",
-    "GITHUB_ADMIN_LOGINS": "Etymodes"
+    "GITHUB_ADMIN_LOGINS": "Etymodes",
+    "WECHAT_PUBLIC_ORIGIN": "https://pikku.qzz.io",
+    "WECHAT_SUPABASE_CALLBACK_URL": "https://tudwzkosrzrusxgpjkfe.supabase.co/auth/v1/callback"
   },
   "build": {
     "command": "npm run build:cloudflare"
