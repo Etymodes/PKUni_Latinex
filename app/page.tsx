@@ -476,8 +476,10 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   const done = levelQs.filter((q) => progress[q.id]).length;
   const right = levelQs.filter((q) => progress[q.id] === "correct").length;
   const percent = levelQs.length ? Math.round((done / levelQs.length) * 100) : 0;
-  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * etymologyFacts.length));
+  const [factIndex, setFactIndex] = useState(0);
   const fact = etymologyFacts[factIndex];
+
+  useEffect(() => setFactIndex(Math.floor(Math.random() * etymologyFacts.length)), []);
 
   const modes = [
     { category: "morphology" as Category, icon: Layers3, title: "形态快练", latin: "Fōrmae", copy: "变格、变位与不规则词形", meta: `${bank.filter((q) => matchesLevel(q, level) && q.category === "morphology").length} 题` },
