@@ -4,8 +4,10 @@ export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary
 
 export type Question = {
   id: string;
+  language?: "la" | "ja" | "es";
   level: QuestionLevel;
   category: Category;
+  skill?: string;
   type: "choice" | "self-check";
   prompt: string;
   latin?: string;
@@ -141,6 +143,7 @@ export const questions: Question[] = [
   },
   {
     id: "i-syn-06", level: "intermediate", category: "syntax", type: "choice",
+    language: "la", skill: "syntax",
     prompt: "第一组 nisi 条件句的时间关系应怎样分析？", latin: "Nisi peperissem, Rōma nōn oppugnārētur.",
     context: "Veturia 责备正率军进攻罗马的儿子 Coriolanus。",
     options: ["过去反事实条件，造成现在仍在持续的反事实结果", "条件和结果都只指过去", "现在反事实条件，造成过去的反事实结果", "对未来仍然开放的可能条件"],
@@ -180,6 +183,7 @@ export const questions: Question[] = [
   },
   {
     id: "i-tra-04", level: "intermediate", category: "translation", type: "self-check",
+    language: "la", skill: "translation",
     prompt: "翻译全句，并说明两个 lībera 的形态和 mortua essem 的动词类别。", latin: "Ergō ego nisi peperissem, Rōma nōn oppugnārētur; nisi fīlium habērem, lībera in līberā patriā mortua essem.",
     context: "Veturia 对即将进攻罗马的儿子 Coriolanus 说。",
     modelAnswer: "所以，假如我当初没有生下你，罗马现在就不会正遭攻击；要不是我有这个儿子，我早已作为一个自由的女人死在自由的祖国里了。第一个 lībera 是阴性主格单数，作主语 ego 的表语；第二个 līberā 是阴性夺格单数，与受 in 支配的 patriā 一致。mortua essem 来自异相动词 morior, morī, mortuus sum，是愈过去时虚拟式第一人称单数；形式属于被动系统，意义为主动。",
