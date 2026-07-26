@@ -825,8 +825,13 @@ function HubTabs({ items, view, setView }: { items: [View, string][]; view: View
 function ResourceLibrary() {
   const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
   const [query, setQuery] = useState("");
+  const [lexiconLanguage, setLexiconLanguage] = useState<"all" | "la" | "ja" | "es">("all");
   const periods = [...new Set(classicalAuthors.map((author) => author.period))];
-  const lexicon = lexiconSeed.filter((entry) => `${entry.lemma} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const lexicon = lexiconSeed.filter((entry) =>
+    (lexiconLanguage === "all" || entry.language === lexiconLanguage)
+    && `${entry.lemma} ${entry.principalParts} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())
+  );
+  const weeklyLexiconCount = lexiconSeed.filter((entry) => entry.addedOn === "2026-07-26").length;
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
     <div className="resource-tabs" role="tablist">
@@ -841,9 +846,17 @@ function ResourceLibrary() {
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "dictionary" && <>
+      <div className="resource-metrics"><div><strong>{lexiconSeed.length}</strong><span>个词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>本周新增</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
+      <div className="lexicon-language-tabs" role="tablist" aria-label="词典语言">
+        {([["all", "全部"], ["la", "Latīna"], ["ja", "日本語"], ["es", "Español"]] as const).map(([id, label]) =>
+          <button role="tab" aria-selected={lexiconLanguage === id} className={lexiconLanguage === id ? "active" : ""} key={id} onClick={() => setLexiconLanguage(id)}>{label}</button>
+        )}
+      </div>
+      <div className="source-card"><CircleHelp /><div><strong>词条核验规则</strong><p>每周复盘先收录本周实际接触但尚未入库的词汇，再逐条核对词典形、读音、语义、词源与例句。以下五种辞典状态只适用于拉丁语；日语和西班牙语专项词典将在多语言辞典阶段接入。</p></div></div>
       <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>
-      <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索词头、中文义或派生词" /></label>
-      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.lemma}`} key={entry.lemma}><div><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生提示</strong>{entry.derivatives.join(" · ")}</p><div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div></article>)}</div>
+      <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索词头、读音、中文义或派生词" /></label>
+      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.language}-${entry.lemma}`} key={`${entry.language}-${entry.lemma}`}><div><small className="lexicon-language">{entry.language.toUpperCase()}</small><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生／用法提示</strong>{entry.derivatives.length ? entry.derivatives.join(" · ") : "待补充"}</p>{entry.language === "la" ? <div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div> : <div className="dictionary-checks"><span>专项词典 · 待核</span>{entry.addedOn && <span>周复盘新增 · {entry.addedOn}</span>}</div>}</article>)}</div>
+      {!lexicon.length && <div className="empty-state"><div><Search /></div><h2>没有匹配词条</h2><p>换一个关键词或语言筛选；西班牙语本周没有已确认完成的学习反馈，因此暂未虚构词条。</p></div>}
     </>}
     {tab === "etymology" && <>
       <div className="etymology-progress"><Sparkles /><div><strong>{etymologyFacts.length} / 365</strong><p>现有词源知识已接入首页随机栏目；后续条目会按“拉丁词—英语／罗曼语后裔—语义变化—可核来源”逐条扩充。</p></div></div>
