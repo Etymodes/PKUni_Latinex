@@ -835,7 +835,7 @@ function ResourceLibrary() {
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
     <div className="resource-tabs" role="tablist">
-      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', '拉丁语辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
+      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', '多语言辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
     </div>
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>版权与改编原则</strong><p>只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。</p></div></div>
