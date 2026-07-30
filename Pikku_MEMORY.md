@@ -151,6 +151,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 ## 12. 协作和发布约定
 
 - 用户偏好一次只执行一条可复制命令，命令需考虑 Windows PowerShell。
+- 验证任务应尽量一次批量执行多项检查；单项报错只记录，不应阻止其余检查继续运行。
+- 批量验证的控制台输出、错误和最终汇总统一保存到 `D:\Downloads` 下带时间戳的 TXT 报告。
 - 先分支、再本地/浏览器测试、再推送、再 PR、检查通过后合并。
 - 不直接把未经验证的大改推入 `main`。
 - 大提交前提醒用户在 Augusta 的 Firefox 测试；普通网页功能不要求 macOS 测试。
@@ -160,3 +162,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 ## 13. 记忆更新日志
 
 - 2026-07-30：建立 `Pikku_MEMORY.md`；汇总品牌、多语言定位、基础设施、认证、资源中心、内容规划、Augusta 环境、已知修复和 P1 当前状态；确定脚本改为通过 Git 分支分发。
+- 2026-07-30：验证流程改为批量完成全部检查后统一汇总，失败项不中断后续检查，报告写入 `D:\Downloads`。
