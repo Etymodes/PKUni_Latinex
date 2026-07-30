@@ -14,6 +14,14 @@ function Write-Section {
     Write-Host "`n===== $Name =====" -ForegroundColor Cyan
 }
 
+function Invoke-LoggedCommand {
+    param([scriptblock]$Command)
+
+    $global:LASTEXITCODE = 0
+    & $Command 2>&1 | ForEach-Object { Write-Host $_ }
+    return [int]$LASTEXITCODE
+}
+
 function Add-Result {
     param(
         [string]$Name,
@@ -37,20 +45,18 @@ Set-Location $repo
 Start-Transcript -Path $report -Force | Out-Null
 
 Write-Section "Repository"
-Get-Location
-git status -sb
-$repositoryCode = $LASTEXITCODE
-git branch --show-current
-if ($LASTEXITCODE -ne 0) { $repositoryCode = $LASTEXITCODE }
-git log -3 --oneline
-if ($LASTEXITCODE -ne 0) { $repositoryCode = $LASTEXITCODE }
+Write-Host (Get-Location).Path
+$repositoryCode = Invoke-LoggedCommand { git status -sb }
+$currentCode = Invoke-LoggedCommand { git branch --show-current }
+if ($currentCode -ne 0) { $repositoryCode = $currentCode }
+$currentCode = Invoke-LoggedCommand { git log -3 --oneline }
+if ($currentCode -ne 0) { $repositoryCode = $currentCode }
 Add-Result "Repository" $repositoryCode
 
 Write-Section "Node and npm"
-node --version
-$environmentCode = $LASTEXITCODE
-npm.cmd --version
-if ($LASTEXITCODE -ne 0) { $environmentCode = $LASTEXITCODE }
+$environmentCode = Invoke-LoggedCommand { node --version }
+$currentCode = Invoke-LoggedCommand { npm.cmd --version }
+if ($currentCode -ne 0) { $environmentCode = $currentCode }
 Add-Result "Node and npm" $environmentCode
 
 Write-Section "Dependencies"
@@ -59,21 +65,18 @@ if (Test-Path ".\node_modules") {
     Write-Host "node_modules exists; npm ci skipped."
 }
 else {
-    npm.cmd ci
-    $dependencyCode = $LASTEXITCODE
+    $dependencyCode = Invoke-LoggedCommand { npm.cmd ci }
 }
 Add-Result "Dependencies" $dependencyCode
 
 Write-Section "TypeScript"
-npm.cmd run lint
-$typeScriptCode = $LASTEXITCODE
+$typeScriptCode = Invoke-LoggedCommand { npm.cmd run lint }
 Add-Result "TypeScript" $typeScriptCode
 
 Write-Section "Cloudflare production build"
 $previousAuthMode = $env:NEXT_PUBLIC_AUTH_MODE
 $env:NEXT_PUBLIC_AUTH_MODE = "supabase"
-& ".\node_modules\.bin\next.cmd" build
-$buildCode = $LASTEXITCODE
+$buildCode = Invoke-LoggedCommand { & ".\node_modules\.bin\next.cmd" build }
 if ($null -eq $previousAuthMode) {
     Remove-Item Env:NEXT_PUBLIC_AUTH_MODE -ErrorAction SilentlyContinue
 }
@@ -83,21 +86,20 @@ else {
 Add-Result "Cloudflare production build" $buildCode
 
 Write-Section "Git formatting"
-git diff --check
-$formatCode = $LASTEXITCODE
+$formatCode = Invoke-LoggedCommand { git diff --check }
 Add-Result "Git formatting" $formatCode
 
 Write-Section "Final worktree"
-git status -sb
-$worktreeCode = $LASTEXITCODE
-git diff --stat
-git diff -- next-env.d.ts
+$worktreeCode = Invoke-LoggedCommand { git status -sb }
+$null = Invoke-LoggedCommand { git diff --stat }
+$null = Invoke-LoggedCommand { git diff -- next-env.d.ts }
 Add-Result "Final worktree" $worktreeCode
 
 Write-Section "Summary"
 $results | Format-Table -AutoSize
 $failed = @($results | Where-Object Result -eq "FAIL")
 Write-Host "Passed: $($results.Count - $failed.Count); Failed: $($failed.Count)"
+Write-Host "Report: $report"
 
 Stop-Transcript | Out-Null
 Write-Host "`nAll checks finished. Report: $report" -ForegroundColor Green
