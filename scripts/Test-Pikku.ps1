@@ -2,108 +2,102 @@ param(
     [string]$OutputDirectory = "D:\Downloads"
 )
 
-$ErrorActionPreference = "Stop"
+# Keep this file ASCII-only for Windows PowerShell 5.1 compatibility.
+$ErrorActionPreference = "Continue"
 $repo = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $report = Join-Path $OutputDirectory "Pikku_Check_$stamp.txt"
-$results = [System.Collections.Generic.List[object]]::new()
+$results = @()
+
+function Write-Section {
+    param([string]$Name)
+    Write-Host "`n===== $Name =====" -ForegroundColor Cyan
+}
+
+function Add-Result {
+    param(
+        [string]$Name,
+        [int]$Code
+    )
+
+    $status = "PASS"
+    if ($Code -ne 0) {
+        $status = "FAIL"
+    }
+
+    $script:results += [pscustomobject]@{
+        Check = $Name
+        Result = $status
+        ExitCode = $Code
+    }
+}
 
 New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
 Set-Location $repo
 Start-Transcript -Path $report -Force | Out-Null
 
-function Invoke-PikkuCheck {
-    param(
-        [string]$Name,
-        [scriptblock]$Action
-    )
+Write-Section "Repository"
+Get-Location
+git status -sb
+$repositoryCode = $LASTEXITCODE
+git branch --show-current
+if ($LASTEXITCODE -ne 0) { $repositoryCode = $LASTEXITCODE }
+git log -3 --oneline
+if ($LASTEXITCODE -ne 0) { $repositoryCode = $LASTEXITCODE }
+Add-Result "Repository" $repositoryCode
 
-    Write-Host "`n===== $Name =====" -ForegroundColor Cyan
-    $global:LASTEXITCODE = 0
-    $passed = $true
-    $detail = "OK"
+Write-Section "Node and npm"
+node --version
+$environmentCode = $LASTEXITCODE
+npm.cmd --version
+if ($LASTEXITCODE -ne 0) { $environmentCode = $LASTEXITCODE }
+Add-Result "Node and npm" $environmentCode
 
-    try {
-        & $Action
-        if ($LASTEXITCODE -ne 0) {
-            $passed = $false
-            $detail = "退出码 $LASTEXITCODE"
-        }
-    }
-    catch {
-        $passed = $false
-        $detail = $_.Exception.Message
-        Write-Host $_.Exception.Message -ForegroundColor Red
-    }
-
-    $results.Add([pscustomobject]@{
-        Check  = $Name
-        Result = if ($passed) { "PASS" } else { "FAIL" }
-        Detail = $detail
-    })
+Write-Section "Dependencies"
+$dependencyCode = 0
+if (Test-Path ".\node_modules") {
+    Write-Host "node_modules exists; npm ci skipped."
 }
-
-try {
-    Invoke-PikkuCheck "仓库与分支" {
-        Get-Location
-        git status -sb
-        git branch --show-current
-        git log -3 --oneline
-    }
-
-    Invoke-PikkuCheck "Node 与 npm" {
-        node --version
-        npm.cmd --version
-    }
-
-    Invoke-PikkuCheck "依赖目录" {
-        if (-not (Test-Path ".\node_modules")) {
-            npm.cmd ci
-        }
-        else {
-            Write-Host "node_modules 已存在，跳过 npm ci。"
-        }
-    }
-
-    Invoke-PikkuCheck "TypeScript" {
-        npm.cmd run lint
-    }
-
-    Invoke-PikkuCheck "Cloudflare 生产构建" {
-        $previousAuthMode = $env:NEXT_PUBLIC_AUTH_MODE
-        try {
-            $env:NEXT_PUBLIC_AUTH_MODE = "supabase"
-            & ".\node_modules\.bin\next.cmd" build
-            $buildExitCode = $LASTEXITCODE
-        }
-        finally {
-            if ($null -eq $previousAuthMode) {
-                Remove-Item Env:NEXT_PUBLIC_AUTH_MODE -ErrorAction SilentlyContinue
-            }
-            else {
-                $env:NEXT_PUBLIC_AUTH_MODE = $previousAuthMode
-            }
-        }
-        $global:LASTEXITCODE = $buildExitCode
-    }
-
-    Invoke-PikkuCheck "Git 格式" {
-        git diff --check
-    }
-
-    Invoke-PikkuCheck "最终工作区" {
-        git status -sb
-        git diff --stat
-        git diff -- next-env.d.ts
-    }
-
-    Write-Host "`n===== 汇总 =====" -ForegroundColor Cyan
-    $results | Format-Table -AutoSize
-    $failed = @($results | Where-Object Result -eq "FAIL")
-    Write-Host "通过：$($results.Count - $failed.Count)；失败：$($failed.Count)"
+else {
+    npm.cmd ci
+    $dependencyCode = $LASTEXITCODE
 }
-finally {
-    Stop-Transcript | Out-Null
-}
+Add-Result "Dependencies" $dependencyCode
 
-Write-Host "`n检查已全部运行。报告：$report" -ForegroundColor Green
+Write-Section "TypeScript"
+npm.cmd run lint
+$typeScriptCode = $LASTEXITCODE
+Add-Result "TypeScript" $typeScriptCode
+
+Write-Section "Cloudflare production build"
+$previousAuthMode = $env:NEXT_PUBLIC_AUTH_MODE
+$env:NEXT_PUBLIC_AUTH_MODE = "supabase"
+& ".\node_modules\.bin\next.cmd" build
+$buildCode = $LASTEXITCODE
+if ($null -eq $previousAuthMode) {
+    Remove-Item Env:NEXT_PUBLIC_AUTH_MODE -ErrorAction SilentlyContinue
+}
+else {
+    $env:NEXT_PUBLIC_AUTH_MODE = $previousAuthMode
+}
+Add-Result "Cloudflare production build" $buildCode
+
+Write-Section "Git formatting"
+git diff --check
+$formatCode = $LASTEXITCODE
+Add-Result "Git formatting" $formatCode
+
+Write-Section "Final worktree"
+git status -sb
+$worktreeCode = $LASTEXITCODE
+git diff --stat
+git diff -- next-env.d.ts
+Add-Result "Final worktree" $worktreeCode
+
+Write-Section "Summary"
+$results | Format-Table -AutoSize
+$failed = @($results | Where-Object Result -eq "FAIL")
+Write-Host "Passed: $($results.Count - $failed.Count); Failed: $($failed.Count)"
+
+Stop-Transcript | Out-Null
+Write-Host "`nAll checks finished. Report: $report" -ForegroundColor Green
