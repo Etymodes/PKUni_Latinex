@@ -159,8 +159,54 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 聊天附件下载不可靠时，把脚本直接提交到功能分支，用户通过 `git pull --ff-only` 获取。
 - 所有公开部署继续保留原仓库链接和项目沿革。
 
-## 13. 记忆更新日志
+## 13. Augusta 交互与故障防复发手册
+
+### 命令执行习惯
+
+- Augusta 的默认 PowerShell 起点常是 `C:\Users\kimda`；执行 Git 命令前先进入 `C:\Users\kimda\Documents\PKUni_Latinex`，否则会出现 `fatal: not a git repository`。
+- 桌面 `进入Pikku仓库.cmd` 用于直接在正确目录打开 PowerShell；桌面 `Pikku开发检查.cmd` 用于启动本地开发检查。
+- 用户偏好一条可复制命令完成一批相关操作。检查应跑完全部项目后再汇总，不因第一项失败中止。
+- 聊天附件可能无法下载；开发脚本应提交到当前 Git 分支，再由 Augusta 使用 `git pull --ff-only` 获取。
+
+### Windows PowerShell 与 Node
+
+- Augusta 实测为 Windows PowerShell `5.1.26100.8875`（Desktop Edition），不是 PowerShell 7。
+- 系统执行策略会阻止 `npm.ps1`、`npx.ps1` 和直接运行未授权 `.ps1`：
+  - npm/npx 使用 `npm.cmd`、`npx.cmd`。
+  - 仓库脚本使用 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\scripts\脚本.ps1"`。
+- GitHub 写入的 UTF-8 脚本与 Windows PowerShell 5.1 可能发生解析/编码兼容问题。面向 Augusta 的基础设施脚本保持 ASCII 语法和输出标签，避免无必要的复杂嵌套结构。
+- 首版 `Test-Pikku.ps1` 在含中文字符串和嵌套 `try/finally` 时出现 `MissingCatchOrFinally`；改为 ASCII、顺序执行和显式结果收集后已正常运行。
+- `Start-Transcript` 在 Windows PowerShell 5.1 中不能可靠捕获 Git、Node、npm、Next.js 等原生命令直接写入控制台的内容。必须将原生命令 `2>&1` 管道到 `Write-Host`（或显式写入报告），不能只依赖 Transcript。
+
+### 构建与 Git 工作区
+
+- `package.json` 的 `build:cloudflare` 使用 POSIX 环境变量前缀，在 Windows 会报 `NEXT_PUBLIC_AUTH_MODE 不是内部或外部命令`。Windows 上先设置 `$env:NEXT_PUBLIC_AUTH_MODE="supabase"`，再运行 `next.cmd build`，最后删除/恢复环境变量。
+- Next.js 开发或构建可能自动修改 `next-env.d.ts`。若确认只有生成性差异，使用 `git restore -- next-env.d.ts`；不要把它误当成功能代码提交。
+- `npm ci` 曾报告高危依赖和待批准安装脚本。不要直接运行 `npm audit fix --force`；先确认依赖升级对 Next.js、Cloudflare 和构建链的影响。
+- 批量验证报告固定写入 `D:\Downloads\Pikku_Check_时间戳.txt`。
+
+### 浏览器、React 与本地 API
+
+- 首页随机词源若在 SSR 初始渲染中调用 `Math.random()`，服务端和客户端文本不同，会触发 hydration mismatch。正确做法是确定性初值 `0`，挂载后的 `useEffect` 再随机化。
+- 本地 `next dev` 下 `/api/me`、`/api/questions`、`/api/auth-config` 返回 404，是因为 Cloudflare Worker API 未加载；不要误判为生产 API 消失。登录、同步和 Worker API 要在 Preview 或正式站验证。
+- 登录窗口曾因定位在顶栏容器内而只能覆盖顶栏，矮屏时也会越界。模态框必须相对视口显示、内容区域可滚动，并在打开时锁定页面背景滚动。
+
+### 账号、同步与部署
+
+- 邮箱确认、Brevo SMTP、GitHub OAuth 管理员登录已经实测成功。
+- 错题进度已能恢复；收藏曾出现未同步，虽然加入了合并逻辑，仍属于每次认证/数据模型改动后的固定回归项。
+- Cloudflare nameserver、Custom Domain 和 Universal SSL 变更存在传播等待时间；域名从 HTTP 可用到 HTTPS 正常曾经历等待。传播期间先检查状态，不重复删除重配。
+- Cloudflare Preview 用于合并前浏览器验证；生产域名保持 `https://pikku.qzz.io/`。
+
+### 当前验证基线
+
+- 2026-07-31 02:38，Augusta 上的 `Test-Pikku.ps1` 首次完整运行成功，约 13 秒。
+- 结果：Repository、Node/npm、Dependencies、TypeScript、Cloudflare production build、Git formatting、Final worktree 共 7 项全部通过。
+- 该结果证明 PowerShell 5.1 兼容版脚本可运行；由于 Transcript 未收齐原生命令明细，脚本随后增加显式日志管道，下一次报告需确认完整构建输出已进入 TXT。
+
+## 14. 记忆更新日志
 
 - 2026-07-30：建立 `Pikku_MEMORY.md`；汇总品牌、多语言定位、基础设施、认证、资源中心、内容规划、Augusta 环境、已知修复和 P1 当前状态；确定脚本改为通过 Git 分支分发。
 - 2026-07-30：验证流程改为批量完成全部检查后统一汇总，失败项不中断后续检查，报告写入 `D:\Downloads`。
 - 2026-07-30：首次 `Test-Pikku.ps1` 在 Augusta 的 Windows PowerShell 5.1 出现解析错误；脚本改为 ASCII 兼容写法并移除嵌套 `try/finally`，避免编码/语法兼容问题。
+- 2026-07-31：Augusta 批量验证 7/7 通过；新增系统交互与故障防复发手册；发现 Windows PowerShell 5.1 的 Transcript 未完整收录原生命令输出，验证脚本改用显式输出管道。
