@@ -163,3 +163,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 - 2026-07-30：建立 `Pikku_MEMORY.md`；汇总品牌、多语言定位、基础设施、认证、资源中心、内容规划、Augusta 环境、已知修复和 P1 当前状态；确定脚本改为通过 Git 分支分发。
 - 2026-07-30：验证流程改为批量完成全部检查后统一汇总，失败项不中断后续检查，报告写入 `D:\Downloads`。
+- 2026-07-30：首次 `Test-Pikku.ps1` 在 Augusta 的 Windows PowerShell 5.1 出现解析错误；脚本改为 ASCII 兼容写法并移除嵌套 `try/finally`，避免编码/语法兼容问题。
