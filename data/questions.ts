@@ -8,6 +8,7 @@ export type Question = {
   language?: LanguageCode;
   level: QuestionLevel;
   category: Category;
+  skill?: string;
   type: "choice" | "self-check";
   prompt: string;
   latin?: string;
@@ -142,6 +143,16 @@ export const questions: Question[] = [
     explanation: "dum + 虚拟式可表达 proviso（限制条件）：‘让他们恨吧，只要他们害怕。’", tags: ["dum", "限制从句"], source: "中级范围 · proviso"
   },
   {
+    id: "i-syn-06", level: "intermediate", category: "syntax", type: "choice",
+    language: "la", skill: "syntax",
+    prompt: "第一组 nisi 条件句的时间关系应怎样分析？", latin: "Nisi peperissem, Rōma nōn oppugnārētur.",
+    context: "Veturia 责备正率军进攻罗马的儿子 Coriolanus。",
+    options: ["过去反事实条件，造成现在仍在持续的反事实结果", "条件和结果都只指过去", "现在反事实条件，造成过去的反事实结果", "对未来仍然开放的可能条件"],
+    answer: 0,
+    explanation: "peperissem 是 pariō, parere, peperī, partum 的愈过去时主动虚拟式第一人称单数，指向过去没有发生的条件；oppugnārētur 是 oppugnō, oppugnāre, oppugnāvī, oppugnātum 的未完成时被动虚拟式第三人称单数，描写与说话时同时的持续结果：‘假如我当初没有生下他，罗马现在就不会正遭攻击。’",
+    tags: ["反事实条件句", "混合时间", "Livy"], source: "Livius · Ab urbe condita 2.40.8"
+  },
+  {
     id: "i-voc-01", level: "intermediate", category: "vocabulary", type: "choice",
     prompt: "在 Cicero 的政治演说中，res pūblica 最合适的译法通常是？", latin: "rēs pūblica",
     options: ["国家／共和国／公共事务（依语境选择）", "公共财产", "军事命令", "公民大会"], answer: 0,
@@ -170,6 +181,15 @@ export const questions: Question[] = [
     prompt: "译出历史叙事中的转折和因果关系。", latin: "Quamquam paucī restiterant, dux tamen, veritus nē fuga reliquōs quoque terrēret, signum receptuī darī vetuit.",
     modelAnswer: "尽管只有少数人仍在抵抗，将领却担心溃逃也会吓坏其余的人，因而禁止发出撤退信号。 / Although only a few had held their ground, the commander, fearing that the flight would also terrify the rest, forbade the signal for retreat to be given.",
     explanation: "主干：dux … vetuit。quamquam 表让步；veritus 是异相动词 vereor 的完成分词；nē 引恐惧从句；signum … darī 是 vetuit 的被动不定式补语。", tags: ["异相分词", "恐惧从句"], source: "仿 Sallust · 自拟训练句"
+  },
+  {
+    id: "i-tra-04", level: "intermediate", category: "translation", type: "self-check",
+    language: "la", skill: "translation",
+    prompt: "翻译全句，并说明两个 lībera 的形态和 mortua essem 的动词类别。", latin: "Ergō ego nisi peperissem, Rōma nōn oppugnārētur; nisi fīlium habērem, lībera in līberā patriā mortua essem.",
+    context: "Veturia 对即将进攻罗马的儿子 Coriolanus 说。",
+    modelAnswer: "所以，假如我当初没有生下你，罗马现在就不会正遭攻击；要不是我有这个儿子，我早已作为一个自由的女人死在自由的祖国里了。第一个 lībera 是阴性主格单数，作主语 ego 的表语；第二个 līberā 是阴性夺格单数，与受 in 支配的 patriā 一致。mortua essem 来自异相动词 morior, morī, mortuus sum，是愈过去时虚拟式第一人称单数；形式属于被动系统，意义为主动。",
+    explanation: "两组 nisi 构成交错的混合反事实：peperissem（过去条件）对应 oppugnārētur（现在结果），habērem（现在条件）对应 mortua essem（过去结果）。mortua 采用阴性形式，因为说话者 Veturia 是女性；lībera in līberā patriā 还通过同词根复现强化‘自由的人／自由的祖国’之间的对照。",
+    tags: ["翻译", "异相动词", "形容词一致", "Livy"], source: "Livius · Ab urbe condita 2.40.8"
   },
   {
     id: "a-mor-01", level: "advanced", category: "morphology", type: "choice",

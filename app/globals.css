@@ -387,10 +387,14 @@ h1, h2, h3, p { margin-top: 0; }
 .dictionary-sources article { padding: 14px; background: var(--gold-soft); }
 .dictionary-sources strong { font: 600 11px var(--serif-la); }
 .dictionary-sources p, .dictionary-sources small { display: block; color: #625846; font-size: 8px; line-height: 1.55; }
+.lexicon-language-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
+.lexicon-language-tabs button { border: 1px solid var(--line-strong); background: var(--panel); color: var(--muted); padding: 7px 12px; cursor: pointer; }
+.lexicon-language-tabs button.active { border-color: var(--crimson); background: var(--crimson); color: white; }
 .resource-search { min-height: 45px; display: flex; align-items: center; gap: 9px; padding: 0 14px; background: white; border: 1px solid var(--line-strong); }
 .resource-search input { flex: 1; border: 0; outline: 0; font-size: 11px; }
 .lexicon-list { display: grid; gap: 10px; margin-top: 14px; }
 .lexicon-list article { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 16px; padding: 18px; background: var(--panel); border: 1px solid var(--line); }
+.lexicon-language { color: var(--crimson); font-size: 8px; letter-spacing: .12em; }
 .lexicon-list h2 { font: 600 21px var(--serif-la); margin: 0; }
 .lexicon-list article > div > span, .lexicon-list article > div > b { display: block; font-size: 9px; margin-top: 3px; }
 .lexicon-list p { color: var(--muted); font-size: 9px; line-height: 1.65; margin: 0; }
