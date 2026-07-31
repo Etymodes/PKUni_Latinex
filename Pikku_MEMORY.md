@@ -237,3 +237,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：吸收 PR #11 后的 Augusta Firefox 复验通过；拉丁语、日语、西班牙语及知识卡均正常。Livy 新题已确认位于中级题库（`i-syn-06`、`i-tra-04`），但当前缺少作者／来源搜索，用户不易定位；这属于可发现性改进项，不阻塞 PR #12 合并，后续加入作者、来源或题号筛选。
 - 2026-08-01：PR #12 已正式合并到 `main`，合并提交 `5cda856`；P1 多语言基础收口，下一阶段进入 P2 日语／西班牙语种子题库与作者／来源定位。
 - 2026-08-01：启动 P2 最小训练闭环分支 `agent/pikku-p2-seed-bank`；计划复用现有练习、错题、收藏和统计组件，加入题号／题干／标签／作者／来源统一搜索，并为 JLPT N4–N1 与 CEFR A1–C2 各等级加入一题官方能力框架对齐的原创种子题。
+- 2026-08-01：创建 Draft PR #13 `feat: add Pikku multilingual seed practice`；本地 TypeScript、Next.js 生产构建和格式检查通过，等待 Workers Preview 与 Augusta Firefox 验收。
