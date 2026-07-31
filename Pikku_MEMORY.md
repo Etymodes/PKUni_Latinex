@@ -77,7 +77,7 @@
 - 多语言分支：`agent/pikku-multilingual-mvp`。
 - 任务书提交：`6b73289 docs: define Pikku multilingual roadmap`，已推送远端。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
-- PR #12：`feat: establish Pikku multilingual foundation`，目标分支为 `main`；Cloudflare Workers Preview、云浏览器冒烟测试和 Augusta Firefox 最终复验均已通过，已转为 Ready for review。PR #11 后续进入 `main` 导致短暂冲突，现已在功能分支合入新版 `main` 并保留两边功能，等待新一轮 Preview 与 Augusta 复验。
+- PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - 不直接在 `main` 开发；PR #12 通过预览和浏览器复验后再转为 Ready。
 
 ## 7. 当前阶段与最小路线
@@ -235,3 +235,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：Augusta 报告 `Pikku_Check_20260801_003624.txt` 显示 Repository、Node/npm、Dependencies、TypeScript、Cloudflare production build、Git formatting、Final worktree 共 7/7 通过；Firefox 浏览器复验通过。PR #12 已从 Draft 转为 Ready for review，仍保持未合并状态。
 - 2026-08-01：PR #11 合入 `main` 后，PR #12 因双方同时修改 `data/questions.ts` 暂时冲突。已把 `main@e81591a` 合入多语言分支；唯一文本冲突为 `language` 字段的类型写法，保留共享 `LanguageCode`，同时纳入 Livy 新题、词典语言筛选和周度统计。合并后 TypeScript、Next.js 生产构建及 Git 格式检查均通过。
 - 2026-08-01：吸收 PR #11 后的 Augusta Firefox 复验通过；拉丁语、日语、西班牙语及知识卡均正常。Livy 新题已确认位于中级题库（`i-syn-06`、`i-tra-04`），但当前缺少作者／来源搜索，用户不易定位；这属于可发现性改进项，不阻塞 PR #12 合并，后续加入作者、来源或题号筛选。
+- 2026-08-01：PR #12 已正式合并到 `main`，合并提交 `5cda856`；P1 多语言基础收口，下一阶段进入 P2 日语／西班牙语种子题库与作者／来源定位。
