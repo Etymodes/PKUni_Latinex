@@ -180,6 +180,7 @@ h1, h2, h3, p { margin-top: 0; }
 .word-family { display: grid; grid-template-columns: 58px 1fr; gap: 6px 12px; align-items: baseline; }
 .word-family span { color: #356a9f; font-size: 9px; font-weight: 700; }
 .word-family strong { font: 500 12px/1.6 var(--serif-la); }
+.word-family a { color: inherit; text-underline-offset: 2px; }
 
 .practice-header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
 .practice-header h1 { font: 600 34px var(--serif-cn); margin: 7px 0 8px; }
