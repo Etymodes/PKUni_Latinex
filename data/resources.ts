@@ -152,6 +152,7 @@ export const authorGraphEdges = classicalAuthors.flatMap((author) => author.work
 
 export type DictionaryId = "old" | "ls" | "gaffiot" | "georges" | "wiktionary";
 export type DictionarySource = { id: DictionaryId; name: string; scope: string; access: string };
+export type LexiconLanguage = "la" | "ja" | "es";
 
 export const dictionarySources: DictionarySource[] = [
   { id: "old", name: "Oxford Latin Dictionary (OLD)", scope: "古典拉丁语，权威历史语义与引文", access: "版权数据库／纸本；本站记录核对状态，不复制释文" },
@@ -162,16 +163,22 @@ export const dictionarySources: DictionarySource[] = [
 ];
 
 export type LexiconEntry = {
+  language: LexiconLanguage;
   lemma: string;
   principalParts: string;
   gloss: string;
   partOfSpeech: string;
   pie: string;
   derivatives: string[];
+  addedOn?: string;
   dictionaryStatus: Record<DictionaryId, "待核" | "已核">;
 };
 
-export const lexiconSeed: LexiconEntry[] = [
+const pendingDictionaryStatus: Record<DictionaryId, "待核"> = {
+  old: "待核", ls: "待核", gaffiot: "待核", georges: "待核", wiktionary: "待核",
+};
+
+const foundationLexicon: LexiconEntry[] = [
   ["aqua", "aqua, -ae f.", "水", "名词", "常与 PIE *h₂ekʷeh₂- 联系；具体重建需参照词源专著", ["aquatic", "aquarium"]],
   ["cor", "cor, cordis n.", "心；心志", "名词", "PIE *ḱḗr/*ḱr̥d-", ["cordial", "courage"]],
   ["dūcō", "dūcō, dūcere, dūxī, ductum", "引导；率领", "动词", "PIE *dewk- ‘牵引’", ["conduct", "educate", "reduce"]],
@@ -181,6 +188,63 @@ export const lexiconSeed: LexiconEntry[] = [
   ["veniō", "veniō, venīre, vēnī, ventum", "来；到达", "动词", "PIE *gʷem- ‘来、行走’", ["convene", "intervene", "advent"]],
   ["videō", "videō, vidēre, vīdī, vīsum", "看见；理解", "动词", "PIE *weyd- ‘看见、知道’", ["video", "evidence", "vision"]],
 ].map(([lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
-  lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
-  dictionaryStatus: { old: "待核", ls: "待核", gaffiot: "待核", georges: "待核", wiktionary: "待核" },
+  language: "la" as const, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
+  dictionaryStatus: { ...pendingDictionaryStatus },
 })) as LexiconEntry[];
+
+const weeklyLexicon: LexiconEntry[] = [
+  ["la", "alius", "alius, alia, aliud", "另一个；其他的", "代词性形容词", "词源待专项核验", []],
+  ["la", "causa", "causa, -ae f.", "原因；理由；案件", "名词", "词源待专项核验", ["cause", "causal"]],
+  ["la", "dīligenter", "dīligenter", "勤勉地；仔细地", "副词", "来自 dīligēns；与 dīligō 的语义发展相关", ["diligent"]],
+  ["la", "ergō", "ergō", "因此；所以", "副词／连词性副词", "词源存在争议，待专项核验", []],
+  ["la", "fīlius", "fīlius, -ī m.", "儿子", "名词", "词源待专项核验", ["filial"]],
+  ["la", "habeō", "habeō, habēre, habuī, habitum", "有；持有；认为", "动词", "常与 PIE *gʰabʰ- ‘给予、取得’联系", ["habit", "inhibit"]],
+  ["la", "līber", "līber, lībera, līberum", "自由的", "形容词", "与表示‘自由成员’的印欧词族相关", ["liberty", "liberal"]],
+  ["la", "medicus", "medicus, -ī m.", "医生", "名词", "来自 medeor ‘医治’相关词族", ["medical", "medicine"]],
+  ["la", "morbus", "morbus, -ī m.", "疾病", "名词", "词源待专项核验", ["morbid"]],
+  ["la", "morior", "morior, morī, mortuus sum", "死亡", "异相动词", "常与 PIE *mer- ‘死亡’联系", ["mortal", "mortality"]],
+  ["la", "neglegō", "neglegō, neglegere, neglēxī, neglēctum", "忽视；疏忽", "动词", "由 nec/neg- 与 legō 的历史组合形成", ["neglect", "negligence"]],
+  ["la", "nisi", "nisi", "如果不；除非", "连词", "由否定成分与 sī ‘如果’结合", []],
+  ["la", "oppugnō", "oppugnō, oppugnāre, oppugnāvī, oppugnātum", "攻击；围攻", "动词", "ob- + pugnō ‘战斗’", ["oppugn"]],
+  ["la", "pariō", "pariō, parere, peperī, partum", "生产；生下；取得", "动词", "词形包含不同历史词干，需按主要词形记忆", ["parent", "parturition"]],
+  ["la", "patria", "patria, -ae f.", "祖国；故乡", "名词", "由 pater ‘父亲’派生的阴性名词化形式", ["patriot", "patriotic"]],
+  ["la", "quaerō", "quaerō, quaerere, quaesīvī, quaesītum", "寻找；询问；调查", "动词", "词源待专项核验", ["query", "question", "inquire"]],
+  ["la", "sequor", "sequor, sequī, secūtus sum", "跟随；依据；追求", "异相动词", "常与 PIE *sekʷ- ‘跟随’联系", ["sequence", "consequence"]],
+  ["la", "signum", "signum, -ī n.", "标志；迹象；信号", "名词", "词源待专项核验", ["sign", "signal", "signature"]],
+  ["ja", "曖昧", "あいまい", "含糊；不明确", "形容动词／名词", "汉语来源词；日语中的语义与搭配待专项核验", []],
+  ["ja", "埋もれる", "うもれる", "被埋没；湮没", "一段自动词", "和语词；与埋める构成自动词—他动词对应", []],
+  ["ja", "影響", "えいきょう", "影响", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "解釈", "かいしゃく", "解释；理解", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "改善", "かいぜん", "改进；改善", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "かえって", "かえって", "反而；结果与预期相反地", "副词", "来自返る／却って相关历史形式；细节待专项核验", []],
+  ["ja", "兼ねる", "かねる", "兼任；兼具；接在连用形后表示难以做到", "一段他动词／补助动词", "本义涉及兼具、同时承担；补助用法的语法化路径待专项核验", []],
+  ["ja", "関連性", "かんれんせい", "关联性；相关程度", "名词", "関連＋接尾辞「性」", []],
+  ["ja", "検査", "けんさ", "检查；检验", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "見極める", "みきわめる", "看清；判断清楚；弄明白", "一段他动词", "見＋極める构成的复合动词", []],
+  ["ja", "見失う", "みうしなう", "看丢；失去把握", "五段他动词", "見＋失う构成的复合动词", []],
+  ["ja", "項目", "こうもく", "项目；条目", "名词", "汉语来源词", []],
+  ["ja", "効果", "こうか", "效果；作用产生的结果", "名词", "汉语来源词；注意与効率区分", []],
+  ["ja", "効率", "こうりつ", "效率；投入与产出的比例关系", "名词", "汉语来源词；注意与効果区分", []],
+  ["ja", "信頼性", "しんらいせい", "可靠性；可信度", "名词", "信頼＋接尾辞「性」", []],
+  ["ja", "診断", "しんだん", "诊断；判断", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "精度", "せいど", "精确程度；精度", "名词", "汉语来源词", []],
+  ["ja", "測定", "そくてい", "测定；测量", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "短縮", "たんしゅく", "缩短；压缩", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "伝える", "つたえる", "传达；告诉；传承", "一段他动词", "和语词", []],
+  ["ja", "詳しい", "くわしい", "详细的；熟悉的", "イ形容词", "和语词", []],
+  ["ja", "把握", "はあく", "把握；掌握", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "配慮", "はいりょ", "体谅；顾及；考虑", "名词／サ变动词", "汉语来源词", []],
+  ["ja", "深まる", "ふかまる", "加深；变深", "五段自动词", "深い派生的自动词；与深める对应", []],
+  ["ja", "無駄", "むだ", "浪费；徒劳；无用", "名词／形容动词", "历史词源有不同说法，待专项核验", []],
+  ["ja", "招く", "まねく", "招来；导致；邀请", "五段他动词", "和语词；负面结果常译为‘导致’", []],
+  ["ja", "要点", "ようてん", "要点；核心", "名词", "汉语来源词", []],
+  ["ja", "論点", "ろんてん", "论点；争论焦点", "名词", "汉语来源词", []],
+  ["ja", "情報", "じょうほう", "信息；情报", "名词", "汉语来源词；现代语义受近代翻译影响", []],
+  ["ja", "重ねる", "かさねる", "叠放；反复进行", "一段他动词", "和语词；検査を重ねる表示反复检查", []],
+].map(([language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
+  language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
+  addedOn: "2026-07-26",
+  dictionaryStatus: { ...pendingDictionaryStatus },
+})) as LexiconEntry[];
+
+export const lexiconSeed: LexiconEntry[] = [...foundationLexicon, ...weeklyLexicon];
