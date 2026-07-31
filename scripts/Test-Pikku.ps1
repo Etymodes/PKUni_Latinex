@@ -4,6 +4,11 @@ param(
 
 # Keep this file ASCII-only for Windows PowerShell 5.1 compatibility.
 $ErrorActionPreference = "Continue"
+$previousConsoleEncoding = [Console]::OutputEncoding
+$previousOutputEncoding = $OutputEncoding
+$utf8Encoding = [System.Text.UTF8Encoding]::new($false)
+[Console]::OutputEncoding = $utf8Encoding
+$OutputEncoding = $utf8Encoding
 $repo = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $report = Join-Path $OutputDirectory "Pikku_Check_$stamp.txt"
@@ -102,4 +107,6 @@ Write-Host "Passed: $($results.Count - $failed.Count); Failed: $($failed.Count)"
 Write-Host "Report: $report"
 
 Stop-Transcript | Out-Null
+[Console]::OutputEncoding = $previousConsoleEncoding
+$OutputEncoding = $previousOutputEncoding
 Write-Host "`nAll checks finished. Report: $report" -ForegroundColor Green
