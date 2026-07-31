@@ -1,9 +1,11 @@
+export type LanguageCode = "la" | "ja" | "es";
 export type Level = "elementary" | "intermediate" | "mixed" | "advanced";
 export type QuestionLevel = Exclude<Level, "mixed">;
 export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
 
 export type Question = {
   id: string;
+  language?: LanguageCode;
   level: QuestionLevel;
   category: Category;
   type: "choice" | "self-check";
