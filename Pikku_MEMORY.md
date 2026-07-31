@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-07-30  
+更新日期：2026-07-31  
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -81,7 +81,7 @@
 
 ## 7. 当前阶段与最小路线
 
-P0 基线整理已完成。P1 多语言外壳已实现，等待 Augusta/Firefox 与 Cloudflare Preview 验收：
+P0 基线整理已完成。P1 多语言外壳已完成并通过 Augusta/Firefox 验收：
 
 1. 已加入拉丁语、日语、西班牙语选择器，并在本机持久化当前语言和等级。
 2. 已将拉丁语四级、日语 N4–N1、西班牙语 A1–C2 配置数据化。
@@ -89,7 +89,8 @@ P0 基线整理已完成。P1 多语言外壳已实现，等待 Augusta/Firefox 
 4. 日语、西班牙语已显示正确等级和 P2 占位入口，P1 不同时大量造题。
 5. 题库、顶部统计、错题和收藏按语言过滤；更新当前语言收藏时保留其他语言记录。
 6. 侧栏支持新增语言/等级并可滚动，避免矮屏或西班牙语六级入口溢出。
-7. 本地重建工作副本已通过 `tsc --noEmit` 和 Next.js 16.2.10 生产构建；尚待 Augusta Firefox 验收。
+7. 本地重建工作副本和 Augusta 均已通过 `tsc --noEmit` 与 Next.js 16.2.10 生产构建。
+8. 2026-07-31 Augusta Firefox 浏览器验收通过，未出现 hydration mismatch；P1 可以收口。
 
 P1 代码提交：
 
@@ -121,6 +122,9 @@ P1 代码提交：
 - 日语按 N4–N1，西班牙语按 CEFR A1–C2。
 - 两种语言先建立最小种子题库、等级筛选、答题、错题、收藏和统计闭环，再扩充内容。
 - 所有新增题必须标注来源状态和技能标签，避免把不确定的网络材料当作真题。
+- 日语随机语言知识保留“日汉同形异义”专类；首批核验词为“勉強／勉强、汽車／汽车、新聞／新闻”。
+- 西班牙语随机语言知识至少分为“拉丁语词源、同源异义、同形异源”三类；首批核验项为 `filius → hijo`、`clavis → llave`、`exitus → éxito / exit`、名词 `vino` 与动词形式 `vino`。
+- 随机知识条目使用统一数据结构，必须保存类型、简短解释、例子和可点击来源；初始索引固定为 `0`，只在挂载后随机，防止 hydration mismatch。
 
 ## 9. 辞典、作者与知识图谱
 
@@ -213,6 +217,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 结果：Repository、Node/npm、Dependencies、TypeScript、Cloudflare production build、Git formatting、Final worktree 共 7 项全部通过。
 - 该结果证明 PowerShell 5.1 兼容版脚本可运行；由于 Transcript 未收齐原生命令明细，脚本随后增加显式日志管道，下一次报告需确认完整构建输出已进入 TXT。
 - 2026-07-31 08:21 第二次完整运行再次 7/7 通过，原生命令、TypeScript 和 Next.js 构建明细均已写入报告，最终 Git 工作区干净。实测版本：Node `24.18.0`、npm `11.16.0`、Next.js `16.2.10`。
+- 2026-07-31 08:46 第三次 Augusta 批量验证 7/7 通过，报告中的 Next.js Unicode 符号正常，最终工作区干净；随后 Firefox 浏览器验收通过，P1 多语言外壳正式完成。
 
 ## 14. 记忆更新日志
 
@@ -221,4 +226,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-30：首次 `Test-Pikku.ps1` 在 Augusta 的 Windows PowerShell 5.1 出现解析错误；脚本改为 ASCII 兼容写法并移除嵌套 `try/finally`，避免编码/语法兼容问题。
 - 2026-07-31：Augusta 批量验证 7/7 通过；新增系统交互与故障防复发手册；发现 Windows PowerShell 5.1 的 Transcript 未完整收录原生命令输出，验证脚本改用显式输出管道。
 - 2026-07-31：完整日志复验再次 7/7 通过；记录 Next.js Unicode 符号乱码的原因并为验证脚本加入临时 UTF-8 输出编码。
-- 2026-07-31：完成 P1 多语言外壳最小实现；加入三语言选择、等级持久化、语言数据过滤和日语/西班牙语占位入口，本地 TypeScript 与生产构建通过，等待 Augusta Firefox 验收。
+- 2026-07-31：完成 P1 多语言外壳最小实现；加入三语言选择、等级持久化、语言数据过滤和日语/西班牙语占位入口，并通过 Augusta 批量检查与 Firefox 浏览器验收。
+- 2026-07-31：确定分语言随机知识规则；日语加入日汉同形异义，西班牙语加入拉丁语词源、同源异义和同形异源，首批 7 条使用统一来源可追溯数据模型。
