@@ -81,14 +81,22 @@
 
 ## 7. 当前阶段与最小路线
 
-P0 基线整理已完成。当前执行 P1：
+P0 基线整理已完成。P1 多语言外壳已实现，等待 Augusta/Firefox 与 Cloudflare Preview 验收：
 
-1. 加入语言选择器和持久化当前语言。
-2. 将语言与等级配置数据化。
-3. 旧拉丁语题库保持可用。
-4. 日语、西班牙语先显示正确的等级和占位入口，不在 P1 同时大量造题。
-5. 按语言隔离题目、进度和收藏显示，避免串库。
-6. 浏览器、TypeScript、生产构建通过后再开 PR。
+1. 已加入拉丁语、日语、西班牙语选择器，并在本机持久化当前语言和等级。
+2. 已将拉丁语四级、日语 N4–N1、西班牙语 A1–C2 配置数据化。
+3. 旧题无 `language` 字段时继续按拉丁语处理，原拉丁语题库和功能保持可用。
+4. 日语、西班牙语已显示正确等级和 P2 占位入口，P1 不同时大量造题。
+5. 题库、顶部统计、错题和收藏按语言过滤；更新当前语言收藏时保留其他语言记录。
+6. 侧栏支持新增语言/等级并可滚动，避免矮屏或西班牙语六级入口溢出。
+7. 本地重建工作副本已通过 `tsc --noEmit` 和 Next.js 16.2.10 生产构建；尚待 Augusta Firefox 验收。
+
+P1 代码提交：
+
+- `4e94c84 feat: define Pikku language levels`
+- `2090abe feat: tag questions by language`
+- `b623e9f style: add multilingual shell`
+- `370dd6b feat: add Pikku language switcher`
 
 后续阶段：
 
@@ -213,3 +221,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-30：首次 `Test-Pikku.ps1` 在 Augusta 的 Windows PowerShell 5.1 出现解析错误；脚本改为 ASCII 兼容写法并移除嵌套 `try/finally`，避免编码/语法兼容问题。
 - 2026-07-31：Augusta 批量验证 7/7 通过；新增系统交互与故障防复发手册；发现 Windows PowerShell 5.1 的 Transcript 未完整收录原生命令输出，验证脚本改用显式输出管道。
 - 2026-07-31：完整日志复验再次 7/7 通过；记录 Next.js Unicode 符号乱码的原因并为验证脚本加入临时 UTF-8 输出编码。
+- 2026-07-31：完成 P1 多语言外壳最小实现；加入三语言选择、等级持久化、语言数据过滤和日语/西班牙语占位入口，本地 TypeScript 与生产构建通过，等待 Augusta Firefox 验收。
