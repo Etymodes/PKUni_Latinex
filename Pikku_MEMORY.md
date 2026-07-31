@@ -77,7 +77,8 @@
 - 多语言分支：`agent/pikku-multilingual-mvp`。
 - 任务书提交：`6b73289 docs: define Pikku multilingual roadmap`，已推送远端。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
-- 当前应在多语言分支完成 P1，检查通过后开 PR，不直接在 `main` 开发。
+- Draft PR #12：`feat: establish Pikku multilingual foundation`，目标分支为 `main`；GitHub 已确认无分支冲突，等待 Workers Preview 与新增知识卡的 Firefox 复验。
+- 不直接在 `main` 开发；PR #12 通过预览和浏览器复验后再转为 Ready。
 
 ## 7. 当前阶段与最小路线
 
@@ -101,7 +102,7 @@ P1 代码提交：
 
 后续阶段：
 
-- P2：加入日语/西班牙语种子题库和训练闭环。
+- P2：已从首批日语/西班牙语随机知识卡开始；下一步加入种子题库和训练闭环。
 - P3：多语言账号统计与同步。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
@@ -228,3 +229,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-31：完整日志复验再次 7/7 通过；记录 Next.js Unicode 符号乱码的原因并为验证脚本加入临时 UTF-8 输出编码。
 - 2026-07-31：完成 P1 多语言外壳最小实现；加入三语言选择、等级持久化、语言数据过滤和日语/西班牙语占位入口，并通过 Augusta 批量检查与 Firefox 浏览器验收。
 - 2026-07-31：确定分语言随机知识规则；日语加入日汉同形异义，西班牙语加入拉丁语词源、同源异义和同形异源，首批 7 条使用统一来源可追溯数据模型。
+- 2026-07-31：建立 Draft PR #12，包含 P1 多语言基础与首批 7 条语言知识；GitHub 显示可自动合并，等待 Workers Preview 和 Firefox 知识卡复验。
