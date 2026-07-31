@@ -1,8 +1,8 @@
-import type { LanguageCode, Level } from "./questions";
+import type { LanguageCode, Level, StudyLevel } from "./questions";
 
 export type JapaneseLevel = "n4" | "n3" | "n2" | "n1";
 export type SpanishLevel = "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
-export type LanguageLevel = Level | JapaneseLevel | SpanishLevel;
+export type LanguageLevel = StudyLevel;
 
 export type LanguageConfig = {
   code: LanguageCode;
@@ -51,7 +51,7 @@ export const languageConfigs: Record<LanguageCode, LanguageConfig> = {
     nativeName: "日本語",
     breadcrumb: "日语能力考试学习与模拟",
     mascotCopy: "你的日语学习搭子",
-    note: "首版按 JLPT N4–N1 建立训练域，题库将在 P2 接入。",
+    note: "按 JLPT N4–N1 建立训练域，P2 已接入首批可追溯种子题。",
     levels: ["n4", "n3", "n2", "n1"],
     defaultLevel: "n4",
   },
@@ -61,7 +61,7 @@ export const languageConfigs: Record<LanguageCode, LanguageConfig> = {
     nativeName: "Español",
     breadcrumb: "西班牙语 CEFR 学习与模拟",
     mascotCopy: "你的西班牙语学习搭子",
-    note: "首版按 CEFR A1–C2 建立训练域，题库将在 P2 接入。",
+    note: "按 CEFR A1–C2 建立训练域，P2 已接入首批可追溯种子题。",
     levels: ["a1", "a2", "b1", "b2", "c1", "c2"],
     defaultLevel: "a1",
   },

@@ -1,17 +1,20 @@
 export type LanguageCode = "la" | "ja" | "es";
 export type Level = "elementary" | "intermediate" | "mixed" | "advanced";
 export type QuestionLevel = Exclude<Level, "mixed">;
+export type StudyQuestionLevel = QuestionLevel | "n4" | "n3" | "n2" | "n1" | "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
+export type StudyLevel = Level | StudyQuestionLevel;
 export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
 
 export type Question = {
   id: string;
   language?: LanguageCode;
-  level: QuestionLevel;
+  level: StudyQuestionLevel;
   category: Category;
   skill?: string;
   type: "choice" | "self-check";
   prompt: string;
   latin?: string;
+  text?: string;
   context?: string;
   options?: string[];
   answer?: number;
@@ -19,6 +22,8 @@ export type Question = {
   explanation: string;
   tags: string[];
   source: string;
+  sourceUrl?: string;
+  sourceStatus?: "official-framework" | "public-domain" | "original";
 };
 
 export const questions: Question[] = [
@@ -274,14 +279,24 @@ export const categoryLabels: Record<Category, string> = {
   translation: "分句翻译",
 };
 
-export const levelLabels: Record<Level, string> = {
+export const levelLabels: Record<StudyLevel, string> = {
   elementary: "初级",
   intermediate: "中级",
   mixed: "混合难度",
   advanced: "进阶",
+  n4: "N4",
+  n3: "N3",
+  n2: "N2",
+  n1: "N1",
+  a1: "A1",
+  a2: "A2",
+  b1: "B1",
+  b2: "B2",
+  c1: "C1",
+  c2: "C2",
 };
 
-export function matchesLevel(question: Question, level: Level) {
+export function matchesLevel(question: Question, level: StudyLevel) {
   if (level === "mixed") return question.level === "elementary" || question.level === "intermediate";
   return question.level === level;
 }
