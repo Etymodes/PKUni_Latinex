@@ -50,9 +50,12 @@ import {
   matchesLevel,
   questions,
   type Category,
+  type LanguageCode,
   type Level,
   type Question,
 } from "@/data/questions";
+import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
+import { languageFacts } from "@/data/language-facts";
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
@@ -68,6 +71,8 @@ const STORAGE = {
   progress: "latin-practica-progress-v1",
   bookmarks: "latin-practica-bookmarks-v1",
   streak: "latin-practica-last-study-v1",
+  language: "pikku-language-v1",
+  languageLevel: "pikku-language-level-v1",
 };
 
 function usePersistentState<T>(key: string, initialValue: T) {
@@ -115,6 +120,8 @@ function formatTime(seconds: number) {
 export default function App() {
   const [view, setView] = useState<View>("home");
   const [level, setLevel] = useState<Level>("elementary");
+  const [language, setLanguage] = usePersistentState<LanguageCode>(STORAGE.language, "la");
+  const [languageLevel, setLanguageLevel] = usePersistentState<LanguageLevel>(STORAGE.languageLevel, "elementary");
   const [category, setCategory] = useState<Category | "all">("all");
   const [progress, setProgress] = usePersistentState<Progress>(STORAGE.progress, {});
   const [bookmarks, setBookmarks] = usePersistentState<string[]>(STORAGE.bookmarks, []);
@@ -126,6 +133,12 @@ export default function App() {
   const pendingAccountSyncs = useRef<Set<Promise<void>>>(new Set());
   const accountSyncChain = useRef<Promise<void>>(Promise.resolve());
   const bookmarksRef = useRef(bookmarks);
+  const languageConfig = languageConfigs[language];
+
+  useEffect(() => {
+    if (languageConfig.levels.some((item) => item === languageLevel)) return;
+    setLanguageLevel(languageConfig.defaultLevel);
+  }, [languageConfig, languageLevel, setLanguageLevel]);
 
   useEffect(() => {
     bookmarksRef.current = bookmarks;
@@ -214,6 +227,9 @@ export default function App() {
     overrides.forEach((override) => override.deleted ? map.delete(override.id) : override.question && map.set(override.id, override.question));
     return [...map.values()];
   }, [overrides]);
+  const languageBank = useMemo(() => questionBank.filter((question) => (question.language ?? "la") === language), [language, questionBank]);
+  const languageQuestionIds = useMemo(() => new Set(languageBank.map((question) => question.id)), [languageBank]);
+  const languageBookmarks = bookmarks.filter((id) => languageQuestionIds.has(id));
 
   const recordProgress = (question: Question, status: Progress[string]) => {
     setProgress((current) => ({ ...current, [question.id]: status }));
@@ -235,10 +251,32 @@ export default function App() {
       if (!response.ok) throw new Error("收藏同步失败");
     });
   }, [queueAccountSync, session.authenticated, setBookmarks]);
+  const updateLanguageBookmarks = useCallback((next: string[] | ((current: string[]) => string[])) => {
+    const current = bookmarksRef.current;
+    const currentLanguage = current.filter((id) => languageQuestionIds.has(id));
+    const resolved = typeof next === "function" ? next(currentLanguage) : next;
+    const otherLanguages = current.filter((id) => !languageQuestionIds.has(id));
+    updateBookmarks([...otherLanguages, ...resolved]);
+  }, [languageQuestionIds, updateBookmarks]);
 
-  const answered = Object.keys(progress).length;
-  const correct = Object.values(progress).filter((v) => v === "correct").length;
+  const answered = Object.keys(progress).filter((id) => languageQuestionIds.has(id)).length;
+  const correct = Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && value === "correct").length;
   const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
+
+  const selectLanguage = (nextLanguage: LanguageCode) => {
+    const nextConfig = languageConfigs[nextLanguage];
+    setLanguage(nextLanguage);
+    setLanguageLevel(nextConfig.defaultLevel);
+    if (nextLanguage === "la") setLevel(nextConfig.defaultLevel as Level);
+    setCategory("all");
+    setView("home");
+    setMobileNav(false);
+  };
+
+  const selectLanguageLevel = (nextLevel: LanguageLevel) => {
+    setLanguageLevel(nextLevel);
+    if (language === "la") setLevel(nextLevel as Level);
+  };
 
   const openPractice = (nextLevel = level, nextCategory: Category | "all" = "all") => {
     setLevel(nextLevel);
@@ -250,13 +288,13 @@ export default function App() {
   const navItems: { id: View; label: string; icon: typeof Home; count?: number }[] = [
     { id: "home", label: "今日概览", icon: Home },
     { id: "practice", label: "训练中心", icon: ListOrdered },
-    { id: "mistakes", label: "复习中心", icon: RotateCcw, count: Object.values(progress).filter((v) => v === "wrong" || v === "review").length + bookmarks.length },
+    { id: "mistakes", label: "复习中心", icon: RotateCcw, count: Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && (value === "wrong" || value === "review")).length + languageBookmarks.length },
     { id: "scope", label: "考试与资源", icon: Library },
-    { id: "community", label: "拉丁语社区", icon: Users },
+    { id: "community", label: `${languageConfig.name}社区`, icon: Users },
     ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: "管理员后台", icon: Settings }] : []),
   ];
   const activeSection: View = (["exam", "vocabulary"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
-  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: "拉丁语资源库" };
+  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: `${languageConfig.name}资源库` };
 
   return (
     <div className="app-shell">
@@ -265,16 +303,25 @@ export default function App() {
         <div className="brand">
           <div className="brand-mark"><img src={assetPath("/pkuni-latinex-logo-final.png")} alt="" /></div>
           <div>
-            <strong>比丘拟</strong>
-            <span>PKUni_LATINEX</span>
+            <strong>哔丘 Pikku</strong>
+            <span>{languageConfig.nativeName} · LEARNING</span>
           </div>
           <button className="icon-button close-nav" onClick={() => setMobileNav(false)} aria-label="关闭导航"><X size={20} /></button>
         </div>
 
+        <div className="language-switch" aria-label="选择学习语言">
+          {languageOrder.map((item) => (
+            <button key={item} className={language === item ? "active" : ""} onClick={() => selectLanguage(item)} aria-pressed={language === item}>
+              <span>{languageConfigs[item].nativeName}</span>
+              <small>{languageConfigs[item].name}</small>
+            </button>
+          ))}
+        </div>
+
         <div className="level-switch" aria-label="选择练习级别">
-          {(["elementary", "intermediate", "mixed", "advanced"] as Level[]).map((item) => (
-            <button key={item} className={level === item ? "active" : ""} onClick={() => setLevel(item)} aria-pressed={level === item}>
-              {levelLabels[item]}
+          {languageConfig.levels.map((item) => (
+            <button key={item} className={languageLevel === item ? "active" : ""} onClick={() => selectLanguageLevel(item)} aria-pressed={languageLevel === item}>
+              {languageLevelLabels[item]}
             </button>
           ))}
         </div>
@@ -292,11 +339,11 @@ export default function App() {
 
         <div className="mascot-note">
           <img src={assetPath("/pkuni-latinex-logo-final.png")} alt="哔丘 Pikku 做翅膀赞" />
-          <div><strong>哔丘 Pikku</strong><span>你的拉丁文刷题搭子</span></div>
+          <div><strong>哔丘 Pikku</strong><span>{languageConfig.mascotCopy}</span></div>
         </div>
         <div className="sidebar-note">
           <GraduationCap size={20} />
-          <div><strong>非官方训练工具</strong><span>依据北大公开考试范围编排，题目均为仿真练习。</span></div>
+          <div><strong>非官方训练工具</strong><span>{languageConfig.note}</span></div>
         </div>
       </aside>
 
@@ -306,7 +353,7 @@ export default function App() {
         <header className="topbar">
           <button className="icon-button menu-button" onClick={() => setMobileNav(true)} aria-label="打开导航"><Menu size={21} /></button>
           <div className="topbar-title">
-            <span className="breadcrumb">拉丁语标准化考试训练</span>
+            <span className="breadcrumb">{languageConfig.breadcrumb}</span>
             <strong>{viewTitles[view] ?? navItems.find((item) => item.id === activeSection)?.label}</strong>
           </div>
           <div className="topbar-stats" aria-label="学习统计">
@@ -319,24 +366,86 @@ export default function App() {
         </header>
 
         <main id="main-content">
-          {(["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
-          {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
-          {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
-          {view === "home" && <Dashboard bank={questionBank} level={level} progress={progress} bookmarks={bookmarks} openPractice={openPractice} setView={setView} />}
-          {view === "practice" && <Practice bank={questionBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
-          {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={questionBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
-          {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={questionBank.filter((q) => bookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={bookmarks} setBookmarks={updateBookmarks} />}
-          {view === "exam" && <ExamMode bank={questionBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} />}
-          {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
-          {view === "scope" && <Scope openPractice={openPractice} />}
-          {view === "archive" && <Archive />}
-          {view === "resources" && <ResourceLibrary />}
-          {view === "community" && <CommunityPreview />}
-          {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={questionBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
+          {language !== "la" ? (
+            <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} />
+          ) : (
+            <>
+              {(["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+              {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
+              {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
+              {view === "home" && <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={openPractice} setView={setView} />}
+              {view === "practice" && <Practice bank={languageBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "exam" && <ExamMode bank={languageBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} />}
+              {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
+              {view === "scope" && <Scope openPractice={openPractice} />}
+              {view === "archive" && <Archive />}
+              {view === "resources" && <ResourceLibrary />}
+              {view === "community" && <CommunityPreview />}
+              {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
+            </>
+          )}
         </main>
       </div>
     </div>
   );
+}
+
+function LanguagePlaceholder({ config, level, view, setView }: { config: LanguageConfig; level: LanguageLevel; view: View; setView: (view: View) => void }) {
+  const sectionTitles: Partial<Record<View, string>> = {
+    home: "语言学习首页",
+    practice: "训练中心",
+    mistakes: "复习中心",
+    bookmarks: "我的收藏",
+    exam: "考试模拟",
+    vocabulary: "词汇量测量",
+    scope: "考试与资源",
+    archive: "考试档案",
+    resources: "教材与辞典",
+    community: "交流社区",
+    admin: "管理员后台",
+  };
+
+  return <div className="page language-placeholder">
+    <section className="language-hero">
+      <span className="eyebrow"><Languages size={14} /> PIKKU MULTILINGUAL · P1</span>
+      <h1>{config.nativeName} <small>{config.name}</small></h1>
+      <p>{sectionTitles[view] ?? "学习中心"}已接入共享外壳；当前等级为 <strong>{languageLevelLabels[level]}</strong>。本阶段先保证语言、等级和数据域不会串线。</p>
+      <div><span>语言选择</span><b>已完成</b><span>等级映射</span><b>已完成</b><span>首批题库</span><b>进入 P2</b></div>
+    </section>
+    <LanguageFactCard config={config} />
+    <section className="language-roadmap">
+      <article><span>01</span><h2>训练与复习</h2><p>随机、有序、错题和收藏将复用拉丁语模式的稳定交互，题目按语言隔离。</p><button disabled>题库接入后开放</button></article>
+      <article><span>02</span><h2>考试与词汇</h2><p>{config.name}等级已建立；P2 加入种子题后启用组卷、词汇测试和统计。</p><button disabled>{languageLevelLabels[level]} · P2</button></article>
+      <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("home")}>返回语言首页</button></article>
+    </section>
+  </div>;
+}
+
+function LanguageFactCard({ config }: { config: LanguageConfig }) {
+  const facts = languageFacts[config.code] ?? [];
+  const [factIndex, setFactIndex] = useState(0);
+
+  useEffect(() => {
+    if (facts.length) setFactIndex(Math.floor(Math.random() * facts.length));
+  }, [config.code, facts.length]);
+
+  if (!facts.length) return null;
+  const fact = facts[factIndex % facts.length];
+
+  return <section className="etymology-card">
+    <div>
+      <span className="eyebrow"><Sparkles size={14} /> PIKKU LANGUAGES · 随机语言知识</span>
+      <h2>{fact.title} <small>{fact.kind}</small></h2>
+      <p>{fact.summary}</p>
+    </div>
+    <div className="word-family">
+      <span>例子</span><strong>{fact.example}</strong>
+      <span>来源</span><strong>{fact.sources.map((source, index) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{index > 0 && " · "}{source.label}</a>)}</strong>
+    </div>
+    <button className="secondary-button" onClick={() => setFactIndex((factIndex + 1) % facts.length)}>换一条 <Shuffle size={15} /></button>
+  </section>;
 }
 
 function Account({ session, onSession, beforeLogout, onLogout, wechatEnabled }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void; wechatEnabled: boolean }) {
@@ -617,7 +726,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? "取消收藏" : "收藏题目"} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
       <h2>{question.prompt}</h2>
-      {question.latin && <blockquote lang="la">{question.latin}</blockquote>}
+      {question.latin && <blockquote lang={question.language ?? "la"}>{question.latin}</blockquote>}
       {question.context && <p className="context-note">{question.context}</p>}
 
       {question.type === "choice" ? (
@@ -745,7 +854,7 @@ function VocabularyLab({ level, session }: { level: Level; session: Session }) {
   </div>;
 }
 
-const emptyAdminQuestion: Question = { id: "custom-", level: "elementary", category: "vocabulary", type: "choice", prompt: "", latin: "", options: ["", "", "", ""], answer: 0, explanation: "", tags: [], source: "管理员自建" };
+const emptyAdminQuestion: Question = { id: "custom-", language: "la", level: "elementary", category: "vocabulary", type: "choice", prompt: "", latin: "", options: ["", "", "", ""], answer: 0, explanation: "", tags: [], source: "管理员自建" };
 
 function AdminPanel({ bank, onChanged }: { bank: Question[]; onChanged: () => void }) {
   const [selectedId, setSelectedId] = useState(bank[0]?.id || "new");
