@@ -77,7 +77,7 @@
 - 多语言分支：`agent/pikku-multilingual-mvp`。
 - 任务书提交：`6b73289 docs: define Pikku multilingual roadmap`，已推送远端。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
-- Draft PR #12：`feat: establish Pikku multilingual foundation`，目标分支为 `main`；GitHub 已确认无分支冲突，Cloudflare Workers Preview 与云浏览器冒烟测试已通过；等待 Augusta Firefox 对新增知识卡的最终复验。
+- Draft PR #12：`feat: establish Pikku multilingual foundation`，目标分支为 `main`；GitHub 已确认无分支冲突，Cloudflare Workers Preview、云浏览器冒烟测试和 Augusta Firefox 最终复验均已通过；PR 已转为 Ready for review，等待合并。
 - 不直接在 `main` 开发；PR #12 通过预览和浏览器复验后再转为 Ready。
 
 ## 7. 当前阶段与最小路线
@@ -232,3 +232,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-31：建立 Draft PR #12，包含 P1 多语言基础与首批 7 条语言知识；GitHub 显示可自动合并，等待 Workers Preview 和 Firefox 知识卡复验。
 
 - 2026-07-31：Cloudflare 分支 Preview 部署成功；云浏览器验证日语知识卡切换、日汉来源链接、西班牙语四条跨类别知识卡及来源链接均正常。刷新后未发现 Pikku 应用自身的 hydration 错误；仅观察到云浏览器扩展的 metadata 日志，与网站无关。预览地址：`https://agent-pikku-multilingual-mvp-pkuni-latinex.kimdac.workers.dev/`。
+- 2026-08-01：Augusta 报告 `Pikku_Check_20260801_003624.txt` 显示 Repository、Node/npm、Dependencies、TypeScript、Cloudflare production build、Git formatting、Final worktree 共 7/7 通过；Firefox 浏览器复验通过。PR #12 已从 Draft 转为 Ready for review，仍保持未合并状态。
