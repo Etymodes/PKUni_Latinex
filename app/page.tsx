@@ -55,6 +55,7 @@ import {
   type Question,
 } from "@/data/questions";
 import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
+import { languageFacts } from "@/data/language-facts";
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
@@ -413,12 +414,38 @@ function LanguagePlaceholder({ config, level, view, setView }: { config: Languag
       <p>{sectionTitles[view] ?? "学习中心"}已接入共享外壳；当前等级为 <strong>{languageLevelLabels[level]}</strong>。本阶段先保证语言、等级和数据域不会串线。</p>
       <div><span>语言选择</span><b>已完成</b><span>等级映射</span><b>已完成</b><span>首批题库</span><b>进入 P2</b></div>
     </section>
+    <LanguageFactCard config={config} />
     <section className="language-roadmap">
       <article><span>01</span><h2>训练与复习</h2><p>随机、有序、错题和收藏将复用拉丁语模式的稳定交互，题目按语言隔离。</p><button disabled>题库接入后开放</button></article>
       <article><span>02</span><h2>考试与词汇</h2><p>{config.name}等级已建立；P2 加入种子题后启用组卷、词汇测试和统计。</p><button disabled>{languageLevelLabels[level]} · P2</button></article>
       <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("home")}>返回语言首页</button></article>
     </section>
   </div>;
+}
+
+function LanguageFactCard({ config }: { config: LanguageConfig }) {
+  const facts = languageFacts[config.code] ?? [];
+  const [factIndex, setFactIndex] = useState(0);
+
+  useEffect(() => {
+    if (facts.length) setFactIndex(Math.floor(Math.random() * facts.length));
+  }, [config.code, facts.length]);
+
+  if (!facts.length) return null;
+  const fact = facts[factIndex % facts.length];
+
+  return <section className="etymology-card">
+    <div>
+      <span className="eyebrow"><Sparkles size={14} /> PIKKU LANGUAGES · 随机语言知识</span>
+      <h2>{fact.title} <small>{fact.kind}</small></h2>
+      <p>{fact.summary}</p>
+    </div>
+    <div className="word-family">
+      <span>例子</span><strong>{fact.example}</strong>
+      <span>来源</span><strong>{fact.sources.map((source, index) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{index > 0 && " · "}{source.label}</a>)}</strong>
+    </div>
+    <button className="secondary-button" onClick={() => setFactIndex((factIndex + 1) % facts.length)}>换一条 <Shuffle size={15} /></button>
+  </section>;
 }
 
 function Account({ session, onSession, beforeLogout, onLogout, wechatEnabled }: { session: Session; onSession: (session: Session) => Promise<void>; beforeLogout: () => Promise<void>; onLogout: () => void; wechatEnabled: boolean }) {
