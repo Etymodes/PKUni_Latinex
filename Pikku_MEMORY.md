@@ -177,6 +177,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - GitHub 写入的 UTF-8 脚本与 Windows PowerShell 5.1 可能发生解析/编码兼容问题。面向 Augusta 的基础设施脚本保持 ASCII 语法和输出标签，避免无必要的复杂嵌套结构。
 - 首版 `Test-Pikku.ps1` 在含中文字符串和嵌套 `try/finally` 时出现 `MissingCatchOrFinally`；改为 ASCII、顺序执行和显式结果收集后已正常运行。
 - `Start-Transcript` 在 Windows PowerShell 5.1 中不能可靠捕获 Git、Node、npm、Next.js 等原生命令直接写入控制台的内容。必须将原生命令 `2>&1` 管道到 `Write-Host`（或显式写入报告），不能只依赖 Transcript。
+- 原生命令进入 PowerShell 5.1 管道后，Next.js 的 `✓`、`○` 和树形符号曾显示为 `鈻?`、`鉁?` 等乱码；这是控制台输出解码问题，不是构建失败。验证脚本应在运行期间把 `[Console]::OutputEncoding` 和 `$OutputEncoding` 设为无 BOM UTF-8，并在结束时恢复。
 
 ### 构建与 Git 工作区
 
@@ -203,6 +204,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-31 02:38，Augusta 上的 `Test-Pikku.ps1` 首次完整运行成功，约 13 秒。
 - 结果：Repository、Node/npm、Dependencies、TypeScript、Cloudflare production build、Git formatting、Final worktree 共 7 项全部通过。
 - 该结果证明 PowerShell 5.1 兼容版脚本可运行；由于 Transcript 未收齐原生命令明细，脚本随后增加显式日志管道，下一次报告需确认完整构建输出已进入 TXT。
+- 2026-07-31 08:21 第二次完整运行再次 7/7 通过，原生命令、TypeScript 和 Next.js 构建明细均已写入报告，最终 Git 工作区干净。实测版本：Node `24.18.0`、npm `11.16.0`、Next.js `16.2.10`。
 
 ## 14. 记忆更新日志
 
@@ -210,3 +212,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-30：验证流程改为批量完成全部检查后统一汇总，失败项不中断后续检查，报告写入 `D:\Downloads`。
 - 2026-07-30：首次 `Test-Pikku.ps1` 在 Augusta 的 Windows PowerShell 5.1 出现解析错误；脚本改为 ASCII 兼容写法并移除嵌套 `try/finally`，避免编码/语法兼容问题。
 - 2026-07-31：Augusta 批量验证 7/7 通过；新增系统交互与故障防复发手册；发现 Windows PowerShell 5.1 的 Transcript 未完整收录原生命令输出，验证脚本改用显式输出管道。
+- 2026-07-31：完整日志复验再次 7/7 通过；记录 Next.js Unicode 符号乱码的原因并为验证脚本加入临时 UTF-8 输出编码。
