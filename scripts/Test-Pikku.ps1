@@ -78,6 +78,10 @@ Write-Section "TypeScript"
 $typeScriptCode = Invoke-LoggedCommand { npm.cmd run lint }
 Add-Result "TypeScript" $typeScriptCode
 
+Write-Section "Worker unit tests"
+$testCode = Invoke-LoggedCommand { node --test tests/wechat-oauth.test.mjs }
+Add-Result "Worker unit tests" $testCode
+
 Write-Section "Cloudflare production build"
 $previousAuthMode = $env:NEXT_PUBLIC_AUTH_MODE
 $env:NEXT_PUBLIC_AUTH_MODE = "supabase"

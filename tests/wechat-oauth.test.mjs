@@ -41,3 +41,26 @@ test("configured origin is normalized and invalid values are rejected", () => {
   assert.equal(__test.configuredOrigin({ WECHAT_PUBLIC_ORIGIN: "https://pikku.qzz.io/path" }), "https://pikku.qzz.io");
   assert.equal(__test.configuredOrigin({ WECHAT_PUBLIC_ORIGIN: "not a URL" }), "");
 });
+
+test("multilingual account preferences accept only configured language levels", () => {
+  assert.equal(__test.validPreference("la", "advanced"), true);
+  assert.equal(__test.validPreference("ja", "n1"), true);
+  assert.equal(__test.validPreference("es", "c2"), true);
+  assert.equal(__test.validPreference("ja", "a1"), false);
+  assert.equal(__test.validPreference("de", "a1"), false);
+});
+
+test("progress records retain language while legacy records default to Latin", () => {
+  assert.deepEqual(__test.normalizeProgressRecord({ questionId: "ja-n1-001", status: "correct", language: "ja", level: "n1", category: "syntax" }), {
+    questionId: "ja-n1-001", status: "correct", language: "ja", level: "n1", category: "syntax",
+  });
+  assert.equal(__test.normalizeProgressRecord({ questionId: "legacy", status: "wrong", level: "elementary" }).language, "la");
+  assert.equal(__test.normalizeProgressRecord({ questionId: "bad", status: "correct", language: "ja", level: "a1" }), null);
+  assert.equal(__test.normalizeProgressRecord({ questionId: "bad", status: "correct", language: "de", level: "elementary" }), null);
+});
+
+test("bookmark validation rejects malformed or cross-language records before replacement", () => {
+  assert.deepEqual(__test.normalizeBookmarkItem({ questionId: "es-a1-001", language: "es" }), { questionId: "es-a1-001", language: "es" });
+  assert.deepEqual(__test.normalizeBookmarkItem({ questionId: "legacy" }), { questionId: "legacy", language: "la" });
+  assert.equal(__test.normalizeBookmarkItem({ questionId: "bad", language: "de" }), null);
+});

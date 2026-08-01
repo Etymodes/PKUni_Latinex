@@ -67,6 +67,7 @@ type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabular
 type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
+type AccountPreference = { language: LanguageCode; level: LanguageLevel };
 
 const STORAGE = {
   progress: "latin-practica-progress-v1",
@@ -100,16 +101,30 @@ function usePersistentState<T>(key: string, initialValue: T) {
     }
   }, [key, ready, value]);
 
-  return [value, setValue] as const;
+  return [value, setValue, ready] as const;
 }
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions];
+const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
 const allVocabItems = [...vocabItems, ...completeVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
 const authMode = process.env.NEXT_PUBLIC_AUTH_MODE ?? "chatgpt";
 const assetPath = (path: string) => `${publicBasePath}${path}`;
+
+function syncQuestion(questionId: string) {
+  const question = staticQuestionIndex.get(questionId);
+  if (question) return question;
+  // ponytail: legacy custom IDs default to Latin until P4 adds multilingual override migration.
+  return { id: questionId, language: "la" as LanguageCode, level: "elementary" as LanguageLevel, category: "vocabulary" as Category };
+}
+
+function validAccountPreference(value: unknown): value is AccountPreference {
+  if (!value || typeof value !== "object") return false;
+  const preference = value as AccountPreference;
+  return Boolean(languageConfigs[preference.language]?.levels.includes(preference.level));
+}
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -121,11 +136,11 @@ function formatTime(seconds: number) {
 export default function App() {
   const [view, setView] = useState<View>("home");
   const [level, setLevel] = useState<Level>("elementary");
-  const [language, setLanguage] = usePersistentState<LanguageCode>(STORAGE.language, "la");
-  const [languageLevel, setLanguageLevel] = usePersistentState<LanguageLevel>(STORAGE.languageLevel, "elementary");
+  const [language, setLanguage, languageReady] = usePersistentState<LanguageCode>(STORAGE.language, "la");
+  const [languageLevel, setLanguageLevel, languageLevelReady] = usePersistentState<LanguageLevel>(STORAGE.languageLevel, "elementary");
   const [category, setCategory] = useState<Category | "all">("all");
-  const [progress, setProgress] = usePersistentState<Progress>(STORAGE.progress, {});
-  const [bookmarks, setBookmarks] = usePersistentState<string[]>(STORAGE.bookmarks, []);
+  const [progress, setProgress, progressReady] = usePersistentState<Progress>(STORAGE.progress, {});
+  const [bookmarks, setBookmarks, bookmarksReady] = usePersistentState<string[]>(STORAGE.bookmarks, []);
   const [mobileNav, setMobileNav] = useState(false);
   const [session, setSession] = useState<Session>({ authenticated: false, user: null });
   const [overrides, setOverrides] = useState<Override[]>([]);
@@ -133,8 +148,12 @@ export default function App() {
   const [syncStatus, setSyncStatus] = useState<"idle" | "syncing" | "error">("idle");
   const pendingAccountSyncs = useRef<Set<Promise<void>>>(new Set());
   const accountSyncChain = useRef<Promise<void>>(Promise.resolve());
+  const progressRef = useRef(progress);
   const bookmarksRef = useRef(bookmarks);
+  const languageRef = useRef(language);
+  const languageLevelRef = useRef(languageLevel);
   const languageConfig = languageConfigs[language];
+  const accountStorageReady = languageReady && languageLevelReady && progressReady && bookmarksReady;
 
   useEffect(() => {
     if (languageConfig.levels.some((item) => item === languageLevel)) return;
@@ -142,8 +161,15 @@ export default function App() {
   }, [languageConfig, languageLevel, setLanguageLevel]);
 
   useEffect(() => {
+    if (language === "la") setLevel(languageLevel as Level);
+  }, [language, languageLevel]);
+
+  useEffect(() => {
+    progressRef.current = progress;
     bookmarksRef.current = bookmarks;
-  }, [bookmarks]);
+    languageRef.current = language;
+    languageLevelRef.current = languageLevel;
+  }, [bookmarks, language, languageLevel, progress]);
 
   const queueAccountSync = useCallback((operation: () => Promise<void>) => {
     setSyncStatus("syncing");
@@ -175,20 +201,48 @@ export default function App() {
       return;
     }
     const stats = await response.json();
-    setProgress(stats?.progress || {});
+    const remoteProgress = stats?.progress && typeof stats.progress === "object" ? stats.progress as Progress : {};
+    const localProgress = progressRef.current;
+    const mergedProgress = { ...localProgress, ...remoteProgress };
+    progressRef.current = mergedProgress;
+    setProgress(mergedProgress);
     const remoteBookmarks = Array.isArray(stats?.bookmarks) ? stats.bookmarks.filter((id: unknown) => typeof id === "string") : [];
     const mergedBookmarks = [...new Set([...remoteBookmarks, ...bookmarksRef.current])];
     bookmarksRef.current = mergedBookmarks;
     setBookmarks(mergedBookmarks);
+    const unsyncedProgress = Object.entries(localProgress).filter(([id]) => !(id in remoteProgress)).map(([questionId, status]) => {
+      const question = syncQuestion(questionId);
+      return { questionId, status, language: question.language ?? "la", level: question.level, category: question.category };
+    });
+    if (unsyncedProgress.length) {
+      const migrated = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ records: unsyncedProgress }) });
+      if (!migrated.ok) {
+        setSyncStatus("error");
+        return;
+      }
+    }
     if (mergedBookmarks.length !== remoteBookmarks.length) {
-      const migrated = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionIds: mergedBookmarks }) });
+      const items = mergedBookmarks.map((questionId) => ({ questionId, language: syncQuestion(questionId).language ?? "la" }));
+      const migrated = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ items }) });
+      if (!migrated.ok) {
+        setSyncStatus("error");
+        return;
+      }
+    }
+    if (validAccountPreference(stats?.preference)) {
+      languageRef.current = stats.preference.language;
+      languageLevelRef.current = stats.preference.level;
+      setLanguage(stats.preference.language);
+      setLanguageLevel(stats.preference.level);
+    } else {
+      const migrated = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: languageRef.current, level: languageLevelRef.current }) });
       if (!migrated.ok) {
         setSyncStatus("error");
         return;
       }
     }
     setSyncStatus("idle");
-  }, [setBookmarks, setProgress]);
+  }, [setBookmarks, setLanguage, setLanguageLevel, setProgress]);
 
   const waitForAccountSync = useCallback(async () => {
     await Promise.allSettled([...pendingAccountSyncs.current]);
@@ -196,6 +250,7 @@ export default function App() {
 
   const clearAccountData = useCallback(() => {
     setSession({ authenticated: false, persistence: true, user: null });
+    progressRef.current = {};
     setProgress({});
     bookmarksRef.current = [];
     setBookmarks([]);
@@ -203,7 +258,7 @@ export default function App() {
   }, [setBookmarks, setProgress]);
 
   useEffect(() => {
-    if (isStaticPublic) return;
+    if (isStaticPublic || !accountStorageReady) return;
     Promise.all([
       apiFetch("/api/me").then((r) => r.ok ? r.json() : null),
       apiFetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
@@ -215,13 +270,17 @@ export default function App() {
     }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
 
     if (authMode !== "supabase") return;
-    const { data } = supabase.auth.onAuthStateChange(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        clearAccountData();
+        return;
+      }
       window.setTimeout(() => {
         void refreshAccount();
       }, 0);
     });
     return () => data.subscription.unsubscribe();
-  }, [refreshAccount]);
+  }, [accountStorageReady, clearAccountData, refreshAccount]);
 
   const questionBank = useMemo(() => {
     const map = new Map(staticQuestions.map((question) => [question.id, question]));
@@ -233,11 +292,23 @@ export default function App() {
   const languageBookmarks = bookmarks.filter((id) => languageQuestionIds.has(id));
 
   const recordProgress = (question: Question, status: Progress[string]) => {
-    setProgress((current) => ({ ...current, [question.id]: status }));
+    setProgress((current) => {
+      const next = { ...current, [question.id]: status };
+      progressRef.current = next;
+      return next;
+    });
     if (!session.authenticated) return;
     queueAccountSync(async () => {
-      const response = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, level: question.level, category: question.category }) });
+      const response = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, language: question.language ?? "la", level: question.level, category: question.category }) });
       if (!response.ok) throw new Error("进度同步失败");
+    });
+  };
+
+  const recordVocabulary = (answers: { lemma: string; correct: boolean }[]) => {
+    if (!session.authenticated) return;
+    queueAccountSync(async () => {
+      const response = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: "la", answers }) });
+      if (!response.ok) throw new Error("词汇统计同步失败");
     });
   };
 
@@ -248,7 +319,8 @@ export default function App() {
     setBookmarks(unique);
     if (!session.authenticated) return;
     queueAccountSync(async () => {
-      const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionIds: unique }) });
+      const items = unique.map((questionId) => ({ questionId, language: syncQuestion(questionId).language ?? "la" }));
+      const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ items }) });
       if (!response.ok) throw new Error("收藏同步失败");
     });
   }, [queueAccountSync, session.authenticated, setBookmarks]);
@@ -264,27 +336,39 @@ export default function App() {
   const correct = Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && value === "correct").length;
   const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
 
+  const syncPreference = (nextLanguage: LanguageCode, nextLevel: LanguageLevel) => {
+    if (!session.authenticated) return;
+    queueAccountSync(async () => {
+      const response = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, level: nextLevel }) });
+      if (!response.ok) throw new Error("语言偏好同步失败");
+    });
+  };
+
   const selectLanguage = (nextLanguage: LanguageCode) => {
     const nextConfig = languageConfigs[nextLanguage];
+    languageRef.current = nextLanguage;
+    languageLevelRef.current = nextConfig.defaultLevel;
     setLanguage(nextLanguage);
     setLanguageLevel(nextConfig.defaultLevel);
-    if (nextLanguage === "la") setLevel(nextConfig.defaultLevel as Level);
     setCategory("all");
     setView("home");
     setMobileNav(false);
+    syncPreference(nextLanguage, nextConfig.defaultLevel);
   };
 
   const selectLanguageLevel = (nextLevel: LanguageLevel) => {
+    languageLevelRef.current = nextLevel;
     setLanguageLevel(nextLevel);
-    if (language === "la") setLevel(nextLevel as Level);
+    syncPreference(language, nextLevel);
   };
 
   const openPractice = (nextLevel: LanguageLevel = languageLevel, nextCategory: Category | "all" = "all") => {
+    languageLevelRef.current = nextLevel;
     setLanguageLevel(nextLevel);
-    if (language === "la") setLevel(nextLevel as Level);
     setCategory(nextCategory);
     setView("practice");
     setMobileNav(false);
+    syncPreference(language, nextLevel);
   };
 
   const navItems: { id: View; label: string; icon: typeof Home; count?: number }[] = [
@@ -377,8 +461,8 @@ export default function App() {
               {view === "practice" && <Practice bank={languageBank} level={languageLevel} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
-              {view === "exam" && (language === "la" ? <ExamMode bank={languageBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
-              {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
+              {view === "exam" && (language === "la" ? <ExamMode bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
+              {view === "vocabulary" && <VocabularyLab level={level} onSubmit={recordVocabulary} />}
               {view === "scope" && (language === "la" ? <Scope openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
               {view === "archive" && <Archive />}
               {view === "resources" && <ResourceLibrary />}
@@ -830,7 +914,7 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   );
 }
 
-function VocabularyLab({ level, session }: { level: Level; session: Session }) {
+function VocabularyLab({ level, onSubmit }: { level: Level; onSubmit: (answers: { lemma: string; correct: boolean }[]) => void }) {
   const [test, setTest] = useState(() => shuffle(allVocabItems.filter((item) => level === "mixed" ? item.level !== "advanced" : item.level === level)).slice(0, 20));
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [finished, setFinished] = useState(false);
@@ -840,7 +924,7 @@ function VocabularyLab({ level, session }: { level: Level; session: Session }) {
   const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
   const submit = () => {
     setFinished(true);
-    if (session.authenticated) apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ answers: test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })) }) }).catch(() => {});
+    onSubmit(test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })));
   };
 
   return <div className="page vocab-page">
