@@ -56,6 +56,7 @@ import {
 } from "@/data/questions";
 import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
 import { languageFacts } from "@/data/language-facts";
+import { multilingualQuestions } from "@/data/multilingual-questions";
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
@@ -103,7 +104,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
 }
 
 const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
-const staticQuestions = [...questions, ...completeQuestions];
+const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions];
 const allVocabItems = [...vocabItems, ...completeVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
@@ -278,8 +279,9 @@ export default function App() {
     if (language === "la") setLevel(nextLevel as Level);
   };
 
-  const openPractice = (nextLevel = level, nextCategory: Category | "all" = "all") => {
-    setLevel(nextLevel);
+  const openPractice = (nextLevel: LanguageLevel = languageLevel, nextCategory: Category | "all" = "all") => {
+    setLanguageLevel(nextLevel);
+    if (language === "la") setLevel(nextLevel as Level);
     setCategory(nextCategory);
     setView("practice");
     setMobileNav(false);
@@ -366,33 +368,30 @@ export default function App() {
         </header>
 
         <main id="main-content">
-          {language !== "la" ? (
-            <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} />
-          ) : (
-            <>
-              {(["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+          <>
+              {language === "la" && (["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+              {language !== "la" && view === "practice" && <HubTabs items={[["practice", "有序选题"]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
               {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
-              {view === "home" && <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={openPractice} setView={setView} />}
-              {view === "practice" && <Practice bank={languageBank} level={level} setLevel={setLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "home" && (language === "la" ? <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} setView={setView} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.filter((question) => matchesLevel(question, languageLevel)).length} />)}
+              {view === "practice" && <Practice bank={languageBank} level={languageLevel} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
-              {view === "exam" && <ExamMode bank={languageBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} />}
+              {view === "exam" && (language === "la" ? <ExamMode bank={languageBank} level={level} setLevel={setLevel} progress={progress} onResult={recordProgress} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
               {view === "vocabulary" && <VocabularyLab level={level} session={session} />}
-              {view === "scope" && <Scope openPractice={openPractice} />}
+              {view === "scope" && (language === "la" ? <Scope openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
               {view === "archive" && <Archive />}
               {view === "resources" && <ResourceLibrary />}
               {view === "community" && <CommunityPreview />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
             </>
-          )}
         </main>
       </div>
     </div>
   );
 }
 
-function LanguagePlaceholder({ config, level, view, setView }: { config: LanguageConfig; level: LanguageLevel; view: View; setView: (view: View) => void }) {
+function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }: { config: LanguageConfig; level: LanguageLevel; view: View; setView: (view: View) => void; questionCount?: number }) {
   const sectionTitles: Partial<Record<View, string>> = {
     home: "语言学习首页",
     practice: "训练中心",
@@ -409,15 +408,15 @@ function LanguagePlaceholder({ config, level, view, setView }: { config: Languag
 
   return <div className="page language-placeholder">
     <section className="language-hero">
-      <span className="eyebrow"><Languages size={14} /> PIKKU MULTILINGUAL · P1</span>
+      <span className="eyebrow"><Languages size={14} /> PIKKU MULTILINGUAL · P2</span>
       <h1>{config.nativeName} <small>{config.name}</small></h1>
-      <p>{sectionTitles[view] ?? "学习中心"}已接入共享外壳；当前等级为 <strong>{languageLevelLabels[level]}</strong>。本阶段先保证语言、等级和数据域不会串线。</p>
-      <div><span>语言选择</span><b>已完成</b><span>等级映射</span><b>已完成</b><span>首批题库</span><b>进入 P2</b></div>
+      <p>{sectionTitles[view] ?? "学习中心"}已接入共享训练闭环；当前等级为 <strong>{languageLevelLabels[level]}</strong>，已有 <strong>{questionCount}</strong> 道种子题。</p>
+      <div><span>语言选择</span><b>已完成</b><span>等级映射</span><b>已完成</b><span>首批题库</span><b>{questionCount} 题</b></div>
     </section>
     <LanguageFactCard config={config} />
     <section className="language-roadmap">
-      <article><span>01</span><h2>训练与复习</h2><p>随机、有序、错题和收藏将复用拉丁语模式的稳定交互，题目按语言隔离。</p><button disabled>题库接入后开放</button></article>
-      <article><span>02</span><h2>考试与词汇</h2><p>{config.name}等级已建立；P2 加入种子题后启用组卷、词汇测试和统计。</p><button disabled>{languageLevelLabels[level]} · P2</button></article>
+      <article><span>01</span><h2>训练与复习</h2><p>有序、随机、错题和收藏复用同一稳定交互，题目按语言隔离。</p><button onClick={() => setView("practice")}>开始 {languageLevelLabels[level]} 练习</button></article>
+      <article><span>02</span><h2>考试与词汇</h2><p>{config.name}等级与首批训练题已接入；随机组卷和独立词汇统计将在题量扩充后开放。</p><button disabled>{languageLevelLabels[level]} · 扩充中</button></article>
       <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("home")}>返回语言首页</button></article>
     </section>
   </div>;
@@ -656,16 +655,18 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   );
 }
 
-function Practice({ bank, level, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: Level; setLevel: (l: Level) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
+function Practice({ bank, level, levels, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: LanguageLevel; levels: readonly LanguageLevel[]; setLevel: (l: LanguageLevel) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
   const [order, setOrder] = useState<"ordered" | "random">("ordered");
   const [randomSeed, setRandomSeed] = useState(0);
+  const [query, setQuery] = useState("");
   const pool = useMemo(() => {
-    const selected = bank.filter((q) => matchesLevel(q, level) && (category === "all" || q.category === category));
+    const normalized = query.trim().toLocaleLowerCase();
+    const selected = bank.filter((q) => matchesLevel(q, level) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
     return order === "random" ? shuffle(selected) : selected;
-  }, [bank, level, category, order, randomSeed]);
+  }, [bank, level, category, order, randomSeed, query]);
   const [index, setIndex] = useState(0);
 
-  useEffect(() => setIndex(0), [level, category]);
+  useEffect(() => setIndex(0), [level, category, query]);
   const question = pool[index];
 
   return (
@@ -673,11 +674,12 @@ function Practice({ bank, level, setLevel, category, setCategory, progress, onRe
       <div className="practice-header">
         <div><span className="eyebrow">EXERCITĀTIŌ</span><h1>专项练习</h1><p>每题提交后立即查看词形依据与句法解释。</p></div>
         <div className="filter-row">
-          <label>难度<select value={level} onChange={(e) => setLevel(e.target.value as Level)}><option value="elementary">初级</option><option value="intermediate">中级</option><option value="mixed">混合难度</option><option value="advanced">进阶</option></select></label>
+          <label>难度<select value={level} onChange={(e) => setLevel(e.target.value as LanguageLevel)}>{levels.map((item) => <option key={item} value={item}>{languageLevelLabels[item]}</option>)}</select></label>
           <label>模块<select value={category} onChange={(e) => setCategory(e.target.value as Category | "all")}><option value="all">全部模块</option>{Object.entries(categoryLabels).map(([key, value]) => <option key={key} value={key}>{value}</option>)}</select></label>
           <label>顺序<select value={order} onChange={(e) => { setOrder(e.target.value as "ordered" | "random"); setRandomSeed((s) => s + 1); }}><option value="ordered">教材域有序</option><option value="random">随机洗牌</option></select></label>
         </div>
       </div>
+      <label className="question-search"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索题号、题干、标签、作者或来源（如 Livy）" /><span>{pool.length} 题</span></label>
 
       {question ? (
         <>
@@ -722,11 +724,11 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   return (
     <article className={`question-card ${compact ? "compact" : ""}`}>
       <div className="question-meta">
-        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span><span>·</span><span>{question.source}</span></div>
+        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span><span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? "取消收藏" : "收藏题目"} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
       <h2>{question.prompt}</h2>
-      {question.latin && <blockquote lang={question.language ?? "la"}>{question.latin}</blockquote>}
+      {(question.text || question.latin) && <blockquote lang={question.language ?? "la"}>{question.text ?? question.latin}</blockquote>}
       {question.context && <p className="context-note">{question.context}</p>}
 
       {question.type === "choice" ? (
