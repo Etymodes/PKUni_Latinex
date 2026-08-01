@@ -240,3 +240,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：创建 Draft PR #13 `feat: add Pikku multilingual seed practice`；本地 TypeScript、Next.js 生产构建和格式检查通过，等待 Workers Preview 与 Augusta Firefox 验收。
 
 - 2026-08-01：P2 PR #13 的 Cloudflare Workers Preview 部署成功；Augusta 批量检查与 Firefox 浏览器验收均通过。日语 N4–N1、西班牙语 A1–C2 种子练习、统一搜索、错题与收藏分语言隔离及刷新稳定性已确认，PR 可转为 Ready for review，等待用户明确授权后再合并。
+
+- 2026-08-01：PR #13 `feat: add Pikku multilingual seed practice` 已正式合并到 `main`，合并提交为 `00a03ae`；P2 最小种子题库与统一搜索完成收口。下一步进入 P3 多语言账号统计与同步，仍从新功能分支开发并在 Preview 和 Augusta Firefox 验收后合并。
