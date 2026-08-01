@@ -151,7 +151,7 @@ P1 代码提交：
 - Node：v24.18.0；npm/npx：11.16.0。
 - PowerShell 执行策略会阻止 `npm.ps1`/`npx.ps1`，统一使用 `npm.cmd`、`npx.cmd`。
 - 下载目录是 `D:\Downloads`，不是 `$HOME\Downloads`。
-- 桌面已有 `C:\Users\kimda\Desktop\Pikku开发检查.cmd`，用于启动开发服务器并打开 Firefox。
+- 桌面已有 `C:\Users\kimda\Desktop\Pikku开发检查.cmd`，用于启动纯 Next.js 本地开发服务器并打开 Firefox；它只用于界面检查，不用于登录和云端同步验收。账号功能必须打开当前 Cloudflare Branch Preview 或正式域名。
 - Windows 上 `npm.cmd run build:cloudflare` 会因 POSIX 环境变量语法失败。使用：
 
 ```powershell
@@ -248,3 +248,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：P3 本地验证通过：8 项 Node 单元测试、TypeScript、Next.js 16.2.10 Cloudflare 生产构建、Git 格式检查、4 个 D1 迁移及 Miniflare 真实 API 冒烟测试均成功。冒烟测试覆盖日语/西班牙语批量进度、跨语言收藏、语言偏好、词汇统计和非法语言拒绝。云容器直接启动 `wrangler dev` 仍会触发环境级 `uv_interface_addresses`，改用 Miniflare `dispatchFetch` 验证 Worker 与 D1，不将该环境限制误判为网站故障。
 - 2026-08-01：Augusta 批量验证脚本新增 Worker Node 单元测试步骤；P3 分支起统一报告共 8 项，继续使用 `npm.cmd` 与 Windows PowerShell 5.1 兼容写法。
 - 2026-08-01：创建 Draft PR #14 `feat: sync multilingual account records`；GitHub 确认可自动合并，Cloudflare Workers 构建成功。稳定分支预览为 `https://agent-pikku-p3-account-sync-pkuni-latinex.kimdac.workers.dev/`，下一步是在 Augusta Firefox 完成登录、刷新、退出／换号、收藏删除和三语言隔离验收。
+- 2026-08-01：PR #14 云浏览器未登录回归通过：拉丁语／日语／西班牙语及其等级均可切换，西班牙语 A1 在刷新后保持，登录弹窗完整位于视口内；未发现 Pikku 应用自身错误，仅有云浏览器扩展的 metadata 日志。用户在 `localhost:3000` 观察到无法完成登录，再次确认原因是纯 Next.js 开发服务器没有 Worker API；此现象不代表 Preview 或 Supabase 登录失败。
