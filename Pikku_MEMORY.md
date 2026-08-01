@@ -238,3 +238,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：PR #12 已正式合并到 `main`，合并提交 `5cda856`；P1 多语言基础收口，下一阶段进入 P2 日语／西班牙语种子题库与作者／来源定位。
 - 2026-08-01：启动 P2 最小训练闭环分支 `agent/pikku-p2-seed-bank`；计划复用现有练习、错题、收藏和统计组件，加入题号／题干／标签／作者／来源统一搜索，并为 JLPT N4–N1 与 CEFR A1–C2 各等级加入一题官方能力框架对齐的原创种子题。
 - 2026-08-01：创建 Draft PR #13 `feat: add Pikku multilingual seed practice`；本地 TypeScript、Next.js 生产构建和格式检查通过，等待 Workers Preview 与 Augusta Firefox 验收。
+
+- 2026-08-01：P2 PR #13 的 Cloudflare Workers Preview 部署成功；Augusta 批量检查与 Firefox 浏览器验收均通过。日语 N4–N1、西班牙语 A1–C2 种子练习、统一搜索、错题与收藏分语言隔离及刷新稳定性已确认，PR 可转为 Ready for review，等待用户明确授权后再合并。
