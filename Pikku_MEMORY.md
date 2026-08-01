@@ -78,6 +78,7 @@
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
+- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -246,3 +247,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：启动 P3 分支 `agent/pikku-p3-account-sync`。新增账号语言/等级偏好，以及按语言存储的进度、收藏和词汇统计表；旧拉丁语 D1 数据通过一次性标记自动迁移，避免冷启动后重新写回已删除收藏。登录合并采用“云端同题优先、本地独有记录补传”，并等待 localStorage 读取完成后才开始账号同步；拉丁语旧等级状态统一跟随持久化等级，词汇统计也进入退出登录前的同步队列。
 - 2026-08-01：P3 本地验证通过：8 项 Node 单元测试、TypeScript、Next.js 16.2.10 Cloudflare 生产构建、Git 格式检查、4 个 D1 迁移及 Miniflare 真实 API 冒烟测试均成功。冒烟测试覆盖日语/西班牙语批量进度、跨语言收藏、语言偏好、词汇统计和非法语言拒绝。云容器直接启动 `wrangler dev` 仍会触发环境级 `uv_interface_addresses`，改用 Miniflare `dispatchFetch` 验证 Worker 与 D1，不将该环境限制误判为网站故障。
 - 2026-08-01：Augusta 批量验证脚本新增 Worker Node 单元测试步骤；P3 分支起统一报告共 8 项，继续使用 `npm.cmd` 与 Windows PowerShell 5.1 兼容写法。
+- 2026-08-01：创建 Draft PR #14 `feat: sync multilingual account records`；GitHub 确认可自动合并，Cloudflare Workers 构建成功。稳定分支预览为 `https://agent-pikku-p3-account-sync-pkuni-latinex.kimdac.workers.dev/`，下一步是在 Augusta Firefox 完成登录、刷新、退出／换号、收藏删除和三语言隔离验收。
