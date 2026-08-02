@@ -247,4 +247,25 @@ const weeklyLexicon: LexiconEntry[] = [
   dictionaryStatus: { ...pendingDictionaryStatus },
 })) as LexiconEntry[];
 
-export const lexiconSeed: LexiconEntry[] = [...foundationLexicon, ...weeklyLexicon];
+const weeklyLexicon20260802: LexiconEntry[] = [
+  ["la", "hostis", "hostis, -is m./f.", "敌人；外敌", "名词", "词源待专项核验", ["hostile", "hostility"]],
+  ["la", "sum", "sum, esse, fuī, futūrus", "是；存在；充当系词或助动词", "不规则动词", "常与 PIE *h₁es- ‘存在’联系", ["essence", "entity"]],
+  ["la", "urbs", "urbs, urbis f.", "城市；城邦（尤指罗马）", "名词", "词源待专项核验", ["urban", "suburb"]],
+  ["ja", "省く", "はぶく", "省去；省略；节省", "五段他动词", "和语词；不能仅凭汉字把它等同于汉语‘节省’", []],
+  ["es", "bioingeniería", "bioingeniería, f.", "生物工程学", "名词", "bio- + ingeniería；ingeniería 经 ingeniero 与拉丁 ingenium ‘天资、构思能力’相关", ["bioingeniero"]],
+  ["es", "cómo", "cómo", "如何；怎样（疑问或感叹副词）", "副词", "来自拉丁 quōmodo ‘以什么方式’的演变；重音用于区别非疑问 como", []],
+  ["es", "investigar", "investigar", "调查；研究", "动词", "来自拉丁 investigāre ‘循迹追查’，由 in- + vestīgium ‘足迹’构成", ["investigación", "investigador"]],
+  ["es", "laboratorio", "laboratorio, m.", "实验室", "名词", "来自中世纪拉丁 laborātōrium，与 labor ‘劳动’同族", ["laboratory"]],
+  ["es", "lenguaje", "lenguaje, m.", "语言；语言表达系统", "名词", "经古法语 langage，最终与拉丁 lingua ‘舌；语言’同族", ["lengua"]],
+  ["es", "llamarse", "llamarse", "名叫；自称", "代词式动词", "llamar 来自拉丁 clāmāre ‘呼喊’；现代自我介绍常用 me llamo", ["llamada"]],
+  ["es", "neuroingeniería", "neuroingeniería, f.", "神经工程学", "名词", "neuro- + ingeniería；neuro- 经希腊语 neuron ‘神经、腱’进入科学词汇", []],
+  ["es", "responder", "responder", "回答；回应；对……产生反应", "动词", "来自拉丁 respondēre；西班牙语 responder a 标记回应对象", ["respuesta", "responsable"]],
+  ["es", "seguimiento ocular", "seguimiento ocular, m.", "眼动追踪", "名词短语", "seguimiento 来自 seguir（拉丁 sequī）；ocular 来自拉丁 oculus ‘眼睛’", ["seguimiento", "ocular"]],
+  ["es", "trabajar", "trabajar", "工作；从事", "动词", "通常追溯至通俗拉丁 *tripaliāre；与古刑具 tripalium 相关，语义经历‘受苦’到‘劳动’的变化", ["trabajo", "trabajador"]],
+].map(([language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
+  language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
+  addedOn: "2026-08-02",
+  dictionaryStatus: { ...pendingDictionaryStatus },
+})) as LexiconEntry[];
+
+export const lexiconSeed: LexiconEntry[] = [...foundationLexicon, ...weeklyLexicon, ...weeklyLexicon20260802];
