@@ -33,6 +33,20 @@ export const multilingualQuestions: Question[] = [
     tags: ["かねない", "风险判断", "N1"], source: "JLPT N1 能力域 · 官方框架对齐自拟", sourceUrl: jlptSource, sourceStatus: "original",
   },
   {
+    id: "ja-n1-002", language: "ja", level: "n1", category: "syntax", skill: "scope", type: "choice",
+    prompt: "哪一项既保留原句逻辑，又不使用「からといって／とは限らない」？",
+    text: "効率が高いからといって、測定の信頼性や精度まで高いとは限らない。",
+    options: [
+      "効率が高くても、測定の信頼性や精度が高いとは言えない。",
+      "効率が高いので、測定の信頼性と精度も必ず高い。",
+      "測定の信頼性より、効率と精度のほうが高い。",
+      "効率、信頼性、精度は同じ意味である。",
+    ],
+    answer: 0,
+    explanation: "原句否定从‘效率高’到‘可靠性和精度也高’的必然推论。「まで」把断言范围扩展到信頼性や精度，并不表示从信頼性按顺序移动到精度。用「～ても、～とは言えない」可以保留让步与非必然关系。",
+    tags: ["からといって", "とは限らない", "まで", "改写", "N1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: jlptSource, sourceStatus: "original",
+  },
+  {
     id: "es-a1-001", language: "es", level: "a1", category: "morphology", skill: "ser", type: "choice",
     prompt: "选择正确形式。", text: "Soy Pedro y (　) estudiante de bioingeniería.",
     options: ["soy", "eres", "es", "somos"], answer: 0,
@@ -52,6 +66,15 @@ export const multilingualQuestions: Question[] = [
     options: ["cómo", "que", "porque", "cuál"], answer: 0,
     explanation: "间接疑问“如何”使用带重音的 cómo：Investigo cómo responde...。陈述中的 que 不表达方式。",
     tags: ["间接疑问", "cómo", "B1"], source: "CEFR B1 能力域 · 官方框架对齐自拟", sourceUrl: cefrSource, sourceStatus: "original",
+  },
+  {
+    id: "es-b1-002", language: "es", level: "b1", category: "sentencePattern", skill: "prepositions", type: "choice",
+    prompt: "选择介词和重音都正确的一组。",
+    text: "Trabajo (1) un laboratorio, trabajo (2) datos de BCI e investigo (3) responde el cerebro (4) lenguaje.",
+    options: ["en · con · cómo · al", "con · en · como · el", "en · sobre · que · al", "a · con · cómo · en"],
+    answer: 0,
+    explanation: "trabajar en 标记工作地点，trabajar con 标记处理的材料或工具；间接疑问‘如何’写 cómo；responder a 标记回应对象，a + el 缩合为 al。",
+    tags: ["en", "con", "cómo", "al", "研究自述", "B1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: cefrSource, sourceStatus: "original",
   },
   {
     id: "es-b2-001", language: "es", level: "b2", category: "sentencePattern", skill: "subjunctive", type: "choice",

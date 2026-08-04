@@ -199,6 +199,11 @@ h1, h2, h3, p { margin-top: 0; }
 .question-meta > div { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .question-meta a { color: inherit; text-underline-offset: 2px; }
 .level-pill { color: var(--crimson); background: var(--crimson-soft); padding: 4px 8px; border-radius: 10px; font-weight: 700; }
+.skill-pill, .source-status { padding: 4px 8px; border-radius: 10px; font-weight: 700; }
+.skill-pill { color: #48606b; background: #edf3f5; }
+.source-status.original { color: #35634b; background: var(--green-soft); }
+.source-status.public-domain { color: #6c5728; background: var(--gold-soft); }
+.source-status.official-framework { color: #40556f; background: #edf1f7; }
 .bookmark-button { color: var(--muted); margin: -8px; }
 .bookmark-button.bookmarked { color: var(--crimson); }
 .question-card h2 { font: 600 clamp(18px, 2.5vw, 23px) var(--serif-cn); margin-bottom: 18px; }

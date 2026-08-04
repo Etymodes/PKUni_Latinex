@@ -881,6 +881,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   const [submitted, setSubmitted] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [translation, setTranslation] = useState("");
+  const sourceStatusLabel = question.sourceStatus === "original" ? "原创复核题" : question.sourceStatus === "public-domain" ? "公版原文" : question.sourceStatus === "official-framework" ? "官方框架" : null;
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -905,7 +906,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   return (
     <article className={`question-card ${compact ? "compact" : ""}`}>
       <div className="question-meta">
-        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span><span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
+        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span>{question.skill && <span className="skill-pill">{question.skill}</span>}{sourceStatusLabel && <span className={`source-status ${question.sourceStatus}`}>{sourceStatusLabel}</span>}<span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? "取消收藏" : "收藏题目"} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
       <h2>{question.prompt}</h2>
@@ -1218,7 +1219,8 @@ function ResourceLibrary() {
     (lexiconLanguage === "all" || entry.language === lexiconLanguage)
     && `${entry.lemma} ${entry.principalParts} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())
   );
-  const weeklyLexiconCount = lexiconSeed.filter((entry) => entry.addedOn === "2026-07-26").length;
+  const latestLexiconBatch = lexiconSeed.reduce((latest, entry) => entry.addedOn && entry.addedOn > latest ? entry.addedOn : latest, "");
+  const weeklyLexiconCount = lexiconSeed.filter((entry) => entry.addedOn === latestLexiconBatch).length;
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
     <div className="resource-tabs" role="tablist">
@@ -1233,7 +1235,7 @@ function ResourceLibrary() {
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "dictionary" && <>
-      <div className="resource-metrics"><div><strong>{lexiconSeed.length}</strong><span>个词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>本周新增</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
+      <div className="resource-metrics"><div><strong>{lexiconSeed.length}</strong><span>个词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>最近一批新增{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
       <div className="lexicon-language-tabs" role="tablist" aria-label="词典语言">
         {([["all", "全部"], ["la", "Latīna"], ["ja", "日本語"], ["es", "Español"]] as const).map(([id, label]) =>
           <button role="tab" aria-selected={lexiconLanguage === id} className={lexiconLanguage === id ? "active" : ""} key={id} onClick={() => setLexiconLanguage(id)}>{label}</button>
