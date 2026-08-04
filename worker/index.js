@@ -41,6 +41,7 @@ const schema = [
   )`,
   `CREATE TABLE IF NOT EXISTS user_preferences (
     user_email TEXT PRIMARY KEY, language TEXT NOT NULL, level TEXT NOT NULL,
+    vocab_mode TEXT NOT NULL DEFAULT 'context',
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`,
   `CREATE TABLE IF NOT EXISTS app_migrations (
@@ -346,6 +347,18 @@ async function ensureSchema(env) {
       env.DB.prepare("INSERT OR IGNORE INTO app_migrations (version) VALUES ('multilingual-sync-v1')"),
     ]);
   }
+  const vocabularyMigrated = await env.DB.prepare("SELECT version FROM app_migrations WHERE version='vocabulary-trainer-v1'").first();
+  if (!vocabularyMigrated) {
+    const columns = await env.DB.prepare("PRAGMA table_info(user_preferences)").all();
+    if (!columns.results.some((column) => column.name === "vocab_mode")) {
+      try {
+        await env.DB.prepare("ALTER TABLE user_preferences ADD COLUMN vocab_mode TEXT NOT NULL DEFAULT 'context'").run();
+      } catch (error) {
+        if (!String(error).toLowerCase().includes("duplicate column name")) throw error;
+      }
+    }
+    await env.DB.prepare("INSERT OR IGNORE INTO app_migrations (version) VALUES ('vocabulary-trainer-v1')").run();
+  }
   schemaInitialized = true;
   return true;
 }
@@ -368,6 +381,23 @@ function validLanguage(language) {
 
 function validPreference(language, level) {
   return validLanguage(language) && languageLevels[language].includes(level);
+}
+
+function validVocabularyMode(mode) {
+  return mode === "word" || mode === "context";
+}
+
+function normalizeVocabularyAnswer(value) {
+  if (!value || typeof value.lemma !== "string") return null;
+  const lemma = value.lemma.trim();
+  if (!lemma || lemma.length > 160) return null;
+  if (value.seen === undefined) {
+    if (typeof value.correct !== "boolean") return null;
+    return { lemma, seen: 1, correct: value.correct ? 1 : 0 };
+  }
+  if (!Number.isInteger(value.seen) || value.seen < 1 || value.seen > 1000) return null;
+  if (!Number.isInteger(value.correctCount) || value.correctCount < 0 || value.correctCount > value.seen) return null;
+  return { lemma, seen: value.seen, correct: value.correctCount };
 }
 
 function normalizeProgressRecord(value) {
@@ -428,7 +458,7 @@ async function api(request, env, url) {
         WHERE a.user_email=?`).bind(user.id, user.id),
       env.DB.prepare("SELECT language, lemma, seen, correct FROM vocab_stats_by_language WHERE user_email=?").bind(user.id),
       env.DB.prepare("SELECT language, question_id FROM bookmarks_by_language WHERE user_email=? ORDER BY created_at").bind(user.id),
-      env.DB.prepare("SELECT language, level FROM user_preferences WHERE user_email=?").bind(user.id),
+      env.DB.prepare("SELECT language, level, vocab_mode AS vocabMode FROM user_preferences WHERE user_email=?").bind(user.id),
     ]);
     const progress = Object.fromEntries(attempts.results.map((row) => [row.question_id, row.status]));
     const byLanguage = Object.fromEntries(Object.keys(languageLevels).map((language) => [language, { progress: {}, vocab: [], bookmarks: [] }]));
@@ -494,21 +524,25 @@ async function api(request, env, url) {
     const body = await request.json();
     if (body.language !== undefined && !validLanguage(body.language)) return json({ error: "无效语言" }, 400);
     const language = body.language || "la";
-    const answers = Array.isArray(body.answers) ? body.answers.slice(0, 100) : [];
-    await env.DB.batch(answers.filter((item) => typeof item.lemma === "string").map((item) => env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
-      VALUES (?, ?, ?, 1, ?) ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+1, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
-      .bind(user.id, language, item.lemma, item.correct ? 1 : 0)));
-    return json({ ok: true });
+    const rawAnswers = Array.isArray(body.answers) ? body.answers.slice(0, 100) : [];
+    const answers = rawAnswers.map(normalizeVocabularyAnswer);
+    if (!answers.length || answers.some((item) => !item)) return json({ error: "无效词汇记录" }, 400);
+    await env.DB.batch(answers.map((item) => env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
+      VALUES (?, ?, ?, ?, ?) ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+excluded.seen, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
+      .bind(user.id, language, item.lemma, item.seen, item.correct)));
+    return json({ ok: true, count: answers.length });
   }
 
   if (url.pathname === "/api/preferences" && request.method === "PUT") {
     if (!user) return json({ error: "请先登录" }, 401);
     const body = await request.json();
     if (!validPreference(body.language, body.level)) return json({ error: "无效语言或等级" }, 400);
-    await env.DB.prepare(`INSERT INTO user_preferences (user_email, language, level) VALUES (?, ?, ?)
-      ON CONFLICT(user_email) DO UPDATE SET language=excluded.language, level=excluded.level, updated_at=CURRENT_TIMESTAMP`)
-      .bind(user.id, body.language, body.level).run();
-    return json({ ok: true, preference: { language: body.language, level: body.level } });
+    const vocabMode = body.vocabMode ?? "context";
+    if (!validVocabularyMode(vocabMode)) return json({ error: "无效背词模式" }, 400);
+    await env.DB.prepare(`INSERT INTO user_preferences (user_email, language, level, vocab_mode) VALUES (?, ?, ?, ?)
+      ON CONFLICT(user_email) DO UPDATE SET language=excluded.language, level=excluded.level, vocab_mode=excluded.vocab_mode, updated_at=CURRENT_TIMESTAMP`)
+      .bind(user.id, body.language, body.level, vocabMode).run();
+    return json({ ok: true, preference: { language: body.language, level: body.level, vocabMode } });
   }
 
   if (url.pathname === "/api/admin/questions" && request.method === "GET") {
@@ -563,4 +597,4 @@ export default {
   },
 };
 
-export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, normalizeProgressRecord, normalizeBookmarkItem };
+export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, ensureSchema };
