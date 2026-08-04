@@ -158,6 +158,15 @@ export const questions: Question[] = [
     tags: ["反事实条件句", "混合时间", "Livy"], source: "Livius · Ab urbe condita 2.40.8"
   },
   {
+    id: "i-syn-07", language: "la", level: "intermediate", category: "syntax", skill: "agreement", type: "choice",
+    prompt: "在过去反事实被动句中，哪一部分必须与主语 urbēs 保持性、数、格一致？",
+    latin: "Urbēs ab hostibus nōn oppugnātae essent.",
+    options: ["oppugnātae", "essent", "hostibus", "nōn"],
+    answer: 0,
+    explanation: "oppugnātae 是完成被动分词，采用阴性复数主格，与阴性复数主语 urbēs 一致；essent 是 sum 的愈过去时虚拟式第三人称复数，只标记人称和数。整个 oppugnātae essent 才是完成系统被动谓语，不能把变化概括为单纯的 ‘-t 变 -nt’。",
+    tags: ["完成被动分词", "性数格一致", "过去反事实"], source: "本周学习错误 · 去身份化原创复核题", sourceStatus: "original",
+  },
+  {
     id: "i-voc-01", level: "intermediate", category: "vocabulary", type: "choice",
     prompt: "在 Cicero 的政治演说中，res pūblica 最合适的译法通常是？", latin: "rēs pūblica",
     options: ["国家／共和国／公共事务（依语境选择）", "公共财产", "军事命令", "公民大会"], answer: 0,
