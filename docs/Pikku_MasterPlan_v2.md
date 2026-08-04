@@ -1,11 +1,11 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步验收通过、待合并授权；P3.1 累计等级背词功能验收通过、待依赖合流；下一代多语言架构与首批角色基线已建立
+状态：P3 多语言账户同步与 P3.1 累计等级背词均已完成；下一代多语言架构与首批角色基线已建立
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-GitHub 远端 `main` 当前基线：`47b25094`（PR #15 已合并）
-当前叠加开发线仍基于 P3 Draft PR #14，合流前必须吸收最新 `main`
+GitHub 远端 `main` 当前基线：已包含 PR #14、PR #15 与 PR #16；实际合并提交以 GitHub 历史为准
+P3.1 已通过 PR #16 合入 `main`
 
 ---
 
@@ -619,7 +619,7 @@ draft → reviewed → published → archived
 
 ### P3：账户与统计
 
-状态：Augusta Firefox 账号验收通过，PR #14 已 Ready for review，等待用户明确合并授权；分支 `agent/pikku-p3-account-sync`
+状态：已完成。Augusta Firefox 账号验收通过，PR #14 已于 2026-08-04 合并为 `5a378cf`；分支 `agent/pikku-p3-account-sync`
 
 - 当前语言和等级进入用户偏好
 - 进度同步按语言隔离
@@ -628,7 +628,7 @@ draft → reviewed → published → archived
 
 ### P3.1：个性化自适应背词
 
-状态：功能验收通过，Draft PR #16 等待 PR #14 合并后重叠最新 `main`；叠加分支 `agent/pikku-vocab-trainer`
+状态：已完成。功能、合流回归与浏览器验收通过，PR #16 已于 2026-08-04 合入 `main`；分支 `agent/pikku-vocab-trainer`
 
 - 56 张三语分级种子词卡，全部配有短语境
 - 所选等级累积包含全部较低等级词：拉丁语进阶为初级至进阶、混合为初级＋中级；日语 N2 为 N4–N2；西班牙语 C2 为 A1–C2；其他等级依同一顺序类推
@@ -638,7 +638,7 @@ draft → reviewed → published → archived
 - 纯单词、单词＋语境两种个人设置
 - 游客记录登录合并和账号偏好同步
 - Worker 首次请求会为旧 D1 的账号偏好表安全补充 `vocab_mode`，Branch Preview 不依赖预先手工迁移；Miniflare 旧表回归测试已覆盖
-- Draft PR #16 以 P3 分支为 base；稳定 Preview：`https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`
+- PR #16 合并前以 `main` 为 base，并已吸收 PR #14 与 PR #15；稳定 Preview：`https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`
 
 ### P3.2：每周内容复核与补丁接入
 
@@ -727,7 +727,7 @@ draft → reviewed → published → archived
 agent/pikku-vocab-trainer
 ```
 
-该分支叠加在已通过 Augusta Firefox 账号验收的 `agent/pikku-p3-account-sync` / PR #14 上；P3 未合并前不把 P3.1 直接合入 `main`。
+该分支已吸收 `main@5a378cf`，PR #16 只显示 P3.1 增量，并已在本阶段明确授权后合入 `main`。
 
 规则：
 
@@ -757,16 +757,16 @@ agent/pikku-vocab-trainer
 
 2026-08-04 P3.1 浏览器验收后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`。PR #14 已 Ready for review，PR #16 仍为可自动合并的 Draft；没有新增补丁或冲突。先等待用户明确授权合并 PR #14，再把 PR #16 重叠到包含 PR #15 的最新 `main`。
 
+2026-08-04 PR #14 合并与 P3.1 合流后复查：目录内容和修改时间仍未变化。PR #14 已合并为 `5a378cf`；PR #16 已吸收最新 `main`、改以 `main` 为 base 并转为 Ready for review。原 P3.2 分类继续有效，没有新增冲突或待决定事项。
+
 ---
 
 ## 13. 当前下一步
 
-1. 累计等级词库、无 `workerd.exe` 的迁移回归测试、Cloudflare Preview、Augusta 8/8 批量检查和 Firefox N2／C2 范围验收均已通过。
-2. 等待用户明确授权合并已 Ready for review 的 PR #14；验收确认不自动视为合并授权。
-3. PR #14 合并后，把 `agent/pikku-vocab-trainer` 更新到包含 PR #15 的最新 `main`，解决内容数据合流，把 PR #16 的 base 改为 `main`，再做一次构建与 Preview 回归。
-4. 经用户明确授权后合并 P3.1；随后从最新 `main` 创建 P3.2 每周内容复核分支，不在当前叠加分支直接加入 Drive 的六道题。
-5. 完成 `reviewStatus`、词条批次、首批六道候选题和教材章节元数据映射的分阶段实现，再进入 P4 管理后台。
-6. P3／P3.2 收口后，按已确认的“古典中心古希腊语、拉丁语—西班牙语联学、学习台＋探索地图”方向调整后续优先级。
+1. P3 PR #14 与 P3.1 PR #16 均已合并；工程回归、Cloudflare Preview、Augusta 8/8 和 Firefox N2／C2 范围验收均已通过。
+2. 从最新 `main` 创建 P3.2 每周内容复核分支，不在已收口的 P3.1 分支直接加入 Drive 的六道题。
+3. 完成 `reviewStatus`、词条批次、首批六道候选题和教材章节元数据映射的分阶段实现，再进入 P4 管理后台。
+4. P3／P3.2 收口后，按已确认的“古典中心古希腊语、拉丁语—西班牙语联学、学习台＋探索地图”方向调整后续优先级。
 
 ---
 

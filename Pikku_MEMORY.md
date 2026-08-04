@@ -91,16 +91,16 @@
 
 ## 6. Git 当前基线
 
-- GitHub 远端 `main` 当前基线：`47b25094`，已合并资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13 与每周复核练习 PR #15。
-- P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建。
+- GitHub 远端 `main` 当前基线：已包含资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13、每周复核练习 PR #15、账号同步 PR #14 与自适应背词 PR #16；PR #16 的实际合并提交以 GitHub 历史为准。
+- P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建，已通过 PR #14 合入 `main`。
 - 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
-- PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收已通过，已转为 Ready for review，等待用户明确合并授权。
-- P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 PR #14；在 P3 验收合并前不直接合入 `main`。
-- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview、Augusta 8/8 批量检查及 Firefox 累计词库范围验收均已通过；因依赖 PR #14，仍保持 Draft，等待依赖合并后吸收最新 `main` 并重新回归。
-- PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
+- PR #14：`feat: sync multilingual account records` 已于 2026-08-04 合入 `main`，合并提交为 `5a378cf`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收均已通过。
+- P3.1 分支：`agent/pikku-vocab-trainer`，合并前已吸收 `main@5a378cf`，包含 PR #15 与已合并的 PR #14。
+- PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
+- PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -126,8 +126,8 @@ P1 代码提交：
 当前及后续阶段：
 
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
-- P3：账号同步实现与 Augusta Firefox 验收已完成，等待用户明确授权后按依赖顺序合并 PR #14。
-- P3.1：功能验收已通过，等待依赖合流。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
+- P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
+- P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
 - P3.2：已从 2026-08-04 Drive 补丁书接受，等待 P3／P3.1 收口后从包含 PR #15 的最新 `main` 建独立分支；范围为审核状态、内容批次、62 个“待核”词条复核、六道候选错因题与教材章节元数据映射。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
@@ -237,9 +237,13 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-04 P3.1 浏览器验收后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 已 Ready for review，PR #16 仍为可自动合并的 Draft；原 P3.2 分类继续有效。下一步必须先取得用户对 PR #14 的明确合并授权，再把 PR #16 重叠到包含 PR #15 的最新 `main`。
 
+2026-08-04 PR #14 合并与 P3.1 合流后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 已合并为 `5a378cf`；PR #16 已吸收最新 `main`、改以 `main` 为 base 并转为 Ready for review。原 P3.2 分类继续有效，无冲突或需要用户决定的新条目。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
+
+- Codex 正在执行上传、提交或连接器写入时，发送新消息或点击停止可能产生 `turn_aborted`，只取消尚未完成的当前动作；此前已经成功的远端写入不会自动回滚。等待本轮最终输出再追加非紧急消息；若意外中断，发送“继续刚才未完成的操作，从中断处继续，不重复已完成步骤”。恢复时必须先核对本地状态和远端对象，再只补做缺失动作。
 
 - Augusta 的默认 PowerShell 起点常是 `C:\Users\kimda`；执行 Git 命令前先进入 `C:\Users\kimda\Documents\PKUni_Latinex`，否则会出现 `fatal: not a git repository`。
 - 桌面 `进入Pikku仓库.cmd` 用于直接在正确目录打开 PowerShell；桌面 `Pikku开发检查.cmd` 用于启动本地开发检查。
@@ -299,6 +303,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-31 08:46 第三次 Augusta 批量验证 7/7 通过，报告中的 Next.js Unicode 符号正常，最终工作区干净；随后 Firefox 浏览器验收通过，P1 多语言外壳正式完成。
 - 2026-08-04 17:18，Augusta 报告 `Pikku_Check_20260804_171816.txt` 为 7/8：TypeScript、生产构建、格式与工作区均通过，账号 Firefox 验收成功；唯一失败是 Windows 安全中心阻止 Miniflare 启动 `workerd.exe`，导致迁移测试 `spawn UNKNOWN`，不是网站或迁移逻辑失败。
 - 2026-08-04，改用 Node 24 内置内存 SQLite 后，Augusta 完整批量检查 8/8 通过；Firefox 已确认日语 N2 显示 N4–N2、西班牙语 C2 显示 A1–C2，P3.1 功能验收通过。
+- 2026-08-04，PR #16 吸收 `main@5a378cf` 后，15/15 Node 测试、TypeScript、Next.js 16.2.10 生产构建、Wrangler 4.110.0 dry-run、Git 格式与题目 ID 重复检查全部通过。稳定 Preview 的应用脚本 SHA-256 与本地构建完全一致，首页及 `/api/me`、`/api/questions`、`/api/auth-config` 均返回 200。
 
 ## 14. 记忆更新日志
 
@@ -345,3 +350,6 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：Augusta 的迁移测试因 Windows 安全中心阻止 `workerd.exe` 而失败。回归测试改用 Node 24 内置内存 SQLite 和轻量 D1 适配器直接调用 Worker `ensureSchema`，无需降低系统安全策略；15/15 测试、TypeScript、生产构建和 Wrangler 4.110.0 dry-run 在云端通过。
 - 2026-08-04：累计等级修复以 `10f6026 fix: include lower vocabulary levels` 发布到 PR #16。Cloudflare 稳定 Preview 的前端资源已包含“当前涵盖”标记，首页、`/api/me`、`/api/auth-config`、`/api/questions` 均返回 200；固定 Drive 补丁目录仍只有未修改的 `Pikku_WeeklyPatch_2026-08-04.md`，没有新冲突。
 - 2026-08-04：用户确认 Augusta 8/8 批量检查与 Firefox 累计词库范围验收通过。里程碑复查 Drive 后仍无新补丁；PR #16 保持 Draft，不把验收确认解释为合并授权。下一步等待用户明确授权合并 PR #14，再执行 P3.1 合流与回归。
+- 2026-08-04：用户明确授权后，PR #14 已合并为 `5a378cf`。P3.1 随后无冲突吸收包含 PR #15 的最新 `main`，PR #16 改以 `main` 为 base；完整工程回归、线上 Preview 哈希与 API 冒烟均通过，Drive 无新补丁，PR #16 已转为 Ready for review，仍须用户另行明确授权才能合并。
+- 2026-08-04：一次 GitHub 文档 blob 上传在用户新消息到达时产生 `turn_aborted`；确认此前 PR #14 合并、P3.1 合流、回归和 PR #16 状态均未回滚。把中断恢复规则写入故障防复发手册，后续先查状态再补做缺失动作。
+- 2026-08-04：用户授权完成本阶段全部提交、验证、memo 更新及当前 PR #16 合并；PR #16 随后合入 `main`，P3.1 正式收口。此授权不延伸到后续其他 PR 的合并或破坏性操作。
