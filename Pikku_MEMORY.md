@@ -265,6 +265,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 云端 scratch 直接运行 `next dev` 可能因 `uv_interface_addresses` 失败；显式使用 `next dev --hostname 127.0.0.1` 可正常启动。该限制不适用于 Augusta。
 - 当前 Miniflare D1 测试中的 `db.exec()` 可能把多行建表 SQL 按行拆开并报 `incomplete input`；测试夹具使用 `db.batch([db.prepare(...)])`，与 Worker 的实际执行方式一致。该错误不是迁移 SQL 本身失败。
 - 云端安全策略会拒绝含 `rm -f` 的整条命令，即使目标只是旧交接包；生成 bundle、报告等构建产物时使用带日期／版本的新文件名，不先执行强制删除。
+- 云端工作副本可能只配置某一条远端分支的窄 `remote.origin.fetch`。此时 `git fetch origin <branch>` 只更新 `FETCH_HEAD`，随后合并 `origin/<branch>` 会报 `not something we can merge`；先 `git merge --ff-only FETCH_HEAD`，再把该分支 refspec 加入 `remote.origin.fetch` 并设置 upstream。
 
 ### 浏览器、React 与本地 API
 
@@ -331,3 +332,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：P3.1 部署链复核发现 Branch Preview 不会自动运行远端 D1 迁移，旧 `user_preferences` 可能缺少 `vocab_mode`。Worker 已加入幂等运行时补列和迁移标记，并新增真实 Miniflare+D1 旧表回归测试。测试夹具初次因多行 `db.exec()` 被拆行而报 `incomplete input`，改用 `db.batch/db.prepare` 后通过；最终 15/15 Node 测试、TypeScript、生产构建、Wrangler dry-run 与 Git 格式检查全部通过。
 - 2026-08-04：云端工作区无法直接 Git push 时，P3.1 使用完整 Git bundle 交接给 Augusta，不复制散乱代码：用户从 bundle 导入到独立本地分支，再通过既有 SSH 推送 `agent/pikku-vocab-trainer`；远端分支出现后由连接器创建以 P3 分支为 base 的 Draft PR。bundle 必须在最后一次提交后重建并校验 SHA-256。
 - 2026-08-04：Augusta 已从校验 bundle 导入并通过 SSH 推送 `agent/pikku-vocab-trainer@89929f0`；创建 Draft PR #16，以 PR #14 的 P3 分支为 base，GitHub 确认可自动合并。Cloudflare Preview `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/` 已上线；首页、`/api/me`、`/api/auth-config`、`/api/questions` 的未登录冒烟均返回 200。下一步为 Augusta 批量检查与 Firefox 登录／背词验收。
+- 2026-08-04：同步 GitHub 连接器生成的文档提交时，云端 clone 因窄 fetch refspec 没有把指定分支识别为可跟踪远端分支；使用 `FETCH_HEAD` 快进后补充该分支 refspec 与 upstream，恢复干净且本地／远端同为 `74dd3ad`。
