@@ -1021,7 +1021,9 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
 }) {
   const eligible = useMemo(() => vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level)), [language, level]);
   const coveredLevels = vocabularyLevelsFor(language, level);
-  const coverageLabel = coveredLevels.map((item) => languageLevelLabels[item]).join("–");
+  const coverageLabel = coveredLevels.length > 1
+    ? `${languageLevelLabels[coveredLevels[0]]}–${languageLevelLabels[coveredLevels.at(-1)!]}`
+    : languageLevelLabels[coveredLevels[0]];
   const [cardId, setCardId] = useState("");
   const [revealed, setRevealed] = useState(false);
   const [recentlyShown, setRecentlyShown] = useState<string[]>([]);
