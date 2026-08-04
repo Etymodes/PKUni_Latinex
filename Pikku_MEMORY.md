@@ -97,9 +97,9 @@
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
-- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收已通过，等待用户明确合并授权。
+- PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收已通过，已转为 Ready for review，等待用户明确合并授权。
 - P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
-- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview 为 `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`，等待 Augusta 批量检查与 Firefox 登录／背词验收。
+- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview 已部署累计等级词库，等待 Augusta 8/8 批量复验与 N2／C2 覆盖范围验收。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
@@ -340,3 +340,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：同步 GitHub 连接器生成的文档提交时，云端 clone 因窄 fetch refspec 没有把指定分支识别为可跟踪远端分支；使用 `FETCH_HEAD` 快进后补充该分支 refspec 与 upstream，恢复干净的本地／远端跟踪关系。
 - 2026-08-04：账号 Preview 验收成功。按用户决定把背词范围改为等级累积：日语 N2 包含 N4–N2，西班牙语 C2 包含 A1–C2，拉丁语中级／混合／进阶同样包含较低等级；页面显示实际覆盖范围。
 - 2026-08-04：Augusta 的迁移测试因 Windows 安全中心阻止 `workerd.exe` 而失败。回归测试改用 Node 24 内置内存 SQLite 和轻量 D1 适配器直接调用 Worker `ensureSchema`，无需降低系统安全策略；15/15 测试、TypeScript、生产构建和 Wrangler 4.110.0 dry-run 在云端通过。
+- 2026-08-04：累计等级修复以 `10f6026 fix: include lower vocabulary levels` 发布到 PR #16。Cloudflare 稳定 Preview 的前端资源已包含“当前涵盖”标记，首页、`/api/me`、`/api/auth-config`、`/api/questions` 均返回 200；固定 Drive 补丁目录仍只有未修改的 `Pikku_WeeklyPatch_2026-08-04.md`，没有新冲突。

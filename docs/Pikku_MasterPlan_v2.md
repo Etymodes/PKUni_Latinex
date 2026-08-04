@@ -619,7 +619,7 @@ draft → reviewed → published → archived
 
 ### P3：账户与统计
 
-状态：Augusta Firefox 账号验收通过，等待用户明确合并授权；分支 `agent/pikku-p3-account-sync`
+状态：Augusta Firefox 账号验收通过，PR #14 已 Ready for review，等待用户明确合并授权；分支 `agent/pikku-p3-account-sync`
 
 - 当前语言和等级进入用户偏好
 - 进度同步按语言隔离
@@ -759,8 +759,8 @@ agent/pikku-vocab-trainer
 
 ## 13. 当前下一步
 
-1. 发布累计等级词库和无 `workerd.exe` 的迁移回归测试，等待 Cloudflare Preview 更新。
-2. 在 Augusta 重新运行完整批量检查，并在 Firefox 确认 N2 显示并抽取 N4–N2、C2 显示并抽取 A1–C2；报告继续写入 `D:\Downloads` TXT。
+1. 累计等级词库和无 `workerd.exe` 的迁移回归测试已发布；Cloudflare Preview 与未登录 API 冒烟通过。
+2. 在 Augusta 拉取更新并重新运行完整批量检查，再在 Firefox 确认 N2 显示 N4–N2、C2 显示 A1–C2；报告继续写入 `D:\Downloads` TXT。
 3. 账号同步验收已通过；先按依赖顺序处理 P3 Draft PR #14，未经用户明确授权不合并。
 4. P3 合并后把 `agent/pikku-vocab-trainer` 更新到包含 PR #15 的最新 `main`，解决内容数据合流，把 PR #16 的 base 改为 `main`，再做一次构建与 Preview 回归。
 5. 经用户明确授权后合并 P3.1；随后从最新 `main` 创建 P3.2 每周内容复核分支，不在当前叠加分支直接加入 Drive 的六道题。
