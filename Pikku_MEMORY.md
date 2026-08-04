@@ -261,6 +261,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 云端 Wrangler 若因 `/root/.config` 不可写而报日志目录错误，使用 `XDG_CONFIG_HOME=/tmp/wrangler-config HOME=/tmp/wrangler-home`；这是工具日志路径权限，不是 Worker 或 D1 故障。
 - 云端 scratch 直接运行 `next dev` 可能因 `uv_interface_addresses` 失败；显式使用 `next dev --hostname 127.0.0.1` 可正常启动。该限制不适用于 Augusta。
 - 当前 Miniflare D1 测试中的 `db.exec()` 可能把多行建表 SQL 按行拆开并报 `incomplete input`；测试夹具使用 `db.batch([db.prepare(...)])`，与 Worker 的实际执行方式一致。该错误不是迁移 SQL 本身失败。
+- 云端安全策略会拒绝含 `rm -f` 的整条命令，即使目标只是旧交接包；生成 bundle、报告等构建产物时使用带日期／版本的新文件名，不先执行强制删除。
 
 ### 浏览器、React 与本地 API
 
@@ -325,3 +326,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：角色设定更新为当代北京共同世界。英文角色增加中文名崔路加、安雅敏；群聊定名“五方言路 · Five Voices, One Trail”；每种语言双引导角色采用相距较远的语言地区出身、曲折后来京并与用户圈交集的规则，古典语言角色改为现代教会／古典教育背景；正式说明语言确定直接跟随界面语言，不再单设解释语言。
 - 2026-08-04：P3.1 发布前复核发现背词页首张固定为本级第一词，账号权重只从第二张生效；已改为挂载后按账号统计选择首张，同时保留 SSR 确定性。复验 14/14 Node 测试、TypeScript、Next.js 生产构建、Wrangler 4.110.0 dry-run 和 Git 格式检查全部通过；云端工作区缺少 GitHub CLI，本轮未推送或创建 Draft PR。
 - 2026-08-04：P3.1 部署链复核发现 Branch Preview 不会自动运行远端 D1 迁移，旧 `user_preferences` 可能缺少 `vocab_mode`。Worker 已加入幂等运行时补列和迁移标记，并新增真实 Miniflare+D1 旧表回归测试。测试夹具初次因多行 `db.exec()` 被拆行而报 `incomplete input`，改用 `db.batch/db.prepare` 后通过；最终 15/15 Node 测试、TypeScript、生产构建、Wrangler dry-run 与 Git 格式检查全部通过。
+- 2026-08-04：云端工作区无法直接 Git push 时，P3.1 使用完整 Git bundle 交接给 Augusta，不复制散乱代码：用户从 bundle 导入到独立本地分支，再通过既有 SSH 推送 `agent/pikku-vocab-trainer`；远端分支出现后由连接器创建以 P3 分支为 base 的 Draft PR。bundle 必须在最后一次提交后重建并校验 SHA-256。
