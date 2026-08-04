@@ -1026,7 +1026,7 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
   const [sessionCorrect, setSessionCorrect] = useState(0);
 
   useEffect(() => {
-    setCardId(eligible[0]?.id ?? "");
+    setCardId(chooseNextVocabularyCard(eligible, stats, [])?.id ?? "");
     setRevealed(false);
     setRecentlyShown([]);
     setSessionTotal(0);
