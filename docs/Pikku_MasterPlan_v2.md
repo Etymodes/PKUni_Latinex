@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步验收中；P3.1 自适应背词开发中
+状态：P3 多语言账户同步验收中；P3.1 自适应背词开发中；下一代多语言架构研究已建立
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 当前主分支基线：`9d6cff3`（PR #13 已合并）
@@ -17,6 +17,13 @@
 - 拉丁语模式：比丘拟 · PKUni Latinex
 - 日语模式：JLPT N4、N3、N2、N1
 - 西班牙语模式：CEFR A1、A2、B1、B2、C1、C2
+
+下一代平台方向已经确定：
+
+- 网站界面支持中文／English 自主切换；
+- 学习语言使用可搜索、可扩展的下拉选择；
+- 增加古希腊语规划入口，首期不虚构尚未完成的课程；
+- 为罗曼—拉丁、日耳曼、闪米特、突厥、南岛、班图语言群和汉字词跨语言联合学习预留关系模型。
 
 核心原则：
 
@@ -191,6 +198,26 @@ user_id + language + lemma
 ```
 
 这样可避免不同语言的题目、词汇和等级互相污染。
+
+### 4.6 下一代语言维度（规划，尚未实现）
+
+当前 `LanguageCode = "la" | "ja" | "es"` 只描述已运行的三种学习语言，不再承担界面语言或课程轨道含义。后续必须分开：
+
+```ts
+type UiLocale = "zh-CN" | "en";
+type TargetLanguage = string; // 由语言注册表校验
+type CourseTrack = string; // 由课程轨道注册表校验
+type SupportLanguage = string; // 首期使用 zh-CN 或 en
+```
+
+- `UiLocale`：导航、按钮和系统提示。
+- `TargetLanguage`：当前学习语言。
+- `CourseTrack`：考试、教材、阅读或语言变体轨道。
+- `SupportLanguage`：翻译与解析主要使用的辅助语言；首期可跟随界面语言。
+
+古希腊语使用 `grc`，与现代希腊语 `el` 分开。建议先显示“规划中”的阿提卡／古典希腊语入口，待用户确认后再决定是否优先于通用希腊语。
+
+详细产品研究与候选方案见 `docs/Pikku_Global_Language_Learning_Research_v1.md`。该报告中的推荐项在用户确认前不视为已排期功能。
 
 ---
 
@@ -596,6 +623,18 @@ draft → reviewed → published → archived
 - 举报、审核和停用机制
 - 在安全与审核机制完成前不开放公共发帖
 
+### 下一代多语言规划闸门（未排期）
+
+待 P3／P3.1 收口并获得用户对研究报告的选择后，再排入具体阶段：
+
+- 中文／English 界面底座；
+- 可扩展学习语言下拉框和古希腊语规划入口；
+- 界面语言、学习语言、课程轨道和辅助语言分离；
+- 第一个跨语言联合学习试验；
+- “学习台＋探索地图”、词源侦探或文献修复原型。
+
+不得为插入上述规划而绕过当前 P3／P3.1 的 Preview 与 Augusta Firefox 验收。
+
 ---
 
 ## 11. P1 最小验收标准
@@ -656,6 +695,7 @@ agent/pikku-vocab-trainer
 3. P3 合并后把 `agent/pikku-vocab-trainer` 更新到最新 `main`，再推送独立 Draft PR。
 4. 在 Cloudflare Preview 与 Augusta Firefox 验证三语等级、连续出词、两种显示模式、刷新、退出和换号隔离。
 5. 验收后合并 P3.1，再进入 P4 管理员后台。
+6. 用户审阅 `docs/Pikku_Global_Language_Learning_Research_v1.md` 并确认古希腊语首发轨道、首个联学对象和界面探索程度后，再调整 P4 之后的优先级。
 
 ---
 
