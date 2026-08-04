@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-03
+更新日期：2026-08-04
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -13,6 +13,7 @@
 3. 每次形成新决策、修复缺陷、完成部署或改变任务状态后，同步更新本文件。
 4. 本文件只记录长期有效信息和当前状态，不保存密码、SMTP 密钥、OAuth Secret、私钥或 API Token。
 5. 涉及实现时使用 Ponytail 原则：选择能工作的最小方案，避免无必要的依赖、抽象、迁移和重写。
+6. 每个里程碑标记完成前，检查固定 Google Drive 补丁目录，与 GitHub `main`、开放 PR、当前分支和总任务书对照；新内容可排期，已实现内容不得重复，矛盾或旧版指令必须先告知并询问用户。
 
 本文件是仓库内的项目记忆协议，不是平台自动记忆钩子。执行者需要主动读取、维护并提交它。
 
@@ -55,7 +56,7 @@
 - 首版透明权重：未见词保持探索权重；错误率高的词提高权重；熟词降低但不永久移除；最近四张词卡暂时降权。
 - 多语言采用共享网站外壳＋语言配置＋各语言独立题库/资源/等级。
 - 核心语言类型：`"la" | "ja" | "es"`。
-- 上述核心类型只代表当前已运行的学习语言。下一代模型分离 `uiLocale`、`targetLanguage`、`courseTrack` 和 `supportLanguage`，避免中文／English 界面、学习语言与考试／教材轨道互相污染。
+- 上述核心类型只代表当前已运行的学习语言。下一代模型分离 `uiLocale`、`targetLanguage` 和 `courseTrack`；内部 `contentLocale` 直接跟随 `uiLocale`。首期不设独立“解释语言”，避免界面语言、学习语言与考试／教材轨道互相污染。
 - 古希腊语使用 `grc`，与现代希腊语 `el` 分开；首发采用“古典中心、阿提卡骨架、古典文学方言专题、作者时代轴”，Koine、晚期古代与拜占庭材料作为后续筛选，不与首期主线混级。
 - 跨语言联合学习使用关系表／知识图谱表达共同继承、借词、仿译、规律音变、同源异义、同形异源、假朋友和文字共享；短期不引入图数据库，也不把外形相似自动判为同源。
 - 旧题目没有 `language` 字段时必须按拉丁语 `la` 处理，保证向后兼容。
@@ -86,14 +87,15 @@
 
 ## 6. Git 当前基线
 
-- `main` 当前基线：`9d6cff3`，已合并资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12 与种子题库 PR #13。
+- GitHub 远端 `main` 当前基线：`47b25094`，已合并资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13 与每周复核练习 PR #15。
 - P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建。
 - 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
-- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
+- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
 - P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
+- PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -121,10 +123,11 @@ P1 代码提交：
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：进行中。把当前语言与等级写入账号偏好；进度、收藏与词汇统计按语言写入 D1；游客记录在登录后与云端安全合并；旧拉丁语账号数据自动迁移。
 - P3.1：开发中。三语自适应背词、两种显示模式及账号偏好同步；首批 56 张词卡覆盖拉丁语初／中／进阶、日语 N4–N1、西班牙语 A1–C2。
+- P3.2：已从 2026-08-04 Drive 补丁书接受，等待 P3／P3.1 收口后从包含 PR #15 的最新 `main` 建独立分支；范围为审核状态、内容批次、62 个“待核”词条复核、六道候选错因题与教材章节元数据映射。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
-- 下一代多语言规划闸门：P3／P3.1 收口后，按已经确认的中英双语底座、语言下拉框、古典中心古希腊语、拉丁语—西班牙语联学和“学习台＋探索地图”排期；中英文解释关系仍待决定。
+- 下一代多语言规划闸门：P3／P3.1 收口后，按已经确认的中英双语底座、语言下拉框、古典中心古希腊语、拉丁语—西班牙语联学和“学习台＋探索地图”排期；正式说明语言直接跟随界面语言。
 
 ## 8. 内容规划
 
@@ -156,13 +159,14 @@ P1 代码提交：
 
 ### 固定角色与世界观（规划中）
 
-- 四位用户圈朋友处于同一当代北京世界，并与用户在一次香山公开徒步活动中相识；切换中英文界面不会替换或删除角色。
-- 中文界面优先由孔令强、吴铃铃引导；英文界面优先由 Luke Thomas Trexler、Yasmin Soraya Ansari 引导。
+- 四位用户圈朋友处于同一当代北京世界，并与用户在一次香山公开徒步活动中相识；五人群聊名为 **“五方言路 · Five Voices, One Trail”**，同时指“五方／言路”“五／方言／路”和共同走过的香山山路。切换中英文界面不会替换或删除角色。
+- 中文界面优先由孔令强、吴铃铃引导；英文界面优先由 Luke Thomas Trexler／崔路加、Yasmin Soraya Ansari／安雅敏引导。
 - 孔令强：27 岁徐州人，在京做导游并准备北大历史学相关硕士考试；“令字辈／孔子后代”只作为家族叙述，不对外声称已认证。
 - 吴铃铃：24 岁厦门人，厦大软件工程背景，在北京心理学＋互联网企业做前端／数据产品工程；不是心理咨询师。
-- Luke：28 岁，来自 Lehigh Valley 的 Whitehall Township；Lehigh Business 金融背景，费城工作一年后到北京从事跨境金融风险数据工作；家庭有天主教背景，性格外冷内热、偶尔追求刺激。
-- Yasmin：26 岁，Santa Barbara 出生，印度穆斯林母亲与第二代伊朗裔美国人父亲的女儿；UW 社会学毕业，在印度做两年研究工作后到北大攻读亚洲国际关系相关博士。
-- 首批语言引导角色：拉丁语 Mārcus Fabius Crispus／Aelia Secunda；日语相馬直樹／白石澪；西班牙语 Tomás Aranda／Valeria Cárdenas；古希腊语 Dēmētrios／Kleodíkē。姓名和视觉锚点目前为 v1 基线，等待用户锁定 canon。
+- Luke／崔路加：28 岁，来自 Lehigh Valley 的 Whitehall Township；Lehigh Business 金融背景，费城工作一年后到北京从事跨境金融风险数据工作；家庭有天主教背景，性格外冷内热、偶尔追求刺激。
+- Yasmin／安雅敏：26 岁，Santa Barbara 出生，印度穆斯林母亲与第二代伊朗裔美国人父亲的女儿；UW 社会学毕业，在印度做两年研究工作后到北大攻读亚洲国际关系相关博士。
+- 每种学习语言固定一男一女两名当代引导角色；两人来自相距较远的语言使用地区，经历转折后来北京生活、工作或求学，并与用户或“五方言路”部分成员产生具体交集。古典语言角色来自保有教会、古典教育、手稿或礼仪语言环境的现代地区，不使用穿越古人或“血统天赋”。
+- 首批语言引导角色：拉丁语 Matteo Bellandi／Elżbieta “Ela” Nowak；日语相馬直樹／白石澪；西班牙语 Tomás Aranda／Valeria Cárdenas；古希腊语 Nikólaos “Níkos” Deligiánnis／Eleni Mavrogeni。姓名、出生地与视觉锚点目前为 v1.1 候选 canon，等待用户最终锁定。
 - 不设强制恋爱，不预设用户性别、国籍、母语或取向；角色可犯错，但事实解析必须链接审核内容。
 
 ## 9. 辞典、作者与知识图谱
@@ -210,6 +214,19 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 大提交前提醒用户在 Augusta 的 Firefox 测试；普通网页功能不要求 macOS 测试。
 - 聊天附件下载不可靠时，把脚本直接提交到功能分支，用户通过 `git pull --ff-only` 获取。
 - 所有公开部署继续保留原仓库链接和项目沿革。
+
+### Google Drive 里程碑补丁审查
+
+- 固定补丁目录：`https://drive.google.com/drive/folders/1Tvqxgai5V_c5k1AuIWpNjloDgxh2ngaW?usp=sharing`。
+- 每个里程碑标记完成前必须列出目录内容，读取上次审查后新增或更新的补丁书，并与 GitHub `main`、开放 PR、当前分支、总任务书及本文件对照。
+- 每条补丁分类为 `接受并排期／已实现／被新版取代／冲突／需要用户决定`。接受项进入总任务；已实现项不重复；冲突、过期基线、重复 ID、旧 PR 指令或优先级变化必须向用户说明并询问，不能静默覆盖。
+- 每次审查在本文件记录日期、文件名、Drive 修改时间、GitHub 对照结果和处理结论。
+
+2026-08-04 首次审查：目录内只有 [`Pikku_WeeklyPatch_2026-08-04.md`](https://drive.google.com/file/d/1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu/view?usp=drivesdk)，Drive 修改时间为 `2026-08-04T04:59:26.124Z`。GitHub 对照确认 PR #15 已合并为 `47b25094`，PR #14 仍为可合并的开放 Draft。补丁书与当前远端状态没有矛盾，但当前 `agent/pikku-vocab-trainer` 叠加线未包含 PR #15，因此：
+
+- 接受并排期：独立 `reviewStatus`、题目／词条批次筛选、62 个“待核”词条复核、`ja-n1-003`、`ja-n1-004`、`i-mor-04`、`i-syn-08`、`es-a2-002`、`es-b1-003` 六道候选错因题，以及教材章节元数据映射。
+- 已实现且不得重复：PR #15 已加入的 `ja-n1-002`、`i-syn-07`、`es-b1-002`、最近 14 个词条和最新批次统计。
+- 处理结论：不在当前 P3.1 叠加分支实现；P3／P3.1 收口后从最新 `main` 创建 P3.2 独立分支，并在实现前再次检查 ID、语义与数据重复。
 
 ## 13. Augusta 交互与故障防复发手册
 
@@ -301,3 +318,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-03：P3.1 最终本地工程验证通过：14/14 Node 单元测试、TypeScript、Next.js 16.2.10 Cloudflare 生产构建、Git 格式检查、5 个本地 D1 迁移、偏好／聚合词汇统计 SQL 冒烟和 Wrangler 4.110.0 `deploy --dry-run` 全部成功；尚未写入远端 D1、推送分支或部署 Preview。
 - 2026-08-03：完成全球语言学习产品与学习证据研究，新增 `docs/Pikku_Global_Language_Learning_Research_v1.md`；确立中英界面、可扩展语言下拉框、`grc` 古希腊语规划入口和关系型跨语言联学为长期方向。研究建议与界面方案仍需用户选择，本轮未修改功能代码、未推送或部署。
 - 2026-08-03：用户确认古希腊语采用“古典中心、阿提卡骨架并纳入古典文学方言、作者按时代组织”，首个联学为拉丁语—西班牙语，界面采用学习台＋探索地图。新增 `docs/Pikku_Character_Bible_v1.md`，补全香山初遇、孔令强／吴铃铃／Luke／Yasmin 四位朋友及拉丁语、日语、西班牙语、古希腊语各一男一女的首批引导角色；本轮只更新规划文档，不修改功能代码、远端数据库或部署。
+- 2026-08-04：把固定 Google Drive 补丁目录和“每个里程碑完成前必须审查”的协议写入长期记忆；首次读取 `Pikku_WeeklyPatch_2026-08-04.md` 并与 GitHub 对照，确认 PR #15 已合并、PR #14 仍为 Draft，接受内容审核与教材映射任务进入 P3.2，同时记录当前 P3.1 分支不能直接重复导入 PR #15 数据。
+- 2026-08-04：角色设定更新为当代北京共同世界。英文角色增加中文名崔路加、安雅敏；群聊定名“五方言路 · Five Voices, One Trail”；每种语言双引导角色采用相距较远的语言地区出身、曲折后来京并与用户圈交集的规则，古典语言角色改为现代教会／古典教育背景；正式说明语言确定直接跟随界面语言，不再单设解释语言。
