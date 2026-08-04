@@ -1,10 +1,10 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：多语言转型基线  
+状态：P3 多语言账户同步开发中
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-当前主分支基线：`0a5e97a`（资源中心 PR #9 已合并）
+当前主分支基线：`9d6cff3`（PR #13 已合并）
 
 ---
 
@@ -533,6 +533,8 @@ draft → reviewed → published → archived
 
 ### P2：最小三语言题库
 
+状态：已完成（2026-08-01 合并 PR #13，合并提交 `00a03ae`）
+
 - 拉丁语使用现有题库
 - 日语加入 N4–N1 种子题
 - 西班牙语加入 A1–C2 种子题
@@ -542,6 +544,8 @@ draft → reviewed → published → archived
 当前最小实现：先让日语、西班牙语每个等级各有一题可完成的原创种子题，接通有序／随机练习、即时解析、错题和收藏；同时加入题号、题干、标签、作者与来源统一搜索。题量扩充后再开放非拉丁语正式随机组卷。
 
 ### P3：账户与统计
+
+状态：进行中；分支 `agent/pikku-p3-account-sync`
 
 - 当前语言和等级进入用户偏好
 - 进度同步按语言隔离
@@ -605,10 +609,10 @@ draft → reviewed → published → archived
 
 ## 12. 分支和发布规则
 
-下一分支：
+当前分支：
 
 ```text
-agent/pikku-multilingual-mvp
+agent/pikku-p3-account-sync
 ```
 
 规则：
@@ -624,15 +628,14 @@ agent/pikku-multilingual-mvp
 
 ## 13. 当前下一步
 
-1. 确认 PR #9 合并后的正式域名部署。
-2. 创建 `agent/pikku-multilingual-mvp`。
-3. 将本任务书加入仓库。
-4. 检查现有类型、题库和本地存储键。
-5. 以最小修改加入语言配置和切换器。
-6. 保持所有现有拉丁语行为不变。
-7. 在日语和西班牙语各加入少量种子题。
-8. Augusta Firefox 验收。
-9. 推送预览 PR。
+1. 建立 P3 分语言 D1 记录表并自动迁移旧拉丁语数据。
+2. 同步账号当前语言与等级偏好。
+3. 登录时合并游客本地进度、收藏与云端记录，云端同题记录优先。
+4. 让进度、收藏和词汇统计显式携带语言代码。
+5. 完成单元测试、TypeScript、Cloudflare 生产构建与格式检查。
+6. 推送 Draft PR，等待 Cloudflare Preview。
+7. 在 Augusta Firefox 验证登录、退出、换号、刷新和三语言隔离。
+8. 验收通过后合并，再进入 P4 管理员后台。
 
 ---
 

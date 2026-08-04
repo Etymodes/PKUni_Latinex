@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-07-31  
+更新日期：2026-08-01
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -72,13 +72,14 @@
 
 ## 6. Git 当前基线
 
-- 资源中心 PR #9 已合并。
-- `main` 已知基线：`e81591a`，已合并 PR #9 与 PR #11。
-- 多语言分支：`agent/pikku-multilingual-mvp`。
-- 任务书提交：`6b73289 docs: define Pikku multilingual roadmap`，已推送远端。
+- `main` 当前基线：`9d6cff3`，已合并资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12 与种子题库 PR #13。
+- P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建。
+- 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
-- 不直接在 `main` 开发；PR #12 通过预览和浏览器复验后再转为 Ready。
+- PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
+- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
+- 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
 
@@ -100,10 +101,10 @@ P1 代码提交：
 - `b623e9f style: add multilingual shell`
 - `370dd6b feat: add Pikku language switcher`
 
-后续阶段：
+当前及后续阶段：
 
-- P2：已从首批日语/西班牙语随机知识卡开始；当前分支 `agent/pikku-p2-seed-bank` 接入作者／来源／题号搜索和两种语言首批分级种子题。
-- P3：多语言账号统计与同步。
+- P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
+- P3：进行中。把当前语言与等级写入账号偏好；进度、收藏与词汇统计按语言写入 D1；游客记录在登录后与云端安全合并；旧拉丁语账号数据自动迁移。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -150,7 +151,7 @@ P1 代码提交：
 - Node：v24.18.0；npm/npx：11.16.0。
 - PowerShell 执行策略会阻止 `npm.ps1`/`npx.ps1`，统一使用 `npm.cmd`、`npx.cmd`。
 - 下载目录是 `D:\Downloads`，不是 `$HOME\Downloads`。
-- 桌面已有 `C:\Users\kimda\Desktop\Pikku开发检查.cmd`，用于启动开发服务器并打开 Firefox。
+- 桌面已有 `C:\Users\kimda\Desktop\Pikku开发检查.cmd`，用于启动纯 Next.js 本地开发服务器并打开 Firefox；它只用于界面检查，不用于登录和云端同步验收。账号功能必须打开当前 Cloudflare Branch Preview 或正式域名。
 - Windows 上 `npm.cmd run build:cloudflare` 会因 POSIX 环境变量语法失败。使用：
 
 ```powershell
@@ -159,6 +160,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 - Next 开发/构建可能修改 `next-env.d.ts`；若只有生成差异，使用 `git restore -- next-env.d.ts`。
 - 检查顺序：`npm.cmd ci`（依赖变化时）、`npm.cmd run lint`、上述生产构建、Firefox 浏览器测试、`git diff --check`、`git status -sb`。
+- P3 起，`scripts/Test-Pikku.ps1` 也会运行 Worker Node 单元测试；批量报告由原 7 项增加为 8 项。
 - 不使用 `npm audit fix --force`，除非先审查变更影响。
 
 ## 12. 协作和发布约定
@@ -242,3 +244,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：P2 PR #13 的 Cloudflare Workers Preview 部署成功；Augusta 批量检查与 Firefox 浏览器验收均通过。日语 N4–N1、西班牙语 A1–C2 种子练习、统一搜索、错题与收藏分语言隔离及刷新稳定性已确认，PR 可转为 Ready for review，等待用户明确授权后再合并。
 
 - 2026-08-01：PR #13 `feat: add Pikku multilingual seed practice` 已正式合并到 `main`，合并提交为 `00a03ae`；P2 最小种子题库与统一搜索完成收口。下一步进入 P3 多语言账号统计与同步，仍从新功能分支开发并在 Preview 和 Augusta Firefox 验收后合并。
+- 2026-08-01：启动 P3 分支 `agent/pikku-p3-account-sync`。新增账号语言/等级偏好，以及按语言存储的进度、收藏和词汇统计表；旧拉丁语 D1 数据通过一次性标记自动迁移，避免冷启动后重新写回已删除收藏。登录合并采用“云端同题优先、本地独有记录补传”，并等待 localStorage 读取完成后才开始账号同步；拉丁语旧等级状态统一跟随持久化等级，词汇统计也进入退出登录前的同步队列。
+- 2026-08-01：P3 本地验证通过：8 项 Node 单元测试、TypeScript、Next.js 16.2.10 Cloudflare 生产构建、Git 格式检查、4 个 D1 迁移及 Miniflare 真实 API 冒烟测试均成功。冒烟测试覆盖日语/西班牙语批量进度、跨语言收藏、语言偏好、词汇统计和非法语言拒绝。云容器直接启动 `wrangler dev` 仍会触发环境级 `uv_interface_addresses`，改用 Miniflare `dispatchFetch` 验证 Worker 与 D1，不将该环境限制误判为网站故障。
+- 2026-08-01：Augusta 批量验证脚本新增 Worker Node 单元测试步骤；P3 分支起统一报告共 8 项，继续使用 `npm.cmd` 与 Windows PowerShell 5.1 兼容写法。
+- 2026-08-01：创建 Draft PR #14 `feat: sync multilingual account records`；GitHub 确认可自动合并，Cloudflare Workers 构建成功。稳定分支预览为 `https://agent-pikku-p3-account-sync-pkuni-latinex.kimdac.workers.dev/`，下一步是在 Augusta Firefox 完成登录、刷新、退出／换号、收藏删除和三语言隔离验收。
+- 2026-08-01：PR #14 云浏览器未登录回归通过：拉丁语／日语／西班牙语及其等级均可切换，西班牙语 A1 在刷新后保持，登录弹窗完整位于视口内；未发现 Pikku 应用自身错误，仅有云浏览器扩展的 metadata 日志。用户在 `localhost:3000` 观察到无法完成登录，再次确认原因是纯 Next.js 开发服务器没有 Worker API；此现象不代表 Preview 或 Supabase 登录失败。

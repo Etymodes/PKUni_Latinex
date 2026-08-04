@@ -21,6 +21,31 @@ const schema = [
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(user_email, question_id)
   )`,
+  `CREATE TABLE IF NOT EXISTS attempts_by_language (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, user_email TEXT NOT NULL, language TEXT NOT NULL,
+    question_id TEXT NOT NULL, status TEXT NOT NULL, level TEXT, category TEXT,
+    answered_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`,
+  `CREATE INDEX IF NOT EXISTS attempts_by_language_user_question
+    ON attempts_by_language(user_email, language, question_id, answered_at)`,
+  `CREATE TABLE IF NOT EXISTS vocab_stats_by_language (
+    user_email TEXT NOT NULL, language TEXT NOT NULL, lemma TEXT NOT NULL,
+    seen INTEGER NOT NULL DEFAULT 0, correct INTEGER NOT NULL DEFAULT 0,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(user_email, language, lemma)
+  )`,
+  `CREATE TABLE IF NOT EXISTS bookmarks_by_language (
+    user_email TEXT NOT NULL, language TEXT NOT NULL, question_id TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(user_email, language, question_id)
+  )`,
+  `CREATE TABLE IF NOT EXISTS user_preferences (
+    user_email TEXT PRIMARY KEY, language TEXT NOT NULL, level TEXT NOT NULL,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`,
+  `CREATE TABLE IF NOT EXISTS app_migrations (
+    version TEXT PRIMARY KEY, applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`,
   `CREATE TABLE IF NOT EXISTS question_overrides (
     id TEXT PRIMARY KEY, payload TEXT, deleted INTEGER NOT NULL DEFAULT 0,
     updated_by TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -38,7 +63,7 @@ const schema = [
   )`,
 ];
 
-let schemaReady;
+let schemaInitialized = false;
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
@@ -304,8 +329,24 @@ async function identity(request, env) {
 
 async function ensureSchema(env) {
   if (!env.DB) return false;
-  schemaReady ||= env.DB.batch(schema.map((sql) => env.DB.prepare(sql)));
-  await schemaReady;
+  if (schemaInitialized) return true;
+  await env.DB.batch(schema.map((sql) => env.DB.prepare(sql)));
+  const migrated = await env.DB.prepare("SELECT version FROM app_migrations WHERE version='multilingual-sync-v1'").first();
+  if (!migrated) {
+    await env.DB.batch([
+      env.DB.prepare(`INSERT OR IGNORE INTO attempts_by_language
+        (id, user_email, language, question_id, status, level, category, answered_at)
+        SELECT id, user_email, 'la', question_id, status, level, category, answered_at FROM attempts`),
+      env.DB.prepare(`INSERT OR IGNORE INTO vocab_stats_by_language
+        (user_email, language, lemma, seen, correct, updated_at)
+        SELECT user_email, 'la', lemma, seen, correct, updated_at FROM vocab_stats`),
+      env.DB.prepare(`INSERT OR IGNORE INTO bookmarks_by_language
+        (user_email, language, question_id, created_at)
+        SELECT user_email, 'la', question_id, created_at FROM bookmarks`),
+      env.DB.prepare("INSERT OR IGNORE INTO app_migrations (version) VALUES ('multilingual-sync-v1')"),
+    ]);
+  }
+  schemaInitialized = true;
   return true;
 }
 
@@ -313,6 +354,41 @@ async function touchUser(env, user) {
   await env.DB.prepare(`INSERT INTO users (email, display_name, role) VALUES (?, ?, ?)
     ON CONFLICT(email) DO UPDATE SET display_name=excluded.display_name, role=excluded.role, last_seen=CURRENT_TIMESTAMP`)
     .bind(user.id, user.name, user.role).run();
+}
+
+const languageLevels = {
+  la: ["elementary", "intermediate", "mixed", "advanced"],
+  ja: ["n4", "n3", "n2", "n1"],
+  es: ["a1", "a2", "b1", "b2", "c1", "c2"],
+};
+
+function validLanguage(language) {
+  return Object.hasOwn(languageLevels, language);
+}
+
+function validPreference(language, level) {
+  return validLanguage(language) && languageLevels[language].includes(level);
+}
+
+function normalizeProgressRecord(value) {
+  if (!value || typeof value.questionId !== "string" || !value.questionId || value.questionId.length > 80) return null;
+  if (value.language !== undefined && !validLanguage(value.language)) return null;
+  const language = value.language || "la";
+  if (!validPreference(language, value.level) || !["correct", "wrong", "review"].includes(value.status)) return null;
+  return {
+    questionId: value.questionId,
+    status: value.status,
+    language,
+    level: value.level,
+    category: typeof value.category === "string" ? value.category.slice(0, 40) : null,
+  };
+}
+
+function normalizeBookmarkItem(value, fallbackLanguage = "la") {
+  if (!value || typeof value.questionId !== "string" || !value.questionId || value.questionId.length > 80) return null;
+  const language = value.language ?? fallbackLanguage;
+  if (!validLanguage(language)) return null;
+  return { questionId: value.questionId, language };
 }
 
 function validQuestion(value) {
@@ -346,46 +422,93 @@ async function api(request, env, url) {
 
   if (url.pathname === "/api/stats" && request.method === "GET") {
     if (!user) return json({ error: "请先登录" }, 401);
-    const [attempts, vocab, bookmarks] = await env.DB.batch([
-      env.DB.prepare(`SELECT a.question_id, a.status FROM attempts a
-        JOIN (SELECT question_id, MAX(id) id FROM attempts WHERE user_email=? GROUP BY question_id) latest ON latest.id=a.id`).bind(user.id),
-      env.DB.prepare("SELECT lemma, seen, correct FROM vocab_stats WHERE user_email=?").bind(user.id),
-      env.DB.prepare("SELECT question_id FROM bookmarks WHERE user_email=? ORDER BY created_at").bind(user.id),
+    const [attempts, vocab, bookmarks, preferences] = await env.DB.batch([
+      env.DB.prepare(`SELECT a.language, a.question_id, a.status FROM attempts_by_language a
+        JOIN (SELECT language, question_id, MAX(id) id FROM attempts_by_language WHERE user_email=? GROUP BY language, question_id) latest ON latest.id=a.id
+        WHERE a.user_email=?`).bind(user.id, user.id),
+      env.DB.prepare("SELECT language, lemma, seen, correct FROM vocab_stats_by_language WHERE user_email=?").bind(user.id),
+      env.DB.prepare("SELECT language, question_id FROM bookmarks_by_language WHERE user_email=? ORDER BY created_at").bind(user.id),
+      env.DB.prepare("SELECT language, level FROM user_preferences WHERE user_email=?").bind(user.id),
     ]);
     const progress = Object.fromEntries(attempts.results.map((row) => [row.question_id, row.status]));
-    return json({ progress, vocab: vocab.results, bookmarks: bookmarks.results.map((row) => row.question_id) });
+    const byLanguage = Object.fromEntries(Object.keys(languageLevels).map((language) => [language, { progress: {}, vocab: [], bookmarks: [] }]));
+    for (const row of attempts.results) byLanguage[row.language]?.progress && (byLanguage[row.language].progress[row.question_id] = row.status);
+    for (const row of vocab.results) byLanguage[row.language]?.vocab.push({ lemma: row.lemma, seen: row.seen, correct: row.correct });
+    for (const row of bookmarks.results) byLanguage[row.language]?.bookmarks.push(row.question_id);
+    for (const language of Object.keys(byLanguage)) {
+      const languageProgress = byLanguage[language].progress;
+      byLanguage[language].summary = {
+        answered: Object.keys(languageProgress).length,
+        correct: Object.values(languageProgress).filter((status) => status === "correct").length,
+        bookmarks: byLanguage[language].bookmarks.length,
+        vocabularySeen: byLanguage[language].vocab.reduce((total, item) => total + Number(item.seen || 0), 0),
+      };
+    }
+    return json({
+      progress,
+      vocab: vocab.results,
+      bookmarks: bookmarks.results.map((row) => row.question_id),
+      preference: preferences.results[0] || null,
+      byLanguage,
+    });
   }
 
   if (url.pathname === "/api/progress" && request.method === "POST") {
     if (!user) return json({ error: "请先登录" }, 401);
     const body = await request.json();
-    if (!body.questionId || !["correct", "wrong", "review"].includes(body.status)) return json({ error: "无效记录" }, 400);
-    await env.DB.prepare("INSERT INTO attempts (user_email, question_id, status, level, category) VALUES (?, ?, ?, ?, ?)")
-      .bind(user.id, body.questionId, body.status, body.level || null, body.category || null).run();
-    return json({ ok: true });
+    const values = Array.isArray(body.records) ? body.records.slice(0, 100) : [body];
+    const records = values.map(normalizeProgressRecord);
+    if (!records.length || records.some((record) => !record)) return json({ error: "无效记录" }, 400);
+    await env.DB.batch(records.map((record) => env.DB.prepare(`INSERT INTO attempts_by_language
+      (user_email, language, question_id, status, level, category) VALUES (?, ?, ?, ?, ?, ?)`)
+      .bind(user.id, record.language, record.questionId, record.status, record.level, record.category)));
+    return json({ ok: true, count: records.length });
   }
 
   if (url.pathname === "/api/bookmarks" && request.method === "PUT") {
     if (!user) return json({ error: "请先登录" }, 401);
     const body = await request.json();
-    const questionIds = [...new Set(Array.isArray(body.questionIds) ? body.questionIds : [])]
-      .filter((id) => typeof id === "string" && id.length > 0 && id.length <= 80)
-      .slice(0, 500);
+    const rawItems = Array.isArray(body.items)
+      ? body.items
+      : (Array.isArray(body.questionIds) ? body.questionIds : []).map((questionId) => ({ questionId, language: body.language || "la" }));
+    if (rawItems.length > 500 || (!Array.isArray(body.items) && body.language !== undefined && !validLanguage(body.language))) {
+      return json({ error: "无效收藏记录" }, 400);
+    }
+    const normalized = rawItems.map((item) => normalizeBookmarkItem(item, body.language || "la"));
+    if (normalized.some((item) => !item)) return json({ error: "无效收藏记录" }, 400);
+    const items = [...new Map(normalized.map((item) => [`${item.language}:${item.questionId}`, item])).values()];
+    const replaceAll = Array.isArray(body.items);
+    const language = validLanguage(body.language) ? body.language : "la";
     await env.DB.batch([
-      env.DB.prepare("DELETE FROM bookmarks WHERE user_email=?").bind(user.id),
-      ...questionIds.map((id) => env.DB.prepare("INSERT INTO bookmarks (user_email, question_id) VALUES (?, ?)").bind(user.id, id)),
+      replaceAll
+        ? env.DB.prepare("DELETE FROM bookmarks_by_language WHERE user_email=?").bind(user.id)
+        : env.DB.prepare("DELETE FROM bookmarks_by_language WHERE user_email=? AND language=?").bind(user.id, language),
+      ...items.map((item) => env.DB.prepare("INSERT INTO bookmarks_by_language (user_email, language, question_id) VALUES (?, ?, ?)")
+        .bind(user.id, item.language, item.questionId)),
     ]);
-    return json({ ok: true, bookmarks: questionIds });
+    return json({ ok: true, bookmarks: items.map((item) => item.questionId) });
   }
 
   if (url.pathname === "/api/vocab" && request.method === "POST") {
     if (!user) return json({ error: "请先登录" }, 401);
     const body = await request.json();
+    if (body.language !== undefined && !validLanguage(body.language)) return json({ error: "无效语言" }, 400);
+    const language = body.language || "la";
     const answers = Array.isArray(body.answers) ? body.answers.slice(0, 100) : [];
-    await env.DB.batch(answers.filter((item) => typeof item.lemma === "string").map((item) => env.DB.prepare(`INSERT INTO vocab_stats (user_email, lemma, seen, correct)
-      VALUES (?, ?, 1, ?) ON CONFLICT(user_email, lemma) DO UPDATE SET seen=seen+1, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
-      .bind(user.id, item.lemma, item.correct ? 1 : 0)));
+    await env.DB.batch(answers.filter((item) => typeof item.lemma === "string").map((item) => env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
+      VALUES (?, ?, ?, 1, ?) ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+1, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
+      .bind(user.id, language, item.lemma, item.correct ? 1 : 0)));
     return json({ ok: true });
+  }
+
+  if (url.pathname === "/api/preferences" && request.method === "PUT") {
+    if (!user) return json({ error: "请先登录" }, 401);
+    const body = await request.json();
+    if (!validPreference(body.language, body.level)) return json({ error: "无效语言或等级" }, 400);
+    await env.DB.prepare(`INSERT INTO user_preferences (user_email, language, level) VALUES (?, ?, ?)
+      ON CONFLICT(user_email) DO UPDATE SET language=excluded.language, level=excluded.level, updated_at=CURRENT_TIMESTAMP`)
+      .bind(user.id, body.language, body.level).run();
+    return json({ ok: true, preference: { language: body.language, level: body.level } });
   }
 
   if (url.pathname === "/api/admin/questions" && request.method === "GET") {
@@ -440,4 +563,4 @@ export default {
   },
 };
 
-export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured };
+export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, normalizeProgressRecord, normalizeBookmarkItem };
