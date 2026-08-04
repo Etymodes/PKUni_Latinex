@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步验收中；P3.1 自适应背词开发中；下一代多语言架构与首批角色基线已建立
+状态：P3 多语言账户同步验收中；P3.1 自适应背词 Preview 验收中；下一代多语言架构与首批角色基线已建立
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前基线：`47b25094`（PR #15 已合并）
@@ -628,7 +628,7 @@ draft → reviewed → published → archived
 
 ### P3.1：个性化自适应背词
 
-状态：开发中；叠加分支 `agent/pikku-vocab-trainer`
+状态：Draft PR #16 Preview 验收中；叠加分支 `agent/pikku-vocab-trainer`
 
 - 56 张三语分级种子词卡，全部配有短语境
 - 无每日上限的连续训练
@@ -637,6 +637,7 @@ draft → reviewed → published → archived
 - 纯单词、单词＋语境两种个人设置
 - 游客记录登录合并和账号偏好同步
 - Worker 首次请求会为旧 D1 的账号偏好表安全补充 `vocab_mode`，Branch Preview 不依赖预先手工迁移；Miniflare 旧表回归测试已覆盖
+- Draft PR #16 以 P3 分支为 base；稳定 Preview：`https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`
 
 ### P3.2：每周内容复核与补丁接入
 
@@ -751,15 +752,17 @@ agent/pikku-vocab-trainer
 
 2026-08-04 首次审查结论：Drive 当前只有 `Pikku_WeeklyPatch_2026-08-04.md`；GitHub 已确认 PR #15 合并为 `47b25094`，PR #14 仍是可合并的开放 Draft。补丁书不是旧版，但当前 `agent/pikku-vocab-trainer` 叠加线尚未包含 PR #15，故内容补丁只能排入 P3.2，不能直接在当前分支实现。
 
+2026-08-04 P3.1 Preview 验收前复查：目录内容和修改时间均未变化；PR #14 与 PR #16 均为可自动合并的开放 Draft。原 P3.2 分类继续有效，没有新增冲突或待决定事项。
+
 ---
 
 ## 13. 当前下一步
 
-1. 先在 Augusta Firefox 完成 P3 Draft PR #14 的登录、退出／换号、刷新、收藏删除和三语言隔离验收，再合并 P3。
-2. 完成 P3.1 自适应背词的单元测试、D1 迁移、TypeScript、生产构建和 Cloudflare 干跑。
-3. P3 合并后把 `agent/pikku-vocab-trainer` 更新到包含 PR #15 的最新 `main`，解决内容数据合流后再推送独立 Draft PR。
-4. 在 Cloudflare Preview 与 Augusta Firefox 验证三语等级、连续出词、两种显示模式、刷新、退出和换号隔离。
-5. 验收后合并 P3.1；随后从最新 `main` 创建 P3.2 每周内容复核分支，不在当前叠加分支直接加入 Drive 的六道题。
+1. 在 Augusta 当前导入分支运行完整批量检查，结果继续写入 `D:\Downloads` TXT；失败项全部跑完后统一处理。
+2. 在 P3.1 Cloudflare Preview 完成 Firefox 综合验收：登录、刷新、退出／换号、收藏删除、三语言隔离，以及连续背词、两种显示模式和账号记录恢复。该叠加 Preview 同时覆盖 P3 基线回归。
+3. 验收通过后先按依赖顺序处理 P3 Draft PR #14；未经用户明确授权不合并。
+4. P3 合并后把 `agent/pikku-vocab-trainer` 更新到包含 PR #15 的最新 `main`，解决内容数据合流，把 PR #16 的 base 改为 `main`，再做一次构建与 Preview 回归。
+5. 经用户明确授权后合并 P3.1；随后从最新 `main` 创建 P3.2 每周内容复核分支，不在当前叠加分支直接加入 Drive 的六道题。
 6. 完成 `reviewStatus`、词条批次、首批六道候选题和教材章节元数据映射的分阶段实现，再进入 P4 管理后台。
 7. P3／P3.2 收口后，按已确认的“古典中心古希腊语、拉丁语—西班牙语联学、学习台＋探索地图”方向调整后续优先级。
 
