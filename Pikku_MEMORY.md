@@ -98,8 +98,8 @@
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
 - PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收已通过，已转为 Ready for review，等待用户明确合并授权。
-- P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
-- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview 已部署累计等级词库，等待 Augusta 8/8 批量复验与 N2／C2 覆盖范围验收。
+- P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 PR #14；在 P3 验收合并前不直接合入 `main`。
+- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview、Augusta 8/8 批量检查及 Firefox 累计词库范围验收均已通过；因依赖 PR #14，仍保持 Draft，等待依赖合并后吸收最新 `main` 并重新回归。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
@@ -127,7 +127,7 @@ P1 代码提交：
 
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：账号同步实现与 Augusta Firefox 验收已完成，等待用户明确授权后按依赖顺序合并 PR #14。
-- P3.1：Preview 验收中。三语自适应背词、两种显示模式及账号偏好同步；首批 56 张词卡按所选等级累积覆盖低等级词库。
+- P3.1：功能验收已通过，等待依赖合流。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
 - P3.2：已从 2026-08-04 Drive 补丁书接受，等待 P3／P3.1 收口后从包含 PR #15 的最新 `main` 建独立分支；范围为审核状态、内容批次、62 个“待核”词条复核、六道候选错因题与教材章节元数据映射。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
@@ -235,6 +235,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-04 P3.1 Preview 验收前复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 与 PR #16 均为可自动合并的开放 Draft；原分类和 P3.2 排期继续有效，无冲突或需要用户决定的新条目。
 
+2026-08-04 P3.1 浏览器验收后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 已 Ready for review，PR #16 仍为可自动合并的 Draft；原 P3.2 分类继续有效。下一步必须先取得用户对 PR #14 的明确合并授权，再把 PR #16 重叠到包含 PR #15 的最新 `main`。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
@@ -296,6 +298,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-07-31 08:21 第二次完整运行再次 7/7 通过，原生命令、TypeScript 和 Next.js 构建明细均已写入报告，最终 Git 工作区干净。实测版本：Node `24.18.0`、npm `11.16.0`、Next.js `16.2.10`。
 - 2026-07-31 08:46 第三次 Augusta 批量验证 7/7 通过，报告中的 Next.js Unicode 符号正常，最终工作区干净；随后 Firefox 浏览器验收通过，P1 多语言外壳正式完成。
 - 2026-08-04 17:18，Augusta 报告 `Pikku_Check_20260804_171816.txt` 为 7/8：TypeScript、生产构建、格式与工作区均通过，账号 Firefox 验收成功；唯一失败是 Windows 安全中心阻止 Miniflare 启动 `workerd.exe`，导致迁移测试 `spawn UNKNOWN`，不是网站或迁移逻辑失败。
+- 2026-08-04，改用 Node 24 内置内存 SQLite 后，Augusta 完整批量检查 8/8 通过；Firefox 已确认日语 N2 显示 N4–N2、西班牙语 C2 显示 A1–C2，P3.1 功能验收通过。
 
 ## 14. 记忆更新日志
 
@@ -341,3 +344,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：账号 Preview 验收成功。按用户决定把背词范围改为等级累积：日语 N2 包含 N4–N2，西班牙语 C2 包含 A1–C2，拉丁语中级／混合／进阶同样包含较低等级；页面显示实际覆盖范围。
 - 2026-08-04：Augusta 的迁移测试因 Windows 安全中心阻止 `workerd.exe` 而失败。回归测试改用 Node 24 内置内存 SQLite 和轻量 D1 适配器直接调用 Worker `ensureSchema`，无需降低系统安全策略；15/15 测试、TypeScript、生产构建和 Wrangler 4.110.0 dry-run 在云端通过。
 - 2026-08-04：累计等级修复以 `10f6026 fix: include lower vocabulary levels` 发布到 PR #16。Cloudflare 稳定 Preview 的前端资源已包含“当前涵盖”标记，首页、`/api/me`、`/api/auth-config`、`/api/questions` 均返回 200；固定 Drive 补丁目录仍只有未修改的 `Pikku_WeeklyPatch_2026-08-04.md`，没有新冲突。
+- 2026-08-04：用户确认 Augusta 8/8 批量检查与 Firefox 累计词库范围验收通过。里程碑复查 Drive 后仍无新补丁；PR #16 保持 Draft，不把验收确认解释为合并授权。下一步等待用户明确授权合并 PR #14，再执行 P3.1 合流与回归。
