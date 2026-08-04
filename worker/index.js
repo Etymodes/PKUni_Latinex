@@ -597,4 +597,4 @@ export default {
   },
 };
 
-export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer };
+export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, ensureSchema };

@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步验收中；P3.1 自适应背词 Preview 验收中；下一代多语言架构与首批角色基线已建立
+状态：P3 多语言账户同步验收通过、待合并授权；P3.1 累计等级背词 Preview 验收中；下一代多语言架构与首批角色基线已建立
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前基线：`47b25094`（PR #15 已合并）
@@ -619,7 +619,7 @@ draft → reviewed → published → archived
 
 ### P3：账户与统计
 
-状态：进行中；分支 `agent/pikku-p3-account-sync`
+状态：Augusta Firefox 账号验收通过，等待用户明确合并授权；分支 `agent/pikku-p3-account-sync`
 
 - 当前语言和等级进入用户偏好
 - 进度同步按语言隔离
@@ -631,6 +631,7 @@ draft → reviewed → published → archived
 状态：Draft PR #16 Preview 验收中；叠加分支 `agent/pikku-vocab-trainer`
 
 - 56 张三语分级种子词卡，全部配有短语境
+- 所选等级累积包含全部较低等级词：拉丁语进阶为初级至进阶、混合为初级＋中级；日语 N2 为 N4–N2；西班牙语 C2 为 A1–C2；其他等级依同一顺序类推
 - 无每日上限的连续训练
 - 依据账号累计见词／记得次数计算透明权重
 - 每次进入训练时，首张和后续词卡都按账号权重选择；首张只在客户端挂载后选择，保持 SSR 水合稳定
@@ -726,7 +727,7 @@ draft → reviewed → published → archived
 agent/pikku-vocab-trainer
 ```
 
-该分支叠加在尚待 Augusta Firefox 验收的 `agent/pikku-p3-account-sync` / Draft PR #14 上；P3 未合并前不把 P3.1 直接合入 `main`。
+该分支叠加在已通过 Augusta Firefox 账号验收的 `agent/pikku-p3-account-sync` / Draft PR #14 上；P3 未合并前不把 P3.1 直接合入 `main`。
 
 规则：
 
@@ -758,9 +759,9 @@ agent/pikku-vocab-trainer
 
 ## 13. 当前下一步
 
-1. 在 Augusta 当前导入分支运行完整批量检查，结果继续写入 `D:\Downloads` TXT；失败项全部跑完后统一处理。
-2. 在 P3.1 Cloudflare Preview 完成 Firefox 综合验收：登录、刷新、退出／换号、收藏删除、三语言隔离，以及连续背词、两种显示模式和账号记录恢复。该叠加 Preview 同时覆盖 P3 基线回归。
-3. 验收通过后先按依赖顺序处理 P3 Draft PR #14；未经用户明确授权不合并。
+1. 发布累计等级词库和无 `workerd.exe` 的迁移回归测试，等待 Cloudflare Preview 更新。
+2. 在 Augusta 重新运行完整批量检查，并在 Firefox 确认 N2 显示并抽取 N4–N2、C2 显示并抽取 A1–C2；报告继续写入 `D:\Downloads` TXT。
+3. 账号同步验收已通过；先按依赖顺序处理 P3 Draft PR #14，未经用户明确授权不合并。
 4. P3 合并后把 `agent/pikku-vocab-trainer` 更新到包含 PR #15 的最新 `main`，解决内容数据合流，把 PR #16 的 base 改为 `main`，再做一次构建与 Preview 回归。
 5. 经用户明确授权后合并 P3.1；随后从最新 `main` 创建 P3.2 每周内容复核分支，不在当前叠加分支直接加入 Drive 的六道题。
 6. 完成 `reviewStatus`、词条批次、首批六道候选题和教材章节元数据映射的分阶段实现，再进入 P4 管理后台。

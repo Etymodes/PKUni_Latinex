@@ -65,6 +65,7 @@ import {
   chooseNextVocabularyCard,
   vocabularyCards,
   vocabularyKey,
+  vocabularyLevelsFor,
   vocabularyMatchesLevel,
   type VocabularyMode,
   type VocabularyStats,
@@ -1019,6 +1020,8 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
   setView: (view: View) => void;
 }) {
   const eligible = useMemo(() => vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level)), [language, level]);
+  const coveredLevels = vocabularyLevelsFor(language, level);
+  const coverageLabel = coveredLevels.map((item) => languageLevelLabels[item]).join("–");
   const [cardId, setCardId] = useState("");
   const [revealed, setRevealed] = useState(false);
   const [recentlyShown, setRecentlyShown] = useState<string[]>([]);
@@ -1055,13 +1058,13 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
 
   return <div className="page vocabulary-trainer">
     <div className="practice-header vocab-trainer-header">
-      <div><span className="eyebrow">PIKKU ADAPTĪVUM · 连续训练</span><h1>{languageLevelLabels[level]} 自适应背单词</h1><p>没有每日上限。没记住的词会提高权重，熟词仍会低频复现；最近出现的词会暂时降权，避免原地重复。</p></div>
+      <div><span className="eyebrow">PIKKU ADAPTĪVUM · 连续训练</span><h1>{languageLevelLabels[level]} 自适应背单词</h1><p>当前涵盖 {coverageLabel} 词库。没有每日上限；没记住的词会提高权重，熟词仍会低频复现，最近出现的词会暂时降权。</p></div>
       <button className="secondary-button" onClick={() => setView("settings")}><Settings size={16} />显示设置</button>
     </div>
     <section className="vocab-session-stats" aria-label="背词统计">
       <div><span>本轮</span><strong>{sessionTotal}</strong><small>次判断</small></div>
       <div><span>本轮记得</span><strong>{sessionCorrect}</strong><small>{sessionTotal ? `${Math.round(sessionCorrect / sessionTotal * 100)}%` : "尚未作答"}</small></div>
-      <div><span>本级历史</span><strong>{totalSeen}</strong><small>{totalSeen ? `${Math.round(totalCorrect / totalSeen * 100)}% 记得` : `${eligible.length} 张新词卡`}</small></div>
+      <div><span>范围历史</span><strong>{totalSeen}</strong><small>{totalSeen ? `${Math.round(totalCorrect / totalSeen * 100)}% 记得` : `${eligible.length} 张新词卡`}</small></div>
     </section>
     <article className="adaptive-vocab-card">
       <span>{languageConfigs[language].nativeName} · {mode === "context" ? "单词＋语境" : "纯单词"}</span>

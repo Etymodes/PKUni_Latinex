@@ -5,6 +5,7 @@ const {
   adaptiveVocabularyWeight,
   chooseNextVocabularyCard,
   vocabularyCards,
+  vocabularyLevelsFor,
   vocabularyMatchesLevel,
 } = await import("../data/vocabulary.ts");
 
@@ -35,9 +36,13 @@ test("the selector remains deterministic when a random value is injected", () =>
   assert.equal(chooseNextVocabularyCard([], {}, [], () => 0), null);
 });
 
-test("Latin mixed mode combines elementary and intermediate without advanced cards", () => {
-  const mixed = vocabularyCards.filter((card) => card.language === "la" && vocabularyMatchesLevel(card, "mixed"));
-  assert.ok(mixed.some((card) => card.level === "elementary"));
-  assert.ok(mixed.some((card) => card.level === "intermediate"));
-  assert.equal(mixed.some((card) => card.level === "advanced"), false);
+test("higher levels include every lower vocabulary level", () => {
+  assert.deepEqual(vocabularyLevelsFor("la", "intermediate"), ["elementary", "intermediate"]);
+  assert.deepEqual(vocabularyLevelsFor("la", "mixed"), ["elementary", "intermediate"]);
+  assert.deepEqual(vocabularyLevelsFor("la", "advanced"), ["elementary", "intermediate", "advanced"]);
+  assert.deepEqual(vocabularyLevelsFor("ja", "n2"), ["n4", "n3", "n2"]);
+  assert.deepEqual(vocabularyLevelsFor("es", "c2"), ["a1", "a2", "b1", "b2", "c1", "c2"]);
+
+  const japaneseN2 = vocabularyCards.filter((card) => card.language === "ja" && vocabularyMatchesLevel(card, "n2"));
+  assert.deepEqual([...new Set(japaneseN2.map((card) => card.level))], ["n4", "n3", "n2"]);
 });

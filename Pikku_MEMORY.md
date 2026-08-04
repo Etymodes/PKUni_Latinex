@@ -54,6 +54,7 @@
 - 当前页面仍以 `app/page.tsx` 为主；短期不拆微服务、不引入全局状态库、不引入图数据库、不更换框架。
 - 自适应背词沿用现有页面、D1 词汇统计和账号偏好，不引入模型服务或第三方记忆算法依赖。
 - 首版透明权重：未见词保持探索权重；错误率高的词提高权重；熟词降低但不永久移除；最近四张词卡暂时降权。
+- 背词等级采用累积覆盖：拉丁语进阶包含初级至进阶，混合包含初级＋中级；日语从 N4 向 N1 累积；西班牙语从 A1 向 C2 累积。高等级不能排除应已掌握的低等级词。
 - 多语言采用共享网站外壳＋语言配置＋各语言独立题库/资源/等级。
 - 核心语言类型：`"la" | "ja" | "es"`。
 - 上述核心类型只代表当前已运行的学习语言。下一代模型分离 `uiLocale`、`targetLanguage` 和 `courseTrack`；内部 `contentLocale` 直接跟随 `uiLocale`。首期不设独立“解释语言”，避免界面语言、学习语言与考试／教材轨道互相污染。
@@ -82,6 +83,7 @@
 - 首页随机词源曾因 SSR/客户端随机值不同产生 hydration 错误。固定方案：初值使用 `0`，挂载后在 `useEffect` 中随机化。
 - 本地纯 Next 开发模式出现 `/api/me`、`/api/questions`、`/api/auth-config` 404 属预期，因为 Worker API 未加载；认证与同步应在 Cloudflare Preview/正式站检查。
 - P3.1 分支已加入三语自适应背词：56 张分级种子词卡、无限连续轮次、“记得／忘了”反馈、纯单词与单词＋短语境两种显示模式、游客本机记录及账号同步。
+- Augusta Firefox 已确认邮箱账号登录、账号记录恢复与背词历史显示正常；背词页会明确显示当前累计词库范围。
 - 进入背词页后的首张词卡也必须在客户端挂载后按账号统计加权选择；SSR 初始渲染仍保持确定，不能为首张随机化重新引入 hydration mismatch。
 - P3.1 Worker 会在首次 API 请求时检查旧 `user_preferences` 表是否缺少 `vocab_mode`，缺少则安全补列并记录 `vocabulary-trainer-v1`；这样 Branch Preview 不依赖预先手工执行远端迁移，正式迁移文件仍保留。
 - “无限”指训练轮次不设每日上限，不表示首版已有无限个不同词目；词库后续持续扩充。
@@ -95,7 +97,7 @@
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
-- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
+- Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收已通过，等待用户明确合并授权。
 - P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
 - Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer`；GitHub 确认可自动合并。稳定 Preview 为 `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`，等待 Augusta 批量检查与 Firefox 登录／背词验收。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
@@ -124,8 +126,8 @@ P1 代码提交：
 当前及后续阶段：
 
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
-- P3：进行中。把当前语言与等级写入账号偏好；进度、收藏与词汇统计按语言写入 D1；游客记录在登录后与云端安全合并；旧拉丁语账号数据自动迁移。
-- P3.1：开发中。三语自适应背词、两种显示模式及账号偏好同步；首批 56 张词卡覆盖拉丁语初／中／进阶、日语 N4–N1、西班牙语 A1–C2。
+- P3：账号同步实现与 Augusta Firefox 验收已完成，等待用户明确授权后按依赖顺序合并 PR #14。
+- P3.1：Preview 验收中。三语自适应背词、两种显示模式及账号偏好同步；首批 56 张词卡按所选等级累积覆盖低等级词库。
 - P3.2：已从 2026-08-04 Drive 补丁书接受，等待 P3／P3.1 收口后从包含 PR #15 的最新 `main` 建独立分支；范围为审核状态、内容批次、62 个“待核”词条复核、六道候选错因题与教材章节元数据映射。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
@@ -257,6 +259,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 - `package.json` 的 `build:cloudflare` 使用 POSIX 环境变量前缀，在 Windows 会报 `NEXT_PUBLIC_AUTH_MODE 不是内部或外部命令`。Windows 上先设置 `$env:NEXT_PUBLIC_AUTH_MODE="supabase"`，再运行 `next.cmd build`，最后删除/恢复环境变量。
 - Next.js 开发或构建可能自动修改 `next-env.d.ts`。若确认只有生成性差异，使用 `git restore -- next-env.d.ts`；不要把它误当成功能代码提交。
+- Augusta 的 Windows 安全中心可能阻止 Miniflare 附带的未签名 `workerd.exe`，Node 会报 `spawn UNKNOWN`。Pikku 的迁移回归已改用 Node 24 内置内存 SQLite 在同一进程执行真实 SQL；不要为通过测试而关闭安全中心或手工放行未知程序。
 - `npm ci` 曾报告高危依赖和待批准安装脚本。不要直接运行 `npm audit fix --force`；先确认依赖升级对 Next.js、Cloudflare 和构建链的影响。
 - 批量验证报告固定写入 `D:\Downloads\Pikku_Check_时间戳.txt`。
 - 云端 scratch 工作区可能被平台维护清理；若本地克隆消失，应从 GitHub 的最新功能分支重新克隆／恢复，不推断为用户删除，也不从旧输出手工重建代码。
@@ -266,6 +269,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 当前 Miniflare D1 测试中的 `db.exec()` 可能把多行建表 SQL 按行拆开并报 `incomplete input`；测试夹具使用 `db.batch([db.prepare(...)])`，与 Worker 的实际执行方式一致。该错误不是迁移 SQL 本身失败。
 - 云端安全策略会拒绝含 `rm -f` 的整条命令，即使目标只是旧交接包；生成 bundle、报告等构建产物时使用带日期／版本的新文件名，不先执行强制删除。
 - 云端工作副本可能只配置某一条远端分支的窄 `remote.origin.fetch`。此时 `git fetch origin <branch>` 只更新 `FETCH_HEAD`，随后合并 `origin/<branch>` 会报 `not something we can merge`；先 `git merge --ff-only FETCH_HEAD`，再把该分支 refspec 加入 `remote.origin.fetch` 并设置 upstream。
+- 云端直接调用 `npx wrangler deploy --dry-run` 可能触发网络审批而被取消；仓库已有依赖时改用 `node node_modules/wrangler/bin/wrangler.js deploy --dry-run`，并关闭 Wrangler 指标上报，不把审批层拦截误判为构建失败。
 
 ### 浏览器、React 与本地 API
 
@@ -291,6 +295,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 该结果证明 PowerShell 5.1 兼容版脚本可运行；由于 Transcript 未收齐原生命令明细，脚本随后增加显式日志管道，下一次报告需确认完整构建输出已进入 TXT。
 - 2026-07-31 08:21 第二次完整运行再次 7/7 通过，原生命令、TypeScript 和 Next.js 构建明细均已写入报告，最终 Git 工作区干净。实测版本：Node `24.18.0`、npm `11.16.0`、Next.js `16.2.10`。
 - 2026-07-31 08:46 第三次 Augusta 批量验证 7/7 通过，报告中的 Next.js Unicode 符号正常，最终工作区干净；随后 Firefox 浏览器验收通过，P1 多语言外壳正式完成。
+- 2026-08-04 17:18，Augusta 报告 `Pikku_Check_20260804_171816.txt` 为 7/8：TypeScript、生产构建、格式与工作区均通过，账号 Firefox 验收成功；唯一失败是 Windows 安全中心阻止 Miniflare 启动 `workerd.exe`，导致迁移测试 `spawn UNKNOWN`，不是网站或迁移逻辑失败。
 
 ## 14. 记忆更新日志
 
@@ -333,3 +338,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：云端工作区无法直接 Git push 时，P3.1 使用完整 Git bundle 交接给 Augusta，不复制散乱代码：用户从 bundle 导入到独立本地分支，再通过既有 SSH 推送 `agent/pikku-vocab-trainer`；远端分支出现后由连接器创建以 P3 分支为 base 的 Draft PR。bundle 必须在最后一次提交后重建并校验 SHA-256。
 - 2026-08-04：Augusta 已从校验 bundle 导入并通过 SSH 推送 `agent/pikku-vocab-trainer@89929f0`；创建 Draft PR #16，以 PR #14 的 P3 分支为 base，GitHub 确认可自动合并。Cloudflare Preview `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/` 已上线；首页、`/api/me`、`/api/auth-config`、`/api/questions` 的未登录冒烟均返回 200。下一步为 Augusta 批量检查与 Firefox 登录／背词验收。
 - 2026-08-04：同步 GitHub 连接器生成的文档提交时，云端 clone 因窄 fetch refspec 没有把指定分支识别为可跟踪远端分支；使用 `FETCH_HEAD` 快进后补充该分支 refspec 与 upstream，恢复干净的本地／远端跟踪关系。
+- 2026-08-04：账号 Preview 验收成功。按用户决定把背词范围改为等级累积：日语 N2 包含 N4–N2，西班牙语 C2 包含 A1–C2，拉丁语中级／混合／进阶同样包含较低等级；页面显示实际覆盖范围。
+- 2026-08-04：Augusta 的迁移测试因 Windows 安全中心阻止 `workerd.exe` 而失败。回归测试改用 Node 24 内置内存 SQLite 和轻量 D1 适配器直接调用 Worker `ensureSchema`，无需降低系统安全策略；15/15 测试、TypeScript、生产构建和 Wrangler 4.110.0 dry-run 在云端通过。

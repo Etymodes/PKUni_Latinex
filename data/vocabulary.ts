@@ -104,15 +104,25 @@ const spanishCards: VocabularyCard[] = ([
 
 export const vocabularyCards = [...latinCards, ...japaneseCards, ...spanishCards];
 
+const cumulativeVocabularyLevels: Record<LanguageCode, readonly LanguageLevel[]> = {
+  la: ["elementary", "intermediate", "advanced"],
+  ja: ["n4", "n3", "n2", "n1"],
+  es: ["a1", "a2", "b1", "b2", "c1", "c2"],
+};
+
 export function vocabularyKey(language: LanguageCode, term: string) {
   return `${language}:${term}`;
 }
 
+export function vocabularyLevelsFor(language: LanguageCode, level: LanguageLevel) {
+  const levels = cumulativeVocabularyLevels[language];
+  const selected = language === "la" && level === "mixed" ? "intermediate" : level;
+  const index = levels.indexOf(selected);
+  return index < 0 ? [] : levels.slice(0, index + 1);
+}
+
 export function vocabularyMatchesLevel(card: VocabularyCard, level: LanguageLevel) {
-  if (card.language === "la" && level === "mixed") {
-    return card.level === "elementary" || card.level === "intermediate";
-  }
-  return card.level === level;
+  return vocabularyLevelsFor(card.language, level).includes(card.level);
 }
 
 export function adaptiveVocabularyWeight(stat?: VocabularyStat, recentlyShown = false) {
