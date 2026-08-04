@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-01
+更新日期：2026-08-03
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -46,6 +46,8 @@
 - Cloudflare Workers 负责生产部署和 API；Supabase Auth 负责身份。
 - 学习进度采取本地优先、登录后云端同步。
 - 当前页面仍以 `app/page.tsx` 为主；短期不拆微服务、不引入全局状态库、不引入图数据库、不更换框架。
+- 自适应背词沿用现有页面、D1 词汇统计和账号偏好，不引入模型服务或第三方记忆算法依赖。
+- 首版透明权重：未见词保持探索权重；错误率高的词提高权重；熟词降低但不永久移除；最近四张词卡暂时降权。
 - 多语言采用共享网站外壳＋语言配置＋各语言独立题库/资源/等级。
 - 核心语言类型：`"la" | "ja" | "es"`。
 - 旧题目没有 `language` 字段时必须按拉丁语 `la` 处理，保证向后兼容。
@@ -69,6 +71,9 @@
 - 退出后显示本地进度、重新登录恢复错题已实测；收藏同步曾出现问题，后续代码已加入合并逻辑，仍需持续回归。
 - 首页随机词源曾因 SSR/客户端随机值不同产生 hydration 错误。固定方案：初值使用 `0`，挂载后在 `useEffect` 中随机化。
 - 本地纯 Next 开发模式出现 `/api/me`、`/api/questions`、`/api/auth-config` 404 属预期，因为 Worker API 未加载；认证与同步应在 Cloudflare Preview/正式站检查。
+- P3.1 分支已加入三语自适应背词：56 张分级种子词卡、无限连续轮次、“记得／忘了”反馈、纯单词与单词＋短语境两种显示模式、游客本机记录及账号同步。
+- “无限”指训练轮次不设每日上限，不表示首版已有无限个不同词目；词库后续持续扩充。
+- 词灵 Cling 公开页面宣称无限背词、个性化推词和造句，但未找到公开源码或足以复现的算法说明。Pikku 只学习可观察的产品逻辑，使用自己的透明权重，不声称复制其强化学习或“最优”算法。
 
 ## 6. Git 当前基线
 
@@ -79,6 +84,7 @@
 - PR #12：`feat: establish Pikku multilingual foundation` 已于 2026-08-01 合并到 `main`，合并提交为 `5cda856`。Cloudflare Workers Preview、云浏览器冒烟测试、Augusta 批量检查和 Firefox 最终复验均已通过；PR #11 的 Livy 新题、词典语言筛选和周度统计也已一并保留。
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
 - Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
+- P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -105,6 +111,7 @@ P1 代码提交：
 
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：进行中。把当前语言与等级写入账号偏好；进度、收藏与词汇统计按语言写入 D1；游客记录在登录后与云端安全合并；旧拉丁语账号数据自动迁移。
+- P3.1：开发中。三语自适应背词、两种显示模式及账号偏好同步；首批 56 张词卡覆盖拉丁语初／中／进阶、日语 N4–N1、西班牙语 A1–C2。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -200,11 +207,16 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - Next.js 开发或构建可能自动修改 `next-env.d.ts`。若确认只有生成性差异，使用 `git restore -- next-env.d.ts`；不要把它误当成功能代码提交。
 - `npm ci` 曾报告高危依赖和待批准安装脚本。不要直接运行 `npm audit fix --force`；先确认依赖升级对 Next.js、Cloudflare 和构建链的影响。
 - 批量验证报告固定写入 `D:\Downloads\Pikku_Check_时间戳.txt`。
+- 云端 scratch 工作区可能被平台维护清理；若本地克隆消失，应从 GitHub 的最新功能分支重新克隆／恢复，不推断为用户删除，也不从旧输出手工重建代码。
+- 云端执行 npm 辅助命令若因 `/root/.npm` 不可写失败，显式使用 `npm --cache /tmp/npm-cache ...`。
+- 云端 Wrangler 若因 `/root/.config` 不可写而报日志目录错误，使用 `XDG_CONFIG_HOME=/tmp/wrangler-config HOME=/tmp/wrangler-home`；这是工具日志路径权限，不是 Worker 或 D1 故障。
+- 云端 scratch 直接运行 `next dev` 可能因 `uv_interface_addresses` 失败；显式使用 `next dev --hostname 127.0.0.1` 可正常启动。该限制不适用于 Augusta。
 
 ### 浏览器、React 与本地 API
 
 - 首页随机词源若在 SSR 初始渲染中调用 `Math.random()`，服务端和客户端文本不同，会触发 hydration mismatch。正确做法是确定性初值 `0`，挂载后的 `useEffect` 再随机化。
 - 本地 `next dev` 下 `/api/me`、`/api/questions`、`/api/auth-config` 返回 404，是因为 Cloudflare Worker API 未加载；不要误判为生产 API 消失。登录、同步和 Worker API 要在 Preview 或正式站验证。
+- 云浏览器会拦截开发容器的 `127.0.0.1` loopback，因此不能用云浏览器替代 Augusta Firefox 检查未部署分支；先完成静态／构建验证，推送 Preview 后再做云浏览器与 Augusta 双重验收。
 - 登录窗口曾因定位在顶栏容器内而只能覆盖顶栏，矮屏时也会越界。模态框必须相对视口显示、内容区域可滚动，并在打开时锁定页面背景滚动。
 
 ### 账号、同步与部署
@@ -213,6 +225,9 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 错题进度已能恢复；收藏曾出现未同步，虽然加入了合并逻辑，仍属于每次认证/数据模型改动后的固定回归项。
 - Cloudflare nameserver、Custom Domain 和 Universal SSL 变更存在传播等待时间；域名从 HTTP 可用到 HTTPS 正常曾经历等待。传播期间先检查状态，不重复删除重配。
 - Cloudflare Preview 用于合并前浏览器验证；生产域名保持 `https://pikku.qzz.io/`。
+- 2026-08-01 本地登录“处理中”排查到 Supabase 免费项目因低活跃自动暂停，状态为 `INACTIVE`，不是前端登录代码死循环。恢复过程经历 `COMING_UP`／`RESTORING`，最终为 `ACTIVE_HEALTHY`。
+- 恢复前数据库仍有 2 个认证账号；恢复后伪造密码登录正常返回 `Invalid login credentials`，说明 Auth 服务已响应且旧账号未丢失。
+- 登录再次卡住时先查 Supabase 项目状态和 Auth 请求／日志，再改代码；不要设置伪造流量“保活”。单看原始 health URL 可能误导，项目状态与真实 Auth 请求更可靠。
 
 ### 当前验证基线
 
@@ -249,3 +264,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-01：Augusta 批量验证脚本新增 Worker Node 单元测试步骤；P3 分支起统一报告共 8 项，继续使用 `npm.cmd` 与 Windows PowerShell 5.1 兼容写法。
 - 2026-08-01：创建 Draft PR #14 `feat: sync multilingual account records`；GitHub 确认可自动合并，Cloudflare Workers 构建成功。稳定分支预览为 `https://agent-pikku-p3-account-sync-pkuni-latinex.kimdac.workers.dev/`，下一步是在 Augusta Firefox 完成登录、刷新、退出／换号、收藏删除和三语言隔离验收。
 - 2026-08-01：PR #14 云浏览器未登录回归通过：拉丁语／日语／西班牙语及其等级均可切换，西班牙语 A1 在刷新后保持，登录弹窗完整位于视口内；未发现 Pikku 应用自身错误，仅有云浏览器扩展的 metadata 日志。用户在 `localhost:3000` 观察到无法完成登录，再次确认原因是纯 Next.js 开发服务器没有 Worker API；此现象不代表 Preview 或 Supabase 登录失败。
+- 2026-08-03：复核词灵 Cling 的官网、公开演示和 GitHub 搜索；只确认其公开宣称“无限背单词、个性化推词、造句”，未发现公开源码或可复现算法。Pikku 决定采用可解释的答题次数／正确率加权，并明确不冒充 Cling 算法。
+- 2026-08-03：建立 `agent/pikku-vocab-trainer` 叠加分支；加入 56 张三语分级短语境词卡、无限连续训练、个人设置的两种显示模式、游客记录登录合并及 D1 `vocab_mode` 迁移。首轮 14/14 Node 单元测试、TypeScript 和 Git 格式检查通过；5 个本地 D1 迁移及账号偏好／聚合词汇统计 SQL 冒烟通过。
+- 2026-08-03：记录云端工具防复发项：scratch 克隆被维护清理时从远端分支恢复；npm 使用 `/tmp` cache；Wrangler 使用可写的临时 XDG/HOME，避免把 `/root/.npm` 或 `/root/.config` 权限错误误判为项目故障。
+- 2026-08-03：云端 `next dev` 首次因 `uv_interface_addresses` 失败，指定 `--hostname 127.0.0.1` 后正常；云浏览器随后明确拦截 loopback，故未把云浏览器失败误判为界面缺陷，最终视觉验收仍留给部署 Preview 和 Augusta Firefox。
+- 2026-08-03：P3.1 最终本地工程验证通过：14/14 Node 单元测试、TypeScript、Next.js 16.2.10 Cloudflare 生产构建、Git 格式检查、5 个本地 D1 迁移、偏好／聚合词汇统计 SQL 冒烟和 Wrangler 4.110.0 `deploy --dry-run` 全部成功；尚未写入远端 D1、推送分支或部署 Preview。

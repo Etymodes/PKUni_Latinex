@@ -61,13 +61,24 @@ import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
 import { classicalAuthors, dictionarySources, lexiconSeed, textbookCatalog } from "@/data/resources";
+import {
+  chooseNextVocabularyCard,
+  vocabularyCards,
+  vocabularyKey,
+  vocabularyMatchesLevel,
+  type VocabularyMode,
+  type VocabularyStats,
+} from "@/data/vocabulary";
 import { apiFetch, supabase } from "@/lib/supabase";
 
-type View = "home" | "practice" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "admin";
+type View = "home" | "practice" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "settings" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
-type AccountPreference = { language: LanguageCode; level: LanguageLevel };
+type AccountPreference = { language: LanguageCode; level: LanguageLevel; vocabMode: VocabularyMode };
+type VocabularyMemory = { owner: string; stats: VocabularyStats };
+
+const GUEST_VOCABULARY_OWNER = "guest";
 
 const STORAGE = {
   progress: "latin-practica-progress-v1",
@@ -75,6 +86,8 @@ const STORAGE = {
   streak: "latin-practica-last-study-v1",
   language: "pikku-language-v1",
   languageLevel: "pikku-language-level-v1",
+  vocabularyMode: "pikku-vocabulary-mode-v1",
+  vocabularyMemory: "pikku-vocabulary-memory-v1",
 };
 
 function usePersistentState<T>(key: string, initialValue: T) {
@@ -123,7 +136,31 @@ function syncQuestion(questionId: string) {
 function validAccountPreference(value: unknown): value is AccountPreference {
   if (!value || typeof value !== "object") return false;
   const preference = value as AccountPreference;
-  return Boolean(languageConfigs[preference.language]?.levels.includes(preference.level));
+  return Boolean(languageConfigs[preference.language]?.levels.includes(preference.level))
+    && (preference.vocabMode === "word" || preference.vocabMode === "context");
+}
+
+function remoteVocabularyStats(value: unknown): VocabularyStats {
+  if (!Array.isArray(value)) return {};
+  return Object.fromEntries(value.flatMap((row) => {
+    if (!row || typeof row !== "object") return [];
+    const item = row as { language?: unknown; lemma?: unknown; seen?: unknown; correct?: unknown };
+    if (!languageConfigs[item.language as LanguageCode] || typeof item.lemma !== "string") return [];
+    const seen = Math.max(0, Number(item.seen) || 0);
+    const correct = Math.min(seen, Math.max(0, Number(item.correct) || 0));
+    return [[vocabularyKey(item.language as LanguageCode, item.lemma), { seen, correct }]];
+  }));
+}
+
+function mergeVocabularyStats(remote: VocabularyStats, local: VocabularyStats, addLocal = false) {
+  const merged = { ...remote };
+  for (const [key, stat] of Object.entries(local)) {
+    const current = merged[key] ?? { seen: 0, correct: 0 };
+    merged[key] = addLocal
+      ? { seen: current.seen + stat.seen, correct: current.correct + stat.correct }
+      : { seen: Math.max(current.seen, stat.seen), correct: Math.max(current.correct, stat.correct) };
+  }
+  return merged;
 }
 
 function formatTime(seconds: number) {
@@ -138,6 +175,8 @@ export default function App() {
   const [level, setLevel] = useState<Level>("elementary");
   const [language, setLanguage, languageReady] = usePersistentState<LanguageCode>(STORAGE.language, "la");
   const [languageLevel, setLanguageLevel, languageLevelReady] = usePersistentState<LanguageLevel>(STORAGE.languageLevel, "elementary");
+  const [vocabularyMode, setVocabularyMode, vocabularyModeReady] = usePersistentState<VocabularyMode>(STORAGE.vocabularyMode, "context");
+  const [vocabularyMemory, setVocabularyMemory, vocabularyMemoryReady] = usePersistentState<VocabularyMemory>(STORAGE.vocabularyMemory, { owner: GUEST_VOCABULARY_OWNER, stats: {} });
   const [category, setCategory] = useState<Category | "all">("all");
   const [progress, setProgress, progressReady] = usePersistentState<Progress>(STORAGE.progress, {});
   const [bookmarks, setBookmarks, bookmarksReady] = usePersistentState<string[]>(STORAGE.bookmarks, []);
@@ -152,8 +191,10 @@ export default function App() {
   const bookmarksRef = useRef(bookmarks);
   const languageRef = useRef(language);
   const languageLevelRef = useRef(languageLevel);
+  const vocabularyModeRef = useRef(vocabularyMode);
+  const vocabularyMemoryRef = useRef(vocabularyMemory);
   const languageConfig = languageConfigs[language];
-  const accountStorageReady = languageReady && languageLevelReady && progressReady && bookmarksReady;
+  const accountStorageReady = languageReady && languageLevelReady && vocabularyModeReady && vocabularyMemoryReady && progressReady && bookmarksReady;
 
   useEffect(() => {
     if (languageConfig.levels.some((item) => item === languageLevel)) return;
@@ -169,7 +210,9 @@ export default function App() {
     bookmarksRef.current = bookmarks;
     languageRef.current = language;
     languageLevelRef.current = languageLevel;
-  }, [bookmarks, language, languageLevel, progress]);
+    vocabularyModeRef.current = vocabularyMode;
+    vocabularyMemoryRef.current = vocabularyMemory;
+  }, [bookmarks, language, languageLevel, progress, vocabularyMemory, vocabularyMode]);
 
   const queueAccountSync = useCallback((operation: () => Promise<void>) => {
     setSyncStatus("syncing");
@@ -189,7 +232,7 @@ export default function App() {
     const nextSession = providedSession ?? await apiFetch("/api/me").then((response) => response.ok ? response.json() : null);
     if (!nextSession) return;
     setSession(nextSession);
-    if (!nextSession.authenticated) {
+    if (!nextSession.authenticated || !nextSession.user) {
       setSyncStatus("idle");
       return;
     }
@@ -210,6 +253,31 @@ export default function App() {
     const mergedBookmarks = [...new Set([...remoteBookmarks, ...bookmarksRef.current])];
     bookmarksRef.current = mergedBookmarks;
     setBookmarks(mergedBookmarks);
+    const remoteVocab = remoteVocabularyStats(stats?.vocab);
+    const localVocab = vocabularyMemoryRef.current;
+    const addGuestStats = localVocab.owner === GUEST_VOCABULARY_OWNER;
+    const mergedVocab = localVocab.owner === nextSession.user.email
+      ? mergeVocabularyStats(remoteVocab, localVocab.stats)
+      : mergeVocabularyStats(remoteVocab, addGuestStats ? localVocab.stats : {}, addGuestStats);
+    if (addGuestStats && Object.keys(localVocab.stats).length) {
+      const guestByLanguage: Partial<Record<LanguageCode, { lemma: string; seen: number; correctCount: number }[]>> = {};
+      for (const [key, stat] of Object.entries(localVocab.stats)) {
+        const separator = key.indexOf(":");
+        const nextLanguage = key.slice(0, separator) as LanguageCode;
+        if (separator < 1 || !languageConfigs[nextLanguage]) continue;
+        (guestByLanguage[nextLanguage] ??= []).push({ lemma: key.slice(separator + 1), seen: stat.seen, correctCount: stat.correct });
+      }
+      for (const [nextLanguage, answers] of Object.entries(guestByLanguage) as [LanguageCode, { lemma: string; seen: number; correctCount: number }[]][]) {
+        const migrated = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
+        if (!migrated.ok) {
+          setSyncStatus("error");
+          return;
+        }
+      }
+    }
+    const nextVocabularyMemory = { owner: nextSession.user.email, stats: mergedVocab };
+    vocabularyMemoryRef.current = nextVocabularyMemory;
+    setVocabularyMemory(nextVocabularyMemory);
     const unsyncedProgress = Object.entries(localProgress).filter(([id]) => !(id in remoteProgress)).map(([questionId, status]) => {
       const question = syncQuestion(questionId);
       return { questionId, status, language: question.language ?? "la", level: question.level, category: question.category };
@@ -232,17 +300,19 @@ export default function App() {
     if (validAccountPreference(stats?.preference)) {
       languageRef.current = stats.preference.language;
       languageLevelRef.current = stats.preference.level;
+      vocabularyModeRef.current = stats.preference.vocabMode;
       setLanguage(stats.preference.language);
       setLanguageLevel(stats.preference.level);
+      setVocabularyMode(stats.preference.vocabMode);
     } else {
-      const migrated = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: languageRef.current, level: languageLevelRef.current }) });
+      const migrated = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: languageRef.current, level: languageLevelRef.current, vocabMode: vocabularyModeRef.current }) });
       if (!migrated.ok) {
         setSyncStatus("error");
         return;
       }
     }
     setSyncStatus("idle");
-  }, [setBookmarks, setLanguage, setLanguageLevel, setProgress]);
+  }, [setBookmarks, setLanguage, setLanguageLevel, setProgress, setVocabularyMemory, setVocabularyMode]);
 
   const waitForAccountSync = useCallback(async () => {
     await Promise.allSettled([...pendingAccountSyncs.current]);
@@ -254,8 +324,13 @@ export default function App() {
     setProgress({});
     bookmarksRef.current = [];
     setBookmarks([]);
+    vocabularyModeRef.current = "context";
+    setVocabularyMode("context");
+    const guestVocabularyMemory = { owner: GUEST_VOCABULARY_OWNER, stats: {} };
+    vocabularyMemoryRef.current = guestVocabularyMemory;
+    setVocabularyMemory(guestVocabularyMemory);
     setSyncStatus("idle");
-  }, [setBookmarks, setProgress]);
+  }, [setBookmarks, setProgress, setVocabularyMemory, setVocabularyMode]);
 
   useEffect(() => {
     if (isStaticPublic || !accountStorageReady) return;
@@ -304,10 +379,20 @@ export default function App() {
     });
   };
 
-  const recordVocabulary = (answers: { lemma: string; correct: boolean }[]) => {
-    if (!session.authenticated) return;
+  const recordVocabulary = (nextLanguage: LanguageCode, answers: { lemma: string; correct: boolean }[]) => {
+    const currentMemory = vocabularyMemoryRef.current;
+    const nextStats = { ...currentMemory.stats };
+    for (const answer of answers) {
+      const key = vocabularyKey(nextLanguage, answer.lemma);
+      const current = nextStats[key] ?? { seen: 0, correct: 0 };
+      nextStats[key] = { seen: current.seen + 1, correct: current.correct + (answer.correct ? 1 : 0) };
+    }
+    const nextMemory = { ...currentMemory, stats: nextStats };
+    vocabularyMemoryRef.current = nextMemory;
+    setVocabularyMemory(nextMemory);
+    if (!session.authenticated || !session.user || currentMemory.owner !== session.user.email) return;
     queueAccountSync(async () => {
-      const response = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: "la", answers }) });
+      const response = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
       if (!response.ok) throw new Error("词汇统计同步失败");
     });
   };
@@ -336,12 +421,18 @@ export default function App() {
   const correct = Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && value === "correct").length;
   const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
 
-  const syncPreference = (nextLanguage: LanguageCode, nextLevel: LanguageLevel) => {
+  const syncPreference = (nextLanguage: LanguageCode, nextLevel: LanguageLevel, nextVocabularyMode: VocabularyMode = vocabularyModeRef.current) => {
     if (!session.authenticated) return;
     queueAccountSync(async () => {
-      const response = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, level: nextLevel }) });
+      const response = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, level: nextLevel, vocabMode: nextVocabularyMode }) });
       if (!response.ok) throw new Error("语言偏好同步失败");
     });
+  };
+
+  const selectVocabularyMode = (nextMode: VocabularyMode) => {
+    vocabularyModeRef.current = nextMode;
+    setVocabularyMode(nextMode);
+    syncPreference(language, languageLevel, nextMode);
   };
 
   const selectLanguage = (nextLanguage: LanguageCode) => {
@@ -377,10 +468,11 @@ export default function App() {
     { id: "mistakes", label: "复习中心", icon: RotateCcw, count: Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && (value === "wrong" || value === "review")).length + languageBookmarks.length },
     { id: "scope", label: "考试与资源", icon: Library },
     { id: "community", label: `${languageConfig.name}社区`, icon: Users },
+    { id: "settings", label: "个人设置", icon: User },
     ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: "管理员后台", icon: Settings }] : []),
   ];
-  const activeSection: View = (["exam", "vocabulary"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
-  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: `${languageConfig.name}资源库` };
+  const activeSection: View = (["exam", "vocabulary", "vocab-trainer"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
+  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", "vocab-trainer": "自适应背单词", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: `${languageConfig.name}资源库` };
 
   return (
     <div className="app-shell">
@@ -453,8 +545,8 @@ export default function App() {
 
         <main id="main-content">
           <>
-              {language === "la" && (["practice", "exam", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
-              {language !== "la" && view === "practice" && <HubTabs items={[["practice", "有序选题"]]} view={view} setView={setView} />}
+              {language === "la" && (["practice", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocab-trainer", "背单词"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+              {language !== "la" && (["practice", "vocab-trainer"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["vocab-trainer", "背单词"]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
               {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
               {view === "home" && (language === "la" ? <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} setView={setView} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.filter((question) => matchesLevel(question, languageLevel)).length} />)}
@@ -462,11 +554,13 @@ export default function App() {
               {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "exam" && (language === "la" ? <ExamMode bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
-              {view === "vocabulary" && <VocabularyLab level={level} onSubmit={recordVocabulary} />}
+              {view === "vocab-trainer" && <VocabularyTrainer language={language} level={languageLevel} mode={vocabularyMode} stats={vocabularyMemory.stats} onAnswer={recordVocabulary} setView={setView} />}
+              {view === "vocabulary" && <VocabularyLab level={level} onSubmit={(answers) => recordVocabulary("la", answers)} />}
               {view === "scope" && (language === "la" ? <Scope openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
               {view === "archive" && <Archive />}
               {view === "resources" && <ResourceLibrary />}
               {view === "community" && <CommunityPreview />}
+              {view === "settings" && <PersonalSettings config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
             </>
         </main>
@@ -482,11 +576,13 @@ function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }
     mistakes: "复习中心",
     bookmarks: "我的收藏",
     exam: "考试模拟",
+    "vocab-trainer": "自适应背单词",
     vocabulary: "词汇量测量",
     scope: "考试与资源",
     archive: "考试档案",
     resources: "教材与辞典",
     community: "交流社区",
+    settings: "个人设置",
     admin: "管理员后台",
   };
 
@@ -500,7 +596,7 @@ function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }
     <LanguageFactCard config={config} />
     <section className="language-roadmap">
       <article><span>01</span><h2>训练与复习</h2><p>有序、随机、错题和收藏复用同一稳定交互，题目按语言隔离。</p><button onClick={() => setView("practice")}>开始 {languageLevelLabels[level]} 练习</button></article>
-      <article><span>02</span><h2>考试与词汇</h2><p>{config.name}等级与首批训练题已接入；随机组卷和独立词汇统计将在题量扩充后开放。</p><button disabled>{languageLevelLabels[level]} · 扩充中</button></article>
+      <article><span>02</span><h2>自适应背词</h2><p>根据本账号的记得／忘了记录持续调整出词，当前等级可无限连续训练。</p><button onClick={() => setView("vocab-trainer")}>开始 {languageLevelLabels[level]} 背词</button></article>
       <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("home")}>返回语言首页</button></article>
     </section>
   </div>;
@@ -912,6 +1008,97 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
       <div className="question-nav"><button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> 上一题</button>{index < examQuestions.length - 1 ? <button className="primary-button" onClick={() => setIndex((i) => i + 1)}>下一题 <ArrowRight size={17} /></button> : <button className="primary-button" onClick={() => setFinished(true)}>完成并交卷 <Check size={17} /></button>}</div>
     </div>
   );
+}
+
+function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: {
+  language: LanguageCode;
+  level: LanguageLevel;
+  mode: VocabularyMode;
+  stats: VocabularyStats;
+  onAnswer: (language: LanguageCode, answers: { lemma: string; correct: boolean }[]) => void;
+  setView: (view: View) => void;
+}) {
+  const eligible = useMemo(() => vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level)), [language, level]);
+  const [cardId, setCardId] = useState("");
+  const [revealed, setRevealed] = useState(false);
+  const [recentlyShown, setRecentlyShown] = useState<string[]>([]);
+  const [sessionTotal, setSessionTotal] = useState(0);
+  const [sessionCorrect, setSessionCorrect] = useState(0);
+
+  useEffect(() => {
+    setCardId(eligible[0]?.id ?? "");
+    setRevealed(false);
+    setRecentlyShown([]);
+    setSessionTotal(0);
+    setSessionCorrect(0);
+  }, [eligible]);
+
+  const card = eligible.find((item) => item.id === cardId) ?? eligible[0];
+  const totalSeen = eligible.reduce((total, item) => total + (stats[vocabularyKey(item.language, item.term)]?.seen ?? 0), 0);
+  const totalCorrect = eligible.reduce((total, item) => total + (stats[vocabularyKey(item.language, item.term)]?.correct ?? 0), 0);
+
+  if (!card) return <div className="page empty-state"><div><BookOpen /></div><h2>本级词库正在整理</h2><p>切换等级后再试，或稍后等待词卡扩充。</p></div>;
+
+  const remember = (correct: boolean) => {
+    const key = vocabularyKey(language, card.term);
+    const current = stats[key] ?? { seen: 0, correct: 0 };
+    const nextStats = { ...stats, [key]: { seen: current.seen + 1, correct: current.correct + (correct ? 1 : 0) } };
+    const nextRecent = [...recentlyShown, card.id].slice(-4);
+    const nextCard = chooseNextVocabularyCard(eligible, nextStats, nextRecent);
+    onAnswer(language, [{ lemma: card.term, correct }]);
+    setRecentlyShown(nextRecent);
+    setSessionTotal((total) => total + 1);
+    if (correct) setSessionCorrect((total) => total + 1);
+    setCardId(nextCard?.id ?? card.id);
+    setRevealed(false);
+  };
+
+  return <div className="page vocabulary-trainer">
+    <div className="practice-header vocab-trainer-header">
+      <div><span className="eyebrow">PIKKU ADAPTĪVUM · 连续训练</span><h1>{languageLevelLabels[level]} 自适应背单词</h1><p>没有每日上限。没记住的词会提高权重，熟词仍会低频复现；最近出现的词会暂时降权，避免原地重复。</p></div>
+      <button className="secondary-button" onClick={() => setView("settings")}><Settings size={16} />显示设置</button>
+    </div>
+    <section className="vocab-session-stats" aria-label="背词统计">
+      <div><span>本轮</span><strong>{sessionTotal}</strong><small>次判断</small></div>
+      <div><span>本轮记得</span><strong>{sessionCorrect}</strong><small>{sessionTotal ? `${Math.round(sessionCorrect / sessionTotal * 100)}%` : "尚未作答"}</small></div>
+      <div><span>本级历史</span><strong>{totalSeen}</strong><small>{totalSeen ? `${Math.round(totalCorrect / totalSeen * 100)}% 记得` : `${eligible.length} 张新词卡`}</small></div>
+    </section>
+    <article className="adaptive-vocab-card">
+      <span>{languageConfigs[language].nativeName} · {mode === "context" ? "单词＋语境" : "纯单词"}</span>
+      <h2 lang={language}>{card.term}</h2>
+      {mode === "context" && <p className="vocab-context" lang={language}>{card.context}</p>}
+      {revealed ? <div className="vocab-reveal"><span>释义</span><strong>{card.meaning}</strong></div> : <button className="primary-button vocab-reveal-button" onClick={() => setRevealed(true)}>显示释义</button>}
+    </article>
+    {revealed && <div className="vocab-feedback" aria-label="记忆反馈">
+      <button onClick={() => remember(false)}><XCircle size={19} /><span><strong>忘了</strong><small>提高后续出现权重</small></span></button>
+      <button className="remembered" onClick={() => remember(true)}><CheckCircle2 size={19} /><span><strong>记得</strong><small>降低但不永久移除</small></span></button>
+    </div>}
+    <p className="fine-print">Pikku 依据本账号累计的见词次数与记得次数计算透明权重；首版不声称复现任何第三方未公开算法。</p>
+  </div>;
+}
+
+function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
+  config: LanguageConfig;
+  mode: VocabularyMode;
+  setMode: (mode: VocabularyMode) => void;
+  setView: (view: View) => void;
+  authenticated: boolean;
+}) {
+  return <div className="page settings-page">
+    <div className="practice-header"><div><span className="eyebrow">RATIO PERSONĀLIS · PERSONAL</span><h1>个人设置</h1><p>设置适用于拉丁语、日语和西班牙语背词训练；切换语言时无需重复调整。</p></div></div>
+    <section className="settings-panel">
+      <div className="settings-copy"><BookOpen /><div><h2>背单词显示模式</h2><p>{authenticated ? "当前设置会随学习账号同步。" : "当前为游客状态，设置和记忆记录保存在本机；登录后可写入账号。"}</p></div></div>
+      <div className="vocab-mode-options" role="radiogroup" aria-label="背单词显示模式">
+        <button role="radio" aria-checked={mode === "word"} className={mode === "word" ? "active" : ""} onClick={() => setMode("word")}>
+          <span><strong>纯单词记忆</strong><small>只显示词目，减少提示干扰。</small></span><Check size={18} />
+        </button>
+        <button role="radio" aria-checked={mode === "context"} className={mode === "context" ? "active" : ""} onClick={() => setMode("context")}>
+          <span><strong>纯单词＋语境</strong><small>词目下方用小字显示一条短例句。</small></span><Check size={18} />
+        </button>
+      </div>
+      <div className="settings-action"><span>当前语言：{config.nativeName} · {config.name}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>开始背单词 <ArrowRight size={17} /></button></div>
+    </section>
+  </div>;
 }
 
 function VocabularyLab({ level, onSubmit }: { level: Level; onSubmit: (answers: { lemma: string; correct: boolean }[]) => void }) {

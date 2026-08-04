@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步开发中
+状态：P3 多语言账户同步验收中；P3.1 自适应背词开发中
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 当前主分支基线：`9d6cff3`（PR #13 已合并）
@@ -310,7 +310,18 @@ user_id + language + lemma
 
 - 有序选题
 - 随机练习
+- 自适应背单词
 - 词汇量测试
+
+自适应背词首版规则：
+
+- 拉丁语、日语、西班牙语都按当前等级筛词；拉丁语“混合难度”合并初级和中级。
+- 不设每日训练数量上限，用户可持续点击“记得／忘了”进入下一词。
+- 未见词保持较高探索权重；错误率高的词提高权重；熟词降低但不永久移除；最近四张词卡暂时降权。
+- 个人设置提供“纯单词记忆”和“纯单词＋语境”两种模式；语境模式只显示一条短例句，不提前暴露释义。
+- 游客记录保存在本机；登录后按账号和语言写入 `vocab_stats_by_language`，显示模式写入账号偏好。
+- 公开资料只证明词灵 Cling 宣称“无限背单词、个性化推词、造句”；没有找到其公开源码或足以复现的算法说明。Pikku 使用自己的透明权重，不声称复制 Cling 的强化学习或“最优”算法。
+- 调研入口：`https://www.clingword.com/`、`https://www.bilibili.com/video/BV1J4EjzyExE/`。
 
 ### 6.3 复习
 
@@ -552,6 +563,16 @@ draft → reviewed → published → archived
 - 词汇量统计按语言隔离
 - 修复并回归收藏同步
 
+### P3.1：个性化自适应背词
+
+状态：开发中；叠加分支 `agent/pikku-vocab-trainer`
+
+- 56 张三语分级种子词卡，全部配有短语境
+- 无每日上限的连续训练
+- 依据账号累计见词／记得次数计算透明权重
+- 纯单词、单词＋语境两种个人设置
+- 游客记录登录合并和账号偏好同步
+
 ### P4：管理员后台
 
 - 语言筛选
@@ -612,8 +633,10 @@ draft → reviewed → published → archived
 当前分支：
 
 ```text
-agent/pikku-p3-account-sync
+agent/pikku-vocab-trainer
 ```
+
+该分支叠加在尚待 Augusta Firefox 验收的 `agent/pikku-p3-account-sync` / Draft PR #14 上；P3 未合并前不把 P3.1 直接合入 `main`。
 
 规则：
 
@@ -628,14 +651,11 @@ agent/pikku-p3-account-sync
 
 ## 13. 当前下一步
 
-1. 建立 P3 分语言 D1 记录表并自动迁移旧拉丁语数据。
-2. 同步账号当前语言与等级偏好。
-3. 登录时合并游客本地进度、收藏与云端记录，云端同题记录优先。
-4. 让进度、收藏和词汇统计显式携带语言代码。
-5. 完成单元测试、TypeScript、Cloudflare 生产构建与格式检查。
-6. 推送 Draft PR，等待 Cloudflare Preview。
-7. 在 Augusta Firefox 验证登录、退出、换号、刷新和三语言隔离。
-8. 验收通过后合并，再进入 P4 管理员后台。
+1. 先在 Augusta Firefox 完成 P3 Draft PR #14 的登录、退出／换号、刷新、收藏删除和三语言隔离验收，再合并 P3。
+2. 完成 P3.1 自适应背词的单元测试、D1 迁移、TypeScript、生产构建和 Cloudflare 干跑。
+3. P3 合并后把 `agent/pikku-vocab-trainer` 更新到最新 `main`，再推送独立 Draft PR。
+4. 在 Cloudflare Preview 与 Augusta Firefox 验证三语等级、连续出词、两种显示模式、刷新、退出和换号隔离。
+5. 验收后合并 P3.1，再进入 P4 管理员后台。
 
 ---
 
@@ -647,6 +667,7 @@ agent/pikku-p3-account-sync
 - 拉丁语旧功能完整保留。
 - 日语 N4–N1 和西班牙语 A1–C2 等级结构可用。
 - 三种语言都有可运行的训练种子数据。
+- 三种语言都可进行按账号适配的无限连续背词，并可切换纯单词／短语境模式。
 - 题目、错题、收藏和统计不会跨语言混淆。
 - 管理员能够按语言和等级管理题目。
 - Firefox 与 Cloudflare 构建通过。

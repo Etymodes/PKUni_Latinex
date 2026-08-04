@@ -50,6 +50,19 @@ test("multilingual account preferences accept only configured language levels", 
   assert.equal(__test.validPreference("de", "a1"), false);
 });
 
+test("vocabulary settings accept the two published display modes", () => {
+  assert.equal(__test.validVocabularyMode("word"), true);
+  assert.equal(__test.validVocabularyMode("context"), true);
+  assert.equal(__test.validVocabularyMode("sentence"), false);
+});
+
+test("vocabulary events normalize live answers and aggregated guest records", () => {
+  assert.deepEqual(__test.normalizeVocabularyAnswer({ lemma: " casa ", correct: true }), { lemma: "casa", seen: 1, correct: 1 });
+  assert.deepEqual(__test.normalizeVocabularyAnswer({ lemma: "学生", seen: 7, correctCount: 5 }), { lemma: "学生", seen: 7, correct: 5 });
+  assert.equal(__test.normalizeVocabularyAnswer({ lemma: "casa", seen: 2, correctCount: 3 }), null);
+  assert.equal(__test.normalizeVocabularyAnswer({ lemma: "", correct: false }), null);
+});
+
 test("progress records retain language while legacy records default to Latin", () => {
   assert.deepEqual(__test.normalizeProgressRecord({ questionId: "ja-n1-001", status: "correct", language: "ja", level: "n1", category: "syntax" }), {
     questionId: "ja-n1-001", status: "correct", language: "ja", level: "n1", category: "syntax",
