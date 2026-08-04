@@ -347,6 +347,18 @@ async function ensureSchema(env) {
       env.DB.prepare("INSERT OR IGNORE INTO app_migrations (version) VALUES ('multilingual-sync-v1')"),
     ]);
   }
+  const vocabularyMigrated = await env.DB.prepare("SELECT version FROM app_migrations WHERE version='vocabulary-trainer-v1'").first();
+  if (!vocabularyMigrated) {
+    const columns = await env.DB.prepare("PRAGMA table_info(user_preferences)").all();
+    if (!columns.results.some((column) => column.name === "vocab_mode")) {
+      try {
+        await env.DB.prepare("ALTER TABLE user_preferences ADD COLUMN vocab_mode TEXT NOT NULL DEFAULT 'context'").run();
+      } catch (error) {
+        if (!String(error).toLowerCase().includes("duplicate column name")) throw error;
+      }
+    }
+    await env.DB.prepare("INSERT OR IGNORE INTO app_migrations (version) VALUES ('vocabulary-trainer-v1')").run();
+  }
   schemaInitialized = true;
   return true;
 }

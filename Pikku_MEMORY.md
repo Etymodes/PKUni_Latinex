@@ -83,6 +83,7 @@
 - 本地纯 Next 开发模式出现 `/api/me`、`/api/questions`、`/api/auth-config` 404 属预期，因为 Worker API 未加载；认证与同步应在 Cloudflare Preview/正式站检查。
 - P3.1 分支已加入三语自适应背词：56 张分级种子词卡、无限连续轮次、“记得／忘了”反馈、纯单词与单词＋短语境两种显示模式、游客本机记录及账号同步。
 - 进入背词页后的首张词卡也必须在客户端挂载后按账号统计加权选择；SSR 初始渲染仍保持确定，不能为首张随机化重新引入 hydration mismatch。
+- P3.1 Worker 会在首次 API 请求时检查旧 `user_preferences` 表是否缺少 `vocab_mode`，缺少则安全补列并记录 `vocabulary-trainer-v1`；这样 Branch Preview 不依赖预先手工执行远端迁移，正式迁移文件仍保留。
 - “无限”指训练轮次不设每日上限，不表示首版已有无限个不同词目；词库后续持续扩充。
 - 词灵 Cling 公开页面宣称无限背词、个性化推词和造句，但未找到公开源码或足以复现的算法说明。Pikku 只学习可观察的产品逻辑，使用自己的透明权重，不声称复制其强化学习或“最优”算法。
 
@@ -259,6 +260,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 云端执行 npm 辅助命令若因 `/root/.npm` 不可写失败，显式使用 `npm --cache /tmp/npm-cache ...`。
 - 云端 Wrangler 若因 `/root/.config` 不可写而报日志目录错误，使用 `XDG_CONFIG_HOME=/tmp/wrangler-config HOME=/tmp/wrangler-home`；这是工具日志路径权限，不是 Worker 或 D1 故障。
 - 云端 scratch 直接运行 `next dev` 可能因 `uv_interface_addresses` 失败；显式使用 `next dev --hostname 127.0.0.1` 可正常启动。该限制不适用于 Augusta。
+- 当前 Miniflare D1 测试中的 `db.exec()` 可能把多行建表 SQL 按行拆开并报 `incomplete input`；测试夹具使用 `db.batch([db.prepare(...)])`，与 Worker 的实际执行方式一致。该错误不是迁移 SQL 本身失败。
 
 ### 浏览器、React 与本地 API
 
@@ -322,3 +324,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：把固定 Google Drive 补丁目录和“每个里程碑完成前必须审查”的协议写入长期记忆；首次读取 `Pikku_WeeklyPatch_2026-08-04.md` 并与 GitHub 对照，确认 PR #15 已合并、PR #14 仍为 Draft，接受内容审核与教材映射任务进入 P3.2，同时记录当前 P3.1 分支不能直接重复导入 PR #15 数据。
 - 2026-08-04：角色设定更新为当代北京共同世界。英文角色增加中文名崔路加、安雅敏；群聊定名“五方言路 · Five Voices, One Trail”；每种语言双引导角色采用相距较远的语言地区出身、曲折后来京并与用户圈交集的规则，古典语言角色改为现代教会／古典教育背景；正式说明语言确定直接跟随界面语言，不再单设解释语言。
 - 2026-08-04：P3.1 发布前复核发现背词页首张固定为本级第一词，账号权重只从第二张生效；已改为挂载后按账号统计选择首张，同时保留 SSR 确定性。复验 14/14 Node 测试、TypeScript、Next.js 生产构建、Wrangler 4.110.0 dry-run 和 Git 格式检查全部通过；云端工作区缺少 GitHub CLI，本轮未推送或创建 Draft PR。
+- 2026-08-04：P3.1 部署链复核发现 Branch Preview 不会自动运行远端 D1 迁移，旧 `user_preferences` 可能缺少 `vocab_mode`。Worker 已加入幂等运行时补列和迁移标记，并新增真实 Miniflare+D1 旧表回归测试。测试夹具初次因多行 `db.exec()` 被拆行而报 `incomplete input`，改用 `db.batch/db.prepare` 后通过；最终 15/15 Node 测试、TypeScript、生产构建、Wrangler dry-run 与 Git 格式检查全部通过。

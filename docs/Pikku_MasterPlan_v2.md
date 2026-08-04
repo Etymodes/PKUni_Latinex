@@ -636,6 +636,7 @@ draft → reviewed → published → archived
 - 每次进入训练时，首张和后续词卡都按账号权重选择；首张只在客户端挂载后选择，保持 SSR 水合稳定
 - 纯单词、单词＋语境两种个人设置
 - 游客记录登录合并和账号偏好同步
+- Worker 首次请求会为旧 D1 的账号偏好表安全补充 `vocab_mode`，Branch Preview 不依赖预先手工迁移；Miniflare 旧表回归测试已覆盖
 
 ### P3.2：每周内容复核与补丁接入
 
