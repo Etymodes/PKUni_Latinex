@@ -97,6 +97,7 @@
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
 - Draft PR #14：`feat: sync multilingual account records`，分支 `agent/pikku-p3-account-sync`，当前提交 `1c61e60`；Cloudflare Workers Preview 已部署成功，等待 Augusta Firefox 账号同步验收。
 - P3.1 叠加分支：`agent/pikku-vocab-trainer`，基于 P3 Draft PR #14；在 P3 验收合并前不直接合入 `main`。
+- Draft PR #16：`feat: add adaptive vocabulary training`，base 为 `agent/pikku-p3-account-sync`、head 为 `agent/pikku-vocab-trainer@89929f0`；GitHub 确认可自动合并。稳定 Preview 为 `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/`，等待 Augusta 批量检查与 Firefox 登录／背词验收。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；当前 P3／P3.1 叠加线尚未包含该提交，合流时必须先吸收最新 `main` 并检查题目 ID 和词条重复。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
@@ -230,6 +231,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 已实现且不得重复：PR #15 已加入的 `ja-n1-002`、`i-syn-07`、`es-b1-002`、最近 14 个词条和最新批次统计。
 - 处理结论：不在当前 P3.1 叠加分支实现；P3／P3.1 收口后从最新 `main` 创建 P3.2 独立分支，并在实现前再次检查 ID、语义与数据重复。
 
+2026-08-04 P3.1 Preview 验收前复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 与 PR #16 均为可自动合并的开放 Draft；原分类和 P3.2 排期继续有效，无冲突或需要用户决定的新条目。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
@@ -327,3 +330,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：P3.1 发布前复核发现背词页首张固定为本级第一词，账号权重只从第二张生效；已改为挂载后按账号统计选择首张，同时保留 SSR 确定性。复验 14/14 Node 测试、TypeScript、Next.js 生产构建、Wrangler 4.110.0 dry-run 和 Git 格式检查全部通过；云端工作区缺少 GitHub CLI，本轮未推送或创建 Draft PR。
 - 2026-08-04：P3.1 部署链复核发现 Branch Preview 不会自动运行远端 D1 迁移，旧 `user_preferences` 可能缺少 `vocab_mode`。Worker 已加入幂等运行时补列和迁移标记，并新增真实 Miniflare+D1 旧表回归测试。测试夹具初次因多行 `db.exec()` 被拆行而报 `incomplete input`，改用 `db.batch/db.prepare` 后通过；最终 15/15 Node 测试、TypeScript、生产构建、Wrangler dry-run 与 Git 格式检查全部通过。
 - 2026-08-04：云端工作区无法直接 Git push 时，P3.1 使用完整 Git bundle 交接给 Augusta，不复制散乱代码：用户从 bundle 导入到独立本地分支，再通过既有 SSH 推送 `agent/pikku-vocab-trainer`；远端分支出现后由连接器创建以 P3 分支为 base 的 Draft PR。bundle 必须在最后一次提交后重建并校验 SHA-256。
+- 2026-08-04：Augusta 已从校验 bundle 导入并通过 SSH 推送 `agent/pikku-vocab-trainer@89929f0`；创建 Draft PR #16，以 PR #14 的 P3 分支为 base，GitHub 确认可自动合并。Cloudflare Preview `https://agent-pikku-vocab-trainer-pkuni-latinex.kimdac.workers.dev/` 已上线；首页、`/api/me`、`/api/auth-config`、`/api/questions` 的未登录冒烟均返回 200。下一步为 Augusta 批量检查与 Firefox 登录／背词验收。
