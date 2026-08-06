@@ -1,4 +1,4 @@
-import type { QuestionLevel } from "./questions";
+import type { QuestionLevel, ReviewStatus } from "./questions";
 
 export type AccessStatus = "uploaded" | "official" | "preview" | "catalogued" | "public-domain";
 
@@ -95,6 +95,70 @@ export const textbookCatalog: TextbookRecord[] = [
   },
 ];
 
+export type ResourceChapterMapping = {
+  id: string;
+  title: string;
+  chapter: string;
+  grammarTargets: string[];
+  vocabularyTargets: string[];
+  exerciseLogic: string;
+  publicDomainStatus: string;
+  licenseNote: string;
+};
+
+export const resourceChapterMappings: ResourceChapterMapping[] = [
+  {
+    id: "wheelock-workbook-private",
+    title: "Wheelock’s Latin Workbook",
+    chapter: "Ch. 1–6 · 私人学习进度映射",
+    grammarTargets: ["第一、二变格", "现在时系统", "形容词一致"],
+    vocabularyTargets: ["基础名词", "规则动词主要词形", "常用介词"],
+    exerciseLogic: "只登记章节知识域，公开题目重新设计语境、干扰项和解析。",
+    publicDomainStatus: "版权教材 · 元数据",
+    licenseNote: "不公开扫描页、教材原题、答案或私人批注。",
+  },
+  {
+    id: "llpsi-fr-sequence",
+    title: "Lingua Latīna per sē illūstrāta: Familia Rōmāna",
+    chapter: "Cap. I–XII · 连续阅读桥接",
+    grammarTargets: ["格功能渐进", "关系从句", "代词与一致"],
+    vocabularyTargets: ["家庭", "地理", "日常动作"],
+    exerciseLogic: "抽取理解目标与复现顺序，另写短场景和词形判断题。",
+    publicDomainStatus: "版权教材 · 内部映射",
+    licenseNote: "仅发布章节索引和原创练习，不复制连续正文。",
+  },
+  {
+    id: "horace-public-original",
+    title: "Horatius · Carmina",
+    chapter: "公版拉丁原文／现代详注分离",
+    grammarTargets: ["诗体语序", "省略", "虚拟式语气"],
+    vocabularyTargets: ["诗歌关键词", "神话与伦理语义"],
+    exerciseLogic: "公版原文可按版本标识引用；现代中文详注只作观点索引并重新表述。",
+    publicDomainStatus: "原文公版 · 现代注释受版权保护",
+    licenseNote: "逐条标明原文版本、译者／注者与 Pikku 原创分析。",
+  },
+  {
+    id: "latin-core-public",
+    title: "Public Latin Core Vocabulary",
+    chapter: "跨教材核心词表",
+    grammarTargets: ["词典回溯", "主要词形", "搭配识别"],
+    vocabularyTargets: ["高频动词", "功能词", "跨体裁核心名词"],
+    exerciseLogic: "以公版词典核验词典形，再生成新的语境选义和构词题。",
+    publicDomainStatus: "公版数据 · 待逐条核验",
+    licenseNote: "保留来源与核验状态，不复制现代版权词典释文。",
+  },
+  {
+    id: "jlpt-n1-private-mock",
+    title: "JLPT N1 Weekly Review",
+    chapter: "私人模拟反馈 · 去身份化",
+    grammarTargets: ["作用域", "条件联动", "语用纠错"],
+    vocabularyTargets: ["効率／精度／信頼性／効果", "学术表达"],
+    exerciseLogic: "只保留可泛化错因，重新编写句子、选项和解释并进入人工审核。",
+    publicDomainStatus: "原创复核题 · 草稿",
+    licenseNote: "公开代码不含个人答案、录音、完整日志或可识别信息。",
+  },
+];
+
 export type AuthorNode = {
   id: string;
   name: string;
@@ -171,6 +235,8 @@ export type LexiconEntry = {
   pie: string;
   derivatives: string[];
   addedOn?: string;
+  batch: string;
+  reviewStatus: ReviewStatus;
   dictionaryStatus: Record<DictionaryId, "待核" | "已核">;
 };
 
@@ -189,6 +255,7 @@ const foundationLexicon: LexiconEntry[] = [
   ["videō", "videō, vidēre, vīdī, vīsum", "看见；理解", "动词", "PIE *weyd- ‘看见、知道’", ["video", "evidence", "vision"]],
 ].map(([lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
   language: "la" as const, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
+  batch: "foundation", reviewStatus: "published",
   dictionaryStatus: { ...pendingDictionaryStatus },
 })) as LexiconEntry[];
 
@@ -244,6 +311,7 @@ const weeklyLexicon: LexiconEntry[] = [
 ].map(([language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
   language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
   addedOn: "2026-07-26",
+  batch: "2026-07-26", reviewStatus: "draft",
   dictionaryStatus: { ...pendingDictionaryStatus },
 })) as LexiconEntry[];
 
@@ -265,6 +333,7 @@ const weeklyLexicon20260802: LexiconEntry[] = [
 ].map(([language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives]) => ({
   language, lemma, principalParts, gloss, partOfSpeech, pie, derivatives,
   addedOn: "2026-08-02",
+  batch: "2026-08-02", reviewStatus: "draft",
   dictionaryStatus: { ...pendingDictionaryStatus },
 })) as LexiconEntry[];
 

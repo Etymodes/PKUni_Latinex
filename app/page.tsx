@@ -53,6 +53,7 @@ import {
   type LanguageCode,
   type Level,
   type Question,
+  type ReviewStatus,
 } from "@/data/questions";
 import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
 import { languageFacts } from "@/data/language-facts";
@@ -60,7 +61,7 @@ import { multilingualQuestions } from "@/data/multilingual-questions";
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
-import { classicalAuthors, dictionarySources, lexiconSeed, textbookCatalog } from "@/data/resources";
+import { classicalAuthors, dictionarySources, lexiconSeed, resourceChapterMappings, textbookCatalog } from "@/data/resources";
 import {
   chooseNextVocabularyCard,
   vocabularyCards,
@@ -80,6 +81,7 @@ type AccountPreference = { language: LanguageCode; level: LanguageLevel; vocabMo
 type VocabularyMemory = { owner: string; stats: VocabularyStats };
 
 const GUEST_VOCABULARY_OWNER = "guest";
+const reviewStatusLabels: Record<ReviewStatus, string> = { draft: "内容草稿", reviewed: "已复核", published: "已发布", archived: "已归档" };
 
 const STORAGE = {
   progress: "latin-practica-progress-v1",
@@ -882,6 +884,8 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   const [revealed, setRevealed] = useState(false);
   const [translation, setTranslation] = useState("");
   const sourceStatusLabel = question.sourceStatus === "original" ? "原创复核题" : question.sourceStatus === "public-domain" ? "公版原文" : question.sourceStatus === "official-framework" ? "官方框架" : null;
+  const reviewStatusLabel = question.reviewStatus ? reviewStatusLabels[question.reviewStatus] : null;
+  const isMorphologyCheck = question.type === "self-check" && question.category === "morphology";
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -906,7 +910,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   return (
     <article className={`question-card ${compact ? "compact" : ""}`}>
       <div className="question-meta">
-        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span>{question.skill && <span className="skill-pill">{question.skill}</span>}{sourceStatusLabel && <span className={`source-status ${question.sourceStatus}`}>{sourceStatusLabel}</span>}<span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
+        <div><span className="level-pill">{levelLabels[question.level]}</span><span>{categoryLabels[question.category]}</span>{question.skill && <span className="skill-pill">{question.skill}</span>}{sourceStatusLabel && <span className={`source-status ${question.sourceStatus}`}>{sourceStatusLabel}</span>}{reviewStatusLabel && <span className={`review-status ${question.reviewStatus}`}>{reviewStatusLabel}</span>}<span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? "取消收藏" : "收藏题目"} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
       <h2>{question.prompt}</h2>
@@ -928,17 +932,18 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
             })}
           </div>
           {!submitted ? <button className="primary-button submit-answer" onClick={submit} disabled={selected === null}>提交答案</button> : (
-            <Feedback correct={selected === question.answer} explanation={question.explanation} />
+            <Feedback correct={selected === question.answer} explanation={question.explanation} distractorExplanations={question.distractorExplanations} />
           )}
         </>
       ) : (
         <div className="self-check">
-          <label htmlFor={`translation-${question.id}`}>你的译文</label>
-          <textarea id={`translation-${question.id}`} value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="先找谓语和主句骨架，再逐层处理从句……" rows={compact ? 4 : 6} />
-          {!revealed ? <button className="primary-button" onClick={() => setRevealed(true)} disabled={!translation.trim()}>对照参考译文</button> : (
+          <label htmlFor={`translation-${question.id}`}>{isMorphologyCheck ? "你的分析" : "你的译文"}</label>
+          <textarea id={`translation-${question.id}`} value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder={isMorphologyCheck ? "写出词典形、时态、语气、人称数、语态意义和分词一致……" : "先找谓语和主句骨架，再逐层处理从句……"} rows={compact ? 4 : 6} />
+          {!revealed ? <button className="primary-button" onClick={() => setRevealed(true)} disabled={!translation.trim()}>{isMorphologyCheck ? "对照参考分析" : "对照参考译文"}</button> : (
             <div className="model-answer">
-              <span>参考译文</span><p>{question.modelAnswer}</p>
+              <span>{isMorphologyCheck ? "参考分析" : "参考译文"}</span><p>{question.modelAnswer}</p>
               <div className="analysis-box"><CircleHelp size={19} /><p>{question.explanation}</p></div>
+              <DistractorNotes items={question.distractorExplanations} />
               <div className="self-rating"><span>这句掌握了吗？</span><button className="success-button" onClick={() => onResult("correct")}><CheckCircle2 size={17} /> 基本掌握</button><button className="secondary-button" onClick={() => onResult("review")}><RotateCcw size={17} /> 需要复习</button></div>
             </div>
           )}
@@ -950,8 +955,13 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   );
 }
 
-function Feedback({ correct, explanation }: { correct: boolean; explanation: string }) {
-  return <div className={`feedback ${correct ? "correct" : "wrong"}`}><div>{correct ? <CheckCircle2 /> : <XCircle />}<strong>{correct ? "Recte! 回答正确" : "再看一次形态线索"}</strong></div><p>{explanation}</p></div>;
+function DistractorNotes({ items }: { items?: string[] }) {
+  if (!items?.length) return null;
+  return <details className="mistake-notes"><summary>错因对照</summary><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></details>;
+}
+
+function Feedback({ correct, explanation, distractorExplanations }: { correct: boolean; explanation: string; distractorExplanations?: string[] }) {
+  return <div className={`feedback ${correct ? "correct" : "wrong"}`}><div>{correct ? <CheckCircle2 /> : <XCircle />}<strong>{correct ? "Recte! 回答正确" : "再看一次形态线索"}</strong></div><p>{explanation}</p><DistractorNotes items={distractorExplanations} /></div>;
 }
 
 function QuestionCollection({ title, empty, questions: items, progress, onResult, bookmarks, setBookmarks }: { title: string; empty: string; questions: Question[]; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
@@ -1214,9 +1224,14 @@ function ResourceLibrary() {
   const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
   const [query, setQuery] = useState("");
   const [lexiconLanguage, setLexiconLanguage] = useState<"all" | "la" | "ja" | "es">("all");
+  const [lexiconBatch, setLexiconBatch] = useState("all");
+  const [lexiconReviewStatus, setLexiconReviewStatus] = useState<"all" | ReviewStatus>("all");
   const periods = [...new Set(classicalAuthors.map((author) => author.period))];
+  const lexiconBatches = [...new Set(lexiconSeed.map((entry) => entry.batch))];
   const lexicon = lexiconSeed.filter((entry) =>
     (lexiconLanguage === "all" || entry.language === lexiconLanguage)
+    && (lexiconBatch === "all" || entry.batch === lexiconBatch)
+    && (lexiconReviewStatus === "all" || entry.reviewStatus === lexiconReviewStatus)
     && `${entry.lemma} ${entry.principalParts} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())
   );
   const latestLexiconBatch = lexiconSeed.reduce((latest, entry) => entry.addedOn && entry.addedOn > latest ? entry.addedOn : latest, "");
@@ -1229,22 +1244,28 @@ function ResourceLibrary() {
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>版权与改编原则</strong><p>只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。</p></div></div>
       <div className="textbook-grid">{textbookCatalog.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{book.edition}</small></div><h2>{book.title}</h2><p className="resource-byline">{book.authors}</p><p>{book.accessNote}</p><details><summary>四级难度映射</summary><dl><dt>初级</dt><dd>{book.alignment.elementary}</dd><dt>中级</dt><dd>{book.alignment.intermediate}</dd><dt>混合</dt><dd>从初级与中级任务按能力域抽取，不另造教材进度。</dd><dt>进阶</dt><dd>{book.alignment.advanced}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div>
+      <div className="section-heading resource-map-heading"><div><span>INDEX CAPITULŌRUM</span><h2>章节与原创练习映射</h2></div><small>只含元数据，不包含教材正文、答案或音频</small></div>
+      <div className="chapter-map-grid">{resourceChapterMappings.map((mapping) => <article key={mapping.id}><div><span>{mapping.publicDomainStatus}</span><small>{mapping.chapter}</small></div><h3>{mapping.title}</h3><p><strong>语法域</strong>{mapping.grammarTargets.join(" · ")}</p><p><strong>词汇域</strong>{mapping.vocabularyTargets.join(" · ")}</p><p><strong>原创化逻辑</strong>{mapping.exerciseLogic}</p><small>{mapping.licenseNote}</small></article>)}</div>
     </>}
     {tab === "authors" && <>
       <div className="resource-metrics"><div><strong>{classicalAuthors.length}</strong><span>位首批作者</span></div><div><strong>{classicalAuthors.reduce((total, author) => total + author.works.length, 0)}</strong><span>条作者—作品关系</span></div><div><strong>{periods.length}</strong><span>个历史分期</span></div></div>
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "dictionary" && <>
-      <div className="resource-metrics"><div><strong>{lexiconSeed.length}</strong><span>个词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>最近一批新增{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
+      <div className="resource-metrics"><div><strong>{lexicon.length}<small> / {lexiconSeed.length}</small></strong><span>当前筛选／全部词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>最近一批新增{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
       <div className="lexicon-language-tabs" role="tablist" aria-label="词典语言">
         {([["all", "全部"], ["la", "Latīna"], ["ja", "日本語"], ["es", "Español"]] as const).map(([id, label]) =>
           <button role="tab" aria-selected={lexiconLanguage === id} className={lexiconLanguage === id ? "active" : ""} key={id} onClick={() => setLexiconLanguage(id)}>{label}</button>
         )}
       </div>
+      <div className="lexicon-filters">
+        <label>批次<select value={lexiconBatch} onChange={(event) => setLexiconBatch(event.target.value)}><option value="all">全部批次</option>{lexiconBatches.map((batch) => <option key={batch} value={batch}>{batch === "foundation" ? "基础词库" : batch}</option>)}</select></label>
+        <label>内容状态<select value={lexiconReviewStatus} onChange={(event) => setLexiconReviewStatus(event.target.value as "all" | ReviewStatus)}><option value="all">全部状态</option>{(Object.keys(reviewStatusLabels) as ReviewStatus[]).map((status) => <option key={status} value={status}>{reviewStatusLabels[status]}</option>)}</select></label>
+      </div>
       <div className="source-card"><CircleHelp /><div><strong>词条核验规则</strong><p>每周复盘先收录本周实际接触但尚未入库的词汇，再逐条核对词典形、读音、语义、词源与例句。以下五种辞典状态只适用于拉丁语；日语和西班牙语专项词典将在多语言辞典阶段接入。</p></div></div>
       <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>
       <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索词头、读音、中文义或派生词" /></label>
-      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.language}-${entry.lemma}`} key={`${entry.language}-${entry.lemma}`}><div><small className="lexicon-language">{entry.language.toUpperCase()}</small><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生／用法提示</strong>{entry.derivatives.length ? entry.derivatives.join(" · ") : "待补充"}</p>{entry.language === "la" ? <div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div> : <div className="dictionary-checks"><span>专项词典 · 待核</span>{entry.addedOn && <span>周复盘新增 · {entry.addedOn}</span>}</div>}</article>)}</div>
+      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.language}-${entry.lemma}`} key={`${entry.language}-${entry.lemma}`}><div><small className="lexicon-language">{entry.language.toUpperCase()}</small><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生／用法提示</strong>{entry.derivatives.length ? entry.derivatives.join(" · ") : "待补充"}</p><div className="dictionary-checks lexicon-workflow"><span className={`review-status ${entry.reviewStatus}`}>{reviewStatusLabels[entry.reviewStatus]}</span><span>批次 · {entry.batch === "foundation" ? "基础词库" : entry.batch}</span></div>{entry.language === "la" ? <div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div> : <div className="dictionary-checks"><span>专项词典 · 待核</span>{entry.addedOn && <span>周复盘新增 · {entry.addedOn}</span>}</div>}</article>)}</div>
       {!lexicon.length && <div className="empty-state"><div><Search /></div><h2>没有匹配词条</h2><p>换一个关键词或语言筛选；西班牙语本周没有已确认完成的学习反馈，因此暂未虚构词条。</p></div>}
     </>}
     {tab === "etymology" && <>

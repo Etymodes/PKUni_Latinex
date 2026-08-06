@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-04
+更新日期：2026-08-06
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -91,7 +91,7 @@
 
 ## 6. Git 当前基线
 
-- GitHub 远端 `main` 当前基线：已包含资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13、每周复核练习 PR #15、账号同步 PR #14 与自适应背词 PR #16；PR #16 的实际合并提交以 GitHub 历史为准。
+- GitHub 远端 `main` 当前精确基线：`79a9742`，已包含资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13、每周复核练习 PR #15、账号同步 PR #14 与自适应背词 PR #16。
 - P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建，已通过 PR #14 合入 `main`。
 - 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
@@ -99,7 +99,7 @@
 - PR #13：`feat: add Pikku multilingual seed practice` 已于 2026-08-01 合并到 `main`，合并提交为 `00a03ae`。
 - PR #14：`feat: sync multilingual account records` 已于 2026-08-04 合入 `main`，合并提交为 `5a378cf`；Cloudflare Workers Preview 与 Augusta Firefox 账号同步验收均已通过。
 - P3.1 分支：`agent/pikku-vocab-trainer`，合并前已吸收 `main@5a378cf`，包含 PR #15 与已合并的 PR #14。
-- PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
+- PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`，合并后基线为 `79a9742`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
@@ -128,11 +128,19 @@ P1 代码提交：
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
-- P3.2：已从 2026-08-04 Drive 补丁书接受，等待 P3／P3.1 收口后从包含 PR #15 的最新 `main` 建独立分支；范围为审核状态、内容批次、62 个“待核”词条复核、六道候选错因题与教材章节元数据映射。
+- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
 - 下一代多语言规划闸门：P3／P3.1 收口后，按已经确认的中英双语底座、语言下拉框、古典中心古希腊语、拉丁语—西班牙语联学和“学习台＋探索地图”排期；正式说明语言直接跟随界面语言。
+
+### 自然习得与剧情玩法基线
+
+- 研究报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+- Pikku 不把“自然习得”简化为只看输入或完全不讲语法；首版证据链采用“可理解且有意义的输入 → 为完成任务而互动 → 必要输出 → 注意到形式 → 间隔提取”。
+- 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`，优先做剧情阅读、语言侦探、文献修复、跨文化调解和受约束对话，不先引入大型游戏引擎。
+- 剧情方向暂定 70% 当代北京、30% 历史／文献支线；用户用中性第二人称；常规章 8–12 分钟，附 3 分钟复习和可选 20 分钟深读。
+- 首个静态原型应记录理解、求助、重读、选择与延迟回忆事件，用这些可解释信号调节输入难度；不能以连胜、点击率或“沉浸感”替代真实学习成效。
 
 ## 8. 内容规划
 
@@ -218,6 +226,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 不直接把未经验证的大改推入 `main`。
 - 大提交前提醒用户在 Augusta 的 Firefox 测试；普通网页功能不要求 macOS 测试。
 - 聊天附件下载不可靠时，把脚本直接提交到功能分支，用户通过 `git pull --ff-only` 获取。
+- `.bundle` 或其他聊天附件出现“无法获取上传状态”时，不重复等待或让用户反复下载；先确认本地提交与远端分支，再优先直接推送可信 GitHub 目标并用 Draft PR 交接。临时工作区可能被平台维护清理，这不等于用户删除；从 GitHub `main` 重建，并只重做远端不存在的工作。
 - 所有公开部署继续保留原仓库链接和项目沿革。
 
 ### Google Drive 里程碑补丁审查
@@ -239,6 +248,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-04 PR #14 合并与 P3.1 合流后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，修改时间仍为 `2026-08-04T04:59:26.124Z`，没有新增或更新补丁。PR #14 已合并为 `5a378cf`；PR #16 已吸收最新 `main`、改以 `main` 为 base 并转为 Ready for review。原 P3.2 分类继续有效，无冲突或需要用户决定的新条目。
 
+2026-08-06 P3.2 恢复后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。补丁与 `main@79a9742`、当前 P3.2 分支和任务书无新增矛盾；六道候选题保持 `draft`，62 个现有候选词条按源码实际数量标记为 48+14，不重复导入。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
@@ -249,6 +260,11 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 桌面 `进入Pikku仓库.cmd` 用于直接在正确目录打开 PowerShell；桌面 `Pikku开发检查.cmd` 用于启动本地开发检查。
 - 用户偏好一条可复制命令完成一批相关操作。检查应跑完全部项目后再汇总，不因第一项失败中止。
 - 聊天附件可能无法下载；开发脚本应提交到当前 Git 分支，再由 Augusta 使用 `git pull --ff-only` 获取。
+- 云端 Sites 恢复出的生命周期工作副本可能落后于 GitHub；任何编辑前先把 GitHub `main` 同步为唯一基线。`.openai/hosting.json` 若只有 Sites 工具造成的键顺序变化，应恢复而不是纳入功能提交。
+- 当前 Next.js 的 `next dev` 不接受 Sites/Vite 的 `--host`、`--strictPort` 参数；不要为了内部预览额外引入 Vite。功能分支用 Cloudflare Preview，最终用 Augusta Firefox 验收。
+- Sites checkpoint 只能操作其自己的 `main` 时，不为得到 checkpoint 而改名、合并或污染 GitHub 功能分支。
+- 在 shell 中设置构建环境变量时必须与命令处于同一 shell 调用；不要把临时环境变量留给后续不相关命令。
+- 内容数量以源码和自动测试为准。P3.2 的 62 个现有词条实际拆分为 48+14；不能从补丁描述反推成 49+13。
 
 ### Windows PowerShell 与 Node
 
@@ -304,6 +320,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04 17:18，Augusta 报告 `Pikku_Check_20260804_171816.txt` 为 7/8：TypeScript、生产构建、格式与工作区均通过，账号 Firefox 验收成功；唯一失败是 Windows 安全中心阻止 Miniflare 启动 `workerd.exe`，导致迁移测试 `spawn UNKNOWN`，不是网站或迁移逻辑失败。
 - 2026-08-04，改用 Node 24 内置内存 SQLite 后，Augusta 完整批量检查 8/8 通过；Firefox 已确认日语 N2 显示 N4–N2、西班牙语 C2 显示 A1–C2，P3.1 功能验收通过。
 - 2026-08-04，PR #16 吸收 `main@5a378cf` 后，15/15 Node 测试、TypeScript、Next.js 16.2.10 生产构建、Wrangler 4.110.0 dry-run、Git 格式与题目 ID 重复检查全部通过。稳定 Preview 的应用脚本 SHA-256 与本地构建完全一致，首页及 `/api/me`、`/api/questions`、`/api/auth-config` 均返回 200。
+- 2026-08-06，P3.2 恢复分支通过 18/18 Node 测试、TypeScript、Next/Sites 生产构建、Cloudflare Supabase 构建、GitHub Pages 构建、Wrangler 4.110.0 dry-run 与 Git 格式检查。最初的 Supabase／Wrangler 缺模块来自 Sites 工作副本只有旧精简依赖，按锁文件执行 `npm ci` 后全部通过，并非项目代码回归。
 
 ## 14. 记忆更新日志
 
@@ -353,3 +370,5 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：用户明确授权后，PR #14 已合并为 `5a378cf`。P3.1 随后无冲突吸收包含 PR #15 的最新 `main`，PR #16 改以 `main` 为 base；完整工程回归、线上 Preview 哈希与 API 冒烟均通过，Drive 无新补丁，PR #16 已转为 Ready for review，仍须用户另行明确授权才能合并。
 - 2026-08-04：一次 GitHub 文档 blob 上传在用户新消息到达时产生 `turn_aborted`；确认此前 PR #14 合并、P3.1 合流、回归和 PR #16 状态均未回滚。把中断恢复规则写入故障防复发手册，后续先查状态再补做缺失动作。
 - 2026-08-04：用户授权完成本阶段全部提交、验证、memo 更新及当前 PR #16 合并；PR #16 随后合入 `main`，P3.1 正式收口。此授权不延伸到后续其他 PR 的合并或破坏性操作。
+- 2026-08-06：原 P3.2 临时工作区和 `.bundle` 交接件在平台维护后不可用，聊天界面又显示“无法获取上传状态”。从可信 GitHub `main@79a9742` 重建 Sites 生命周期工作副本，按 Drive 补丁和长期记忆恢复 P3.2；此后改用直接 GitHub 功能分支＋Draft PR，不再依赖 bundle 下载。
+- 2026-08-06：完成自然习得与剧情玩法研究，新增 `docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`；把可理解输入、任务互动、注意形式、间隔提取与可解释自适应组合成六阶段学习循环。本阶段只建立研究和内容数据底座，不引入大型游戏引擎。
