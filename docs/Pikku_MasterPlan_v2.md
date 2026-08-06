@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 内容复核底座已实现并完成自动验证，等待 Cloudflare Preview 与 Augusta Firefox 验收；自然习得剧情方案已形成研究基线
+状态：P3.2 内容复核底座已实现，Draft PR #17 与 Cloudflare Preview 已建立，等待 Augusta Firefox 验收；自然习得剧情方案已形成研究基线
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`79a9742`，已包含 PR #14、PR #15 与 PR #16
@@ -642,7 +642,7 @@ draft → reviewed → published → archived
 
 ### P3.2：每周内容复核与补丁接入
 
-状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现和自动验证，尚未合并。
+状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现和自动验证；Draft PR #17 与稳定 Cloudflare Preview 已建立，尚未合并。
 
 - 为题目增加独立于 `sourceStatus` 的 `reviewStatus`：`draft／reviewed／published／archived`。
 - 已为词条增加可筛选的内容批次与复核状态；没有重复导入 PR #15 数据。
@@ -777,9 +777,9 @@ agent/pikku-weekly-patch-2026-08-04
 
 ## 13. 当前下一步
 
-1. 把已通过全套自动验证的 P3.2 分支直接推送到可信 GitHub 仓库并创建 Draft PR；不再依赖聊天 `.bundle` 上传。
-2. 等待 Cloudflare Branch Preview 后，在 Augusta Firefox 检查内容状态／批次筛选、六道草稿题、错因说明、五项章节映射及三语言回归。
-3. 浏览器验收通过后，把结果写入 `Pikku_MEMORY.md`；合并该 PR 仍需用户明确授权。
+1. Draft PR #17 与稳定 Preview `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/` 已建立；`.bundle` 不再作为交接依赖。
+2. 在 Augusta Firefox 检查内容状态／批次筛选、六道草稿题、错因说明、五项章节映射及三语言回归。
+3. 浏览器验收通过后，把结果写入 `Pikku_MEMORY.md`；合并 PR #17 仍需用户明确授权。
 4. P3.2 收口后，先向用户确认自然习得报告中的体验取向，再做 P3.3 静态原型；随后推进 P4 管理后台与中英双语底座。
 
 ---
