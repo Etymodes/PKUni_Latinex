@@ -11,7 +11,7 @@
 1. 阅读本文件、`docs/Pikku_MasterPlan_v2.md` 和最近 5 条 Git 提交。
 2. 以较新的对话、代码和部署状态覆盖旧记录。
 3. 每次形成新决策、修复缺陷、完成部署或改变任务状态后，同步更新本文件。
-4. 本文件只记录长期有效信息和当前状态，不保存密码、SMTP 密钥、OAuth Secret、私钥或 API Token。
+4. 本文件只记录长期有效信息和当前状态，不保存密码、SMTP 密钥、OAuth Secret、私钥、API Token，亦不保存 Cloudflare／D1／R2／Supabase 的具体后台标识；这些信息统一写作“见对应后台”。
 5. 涉及实现时使用 Ponytail 原则：选择能工作的最小方案，避免无必要的依赖、抽象、迁移和重写。
 6. 每个里程碑标记完成前，检查固定 Google Drive 补丁目录，与 GitHub `main`、开放 PR、当前分支和总任务书对照；新内容可排期，已实现内容不得重复，矛盾或旧版指令必须先告知并询问用户。
 
@@ -36,11 +36,11 @@
 
 - 正式域名：`https://pikku.qzz.io/`，已可通过 HTTPS 正常访问。
 - Cloudflare Worker：`pkuni-latinex.kimdac.workers.dev`，正式域名已绑定生产环境。
-- Cloudflare Account ID：`43c450a93cd0578e02626a3ccbd1d1ef`。
-- D1：`pkuni-latinex-db`，Database ID `c4ae89ef-7e60-4238-98ab-1c7f85e0f195`。
-- R2：`pkuni-latinex-assets`，区域 WNAM。
-- FreeDomain 域名：`pikku.qzz.io`；Cloudflare nameserver 为 `lady.ns.cloudflare.com`、`yoxall.ns.cloudflare.com`。
-- Supabase 项目：`tudwzkosrzrusxgpjkfe.supabase.co`。公开客户端配置可留在前端；任何私密密钥不得写入本文件或 Git。
+- Cloudflare Account ID：见 Cloudflare 后台。
+- D1 数据库名称、Database ID：见 Cloudflare D1 后台。
+- R2 Bucket 名称与区域：见 Cloudflare R2 后台。
+- FreeDomain 域名：`pikku.qzz.io`；nameserver 见 Cloudflare DNS 后台。
+- Supabase 项目标识与 URL：见 Supabase 后台。公开客户端配置按应用需要保留在前端；任何私密密钥不得写入本文件或 Git。
 - 身份验证：邮箱＋密码、邮箱确认、GitHub OAuth 管理员登录。
 - 邮件：Brevo 发件人已验证，Supabase SMTP 已配置并验证跳转成功。
 - 微信扫码登录已决定暂缓，不属于当前阶段。
@@ -101,6 +101,7 @@
 - P3.1 分支：`agent/pikku-vocab-trainer`，合并前已吸收 `main@5a378cf`，包含 PR #15 与已合并的 PR #14。
 - PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`，合并后基线为 `79a9742`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
+- Draft PR #17：`feat: add P3.2 content review foundation`，分支 `agent/pikku-weekly-patch-2026-08-04`。稳定 Preview 为 `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/`；Cloudflare 冒烟和 Augusta 8/8 自动验证已通过，等待 Firefox 视觉／交互验收，不得擅自合并。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -128,7 +129,7 @@ P1 代码提交：
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
-- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试。
+- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，Draft PR #17 尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试；云端与 Augusta 自动验证均通过，Firefox 验收待确认。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -321,6 +322,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04，改用 Node 24 内置内存 SQLite 后，Augusta 完整批量检查 8/8 通过；Firefox 已确认日语 N2 显示 N4–N2、西班牙语 C2 显示 A1–C2，P3.1 功能验收通过。
 - 2026-08-04，PR #16 吸收 `main@5a378cf` 后，15/15 Node 测试、TypeScript、Next.js 16.2.10 生产构建、Wrangler 4.110.0 dry-run、Git 格式与题目 ID 重复检查全部通过。稳定 Preview 的应用脚本 SHA-256 与本地构建完全一致，首页及 `/api/me`、`/api/questions`、`/api/auth-config` 均返回 200。
 - 2026-08-06，P3.2 恢复分支通过 18/18 Node 测试、TypeScript、Next/Sites 生产构建、Cloudflare Supabase 构建、GitHub Pages 构建、Wrangler 4.110.0 dry-run 与 Git 格式检查。最初的 Supabase／Wrangler 缺模块来自 Sites 工作副本只有旧精简依赖，按锁文件执行 `npm ci` 后全部通过，并非项目代码回归。
+- 2026-08-06 23:32，Augusta 报告 `Pikku_Check_20260806_233222.txt` 显示 PR #17 分支 Repository、Node/npm、Dependencies、TypeScript、18/18 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；工作区干净。该报告不包含 Firefox 视觉／交互结论。
 
 ## 14. 记忆更新日志
 
@@ -372,3 +374,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04：用户授权完成本阶段全部提交、验证、memo 更新及当前 PR #16 合并；PR #16 随后合入 `main`，P3.1 正式收口。此授权不延伸到后续其他 PR 的合并或破坏性操作。
 - 2026-08-06：原 P3.2 临时工作区和 `.bundle` 交接件在平台维护后不可用，聊天界面又显示“无法获取上传状态”。从可信 GitHub `main@79a9742` 重建 Sites 生命周期工作副本，按 Drive 补丁和长期记忆恢复 P3.2；此后改用直接 GitHub 功能分支＋Draft PR，不再依赖 bundle 下载。
 - 2026-08-06：完成自然习得与剧情玩法研究，新增 `docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`；把可理解输入、任务互动、注意形式、间隔提取与可解释自适应组合成六阶段学习循环。本阶段只建立研究和内容数据底座，不引入大型游戏引擎。
+- 2026-08-06：用户选择从公开 memo 中清理基础设施标识；Cloudflare Account ID、D1／R2 具体标识、nameserver 与 Supabase 项目标识统一改为“见对应后台”。同时记录 Draft PR #17、稳定 Preview 与 Augusta 8/8 报告，Firefox 验收仍待用户确认。
