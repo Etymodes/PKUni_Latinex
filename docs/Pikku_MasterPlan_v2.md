@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 内容复核底座已实现，Draft PR #17、Cloudflare Preview 与 Augusta 8/8 自动验证均已完成，等待 Firefox 视觉／交互验收；自然习得剧情方案已形成研究基线
+状态：P3.2 内容复核底座已实现，Draft PR #17、Cloudflare Preview、Augusta 8/8 与原定 Firefox 项目均已通过；资源语言隔离和切换连续性修复等待两项定向复验；自然习得剧情方案已形成研究基线
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`79a9742`，已包含 PR #14、PR #15 与 PR #16
@@ -642,15 +642,17 @@ draft → reviewed → published → archived
 
 ### P3.2：每周内容复核与补丁接入
 
-状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现；Draft PR #17、稳定 Cloudflare Preview 与 Augusta 8/8 自动验证已完成，等待 Firefox 视觉／交互验收，尚未合并。
+状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现；Draft PR #17、稳定 Cloudflare Preview 与 Augusta 8/8 自动验证已完成。48+14 词条、六道草稿／错因题、五项映射和三语言基础切换的 Firefox 验收已通过；后续发现的资源跨语言泄漏与切换割裂已完成定向修复并通过自动检查，等待 Preview 上复验，尚未合并。
 
 - 为题目增加独立于 `sourceStatus` 的 `reviewStatus`：`draft／reviewed／published／archived`。
 - 已为词条增加可筛选的内容批次与复核状态；没有重复导入 PR #15 数据。
 - 已把现有 62 个“待核”词条按源码实际数量标记为 48+14 两批，作为首批审校对象；后续优先处理高风险词源和近义边界。
 - 已加入六道候选错因题：`ja-n1-003`、`ja-n1-004`、`i-mor-04`、`i-syn-08`、`es-a2-002`、`es-b1-003`；全部明确保持 `reviewStatus: "draft"`，不会冒充已发布题。
 - 已加入五项教材／资源章节元数据映射，只保存章节、知识点、目标词汇、练习逻辑和版权状态，不收录商业教材正文、扫描页、答案或录音。
-- 已新增内容复核测试；18/18 Node 测试、TypeScript、Next/Sites、Cloudflare、GitHub Pages、Wrangler dry-run 与 Git 格式检查全部通过。
+- 已新增内容复核与资源隔离测试；当前 20/20 Node 测试、TypeScript、Next/Sites、Cloudflare、GitHub Pages、Wrangler dry-run 与 Git 格式检查全部通过。
 - 日常学习只产生候选；周补丁书负责审校与排期；公开代码不得包含可识别的私人答案、录音或完整学习日志。
+- 教材与章节记录显式标注目标语言；资源页只渲染当前语言的教材、章节、词条和语言知识，非拉丁语模式不再显示拉丁作者、拉丁辞典、北大真题档案或拉丁语社区。
+- 切换语言保留兼容的当前模块并记住各语言最近等级；第一次切换按等级序列相对位置映射，只有拉丁语专属页面才回落到相近入口。
 
 ### P3.3：自然习得剧情静态原型
 
@@ -778,8 +780,8 @@ agent/pikku-weekly-patch-2026-08-04
 ## 13. 当前下一步
 
 1. Draft PR #17 与稳定 Preview `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/` 已建立；`.bundle` 不再作为交接依赖。
-2. Augusta 自动检查已 8/8 通过；继续在 Firefox 检查内容状态／批次筛选、六道草稿题、错因说明、五项章节映射及三语言回归。
-3. 浏览器验收通过后，把结果写入 `Pikku_MEMORY.md`；合并 PR #17 仍需用户明确授权。
+2. Augusta 自动检查已 8/8 通过；原定 Firefox 项目也已通过，不再重复验收。Preview 更新后只需检查日语／西班牙语资源不含拉丁语内容，以及语言切换保留兼容模块和最近／相近等级。
+3. 两项定向浏览器验收通过后，把最终结果写入 `Pikku_MEMORY.md`；合并 PR #17 仍需用户明确授权。
 4. P3.2 收口后，先向用户确认自然习得报告中的体验取向，再做 P3.3 静态原型；随后推进 P4 管理后台与中英双语底座。
 
 ---
