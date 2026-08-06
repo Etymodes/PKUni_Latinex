@@ -173,6 +173,20 @@ function formatTime(seconds: number) {
   return `${h ? `${String(h).padStart(2, "0")}:` : ""}${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
+function viewForLanguage(language: LanguageCode, view: View): View {
+  if (language === "la") return view;
+  if (view === "exam" || view === "vocabulary") return "practice";
+  if (view === "archive") return "resources";
+  return view;
+}
+
+function equivalentLevel(current: LanguageConfig, level: LanguageLevel, next: LanguageConfig): LanguageLevel {
+  const index = current.levels.indexOf(level);
+  if (index < 0 || current.levels.length < 2) return next.defaultLevel;
+  const nextIndex = Math.round((index / (current.levels.length - 1)) * (next.levels.length - 1));
+  return next.levels[nextIndex] ?? next.defaultLevel;
+}
+
 export default function App() {
   const [view, setView] = useState<View>("home");
   const [level, setLevel] = useState<Level>("elementary");
@@ -194,6 +208,7 @@ export default function App() {
   const bookmarksRef = useRef(bookmarks);
   const languageRef = useRef(language);
   const languageLevelRef = useRef(languageLevel);
+  const levelsByLanguageRef = useRef<Partial<Record<LanguageCode, LanguageLevel>>>({});
   const vocabularyModeRef = useRef(vocabularyMode);
   const vocabularyMemoryRef = useRef(vocabularyMemory);
   const languageConfig = languageConfigs[language];
@@ -213,6 +228,7 @@ export default function App() {
     bookmarksRef.current = bookmarks;
     languageRef.current = language;
     languageLevelRef.current = languageLevel;
+    levelsByLanguageRef.current[language] = languageLevel;
     vocabularyModeRef.current = vocabularyMode;
     vocabularyMemoryRef.current = vocabularyMemory;
   }, [bookmarks, language, languageLevel, progress, vocabularyMemory, vocabularyMode]);
@@ -439,15 +455,25 @@ export default function App() {
   };
 
   const selectLanguage = (nextLanguage: LanguageCode) => {
+    if (nextLanguage === language) {
+      setMobileNav(false);
+      return;
+    }
     const nextConfig = languageConfigs[nextLanguage];
+    const rememberedLevel = levelsByLanguageRef.current[nextLanguage];
+    const nextLevel = rememberedLevel && nextConfig.levels.includes(rememberedLevel)
+      ? rememberedLevel
+      : equivalentLevel(languageConfig, languageLevel, nextConfig);
+    levelsByLanguageRef.current[language] = languageLevel;
+    levelsByLanguageRef.current[nextLanguage] = nextLevel;
     languageRef.current = nextLanguage;
-    languageLevelRef.current = nextConfig.defaultLevel;
+    languageLevelRef.current = nextLevel;
     setLanguage(nextLanguage);
-    setLanguageLevel(nextConfig.defaultLevel);
+    setLanguageLevel(nextLevel);
     setCategory("all");
-    setView("home");
+    setView(viewForLanguage(nextLanguage, view));
     setMobileNav(false);
-    syncPreference(nextLanguage, nextConfig.defaultLevel);
+    syncPreference(nextLanguage, nextLevel);
   };
 
   const selectLanguageLevel = (nextLevel: LanguageLevel) => {
@@ -551,7 +577,7 @@ export default function App() {
               {language === "la" && (["practice", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocab-trainer", "背单词"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
               {language !== "la" && (["practice", "vocab-trainer"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["vocab-trainer", "背单词"]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
-              {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={[["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]]} view={view} setView={setView} />}
+              {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]] : [["scope", "考试与资源"], ["resources", `${languageConfig.name}资源库`]]} view={view} setView={setView} />}
               {view === "home" && (language === "la" ? <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} setView={setView} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.filter((question) => matchesLevel(question, languageLevel)).length} />)}
               {view === "practice" && <Practice bank={languageBank} level={languageLevel} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
@@ -560,9 +586,9 @@ export default function App() {
               {view === "vocab-trainer" && <VocabularyTrainer language={language} level={languageLevel} mode={vocabularyMode} stats={vocabularyMemory.stats} onAnswer={recordVocabulary} setView={setView} />}
               {view === "vocabulary" && <VocabularyLab level={level} onSubmit={(answers) => recordVocabulary("la", answers)} />}
               {view === "scope" && (language === "la" ? <Scope openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
-              {view === "archive" && <Archive />}
-              {view === "resources" && <ResourceLibrary />}
-              {view === "community" && <CommunityPreview />}
+              {view === "archive" && (language === "la" ? <Archive /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
+              {view === "resources" && <ResourceLibrary language={language} config={languageConfig} />}
+              {view === "community" && <CommunityPreview config={languageConfig} />}
               {view === "settings" && <PersonalSettings config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
             </>
@@ -600,7 +626,7 @@ function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }
     <section className="language-roadmap">
       <article><span>01</span><h2>训练与复习</h2><p>有序、随机、错题和收藏复用同一稳定交互，题目按语言隔离。</p><button onClick={() => setView("practice")}>开始 {languageLevelLabels[level]} 练习</button></article>
       <article><span>02</span><h2>自适应背词</h2><p>根据本账号的记得／忘了记录持续调整出词，当前等级可无限连续训练。</p><button onClick={() => setView("vocab-trainer")}>开始 {languageLevelLabels[level]} 背词</button></article>
-      <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("home")}>返回语言首页</button></article>
+      <article><span>03</span><h2>资源与社区</h2><p>教材、辞典和目标语言频道保留独立入口，审核能力完成后再开放发帖。</p><button onClick={() => setView("resources")}>打开{config.name}资源</button></article>
     </section>
   </div>;
 }
@@ -1220,63 +1246,77 @@ function HubTabs({ items, view, setView }: { items: [View, string][]; view: View
   return <div className="hub-tabs" aria-label="栏目分页">{items.map(([id, label]) => <button key={id} className={view === id ? "active" : ""} onClick={() => setView(id)}>{label}</button>)}</div>;
 }
 
-function ResourceLibrary() {
+function ResourceLibrary({ language, config }: { language: LanguageCode; config: LanguageConfig }) {
   const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
   const [query, setQuery] = useState("");
-  const [lexiconLanguage, setLexiconLanguage] = useState<"all" | "la" | "ja" | "es">("all");
   const [lexiconBatch, setLexiconBatch] = useState("all");
   const [lexiconReviewStatus, setLexiconReviewStatus] = useState<"all" | ReviewStatus>("all");
-  const periods = [...new Set(classicalAuthors.map((author) => author.period))];
-  const lexiconBatches = [...new Set(lexiconSeed.map((entry) => entry.batch))];
-  const lexicon = lexiconSeed.filter((entry) =>
-    (lexiconLanguage === "all" || entry.language === lexiconLanguage)
-    && (lexiconBatch === "all" || entry.batch === lexiconBatch)
+  const textbooks = textbookCatalog.filter((book) => book.targetLanguage === language);
+  const chapterMappings = resourceChapterMappings.filter((mapping) => mapping.targetLanguage === language);
+  const periods = language === "la" ? [...new Set(classicalAuthors.map((author) => author.period))] : [];
+  const languageLexicon = lexiconSeed.filter((entry) => entry.language === language);
+  const lexiconBatches = [...new Set(languageLexicon.map((entry) => entry.batch))];
+  const lexicon = languageLexicon.filter((entry) =>
+    (lexiconBatch === "all" || entry.batch === lexiconBatch)
     && (lexiconReviewStatus === "all" || entry.reviewStatus === lexiconReviewStatus)
     && `${entry.lemma} ${entry.principalParts} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())
   );
-  const latestLexiconBatch = lexiconSeed.reduce((latest, entry) => entry.addedOn && entry.addedOn > latest ? entry.addedOn : latest, "");
-  const weeklyLexiconCount = lexiconSeed.filter((entry) => entry.addedOn === latestLexiconBatch).length;
+  const latestLexiconBatch = languageLexicon.reduce((latest, entry) => entry.addedOn && entry.addedOn > latest ? entry.addedOn : latest, "");
+  const weeklyLexiconCount = languageLexicon.filter((entry) => entry.addedOn === latestLexiconBatch).length;
+  const currentFacts = languageFacts[language] ?? [];
+
+  useEffect(() => {
+    setQuery("");
+    setLexiconBatch("all");
+    setLexiconReviewStatus("all");
+  }, [language]);
+
   return <div className="page resource-page">
-    <div className="practice-header"><div><span className="eyebrow">BIBLIOTHECA PIKKU</span><h1>教材、作者与辞典</h1><p>先建立可追溯的资源骨架，再逐条核验书目、原文、译注与词典收录。</p></div></div>
+    <div className="practice-header"><div><span className="eyebrow">PIKKU RESOURCES · {config.nativeName}</span><h1>{config.name}教材、作者与辞典</h1><p>当前页面只显示{config.name}资源；切换学习语言后，教材、作者、词条和语言知识会同步切换。</p></div></div>
     <div className="resource-tabs" role="tablist">
-      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', '多语言辞典'], ['etymology', '每日词源']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
+      {([['textbooks', '教材对齐'], ['authors', '作者图谱'], ['dictionary', `${config.name}词典`], ['etymology', '语言知识']] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
     </div>
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>版权与改编原则</strong><p>只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。</p></div></div>
-      <div className="textbook-grid">{textbookCatalog.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{book.edition}</small></div><h2>{book.title}</h2><p className="resource-byline">{book.authors}</p><p>{book.accessNote}</p><details><summary>四级难度映射</summary><dl><dt>初级</dt><dd>{book.alignment.elementary}</dd><dt>中级</dt><dd>{book.alignment.intermediate}</dd><dt>混合</dt><dd>从初级与中级任务按能力域抽取，不另造教材进度。</dd><dt>进阶</dt><dd>{book.alignment.advanced}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div>
+      <div className="textbook-grid">{textbooks.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{book.edition}</small></div><h2>{book.title}</h2><p className="resource-byline">{book.authors}</p><p>{book.accessNote}</p><details><summary>难度域映射</summary><dl><dt>初级</dt><dd>{book.alignment.elementary}</dd><dt>中级</dt><dd>{book.alignment.intermediate}</dd><dt>混合</dt><dd>从初级与中级任务按能力域抽取，不另造教材进度。</dd><dt>进阶</dt><dd>{book.alignment.advanced}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div>
+      {!textbooks.length && <div className="empty-state"><div><BookOpen /></div><h2>{config.name}教材待建</h2><p>当前模式不会借用拉丁语教材；核验书目与课程映射后再加入。</p></div>}
       <div className="section-heading resource-map-heading"><div><span>INDEX CAPITULŌRUM</span><h2>章节与原创练习映射</h2></div><small>只含元数据，不包含教材正文、答案或音频</small></div>
-      <div className="chapter-map-grid">{resourceChapterMappings.map((mapping) => <article key={mapping.id}><div><span>{mapping.publicDomainStatus}</span><small>{mapping.chapter}</small></div><h3>{mapping.title}</h3><p><strong>语法域</strong>{mapping.grammarTargets.join(" · ")}</p><p><strong>词汇域</strong>{mapping.vocabularyTargets.join(" · ")}</p><p><strong>原创化逻辑</strong>{mapping.exerciseLogic}</p><small>{mapping.licenseNote}</small></article>)}</div>
+      <div className="chapter-map-grid">{chapterMappings.map((mapping) => <article key={mapping.id}><div><span>{mapping.publicDomainStatus}</span><small>{mapping.chapter}</small></div><h3>{mapping.title}</h3><p><strong>语法域</strong>{mapping.grammarTargets.join(" · ")}</p><p><strong>词汇域</strong>{mapping.vocabularyTargets.join(" · ")}</p><p><strong>原创化逻辑</strong>{mapping.exerciseLogic}</p><small>{mapping.licenseNote}</small></article>)}</div>
+      {!chapterMappings.length && <div className="empty-state"><div><Library /></div><h2>尚无章节映射</h2><p>{config.name}章节元数据仍在核验，不显示其他语言的占位内容。</p></div>}
     </>}
-    {tab === "authors" && <>
+    {tab === "authors" && language === "la" && <>
       <div className="resource-metrics"><div><strong>{classicalAuthors.length}</strong><span>位首批作者</span></div><div><strong>{classicalAuthors.reduce((total, author) => total + author.works.length, 0)}</strong><span>条作者—作品关系</span></div><div><strong>{periods.length}</strong><span>个历史分期</span></div></div>
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>建议域：{levelLabels[author.examLevel]}</small></article>)}</div></section>)}</div>
     </>}
+    {tab === "authors" && language !== "la" && <div className="empty-state"><div><Users /></div><h2>{config.name}作者图谱待建</h2><p>当前模式不会借用拉丁语作者数据；按语言与时代核验后再加入。</p></div>}
     {tab === "dictionary" && <>
-      <div className="resource-metrics"><div><strong>{lexicon.length}<small> / {lexiconSeed.length}</small></strong><span>当前筛选／全部词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>最近一批新增{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{new Set(lexiconSeed.map((entry) => entry.language)).size}</strong><span>种语言已建词条</span></div></div>
-      <div className="lexicon-language-tabs" role="tablist" aria-label="词典语言">
-        {([["all", "全部"], ["la", "Latīna"], ["ja", "日本語"], ["es", "Español"]] as const).map(([id, label]) =>
-          <button role="tab" aria-selected={lexiconLanguage === id} className={lexiconLanguage === id ? "active" : ""} key={id} onClick={() => setLexiconLanguage(id)}>{label}</button>
-        )}
-      </div>
+      <div className="resource-metrics"><div><strong>{lexicon.length}<small> / {languageLexicon.length}</small></strong><span>当前筛选／{config.name}词条</span></div><div><strong>{weeklyLexiconCount}</strong><span>最近一批新增{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{languageLexicon.length}</strong><span>{config.nativeName} 已建词条</span></div></div>
       <div className="lexicon-filters">
         <label>批次<select value={lexiconBatch} onChange={(event) => setLexiconBatch(event.target.value)}><option value="all">全部批次</option>{lexiconBatches.map((batch) => <option key={batch} value={batch}>{batch === "foundation" ? "基础词库" : batch}</option>)}</select></label>
         <label>内容状态<select value={lexiconReviewStatus} onChange={(event) => setLexiconReviewStatus(event.target.value as "all" | ReviewStatus)}><option value="all">全部状态</option>{(Object.keys(reviewStatusLabels) as ReviewStatus[]).map((status) => <option key={status} value={status}>{reviewStatusLabels[status]}</option>)}</select></label>
       </div>
-      <div className="source-card"><CircleHelp /><div><strong>词条核验规则</strong><p>每周复盘先收录本周实际接触但尚未入库的词汇，再逐条核对词典形、读音、语义、词源与例句。以下五种辞典状态只适用于拉丁语；日语和西班牙语专项词典将在多语言辞典阶段接入。</p></div></div>
-      <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>
+      <div className="source-card"><CircleHelp /><div><strong>词条核验规则</strong><p>{language === "la" ? "每周复盘先收录本周实际接触但尚未入库的词汇，再逐条核对词典形、语义、词源与例句；下列五种拉丁语辞典分别记录核验状态。" : `这里只显示${config.name}词条；专项词典来源仍在核验，不借用拉丁语辞典状态。`}</p></div></div>
+      {language === "la" && <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>}
       <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索词头、读音、中文义或派生词" /></label>
       <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.language}-${entry.lemma}`} key={`${entry.language}-${entry.lemma}`}><div><small className="lexicon-language">{entry.language.toUpperCase()}</small><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>词源线索</strong>{entry.pie}</p><p><strong>派生／用法提示</strong>{entry.derivatives.length ? entry.derivatives.join(" · ") : "待补充"}</p><div className="dictionary-checks lexicon-workflow"><span className={`review-status ${entry.reviewStatus}`}>{reviewStatusLabels[entry.reviewStatus]}</span><span>批次 · {entry.batch === "foundation" ? "基础词库" : entry.batch}</span></div>{entry.language === "la" ? <div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div> : <div className="dictionary-checks"><span>专项词典 · 待核</span>{entry.addedOn && <span>周复盘新增 · {entry.addedOn}</span>}</div>}</article>)}</div>
-      {!lexicon.length && <div className="empty-state"><div><Search /></div><h2>没有匹配词条</h2><p>换一个关键词或语言筛选；西班牙语本周没有已确认完成的学习反馈，因此暂未虚构词条。</p></div>}
+      {!lexicon.length && <div className="empty-state"><div><Search /></div><h2>没有匹配词条</h2><p>换一个关键词、批次或内容状态；当前页面只查询{config.name}词库。</p></div>}
     </>}
     {tab === "etymology" && <>
-      <div className="etymology-progress"><Sparkles /><div><strong>{etymologyFacts.length} / 365</strong><p>现有词源知识已接入首页随机栏目；后续条目会按“拉丁词—英语／罗曼语后裔—语义变化—可核来源”逐条扩充。</p></div></div>
-      <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {fact.meaning}</h2><p>{fact.note}</p><small>英语：{fact.english.join(" · ")}　罗曼语：{fact.romance.join(" · ")}</small></article>)}</div>
+      <div className="etymology-progress"><Sparkles /><div><strong>{language === "la" ? etymologyFacts.length : currentFacts.length} / 365</strong><p>{language === "la" ? "现有词源知识已接入首页随机栏目；后续按拉丁词、后裔词、语义变化与来源逐条扩充。" : `当前只显示${config.name}语言知识，并保留可点击来源。`}</p></div></div>
+      {language === "la" ? <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {fact.meaning}</h2><p>{fact.note}</p><small>英语：{fact.english.join(" · ")}　罗曼语：{fact.romance.join(" · ")}</small></article>)}</div> : <div className="fact-library">{currentFacts.map((fact, index) => <article key={fact.id}><span>{fact.kind} · {String(index + 1).padStart(3, "0")}</span><h2>{fact.title}</h2><p>{fact.summary}</p><small>{fact.example}　{fact.sources.map((source, sourceIndex) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{sourceIndex > 0 && " · "}{source.label}</a>)}</small></article>)}</div>}
+      {language !== "la" && !currentFacts.length && <div className="empty-state"><div><Sparkles /></div><h2>{config.name}语言知识待建</h2><p>核验来源后再加入，不显示拉丁语占位内容。</p></div>}
     </>}
   </div>;
 }
 
-function CommunityPreview() {
-  return <div className="page community-page"><div className="practice-header"><div><span className="eyebrow">FORUM PIKKU</span><h1>拉丁语交流社区</h1><p>频道结构已预留；账号、举报、限流与审核规则完成后再开放发帖。</p></div></div><div className="community-grid"><article><Languages /><span>CANĀLIS LATĪNUS</span><h2>公共拉丁语频道</h2><p>正文只使用拉丁语。可交流日常、阅读原典、主动拉丁语写作与翻译；引用其他语言时需附拉丁语说明。</p><button disabled>即将开放</button></article><article><Users /><span>DE SITŪ ET STUDIĪS</span><h2>网站与学习频道</h2><p>可使用中文等语言，只讨论网站设计、功能优化、报错、学习方法和使用心得。</p><button disabled>即将开放</button></article></div><div className="source-card"><CircleHelp /><div><strong>为什么暂不直接开放？</strong><p>公共社区需要先具备内容举报、管理员审核、频率限制、隐私说明和数据保留规则，避免测试功能变成安全缺口。</p></div></div></div>;
+function CommunityPreview({ config }: { config: LanguageConfig }) {
+  const channel = {
+    la: ["CANĀLIS LATĪNUS", "公共拉丁语频道", "正文只使用拉丁语。可交流日常、阅读原典、主动拉丁语写作与翻译；引用其他语言时需附拉丁语说明。"],
+    ja: ["日本語チャンネル", "日语限定频道", "正文只使用日语。可交流日常、阅读、写作和翻译；引用其他语言时需附日语说明。"],
+    es: ["CANAL EN ESPAÑOL", "西班牙语限定频道", "正文只使用西班牙语。可交流日常、阅读、写作和翻译；引用其他语言时需附西班牙语说明。"],
+  }[config.code];
+
+  return <div className="page community-page"><div className="practice-header"><div><span className="eyebrow">FORUM PIKKU · {config.nativeName}</span><h1>{config.name}交流社区</h1><p>频道结构已预留；账号、举报、限流与审核规则完成后再开放发帖。</p></div></div><div className="community-grid"><article><Languages /><span>{channel[0]}</span><h2>{channel[1]}</h2><p>{channel[2]}</p><button disabled>即将开放</button></article><article><Users /><span>PIKKU · SITE &amp; STUDY</span><h2>网站与学习频道</h2><p>可使用界面语言，只讨论网站设计、功能优化、报错、学习方法和使用心得。</p><button disabled>即将开放</button></article></div><div className="source-card"><CircleHelp /><div><strong>为什么暂不直接开放？</strong><p>公共社区需要先具备内容举报、管理员审核、频率限制、隐私说明和数据保留规则，避免测试功能变成安全缺口。</p></div></div></div>;
 }
 
 function EmptyState({ text }: { text: string }) {

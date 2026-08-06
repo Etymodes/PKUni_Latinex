@@ -1,9 +1,10 @@
-import type { QuestionLevel, ReviewStatus } from "./questions";
+import type { LanguageCode, QuestionLevel, ReviewStatus } from "./questions";
 
 export type AccessStatus = "uploaded" | "official" | "preview" | "catalogued" | "public-domain";
 
 export type TextbookRecord = {
   id: string;
+  targetLanguage: LanguageCode;
   title: string;
   authors: string;
   edition: string;
@@ -16,79 +17,79 @@ export type TextbookRecord = {
 
 export const textbookCatalog: TextbookRecord[] = [
   {
-    id: "llpsi-fr", title: "Lingua Latīna per sē illūstrāta: Familia Rōmāna", authors: "Hans H. Ørberg", edition: "Pars I", language: "拉丁语",
+    id: "llpsi-fr", targetLanguage: "la", title: "Lingua Latīna per sē illūstrāta: Familia Rōmāna", authors: "Hans H. Ørberg", edition: "Pars I", language: "拉丁语",
     access: "uploaded", accessNote: "已上传供内部知识点提取；公开站只发布原创题目和章节映射。",
     alignment: { elementary: "I–XXXIII 覆盖形态、核心从句与连续阅读。", intermediate: "XXVI–XXXV 用于综合识别和向原典过渡。", advanced: "XXXIV–XXXV 进入诗体和拉丁语法术语。" },
     strengths: ["自然输入", "连续叙事", "语境词汇", "拉丁语释义"],
   },
   {
-    id: "latin-integrated-1", title: "《拉丁语综合教程 1》", authors: "国内改编教材", edition: "第一册", language: "中文／拉丁语",
+    id: "latin-integrated-1", targetLanguage: "la", title: "《拉丁语综合教程 1》", authors: "国内改编教材", edition: "第一册", language: "中文／拉丁语",
     access: "catalogued", accessNote: "待核对正式书目信息与授权来源。",
     alignment: { elementary: "作为 LLPSI 路线的中文课堂补充。", intermediate: "待逐章核对。", advanced: "不作为进阶主要来源。" },
     strengths: ["中文课堂解释", "综合训练", "本土教学语境"],
   },
   {
-    id: "ltrl2", title: "Learn to Read Latin", authors: "Andrew Keller · Stephanie Russell", edition: "2nd ed.", language: "英文／拉丁语",
+    id: "ltrl2", targetLanguage: "la", title: "Learn to Read Latin", authors: "Andrew Keller · Stephanie Russell", edition: "2nd ed.", language: "英文／拉丁语",
     access: "catalogued", accessNote: "版权教材；只登记官方出版信息、合法预览与原创改编题。",
     alignment: { elementary: "形态与句法的显性体系可校准初级全范围。", intermediate: "长句分析、散文与诗歌阅读可补中级。", advanced: "原典单元适合进阶精读。" },
     strengths: ["形态严密", "句法显性", "大量练习", "原典导向"],
   },
   {
-    id: "reading-latin2", title: "Reading Latin", authors: "Peter Jones · Keith Sidwell", edition: "2nd ed.", language: "英文／拉丁语",
+    id: "reading-latin2", targetLanguage: "la", title: "Reading Latin", authors: "Peter Jones · Keith Sidwell", edition: "2nd ed.", language: "英文／拉丁语",
     access: "catalogued", accessNote: "版权教材；对齐 Text 与 Grammar/Vocabulary/Exercises 两部分。",
     alignment: { elementary: "叙事材料配合基础语法。", intermediate: "连续阅读、改写文本和原典过渡。", advanced: "喜剧、演说与诗歌的体裁训练。" },
     strengths: ["阅读优先", "体裁意识", "连续文本", "英国古典学传统"],
   },
   {
-    id: "wheelock7", title: "Wheelock’s Latin／《韦洛克拉丁语教程》", authors: "Frederic M. Wheelock · Richard A. LaFleur", edition: "7th ed.", language: "英文／中文版",
+    id: "wheelock7", targetLanguage: "la", title: "Wheelock’s Latin／《韦洛克拉丁语教程》", authors: "Frederic M. Wheelock · Richard A. LaFleur", edition: "7th ed.", language: "英文／中文版",
     access: "uploaded", accessNote: "英文及中文 OCR 版已上传供内部映射；不公开教材正文与答案。",
     alignment: { elementary: "1–40 章覆盖北大初级所需主要形态句法。", intermediate: "需配合附录、Locī 与原典补充。", advanced: "Locī Immūtātī、古式和补充词形。" },
     strengths: ["语法顺序清楚", "章节短", "主要词形", "古典格言"],
   },
   {
-    id: "moreland-fleischer", title: "Latin: An Intensive Course", authors: "Floyd L. Moreland · Rita M. Fleischer", edition: "standard ed.", language: "英文／拉丁语",
+    id: "moreland-fleischer", targetLanguage: "la", title: "Latin: An Intensive Course", authors: "Floyd L. Moreland · Rita M. Fleischer", edition: "standard ed.", language: "英文／拉丁语",
     access: "catalogued", accessNote: "版权教材；用于密集课程知识域对照，不复制练习。",
     alignment: { elementary: "快速覆盖完整形态与基础句法。", intermediate: "复杂虚拟式、间接话语和高密度操练。", advanced: "适合作为短期强化复盘。" },
     strengths: ["高强度", "形态完整", "句法压缩", "研究生速成"],
   },
   {
-    id: "cambridge5", title: "Cambridge Latin Course", authors: "Cambridge School Classics Project", edition: "5th ed.", language: "英文／拉丁语",
+    id: "cambridge5", targetLanguage: "la", title: "Cambridge Latin Course", authors: "Cambridge School Classics Project", edition: "5th ed.", language: "英文／拉丁语",
     access: "official", accessNote: "优先链接官方数字资源；不镜像受版权保护内容。",
     alignment: { elementary: "情境阅读和文化背景用于早期输入。", intermediate: "后期册补复杂句法与原典桥接。", advanced: "不单独承担进阶语法体系。" },
     strengths: ["故事驱动", "文化史", "可理解输入", "课堂资源"],
   },
   {
-    id: "oxford2", title: "Oxford Latin Course", authors: "Maurice Balme · James Morwood", edition: "2nd ed.／College Edition", language: "英文／拉丁语",
+    id: "oxford2", targetLanguage: "la", title: "Oxford Latin Course", authors: "Maurice Balme · James Morwood", edition: "2nd ed.／College Edition", language: "英文／拉丁语",
     access: "catalogued", accessNote: "版权教材；登记书目与课程映射。",
     alignment: { elementary: "以贺拉斯生平叙事组织基础语法。", intermediate: "College Edition 后段进入原典与诗歌。", advanced: "诗体和文化史可作补充。" },
     strengths: ["人物叙事", "语法渐进", "诗歌桥接", "文化背景"],
   },
   {
-    id: "latin-foundation-cn", title: "《拉丁语基础教程》", authors: "待核定版本", edition: "中文教材", language: "中文／拉丁语",
+    id: "latin-foundation-cn", targetLanguage: "la", title: "《拉丁语基础教程》", authors: "待核定版本", edition: "中文教材", language: "中文／拉丁语",
     access: "catalogued", accessNote: "同名版本较多，需以 ISBN 和版权页消歧后再映射。",
     alignment: { elementary: "预期用于中文基础语法术语对齐。", intermediate: "待核对目录。", advanced: "待核对目录。" },
     strengths: ["中文术语", "本土课堂", "待版本消歧"],
   },
   {
-    id: "lnm", title: "Latin for the New Millennium", authors: "Milena Minkova · Terence Tunberg et al.", edition: "student text", language: "英文／拉丁语",
+    id: "lnm", targetLanguage: "la", title: "Latin for the New Millennium", authors: "Milena Minkova · Terence Tunberg et al.", edition: "student text", language: "英文／拉丁语",
     access: "catalogued", accessNote: "版权教材；仅使用公开书目、样章与原创题。",
     alignment: { elementary: "古典到近现代选文串联基础语法。", intermediate: "多时期文体扩展语境义。", advanced: "人文主义及近现代拉丁语正适合扩展模块。" },
     strengths: ["跨时代", "主动拉丁语", "文化连续性", "新拉丁语"],
   },
   {
-    id: "lei-concise", title: "《简明拉丁语教程》", authors: "雷立柏（Leopold Leeb）", edition: "中文教材", language: "中文／拉丁语",
+    id: "lei-concise", targetLanguage: "la", title: "《简明拉丁语教程》", authors: "雷立柏（Leopold Leeb）", edition: "中文教材", language: "中文／拉丁语",
     access: "catalogued", accessNote: "版权教材；待取得目录或用户上传后做精确映射。",
     alignment: { elementary: "中文基础教学与词形复盘。", intermediate: "待目录核对。", advanced: "可衔接教会与近现代拉丁语。" },
     strengths: ["中文解释", "简明路线", "欧洲语言对照"],
   },
   {
-    id: "xie-grammar", title: "《拉丁语语法》", authors: "谢大任", edition: "参考语法", language: "中文／拉丁语",
+    id: "xie-grammar", targetLanguage: "la", title: "《拉丁语语法》", authors: "谢大任", edition: "参考语法", language: "中文／拉丁语",
     access: "catalogued", accessNote: "作为中文参考语法索引；版权状态与具体版本待核定。",
     alignment: { elementary: "查询形态与格功能。", intermediate: "查询复杂从句和特殊结构。", advanced: "语法史和少见结构的参考入口。" },
     strengths: ["中文参考语法", "条目检索", "系统语法"],
   },
   {
-    id: "self-reader-cn", title: "《拉丁语自学读本》", authors: "待核定版本", edition: "中文读本", language: "中文／拉丁语",
+    id: "self-reader-cn", targetLanguage: "la", title: "《拉丁语自学读本》", authors: "待核定版本", edition: "中文读本", language: "中文／拉丁语",
     access: "catalogued", accessNote: "需以作者、出版社和 ISBN 消歧；暂不链接来源不明 PDF。",
     alignment: { elementary: "预期用于分级阅读和自测。", intermediate: "待版本核对。", advanced: "待版本核对。" },
     strengths: ["自学路径", "分级阅读", "待版本消歧"],
@@ -97,6 +98,7 @@ export const textbookCatalog: TextbookRecord[] = [
 
 export type ResourceChapterMapping = {
   id: string;
+  targetLanguage: LanguageCode;
   title: string;
   chapter: string;
   grammarTargets: string[];
@@ -109,6 +111,7 @@ export type ResourceChapterMapping = {
 export const resourceChapterMappings: ResourceChapterMapping[] = [
   {
     id: "wheelock-workbook-private",
+    targetLanguage: "la",
     title: "Wheelock’s Latin Workbook",
     chapter: "Ch. 1–6 · 私人学习进度映射",
     grammarTargets: ["第一、二变格", "现在时系统", "形容词一致"],
@@ -119,6 +122,7 @@ export const resourceChapterMappings: ResourceChapterMapping[] = [
   },
   {
     id: "llpsi-fr-sequence",
+    targetLanguage: "la",
     title: "Lingua Latīna per sē illūstrāta: Familia Rōmāna",
     chapter: "Cap. I–XII · 连续阅读桥接",
     grammarTargets: ["格功能渐进", "关系从句", "代词与一致"],
@@ -129,6 +133,7 @@ export const resourceChapterMappings: ResourceChapterMapping[] = [
   },
   {
     id: "horace-public-original",
+    targetLanguage: "la",
     title: "Horatius · Carmina",
     chapter: "公版拉丁原文／现代详注分离",
     grammarTargets: ["诗体语序", "省略", "虚拟式语气"],
@@ -139,6 +144,7 @@ export const resourceChapterMappings: ResourceChapterMapping[] = [
   },
   {
     id: "latin-core-public",
+    targetLanguage: "la",
     title: "Public Latin Core Vocabulary",
     chapter: "跨教材核心词表",
     grammarTargets: ["词典回溯", "主要词形", "搭配识别"],
@@ -149,6 +155,7 @@ export const resourceChapterMappings: ResourceChapterMapping[] = [
   },
   {
     id: "jlpt-n1-private-mock",
+    targetLanguage: "ja",
     title: "JLPT N1 Weekly Review",
     chapter: "私人模拟反馈 · 去身份化",
     grammarTargets: ["作用域", "条件联动", "语用纠错"],

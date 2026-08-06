@@ -8,6 +8,7 @@ const questionSources = await Promise.all([
 ]);
 const questionSource = questionSources.join("\n");
 const resourceSource = await readFile(new URL("../data/resources.ts", import.meta.url), "utf8");
+const pageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
 const candidateIds = ["ja-n1-003", "ja-n1-004", "i-mor-04", "i-syn-08", "es-a2-002", "es-b1-003"];
 
@@ -51,8 +52,29 @@ test("the existing 62 weekly lexicon candidates are batched without reimport", (
 test("resource mappings publish metadata only", () => {
   const mappings = resourceSource.slice(resourceSource.indexOf("export const resourceChapterMappings"), resourceSource.indexOf("export type AuthorNode"));
   assert.equal([...mappings.matchAll(/\n\s*id:\s*"/g)].length, 5);
-  for (const field of ["chapter", "grammarTargets", "vocabularyTargets", "exerciseLogic", "publicDomainStatus", "licenseNote"]) {
+  for (const field of ["targetLanguage", "chapter", "grammarTargets", "vocabularyTargets", "exerciseLogic", "publicDomainStatus", "licenseNote"]) {
     assert.match(mappings, new RegExp(`${field}:`));
   }
+  assert.equal([...mappings.matchAll(/targetLanguage:\s*"la"/g)].length, 4);
+  assert.equal([...mappings.matchAll(/targetLanguage:\s*"ja"/g)].length, 1);
   assert.doesNotMatch(mappings, /peterpig123456|gmail\.com|password|录音文件|完整学习日志/i);
+});
+
+test("resource records declare one target language", () => {
+  const catalog = resourceSource.slice(resourceSource.indexOf("export const textbookCatalog"), resourceSource.indexOf("export type ResourceChapterMapping"));
+  const records = [...catalog.matchAll(/\n\s*id:\s*"/g)].length;
+  const languages = [...catalog.matchAll(/targetLanguage:\s*"(?:la|ja|es)"/g)].length;
+
+  assert.ok(records > 0);
+  assert.equal(languages, records);
+});
+
+test("resource views consume only the active language datasets", () => {
+  const library = pageSource.slice(pageSource.indexOf("function ResourceLibrary"), pageSource.indexOf("function CommunityPreview"));
+
+  assert.match(library, /textbooks\.map/);
+  assert.match(library, /chapterMappings\.map/);
+  assert.match(library, /languageLexicon\.filter/);
+  assert.doesNotMatch(library, /textbookCatalog\.map|resourceChapterMappings\.map/);
+  assert.match(library, /language === "la" \? etymologyFacts\.length : currentFacts\.length/);
 });
