@@ -103,7 +103,7 @@
 - P3.1 分支：`agent/pikku-vocab-trainer`，合并前已吸收 `main@5a378cf`，包含 PR #15 与已合并的 PR #14。
 - PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`，合并后基线为 `79a9742`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
-- Draft PR #17：`feat: add P3.2 content review foundation`，分支 `agent/pikku-weekly-patch-2026-08-04`。稳定 Preview 为 `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/`；Cloudflare 冒烟、Augusta 8/8 自动验证，以及 48+14 词条、六道草稿题、五项映射和三语言基础切换的 Firefox 验收均已通过。后续资源语言隔离与切换连续性修复已在同一 PR 完成；2026-08-08 云端 Chrome 定向交互复验通过，现只待 Augusta Firefox 对这两项修复作最终确认；不得擅自合并。
+- PR #17：`feat: add P3.2 content review foundation`，分支 `agent/pikku-weekly-patch-2026-08-04`。稳定 Preview 为 `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/`；Cloudflare 冒烟、Augusta 8/8 自动验证、原定 Firefox 项目、云端 Chrome 定向复验，以及 2026-08-08 Augusta Firefox 的资源隔离／切换连续性最终确认均已通过。PR 已具备 Ready for review 条件，尚未合并；必须取得用户对 PR #17 的明确合并授权。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -131,7 +131,7 @@ P1 代码提交：
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
-- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，Draft PR #17 尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试；原定 Firefox 项目已验收通过。资源语言隔离与保留模块／相近等级的切换修复已通过自动检查和云端 Chrome 定向交互复验，待 Augusta Firefox 最终确认。
+- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现和全部验收，PR #17 尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射、内容复核测试、资源语言隔离，以及保留模块／相近等级的切换。自动检查、云端 Chrome 与 Augusta Firefox 均已通过，等待用户明确授权合并。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -259,7 +259,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-08 P3.2 定向修复云端交互复验：在稳定 Preview 使用云端 Chrome 实际操作通过。日语资源页只显示日语诚实空状态、31 个日语词条和 3 条日汉知识；西班牙语资源页只显示本语言诚实空状态、10 个西班牙语词条和 4 条西语词源知识；两者均未出现拉丁语教材、作者、词典、档案或社区频道。社区、资源、训练模块在跨语言切换时保持；首次从日语 N2 切到西班牙语映射为 B2，返回日语恢复 N2，西班牙语改为 C1 后往返仍恢复 C1。未发现 Pikku 应用错误，只有云浏览器扩展自身的 metadata 日志。该结果不冒充 Augusta Firefox 验收。
 
-2026-08-08 P3.2 定向复验后 Drive 复查：固定目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 和修改时间仍为 `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`、`2026-08-04T04:59:26.124Z`；没有新增或更新补丁，与 Draft PR #17、`main@79a9742` 和总任务书无新冲突。
+2026-08-08 P3.2 定向复验后 Drive 复查：固定目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 和修改时间仍为 `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`、`2026-08-04T04:59:26.124Z`；没有新增或更新补丁，与 PR #17、`main@79a9742` 和总任务书无新冲突。随后用户确认 Augusta Firefox 的资源隔离与切换连续性两项最终验收均通过，P3.2 已达到合并前完成定义。
 
 ## 13. Augusta 交互与故障防复发手册
 
@@ -389,3 +389,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-08：完整 memo 覆盖曾因包含认证与基础设施历史说明被 GitHub 连接器风险审查拦截；用户在知悉公开范围并确认文件无密钥后明确授权提交。平台维护同时清理了临时工作区，因此从 PR #17 最新远端分支重建，只恢复远端缺失的资源隔离、切换连续性、验证结果与故障防复发记录，不重做已提交代码。
 - 2026-08-08：PR #17 稳定 Preview 的云端 Chrome 定向交互复验通过：日语／西班牙语资源与社区均按语言隔离，资源／社区／训练模块切换连续，首次相近等级映射和各语言最近等级恢复正常；Drive 补丁目录无变化。下一步只需 Augusta Firefox 确认这两项修复，PR 仍为 Draft，未取得合并授权。
 - 2026-08-08：提交定向复验文档时，GitHub 连接器发现总任务书仍残留具体 D1／R2 名称并拒绝上传。根因是此前只清理了 memo、未同步清理任务书的旧基础设施段；已把任务书对应字段统一改为“见对应后台”。以后公开文档提交前必须同时扫描 memo 与总任务书中的 Account ID、数据库／Bucket 名称、UUID、项目 URL、nameserver、邮箱和密钥格式，不能只扫描 token 与 UUID。
+- 2026-08-08：用户在 Augusta Firefox 确认 PR #17 的资源隔离与切换连续性两个定向项目均通过。P3.2 的自动、云端浏览器与 Firefox 验收至此全部完成；Drive 无新增补丁或冲突。PR #17 转为 Ready for review，但仍未合并，等待用户另行明确授权。
