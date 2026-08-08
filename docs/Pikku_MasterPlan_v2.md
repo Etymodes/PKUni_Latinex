@@ -1,10 +1,10 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3 多语言账户同步与 P3.1 累计等级背词均已完成；下一代多语言架构与首批角色基线已建立
+状态：P3.2 内容复核底座与全部验收已完成，PR #17 可转 Ready for review、尚未合并；自然习得剧情方案已形成研究基线
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-GitHub 远端 `main` 当前基线：已包含 PR #14、PR #15 与 PR #16；实际合并提交以 GitHub 历史为准
+GitHub 远端 `main` 当前精确基线：`79a9742`，已包含 PR #14、PR #15 与 PR #16
 P3.1 已通过 PR #16 合入 `main`
 
 ---
@@ -63,8 +63,8 @@ P3.1 已通过 PR #16 合入 `main`
 
 - GitHub 仓库名：`PKUni_Latinex`
 - Cloudflare Worker 项目名：`pkuni-latinex`
-- D1 数据库名：`pkuni-latinex-db`
-- R2 Bucket：`pkuni-latinex-assets`
+- D1 数据库名称与标识：见 Cloudflare D1 后台
+- R2 Bucket 名称与区域：见 Cloudflare R2 后台
 - 正式域名：`pikku.qzz.io`
 
 待多语言版本稳定后，再评估是否修改内部技术名称。
@@ -642,13 +642,27 @@ draft → reviewed → published → archived
 
 ### P3.2：每周内容复核与补丁接入
 
-状态：已从 Drive `Pikku_WeeklyPatch_2026-08-04.md` 接受，等待 P3／P3.1 收口后从最新 `main` 建独立分支。
+状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现与全部验收；稳定 Cloudflare Preview、Augusta 8/8、20/20 自动测试、原定 Firefox 项目、云端 Chrome 定向复验，以及 2026-08-08 Augusta Firefox 的资源隔离／切换连续性最终确认均已通过。PR #17 可转 Ready for review，尚未合并。
 
 - 为题目增加独立于 `sourceStatus` 的 `reviewStatus`：`draft／reviewed／published／archived`。
-- 为词条增加可筛选的内容批次与复核状态；PR #15 已加入的最近批次统计和 14 个词条不得重复导入。
-- 把现有 62 个“待核”词条作为首批审校对象，先处理高风险词源和近义边界。
-- 审核后加入六道尚未进入主线的候选错因题：`ja-n1-003`、`ja-n1-004`、`i-mor-04`、`i-syn-08`、`es-a2-002`、`es-b1-003`；实际实现前再次检查 ID 和语义重复。
+- 已为词条增加可筛选的内容批次与复核状态；没有重复导入 PR #15 数据。
+- 已把现有 62 个“待核”词条按源码实际数量标记为 48+14 两批，作为首批审校对象；后续优先处理高风险词源和近义边界。
+- 已加入六道候选错因题：`ja-n1-003`、`ja-n1-004`、`i-mor-04`、`i-syn-08`、`es-a2-002`、`es-b1-003`；全部明确保持 `reviewStatus: "draft"`，不会冒充已发布题。
+- 已加入五项教材／资源章节元数据映射，只保存章节、知识点、目标词汇、练习逻辑和版权状态，不收录商业教材正文、扫描页、答案或录音。
+- 已新增内容复核与资源隔离测试；当前 20/20 Node 测试、TypeScript、Next/Sites、Cloudflare、GitHub Pages、Wrangler dry-run 与 Git 格式检查全部通过。
 - 日常学习只产生候选；周补丁书负责审校与排期；公开代码不得包含可识别的私人答案、录音或完整学习日志。
+- 教材与章节记录显式标注目标语言；资源页只渲染当前语言的教材、章节、词条和语言知识，非拉丁语模式不再显示拉丁作者、拉丁辞典、北大真题档案或拉丁语社区。
+- 切换语言保留兼容的当前模块并记住各语言最近等级；第一次切换按等级序列相对位置映射，只有拉丁语专属页面才回落到相近入口。
+
+### P3.3：自然习得剧情静态原型
+
+状态：研究完成，尚未进入功能实现。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+
+- 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
+- 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
+- 首批候选玩法为剧情阅读、语言侦探、文献修复、跨文化调解和受约束对话；复用现有题库、词卡、角色和进度模型，不先引入大型游戏引擎。
+- 剧情暂按 70% 当代北京、30% 历史／文献支线规划；常规章 8–12 分钟，另附 3 分钟复习和可选 20 分钟深读。
+- 第一个实现里程碑只做静态内容数据结构和一条可测学习闭环；在用户确认研究报告中的体验取向后再编码。
 
 ### P4：管理员后台
 
@@ -724,10 +738,10 @@ draft → reviewed → published → archived
 当前分支：
 
 ```text
-agent/pikku-vocab-trainer
+agent/pikku-weekly-patch-2026-08-04
 ```
 
-该分支已吸收 `main@5a378cf`，PR #16 只显示 P3.1 增量，并已在本阶段明确授权后合入 `main`。
+该分支从 `main@79a9742` 创建，只承载 P3.2 内容复核、元数据映射、自动测试、自然习得研究和对应文档更新；不得未经 Preview 与 Augusta Firefox 验收直接合并。
 
 规则：
 
@@ -759,14 +773,18 @@ agent/pikku-vocab-trainer
 
 2026-08-04 PR #14 合并与 P3.1 合流后复查：目录内容和修改时间仍未变化。PR #14 已合并为 `5a378cf`；PR #16 已吸收最新 `main`、改以 `main` 为 base 并转为 Ready for review。原 P3.2 分类继续有效，没有新增冲突或待决定事项。
 
+2026-08-06 P3.2 恢复后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。与 `main@79a9742`、当前分支和本任务书对照后无新增冲突；现有 62 个候选词条按真实源码拆分 48+14，六道新题保持草稿，未重复导入 PR #15 内容。
+
+2026-08-08 P3.2 最终验收复查：目录仍只有上述补丁书，文件 ID 与修改时间均未变化；与 PR #17、`main@79a9742` 和本任务书对照后无新冲突。稳定 Preview 的云端 Chrome 与 Augusta Firefox 均已确认日语／西班牙语资源和社区不混入拉丁语内容，资源／社区／训练模块切换连续，首次相近等级映射与各语言最近等级恢复正常。
+
 ---
 
 ## 13. 当前下一步
 
-1. P3 PR #14 与 P3.1 PR #16 均已合并；工程回归、Cloudflare Preview、Augusta 8/8 和 Firefox N2／C2 范围验收均已通过。
-2. 从最新 `main` 创建 P3.2 每周内容复核分支，不在已收口的 P3.1 分支直接加入 Drive 的六道题。
-3. 完成 `reviewStatus`、词条批次、首批六道候选题和教材章节元数据映射的分阶段实现，再进入 P4 管理后台。
-4. P3／P3.2 收口后，按已确认的“古典中心古希腊语、拉丁语—西班牙语联学、学习台＋探索地图”方向调整后续优先级。
+1. PR #17 与稳定 Preview `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/` 已建立；`.bundle` 不再作为交接依赖。
+2. Augusta 8/8、20/20 自动测试、原定 Firefox 项目、云端 Chrome 以及 Augusta Firefox 两项定向验收均已通过；不再重复这些检查。
+3. PR #17 转为 Ready for review 后等待用户明确授权；未经授权不得合并。
+4. P3.2 合并收口后，先向用户确认自然习得报告中的体验取向，再做 P3.3 静态原型；随后推进 P4 管理后台与中英双语底座。
 
 ---
 

@@ -47,6 +47,23 @@ export const multilingualQuestions: Question[] = [
     tags: ["からといって", "とは限らない", "まで", "改写", "N1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: jlptSource, sourceStatus: "original",
   },
   {
+    id: "ja-n1-003", language: "ja", level: "n1", category: "morphology", skill: "grammar", type: "choice",
+    prompt: "选择活用正确的「～ば～ほど」结构。", text: "説明が（　）、内容を正確に理解できるように思われる。",
+    options: ["詳しければ詳しいほど", "詳しければ詳しくほど", "詳しいなら詳しいほど", "詳しくば詳しいほど"], answer: 0,
+    explanation: "イ形容词使用条件形「詳しければ」＋基本形「詳しい」＋「ほど」，构成程度联动。",
+    distractorExplanations: ["「ほど」前保留基本形「詳しい」，不能用连用形「詳しく」。", "「なら」可构成条件表达，但不是这里要求的标准「～ば～ほど」对应。", "イ形容词的ば形是「詳しければ」，不是「詳しくば」。"],
+    tags: ["ばほど", "イ形容词", "活用", "N1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: jlptSource, sourceStatus: "original", reviewStatus: "draft",
+  },
+  {
+    id: "ja-n1-004", language: "ja", level: "n1", category: "vocabulary", skill: "semantic-distinction", type: "choice",
+    prompt: "同样时间内能处理的患者数量增加，最直接说明检查的哪一方面提高？",
+    text: "同じ時間で検査できる患者数が増えた。",
+    options: ["効率", "精度", "信頼性", "効果"], answer: 0,
+    explanation: "单位时间内的处理量增加，直接对应投入—产出关系，即「効率」。这不自动证明测量更准确、结果更稳定或治疗更有效。",
+    distractorExplanations: ["精度指测量或判断的精确程度，不能只由吞吐量推出。", "信頼性指结果是否稳定、可信地重现。", "効果指措施产生的作用或结果，不等于处理速度。"],
+    tags: ["効率", "精度", "信頼性", "効果", "N1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: jlptSource, sourceStatus: "original", reviewStatus: "draft",
+  },
+  {
     id: "es-a1-001", language: "es", level: "a1", category: "morphology", skill: "ser", type: "choice",
     prompt: "选择正确形式。", text: "Soy Pedro y (　) estudiante de bioingeniería.",
     options: ["soy", "eres", "es", "somos"], answer: 0,
@@ -59,6 +76,19 @@ export const multilingualQuestions: Question[] = [
     options: ["en", "a", "por", "sobre"], answer: 0,
     explanation: "表示工作发生的地点通常使用 en：trabajar en un laboratorio。",
     tags: ["介词", "地点", "A2"], source: "CEFR A2 能力域 · 官方框架对齐自拟", sourceUrl: cefrSource, sourceStatus: "original",
+  },
+  {
+    id: "es-a2-002", language: "es", level: "a2", category: "sentencePattern", skill: "correction", type: "choice",
+    prompt: "选择准确表达‘眼动不是主要研究路径，而是在人机交互中接触过的一项技术’的句子。",
+    options: [
+      "El seguimiento ocular no es mi principal línea de investigación, sino una técnica que he utilizado en el campo de la interacción persona-computadora.",
+      "El seguimiento ocular no está mi principal investigación, pero una técnica de interacción.",
+      "El seguimiento ocular es mi principal línea de investigación y no una técnica que he utilizado.",
+      "El seguimiento ocular no es mi principal línea de investigación, sino que una técnica en interacción.",
+    ], answer: 0,
+    explanation: "「no es A, sino B」先否定错误分类，再给出正确分类；这里 A、B 都是名词短语，因此使用 sino，不用 sino que。",
+    distractorExplanations: ["系表关系用 ser；「no está mi principal investigación」结构不成立，pero 也没有完成纠正。", "第二项把事实反过来说成主要研究路径。", "sino que 后应接带限定动词的分句；名词短语前直接用 sino。"],
+    tags: ["no es A sino B", "事实修正", "ser", "A2"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: cefrSource, sourceStatus: "original", reviewStatus: "draft",
   },
   {
     id: "es-b1-001", language: "es", level: "b1", category: "syntax", skill: "indirect-question", type: "choice",
@@ -75,6 +105,19 @@ export const multilingualQuestions: Question[] = [
     answer: 0,
     explanation: "trabajar en 标记工作地点，trabajar con 标记处理的材料或工具；间接疑问‘如何’写 cómo；responder a 标记回应对象，a + el 缩合为 al。",
     tags: ["en", "con", "cómo", "al", "研究自述", "B1"], source: "本周学习错误 · 去身份化原创复核题", sourceUrl: cefrSource, sourceStatus: "original",
+  },
+  {
+    id: "es-b1-003", language: "es", level: "b1", category: "vocabulary", skill: "etymology", type: "choice",
+    prompt: "西班牙语 seguir 与拉丁语 sequor 的关系，哪项最准确？",
+    options: [
+      "seguir 延续拉丁语 sequī 的词族，但现代西班牙语不再保留拉丁异相动词的形态系统。",
+      "seguir 是近代从书面拉丁语借入，因此完整保留 sequor 的变位。",
+      "两词只是拼写偶然相似，没有历史关系。",
+      "seguir 仍是异相动词，完成时必须用 ser 加分词。",
+    ], answer: 0,
+    explanation: "历史继承不等于整套形态原样保留。现代 seguir 按西班牙语动词系统变化；拉丁语 sequor 的异相范式没有随词汇一起保留下来。",
+    distractorExplanations: ["seguir 不是保存 sequor 范式的近代书面借词。", "两词存在可核验的历史继承关系，并非偶然相似。", "现代西班牙语没有拉丁语那套异相动词范畴。"],
+    tags: ["seguir", "sequor", "同源词", "形态演变", "B1"], source: "本周学习错误 · 去身份化原创复核题（RAE 词源核对）", sourceUrl: "https://dle.rae.es/seguir", sourceStatus: "original", reviewStatus: "draft",
   },
   {
     id: "es-b2-001", language: "es", level: "b2", category: "sentencePattern", skill: "subjunctive", type: "choice",

@@ -4,6 +4,7 @@ export type QuestionLevel = Exclude<Level, "mixed">;
 export type StudyQuestionLevel = QuestionLevel | "n4" | "n3" | "n2" | "n1" | "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
 export type StudyLevel = Level | StudyQuestionLevel;
 export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
+export type ReviewStatus = "draft" | "reviewed" | "published" | "archived";
 
 export type Question = {
   id: string;
@@ -24,6 +25,8 @@ export type Question = {
   source: string;
   sourceUrl?: string;
   sourceStatus?: "official-framework" | "public-domain" | "original";
+  reviewStatus?: ReviewStatus;
+  distractorExplanations?: string[];
 };
 
 export const questions: Question[] = [
@@ -118,6 +121,14 @@ export const questions: Question[] = [
     explanation: "dictū 是 supinum（目的分词）的 -ū 形式，常与形容词连用：‘说来奇妙’。", tags: ["supine", "-u"], source: "中级范围 · 目的分词"
   },
   {
+    id: "i-mor-04", language: "la", level: "intermediate", category: "morphology", skill: "deponent", type: "self-check",
+    prompt: "分析 secūtae sunt：写出完整词典形和完整形态。", latin: "secūtae sunt",
+    modelAnswer: "sequor, sequī, secūtus sum；直陈式、完成时、第三人称复数；异相动词，形式沿用被动系统而意义主动。secūtae 是阴性复数主格，与复数女性主语一致。",
+    explanation: "完成系统必须同时分析分词和 sum：secūtae 标记阴性复数主格，sunt 标记第三人称复数。只写‘看似被动’会漏掉时态、人称数、异相意义和分词一致。",
+    distractorExplanations: ["不是现在时：secūtae 与 sunt 合成完成时。", "不是语义被动：sequor 是异相动词。", "词典形不能只写 secūtae；须回溯到 sequor, sequī, secūtus sum。"],
+    tags: ["异相动词", "完整词典形", "分词一致"], source: "本周学习错误 · 去身份化原创复核题", sourceStatus: "original", reviewStatus: "draft",
+  },
+  {
     id: "i-syn-01", level: "intermediate", category: "syntax", type: "choice",
     prompt: "quin 从句在此处为什么成立？", latin: "Nōn dubium est quīn cīvitās in perīculō sit.",
     options: ["否定/疑问的怀疑表达后引出名词性从句", "引出比较从句", "代替目的从句的 nē", "引出直接引语"], answer: 0,
@@ -165,6 +176,16 @@ export const questions: Question[] = [
     answer: 0,
     explanation: "oppugnātae 是完成被动分词，采用阴性复数主格，与阴性复数主语 urbēs 一致；essent 是 sum 的愈过去时虚拟式第三人称复数，只标记人称和数。整个 oppugnātae essent 才是完成系统被动谓语，不能把变化概括为单纯的 ‘-t 变 -nt’。",
     tags: ["完成被动分词", "性数格一致", "过去反事实"], source: "本周学习错误 · 去身份化原创复核题", sourceStatus: "original",
+  },
+  {
+    id: "i-syn-08", language: "la", level: "intermediate", category: "syntax", skill: "counterfactual", type: "choice",
+    prompt: "选择‘这些城市现在本不会被敌人进攻’的正确形式。",
+    latin: "Urbēs ab hostibus nōn _____.",
+    options: ["oppugnārentur", "oppugnentur", "oppugnātae essent", "oppugnābantur"],
+    answer: 0,
+    explanation: "现在反事实使用未完成时虚拟式，未完成系统的被动采用综合形式 oppugnārentur。",
+    distractorExplanations: ["oppugnentur 是现在时虚拟式，不表达现在反事实。", "oppugnātae essent 是完成被动系统的愈过去时虚拟式，表达过去反事实。", "oppugnābantur 是未完成时直陈式，只陈述过去正在发生的事实。"],
+    tags: ["现在反事实", "被动语态", "未完成时虚拟式"], source: "本周学习错误 · 去身份化原创复核题", sourceStatus: "original", reviewStatus: "draft",
   },
   {
     id: "i-voc-01", level: "intermediate", category: "vocabulary", type: "choice",
