@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-06
+更新日期：2026-08-08
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -88,6 +88,8 @@
 - P3.1 Worker 会在首次 API 请求时检查旧 `user_preferences` 表是否缺少 `vocab_mode`，缺少则安全补列并记录 `vocabulary-trainer-v1`；这样 Branch Preview 不依赖预先手工执行远端迁移，正式迁移文件仍保留。
 - “无限”指训练轮次不设每日上限，不表示首版已有无限个不同词目；词库后续持续扩充。
 - 词灵 Cling 公开页面宣称无限背词、个性化推词和造句，但未找到公开源码或足以复现的算法说明。Pikku 只学习可观察的产品逻辑，使用自己的透明权重，不声称复制其强化学习或“最优”算法。
+- 多语言资源页必须以显式 `targetLanguage` 和词条 `language` 为边界；日语／西班牙语模式不得借用拉丁语教材、作者、辞典来源、真题档案或社区频道。尚未建设的数据应显示本语言的诚实空状态。
+- 切换学习语言时保留当前兼容模块，并在当前页面会话内记住各语言最近等级；第一次切换按等级序列中的相对位置映射。拉丁语专属的随机组卷／词汇量测量／真题档案切到其他语言时分别回落到训练或资源页，不能一律跳回首页和最低等级。
 
 ## 6. Git 当前基线
 
@@ -101,7 +103,7 @@
 - P3.1 分支：`agent/pikku-vocab-trainer`，合并前已吸收 `main@5a378cf`，包含 PR #15 与已合并的 PR #14。
 - PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`，合并后基线为 `79a9742`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
-- Draft PR #17：`feat: add P3.2 content review foundation`，分支 `agent/pikku-weekly-patch-2026-08-04`。稳定 Preview 为 `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/`；Cloudflare 冒烟和 Augusta 8/8 自动验证已通过，等待 Firefox 视觉／交互验收，不得擅自合并。
+- Draft PR #17：`feat: add P3.2 content review foundation`，分支 `agent/pikku-weekly-patch-2026-08-04`。稳定 Preview 为 `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/`；Cloudflare 冒烟、Augusta 8/8 自动验证，以及 48+14 词条、六道草稿题、五项映射和三语言基础切换的 Firefox 验收均已通过。验收后发现日语／西班牙语资源仍混入拉丁语内容且切换模块不顺，已在同一 PR 实施定向修复，等待 Preview 更新后的两项复验；不得擅自合并。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -129,7 +131,7 @@ P1 代码提交：
 - P2：已完成。日语 N4–N1、西班牙语 A1–C2 各有原创种子题，并接通有序／随机练习、即时解析、错题、收藏和统一搜索。
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
-- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，Draft PR #17 尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试；云端与 Augusta 自动验证均通过，Firefox 验收待确认。
+- P3.2：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现，Draft PR #17 尚未合并。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射，以及内容复核测试；原定 Firefox 项目已验收通过。随后加入资源语言隔离与保留模块／相近等级的切换修复，自动测试与构建已通过，等待两项定向浏览器复验。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -251,6 +253,10 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-06 P3.2 恢复后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。补丁与 `main@79a9742`、当前 P3.2 分支和任务书无新增矛盾；六道候选题保持 `draft`，62 个现有候选词条按源码实际数量标记为 48+14，不重复导入。
 
+2026-08-06 P3.2 Firefox 反馈：48+14 词条批次、六道草稿／错因题、五项章节映射和三语言基础切换均已通过，不再重复要求验收。遗留问题是日语／西班牙语资源页混入拉丁语内容，以及切换语言时总跳首页／最低等级导致割裂。根因分别为资源组件计算了语言筛选却仍渲染全量数组、社区与档案未按语言分支，以及 `selectLanguage` 强制重置视图和默认等级。修复采用显式资源语言标记、当前语言过滤、非拉丁语诚实空状态、语言化社区，以及保留兼容视图和会话内等级记忆；新增自动测试防止再次直接渲染全量教材／映射。
+
+2026-08-06 P3.2 定向修复自动验证：20/20 Node 测试、TypeScript、Next/Sites、Cloudflare／Pages 构建、Wrangler dry-run 与 Git 格式检查通过；未新增依赖。下一次 Firefox 只复验资源隔离和切换连续性，不重复此前已通过项目。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
@@ -286,6 +292,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - `npm ci` 曾报告高危依赖和待批准安装脚本。不要直接运行 `npm audit fix --force`；先确认依赖升级对 Next.js、Cloudflare 和构建链的影响。
 - 批量验证报告固定写入 `D:\Downloads\Pikku_Check_时间戳.txt`。
 - 云端 scratch 工作区可能被平台维护清理；若本地克隆消失，应从 GitHub 的最新功能分支重新克隆／恢复，不推断为用户删除，也不从旧输出手工重建代码。
+- GitHub 连接器可能把完整 `Pikku_MEMORY.md` 的认证／基础设施历史说明判定为公开仓库持久化风险。遇到拦截时不得换通道绕过；应先确认文件不含密钥或具体后台标识，向用户说明公开范围并取得明确知情授权，再从远端最新分支重建工作区、只补交缺失的 memo 更新。
 - 云端执行 npm 辅助命令若因 `/root/.npm` 不可写失败，显式使用 `npm --cache /tmp/npm-cache ...`。
 - 云端 Wrangler 若因 `/root/.config` 不可写而报日志目录错误，使用 `XDG_CONFIG_HOME=/tmp/wrangler-config HOME=/tmp/wrangler-home`；这是工具日志路径权限，不是 Worker 或 D1 故障。
 - 云端 scratch 直接运行 `next dev` 可能因 `uv_interface_addresses` 失败；显式使用 `next dev --hostname 127.0.0.1` 可正常启动。该限制不适用于 Augusta。
@@ -375,3 +382,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-06：原 P3.2 临时工作区和 `.bundle` 交接件在平台维护后不可用，聊天界面又显示“无法获取上传状态”。从可信 GitHub `main@79a9742` 重建 Sites 生命周期工作副本，按 Drive 补丁和长期记忆恢复 P3.2；此后改用直接 GitHub 功能分支＋Draft PR，不再依赖 bundle 下载。
 - 2026-08-06：完成自然习得与剧情玩法研究，新增 `docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`；把可理解输入、任务互动、注意形式、间隔提取与可解释自适应组合成六阶段学习循环。本阶段只建立研究和内容数据底座，不引入大型游戏引擎。
 - 2026-08-06：用户选择从公开 memo 中清理基础设施标识；Cloudflare Account ID、D1／R2 具体标识、nameserver 与 Supabase 项目标识统一改为“见对应后台”。同时记录 Draft PR #17、稳定 Preview 与 Augusta 8/8 报告，Firefox 验收仍待用户确认。
+- 2026-08-08：完整 memo 覆盖曾因包含认证与基础设施历史说明被 GitHub 连接器风险审查拦截；用户在知悉公开范围并确认文件无密钥后明确授权提交。平台维护同时清理了临时工作区，因此从 PR #17 最新远端分支重建，只恢复远端缺失的资源隔离、切换连续性、验证结果与故障防复发记录，不重做已提交代码。
