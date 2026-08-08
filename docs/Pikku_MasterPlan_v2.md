@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 内容复核底座已实现，Draft PR #17、Cloudflare Preview、Augusta 8/8 与原定 Firefox 项目均已通过；资源语言隔离和切换连续性修复等待两项定向复验；自然习得剧情方案已形成研究基线
+状态：P3.2 内容复核底座已实现，Draft PR #17、Cloudflare Preview、Augusta 8/8 与原定 Firefox 项目均已通过；资源语言隔离和切换连续性修复已通过云端 Chrome 定向复验，等待 Augusta Firefox 最终确认；自然习得剧情方案已形成研究基线
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`79a9742`，已包含 PR #14、PR #15 与 PR #16
@@ -63,8 +63,8 @@ P3.1 已通过 PR #16 合入 `main`
 
 - GitHub 仓库名：`PKUni_Latinex`
 - Cloudflare Worker 项目名：`pkuni-latinex`
-- D1 数据库名：`pkuni-latinex-db`
-- R2 Bucket：`pkuni-latinex-assets`
+- D1 数据库名称与标识：见 Cloudflare D1 后台
+- R2 Bucket 名称与区域：见 Cloudflare R2 后台
 - 正式域名：`pikku.qzz.io`
 
 待多语言版本稳定后，再评估是否修改内部技术名称。
@@ -642,7 +642,7 @@ draft → reviewed → published → archived
 
 ### P3.2：每周内容复核与补丁接入
 
-状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现；Draft PR #17、稳定 Cloudflare Preview 与 Augusta 8/8 自动验证已完成。48+14 词条、六道草稿／错因题、五项映射和三语言基础切换的 Firefox 验收已通过；后续发现的资源跨语言泄漏与切换割裂已完成定向修复并通过自动检查，等待 Preview 上复验，尚未合并。
+状态：已在 `agent/pikku-weekly-patch-2026-08-04` 从 `main@79a9742` 完成最小实现；Draft PR #17、稳定 Cloudflare Preview 与 Augusta 8/8 自动验证已完成。48+14 词条、六道草稿／错因题、五项映射和三语言基础切换的 Firefox 验收已通过；后续发现的资源跨语言泄漏与切换割裂已完成定向修复，并通过自动检查和稳定 Preview 的云端 Chrome 定向交互复验，等待 Augusta Firefox 最终确认，尚未合并。
 
 - 为题目增加独立于 `sourceStatus` 的 `reviewStatus`：`draft／reviewed／published／archived`。
 - 已为词条增加可筛选的内容批次与复核状态；没有重复导入 PR #15 数据。
@@ -775,13 +775,15 @@ agent/pikku-weekly-patch-2026-08-04
 
 2026-08-06 P3.2 恢复后复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。与 `main@79a9742`、当前分支和本任务书对照后无新增冲突；现有 62 个候选词条按真实源码拆分 48+14，六道新题保持草稿，未重复导入 PR #15 内容。
 
+2026-08-08 P3.2 定向复验后复查：目录仍只有上述补丁书，文件 ID 与修改时间均未变化；与 Draft PR #17、`main@79a9742` 和本任务书对照后无新冲突。稳定 Preview 的云端 Chrome 已确认日语／西班牙语资源与社区不混入拉丁语内容，资源／社区／训练模块切换连续，首次相近等级映射与各语言最近等级恢复正常；该结果不替代 Augusta Firefox 最终确认。
+
 ---
 
 ## 13. 当前下一步
 
 1. Draft PR #17 与稳定 Preview `https://agent-pikku-weekly-patch-2026-08-04-pkuni-latinex.kimdac.workers.dev/` 已建立；`.bundle` 不再作为交接依赖。
-2. Augusta 自动检查已 8/8 通过；原定 Firefox 项目也已通过，不再重复验收。Preview 更新后只需检查日语／西班牙语资源不含拉丁语内容，以及语言切换保留兼容模块和最近／相近等级。
-3. 两项定向浏览器验收通过后，把最终结果写入 `Pikku_MEMORY.md`；合并 PR #17 仍需用户明确授权。
+2. Augusta 自动检查已 8/8 通过；原定 Firefox 项目也已通过，不再重复验收。资源隔离和切换连续性已在稳定 Preview 通过云端 Chrome 定向交互复验；Augusta Firefox 只需最终确认这两项。
+3. Augusta Firefox 两项定向验收通过后，更新最终状态并等待用户明确授权；未经授权不得合并 PR #17。
 4. P3.2 收口后，先向用户确认自然习得报告中的体验取向，再做 P3.3 静态原型；随后推进 P4 管理后台与中英双语底座。
 
 ---
