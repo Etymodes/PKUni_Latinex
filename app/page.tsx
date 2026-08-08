@@ -71,9 +71,18 @@ import {
   type VocabularyMode,
   type VocabularyStats,
 } from "@/data/vocabulary";
+import {
+  storyNodesForPace,
+  storyPaces,
+  storyScore,
+  storyStageLabels,
+  xiangshanLatinStory,
+  type StoryPace,
+  type StorySupport,
+} from "@/data/story";
 import { apiFetch, supabase } from "@/lib/supabase";
 
-type View = "home" | "practice" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "settings" | "admin";
+type View = "home" | "practice" | "story" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "settings" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
@@ -175,7 +184,7 @@ function formatTime(seconds: number) {
 
 function viewForLanguage(language: LanguageCode, view: View): View {
   if (language === "la") return view;
-  if (view === "exam" || view === "vocabulary") return "practice";
+  if (view === "exam" || view === "vocabulary" || view === "story") return "practice";
   if (view === "archive") return "resources";
   return view;
 }
@@ -500,8 +509,8 @@ export default function App() {
     { id: "settings", label: "个人设置", icon: User },
     ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: "管理员后台", icon: Settings }] : []),
   ];
-  const activeSection: View = (["exam", "vocabulary", "vocab-trainer"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
-  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", "vocab-trainer": "自适应背单词", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: `${languageConfig.name}资源库` };
+  const activeSection: View = (["exam", "story", "vocabulary", "vocab-trainer"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
+  const viewTitles: Partial<Record<View, string>> = { exam: "随机组卷", story: "剧情任务", "vocab-trainer": "自适应背单词", vocabulary: "词汇量测量", bookmarks: "我的收藏", archive: "真题档案", resources: `${languageConfig.name}资源库` };
 
   return (
     <div className="app-shell">
@@ -574,12 +583,13 @@ export default function App() {
 
         <main id="main-content">
           <>
-              {language === "la" && (["practice", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["exam", "随机组卷"], ["vocab-trainer", "背单词"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
+              {language === "la" && (["practice", "story", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["story", "剧情任务"], ["exam", "随机组卷"], ["vocab-trainer", "背单词"], ["vocabulary", "词汇量测量"]]} view={view} setView={setView} />}
               {language !== "la" && (["practice", "vocab-trainer"] as View[]).includes(view) && <HubTabs items={[["practice", "有序选题"], ["vocab-trainer", "背单词"]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", "错题回炉"], ["bookmarks", "我的收藏"]]} view={view} setView={setView} />}
               {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", "考试范围"], ["archive", "真题档案"], ["resources", "教材·作者·辞典"]] : [["scope", "考试与资源"], ["resources", `${languageConfig.name}资源库`]]} view={view} setView={setView} />}
               {view === "home" && (language === "la" ? <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={(nextLevel, nextCategory) => openPractice(nextLevel, nextCategory)} setView={setView} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.filter((question) => matchesLevel(question, languageLevel)).length} />)}
               {view === "practice" && <Practice bank={languageBank} level={languageLevel} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "story" && language === "la" && <StoryMode setView={setView} />}
               {view === "mistakes" && <QuestionCollection title="错题回炉" empty="还没有错题。先完成一组练习吧。" questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title="我的收藏" empty="尚未收藏题目。练习时点击书签即可加入。" questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "exam" && (language === "la" ? <ExamMode bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} /> : <LanguagePlaceholder config={languageConfig} level={languageLevel} view={view} setView={setView} questionCount={languageBank.length} />)}
@@ -602,6 +612,7 @@ function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }
   const sectionTitles: Partial<Record<View, string>> = {
     home: "语言学习首页",
     practice: "训练中心",
+    story: "剧情任务",
     mistakes: "复习中心",
     bookmarks: "我的收藏",
     exam: "考试模拟",
@@ -855,6 +866,12 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
         ))}
       </section>
 
+      <section className="story-banner">
+        <div className="story-banner-mark"><Landmark /></div>
+        <div><span>FABULA INVESTIGANDA · P3.3 原型</span><h2>香山碑文与版本线索</h2><p>和“五方言路”完成一条 8–12 分钟的拉丁语文献侦探任务；另有 3 分钟复习和 20 分钟深读。</p></div>
+        <button className="secondary-button" onClick={() => setView("story")}>进入剧情 <ArrowRight size={17} /></button>
+      </section>
+
       <section className="exam-banner">
         <div className="banner-icon"><Trophy /></div>
         <div><span>SIMULATIO EXAMINIS</span><h2>准备好做一次完整模拟了吗？</h2><p>180 分钟倒计时，包含客观诊断题与一段完整翻译任务。</p></div>
@@ -862,6 +879,118 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
       </section>
     </div>
   );
+}
+
+function StoryMode({ setView }: { setView: (view: View) => void }) {
+  const [phase, setPhase] = useState<"intro" | "play" | "done">("intro");
+  const [pace, setPace] = useState<StoryPace>("standard");
+  const [support, setSupport] = useState<StorySupport>("guided");
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const paceOrder: StoryPace[] = ["quick", "standard", "deep"];
+  const nodes = storyNodesForPace(pace);
+  const node = nodes[step];
+  const selectedChoice = node?.choices?.find((choice) => choice.id === answers[node.id]);
+  const score = storyScore(answers, nodes);
+
+  const start = (nextPace = pace) => {
+    setPace(nextPace);
+    setStep(0);
+    setAnswers({});
+    setPhase("play");
+  };
+
+  const advance = () => {
+    if (step >= nodes.length - 1) setPhase("done");
+    else setStep((current) => current + 1);
+  };
+
+  if (phase === "intro") return <div className="page story-page">
+    <section className="story-intro">
+      <span className="eyebrow"><Landmark size={14} /> FABULA INVESTIGANDA · 剧情任务</span>
+      <div className="story-intro-heading">
+        <div><h1>{xiangshanLatinStory.title}</h1><p>{xiangshanLatinStory.subtitle}</p></div>
+        <span>建议中级 · 所有等级可试</span>
+      </div>
+      <p className="story-lead">{xiangshanLatinStory.setting}。你会先理解线索、向同伴缩小问题、提交转写判断，再把同一策略迁移到新句。</p>
+      <div className="story-objectives">
+        {xiangshanLatinStory.objectives.map((objective) => <span key={objective}><Check size={15} />{objective}</span>)}
+      </div>
+      <p className="story-source-note">原创训练场景 · 非史料原文 · 不设性别、国籍或身份预设</p>
+    </section>
+
+    <section className="story-setup" aria-label="剧情任务设置">
+      <div><span className="eyebrow">TEMPO · 任务长度</span><h2>这次走哪条路线？</h2></div>
+      <div className="story-pace-grid">
+        {paceOrder.map((item) => <button key={item} className={pace === item ? "active" : ""} onClick={() => setPace(item)} aria-pressed={pace === item}>
+          <strong>{storyPaces[item].label}</strong><span>{storyPaces[item].duration}</span><small>{storyPaces[item].description}</small>
+        </button>)}
+      </div>
+      <div className="story-support-row">
+        <div><strong>引导强度</strong><span>只影响提示多少，不改变题目结果。</span></div>
+        <div>
+          <button className={support === "guided" ? "active" : ""} onClick={() => setSupport("guided")} aria-pressed={support === "guided"}>更多讲解</button>
+          <button className={support === "immersive" ? "active" : ""} onClick={() => setSupport("immersive")} aria-pressed={support === "immersive"}>更沉浸</button>
+        </div>
+      </div>
+      <div className="story-actions"><button className="primary-button" onClick={() => start()}>开始{storyPaces[pace].label} <ArrowRight size={17} /></button><button className="text-button" onClick={() => setView("practice")}>返回训练中心</button></div>
+    </section>
+  </div>;
+
+  if (phase === "done") return <div className="page story-page">
+    <section className="story-complete">
+      <div className="story-complete-seal"><CheckCircle2 /></div>
+      <span className="eyebrow">ECHO COMPLETUM · 闭环完成</span>
+      <h1>线索已经串起来了。</h1>
+      <p>本轮完成 {nodes.length} 个情境节点，{score.total} 次判断中命中 <strong>{score.correct}</strong> 次。错选不会阻断剧情；反馈已把注意力带回有限动词、名词与分词的一致关系。</p>
+      <div className="story-summary-grid">
+        <div><span>核心策略</span><strong>先主干，后分词一致</strong></div>
+        <div><span>目标词目</span><strong>{xiangshanLatinStory.targetItems.join(" · ")}</strong></div>
+        <div><span>本轮路线</span><strong>{storyPaces[pace].label} · {storyPaces[pace].duration}</strong></div>
+      </div>
+      <div className="story-complete-actions">
+        {pace !== "quick" && <button className="secondary-button" onClick={() => start("quick")}>3 分钟回声复习</button>}
+        {pace !== "deep" && <button className="secondary-button" onClick={() => start("deep")}>打开 20 分钟深读</button>}
+        <button className="secondary-button" onClick={() => setView("resources")}>打开资源库</button>
+        <button className="primary-button" onClick={() => setView("practice")}>回到训练中心</button>
+      </div>
+      <small>本阶段为静态原型，只在本次章节中计算判断结果；账号级剧情进度和错因权重将在下一迭代接入。</small>
+    </section>
+  </div>;
+
+  return <div className="page story-page">
+    <div className="story-toolbar">
+      <button className="text-button" onClick={() => setPhase("intro")}><ArrowLeft size={16} />退出任务</button>
+      <span>{storyPaces[pace].label} · {support === "guided" ? "更多讲解" : "更沉浸"}</span>
+      <strong>{step + 1} / {nodes.length}</strong>
+    </div>
+    <div className="story-progress" aria-label={`剧情进度 ${step + 1} / ${nodes.length}`}><i style={{ width: `${((step + 1) / nodes.length) * 100}%` }} /></div>
+    <ol className="story-stage-list" aria-label="学习闭环阶段">
+      {nodes.map((item, index) => <li key={item.id} className={index === step ? "active" : index < step ? "done" : ""}><span>{index < step ? "✓" : index + 1}</span>{storyStageLabels[item.stage]}</li>)}
+    </ol>
+
+    <article className="story-scene">
+      <header><span>{storyStageLabels[node.stage]}</span><small>{node.place}</small><h1>{node.title}</h1></header>
+      <p className="story-copy">{node.body}</p>
+      {node.targetText && <blockquote lang="la">{node.targetText}</blockquote>}
+      {support === "guided" && node.guidedNote && <aside className="story-guidance"><CircleHelp size={17} /><div><strong>观察提示</strong><p>{node.guidedNote}</p></div></aside>}
+      {pace === "deep" && node.deepNote && <details className="story-deep-note" open><summary>文献深读注</summary><p>{node.deepNote}</p></details>}
+      {node.prompt && <h2>{node.prompt}</h2>}
+      {node.choices && <div className="story-choices">
+        {node.choices.map((choice) => <button key={choice.id} className={selectedChoice?.id === choice.id ? `selected ${choice.correct ? "correct" : "wrong"}` : ""} onClick={() => setAnswers((current) => ({ ...current, [node.id]: choice.id }))} disabled={Boolean(selectedChoice)} aria-pressed={selectedChoice?.id === choice.id}>
+          <span>{choice.id.toUpperCase()}</span>{choice.label}
+        </button>)}
+      </div>}
+      {selectedChoice && <div className={`story-feedback ${selectedChoice.correct ? "correct" : "wrong"}`} role="status">
+        {selectedChoice.correct ? <CheckCircle2 size={18} /> : <CircleHelp size={18} />}
+        <div><strong>{selectedChoice.correct ? "线索成立" : "先保留这个误差"}</strong><p>{selectedChoice.feedback}</p>{!selectedChoice.correct && node.repairPrompt && <small>修复提示：{node.repairPrompt}</small>}</div>
+      </div>}
+      <footer>
+        <button className="secondary-button" onClick={() => step > 0 ? setStep((current) => current - 1) : setPhase("intro")}><ArrowLeft size={16} />{step > 0 ? "上一幕" : "返回设置"}</button>
+        <button className="primary-button" onClick={advance} disabled={Boolean(node.choices?.length) && !selectedChoice}>{step === nodes.length - 1 ? "完成任务" : "继续"}<ArrowRight size={16} /></button>
+      </footer>
+    </article>
+  </div>;
 }
 
 function Practice({ bank, level, levels, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: LanguageLevel; levels: readonly LanguageLevel[]; setLevel: (l: LanguageLevel) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
