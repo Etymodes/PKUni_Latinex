@@ -656,7 +656,7 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18，等待 Preview 与 Augusta Firefox 验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18，Cloudflare Preview 已部署成功，等待 Augusta 批量检查与 Firefox 验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
@@ -786,14 +786,14 @@ agent/pikku-p3-3-story-prototype
 
 2026-08-09 P3.3 中断恢复：核心功能已通过 GitHub 连接器发布为远端提交 `88fa846`；长文档上传前的平台维护清理了临时工作区。恢复时从该远端提交重建并只补文档，未重复创建功能提交或修改 `main`。
 
-2026-08-09 P3.3 发布：文档恢复提交 `3fff1d2` 已落到远端，Draft PR #18 已创建且 GitHub 确认可自动合并。Cloudflare 状态尚未通过连接器返回，需从 PR 的 Workers Builds 检查读取实际 Preview 后再验收；不得把尚未出现的检查状态写成构建失败或成功。
+2026-08-09 P3.3 发布：文档恢复提交 `3fff1d2` 已落到远端，随后状态文档更新至远端 head `6018558`。Draft PR #18 已创建且 GitHub 确认可自动合并；Cloudflare 已确认该提交部署成功，稳定分支 Preview 为 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。尚待 Augusta 批量报告与 Firefox 验收。
 
 ---
 
 ## 13. 当前下一步
 
-1. 在功能分支发布 P3.3 Draft PR，等待 Cloudflare Preview，再检查首页入口、三种路线、六阶段前进／后退、错误反馈、语言切换回落及窄屏布局。
-2. 让 Augusta 批量脚本写出完整报告，并在 Firefox 完成同一组浏览器验收；未取得当前 PR 的明确合并授权前不合入 `main`。
+1. 在 Augusta 拉取 P3.3 分支并运行统一检查脚本，把完整报告写入 `D:\Downloads`。
+2. 打开已部署的 Cloudflare Preview，在 Firefox 检查首页入口、三种路线、六阶段前进／后退、错误反馈、语言切换回落及窄屏布局；未取得当前 PR 的明确合并授权前不合入 `main`。
 3. P3.3 收口后再推进 P4 多语言管理员后台与中英双语底座；M1 才接入账号级剧情事件和错因权重。
 
 ---
