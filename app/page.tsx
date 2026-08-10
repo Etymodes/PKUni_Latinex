@@ -80,6 +80,7 @@ import {
   type StoryPace,
   type StorySupport,
 } from "@/data/story";
+import { shuffle } from "@/lib/shuffle";
 import { apiFetch, supabase } from "@/lib/supabase";
 
 type View = "home" | "practice" | "story" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "settings" | "admin";
@@ -129,7 +130,6 @@ function usePersistentState<T>(key: string, initialValue: T) {
   return [value, setValue, ready] as const;
 }
 
-const shuffle = <T,>(items: T[]) => [...items].sort(() => Math.random() - 0.5);
 const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions];
 const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
 const allVocabItems = [...vocabItems, ...completeVocabItems];
@@ -887,16 +887,25 @@ function StoryMode({ setView }: { setView: (view: View) => void }) {
   const [support, setSupport] = useState<StorySupport>("guided");
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [choiceOrders, setChoiceOrders] = useState<Record<string, string[]>>({});
   const paceOrder: StoryPace[] = ["quick", "standard", "deep"];
   const nodes = storyNodesForPace(pace);
   const node = nodes[step];
   const selectedChoice = node?.choices?.find((choice) => choice.id === answers[node.id]);
+  const visibleChoices = node?.choices
+    ? (choiceOrders[node.id] ?? node.choices.map((choice) => choice.id)).flatMap((id) => {
+        const choice = node.choices?.find((item) => item.id === id);
+        return choice ? [choice] : [];
+      })
+    : [];
   const score = storyScore(answers, nodes);
 
   const start = (nextPace = pace) => {
+    const nextNodes = storyNodesForPace(nextPace);
     setPace(nextPace);
     setStep(0);
     setAnswers({});
+    setChoiceOrders(Object.fromEntries(nextNodes.map((item) => [item.id, shuffle(item.choices ?? []).map((choice) => choice.id)])));
     setPhase("play");
   };
 
@@ -977,8 +986,8 @@ function StoryMode({ setView }: { setView: (view: View) => void }) {
       {pace === "deep" && node.deepNote && <details className="story-deep-note" open><summary>文献深读注</summary><p>{node.deepNote}</p></details>}
       {node.prompt && <h2>{node.prompt}</h2>}
       {node.choices && <div className="story-choices">
-        {node.choices.map((choice) => <button key={choice.id} className={selectedChoice?.id === choice.id ? `selected ${choice.correct ? "correct" : "wrong"}` : ""} onClick={() => setAnswers((current) => ({ ...current, [node.id]: choice.id }))} disabled={Boolean(selectedChoice)} aria-pressed={selectedChoice?.id === choice.id}>
-          <span>{choice.id.toUpperCase()}</span>{choice.label}
+        {visibleChoices.map((choice, choiceIndex) => <button key={choice.id} className={selectedChoice?.id === choice.id ? `selected ${choice.correct ? "correct" : "wrong"}` : ""} onClick={() => setAnswers((current) => ({ ...current, [node.id]: choice.id }))} disabled={Boolean(selectedChoice)} aria-pressed={selectedChoice?.id === choice.id}>
+          <span>{String.fromCharCode(65 + choiceIndex)}</span>{choice.label}
         </button>)}
       </div>}
       {selectedChoice && <div className={`story-feedback ${selectedChoice.correct ? "correct" : "wrong"}`} role="status">
@@ -1038,15 +1047,20 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   const [submitted, setSubmitted] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [translation, setTranslation] = useState("");
+  const [optionOrder, setOptionOrder] = useState<number[]>([]);
   const sourceStatusLabel = question.sourceStatus === "original" ? "原创复核题" : question.sourceStatus === "public-domain" ? "公版原文" : question.sourceStatus === "official-framework" ? "官方框架" : null;
   const reviewStatusLabel = question.reviewStatus ? reviewStatusLabels[question.reviewStatus] : null;
   const isMorphologyCheck = question.type === "self-check" && question.category === "morphology";
 
   useEffect(() => {
+    setOptionOrder(shuffle((question.options ?? []).map((_, index) => index)));
+  }, [question.id]);
+
+  useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (question.type !== "choice" || submitted) return;
       const number = Number(event.key);
-      if (number >= 1 && number <= (question.options?.length || 0)) setSelected(number - 1);
+      if (number >= 1 && number <= optionOrder.length) setSelected(optionOrder[number - 1]);
       if (event.key === "Enter" && selected !== null) {
         setSubmitted(true);
         onResult(selected === question.answer ? "correct" : "wrong");
@@ -1054,7 +1068,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [onResult, question, selected, submitted]);
+  }, [onResult, optionOrder, question, selected, submitted]);
 
   const submit = () => {
     if (selected === null) return;
@@ -1075,12 +1089,14 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
       {question.type === "choice" ? (
         <>
           <div className="option-list" role="radiogroup" aria-label="选择答案">
-            {question.options?.map((option, optionIndex) => {
+            {optionOrder.map((optionIndex, visibleIndex) => {
+              const option = question.options?.[optionIndex];
+              if (option === undefined) return null;
               const isCorrect = submitted && optionIndex === question.answer;
               const isWrong = submitted && selected === optionIndex && optionIndex !== question.answer;
               return (
                 <button key={option} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
-                  <span className="option-key">{optionIndex + 1}</span><span>{option}</span>
+                  <span className="option-key">{visibleIndex + 1}</span><span>{option}</span>
                   {isCorrect && <Check size={18} />}{isWrong && <X size={18} />}
                 </button>
               );

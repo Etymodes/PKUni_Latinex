@@ -104,8 +104,8 @@ export const xiangshanLatinStory = {
       deepNote: "版本 A 只把碑铭式 V 规范化为普通拼写的 u；版本 B 还无依据地改变了 neglecta、signum 和谓语的数。",
       repairPrompt: "先标出每个版本唯一可能的复数主语，再看谓语是否与它配合。",
       choices: [
-        { id: "a", label: "A · Verba neglecta signum ostendunt.", correct: true, feedback: "校对通过：三处数的一致关系完整，也没有擅自改写原句。" },
-        { id: "b", label: "B · Verba neglectae signa ostendit.", correct: false, feedback: "B 同时破坏了 neglecta 与 verba 的中性复数一致，也让复数主语搭配了单数谓语。" },
+        { id: "a", label: "转写版本 A · Verba neglecta signum ostendunt.", correct: true, feedback: "校对通过：三处数的一致关系完整，也没有擅自改写原句。" },
+        { id: "b", label: "转写版本 B · Verba neglectae signa ostendit.", correct: false, feedback: "B 同时破坏了 neglecta 与 verba 的中性复数一致，也让复数主语搭配了单数谓语。" },
       ],
     },
     {

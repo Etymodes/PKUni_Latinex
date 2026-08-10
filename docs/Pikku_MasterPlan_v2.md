@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 已收口；P3.3 第一条自然习得剧情静态原型已通过 Preview、云端浏览器与 Augusta 8/8 批量检查，等待 Firefox 最终验收
+状态：P3.2 已收口；P3.3 原定 Firefox 项目已通过，正在对全站客观题答案位置随机化修复做新 Preview／Firefox 定向复验
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`f177f1d`，其中 PR #17 功能合并提交为 `bef79564`
@@ -656,7 +656,7 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18。Cloudflare Preview、云端 Chrome 冒烟及 Augusta 8/8 批量检查已通过，等待 Firefox 最终验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18。Cloudflare Preview、云端 Chrome 冒烟、Augusta 8/8 及原定 Firefox 项目已通过。Firefox 随后发现所有客观题因作者答案统一位于原数组索引 `0` 而长期显示为 A／第一项；同一 PR 已加入全局展示顺序随机化，等待新 Preview／Firefox 定向复验。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
@@ -665,7 +665,8 @@ draft → reviewed → published → archived
 - 第一条原型为拉丁语“香山碑文与版本线索”，复用孔令强、吴铃铃、崔路加、安雅敏和“五方言路”共同世界，目标词目为 `neglegō／signum／quaerō`。
 - 原型提供标准六阶段、快速四节点复习、深读注、“更多讲解／更沉浸”手动切换、错误修复反馈、结果摘要和随时返回训练中心；场景明确标为 Pikku 原创训练材料，不冒充史料原文。
 - M0 不新增账号字段、数据库迁移、生成式对话或游戏引擎；只在本次章节内计算判断结果。账号级剧情进度、错因权重与延迟通知留到 M1。
-- 新增结构和词典连接测试；当前 P3.3 新测试 6/6、全套 Node 测试 26/26、TypeScript、Next/Sites、GitHub Pages、Cloudflare、Wrangler dry-run 与 Git 格式检查均已通过。
+- 选项随机化复用一个无依赖 Fisher–Yates 函数：普通题在客户端挂载后按原答案索引洗牌，剧情题在每次开始路线时按稳定选择 ID 洗牌；显示编号跟随新位置，计分、错题和账号记录不改变，也不在 SSR 初始渲染调用随机数。
+- 新增结构、词典连接和答案身份测试；当前 P3.3 新测试 7/7、全套 Node 测试 27/27、TypeScript、Next/Sites、GitHub Pages、Cloudflare、Wrangler dry-run 与 Git 格式检查均已通过。
 
 ### P4：管理员后台
 
@@ -674,6 +675,8 @@ draft → reviewed → published → archived
 - 题目审核状态
 - 来源状态
 - 批量导入格式
+- 采用与 `data/languages.ts` 一致的语言—等级组合白名单；旧题缺少语言时继续兼容为拉丁语。
+- 管理表单补充 `language／skill／sourceStatus／reviewStatus`，保留现有 JSON 覆盖层，不为此新增数据库迁移。
 
 ### P5：资源与辞典
 
@@ -683,6 +686,8 @@ draft → reviewed → published → archived
 - 作者—作品—原文关系
 - 每日知识扩展至 365 条
 - 建立教材章节元数据映射：章节、知识点、目标词汇、练习逻辑、公版／授权状态与私人进度分离；商业教材正文、扫描页、答案和音频不进入公开仓库。
+- `Pikku_WeeklyPatch_2026-08-09.md` 后续人工审校队列：`ja-n1-005／i-mor-05／es-b2-002` 三道原创候选保持 `draft`；日语 5、拉丁语 7、西班牙语 5 共 17 项词汇先核对词典形、读音、义项、来源和版权，不把计划材料记成用户错题或已掌握内容。
+- 后续资源元数据小步扩展：青空文库公版文学、Instituto Cervantes DELE B2–C2 官方框架、BNE／BVMC 公版西语文学；只记录可核验元数据和合法链接，不复制商业题目或现代注释。
 
 ### P6：社区
 
@@ -788,6 +793,8 @@ agent/pikku-p3-3-story-prototype
 
 2026-08-09 P3.3 发布：核心功能提交为 `88fa846`，文档恢复提交 `3fff1d2` 已落到远端，随后只追加 memo／任务书状态更新。Draft PR #18 已创建且 GitHub 确认可自动合并；Cloudflare 已确认文档状态提交 `08b9c897` 部署成功，稳定分支 Preview 为 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。尚待 Augusta 批量报告与 Firefox 验收。
 
+2026-08-10 P3.3 Firefox 后复查：补丁目录新增 `Pikku_WeeklyPatch_2026-08-09.md`（文件 ID `1-EVQFox6bvfGfmFX1qN0PUqZwZmXsSeh`，修改时间 `2026-08-09T14:10:21.352Z`）。其中 P3.2 条目归类为“已实现”；“P3.3 尚未开始／开放 PR 为零”及复用日期分支的说明已被较新的用户决定和 PR #18 取代；多语言管理员修复接受并排入 P4；三道候选草稿题、17 项待核词与日语／西语公版资源元数据进入后续人工审校，不夹带到当前随机化修复。没有需要回退现有实现的冲突。
+
 ### 12.2 Google Drive 构建素材库
 
 固定文件夹：`https://drive.google.com/drive/folders/1dsNcxq1mfArmTjZggCpBeRguRLsgXP2Y?usp=sharing`（“Pikku素材库”）。
@@ -796,16 +803,17 @@ agent/pikku-p3-3-story-prototype
 - 每次内容型里程碑开始前检查新增／更新文件，登记目标语言、材料类型、作者／版本、来源、版权／许可、可公开范围、审核状态和拟关联模块。
 - 文件进入素材库不等于授权公开、全文镜像或自动导入。商业教材与现代注释默认仅作内部知识点映射；公版、授权或原创材料复核后方可进入公开题库、词典或知识卡。
 - 2026-08-10 首次登记时插件确认目录可访问且为空；未移动或改名现有文件，也未预建无必要的目录层级。
+- 2026-08-10 本轮复查仍为空；本次只改答题展示逻辑，没有可登记或可公开导入的新材料。
 
-2026-08-10 P3.3 Augusta 批量验收：`Pikku_Check_20260810_145713.txt` 显示当前分支 Repository、Node/npm、Dependencies、TypeScript、26/26 Worker tests、Cloudflare production build、Git formatting 与 Final worktree 共 8/8 PASS；工作区干净。只剩 Firefox 最终交互验收。
+2026-08-10 P3.3 Augusta 批量验收：`Pikku_Check_20260810_145713.txt` 显示当前分支 Repository、Node/npm、Dependencies、TypeScript、26/26 Worker tests、Cloudflare production build、Git formatting 与 Final worktree 共 8/8 PASS；工作区干净。用户随后确认原定 Firefox 项目全部通过，但发现正确答案位置固定；本轮随机化修复的云端工程检查已升级为 27/27 测试并全部通过，仍需新 Preview／Firefox 定向复验。
 
 ---
 
 ## 13. 当前下一步
 
-1. 打开已部署的 Cloudflare Preview，在 Augusta Firefox 检查首页入口、三种路线、六阶段前进／后退、错误反馈、语言切换回落及窄屏布局。
-2. Firefox 通过后更新 memo 与总任务书并把 PR #18 转为 Ready for review；未取得当前 PR 的明确合并授权前不合入 `main`。
-3. P3.3 收口后再推进 P4 多语言管理员后台与中英双语底座；M1 才接入账号级剧情事件和错因权重。
+1. 发布随机化修复到 PR #18，等待 Cloudflare 稳定分支 Preview 更新；云端浏览器检查普通题和剧情题的选项位置、判分与控制台。
+2. Augusta Firefox 只需定向确认：普通题正确答案不再固定第一项、剧情题重开后顺序重新随机、数字键／点击判分仍正确且无 hydration 错误。通过后把 PR #18 转为 Ready for review；未取得当前 PR 的明确合并授权前不合入 `main`。
+3. P3.3 收口后从最新 `main` 另建 P4 分支，先做 `Pikku_WeeklyPatch_2026-08-09.md` 已接受的多语言管理员等级／审核缺口；中英双语底座随后排期，M1 才接入账号级剧情事件和错因权重。
 
 ---
 

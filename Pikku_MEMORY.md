@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-09
+更新日期：2026-08-10
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -91,6 +91,7 @@
 - 词灵 Cling 公开页面宣称无限背词、个性化推词和造句，但未找到公开源码或足以复现的算法说明。Pikku 只学习可观察的产品逻辑，使用自己的透明权重，不声称复制其强化学习或“最优”算法。
 - 多语言资源页必须以显式 `targetLanguage` 和词条 `language` 为边界；日语／西班牙语模式不得借用拉丁语教材、作者、辞典来源、真题档案或社区频道。尚未建设的数据应显示本语言的诚实空状态。
 - 切换学习语言时保留当前兼容模块，并在当前页面会话内记住各语言最近等级；第一次切换按等级序列中的相对位置映射。拉丁语专属的随机组卷／词汇量测量／真题档案切到其他语言时分别回落到训练或资源页，不能一律跳回首页和最低等级。
+- 客观题数据继续用原始答案索引／稳定选择 ID 判分，但展示层每次进入题目时随机排列选项。普通练习、错题、收藏和模拟题在客户端挂载后洗牌，剧情题在每次开始路线时洗牌；界面编号按洗牌后的位置重新计算，不能再把作者数据中的索引 `0` 暴露为长期固定的 A／第一项。随机化不得发生在 SSR 初始渲染中，以免重新引入 hydration mismatch。
 
 ## 6. Git 当前基线
 
@@ -106,7 +107,7 @@
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
 - PR #17：`feat: add P3.2 content review foundation` 已在用户明确授权后于 2026-08-08 合入 `main`，合并提交为 `bef79564`。稳定 Preview、Cloudflare 冒烟、Augusta 8/8、20/20 自动测试、原定 Firefox 项目、云端 Chrome 定向复验，以及 Augusta Firefox 的资源隔离／切换连续性最终确认均已通过。
 - P3.3 分支：`agent/pikku-p3-3-story-prototype`，从 `main@f177f1d` 创建；只承载第一条自然习得剧情静态原型、测试和对应文档，不新增后端、数据库表或游戏引擎。
-- PR #18：`feat: add first Pikku story lesson`，核心功能提交为 `88fa846`，后续提交只更新 memo／任务书状态；当前是可自动合并的 Draft。Cloudflare 稳定 Preview、云端 Chrome 冒烟和 Augusta 8/8 批量检查均已通过；只剩 Augusta Firefox 最终交互验收。在 Firefox 通过并取得明确授权前不得合并。
+- PR #18：`feat: add first Pikku story lesson`，核心功能提交为 `88fa846`，当前是可自动合并的 Draft。Cloudflare 稳定 Preview、云端 Chrome 冒烟、Augusta 8/8 批量检查及原定 Firefox 交互项目均已通过；Firefox 随后发现所有正确选项因作者数据统一使用索引 `0` 而长期显示在 A／第一项。本轮已在同一 PR 上加入全局选项洗牌与回归测试，待新 Preview 和 Augusta Firefox 定向复验后再转为 Ready。未取得当前 PR 的明确合并授权前不得合并。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -135,7 +136,7 @@ P1 代码提交：
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
 - P3.2：已完成并通过 PR #17 合入 `main@bef79564`。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射、内容复核测试、资源语言隔离，以及保留模块／相近等级的切换；自动检查、云端 Chrome 与 Augusta Firefox 均已通过。
-- P3.3：功能实现与自动／Preview 验证完成，等待 Augusta Firefox 最终交互验收。首个拉丁语原型为“香山碑文与版本线索”，采用 70% 当代北京／30% 文献支线、中性第二人称、`Hook → Explore → Negotiate → Act → Notice → Echo` 六阶段；提供 8–12 分钟主线、3 分钟回声复习、20 分钟深读及“更多讲解／更沉浸”手动切换。当前 M0 只在本次章节内计分，不写入账号统计。
+- P3.3：首个拉丁语原型“香山碑文与版本线索”的原定 Firefox 交互项目已通过；随后发现全站客观题正确答案位置固定。本轮以一个共享 Fisher–Yates 洗牌函数修复普通题与剧情题，稳定原答案身份和判分逻辑，不改题库、账号数据或数据库。27/27 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare 与 Wrangler dry-run 已通过；等待新 Preview 和 Augusta Firefox 只复验选项顺序／判分后收口。原型继续采用 70% 当代北京／30% 文献支线、中性第二人称、`Hook → Explore → Negotiate → Act → Notice → Echo` 六阶段；当前 M0 只在本次章节内计分，不写入账号统计。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -265,6 +266,14 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-08 P3.2 定向复验后 Drive 复查：固定目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 和修改时间仍为 `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`、`2026-08-04T04:59:26.124Z`；没有新增或更新补丁，与 PR #17、`main@79a9742` 和总任务书无新冲突。随后用户确认 Augusta Firefox 的资源隔离与切换连续性两项最终验收均通过，P3.2 已达到合并前完成定义。
 
+2026-08-10 P3.3 Firefox 后复查：目录新增 [`Pikku_WeeklyPatch_2026-08-09.md`](https://drive.google.com/file/d/1-EVQFox6bvfGfmFX1qN0PUqZwZmXsSeh/view?usp=drivesdk)，修改时间为 `2026-08-09T14:10:21.352Z`；原 `2026-08-04` 补丁未变。分类如下：
+
+- 已实现：P3.2 的审核状态、48+14 批次、六道草稿题、五项映射、资源隔离和切换连续性。
+- 被新版取代：补丁中“P3.3 尚未开始／不要推进 P3.3”和“开放 PR 为零”的旧快照；用户其后已确认体验取向并完成 PR #18 原型验收，不能回退。
+- 接受并排期：P4 多语言管理员的语言—等级校验、审核／来源筛选与表单字段；三道候选草稿题、17 项待核词汇及日语／西语公版资源元数据进入后续内容审校，不在选项洗牌修复中夹带实现。
+- 被新版取代：建议复用 `agent/pikku-weekly-patch-2026-08-09` 的分支指令；当前先收口 `agent/pikku-p3-3-story-prototype`，P4 从最新 `main` 另建分支。
+- 处理结论：补丁与当前选项随机化修复无代码冲突；其 P4/P1/P2 内容已写入总任务，P3.3 旧状态按较新的用户验收和 GitHub 状态覆盖。
+
 ### Google Drive 构建素材库
 
 - 固定素材目录：`https://drive.google.com/drive/folders/1dsNcxq1mfArmTjZggCpBeRguRLsgXP2Y?usp=sharing`，Drive 标题为“Pikku素材库”。
@@ -272,6 +281,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 内容型里程碑开始前列出新增／更新文件，并登记目标语言、材料类型、作者／版本、来源、版权／许可、可公开范围、审核状态和拟关联模块。
 - 上传只代表可供项目审查，不代表已获公开发布、全文镜像或自动改编许可。商业教材与现代注释原则上只作内部知识点映射；公版、授权或原创材料经复核后才可进入公开站。
 - 2026-08-10 首次登记：Google Drive 插件确认文件夹可访问，创建时间为 `2026-08-10T06:51:23.965Z`，当前为空；未移动、重命名或创建任何子项。
+- 2026-08-10 选项随机化里程碑复查：目录仍为空；本次只改答题展示逻辑，没有可登记或可公开导入的新材料。
 
 ## 13. Augusta 交互与故障防复发手册
 
@@ -349,6 +359,8 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-09，P3.3 分支在云端已通过 26/26 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 与 Git 格式检查；Cloudflare 随后确认 PR #18 的 `6018558` 部署成功。尚待 Augusta 的统一 8 项报告和 Firefox 交互验收。
 - 2026-08-09，PR #18 稳定 Preview 的云端 Chrome 冒烟通过：首页和训练页均可进入剧情；主线六阶段可前后退；错选显示错因与修复提示；“更多讲解／更沉浸”切换有效；快速路线为 4 节点；深读显示文献注；完成页可进入资源库；剧情中切换日语／西班牙语会回落到对应语言训练且不残留拉丁语剧情。1363px 视口无横向溢出，未发现 Pikku 应用错误，仅有云浏览器扩展自身 metadata 日志。Augusta Firefox 仍是最终浏览器验收。
 - 2026-08-10 14:57，Augusta 报告 `Pikku_Check_20260810_145713.txt` 显示 `agent/pikku-p3-3-story-prototype@9005c71` 的 Repository、Node/npm、Dependencies、TypeScript、26/26 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；报告完整，工作区干净。P3.3 只剩 Firefox 视觉／交互验收。
+- 2026-08-10，用户确认 P3.3 原定 Firefox 项目全部通过，并指出普通题与剧情题的正确选项长期固定为 A／第一项。根因是所有作者数据把正确答案保存在索引 `0`／ID `a`，页面直接按作者数组展示。修复只在展示层洗牌：普通题在 hydration 后产生原索引顺序，剧情题在开始路线的点击事件中产生稳定到本轮结束的 ID 顺序；数字键、点击、正确标记和计分仍映射原答案身份。新增纯函数回归覆盖后全套 27/27 测试及全部构建通过。
+- 2026-08-10，本轮云端 `npm ci` 首次因默认 `/root/.npm` 不可写并留下不完整依赖而失败；直接以 `npm ci --cache /tmp/pikku-npm-cache` 重跑即可由 npm 自行清理恢复，不使用被安全执行器拒绝的 `rm -rf`。Wrangler 首次同样因 `/root/.config` 日志目录不可写失败，设置 `XDG_CONFIG_HOME=/tmp/pikku-config` 后 dry-run 通过。云浏览器依旧阻止 `127.0.0.1`，故真实交互留到新 Cloudflare Preview，不把 loopback 拦截算作应用失败。
 
 ## 14. 记忆更新日志
 
@@ -413,3 +425,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-09：文档恢复提交 `3fff1d2` 已发布，Draft PR #18 已创建并由 GitHub 确认可自动合并；其后继续追加纯文档状态提交。Cloudflare Workers 评论已确认 `08b9c897` 部署成功并给出稳定分支 Preview；下一步在 Augusta 拉取分支、运行统一报告并用 Firefox 完成交互验收。
 - 2026-08-09：云浏览器一次把多条路线、完成页和资源跳转串在同一控制调用中，超过 30 秒后控制内核重置；重新连接后页面状态仍在，控制台没有 Pikku 应用错误。以后把长浏览器验收拆成单次 1–3 个交互并立即取证，不能把控制器超时误判为网站超时。
 - 2026-08-10：用户指定新的“Pikku素材库”Drive 文件夹；插件确认可访问且当前为空。已把其与原补丁任务书目录的用途、内容登记字段和版权闸门写入 memo；同轮 Augusta P3.3 统一报告为 8/8 PASS，下一步只做 Firefox 最终验收。
+- 2026-08-10：P3.3 原定 Firefox 项目通过后修复全站客观题答案位置偏差；共享洗牌函数覆盖训练、错题、收藏、模拟与剧情，不改稳定答案身份。Drive 复查发现 2026-08-09 新补丁，将 P4 管理后台与候选内容排期，明确其中 P3.3 未开始和旧分支指令已被新版取代；素材库仍为空。

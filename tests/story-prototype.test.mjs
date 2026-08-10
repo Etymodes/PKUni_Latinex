@@ -7,6 +7,7 @@ import {
   xiangshanLatinStory,
 } from "../data/story.ts";
 import { lexiconSeed } from "../data/resources.ts";
+import { shuffle } from "../lib/shuffle.ts";
 
 test("the standard story keeps the complete six-stage learning loop", () => {
   const nodes = storyNodesForPace("standard");
@@ -34,6 +35,15 @@ test("story scoring only counts answered decisions", () => {
   const nodes = storyNodesForPace("quick");
   assert.deepEqual(storyScore({ explore: "a", act: "b", notice: "a" }, nodes), { correct: 2, total: 4 });
   assert.deepEqual(storyScore({}, nodes), { correct: 0, total: 4 });
+});
+
+test("answer choices can move without changing their answer identity", () => {
+  const choices = xiangshanLatinStory.nodes.find((node) => node.id === "explore")?.choices ?? [];
+  const shuffled = shuffle(choices, () => 0);
+  assert.deepEqual(shuffled.map((choice) => choice.id), ["b", "c", "a"]);
+  assert.equal(shuffled.findIndex((choice) => choice.correct), 2);
+  assert.deepEqual(choices.map((choice) => choice.id), ["a", "b", "c"]);
+  assert.deepEqual(storyScore({ explore: shuffled[2].id }, storyNodesForPace("standard")), { correct: 1, total: 5 });
 });
 
 test("the prototype is clearly labeled as original training content", () => {
