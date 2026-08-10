@@ -786,7 +786,7 @@ agent/pikku-p3-3-story-prototype
 
 2026-08-09 P3.3 中断恢复：核心功能已通过 GitHub 连接器发布为远端提交 `88fa846`；长文档上传前的平台维护清理了临时工作区。恢复时从该远端提交重建并只补文档，未重复创建功能提交或修改 `main`。
 
-2026-08-09 P3.3 发布：文档恢复提交 `3fff1d2` 已落到远端，随后状态文档更新至远端 head `6018558`。Draft PR #18 已创建且 GitHub 确认可自动合并；Cloudflare 已确认该提交部署成功，稳定分支 Preview 为 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。尚待 Augusta 批量报告与 Firefox 验收。
+2026-08-09 P3.3 发布：核心功能提交为 `88fa846`，文档恢复提交 `3fff1d2` 已落到远端，随后只追加 memo／任务书状态更新。Draft PR #18 已创建且 GitHub 确认可自动合并；Cloudflare 已确认文档状态提交 `08b9c897` 部署成功，稳定分支 Preview 为 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。尚待 Augusta 批量报告与 Firefox 验收。
 
 ---
 
