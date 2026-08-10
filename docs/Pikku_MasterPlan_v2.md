@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 已收口；P3.3 第一条自然习得剧情静态原型已进入功能分支实现与 Preview 验收阶段
+状态：P3.2 已收口；P3.3 第一条自然习得剧情静态原型已进入 Draft PR #18 的 Preview 与 Augusta Firefox 验收阶段
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`f177f1d`，其中 PR #17 功能合并提交为 `bef79564`
@@ -656,7 +656,7 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现，等待 Preview 与 Augusta Firefox 验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18，等待 Preview 与 Augusta Firefox 验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
@@ -785,6 +785,8 @@ agent/pikku-p3-3-story-prototype
 2026-08-08 P3.3 启动复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。与 `main@f177f1d`、`agent/pikku-p3-3-story-prototype`、memo 和本任务书对照后没有新增补丁、重复实现、旧版覆盖或待用户决定的冲突。
 
 2026-08-09 P3.3 中断恢复：核心功能已通过 GitHub 连接器发布为远端提交 `88fa846`；长文档上传前的平台维护清理了临时工作区。恢复时从该远端提交重建并只补文档，未重复创建功能提交或修改 `main`。
+
+2026-08-09 P3.3 发布：文档恢复提交 `3fff1d2` 已落到远端，Draft PR #18 已创建且 GitHub 确认可自动合并。Cloudflare 状态尚未通过连接器返回，需从 PR 的 Workers Builds 检查读取实际 Preview 后再验收；不得把尚未出现的检查状态写成构建失败或成功。
 
 ---
 
