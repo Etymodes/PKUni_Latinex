@@ -338,6 +338,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-06，P3.2 恢复分支通过 18/18 Node 测试、TypeScript、Next/Sites 生产构建、Cloudflare Supabase 构建、GitHub Pages 构建、Wrangler 4.110.0 dry-run 与 Git 格式检查。最初的 Supabase／Wrangler 缺模块来自 Sites 工作副本只有旧精简依赖，按锁文件执行 `npm ci` 后全部通过，并非项目代码回归。
 - 2026-08-06 23:32，Augusta 报告 `Pikku_Check_20260806_233222.txt` 显示 PR #17 分支 Repository、Node/npm、Dependencies、TypeScript、18/18 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；工作区干净。该报告不包含 Firefox 视觉／交互结论。
 - 2026-08-09，P3.3 分支在云端已通过 26/26 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 与 Git 格式检查；Cloudflare 随后确认 PR #18 的 `6018558` 部署成功。尚待 Augusta 的统一 8 项报告和 Firefox 交互验收。
+- 2026-08-09，PR #18 稳定 Preview 的云端 Chrome 冒烟通过：首页和训练页均可进入剧情；主线六阶段可前后退；错选显示错因与修复提示；“更多讲解／更沉浸”切换有效；快速路线为 4 节点；深读显示文献注；完成页可进入资源库；剧情中切换日语／西班牙语会回落到对应语言训练且不残留拉丁语剧情。1363px 视口无横向溢出，未发现 Pikku 应用错误，仅有云浏览器扩展自身 metadata 日志。Augusta Firefox 仍是最终浏览器验收。
 
 ## 14. 记忆更新日志
 
@@ -400,3 +401,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-08：启动 P3.3 时复查固定 Drive 目录；仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 与 `2026-08-04T04:59:26.124Z` 修改时间均未变化。与 `main@f177f1d`、当前分支、memo 和总任务书对照后无新增补丁、重复实现或冲突。
 - 2026-08-09：发布 P3.3 时本地 HTTPS push 因容器没有 GitHub 凭据失败，改用已授权 GitHub 连接器建立远端分支；核心功能提交 `88fa846` 已成功落地。随后上传两份长文档时会话中断，平台维护清理了临时工作区；恢复时先核对远端提交，再从 `agent/pikku-p3-3-story-prototype@88fa846` 重建，只补 memo／任务书，不重复创建代码 blob、功能提交或 bundle。以后遇到 `turn_aborted` 与工作区清理仍遵循“先查远端状态、再补缺项”。
 - 2026-08-09：文档恢复提交 `3fff1d2` 已发布，Draft PR #18 已创建并由 GitHub 确认可自动合并；其后继续追加纯文档状态提交。Cloudflare Workers 评论已确认 `08b9c897` 部署成功并给出稳定分支 Preview；下一步在 Augusta 拉取分支、运行统一报告并用 Firefox 完成交互验收。
+- 2026-08-09：云浏览器一次把多条路线、完成页和资源跳转串在同一控制调用中，超过 30 秒后控制内核重置；重新连接后页面状态仍在，控制台没有 Pikku 应用错误。以后把长浏览器验收拆成单次 1–3 个交互并立即取证，不能把控制器超时误判为网站超时。
