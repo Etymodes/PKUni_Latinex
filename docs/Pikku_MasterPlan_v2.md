@@ -1,10 +1,10 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 已通过 PR #17 合入 `main`；自然习得剧情方案已形成研究基线，下一步进入 P3.3 体验取向确认
+状态：P3.2 已收口；P3.3 第一条自然习得剧情静态原型已进入功能分支实现与 Preview 验收阶段
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-GitHub 远端 `main` 当前精确基线：`bef79564`，已包含 PR #14、PR #15、PR #16 与 PR #17
+GitHub 远端 `main` 当前精确基线：`f177f1d`，其中 PR #17 功能合并提交为 `bef79564`
 P3.1 已通过 PR #16 合入 `main`
 
 ---
@@ -656,13 +656,16 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究完成，尚未进入功能实现。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现，等待 Preview 与 Augusta Firefox 验收。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
 - 首批候选玩法为剧情阅读、语言侦探、文献修复、跨文化调解和受约束对话；复用现有题库、词卡、角色和进度模型，不先引入大型游戏引擎。
-- 剧情暂按 70% 当代北京、30% 历史／文献支线规划；常规章 8–12 分钟，另附 3 分钟复习和可选 20 分钟深读。
-- 第一个实现里程碑只做静态内容数据结构和一条可测学习闭环；在用户确认研究报告中的体验取向后再编码。
+- 用户已确认 70% 当代北京、30% 历史／文献支线；叙述使用不预设身份的中性第二人称；常规章 8–12 分钟，另附 3 分钟复习和可选 20 分钟深读。
+- 第一条原型为拉丁语“香山碑文与版本线索”，复用孔令强、吴铃铃、崔路加、安雅敏和“五方言路”共同世界，目标词目为 `neglegō／signum／quaerō`。
+- 原型提供标准六阶段、快速四节点复习、深读注、“更多讲解／更沉浸”手动切换、错误修复反馈、结果摘要和随时返回训练中心；场景明确标为 Pikku 原创训练材料，不冒充史料原文。
+- M0 不新增账号字段、数据库迁移、生成式对话或游戏引擎；只在本次章节内计算判断结果。账号级剧情进度、错因权重与延迟通知留到 M1。
+- 新增结构和词典连接测试；当前 P3.3 新测试 6/6、全套 Node 测试 26/26、TypeScript、Next/Sites、GitHub Pages、Cloudflare、Wrangler dry-run 与 Git 格式检查均已通过。
 
 ### P4：管理员后台
 
@@ -738,10 +741,10 @@ draft → reviewed → published → archived
 当前分支：
 
 ```text
-agent/pikku-weekly-patch-2026-08-04
+agent/pikku-p3-3-story-prototype
 ```
 
-该分支从 `main@79a9742` 创建，只承载 P3.2 内容复核、元数据映射、自动测试、自然习得研究和对应文档更新；不得未经 Preview 与 Augusta Firefox 验收直接合并。
+该分支从 `main@f177f1d` 创建，只承载 P3.3 第一条剧情静态原型、自动测试和对应文档；不得未经 Preview 与 Augusta Firefox 验收直接合并。
 
 规则：
 
@@ -779,13 +782,17 @@ agent/pikku-weekly-patch-2026-08-04
 
 2026-08-08 P3.2 合并收口：用户明确授权后，PR #17 以 merge commit `bef79564` 合入 `main`。合并前补丁目录仍无新增或更新，P3.2 没有遗留冲突；下一里程碑转入 P3.3 自然习得剧情静态原型。
 
+2026-08-08 P3.3 启动复查：目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`，修改时间仍为 `2026-08-04T04:59:26.124Z`。与 `main@f177f1d`、`agent/pikku-p3-3-story-prototype`、memo 和本任务书对照后没有新增补丁、重复实现、旧版覆盖或待用户决定的冲突。
+
+2026-08-09 P3.3 中断恢复：核心功能已通过 GitHub 连接器发布为远端提交 `88fa846`；长文档上传前的平台维护清理了临时工作区。恢复时从该远端提交重建并只补文档，未重复创建功能提交或修改 `main`。
+
 ---
 
 ## 13. 当前下一步
 
-1. PR #17 已按用户明确授权合入 `main@bef79564`；P3.2 的自动、Preview、Augusta 与 Firefox 验收全部收口，不再重复。
-2. 先向用户确认自然习得报告中的体验取向，再创建 P3.3 功能分支实现一条静态、可测的剧情学习闭环。
-3. P3.3 之后推进 P4 多语言管理员后台与中英双语底座；仍遵守功能分支、Preview、Augusta 与 Firefox 验收流程。
+1. 在功能分支发布 P3.3 Draft PR，等待 Cloudflare Preview，再检查首页入口、三种路线、六阶段前进／后退、错误反馈、语言切换回落及窄屏布局。
+2. 让 Augusta 批量脚本写出完整报告，并在 Firefox 完成同一组浏览器验收；未取得当前 PR 的明确合并授权前不合入 `main`。
+3. P3.3 收口后再推进 P4 多语言管理员后台与中英双语底座；M1 才接入账号级剧情事件和错因权重。
 
 ---
 
