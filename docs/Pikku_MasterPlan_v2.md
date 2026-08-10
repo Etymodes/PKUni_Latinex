@@ -1,7 +1,7 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 已收口；P3.3 原定 Firefox 项目已通过，正在对全站客观题答案位置随机化修复做新 Preview／Firefox 定向复验
+状态：P3.2 已收口；P3.3 答案位置随机化已通过新 Preview 与云端 Chrome，等待 Augusta Firefox 定向复验
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub 远端 `main` 当前精确基线：`f177f1d`，其中 PR #17 功能合并提交为 `bef79564`
@@ -656,7 +656,7 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18。Cloudflare Preview、云端 Chrome 冒烟、Augusta 8/8 及原定 Firefox 项目已通过。Firefox 随后发现所有客观题因作者答案统一位于原数组索引 `0` 而长期显示为 A／第一项；同一 PR 已加入全局展示顺序随机化，等待新 Preview／Firefox 定向复验。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18。原定 Cloudflare、云端 Chrome、Augusta 8/8 及 Firefox 项目已通过。Firefox 随后发现所有客观题因作者答案统一位于原数组索引 `0` 而长期显示为 A／第一项；同一 PR 的全局展示顺序随机化已通过新 Workers Preview 与云端 Chrome，等待 Augusta Firefox 定向复验。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
@@ -807,12 +807,14 @@ agent/pikku-p3-3-story-prototype
 
 2026-08-10 P3.3 Augusta 批量验收：`Pikku_Check_20260810_145713.txt` 显示当前分支 Repository、Node/npm、Dependencies、TypeScript、26/26 Worker tests、Cloudflare production build、Git formatting 与 Final worktree 共 8/8 PASS；工作区干净。用户随后确认原定 Firefox 项目全部通过，但发现正确答案位置固定；本轮随机化修复的云端工程检查已升级为 27/27 测试并全部通过，仍需新 Preview／Firefox 定向复验。
 
+2026-08-10 随机化 Preview 验收：Cloudflare 对提交 `af180dd` 部署成功。云端 Chrome 两次进入西班牙语 A1 题时，正确项 `soy` 分别位于第 3、4 位；点击和数字键＋Enter 均正确判分。剧情 `explore` 正确项重开前后分别位于 C、A，同一轮返回上一幕仍保持原顺序。未发现 Pikku 应用错误或 hydration 日志，只有浏览器扩展自身 metadata 日志。该结果不冒充 Augusta Firefox 验收。
+
 ---
 
 ## 13. 当前下一步
 
-1. 发布随机化修复到 PR #18，等待 Cloudflare 稳定分支 Preview 更新；云端浏览器检查普通题和剧情题的选项位置、判分与控制台。
-2. Augusta Firefox 只需定向确认：普通题正确答案不再固定第一项、剧情题重开后顺序重新随机、数字键／点击判分仍正确且无 hydration 错误。通过后把 PR #18 转为 Ready for review；未取得当前 PR 的明确合并授权前不合入 `main`。
+1. Augusta Firefox 只需定向确认：普通题正确答案不再固定第一项、剧情题重开后顺序重新随机、数字键／点击判分仍正确且无 hydration 错误。
+2. Firefox 通过后把 PR #18 转为 Ready for review；未取得当前 PR 的明确合并授权前不合入 `main`。
 3. P3.3 收口后从最新 `main` 另建 P4 分支，先做 `Pikku_WeeklyPatch_2026-08-09.md` 已接受的多语言管理员等级／审核缺口；中英双语底座随后排期，M1 才接入账号级剧情事件和错因权重。
 
 ---
