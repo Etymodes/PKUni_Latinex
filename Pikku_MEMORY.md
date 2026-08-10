@@ -105,7 +105,7 @@
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
 - PR #17：`feat: add P3.2 content review foundation` 已在用户明确授权后于 2026-08-08 合入 `main`，合并提交为 `bef79564`。稳定 Preview、Cloudflare 冒烟、Augusta 8/8、20/20 自动测试、原定 Firefox 项目、云端 Chrome 定向复验，以及 Augusta Firefox 的资源隔离／切换连续性最终确认均已通过。
 - P3.3 分支：`agent/pikku-p3-3-story-prototype`，从 `main@f177f1d` 创建；只承载第一条自然习得剧情静态原型、测试和对应文档，不新增后端、数据库表或游戏引擎。
-- PR #18：`feat: add first Pikku story lesson`，远端 head 为 `3fff1d2`，当前是可自动合并的 Draft；在 Cloudflare Preview 与 Augusta Firefox 验收完成并取得明确授权前不得合并。
+- PR #18：`feat: add first Pikku story lesson`，远端 head 为 `6018558`，当前是可自动合并的 Draft；Cloudflare 已确认该提交部署成功，稳定分支 Preview 为 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。在 Augusta 批量检查、Firefox 验收完成并取得明确授权前不得合并。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -337,6 +337,7 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04，PR #16 吸收 `main@5a378cf` 后，15/15 Node 测试、TypeScript、Next.js 16.2.10 生产构建、Wrangler 4.110.0 dry-run、Git 格式与题目 ID 重复检查全部通过。稳定 Preview 的应用脚本 SHA-256 与本地构建完全一致，首页及 `/api/me`、`/api/questions`、`/api/auth-config` 均返回 200。
 - 2026-08-06，P3.2 恢复分支通过 18/18 Node 测试、TypeScript、Next/Sites 生产构建、Cloudflare Supabase 构建、GitHub Pages 构建、Wrangler 4.110.0 dry-run 与 Git 格式检查。最初的 Supabase／Wrangler 缺模块来自 Sites 工作副本只有旧精简依赖，按锁文件执行 `npm ci` 后全部通过，并非项目代码回归。
 - 2026-08-06 23:32，Augusta 报告 `Pikku_Check_20260806_233222.txt` 显示 PR #17 分支 Repository、Node/npm、Dependencies、TypeScript、18/18 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；工作区干净。该报告不包含 Firefox 视觉／交互结论。
+- 2026-08-09，P3.3 分支在云端已通过 26/26 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 与 Git 格式检查；Cloudflare 随后确认 PR #18 的 `6018558` 部署成功。尚待 Augusta 的统一 8 项报告和 Firefox 交互验收。
 
 ## 14. 记忆更新日志
 
@@ -398,4 +399,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-08：P3.3 首轮工程复核中，`tsc` 最初因新工作区尚无 `node_modules` 而找不到命令；使用 `npm ci --cache /tmp/pikku-npm-cache` 恢复依赖后通过。批量构建命令又因安全执行器拒绝 `rm -rf` 清理临时目录而未启动；改用 `mktemp -d` 为 Wrangler 创建唯一临时目录后，GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 和格式检查全部通过。以后不能把缺依赖或安全执行器拒绝误判为项目代码失败，也不在自动化命令中用破坏性临时目录清理。
 - 2026-08-08：启动 P3.3 时复查固定 Drive 目录；仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 与 `2026-08-04T04:59:26.124Z` 修改时间均未变化。与 `main@f177f1d`、当前分支、memo 和总任务书对照后无新增补丁、重复实现或冲突。
 - 2026-08-09：发布 P3.3 时本地 HTTPS push 因容器没有 GitHub 凭据失败，改用已授权 GitHub 连接器建立远端分支；核心功能提交 `88fa846` 已成功落地。随后上传两份长文档时会话中断，平台维护清理了临时工作区；恢复时先核对远端提交，再从 `agent/pikku-p3-3-story-prototype@88fa846` 重建，只补 memo／任务书，不重复创建代码 blob、功能提交或 bundle。以后遇到 `turn_aborted` 与工作区清理仍遵循“先查远端状态、再补缺项”。
-- 2026-08-09：文档恢复提交 `3fff1d2` 已发布，Draft PR #18 已创建并由 GitHub 确认可自动合并；连接器暂未返回 Cloudflare 状态或 Preview 地址，因此不把“状态尚未出现”判为失败，也不猜造已部署结论。下一步在 Augusta 拉取分支并运行统一报告，再从 PR 的 Workers Builds 检查打开实际 Preview 完成 Firefox 验收。
+- 2026-08-09：文档恢复提交 `3fff1d2` 已发布，Draft PR #18 已创建并由 GitHub 确认可自动合并；其后文档状态更新至远端 head `6018558`。Cloudflare Workers 评论已确认该提交部署成功并给出稳定分支 Preview；下一步在 Augusta 拉取分支、运行统一报告并用 Firefox 完成交互验收。
