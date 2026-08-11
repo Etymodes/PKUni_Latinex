@@ -79,7 +79,7 @@ $typeScriptCode = Invoke-LoggedCommand { npm.cmd run lint }
 Add-Result "TypeScript" $typeScriptCode
 
 Write-Section "Worker unit tests"
-$testCode = Invoke-LoggedCommand { node --disable-warning=ExperimentalWarning --test tests/wechat-oauth.test.mjs tests/vocabulary-adaptive.test.mjs tests/vocabulary-migration.test.mjs tests/content-review.test.mjs }
+$testCode = Invoke-LoggedCommand { node --disable-warning=ExperimentalWarning --test tests/wechat-oauth.test.mjs tests/vocabulary-adaptive.test.mjs tests/vocabulary-migration.test.mjs tests/content-review.test.mjs tests/story-prototype.test.mjs }
 Add-Result "Worker unit tests" $testCode
 
 Write-Section "Cloudflare production build"
