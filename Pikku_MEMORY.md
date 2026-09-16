@@ -1,6 +1,6 @@
 # 哔丘 Pikku 项目长期记忆
 
-更新日期：2026-08-08
+更新日期：2026-08-10
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
@@ -14,6 +14,8 @@
 4. 本文件只记录长期有效信息和当前状态，不保存密码、SMTP 密钥、OAuth Secret、私钥、API Token，亦不保存 Cloudflare／D1／R2／Supabase 的具体后台标识；这些信息统一写作“见对应后台”。
 5. 涉及实现时使用 Ponytail 原则：选择能工作的最小方案，避免无必要的依赖、抽象、迁移和重写。
 6. 每个里程碑标记完成前，检查固定 Google Drive 补丁目录，与 GitHub `main`、开放 PR、当前分支和总任务书对照；新内容可排期，已实现内容不得重复，矛盾或旧版指令必须先告知并询问用户。
+7. 每次内容型开发里程碑开始前检查固定 Google Drive 素材库的新文件和更新；先登记语言、材料类型、版本／来源、版权状态与拟用途，再决定只作内部参考、可公开引用、可改编或需要用户决定，不能因文件已上传就自动导入题库或公开部署。
+8. 素材库采用持续摄取协议：一次只锁定一个源文件，依次完成登记与版权分级、内容识别、按目录契约拆分、精确／规范化去重、输出回读核验和清单更新；全部完成后才把原文件移动到 `已处理`。内部整理不等于获得公开发布授权。
 
 本文件是仓库内的项目记忆协议，不是平台自动记忆钩子。执行者需要主动读取、维护并提交它。
 
@@ -90,10 +92,11 @@
 - 词灵 Cling 公开页面宣称无限背词、个性化推词和造句，但未找到公开源码或足以复现的算法说明。Pikku 只学习可观察的产品逻辑，使用自己的透明权重，不声称复制其强化学习或“最优”算法。
 - 多语言资源页必须以显式 `targetLanguage` 和词条 `language` 为边界；日语／西班牙语模式不得借用拉丁语教材、作者、辞典来源、真题档案或社区频道。尚未建设的数据应显示本语言的诚实空状态。
 - 切换学习语言时保留当前兼容模块，并在当前页面会话内记住各语言最近等级；第一次切换按等级序列中的相对位置映射。拉丁语专属的随机组卷／词汇量测量／真题档案切到其他语言时分别回落到训练或资源页，不能一律跳回首页和最低等级。
+- 客观题数据继续用原始答案索引／稳定选择 ID 判分，但展示层每次进入题目时随机排列选项。普通练习、错题、收藏和模拟题在客户端挂载后洗牌，剧情题在每次开始路线时洗牌；界面编号按洗牌后的位置重新计算，不能再把作者数据中的索引 `0` 暴露为长期固定的 A／第一项。随机化不得发生在 SSR 初始渲染中，以免重新引入 hydration mismatch。
 
 ## 6. Git 当前基线
 
-- GitHub 远端 `main` 当前精确基线：`bef79564`，已包含资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13、每周复核练习 PR #15、账号同步 PR #14、自适应背词 PR #16 与内容复核底座 PR #17。
+- GitHub 远端 `main` 当前精确基线：`f177f1d`；其中 PR #17 的功能合并提交为 `bef79564`。该基线已包含资源中心 PR #9、拉丁语内容 PR #11、多语言外壳 PR #12、种子题库 PR #13、每周复核练习 PR #15、账号同步 PR #14、自适应背词 PR #16 与内容复核底座 PR #17。
 - P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建，已通过 PR #14 合入 `main`。
 - 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
 - `docs/Pikku_MasterPlan_v2.md` 是多语言转型的总任务书。
@@ -104,6 +107,8 @@
 - PR #16：`feat: add adaptive vocabulary training` 已于 2026-08-04 获得当前阶段明确授权并合入 `main`，合并后基线为 `79a9742`。稳定 Preview、Augusta 8/8、Firefox 累计词库范围、本地合流回归与线上资源哈希复核均已通过。
 - PR #15：`feat: add 2026-08-02 weekly review practice set` 已合并到远端 `main`，合并提交 `47b25094`；P3.1 已通过 `main@5a378cf` 吸收该提交，题目 ID 与词条重复检查通过。
 - PR #17：`feat: add P3.2 content review foundation` 已在用户明确授权后于 2026-08-08 合入 `main`，合并提交为 `bef79564`。稳定 Preview、Cloudflare 冒烟、Augusta 8/8、20/20 自动测试、原定 Firefox 项目、云端 Chrome 定向复验，以及 Augusta Firefox 的资源隔离／切换连续性最终确认均已通过。
+- P3.3 分支：`agent/pikku-p3-3-story-prototype`，从 `main@f177f1d` 创建；只承载第一条自然习得剧情静态原型、测试和对应文档，不新增后端、数据库表或游戏引擎。
+- PR #18：`feat: add first Pikku story lesson`，核心功能提交为 `88fa846`，选项随机化提交为 `af180dd`，当前是可自动合并的 Draft。原定 Cloudflare／云端 Chrome／Augusta 8/8／Firefox 项目及随机化后的新 Workers Preview／云端 Chrome 定向复验均已通过；只待 Augusta Firefox 复验选项顺序和判分后转为 Ready。未取得当前 PR 的明确合并授权前不得合并。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -132,6 +137,8 @@ P1 代码提交：
 - P3：已完成。账号同步实现、Augusta Firefox 验收与 PR #14 合并均已完成。
 - P3.1：已完成。三语自适应背词、两种显示模式及账号偏好同步可用；首批 56 张词卡按所选等级累积覆盖低等级词库。
 - P3.2：已完成并通过 PR #17 合入 `main@bef79564`。范围包括独立审核状态、内容批次／状态筛选、现有 62 个候选词条的 48+14 分批标记、六道明确保持 `draft` 的候选错因题、五项教材／资源章节元数据映射、内容复核测试、资源语言隔离，以及保留模块／相近等级的切换；自动检查、云端 Chrome 与 Augusta Firefox 均已通过。
+- P3.3：首个拉丁语原型“香山碑文与版本线索”的原定 Firefox 交互项目已通过；随后发现全站客观题正确答案位置固定。本轮以一个共享 Fisher–Yates 洗牌函数修复普通题与剧情题，稳定原答案身份和判分逻辑，不改题库、账号数据或数据库。27/27 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare、Wrangler dry-run及随机化 Preview 的云端 Chrome 定向复验已通过；等待 Augusta Firefox 只复验选项顺序／判分后收口。原型继续采用 70% 当代北京／30% 文献支线、中性第二人称、`Hook → Explore → Negotiate → Act → Notice → Echo` 六阶段；当前 M0 只在本次章节内计分，不写入账号统计。
+- 当前工作焦点临时切换为 Google Drive 素材库逐文件摄取；每轮完成一个或一小批可独立验收的源文件，并同步清单、memo 与总任务书。P3.3 随机化 Firefox 短复验只是延后，不视为通过；PR #18 保持 Draft，未授权不得合并。
 - P4：多语言管理员题库管理。
 - P5：资源、词典、知识图谱。
 - P6：带审核能力的社区。
@@ -143,7 +150,7 @@ P1 代码提交：
 - Pikku 不把“自然习得”简化为只看输入或完全不讲语法；首版证据链采用“可理解且有意义的输入 → 为完成任务而互动 → 必要输出 → 注意到形式 → 间隔提取”。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`，优先做剧情阅读、语言侦探、文献修复、跨文化调解和受约束对话，不先引入大型游戏引擎。
 - 剧情方向暂定 70% 当代北京、30% 历史／文献支线；用户用中性第二人称；常规章 8–12 分钟，附 3 分钟复习和可选 20 分钟深读。
-- 首个静态原型应记录理解、求助、重读、选择与延迟回忆事件，用这些可解释信号调节输入难度；不能以连胜、点击率或“沉浸感”替代真实学习成效。
+- 首个 M0 静态原型只验证内容结构、选择反馈和提取闭环；账号级理解、求助、重读、选择与延迟回忆事件留到 M1，再用这些可解释信号调节输入难度。不能以连胜、点击率或“沉浸感”替代真实学习成效。
 
 ## 8. 内容规划
 
@@ -261,6 +268,31 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 
 2026-08-08 P3.2 定向复验后 Drive 复查：固定目录仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 和修改时间仍为 `1A8b5EGDMoqRfgkijXvX30Ne-tEfHXlgu`、`2026-08-04T04:59:26.124Z`；没有新增或更新补丁，与 PR #17、`main@79a9742` 和总任务书无新冲突。随后用户确认 Augusta Firefox 的资源隔离与切换连续性两项最终验收均通过，P3.2 已达到合并前完成定义。
 
+2026-08-10 P3.3 Firefox 后复查：目录新增 [`Pikku_WeeklyPatch_2026-08-09.md`](https://drive.google.com/file/d/1-EVQFox6bvfGfmFX1qN0PUqZwZmXsSeh/view?usp=drivesdk)，修改时间为 `2026-08-09T14:10:21.352Z`；原 `2026-08-04` 补丁未变。分类如下：
+
+- 已实现：P3.2 的审核状态、48+14 批次、六道草稿题、五项映射、资源隔离和切换连续性。
+- 被新版取代：补丁中“P3.3 尚未开始／不要推进 P3.3”和“开放 PR 为零”的旧快照；用户其后已确认体验取向并完成 PR #18 原型验收，不能回退。
+- 接受并排期：P4 多语言管理员的语言—等级校验、审核／来源筛选与表单字段；三道候选草稿题、17 项待核词汇及日语／西语公版资源元数据进入后续内容审校，不在选项洗牌修复中夹带实现。
+- 被新版取代：建议复用 `agent/pikku-weekly-patch-2026-08-09` 的分支指令；当前先收口 `agent/pikku-p3-3-story-prototype`，P4 从最新 `main` 另建分支。
+- 处理结论：补丁与当前选项随机化修复无代码冲突；其 P4/P1/P2 内容已写入总任务，P3.3 旧状态按较新的用户验收和 GitHub 状态覆盖。
+
+### Google Drive 构建素材库
+
+- 固定素材目录：`https://drive.google.com/drive/folders/1dsNcxq1mfArmTjZggCpBeRguRLsgXP2Y?usp=sharing`，Drive 标题为“Pikku素材库”。
+- 用途：保存构建 Pikku 时可参考的教材、原典／文本、辞典、词表、知识卡、合法音频／图像及其来源说明；与“每周补丁任务书”目录严格分开。
+- 固定输出前三层为 `语言类别／知识点／资源类型`。名家名篇在资源类型下继续按 `时代／作者／作品／篇章` 归档；同一作品的原文、译文、注释和图片必须分开并保留版本关系。
+- 每项输出至少记录源文件 ID／标题、原页码或表格位置、作者与作品、版本／来源、版权分级、审核状态、拟关联模块和内容指纹。图片独立命名为 `源文件短名__p页码__序号__内容短名.ext`，不把图片嵌入文字文件后丢失来源。
+- 去重分为：原始字节完全重复、规范化文字重复、近似重复、版本差异和翻译差异。只有前两类在人工确认后复用一份规范输出；版本和译文差异必须保留。重复源不删除，移动到 `已处理／重复件`。
+- 版权分级固定为 `public-domain`、`authorized`、`original`、`personal-use-only`、`internal-reference`、`rights-unclear`。只有前三类经复核后可完整拆分并进入公开内容；后三类只建立元数据、知识点索引与必要短引，不上传全文转换件。
+- 根目录现有 `README_Pikku素材库.txt` 和 `Pikku_素材处理清单.tsv` 作为操作协议与逐文件账本；已建立 `拉丁语` 输出树以及 `已处理／仅限个人使用`、`已处理／重复件`、`已处理／待版权核验`。每次操作后必须回读输出、清单和移动后的原文件位置。
+- 2026-08-10 队列动态盘点：最初发现 22 个源文件，整理期间先后新增《西塞罗曰》和 `Learn to Read Latin` 两个文件，累计 24 个；已完成 10 个源文件后，根目录剩 14 个未处理源文件。以后每轮重新盘点，不能把这个数字当成永久常量。
+- 首批完成项：`LLPSI_Pars_I_Latin-English_Vocabulary_I.pdf` 建立来源／版权、词汇知识点和语法术语三份索引，因官方仅允许个人打印而归入 `personal-use-only`；两份带 `(1)` 的多语言词表 PDF／XLSX 经字节 SHA-256 确认为完全重复，移入 `重复件`；不带 `(1)` 的 XLSX 建立六语词表数据质量索引，不带 `(1)` 的 PDF 建立版本元数据，两者因未核到可再发布许可而归入 `rights-unclear`。
+- 后续完成项：`LLPSI_Pars_I_Vocabulaire_latin-francais_I.pdf` 生成来源／版权、拉丁—法语词汇结构和语法术语三份索引；`LLPSI_Supplementa_Caesaris_De_Bello_Gall_Vocabulary.pdf` 生成来源记录与凯撒作品词汇索引，并实际落到 `名家名篇／词汇索引／共和国时期／Gaius Iulius Caesar 凯撒／Commentarii de bello Gallico 高卢战记／选本（卷 I、IV、V）`。两者均因出版方只允许个人打印而归入 `personal-use-only`。
+- 后续完成项：`LLPSI_Supplementa_Vergilii_Aeneis_Vocabulary.pdf` 落到奥古斯都时期—维吉尔—《埃涅阿斯纪》卷 I、IV；`LLPSI_Supplementa_Sermones_Romani_Vocabulary.pdf` 因没有逐词作者定位而归入跨时代合集，不强行拆给 Cicero、Tacitus、Martial；`LLPSI_Teacher_s_Materials__Conseils_au_prof.pdf` 因未署名法译和许可不明归入 `rights-unclear`，只生成原创教学法原则映射。
+- 累计生成 17 个教学索引／元数据文件及 2 个操作文件；七份已检查 PDF 均无可独立提取的栅格图片；受限材料全文输出数为 0。所有 10 个原文件均在输出回读后移动，未删除任何源文件。
+- 首批精确去重指纹：多语言 PDF 两份均为 `d1d7ff19b620561b0304d6d7e289c985fc784889b34018a1b652e881580b3728`；多语言 XLSX 两份均为 `edcd2b92d6098c1802e889e5340b6ab4ca465513a5321bae129d828352fdce82`。规范 XLSX 内容指纹为 `b115786a9ee29cccadd5b61cf02d9af1b69d629bb60d478a6b45537f1eae2c32`，有 1906 行数据、1904 个规范化拉丁词头、0 个完全重复行；两个重复词头分别来自不同语法／语义位置，予以保留。
+- 本里程碑复查补丁目录：`Pikku_WeeklyPatch_2026-08-04.md` 与 `Pikku_WeeklyPatch_2026-08-09.md` 均无更新；本轮素材整理没有与当前分支、PR #18 或总任务书冲突的新指令。
+
 ## 13. Augusta 交互与故障防复发手册
 
 ### 命令执行习惯
@@ -334,6 +366,12 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-04，PR #16 吸收 `main@5a378cf` 后，15/15 Node 测试、TypeScript、Next.js 16.2.10 生产构建、Wrangler 4.110.0 dry-run、Git 格式与题目 ID 重复检查全部通过。稳定 Preview 的应用脚本 SHA-256 与本地构建完全一致，首页及 `/api/me`、`/api/questions`、`/api/auth-config` 均返回 200。
 - 2026-08-06，P3.2 恢复分支通过 18/18 Node 测试、TypeScript、Next/Sites 生产构建、Cloudflare Supabase 构建、GitHub Pages 构建、Wrangler 4.110.0 dry-run 与 Git 格式检查。最初的 Supabase／Wrangler 缺模块来自 Sites 工作副本只有旧精简依赖，按锁文件执行 `npm ci` 后全部通过，并非项目代码回归。
 - 2026-08-06 23:32，Augusta 报告 `Pikku_Check_20260806_233222.txt` 显示 PR #17 分支 Repository、Node/npm、Dependencies、TypeScript、18/18 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；工作区干净。该报告不包含 Firefox 视觉／交互结论。
+- 2026-08-09，P3.3 分支在云端已通过 26/26 Node 测试、TypeScript、Next/Sites、GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 与 Git 格式检查；Cloudflare 随后确认 PR #18 的 `6018558` 部署成功。尚待 Augusta 的统一 8 项报告和 Firefox 交互验收。
+- 2026-08-09，PR #18 稳定 Preview 的云端 Chrome 冒烟通过：首页和训练页均可进入剧情；主线六阶段可前后退；错选显示错因与修复提示；“更多讲解／更沉浸”切换有效；快速路线为 4 节点；深读显示文献注；完成页可进入资源库；剧情中切换日语／西班牙语会回落到对应语言训练且不残留拉丁语剧情。1363px 视口无横向溢出，未发现 Pikku 应用错误，仅有云浏览器扩展自身 metadata 日志。Augusta Firefox 仍是最终浏览器验收。
+- 2026-08-10 14:57，Augusta 报告 `Pikku_Check_20260810_145713.txt` 显示 `agent/pikku-p3-3-story-prototype@9005c71` 的 Repository、Node/npm、Dependencies、TypeScript、26/26 Worker tests、Cloudflare production build、Git formatting、Final worktree 共 8/8 通过；报告完整，工作区干净。P3.3 只剩 Firefox 视觉／交互验收。
+- 2026-08-10，用户确认 P3.3 原定 Firefox 项目全部通过，并指出普通题与剧情题的正确选项长期固定为 A／第一项。根因是所有作者数据把正确答案保存在索引 `0`／ID `a`，页面直接按作者数组展示。修复只在展示层洗牌：普通题在 hydration 后产生原索引顺序，剧情题在开始路线的点击事件中产生稳定到本轮结束的 ID 顺序；数字键、点击、正确标记和计分仍映射原答案身份。新增纯函数回归覆盖后全套 27/27 测试及全部构建通过。
+- 2026-08-10，本轮云端 `npm ci` 首次因默认 `/root/.npm` 不可写并留下不完整依赖而失败；直接以 `npm ci --cache /tmp/pikku-npm-cache` 重跑即可由 npm 自行清理恢复，不使用被安全执行器拒绝的 `rm -rf`。Wrangler 首次同样因 `/root/.config` 日志目录不可写失败，设置 `XDG_CONFIG_HOME=/tmp/pikku-config` 后 dry-run 通过。云浏览器依旧阻止 `127.0.0.1`，故真实交互留到新 Cloudflare Preview，不把 loopback 拦截算作应用失败。
+- 2026-08-10，Cloudflare 对随机化提交 `af180dd` 部署成功；稳定分支 Preview 保持 `https://agent-pikku-p3-3-story-prototype-pkuni-latinex.kimdac.workers.dev/`。云端 Chrome 定向复验中，西班牙语 A1 的正确项 `soy` 两次进入分别位于第 3、4 位，点击和数字键＋Enter 均判为正确；剧情 `explore` 正确项重开前后分别位于 C、A，同一轮前进再返回时顺序保持。Pikku 应用错误与 hydration 日志均为 0，只有浏览器扩展自身 metadata 错误。该结果不代替 Augusta Firefox 的最终定向复验。
 
 ## 14. 记忆更新日志
 
@@ -391,3 +429,13 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 - 2026-08-08：提交定向复验文档时，GitHub 连接器发现总任务书仍残留具体 D1／R2 名称并拒绝上传。根因是此前只清理了 memo、未同步清理任务书的旧基础设施段；已把任务书对应字段统一改为“见对应后台”。以后公开文档提交前必须同时扫描 memo 与总任务书中的 Account ID、数据库／Bucket 名称、UUID、项目 URL、nameserver、邮箱和密钥格式，不能只扫描 token 与 UUID。
 - 2026-08-08：用户在 Augusta Firefox 确认 PR #17 的资源隔离与切换连续性两个定向项目均通过。P3.2 的自动、云端浏览器与 Firefox 验收至此全部完成；Drive 无新增补丁或冲突。PR #17 转为 Ready for review，但仍未合并，等待用户另行明确授权。
 - 2026-08-08：用户明确授权合并 PR #17；GitHub 以 merge commit `bef79564` 合入 `main`，P3.2 正式收口。合并前 Drive 复查无新增补丁或冲突。下一阶段进入 P3.3 决策：先确认自然习得剧情静态原型的体验取向，再编码；P4 管理后台与中英双语底座继续随后推进。
+- 2026-08-08：用户确认 P3.3 推荐取向：70% 当代北京／30% 历史文献，中性第二人称，默认 8–12 分钟主线并附 3 分钟复习与 20 分钟深读。分支 `agent/pikku-p3-3-story-prototype` 已实现“香山碑文与版本线索”：复用训练中心、三条现有拉丁词典词目和固定角色，提供六阶段闭环、手动引导强度、错误修复提示、结果总结及可关闭入口；不引入游戏引擎、新后端或数据库迁移。
+- 2026-08-08：P3.3 首轮工程复核中，`tsc` 最初因新工作区尚无 `node_modules` 而找不到命令；使用 `npm ci --cache /tmp/pikku-npm-cache` 恢复依赖后通过。批量构建命令又因安全执行器拒绝 `rm -rf` 清理临时目录而未启动；改用 `mktemp -d` 为 Wrangler 创建唯一临时目录后，GitHub Pages、Cloudflare 生产构建、Wrangler 4.110.0 dry-run 和格式检查全部通过。以后不能把缺依赖或安全执行器拒绝误判为项目代码失败，也不在自动化命令中用破坏性临时目录清理。
+- 2026-08-08：启动 P3.3 时复查固定 Drive 目录；仍只有 `Pikku_WeeklyPatch_2026-08-04.md`，文件 ID 与 `2026-08-04T04:59:26.124Z` 修改时间均未变化。与 `main@f177f1d`、当前分支、memo 和总任务书对照后无新增补丁、重复实现或冲突。
+- 2026-08-09：发布 P3.3 时本地 HTTPS push 因容器没有 GitHub 凭据失败，改用已授权 GitHub 连接器建立远端分支；核心功能提交 `88fa846` 已成功落地。随后上传两份长文档时会话中断，平台维护清理了临时工作区；恢复时先核对远端提交，再从 `agent/pikku-p3-3-story-prototype@88fa846` 重建，只补 memo／任务书，不重复创建代码 blob、功能提交或 bundle。以后遇到 `turn_aborted` 与工作区清理仍遵循“先查远端状态、再补缺项”。
+- 2026-08-09：文档恢复提交 `3fff1d2` 已发布，Draft PR #18 已创建并由 GitHub 确认可自动合并；其后继续追加纯文档状态提交。Cloudflare Workers 评论已确认 `08b9c897` 部署成功并给出稳定分支 Preview；下一步在 Augusta 拉取分支、运行统一报告并用 Firefox 完成交互验收。
+- 2026-08-09：云浏览器一次把多条路线、完成页和资源跳转串在同一控制调用中，超过 30 秒后控制内核重置；重新连接后页面状态仍在，控制台没有 Pikku 应用错误。以后把长浏览器验收拆成单次 1–3 个交互并立即取证，不能把控制器超时误判为网站超时。
+- 2026-08-10：用户指定新的“Pikku素材库”Drive 文件夹；该时点插件确认可访问且为空。已把其与原补丁任务书目录的用途、内容登记字段和版权闸门写入 memo；同轮 Augusta P3.3 统一报告为 8/8 PASS，下一步只做 Firefox 最终验收。
+- 2026-08-10：P3.3 原定 Firefox 项目通过后修复全站客观题答案位置偏差；共享洗牌函数覆盖训练、错题、收藏、模拟与剧情，不改稳定答案身份。Drive 复查发现 2026-08-09 新补丁，将 P4 管理后台与候选内容排期，明确其中 P3.3 未开始和旧分支指令已被新版取代；该次复查时素材库仍为空，随后用户上传首批材料并把近期焦点切换为逐文件整理。
+- 2026-08-10：随机化提交 `af180dd` 的 Workers 构建与云端 Chrome 定向交互通过；普通题重进换序、点击／数字键判分、剧情重开换序、单轮返回保序及 hydration 控制台均正常。PR #18 保持 Draft，下一步只让 Augusta Firefox 做相同的短复验。
+- 2026-08-10：启动素材库持续摄取。累计盘点随新上传增至 24 个源文件，按“登记／版权分级 → 识别 → 去重 → 建索引 → 回读 → 移动”完成 10 个，剩余 14 个；建立 `语言类别／知识点／资源类型` 输出树、README、TSV 清单和三个 `已处理` 分流目录。两组 `(1)` 文件经 SHA-256 确认为精确重复；受限／许可不明材料只生成元数据与知识点索引，没有公开转换全文。拉丁—法语词表验证了新增语言对照目录，凯撒与维吉尔词汇表验证了时代—作者—作品—篇章归档，`Sermones Romani` 验证了合集待定位规则，法语教师建议验证了教学法内部映射。补丁目录无更新，PR #18 继续保持 Draft，随机化 Firefox 短复验延后到恢复发布工作时进行。
