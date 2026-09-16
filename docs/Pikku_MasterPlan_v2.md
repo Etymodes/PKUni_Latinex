@@ -1,10 +1,11 @@
 # 哔丘 Pikku 多语言学习与考试模拟平台总任务书（当前版）
 
 版本：v2.0  
-状态：P3.2 已收口；P3.3 答案位置随机化已通过新 Preview 与云端 Chrome，等待 Augusta Firefox 定向复验
+更新日期：2026-09-16（UTC）
+状态：P3.3 已按用户明确授权通过 PR #18 合入 main 并发布到正式域名，线上定向回归通过；Augusta Firefox 随机化专项仍未补测
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-GitHub 远端 `main` 当前精确基线：`f177f1d`，其中 PR #17 功能合并提交为 `bef79564`
+GitHub 远端 `main` 当前发布代码基线：`b9545df6126ffd501526e5b3f3ac281612971332`（PR #18 合并提交）
 P3.1 已通过 PR #16 合入 `main`
 
 ---
@@ -679,7 +680,7 @@ draft → reviewed → published → archived
 
 ### P3.3：自然习得剧情静态原型
 
-状态：研究与体验取向确认完成；第一条静态原型已在 `agent/pikku-p3-3-story-prototype` 实现并创建 Draft PR #18。原定 Cloudflare、云端 Chrome、Augusta 8/8 及 Firefox 项目已通过。Firefox 随后发现所有客观题因作者答案统一位于原数组索引 `0` 而长期显示为 A／第一项；同一 PR 的全局展示顺序随机化已通过新 Workers Preview 与云端 Chrome，等待 Augusta Firefox 定向复验。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
+状态：第一条静态原型及全局选项展示顺序随机化已于 2026-09-16（UTC）按用户明确授权通过 PR #18 合入 `main@b9545df` 并发布到正式域名，线上定向回归通过。27/27 Node 测试、Cloudflare Preview 与云端 Chrome 定向验收已通过；原定 Augusta 8/8 及 Firefox 剧情项目已有通过记录。随机化后的 Augusta Firefox 专项没有补测，不记作通过；本次合并与发布依据用户本轮明确授权，不修改后续 PR 的通用规则。报告：`docs/Pikku_Natural_Acquisition_Gameplay_Research_v1.md`。
 
 - 学习闭环采用“可理解且有意义的输入 → 任务互动 → 必要输出 → 注意形式 → 间隔提取”，不把自然习得误写成完全拒绝讲解或只看大量材料。
 - 单章最小循环为 `Hook → Explore → Negotiate → Act → Notice → Echo`。
@@ -769,13 +770,13 @@ draft → reviewed → published → archived
 
 ## 12. 分支和发布规则
 
-当前分支：
+当前发布基线：
 
 ```text
-agent/pikku-p3-3-story-prototype
+main@b9545df6126ffd501526e5b3f3ac281612971332
 ```
 
-该分支从 `main@f177f1d` 创建，只承载 P3.3 第一条剧情静态原型、自动测试和对应文档；不得未经 Preview 与 Augusta Firefox 验收直接合并。
+来源分支 `agent/pikku-p3-3-story-prototype` 从 `main@f177f1d` 创建，只承载 P3.3 第一条剧情静态原型、选项随机化、自动测试和对应文档，现已通过 PR #18 合并。本次用户明确授权合并并发布 `pikku.qzz.io`；Augusta Firefox 随机化专项仍未补测，此授权仅适用于本次，不代表该项已通过，也不改变下列通用规则。
 
 规则：
 
@@ -821,6 +822,17 @@ agent/pikku-p3-3-story-prototype
 
 2026-08-10 P3.3 Firefox 后复查：补丁目录新增 `Pikku_WeeklyPatch_2026-08-09.md`（文件 ID `1-EVQFox6bvfGfmFX1qN0PUqZwZmXsSeh`，修改时间 `2026-08-09T14:10:21.352Z`）。其中 P3.2 条目归类为“已实现”；“P3.3 尚未开始／开放 PR 为零”及复用日期分支的说明已被较新的用户决定和 PR #18 取代；多语言管理员修复接受并排入 P4；三道候选草稿题、17 项待核词与日语／西语公版资源元数据进入后续人工审校，不夹带到当前随机化修复。没有需要回退现有实现的冲突。
 
+2026-09-16（UTC）发布前补丁复查：以下四份新增任务书已完整只读审阅，均为基于旧 `main@f177f1d`／PR #18 head `208d7bef` 的审计与未实施计划，不构成更新的应用 release。
+
+| 补丁文件 | Drive 修改时间（UTC） | 分类与后续处理 |
+| --- | --- | --- |
+| `Pikku_WeeklyPatch_2026-08-16.md` | `2026-08-16T14:08:35.013Z` | 审计与未实施任务进入后续排期；本次不实现。 |
+| `Pikku_WeeklyPatch_2026-08-30.md` | `2026-08-30T14:08:15.982Z` | 保留 B1／B2 高级候选；不覆盖用户 8 月 28 日确定的西语从零、以高频词为中心的策略。 |
+| `Pikku_WeeklyPatch_2026-09-06.md` | `2026-09-06T14:06:54.723Z` | 保留 CORPES rank 1–16 批次；其简版频次表字段契约由 9 月 13 日版补全。 |
+| `Pikku_WeeklyPatch_2026-09-13.md` | `2026-09-13T14:08:45.635Z` | 保留独立的 CORPES rank 17–25 批次；增加 `skipped`／`skipReason` 并保留原始 rank。 |
+
+统一后续队列：管理员验证、证据字段、候选题词和 CORPES 频次表。`evidenceStatus` 枚举必须在实现前统一；两份不同 rank 的批次不得互相覆盖。旧 main／开放 PR 状态已被本轮 PR #18 实际合并状态取代。上述内容均未在本次追加实现，设计库 v4.1、七语言和 18 人设定也不能据此记为已上线。
+
 ### 12.2 Google Drive 构建素材库
 
 固定文件夹：`https://drive.google.com/drive/folders/1dsNcxq1mfArmTjZggCpBeRguRLsgXP2Y?usp=sharing`（“Pikku素材库”）。
@@ -844,12 +856,19 @@ agent/pikku-p3-3-story-prototype
 
 ---
 
+### 12.3 2026-09-16（UTC）生产发布记录
+
+- 用户本轮明确授权合并 PR #18 并发布 `pikku.qzz.io`；合并成功，merge SHA 为 `b9545df6126ffd501526e5b3f3ac281612971332`，来源 head 为 `208d7bef25f8142548373df6fdd5fbca5b2a0486`。
+- 27/27 Node 测试、Cloudflare Preview 与云端 Chrome 定向验收已通过；来源 head 相对 `bba672b` 的后续变更只有两份项目文档，应用代码一致。Augusta Firefox 随机化专项仍未补测，本次按用户明确授权发布，不将此授权改写成测试通过。
+- 生产结果：Cloudflare Workers Builds 对 merge `b9545df` 构建与部署成功，完成于 `2026-09-16T19:22:46Z`，GitHub build／deploy 状态成功。`https://pikku.qzz.io/` 已出现剧情入口，剧情正确项重开由 C 变 B、单轮前后返回保序，西语 A1 `soy` 由第 4 位变第 3 位；点击及数字键＋Enter 判分通过，排除扩展日志后无应用或 hydration 错误。详细回执见 `Pikku_MEMORY.md` 的本轮生产发布记录。
+- 本轮未测试真实登录；API 直接导航被工具以 `ERR_BLOCKED_BY_CLIENT` 阻断，不能记为 API 验收通过。本次 Worker 代码未变；Augusta Firefox 随机化专项仍未补测。
+
 ## 13. 当前下一步
 
-1. 当前集中执行 Google Drive 素材队列：每轮从剩余 14 个源文件中锁定一个，先做版权核验，再按固定目录拆分或只建索引；每轮更新 README／TSV 清单、回读输出并在完成后移动原文件。
-2. 下一份材料不因文件名自动获得优先级或公开许可；优先选择来源和权限较清楚、可形成独立教学索引的文件。遇到商业教材、疑似盗版来源或现代注释，只登记和映射，不全文转换。
-3. P3.3 选项随机化的 Augusta Firefox 短复验延后到恢复发布工作时进行；在此之前不把它记作通过，不把 PR #18 转为 Ready，也不合并。
-4. PR #18 收口后从最新 `main` 另建 P4 分支，先做 `Pikku_WeeklyPatch_2026-08-09.md` 已接受的多语言管理员等级／审核缺口；中英双语底座随后排期，M1 才接入账号级剧情事件和错因权重。
+1. 本次发布已完成：`main@b9545df` 已部署至 `pikku.qzz.io`，线上定向回归结果已补录。PR #18 已获本轮明确授权并合并，不再等待重复授权或把旧 Draft 状态当作阻塞。
+2. 如实保留 Augusta Firefox 随机化专项未补测；当前自动测试、Preview 与云端 Chrome 结果不能改写为该项通过。后续取得实际结果再更新记录。
+3. 四份新增周补丁已审阅并进入后续排期，本次不追加实现。下一轮从最新 `main` 新建 P4 分支，统一管理员等级／审核校验、证据字段契约，再按批次审校候选题词与 CORPES 频次表；中英双语底座和 M1 账号级剧情事件仍属后续工作。
+4. 恢复素材整理时先重新盘点源文件与清单，逐文件完成版权核验、拆分或索引、去重、回读和归档；2026-08-10 的剩余 14 个仅是历史快照。未完整落实到代码的设计库 v4.1、七语言与 18 人设定不能记为本次上线功能。
 
 ---
 
