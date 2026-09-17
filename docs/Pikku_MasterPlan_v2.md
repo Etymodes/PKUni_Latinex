@@ -2,11 +2,11 @@
 
 版本：v2.0  
 更新日期：2026-09-17（UTC）
-状态：Sites v7 中英显示语言、七学习语言与 CFGM 正在合流到 Cloudflare/GitHub，已建 Draft PR #19，待 Cloudflare Preview 验收及正式发布；PR #18 是已发布的剧情／洗牌基线，并非包含 Sites 既有功能的最新版；Augusta Firefox 随机化专项仍未补测
+状态：Sites v7 中英显示语言、七学习语言与 CFGM 已通过 PR #19 合入 `main@fdd8ccf` 并发布至正式域名；Workers Builds 于 `2026-09-17T03:42:35Z` 成功，云端 Chrome 正式站显示语言、CFGM、俄语练习及刷新持久化定向验收通过。本轮用户明确以云端 Chrome 验收为准；Firefox 与真实账号跨设备未验收
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
-GitHub 远端 `main`：`05698584d7dcbbf78555a0c3fdf7f3ead706822d`（PR #18 发布回执文档）；上次已验收应用基线：`b9545df6126ffd501526e5b3f3ac281612971332`
-恢复来源：Sites `pkuni-latinex` v7（2026-08-20 已发布），源码 `b215d9bbefed0a8df42226d69ca9660397bcacb2`；当前工作分支 `agent/pikku-restore-cfgm-i18n`
+GitHub `main` 的已验收生产应用基线：`fdd8ccf1419f4a61551737f78465afff674be50b`（PR #19）；此前 PR #18 生产应用基线：`b9545df6126ffd501526e5b3f3ac281612971332`
+恢复来源：Sites `pkuni-latinex` v7（2026-08-20 已发布），源码 `b215d9bbefed0a8df42226d69ca9660397bcacb2`；来源分支 `agent/pikku-restore-cfgm-i18n` 已通过 PR #19 合并
 P3.1 已通过 PR #16 合入 `main`
 
 ---
@@ -21,7 +21,7 @@ P3.1 已通过 PR #16 合入 `main`
 - 日语模式与西班牙语模式，保留 JLPT／CEFR 外部标签及旧记录
 - 普通话、美式英语、古希腊语、俄语：各 C/F/G/M 档当前各 1 道种子题
 
-七语公开等级统一为 CFGM；此为恢复代码范围，正式域名尚待本轮发布。此前将中英显示语言与 CFGM 记为“未实现”，是遗漏独立 Sites 源码造成的错误。
+七语公开等级统一为 CFGM，本轮恢复代码已发布至正式域名。此前将中英显示语言与 CFGM 记为“未实现”，是遗漏独立 Sites 源码造成的错误。
 
 本轮恢复与后续方向：
 
@@ -717,7 +717,7 @@ draft → reviewed → published → archived
 
 ### 多语言恢复与后续规划边界
 
-中英显示语言、七语言下拉框、CFGM 与古希腊语四档种子已经存在于 Sites v7，当前正在合流，待 Cloudflare 验收／发布。后续仍需单独排期：
+中英显示语言、七语言下拉框、CFGM 与古希腊语四档种子已经存在于 Sites v7，现已通过 PR #19 合流、云端 Chrome Preview 验收并发布至正式域名。后续仍需单独排期：
 
 - 完整古希腊语课程和四个新增语言的题库扩充；
 - 独立课程轨道及完整内容翻译；
@@ -769,7 +769,7 @@ main@05698584d7dcbbf78555a0c3fdf7f3ead706822d
 
 来源分支 `agent/pikku-p3-3-story-prototype` 从 `main@f177f1d` 创建，只承载 P3.3 第一条剧情静态原型、选项随机化、自动测试和对应文档，现已通过 PR #18 合并。本次用户明确授权合并并发布 `pikku.qzz.io`；Augusta Firefox 随机化专项仍未补测，此授权仅适用于本次，不代表该项已通过，也不改变下列通用规则。
 
-上述为 9 月 16 日 PR #18 发布历史。本轮工作分支为 `agent/pikku-restore-cfgm-i18n`，吸收 Sites v7 独立功能；用户已要求将真正最新版更新到正式域名，当前仍待 Preview 验收／发布回执。恢复前同时比较 GitHub 与 Sites，不再把任一未合流来源直接称为所有功能的唯一最新版。
+上述为 9 月 16 日 PR #18 发布历史。本轮 `agent/pikku-restore-cfgm-i18n` 吸收 Sites v7 独立功能，已通过 PR #19 合并为 `fdd8ccf1419f4a61551737f78465afff674be50b` 并发布至正式域名。用户明确同意合并发布，并指定本轮以云端 Chrome 验收为准。此授权仅适用于本轮，不修改下列通用规则，也不冒充 Firefox 或真实账号跨设备验收。恢复前同时比较 GitHub 与 Sites，不再把任一未合流来源直接称为所有功能的唯一最新版。
 
 规则：
 
@@ -856,17 +856,20 @@ main@05698584d7dcbbf78555a0c3fdf7f3ead706822d
 - 生产结果：Cloudflare Workers Builds 对 merge `b9545df` 构建与部署成功，完成于 `2026-09-16T19:22:46Z`，GitHub build／deploy 状态成功。`https://pikku.qzz.io/` 已出现剧情入口，剧情正确项重开由 C 变 B、单轮前后返回保序，西语 A1 `soy` 由第 4 位变第 3 位；点击及数字键＋Enter 判分通过，排除扩展日志后无应用或 hydration 错误。详细回执见 `Pikku_MEMORY.md` 的本轮生产发布记录。
 - 本轮未测试真实登录；API 直接导航被工具以 `ERR_BLOCKED_BY_CLIENT` 阻断，不能记为 API 验收通过。本次 Worker 代码未变；Augusta Firefox 随机化专项仍未补测。
 
-### 12.4 2026-09-17（UTC）Sites v7 恢复记录（待发布）
+### 12.4 2026-09-17（UTC）Sites v7 恢复记录（PR #19 已合并发布）
 
 - 原因：PR #18 已实际发布，但此前仅核对 GitHub，漏掉 Sites `pkuni-latinex` v7（2026-08-20 发布，源码 `b215d9bbefed0a8df42226d69ca9660397bcacb2`）。中英显示语言、七语言和 CFGM 并非未实现；未同步到 Cloudflare 才是本次问题。
 - 恢复范围：`zh-CN`／`en` 独立显示语言、七学习语言下拉入口、CFGM 公开分级及默认 C、25 道 Sites 种子稳定题号和内容；下拉搜索仍待后续。沿用 Worker／D1／Supabase 账号链，保留旧等级读写、原题审核、资源隔离及选项洗牌判分。
 - 真实内容量：普通话、美式英语、古希腊语、俄语各档各 1 题；原 56 张 adaptive 词卡逐字段保留，合并去重后共 78 张。非拉丁剧情只有本语言 outline，完整剧情、18 人互动、M1 账号剧情事件、全部旧题双语翻译与完整七语课程均不在已实现范围。
-- 验证记录：数据／旧词卡／审核的 14 项回归及独立源码比对通过；主代理确认整合检查 43/43 与 Cloudflare 生产构建通过，切换语言索引越界及词汇测量重复词阻塞已修复。界面文案补齐后的构建仍在重跑；Cloudflare Preview、正式发布及本轮 Firefox 尚无通过回执。
+- 验证记录：数据／旧词卡／审核的 14 项回归及独立源码比对通过，整合检查 43/43 与 Cloudflare 生产构建通过，切换语言索引越界及词汇测量重复词阻塞已修复。云端 Chrome Preview 定向验收通过；最终 head `6a8559566a8fac5061a181d9302c23c851df3278` 的 Cloudflare CI 于 `2026-09-17 03:33:44 UTC` 成功。
+- 合并记录：PR #19 已按用户明确授权合并为 `fdd8ccf1419f4a61551737f78465afff674be50b`，GitHub `merged_at` 为 `2026-09-17T03:41:09Z`；本轮用户指定以云端 Chrome 验收为准，不代表 Firefox 或真实账号跨设备通过。
+- 生产回执：merge `fdd8ccf` 的 Cloudflare Workers Builds 于 `2026-09-17T03:42:35Z` 完成成功；云端 Chrome 重新载入 `https://pikku.qzz.io/` 后，显示语言、CFGM、俄语练习及刷新持久化定向验收通过。此为 Workers 和正式域名证据，不以 GitHub Pages 构建成功代替。
+- 正式站结果：中英导航／按钮／CFGM 名称正确切换；英文学习列表排除 en-us，中文列表排除普通话。俄语 M 显示 `двусмысленность` 与四个答案，刷新保留 English／ru／M，切回中文仍保留俄语 M 并显示“准母语级”；最后恢复中文／拉丁语／C。error 日志查询（上限 500 条）剔除扩展后应用错误为 0。真实账号跨设备与 Firefox 未验收，不写为通过。
 
 ## 13. 当前下一步
 
-1. 完成恢复分支的最终工程检查和 Cloudflare Preview 验收，覆盖独立显示语言、学习语言排除、CFGM、切语种／刷新、旧题词卡与账号偏好兼容、随机展示及判分，再按本轮用户授权发布 `pikku.qzz.io` 并补真实回执。当前不能写“最新版已发布”。
-2. PR #18 的 9 月 16 日生产回执保留为历史记录；Augusta Firefox 随机化专项仍未补测，本轮自动测试或 Chrome 验收不能替代该项。
+1. PR #19 已合并发布，云端 Chrome 正式站定向验收已通过，发布回执已补录；不重复等待合并授权、生产部署或本轮已通过的切换／刷新验收。
+2. 本轮用户明确以云端 Chrome 验收为准，已授权合并发布；Augusta Firefox 随机化专项仍未补测、真实账号跨设备未验收，不记为通过。PR #18 的 9 月 16 日生产回执和通用发布规则保留。
 3. 四份新增周补丁仍为已审阅、待实施的内容计划。管理员全面审核、证据字段统一、候选题词／CORPES 批次与 M1 账号级剧情继续后续排期；本轮七语／CFGM 兼容校验不等于整个 P4 已完成。
 4. 恢复素材整理时重新盘点源文件与清单，保留版权、去重与回读要求。设计库 v4.1 和 18 人设定不能整体宣称上线；七语的已恢复范围以第 12.4 节为准。
 
@@ -890,4 +893,4 @@ main@05698584d7dcbbf78555a0c3fdf7f3ead706822d
 - 每个采用的素材输出都能回溯到源文件 ID 和页码／表格位置；不存在未确认的完全重复输出，版本／译文差异未被误删。
 - 源文件只有在输出上传回读、权限分级、去重结论和处理清单均完成后才移动；任何移动都可在 `已处理` 中找到，项目不以删除原件作为去重手段。
 
-2026-09-17（UTC）PR #19 云端 Preview 定向验收：代码 `214d14eb` 及文档 `d8c59d1` 的 Cloudflare 构建成功；稳定 Preview 为 https://agent-pikku-restore-cfgm-i18n-pkuni-latinex.kimdac.workers.dev/ 。云端 Chrome 实测通过中英显示语言、六项可选学习语言（排除显示语言对应项）、普通话切中文界面自动回退美式英语、CFGM 四档、俄语 M 种子题、刷新恢复英文/俄语/M、拉丁第 3 题切古希腊后回到第 1/1 题、古希腊词卡隔离，以及拉丁 G 词汇测量 13 个唯一词头提交成功。未发现应用错误，日志仅浏览器扩展 metadata 报错。随后只补齐背词阶段标题/目标语言眉题和测量加载期禁用按钮，TypeScript 通过；最终提交待 CI。此次不冒充 Augusta Firefox 或真实账号跨设备验收，正式域名尚未替换。
+2026-09-17（UTC）PR #19 云端 Preview 定向验收：代码 `214d14eb` 及文档 `d8c59d1` 的 Cloudflare 构建成功；稳定 Preview 为 https://agent-pikku-restore-cfgm-i18n-pkuni-latinex.kimdac.workers.dev/ 。云端 Chrome 实测通过中英显示语言、六项可选学习语言（排除显示语言对应项）、普通话切中文界面自动回退美式英语、CFGM 四档、俄语 M 种子题、刷新恢复英文/俄语/M、拉丁第 3 题切古希腊后回到第 1/1 题、古希腊词卡隔离，以及拉丁 G 词汇测量 13 个唯一词头提交成功。未发现应用错误，日志仅浏览器扩展 metadata 报错。随后只补齐背词阶段标题/目标语言眉题和测量加载期禁用按钮，TypeScript 通过；当时最终提交待 CI、正式域名尚未替换，后续成功结果见本轮恢复发布记录。此 Preview 记录不冒充 Augusta Firefox 或真实账号跨设备验收。
