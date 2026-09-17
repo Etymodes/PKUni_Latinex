@@ -273,9 +273,9 @@ test('locale choices, level labels and colors, and question filters match the na
   assert.equal(h.page.data.languages.some(language => language.id === 'en-us'), false);
   assert.equal(h.page.data.languages.some(language => language.id === 'zh-mandarin'), true);
   assert.deepEqual(plain(h.page.data.levels.map(level => level.prefix + level.emphasis + level.suffix)), ['Core', 'Functional', 'Generative', 'Mastery']);
-  const css = fs.readFileSync(new URL('app.wxss', miniRoot), 'utf8').toLowerCase();
+  const css = fs.readFileSync(new URL('components/level-selector/index.wxss', miniRoot), 'utf8').toLowerCase();
   for (const [level, color] of [['c', '#256f60'], ['f', '#336a9a'], ['g', '#946319'], ['m', '#79517c']]) {
-    assert.match(css, new RegExp(`\\.level-${level}\\s*\\{[^}]*color:\\s*${color}`));
+    assert.match(css, new RegExp(`\\.level-button\\.tone-${level}\\s*\\{[^}]*color:\\s*${color}`));
   }
   const question = latinChoice();
   h.page.record.progress[question.id] = 'wrong';
@@ -290,4 +290,62 @@ test('locale choices, level labels and colors, and question filters match the na
   assert.ok(h.page.filtered.every(item => shared.matchesLevel(item, h.page.data.level) && (item.language || 'la') === h.page.data.language));
   h.page.changeSearch({ detail: { value: 'no-match-fixture-000000' } });
   assert.equal(h.page.data.resultCount, 0);
+});
+
+test('the level selector emits the native detail event and waits for the account preference update', async () => {
+  const h = await harness({ session: sessionFor('website-uuid') });
+  let definition;
+  vm.runInNewContext(fs.readFileSync(new URL('components/level-selector/index.js', miniRoot), 'utf8'), {
+    Component: value => { definition = value; },
+    require: name => { assert.equal(name, '../../lib/copy'); return copy; },
+  }, { filename: 'wechat/miniprogram/components/level-selector/index.js' });
+  let pending;
+  const emitted = [];
+  const component = {
+    ...definition.methods,
+    properties: { value: h.page.data.level, locale: h.page.data.locale, disabled: h.page.data.busy },
+    data: plain(definition.data),
+    setData(update) { Object.assign(this.data, update); },
+    triggerEvent(name, detail) {
+      emitted.push({ name, detail: plain(detail) });
+      assert.equal(name, 'change');
+      pending = h.page.changeLevel({ detail });
+    },
+  };
+  // Mirror the page's property bindings without letting the component own selection.
+  const setPageData = h.page.setData;
+  h.page.setData = function (update) {
+    setPageData.call(this, update);
+    const changed = component.properties.value !== this.data.level || component.properties.locale !== this.data.locale;
+    Object.assign(component.properties, { value: this.data.level, locale: this.data.locale, disabled: this.data.busy });
+    if (changed) definition.observers['value, locale'].call(component);
+  };
+  definition.lifetimes.attached.call(component);
+  let completeWrite;
+  h.state.request = () => new Promise(resolve => { completeWrite = resolve; });
+  component.choose(event({ level: 'M' }));
+  assert.deepEqual(emitted, [{ name: 'change', detail: { level: 'M' } }]);
+  assert.deepEqual(h.calls.find(call => call.path === '/api/preferences'), {
+    path: '/api/preferences', method: 'PUT', owner: 'website-uuid',
+    data: { language: 'la', level: 'M', vocabMode: 'context' },
+  });
+  assert.equal(h.page.data.level, 'C');
+  assert.equal(component.data.selected.id, 'C');
+  assert.equal(component.properties.disabled, true);
+  component.choose(event({ level: 'F' }));
+  assert.equal(emitted.length, 1);
+  assert.equal(h.calls.filter(call => call.path === '/api/preferences').length, 1);
+  completeWrite({ ok: true });
+  await pending;
+  assert.equal(h.page.data.level, 'M');
+  assert.equal(component.data.selected.id, 'M');
+  assert.equal(component.properties.disabled, false);
+  component.choose(event({ level: 'M' }));
+  assert.equal(emitted.length, 1);
+  const selectedLabel = () => component.data.selected.prefix + component.data.selected.emphasis + component.data.selected.suffix;
+  assert.equal(selectedLabel(), '准母语级');
+  h.page.changeLocale();
+  assert.equal(selectedLabel(), 'Mastery');
+  h.page.changeLocale();
+  assert.equal(selectedLabel(), '准母语级');
 });

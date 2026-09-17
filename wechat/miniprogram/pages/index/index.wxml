@@ -11,13 +11,7 @@
     <picker mode="selector" range="{{languages}}" range-key="label" value="{{languageIndex}}" bindchange="changeLanguage" disabled="{{busy}}">
       <view class="language-picker"><text class="muted">{{t.learning}}</text><text>{{languageLabel}}⌄</text></view>
     </picker>
-    <view class="levels">
-      <button wx:for="{{levels}}" wx:key="id" class="level level-{{item.id}} {{level === item.id ? 'active' : ''}}" data-level="{{item.id}}" bindtap="changeLevel" disabled="{{busy}}" aria-label="{{item.prefix + item.emphasis + item.suffix}}" aria-pressed="{{level === item.id}}">
-        <image class="level-icon" src="{{item.icon}}" mode="aspectFit" />
-        <text class="level-label">{{item.prefix}}<text class="level-emphasis">{{item.emphasis}}</text>{{item.suffix}}</text>
-        <view wx:if="{{level === item.id}}" class="level-marker"></view>
-      </button>
-    </view>
+    <level-selector value="{{level}}" locale="{{locale}}" disabled="{{busy}}" bindchange="changeLevel" />
   </block>
 
   <block wx:if="{{view === 'home'}}">

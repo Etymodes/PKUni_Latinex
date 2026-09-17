@@ -191,7 +191,7 @@ Page({
     });
   },
   changeLanguage(event) { return this.preference({ language: this.data.languages[Number(event.detail.value)].id }); },
-  changeLevel(event) { return this.preference({ level: event.currentTarget.dataset.level }); },
+  changeLevel(event) { return this.preference({ level: event.detail.level }); },
   changeWordMode() { return this.preference({ vocabMode: this.data.vocabMode === 'word' ? 'context' : 'word' }); },
   changeFilter(event) {
     if (this.data.busy) return;
