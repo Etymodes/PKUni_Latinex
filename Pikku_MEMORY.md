@@ -4,9 +4,9 @@
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`
 
-当前状态：Sites v7 已有的中英显示语言、七学习语言和 C/F/G/M 已通过 PR #19 合入 GitHub `main@fdd8ccf` 并发布至 `pikku.qzz.io`；Cloudflare Workers Builds 于 `2026-09-17T03:42:35Z` 成功，云端 Chrome 正式站显示语言、CFGM、俄语练习和刷新持久化定向验收通过。本轮用户明确授权合并发布，并以云端 Chrome 验收为准，不冒充 Firefox 或真实账号跨设备验收。9 月 16 日上线的 PR #18 只完成剧情原型与选项洗牌，并非包含所有既有功能的最新版。
+当前状态：PR #20 四张独立正方等级卡片已按用户本轮明确“发布”授权合入 `main@cca9181` 并上线 `pikku.qzz.io`；Cloudflare Workers Builds 于 `2026-09-17T04:18:33Z` 成功，正式站中英文视觉、四卡边界、M 选择与刷新持久化通过云端 Chrome 验收，应用错误为 0。PR #19 的中英显示语言、七语言与 CFGM 恢复功能继续保留；Firefox 与真实账号跨设备未验收，不记为通过。
 
-当前任务：`agent/pikku-cfgm-level-cards` 四张独立正方等级卡片已通过 Cloudflare Preview 与云端 Chrome 中英文视觉／交互验收；PR #20 仍为 Draft，未合并发布，正式站保持 PR #19 基线。本次用户仅要求设计改动，PR #19 的发布授权不延伸到此分支。
+当前任务：等级卡片设计、Preview、PR #20 合并、生产发布与正式站验收已完成；本次发布依据用户新增的明确授权，非沿用 PR #19 授权。本轮发布回执已补录，无待合并或待部署事项。
 
 ## 0. 使用规则
 
@@ -100,7 +100,7 @@
 
 ## 6. Git 当前基线
 
-- GitHub `main` 的已验收生产应用基线为 `fdd8ccf1419f4a61551737f78465afff674be50b`（PR #19 合并提交）；Workers Builds 已成功，正式域名已显示恢复后的控件。`b9545df6126ffd501526e5b3f3ac281612971332` 为此前 PR #18 生产应用基线，未包含当时未同步的 Sites 功能。
+- GitHub `main` 的已验收生产应用基线为 `cca9181a61c678fa5fdf543694798b2317be4c6d`（PR #20 squash merge）；Workers Builds 与正式站 Chrome 验收通过。此前 PR #19 基线 `fdd8ccf1419f4a61551737f78465afff674be50b` 和 PR #18 基线 `b9545df6126ffd501526e5b3f3ac281612971332` 的历史回执保留。
 - 遗漏来源已核实：Sites `pkuni-latinex` v7，2026-08-20 已发布，源码提交 `b215d9bbefed0a8df42226d69ca9660397bcacb2`。该独立源码含中英显示语言、七语言入口与 CFGM；此前仅查 GitHub 就断言这些功能未实现是错误的。恢复分支 `agent/pikku-restore-cfgm-i18n` 已通过 PR #19 合并并发布至正式域名。
 - P3 开发分支：`agent/pikku-p3-account-sync`，从 `main@9d6cff3` 创建，已通过 PR #14 合入 `main`。
 - 初版任务书提交：`6b73289 docs: define Pikku multilingual roadmap`。
@@ -115,6 +115,7 @@
 - P3.3 来源分支：`agent/pikku-p3-3-story-prototype`，从 `main@f177f1d` 创建，已通过 PR #18 合并；只承载第一条自然习得剧情静态原型、测试和对应文档，不新增后端、数据库表或游戏引擎。
 - PR #18：`feat: add first Pikku story lesson` 已于 2026-09-16（UTC）按用户本轮明确授权合入 `main@b9545df`，合并前 head 为 `208d7bef`。核心功能提交为 `88fa846`，选项随机化提交为 `af180dd`；27/27 Node 测试、Cloudflare Preview 与云端 Chrome 定向验收已通过。原定 Augusta 8/8 与 Firefox 剧情项目已有通过记录，但随机化后的 Augusta Firefox 专项没有补测，不记作通过。本轮授权覆盖该 PR 的合并及 `pikku.qzz.io` 发布，不改变后续 PR 的通用验收与授权规则。
 - PR #19 已按用户明确授权合并，merge SHA 为 `fdd8ccf1419f4a61551737f78465afff674be50b`，最终 head 为 `6a8559566a8fac5061a181d9302c23c851df3278`；该 head 的 Cloudflare CI 于 `2026-09-17 03:33:44 UTC` 成功。本轮用户明确以云端 Chrome 验收为准；Firefox 未补测、真实账号跨设备未验收，不修改下列通用规则。
+- PR #20 按用户新增的明确“发布”授权于 `2026-09-17T04:17:22Z` squash merge 为 `cca9181a61c678fa5fdf543694798b2317be4c6d`；Cloudflare Workers Builds 于 `2026-09-17T04:18:33Z` 成功，build／deploy 成功，正式站 Chrome 验收通过；不改通用发布规则，不冒充 Firefox 或真实账号跨设备验收。
 - 不直接在 `main` 开发；功能分支必须通过 Preview、Augusta 批量检查和 Firefox 复验后才可合并。
 
 ## 7. 当前阶段与最小路线
@@ -486,4 +487,4 @@ $env:NEXT_PUBLIC_AUTH_MODE="supabase"; & ".\node_modules\.bin\next.cmd" build; R
 2026-09-17（UTC）PR #19 云端 Preview 定向验收：代码 `214d14eb` 及文档 `d8c59d1` 的 Cloudflare 构建成功；稳定 Preview 为 https://agent-pikku-restore-cfgm-i18n-pkuni-latinex.kimdac.workers.dev/ 。云端 Chrome 实测通过中英显示语言、六项可选学习语言（排除显示语言对应项）、普通话切中文界面自动回退美式英语、CFGM 四档、俄语 M 种子题、刷新恢复英文/俄语/M、拉丁第 3 题切古希腊后回到第 1/1 题、古希腊词卡隔离，以及拉丁 G 词汇测量 13 个唯一词头提交成功。未发现应用错误，日志仅浏览器扩展 metadata 报错。随后只补齐背词阶段标题/目标语言眉题和测量加载期禁用按钮，TypeScript 通过；当时最终提交待 CI、正式域名尚未替换，后续成功结果见本轮恢复发布记录。此 Preview 记录不冒充 Augusta Firefox 或真实账号跨设备验收。
 
 - 2026-09-17（UTC）发布收口：PR #19 按用户明确授权于 `03:41:09Z` 合并为 `fdd8ccf1419f4a61551737f78465afff674be50b`，Cloudflare Workers Builds 于 `03:42:35Z` 成功；正式 `pikku.qzz.io` 的中英显示语言、CFGM、俄语 M 种子及刷新持久化通过云端 Chrome 定向验收，应用错误为 0。本轮以云端 Chrome 为验收依据，保留 Firefox 和真实账号跨设备未验收事实，通用发布规则不变。
-- 2026-09-17（UTC）等级卡片设计：四独立正方卡片使用 C `#256F60`、F `#336A9A`、G `#946319`、M `#79517C`，各配独立纯 path SVG 水印，沿用 Noto Serif SC／Source Serif 4。用户明确中文标签为“初级／凡级／高级／准母语级”，强调“初／凡／高／母”，英文强调首字母；取消古典语言 M 的“专家级”显示特例，内部 CFGM、旧等级映射及偏好存储不变。代码 `6b2dd84`、文档 head `0e5373e` 的 Cloudflare Preview 于 `2026-09-17T04:05:13Z` 成功，稳定预览为 [等级卡片 Preview](https://agent-pikku-cfgm-level-cards-pkuni-latinex.kimdac.workers.dev/)。云端 Chrome 中英文截图确认四卡片与强调字正确，Functional／Generative 完整单行，M“准母语级”正常；点击 M 及 Enter 激活 F 后，`aria-pressed` 与学习概览同步。TypeScript、Cloudflare 构建及 diff check 通过。PR #20 仍为 Draft，未合并发布，正式站保持 PR #19 基线。
+- 2026-09-17（UTC）等级卡片设计：四独立正方卡片使用 C `#256F60`、F `#336A9A`、G `#946319`、M `#79517C`，各配独立纯 path SVG 水印，沿用 Noto Serif SC／Source Serif 4。用户明确中文标签为“初级／凡级／高级／准母语级”，强调“初／凡／高／母”，英文强调首字母；取消古典语言 M 的“专家级”显示特例，内部 CFGM、旧等级映射及偏好存储不变。代码 `6b2dd84`、文档 head `0e5373e` 的 Cloudflare Preview 于 `2026-09-17T04:05:13Z` 成功，稳定预览为 [等级卡片 Preview](https://agent-pikku-cfgm-level-cards-pkuni-latinex.kimdac.workers.dev/)。云端 Chrome 中英文截图确认四卡片与强调字正确，Functional／Generative 完整单行，M“准母语级”正常；点击 M 及 Enter 激活 F 后，`aria-pressed` 与学习概览同步。TypeScript、Cloudflare 构建及 diff check 通过；以上为历史 Preview 验收。用户随后明确“发布”，PR #20 于 `2026-09-17T04:17:22Z` squash merge 为 `cca9181a61c678fa5fdf543694798b2317be4c6d`；生产 Workers Builds 于 `2026-09-17T04:18:33Z` 成功，build／deploy 成功。云端 Chrome 直接在正式站确认中文四卡、初／凡／高／母强调、SVG 水印和四配色正常；英文 Core／Functional／Generative／Mastery 完整显示，DOM 四卡均为正方且标签不溢出。点击 M 后学习概览同步，刷新保留 English／Latin／M，应用错误为 0；验收结束已恢复中文／拉丁语／C。发布前固定 Drive 周补丁目录仍为 6 份，修改时间均未变，与本次设计无重复或冲突。Firefox 与真实账号跨设备未验收，不记为通过。
