@@ -99,6 +99,14 @@ test("production API round-trips seven languages while retaining legacy records 
   assert.deepEqual(bob.byLanguage.la.progress, {});
   assert.equal(bob.preference, null);
   assert.equal((await request("stats")).body.byLanguage.ru.progress["shared-id"], "correct");
+  assert.equal((await request("bookmarks", "PUT", { language: "la", questionIds: ["bob-saved"] }, "bob")).status, 200);
+  assert.equal((await request("bookmarks", "PUT", { language: "la", questionIds: [] })).status, 200);
+  for (let refresh = 0; refresh < 2; refresh += 1) {
+    const afterRemoval = (await request("stats")).body;
+    assert.deepEqual(afterRemoval.byLanguage.la.bookmarks, []);
+    assert.deepEqual(afterRemoval.byLanguage.ja.bookmarks, ["shared-id"]);
+  }
+  assert.deepEqual((await request("stats", "GET", undefined, "bob")).body.byLanguage.la.bookmarks, ["bob-saved"]);
   assert.equal((await request("stats", "GET", undefined, null)).status, 401);
   assert.equal((await request("preferences", "PUT", { language: "ru", level: "C" }, null)).status, 401);
   assert.equal((await request(`admin/questions/${question.id}`, "PUT", question)).status, 403);
