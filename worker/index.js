@@ -369,10 +369,16 @@ async function touchUser(env, user) {
     .bind(user.id, user.name, user.role).run();
 }
 
+const pikkuLevels = ["C", "F", "G", "M"];
+// Accept legacy values without rewriting stored preferences or attempt history.
 const languageLevels = {
-  la: ["elementary", "intermediate", "mixed", "advanced"],
-  ja: ["n4", "n3", "n2", "n1"],
-  es: ["a1", "a2", "b1", "b2", "c1", "c2"],
+  "zh-mandarin": pikkuLevels,
+  "en-us": pikkuLevels,
+  la: [...pikkuLevels, "elementary", "intermediate", "mixed", "advanced"],
+  ja: [...pikkuLevels, "n4", "n3", "n2", "n1"],
+  es: [...pikkuLevels, "a1", "a2", "b1", "b2", "c1", "c2"],
+  grc: pikkuLevels,
+  ru: pikkuLevels,
 };
 
 function validLanguage(language) {
@@ -422,9 +428,9 @@ function normalizeBookmarkItem(value, fallbackLanguage = "la") {
 }
 
 function validQuestion(value) {
-  const levels = ["elementary", "intermediate", "advanced"];
   const categories = ["morphology", "syntax", "sentencePattern", "vocabulary", "classics", "translation"];
-  return value && typeof value.id === "string" && value.id.length <= 80 && levels.includes(value.level)
+  return value && typeof value.id === "string" && value.id.length <= 80
+    && validPreference(value.language === undefined ? "la" : value.language, value.level) && value.level !== "mixed"
     && categories.includes(value.category) && ["choice", "self-check"].includes(value.type)
     && typeof value.prompt === "string" && typeof value.explanation === "string";
 }
@@ -597,4 +603,4 @@ export default {
   },
 };
 
-export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, ensureSchema };
+export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validQuestion, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, ensureSchema };

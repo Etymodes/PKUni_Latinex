@@ -223,7 +223,7 @@ export const authorGraphEdges = classicalAuthors.flatMap((author) => author.work
 
 export type DictionaryId = "old" | "ls" | "gaffiot" | "georges" | "wiktionary";
 export type DictionarySource = { id: DictionaryId; name: string; scope: string; access: string };
-export type LexiconLanguage = "la" | "ja" | "es";
+export type LexiconLanguage = LanguageCode;
 
 export const dictionarySources: DictionarySource[] = [
   { id: "old", name: "Oxford Latin Dictionary (OLD)", scope: "古典拉丁语，权威历史语义与引文", access: "版权数据库／纸本；本站记录核对状态，不复制释文" },

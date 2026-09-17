@@ -2,14 +2,35 @@ import type { LanguageCode } from "./questions";
 
 export type LanguageFact = {
   id: string;
-  kind: "日汉同形异义" | "拉丁语词源" | "同源异义" | "同形异源";
+  kind: "日汉同形异义" | "拉丁语词源" | "同源异义" | "同形异源" | "语言结构";
   title: string;
   summary: string;
   example: string;
   sources: readonly { label: string; url: string }[];
 };
 
-export const languageFacts: Partial<Record<LanguageCode, readonly LanguageFact[]>> = {
+export const languageFacts: Record<LanguageCode, readonly LanguageFact[]> = {
+  la: [],
+  "zh-mandarin": [{
+    id: "zh-mandarin-tones", kind: "语言结构", title: "普通话的声调",
+    summary: "声调能够区别词义；轻声则会受到语流和语法环境影响。",
+    example: "普通话有四个基本声调，此外还有轻声。", sources: [],
+  }],
+  "en-us": [{
+    id: "en-us-word-order", kind: "语言结构", title: "英语的语序",
+    summary: "现代英语的名词曲折较少，因此语序承担了大量句法关系标记功能。",
+    example: "Modern English relies heavily on word order.", sources: [],
+  }],
+  grc: [{
+    id: "grc-genders", kind: "语言结构", title: "古希腊语的语法性",
+    summary: "古希腊语名词和形容词区分阳性、阴性与中性，并在句法中体现一致关系。",
+    example: "Ἡ Ἑλληνικὴ γλῶττα τρία γένη ἔχει.", sources: [],
+  }],
+  ru: [{
+    id: "ru-cases", kind: "语言结构", title: "俄语的格",
+    summary: "俄语通常教授六个主要格；格变化共同编码句法关系和部分语义角色。",
+    example: "В русском языке шесть основных падежей.", sources: [],
+  }],
   ja: [
     {
       id: "ja-benkyou",

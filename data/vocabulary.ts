@@ -1,5 +1,7 @@
 import type { LanguageLevel } from "./languages";
 import type { LanguageCode } from "./questions";
+import { normalizePikkuLevel, pikkuLevels, type PikkuLevel } from "./questions.ts";
+import { multilingualSeedQuestions, multilingualVocabItems } from "./multilingual-seeds.ts";
 
 export type VocabularyMode = "word" | "context";
 
@@ -102,9 +104,21 @@ const spanishCards: VocabularyCard[] = ([
   context,
 }));
 
-export const vocabularyCards = [...latinCards, ...japaneseCards, ...spanishCards];
+const legacyVocabularyCards = [...latinCards, ...japaneseCards, ...spanishCards];
+const legacyVocabularyKeys = new Set(legacyVocabularyCards.map((card) => vocabularyKey(card.language, card.term)));
+const restoredVocabularyCards: VocabularyCard[] = multilingualVocabItems.map((item, index) => ({
+  id: multilingualSeedQuestions[index].id,
+  language: item.language,
+  level: item.level,
+  term: item.lemma,
+  meaning: item.gloss,
+  context: item.lemma,
+})).filter((card) => !legacyVocabularyKeys.has(vocabularyKey(card.language, card.term)));
 
-const cumulativeVocabularyLevels: Record<LanguageCode, readonly LanguageLevel[]> = {
+// Existing cards keep their IDs, content and stats keys when a recovered seed overlaps.
+export const vocabularyCards = [...legacyVocabularyCards, ...restoredVocabularyCards];
+
+const cumulativeVocabularyLevels: Partial<Record<LanguageCode, readonly LanguageLevel[]>> = {
   la: ["elementary", "intermediate", "advanced"],
   ja: ["n4", "n3", "n2", "n1"],
   es: ["a1", "a2", "b1", "b2", "c1", "c2"],
@@ -115,14 +129,20 @@ export function vocabularyKey(language: LanguageCode, term: string) {
 }
 
 export function vocabularyLevelsFor(language: LanguageCode, level: LanguageLevel) {
-  const levels = cumulativeVocabularyLevels[language];
+  if (pikkuLevels.includes(level as PikkuLevel)) {
+    return pikkuLevels.slice(0, pikkuLevels.indexOf(level as PikkuLevel) + 1);
+  }
+  const levels = cumulativeVocabularyLevels[language] ?? [];
   const selected = language === "la" && level === "mixed" ? "intermediate" : level;
   const index = levels.indexOf(selected);
   return index < 0 ? [] : levels.slice(0, index + 1);
 }
 
 export function vocabularyMatchesLevel(card: VocabularyCard, level: LanguageLevel) {
-  return vocabularyLevelsFor(card.language, level).includes(card.level);
+  const cardLevel = pikkuLevels.includes(level as PikkuLevel)
+    ? normalizePikkuLevel(card.language, card.level)
+    : card.level;
+  return vocabularyLevelsFor(card.language, level).includes(cardLevel);
 }
 
 export function adaptiveVocabularyWeight(stat?: VocabularyStat, recentlyShown = false) {

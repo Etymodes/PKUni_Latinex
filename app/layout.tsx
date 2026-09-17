@@ -4,8 +4,8 @@ import "./globals.css";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  title: "比丘拟 PKUni_Latinex · 真题模拟网站",
-  description: "面向北京大学拉丁语标准化考试公开范围的非官方真题制式模拟与阅读训练工具",
+  title: "哔丘 Pikku · 多语言学习站",
+  description: "Pikku 多语言剧情、课程、练习与词汇学习平台",
   icons: { icon: `${publicBasePath}/pkuni-latinex-logo-final.png` },
 };
 
