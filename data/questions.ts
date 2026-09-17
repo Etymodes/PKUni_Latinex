@@ -1,8 +1,22 @@
-export type LanguageCode = "la" | "ja" | "es";
+export type LanguageCode = "zh-mandarin" | "en-us" | "la" | "ja" | "es" | "grc" | "ru";
+export type PikkuLevel = "C" | "F" | "G" | "M";
+export const pikkuLevels: readonly PikkuLevel[] = ["C", "F", "G", "M"];
 export type Level = "elementary" | "intermediate" | "mixed" | "advanced";
 export type QuestionLevel = Exclude<Level, "mixed">;
-export type StudyQuestionLevel = QuestionLevel | "n4" | "n3" | "n2" | "n1" | "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
+export type StudyQuestionLevel = PikkuLevel | QuestionLevel | "n4" | "n3" | "n2" | "n1" | "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
 export type StudyLevel = Level | StudyQuestionLevel;
+
+// Compatibility routing for stored content, not equivalence to external certificates.
+const legacyPikkuLevels: Partial<Record<LanguageCode, Partial<Record<StudyLevel, PikkuLevel>>>> = {
+  la: { elementary: "C", intermediate: "F", advanced: "G", mixed: "C" },
+  ja: { n4: "C", n3: "F", n2: "G", n1: "M" },
+  es: { a1: "C", a2: "F", b1: "F", b2: "G", c1: "G", c2: "M" },
+};
+
+export function normalizePikkuLevel(language: LanguageCode, level: string): PikkuLevel {
+  if (pikkuLevels.includes(level as PikkuLevel)) return level as PikkuLevel;
+  return legacyPikkuLevels[language]?.[level as StudyLevel] ?? "C";
+}
 export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
 export type ReviewStatus = "draft" | "reviewed" | "published" | "archived";
 
@@ -16,6 +30,8 @@ export type Question = {
   prompt: string;
   latin?: string;
   text?: string;
+  targetText?: string;
+  targetLang?: string;
   context?: string;
   options?: string[];
   answer?: number;
@@ -310,23 +326,14 @@ export const categoryLabels: Record<Category, string> = {
 };
 
 export const levelLabels: Record<StudyLevel, string> = {
-  elementary: "初级",
-  intermediate: "中级",
-  mixed: "混合难度",
-  advanced: "进阶",
-  n4: "N4",
-  n3: "N3",
-  n2: "N2",
-  n1: "N1",
-  a1: "A1",
-  a2: "A2",
-  b1: "B1",
-  b2: "B2",
-  c1: "C1",
-  c2: "C2",
+  C: "C", F: "F", G: "G", M: "M",
+  elementary: "C", intermediate: "F", mixed: "C", advanced: "G",
+  n4: "C", n3: "F", n2: "G", n1: "M",
+  a1: "C", a2: "F", b1: "F", b2: "G", c1: "G", c2: "M",
 };
 
 export function matchesLevel(question: Question, level: StudyLevel) {
+  if (pikkuLevels.includes(level as PikkuLevel)) return normalizePikkuLevel(question.language ?? "la", question.level) === level;
   if (level === "mixed") return question.level === "elementary" || question.level === "intermediate";
   return question.level === level;
 }

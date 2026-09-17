@@ -1,4 +1,4 @@
-import type { QuestionLevel } from "./questions";
+import type { LanguageCode, PikkuLevel, QuestionLevel } from "./questions";
 
 export type CurriculumDomain = {
   level: QuestionLevel | "mixed";
@@ -189,8 +189,10 @@ export type VocabItem = {
   lemma: string;
   gloss: string;
   distractors: string[];
-  level: QuestionLevel;
+  level: QuestionLevel | PikkuLevel;
   family: string;
+  language?: LanguageCode;
+  htmlLang?: string;
 };
 
 export const vocabItems: VocabItem[] = [
