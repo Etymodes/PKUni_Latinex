@@ -1,0 +1,15 @@
+{
+  "appid": "wx34c6a4d25d62c462",
+  "projectname": "Pikku",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "packOptions": { "ignore": [], "include": [] },
+  "condition": {}
+}
