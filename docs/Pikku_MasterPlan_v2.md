@@ -3,6 +3,7 @@
 版本：v2.0  
 更新日期：2026-09-17（UTC）
 状态：Sites v7 中英显示语言、七学习语言与 CFGM 已通过 PR #19 合入 `main@fdd8ccf` 并发布至正式域名；Workers Builds 于 `2026-09-17T03:42:35Z` 成功，云端 Chrome 正式站显示语言、CFGM、俄语练习及刷新持久化定向验收通过。本轮用户明确以云端 Chrome 验收为准；Firefox 与真实账号跨设备未验收
+当前设计任务：`agent/pikku-cfgm-level-cards` 四张独立正方等级卡片已通过 Cloudflare Preview 与云端 Chrome 中英文视觉／交互验收；PR #20 仍为 Draft，未合并发布，正式站保持 PR #19 基线；用户本次仅授权设计改动，PR #19 发布授权不延伸。
 仓库：`Etymodes/PKUni_Latinex`  
 正式域名：`https://pikku.qzz.io/`  
 GitHub `main` 的已验收生产应用基线：`fdd8ccf1419f4a61551737f78465afff674be50b`（PR #19）；此前 PR #18 生产应用基线：`b9545df6126ffd501526e5b3f3ac281612971332`
@@ -868,6 +869,7 @@ main@05698584d7dcbbf78555a0c3fdf7f3ead706822d
 
 ## 13. 当前下一步
 
+0. 等级卡片 Preview 已验收：C `#256F60`、F `#336A9A`、G `#946319`、M `#79517C`，四个独立纯 path SVG 水印，沿用 Noto Serif SC／Source Serif 4。中文统一“初级／凡级／高级／准母语级”并强调“初／凡／高／母”，英文强调首字母；移除古典语言 M“专家级”的显示特例，内部映射和等级存储不改。代码 `6b2dd84`、文档 head `0e5373e` 的 Cloudflare Preview 于 `2026-09-17T04:05:13Z` 成功，稳定预览为 [等级卡片 Preview](https://agent-pikku-cfgm-level-cards-pkuni-latinex.kimdac.workers.dev/)。云端 Chrome 中英文截图确认四卡片、强调字与 M“准母语级”正确，Functional／Generative 完整单行；点击 M 和 Enter 激活 F 后，`aria-pressed` 与学习概览同步。TypeScript、Cloudflare 构建及 diff check 通过；PR #20 仍为 Draft，未合并发布，未获本次合并发布授权，正式站保持 PR #19 基线。
 1. PR #19 已合并发布，云端 Chrome 正式站定向验收已通过，发布回执已补录；不重复等待合并授权、生产部署或本轮已通过的切换／刷新验收。
 2. 本轮用户明确以云端 Chrome 验收为准，已授权合并发布；Augusta Firefox 随机化专项仍未补测、真实账号跨设备未验收，不记为通过。PR #18 的 9 月 16 日生产回执和通用发布规则保留。
 3. 四份新增周补丁仍为已审阅、待实施的内容计划。管理员全面审核、证据字段统一、候选题词／CORPES 批次与 M1 账号级剧情继续后续排期；本轮七语／CFGM 兼容校验不等于整个 P4 已完成。
