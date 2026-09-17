@@ -248,6 +248,31 @@ test('bookmark replacement contains only the selected language and preserves oth
   assert.equal(h.storage.has(guestKey), false);
 });
 
+test('removing the last bookmark sends an empty language list and stays removed after a cloud refresh', async () => {
+  const question = latinChoice();
+  const japanese = bank.questions.find(item => item.language === 'ja');
+  const h = await harness({ session: sessionFor('account'), stats: {
+    progress: {}, bookmarks: [question.id, japanese.id], vocab: [],
+    byLanguage: { la: { bookmarks: [question.id] }, ja: { bookmarks: [japanese.id] } },
+  } });
+  h.page.showQuestion(question);
+  h.state.request = async (url, method, data) => {
+    assert.equal(url, '/api/bookmarks');
+    assert.equal(method, 'PUT');
+    assert.deepEqual(plain(data), { language: 'la', questionIds: [] });
+    h.state.stats.byLanguage.la.bookmarks = [];
+    h.state.stats.bookmarks = [japanese.id];
+    return { ok: true, bookmarks: [] };
+  };
+  await h.page.toggleBookmark();
+  assert.equal(h.page.data.isBookmarked, false);
+  assert.deepEqual(plain(h.page.record.bookmarks), [japanese.id]);
+  await h.page.refresh();
+  assert.deepEqual(plain(h.page.record.bookmarks), [japanese.id]);
+  assert.equal(h.calls.filter(call => call.method === 'PUT').length, 1);
+  assert.equal(h.storage.has(guestKey), false);
+});
+
 test('an ambiguous failed vocabulary POST is not repeated or counted locally', async () => {
   const h = await harness({ session: sessionFor('account') });
   h.page.nextCard();
