@@ -1393,6 +1393,7 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
   setView: (view: View) => void;
 }) {
   const t = useInterfaceText();
+  const { copy } = useI18n();
   const eligible = useMemo(() => vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level)), [language, level]);
   const coveredLevels = vocabularyLevelsFor(language, level);
   const coverageLabel = coveredLevels.length > 1
@@ -1434,7 +1435,7 @@ function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: 
 
   return <div className="page vocabulary-trainer">
     <div className="practice-header vocab-trainer-header">
-      <div><span className="eyebrow">{t("PIKKU ADAPTĪVUM · 连续训练")}</span><h1>{languageLevelLabels[level]}{t("自适应背单词")}</h1><p>{t("当前涵盖")}{coverageLabel}{t("词库。没有每日上限；没记住的词会提高权重，熟词仍会低频复现，最近出现的词会暂时降权。")}</p></div>
+      <div><TargetKicker kind="vocabulary" /><h1>{levelName(copy, level, language)} · {t("自适应背单词")}</h1><p>{t("当前涵盖")}{coverageLabel}{t("词库。没有每日上限；没记住的词会提高权重，熟词仍会低频复现，最近出现的词会暂时降权。")}</p></div>
       <button className="secondary-button" onClick={() => setView("settings")}><Settings size={16} />{t("显示设置")}</button>
     </div>
     <section className="vocab-session-stats" aria-label={t("背词统计")}>
@@ -1467,7 +1468,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
   const languageName = getLearningLanguage(config.code).labels[locale];
   const t = useInterfaceText();
   return <div className="page settings-page">
-    <div className="practice-header"><div><span className="eyebrow">RATIO PERSONĀLIS · PERSONAL</span><h1>{t("个人设置")}</h1><p>{t("设置适用于所有学习语言的背词训练；切换语言时无需重复调整。")}</p></div></div>
+    <div className="practice-header"><div><TargetKicker kind="progress" /><h1>{t("个人设置")}</h1><p>{t("设置适用于所有学习语言的背词训练；切换语言时无需重复调整。")}</p></div></div>
     <section className="settings-panel">
       <div className="settings-copy"><BookOpen /><div><h2>{t("背单词显示模式")}</h2><p>{authenticated ? t("当前设置会随学习账号同步。") : t("当前为游客状态，设置和记忆记录保存在本机；登录后可写入账号。")}</p></div></div>
       <div className="vocab-mode-options" role="radiogroup" aria-label={t("背单词显示模式")}>
@@ -1515,7 +1516,7 @@ function VocabularyLab({ level, onSubmit }: { level: StudyLevel; onSubmit: (answ
         return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {item.family}</span><h2 lang={item.htmlLang || language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{option}</button>)}</div></article>;
       })}
     </div>
-    {!finished ? <button className="primary-button vocab-submit" disabled={Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
+    {!finished ? <button className="primary-button vocab-submit" disabled={!test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
     </>}
   </div>;
 }
