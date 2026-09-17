@@ -195,6 +195,33 @@ test('switching learning language clears the previous quiz and its queued questi
   assert.equal(h.page.data.question.language, 'ja');
 });
 
+test('Home Start clears stale filters while Practice Start retains the chosen selection', async () => {
+  const h = await harness();
+  h.page.changeView(event({ view: 'practice' }));
+  h.page.changeFilter(event({ filter: 'saved' }));
+  h.page.changeCategory({ detail: { value: '1' } });
+  h.page.changeSearch({ detail: { value: 'no-match-fixture-000000' } });
+  assert.equal(h.page.data.resultCount, 0);
+  h.page.changeView(event({ view: 'home' }));
+  h.page.startPractice();
+  assert.equal(h.page.data.filter, 'all');
+  assert.equal(h.page.data.category, 'all');
+  assert.equal(h.page.data.search, '');
+  assert.equal(h.page.queue.length, h.page.range.length);
+  assert.ok(h.page.data.question);
+
+  const question = latinChoice();
+  h.page.record.bookmarks = [question.id];
+  h.page.changeFilter(event({ filter: 'saved' }));
+  h.page.changeCategory({ detail: { value: String(h.page.data.categoryItems.findIndex(item => item.id === question.category)) } });
+  h.page.changeSearch({ detail: { value: question.id } });
+  h.page.startPractice();
+  assert.equal(h.page.data.filter, 'saved');
+  assert.equal(h.page.data.category, question.category);
+  assert.equal(h.page.data.search, question.id);
+  assert.deepEqual(plain(h.page.queue.map(item => item.id)), [question.id]);
+});
+
 test('fresh deleted or edited cloud questions invalidate the active quiz and old queue', async () => {
   for (const deleted of [true, false]) {
     const h = await harness();

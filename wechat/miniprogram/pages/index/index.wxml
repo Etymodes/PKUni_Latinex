@@ -92,7 +92,7 @@
       <block wx:else><input class="field" type="text" value="{{email}}" placeholder="{{t.email}}" bindinput="inputEmail" maxlength="254" disabled="{{busy}}" /><input class="field" password="true" value="{{password}}" placeholder="{{t.password}}" bindinput="inputPassword" maxlength="256" bindconfirm="signIn" disabled="{{busy}}" /><button class="primary" bindtap="signIn" loading="{{busy}}" disabled="{{busy}}">{{t.signIn}}</button><text class="note">{{t.websiteHelp}}</text><button class="text-button" bindtap="copyWebsite">{{t.register}} ↗</button></block>
       <text class="note">{{t.accountNote}}</text>
     </view>
-    <button class="row-link" bindtap="changeLocale" disabled="{{busy}}">{{t.display}}<text>{{locale === 'en' ? 'English ⇄ 中文' : '中文 ⇄ English'}}</text></button>
+    <button class="row-link" bindtap="changeLocale" disabled="{{busy}}"><text>{{t.display}}</text><text class="locale-choice">{{locale === 'en' ? 'English ⇄ 中文' : '中文 ⇄ English'}}</text></button>
     <view class="panel"><text class="resource-title">{{t.privacy}}</text><text class="note">{{t.privacyText}}</text><button class="text-button" bindtap="copyWebsite">{{t.website}}</button></view>
   </block>
   <view class="bottom-space"></view>

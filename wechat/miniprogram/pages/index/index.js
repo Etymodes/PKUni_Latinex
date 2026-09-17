@@ -207,6 +207,10 @@ Page({
   toggleBrowse() { this.setData({ browse: !this.data.browse }); },
   startPractice() {
     if (this.data.busy) return;
+    if (this.data.view === 'home') {
+      this.setData({ filter: 'all', category: 'all', search: '' });
+      this.render();
+    }
     this.queue = shuffled(this.filtered);
     this.setData({ view: 'practice', browse: false, questionIndex: 0, questionTotal: this.queue.length });
     this.showQuestion(this.queue[0]);
