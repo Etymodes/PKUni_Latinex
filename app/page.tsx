@@ -126,9 +126,7 @@ function useInterfaceText() {
 
 function levelName(copy: UiCopy, level: StudyLevel, language: LanguageCode = "la") {
   const stage = normalizePikkuLevel(language, level);
-  const name = stage === "M" && (language === "la" || language === "grc")
-    ? (copy.elementary === "Core" ? "Mastery" : "专家级")
-    : { C: copy.elementary, F: copy.intermediate, G: copy.advanced, M: copy.mixed }[stage];
+  const name = { C: copy.elementary, F: copy.intermediate, G: copy.advanced, M: copy.mixed }[stage];
   return `${stage} · ${name}`;
 }
 
@@ -599,12 +597,17 @@ export default function App() {
           <button className="icon-button close-nav" onClick={() => setMobileNav(false)} aria-label={copy.closeNavigation}><X size={20} /></button>
         </div>
 
-        <div className="level-switch" aria-label={copy.chooseLevel}>
-          {languageConfig.levels.map((item) => (
-            <button key={item} className={level === item ? "active" : ""} onClick={() => selectLanguageLevel(item)} aria-pressed={level === item}>
-              {levelName(copy, item, language)}
-            </button>
-          ))}
+        <div className="level-switch" role="group" aria-label={copy.chooseLevel}>
+          {LEVEL_ORDER.map((item) => {
+            const name = { C: copy.elementary, F: copy.intermediate, G: copy.advanced, M: copy.mixed }[item];
+            const accentIndex = locale === "zh-CN" && item === "M" ? 1 : 0;
+            return (
+              <button key={item} type="button" className={`level-card${level === item ? " active" : ""}`} data-level={item} onClick={() => selectLanguageLevel(item)} aria-label={`${item} · ${name}`} aria-pressed={level === item}>
+                <img className="level-card-mark" src={assetPath(`/level-icons/${item.toLowerCase()}.svg`)} width={100} height={100} alt="" aria-hidden="true" draggable={false} />
+                <span className="level-card-name" lang={locale}>{name.slice(0, accentIndex)}<strong>{name[accentIndex]}</strong>{name.slice(accentIndex + 1)}</span>
+              </button>
+            );
+          })}
         </div>
 
         <nav className="nav-list">
