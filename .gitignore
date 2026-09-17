@@ -9,3 +9,7 @@ dist
 .dev.vars
 .dev.vars.*
 /PKUni_Latinex-source.zip
+/wechat/miniprogram/data/
+/wechat/miniprogram/assets/
+/wechat/project.private.config.json
+/wechat/miniprogram_npm/
