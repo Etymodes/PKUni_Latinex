@@ -272,6 +272,7 @@ export default function App() {
   const accountSyncChain = useRef<Promise<void>>(Promise.resolve());
   const progressRef = useRef(progress);
   const bookmarksRef = useRef(bookmarks);
+  const bookmarkRevisionRef = useRef(0);
   const languageRef = useRef(language);
   const languageLevelRef = useRef(languageLevel);
   const levelsByLanguageRef = useRef<Partial<Record<LanguageCode, LanguageLevel>>>({});
@@ -324,6 +325,7 @@ export default function App() {
       pendingAccountSyncs.current.delete(sync);
       if (pendingAccountSyncs.current.size === 0) setSyncStatus((current) => current === "error" ? "error" : "idle");
     });
+    return sync;
   }, []);
 
   const refreshAccount = useCallback(async (providedSession?: Session) => {
@@ -335,82 +337,94 @@ export default function App() {
       return;
     }
 
-    setSyncStatus("syncing");
-    const response = await apiFetch("/api/stats");
-    if (!response.ok) {
-      setSyncStatus("error");
-      return;
-    }
-    const stats = await response.json();
-    const remoteProgress = stats?.progress && typeof stats.progress === "object" ? stats.progress as Progress : {};
-    const localProgress = progressRef.current;
-    const mergedProgress = { ...localProgress, ...remoteProgress };
-    progressRef.current = mergedProgress;
-    setProgress(mergedProgress);
-    const remoteBookmarks = Array.isArray(stats?.bookmarks) ? stats.bookmarks.filter((id: unknown) => typeof id === "string") : [];
-    const mergedBookmarks = [...new Set([...remoteBookmarks, ...bookmarksRef.current])];
-    bookmarksRef.current = mergedBookmarks;
-    setBookmarks(mergedBookmarks);
-    const remoteVocab = remoteVocabularyStats(stats?.vocab);
-    const localVocab = vocabularyMemoryRef.current;
-    const addGuestStats = localVocab.owner === GUEST_VOCABULARY_OWNER;
-    const mergedVocab = localVocab.owner === nextSession.user.email
-      ? mergeVocabularyStats(remoteVocab, localVocab.stats)
-      : mergeVocabularyStats(remoteVocab, addGuestStats ? localVocab.stats : {}, addGuestStats);
-    if (addGuestStats && Object.keys(localVocab.stats).length) {
-      const guestByLanguage: Partial<Record<LanguageCode, { lemma: string; seen: number; correctCount: number }[]>> = {};
-      for (const [key, stat] of Object.entries(localVocab.stats)) {
-        const separator = key.indexOf(":");
-        const nextLanguage = key.slice(0, separator) as LanguageCode;
-        if (separator < 1 || !languageConfigs[nextLanguage]) continue;
-        (guestByLanguage[nextLanguage] ??= []).push({ lemma: key.slice(separator + 1), seen: stat.seen, correctCount: stat.correct });
+    const bookmarkRevision = bookmarkRevisionRef.current;
+    await queueAccountSync(async () => {
+      const response = await apiFetch("/api/stats");
+      if (!response.ok) {
+        setSyncStatus("error");
+        return;
       }
-      for (const [nextLanguage, answers] of Object.entries(guestByLanguage) as [LanguageCode, { lemma: string; seen: number; correctCount: number }[]][]) {
-        const migrated = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
+      const stats = await response.json();
+      const remoteProgress = stats?.progress && typeof stats.progress === "object" ? stats.progress as Progress : {};
+      const localProgress = progressRef.current;
+      const mergedProgress = { ...localProgress, ...remoteProgress };
+      progressRef.current = mergedProgress;
+      setProgress(mergedProgress);
+      const remoteVocab = remoteVocabularyStats(stats?.vocab);
+      const localVocab = vocabularyMemoryRef.current;
+      const addGuestStats = localVocab.owner === GUEST_VOCABULARY_OWNER;
+      const localBookmarks = bookmarksRef.current;
+      if (!Array.isArray(stats?.bookmarks)) throw new Error("Invalid account bookmarks");
+      const remoteBookmarks: string[] = stats.bookmarks.filter((id: unknown) => typeof id === "string");
+      // Only import actual guest records. An account cache must not restore remote deletions.
+      const mergedBookmarks = [...new Set([...remoteBookmarks, ...(addGuestStats ? localBookmarks : [])])];
+      const mergedVocab = localVocab.owner === nextSession.user.email
+        ? mergeVocabularyStats(remoteVocab, localVocab.stats)
+        : mergeVocabularyStats(remoteVocab, addGuestStats ? localVocab.stats : {}, addGuestStats);
+      if (mergedBookmarks.length !== remoteBookmarks.length) {
+        const guestBookmarks = localBookmarks.filter((id) => !remoteBookmarks.includes(id));
+        const guestLanguages = new Set(guestBookmarks.map((id) => syncQuestion(id).language ?? "la"));
+        for (const nextLanguage of guestLanguages) {
+          const remoteLanguageBookmarks: string[] = stats.byLanguage?.[nextLanguage]?.bookmarks
+            ?? remoteBookmarks.filter((id) => (syncQuestion(id).language ?? "la") === nextLanguage);
+          const questionIds = [...new Set([...remoteLanguageBookmarks, ...guestBookmarks.filter((id) => (syncQuestion(id).language ?? "la") === nextLanguage)])];
+          const migrated = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, questionIds }) });
+          if (!migrated.ok) {
+            setSyncStatus("error");
+            return;
+          }
+        }
+      }
+      if (addGuestStats && Object.keys(localVocab.stats).length) {
+        const guestByLanguage: Partial<Record<LanguageCode, { lemma: string; seen: number; correctCount: number }[]>> = {};
+        for (const [key, stat] of Object.entries(localVocab.stats)) {
+          const separator = key.indexOf(":");
+          const nextLanguage = key.slice(0, separator) as LanguageCode;
+          if (separator < 1 || !languageConfigs[nextLanguage]) continue;
+          (guestByLanguage[nextLanguage] ??= []).push({ lemma: key.slice(separator + 1), seen: stat.seen, correctCount: stat.correct });
+        }
+        for (const [nextLanguage, answers] of Object.entries(guestByLanguage) as [LanguageCode, { lemma: string; seen: number; correctCount: number }[]][]) {
+          const migrated = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
+          if (!migrated.ok) {
+            setSyncStatus("error");
+            return;
+          }
+        }
+      }
+      if (bookmarkRevisionRef.current === bookmarkRevision) {
+        bookmarksRef.current = mergedBookmarks;
+        setBookmarks(mergedBookmarks);
+      }
+      const nextVocabularyMemory = { owner: nextSession.user.email, stats: mergedVocab };
+      vocabularyMemoryRef.current = nextVocabularyMemory;
+      setVocabularyMemory(nextVocabularyMemory);
+      const unsyncedProgress = Object.entries(localProgress).filter(([id]) => !(id in remoteProgress)).map(([questionId, status]) => {
+        const question = syncQuestion(questionId);
+        return { questionId, status, language: question.language ?? "la", level: question.level, category: question.category };
+      });
+      if (unsyncedProgress.length) {
+        const migrated = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ records: unsyncedProgress }) });
         if (!migrated.ok) {
           setSyncStatus("error");
           return;
         }
       }
-    }
-    const nextVocabularyMemory = { owner: nextSession.user.email, stats: mergedVocab };
-    vocabularyMemoryRef.current = nextVocabularyMemory;
-    setVocabularyMemory(nextVocabularyMemory);
-    const unsyncedProgress = Object.entries(localProgress).filter(([id]) => !(id in remoteProgress)).map(([questionId, status]) => {
-      const question = syncQuestion(questionId);
-      return { questionId, status, language: question.language ?? "la", level: question.level, category: question.category };
-    });
-    if (unsyncedProgress.length) {
-      const migrated = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ records: unsyncedProgress }) });
-      if (!migrated.ok) {
-        setSyncStatus("error");
-        return;
+      if (validAccountPreference(stats?.preference)) {
+        languageRef.current = stats.preference.language;
+        languageLevelRef.current = stats.preference.level;
+        vocabularyModeRef.current = stats.preference.vocabMode;
+        setLanguage(stats.preference.language);
+        setLanguageLevel(normalizePikkuLevel(stats.preference.language, stats.preference.level));
+        setVocabularyMode(stats.preference.vocabMode);
+      } else {
+        const migrated = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: languageRef.current, level: languageLevelRef.current, vocabMode: vocabularyModeRef.current }) });
+        if (!migrated.ok) {
+          setSyncStatus("error");
+          return;
+        }
       }
-    }
-    if (mergedBookmarks.length !== remoteBookmarks.length) {
-      const items = mergedBookmarks.map((questionId) => ({ questionId, language: syncQuestion(questionId).language ?? "la" }));
-      const migrated = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ items }) });
-      if (!migrated.ok) {
-        setSyncStatus("error");
-        return;
-      }
-    }
-    if (validAccountPreference(stats?.preference)) {
-      languageRef.current = stats.preference.language;
-      languageLevelRef.current = stats.preference.level;
-      vocabularyModeRef.current = stats.preference.vocabMode;
-      setLanguage(stats.preference.language);
-      setLanguageLevel(normalizePikkuLevel(stats.preference.language, stats.preference.level));
-      setVocabularyMode(stats.preference.vocabMode);
-    } else {
-      const migrated = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: languageRef.current, level: languageLevelRef.current, vocabMode: vocabularyModeRef.current }) });
-      if (!migrated.ok) {
-        setSyncStatus("error");
-        return;
-      }
-    }
-    setSyncStatus("idle");
-  }, [setBookmarks, setLanguage, setLanguageLevel, setProgress, setVocabularyMemory, setVocabularyMode]);
+    }).catch(() => { /* The queue displays the sync error and keeps refresh callers safe. */ });
+  }, [queueAccountSync, setBookmarks, setLanguage, setLanguageLevel, setProgress, setVocabularyMemory, setVocabularyMode]);
 
   const waitForAccountSync = useCallback(async () => {
     await Promise.allSettled([...pendingAccountSyncs.current]);
@@ -420,6 +434,7 @@ export default function App() {
     setSession({ authenticated: false, persistence: true, user: null });
     progressRef.current = {};
     setProgress({});
+    bookmarkRevisionRef.current += 1;
     bookmarksRef.current = [];
     setBookmarks([]);
     vocabularyModeRef.current = "context";
@@ -495,16 +510,32 @@ export default function App() {
     });
   };
 
-  const updateBookmarks = useCallback((next: string[] | ((current: string[]) => string[])) => {
-    const resolved = typeof next === "function" ? next(bookmarksRef.current) : next;
+  const updateBookmarks = useCallback((next: string[] | ((current: string[]) => string[]), nextLanguage: LanguageCode) => {
+    const current = bookmarksRef.current;
+    const resolved = typeof next === "function" ? next(current) : next;
     const unique = [...new Set(resolved)];
+    const added = unique.filter((id) => !current.includes(id));
+    const removed = current.filter((id) => !unique.includes(id));
+    const bookmarkRevision = ++bookmarkRevisionRef.current;
     bookmarksRef.current = unique;
     setBookmarks(unique);
-    if (!session.authenticated) return;
+    if (!session.authenticated || (!added.length && !removed.length)) return;
     queueAccountSync(async () => {
-      const items = unique.map((questionId) => ({ questionId, language: syncQuestion(questionId).language ?? "la" }));
-      const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ items }) });
+      const latest = await apiFetch("/api/stats");
+      if (!latest.ok) throw new Error(t("收藏同步失败"));
+      const stats = await latest.json();
+      if (!Array.isArray(stats?.bookmarks)) throw new Error(t("收藏同步失败"));
+      const remoteBookmarks: string[] = stats.bookmarks.filter((id: unknown) => typeof id === "string");
+      const remoteLanguageBookmarks: string[] = stats.byLanguage?.[nextLanguage]?.bookmarks
+        ?? remoteBookmarks.filter((id) => (syncQuestion(id).language ?? "la") === nextLanguage);
+      const questionIds = [...new Set([...remoteLanguageBookmarks.filter((id) => !removed.includes(id)), ...added])];
+      const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, questionIds }) });
       if (!response.ok) throw new Error(t("收藏同步失败"));
+      if (bookmarkRevisionRef.current === bookmarkRevision) {
+        const refreshed = [...new Set([...remoteBookmarks.filter((id) => !remoteLanguageBookmarks.includes(id)), ...questionIds])];
+        bookmarksRef.current = refreshed;
+        setBookmarks(refreshed);
+      }
     });
   }, [queueAccountSync, session.authenticated, setBookmarks]);
   const updateLanguageBookmarks = useCallback((next: string[] | ((current: string[]) => string[])) => {
@@ -512,8 +543,8 @@ export default function App() {
     const currentLanguage = current.filter((id) => languageQuestionIds.has(id));
     const resolved = typeof next === "function" ? next(currentLanguage) : next;
     const otherLanguages = current.filter((id) => !languageQuestionIds.has(id));
-    updateBookmarks([...otherLanguages, ...resolved]);
-  }, [languageQuestionIds, updateBookmarks]);
+    updateBookmarks([...otherLanguages, ...resolved], language);
+  }, [language, languageQuestionIds, updateBookmarks]);
 
   const answered = Object.keys(progress).filter((id) => languageQuestionIds.has(id)).length;
   const correct = Object.entries(progress).filter(([id, value]) => languageQuestionIds.has(id) && value === "correct").length;
