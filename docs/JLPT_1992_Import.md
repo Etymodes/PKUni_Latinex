@@ -44,6 +44,8 @@ node scripts/import-jlpt-1992.mjs extraction/exam-structured.json listening.m4a 
 
 数据检查覆盖完整题数与分类、答案索引、唯一 ID、原文/下划线、题图隔离、来源录音区间、文件哈希及部署大小限制。媒体回归覆盖原编号判分、普通题洗牌、独立音频路径、分类兼容和键盘焦点。
 
-`node --experimental-strip-types --test tests/*.test.mjs scripts/i18n.test.mjs`：70/70 通过。TypeScript、Cloudflare 生产构建、Sites 产物验证、GitHub Pages 构建及 Wrangler dry-run 通过。Windows dry-run 使用已构建产物和不含自定义 POSIX build 命令的临时配置；没有修改仓库部署配置。
+`node --experimental-strip-types --test tests/*.test.mjs scripts/i18n.test.mjs`：71/71 通过。TypeScript、Cloudflare 生产构建、Sites 产物验证、GitHub Pages 构建及 Wrangler dry-run 通过。Windows dry-run 使用已构建产物和不含自定义 POSIX build 命令的临时配置；没有修改仓库部署配置。
 
 本轮已在本机内置 Chromium 浏览器确认原题号跳转、共享文章、缺印答案提示，以及听力首题独立音频能够加载和播放。Firefox、Augusta 及真实账号跨设备未在本轮验收，不沿用其他 PR 的通过记录。正式发布状态以 PR 和项目记忆的当前记录为准。
+
+部署回执：功能提交 `55b7e25` 的 Cloudflare Preview 于 2026-10-06 06:08:19 UTC 成功。公开预览：https://agent-jlpt-1992-import-pkuni-latinex.kimdac.workers.dev/ 。线上已验证日语 M 练习入口、听力 30 题筛选、首题实际播放和切题后新音频从 0 秒开始；全部 41 个媒体文件均为 HTTP 200，SHA-256 与本地完全一致。PR #23 保持 Draft，正式站尚未合并；Firefox/Augusta 未在本轮验收。后续补齐日语低等级首页分类回退：没有新 reading/sentencePattern 题时使用旧 translation/syntax 入口，C 级原有语法题仍可访问。

@@ -999,11 +999,13 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   const done = levelQs.filter((q) => progress[q.id]).length;
   const right = levelQs.filter((q) => progress[q.id] === "correct").length;
   const percent = levelQs.length ? Math.round((done / levelQs.length) * 100) : 0;
+  const grammarCategory: Category = language.id === "ja" && levelQs.some(q => q.category === "sentencePattern") ? "sentencePattern" : "syntax";
+  const readingCategory: Category = language.id === "ja" && levelQs.some(q => q.category === "reading") ? "reading" : "translation";
 
   const modes = [
     { category: "vocabulary" as Category, icon: Languages, title: copy.wordCourse, native: language.microLabels.vocabulary, detail: copy.wordCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "vocabulary").length) },
-    { category: (language.id === "ja" ? "sentencePattern" : "syntax") as Category, icon: Layers3, title: copy.grammarCourse, native: language.microLabels.grammar, detail: copy.grammarCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === (language.id === "ja" ? "sentencePattern" : "syntax")).length) },
-    { category: (language.id === "ja" ? "reading" : "translation") as Category, icon: BookOpen, title: copy.readingCourse, native: language.microLabels.reading, detail: copy.readingCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === (language.id === "ja" ? "reading" : "translation")).length) },
+    { category: grammarCategory, icon: Layers3, title: copy.grammarCourse, native: language.microLabels.grammar, detail: copy.grammarCourseCopy, meta: copy.questionCount(levelQs.filter(q => q.category === grammarCategory).length) },
+    { category: readingCategory, icon: BookOpen, title: copy.readingCourse, native: language.microLabels.reading, detail: copy.readingCourseCopy, meta: copy.questionCount(levelQs.filter(q => q.category === readingCategory).length) },
     ...(language.id === "ja" ? [{ category: "listening" as Category, icon: Headphones, title: copy.categoryListening, native: "聴解", detail: copy.listeningCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "listening").length) }] : []),
   ];
 

@@ -6,6 +6,7 @@ import ts from "typescript";
 import { getCopy, getLearningLanguage } from "../app/i18n.ts";
 import { matchesLevel, questionOptionOrder } from "../data/questions.ts";
 import { languageConfigs } from "../data/languages.ts";
+import { multilingualQuestions } from "../data/multilingual-questions.ts";
 import importedQuestions from "../data/jlpt-1992.json" with { type: "json" };
 
 // Run the handlers and render expressions actually wired into the page.
@@ -25,7 +26,10 @@ function declarationWithin(functionName, variableName) {
 const code = ts.transpileModule([
   ...["assetPath", "QuestionAudio", "QuestionCard", "Practice"].map(name => functions.get(name).getText(ast)),
   `globalThis.handleQuestionKey = ${declarationWithin("QuestionCard", "handler")};`,
-  `globalThis.dashboardModes = () => (${declarationWithin("Dashboard", "modes")});`,
+  `globalThis.dashboardModes = () => {
+    ${["levelQs", "grammarCategory", "readingCategory"].map(name => `const ${name} = ${declarationWithin("Dashboard", name)};`).join("\n")}
+    return (${declarationWithin("Dashboard", "modes")});
+  };`,
 ].join("\n"), { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React } }).outputText;
 
 class Element {
@@ -113,6 +117,19 @@ test("Japanese home cards open the actual grammar, reading and listening section
   assert.equal(modes.find(mode => mode.category === "listening").meta, "30 题");
   c.language = getLearningLanguage("la"); c.bank = [];
   assert.deepEqual(plain(c.dashboardModes()).map(mode => mode.category), ["vocabulary", "syntax", "translation"]);
+});
+
+test("Japanese Core cards retain legacy syntax and translation routes despite new Mastery content", () => {
+  const c = harness();
+  c.bank = [...importedQuestions, ...multilingualQuestions.filter(question => question.language === "ja")];
+  c.level = "C";
+  const modes = plain(c.dashboardModes());
+  const grammar = modes.find(mode => mode.title === c.copy.grammarCourse);
+  const reading = modes.find(mode => mode.title === c.copy.readingCourse);
+  assert.equal(grammar.category, "syntax");
+  assert.equal(grammar.meta, "1 题");
+  assert.equal(reading.category, "translation");
+  assert.deepEqual(c.bank.filter(question => matchesLevel(question, c.level) && question.category === grammar.category).map(question => question.id), ["ja-n4-001"]);
 });
 
 test("original-question jump selects the requested item and the new controls follow the interface language", () => {
