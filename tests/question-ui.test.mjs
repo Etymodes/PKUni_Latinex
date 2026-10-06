@@ -4,9 +4,11 @@ import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
 import { getCopy, getLearningLanguage } from "../app/i18n.ts";
-import { matchesLevel, questionOptionOrder } from "../data/questions.ts";
+import { matchesLevel, normalizePikkuLevel, questionOptionOrder, questions } from "../data/questions.ts";
+import { completeQuestions } from "../data/complete-bank.ts";
 import { languageConfigs } from "../data/languages.ts";
 import { multilingualQuestions } from "../data/multilingual-questions.ts";
+import { multilingualSeedQuestions } from "../data/multilingual-seeds.ts";
 import importedQuestions from "../data/jlpt-1992.json" with { type: "json" };
 
 // Run the handlers and render expressions actually wired into the page.
@@ -24,10 +26,11 @@ function declarationWithin(functionName, variableName) {
   return found.getText(ast);
 }
 const code = ts.transpileModule([
-  ...["assetPath", "QuestionAudio", "QuestionCard", "Practice"].map(name => functions.get(name).getText(ast)),
+  ...["assetPath", "viewForLanguage", "QuestionAudio", "QuestionCard", "Practice"].map(name => functions.get(name).getText(ast)),
   `globalThis.handleQuestionKey = ${declarationWithin("QuestionCard", "handler")};`,
+  ...["selectLanguage", "selectLanguageLevel", "openPractice"].map(name => `globalThis.${name} = ${declarationWithin("App", name)};`),
   `globalThis.dashboardModes = () => {
-    ${["levelQs", "grammarCategory", "readingCategory"].map(name => `const ${name} = ${declarationWithin("Dashboard", name)};`).join("\n")}
+    ${["levelQs", "grammarCategory", "readingCategory", "extraCategories"].map(name => `const ${name} = ${declarationWithin("Dashboard", name)};`).join("\n")}
     return (${declarationWithin("Dashboard", "modes")});
   };`,
 ].join("\n"), { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React } }).outputText;
@@ -38,7 +41,8 @@ class Element {
 }
 function harness() {
   const context = {
-    publicBasePath: "/PKUni_Latinex", HTMLElement: Element, questionOptionOrder, matchesLevel, languageConfigs,
+    publicBasePath: "/PKUni_Latinex", HTMLElement: Element, questionOptionOrder, matchesLevel, normalizePikkuLevel, languageConfigs,
+    jlpt1992QuestionIds: new Set(importedQuestions.map(question => question.id)),
     React: { Fragment: "fragment", createElement: (type, props, ...children) => ({ type: typeof type === "function" ? type.name : type, props, children }) },
     copy: getCopy("zh-CN"), language: getLearningLanguage("ja"), level: "M", bank: importedQuestions,
     useInterfaceText: () => text => text,
@@ -56,6 +60,30 @@ function harness() {
 }
 const plain = value => JSON.parse(JSON.stringify(value));
 function nodes(tree) { return tree && typeof tree === "object" ? [tree, ...(tree.children ?? []).flat(Infinity).flatMap(nodes)] : []; }
+
+// Deliberately artificial grades exercise filtering independently of the content rubric.
+const mixedPaper = importedQuestions.map((question, index) => ({ ...question, level: ["C", "F", "G", "M"][index % 4] }));
+function practiceHarness() {
+  const c = harness();
+  c.useI18n = () => ({ copy: getCopy("en"), locale: "en", language: getLearningLanguage("ja") });
+  const state = ["ordered", 0, "", 0];
+  const levelChanges = [];
+  const props = {
+    bank: mixedPaper, level: "F", levels: ["C", "F", "G", "M"], category: "all", fullPaper: false,
+    progress: {}, bookmarks: [], onResult() {}, setBookmarks() {},
+    setLevel(value) { props.level = value; levelChanges.push(value); },
+    setCategory(value) { props.category = value; }, setFullPaper(value) { props.fullPaper = value; },
+  };
+  function render() {
+    let cursor = 0;
+    c.useState = () => {
+      const position = cursor++;
+      return [state[position], value => { state[position] = typeof value === "function" ? value(state[position]) : value; }];
+    };
+    return nodes(c.Practice(props));
+  }
+  return { props, state, levelChanges, render };
+}
 
 test("question media paths work at the domain root and under GitHub Pages without changing external media", () => {
   const c = harness();
@@ -111,17 +139,19 @@ test("the transcript is absent until submission and image links retain the deplo
 
 test("Japanese home cards open the actual grammar, reading and listening sections while Latin retains syntax", () => {
   const c = harness();
+  c.bank = ["sentencePattern", "reading", "listening"].map(category => ({ ...importedQuestions.find(question => question.category === category), level: "G" }));
+  c.level = "G";
   const modes = plain(c.dashboardModes());
-  assert.equal(modes.find(mode => mode.category === "sentencePattern").meta, "31 题");
-  assert.equal(modes.find(mode => mode.category === "reading").meta, "23 题");
-  assert.equal(modes.find(mode => mode.category === "listening").meta, "30 题");
+  assert.equal(modes.find(mode => mode.category === "sentencePattern").meta, "1 题");
+  assert.equal(modes.find(mode => mode.category === "reading").meta, "1 题");
+  assert.equal(modes.find(mode => mode.category === "listening").meta, "1 题");
   c.language = getLearningLanguage("la"); c.bank = [];
   assert.deepEqual(plain(c.dashboardModes()).map(mode => mode.category), ["vocabulary", "syntax", "translation"]);
 });
 
-test("Japanese Core cards retain legacy syntax and translation routes despite new Mastery content", () => {
+test("Japanese Core cards retain legacy syntax and translation routes when new categories only occur at other grades", () => {
   const c = harness();
-  c.bank = [...importedQuestions, ...multilingualQuestions.filter(question => question.language === "ja")];
+  c.bank = [...importedQuestions.map(question => ({ ...question, level: "G" })), ...multilingualQuestions.filter(question => question.language === "ja")];
   c.level = "C";
   const modes = plain(c.dashboardModes());
   const grammar = modes.find(mode => mode.title === c.copy.grammarCourse);
@@ -132,17 +162,108 @@ test("Japanese Core cards retain legacy syntax and translation routes despite ne
   assert.deepEqual(c.bank.filter(question => matchesLevel(question, c.level) && question.category === grammar.category).map(question => question.id), ["ja-n4-001"]);
 });
 
-test("original-question jump selects the requested item and the new controls follow the interface language", () => {
+test("every current Japanese question retains a home route after F/G regrading, including legacy syntax and morphology", () => {
   const c = harness();
-  c.useI18n = () => ({ copy: getCopy("en"), locale: "en", language: getLearningLanguage("ja") });
-  const state = ["ordered", 0, "1992", 0];
-  let cursor = 0;
-  c.useState = () => { const position = cursor++; return [state[position], value => { state[position] = value; }]; };
-  const rendered = nodes(c.Practice({ bank: importedQuestions, level: "M", levels: ["C", "F", "G", "M"], category: "all", progress: {}, bookmarks: [], setLevel() {}, setCategory() {}, onResult() {}, setBookmarks() {} }));
+  c.bank = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions, ...importedQuestions].filter(question => question.language === "ja");
+  for (const level of ["C", "F", "G", "M"]) {
+    c.level = level;
+    const modes = plain(c.dashboardModes());
+    assert.equal(new Set(modes.map(mode => mode.category)).size, modes.length, `${level}: no duplicated routes`);
+    const eligible = c.bank.filter(question => matchesLevel(question, level));
+    for (const question of eligible) assert(modes.some(mode => mode.category === question.category), `${level}: missing home route for ${question.id}`);
+    for (const mode of modes) {
+      const expected = eligible.filter(question => question.category === mode.category);
+      assert.equal(mode.meta, c.copy.questionCount(expected.length));
+      const h = practiceHarness();
+      Object.assign(h.props, { bank: c.bank, level, category: mode.category });
+      const count = nodes(h.render().find(node => node.props?.className === "question-search")).find(node => node.type === "span").children[0];
+      assert.equal(count, expected.length, `${level}: home count matches the actual practice route`);
+    }
+    if (level === "G") assert.equal(modes.find(mode => mode.category === "syntax").meta, "1 题", "ja-n2-001 keeps its own syntax route");
+  }
+  assert.equal(c.bank.filter(question => matchesLevel(question, "F") && question.category === "translation").length, 0, "The current F bank has no legacy translation item");
+});
+
+test("Japanese reading and translation coexist without widening the 1992 reading section", () => {
+  const c = harness();
+  const translation = { ...importedQuestions.find(question => question.level === "F" && question.category === "reading"), id: "legacy-ja-f-translation", category: "translation" };
+  c.bank = [...importedQuestions, translation]; c.level = "F";
+  const modes = plain(c.dashboardModes());
+  assert(modes.some(mode => mode.category === "reading"));
+  assert.equal(modes.find(mode => mode.category === "translation").meta, "1 题");
+  const h = practiceHarness();
+  Object.assign(h.props, { bank: c.bank, category: "translation" });
+  assert.equal(h.render().find(node => node.type === "QuestionCard").props.question.id, translation.id);
+  const shortcut = h.render().find(node => node.props?.className === "exam-shortcuts");
+  nodes(shortcut).find(node => node.type === "button" && node.children[0] === "Reading").props.onClick();
+  const selector = h.render().find(node => node.type === "select" && node.props["aria-label"] === "Original question");
+  const ids = nodes(selector).filter(node => node.type === "option").map(node => node.props.value);
+  assert.deepEqual(ids, importedQuestions.filter(question => question.category === "reading").map(question => question.id));
+  assert(!ids.includes(translation.id));
+});
+
+test("the full-paper shortcut spans grades without changing the selected grade and original-question jump still works", () => {
+  const h = practiceHarness();
+  h.state[2] = "no matching question";
+  let rendered = h.render();
   const shortcut = rendered.find(node => node.props?.className === "exam-shortcuts");
   assert.deepEqual(plain(nodes(shortcut).filter(node => node.type === "button").map(node => node.children[0])), ["Full paper", "Vocabulary", "Listening", "Reading", "Grammar"]);
+  nodes(shortcut).find(node => node.type === "button").props.onClick();
+  assert.equal(h.props.fullPaper, true);
+  assert.equal(h.state[2], "");
+  assert.deepEqual(h.levelChanges, []);
+  rendered = h.render();
+  const difficulty = rendered.find(node => node.type === "select");
+  assert.equal(difficulty.props.value, "paper");
+  assert.equal(nodes(difficulty).find(node => node.type === "option").children[0], "Full paper · All levels");
   const selector = rendered.find(node => node.type === "select" && node.props["aria-label"] === "Original question");
-  assert.equal(nodes(selector).filter(node => node.type === "option").length, 149);
+  const options = nodes(selector).filter(node => node.type === "option");
+  assert.equal(options.length, 149);
+  assert.deepEqual([...new Set(options.map(option => option.children.at(-1)))], ["C", "F", "G", "M"]);
   selector.props.onChange({ target: { value: importedQuestions[148].id } });
-  assert.equal(state[3], 148);
+  assert.equal(h.state[3], 148);
+});
+
+test("full-paper searches and section shortcuts stay within the precise source, independent of grade", () => {
+  const h = practiceHarness();
+  h.props.bank = [...mixedPaper, { ...mixedPaper[0], id: "unrelated-1992-question" }];
+  h.props.fullPaper = true;
+  const count = rendered => nodes(rendered.find(node => node.props?.className === "question-search")).find(node => node.type === "span").children[0];
+  let rendered = h.render();
+  assert.equal(count(rendered), 149, "A different item with the same year, source and tags is excluded");
+  rendered.find(node => node.type === "input").props.onChange({ target: { value: mixedPaper[0].id } });
+  rendered = h.render();
+  assert.ok(count(rendered) > 0 && count(rendered) < 149);
+  assert.equal(h.props.fullPaper, true);
+  rendered.find(node => node.type === "input").props.onChange({ target: { value: "" } });
+  rendered = h.render();
+  assert.equal(count(rendered), 149);
+  nodes(rendered.find(node => node.props?.className === "exam-shortcuts")).find(node => node.type === "button" && node.children[0] === "Listening").props.onClick();
+  rendered = h.render();
+  assert.equal(count(rendered), 30);
+  assert.equal(h.props.category, "listening");
+  rendered.find(node => node.type === "select").props.onChange({ target: { value: "F" } });
+  assert.equal(h.props.fullPaper, false, "Choosing the already selected grade also exits full-paper mode");
+  assert.equal(count(h.render()), h.props.bank.filter(question => matchesLevel(question, "F") && question.category === "listening").length);
+});
+
+test("the app exits full-paper mode on same-grade selection, language changes and home practice routes", () => {
+  const c = harness();
+  Object.assign(c, { language: "ja", languageLevel: "F", level: "F", view: "practice", fullPaper: true, languageRef: { current: "ja" }, languageLevelRef: { current: "F" }, levelsByLanguageRef: { current: {} }, syncPreference() {}, setMobileNav() {} });
+  for (const [setter, field] of [["setFullPaper", "fullPaper"], ["setLanguage", "language"], ["setLanguageLevel", "languageLevel"], ["setCategory", "category"], ["setView", "view"]]) c[setter] = value => { c[field] = value; };
+  c.selectLanguageLevel("F");
+  assert.equal(c.fullPaper, false);
+  assert.equal(c.languageLevel, "F");
+  c.fullPaper = true;
+  c.selectLanguage("en");
+  assert.equal(c.fullPaper, false);
+  assert.equal(c.language, "en");
+  c.fullPaper = true;
+  c.selectLanguage("en");
+  assert.equal(c.fullPaper, false);
+  c.fullPaper = true;
+  c.openPractice("G", "reading");
+  assert.equal(c.fullPaper, false);
+  assert.equal(c.languageLevel, "G");
+  assert.equal(c.category, "reading");
 });

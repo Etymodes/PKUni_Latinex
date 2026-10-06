@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 const [sourceFile, audioFile, timelineFile, correctionsFile] = process.argv.slice(2);
 assert(sourceFile && audioFile && timelineFile && correctionsFile, "Usage: node scripts/import-jlpt-1992.mjs extraction.json listening.m4a timeline.json corrections.json");
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const difficulty = JSON.parse(await readFile(path.join(root, "data", "jlpt-1992-difficulty.json"), "utf8"));
 const source = JSON.parse(await readFile(sourceFile, "utf8"));
 const timeline = JSON.parse(await readFile(timelineFile, "utf8"));
 const corrections = JSON.parse(await readFile(correctionsFile, "utf8"));
@@ -23,6 +24,15 @@ function correctedText(text, changes) {
 const passages = new Map(source.passages.map(p => [p.id, p]));
 assert.equal(source.questions.length, 149);
 assert.equal(new Set(source.questions.map(q => q.id)).size, 149);
+const grades = new Map(difficulty.questions.map(q => [q.id, q]));
+assert.equal(difficulty.questions.length, source.questions.length, "Every source question needs an explicit CFGM assessment");
+assert.equal(grades.size, source.questions.length, "Duplicate CFGM assessment IDs");
+for (const q of source.questions) {
+  const grade = grades.get(q.id);
+  assert(grade && ["C", "F", "G", "M"].includes(grade.level), `Missing or invalid CFGM assessment: ${q.id}`);
+  assert(typeof grade.rationale === "string" && grade.rationale.trim(), `Missing CFGM rationale: ${q.id}`);
+  assert(Array.isArray(grade.knowledgePoints) && grade.knowledgePoints.length && grade.knowledgePoints.every(p => typeof p === "string" && p.trim()), `Missing knowledge points: ${q.id}`);
+}
 const mediaPath = path.join(root, "public", "media", "jlpt-1992");
 await mkdir(path.join(mediaPath, "audio"), { recursive: true });
 const audioName = "jlpt-1992-1kyu-listening.m4a";
@@ -67,8 +77,10 @@ const questions = source.questions.map(q => {
     ? "原答案表漏印本题答案。依据正文推断原选项 1「理屈だけで判断しないこと」：作者把「不合理な部分」与不只凭理性、还考虑事情前后经过和具体情况相联系。本答案为推断，待进一步复核。"
     : `所提供试卷的答案表：原选项 ${q.answer}「${options[q.answerIndex]}」。${listening ? "可展开听力原文对照录音。" : ""}`;
   if (changes.length) explanation += "\n录音对照修订（本机语音识别复核）：" + changes.map(c => `原稿「${c.original}」→「${c.corrected}」。`).join(" ");
+  const grade = grades.get(q.id);
+  explanation += `\nCFGM 内容分级：${grade.level}。${grade.rationale}`;
   const result = {
-    id: q.id, language: "ja", level: "M",
+    id: q.id, language: "ja", level: grade.level,
     category: listening ? "listening" : q.section === "vocab" ? "vocabulary" : grammar ? "sentencePattern" : "reading",
     skill: listening ? "listening" : q.section === "vocab" ? "vocabulary" : grammar ? "grammar" : "reading",
     type: "choice",
@@ -99,6 +111,8 @@ const audit = {
   exam: source.meta.exam, counts: source.meta.counts, sourceSha256: source.meta.sourceSha256, audioSha256: audioHash,
   sourceDocumentPages: source.meta.sourcePdfPageCount, printedAnswers: 148, inferredAnswers: 1,
   publicImportRequested: "2026-10-06", rightsStatus: "rights-unclear",
+  difficultyRubric: difficulty.rubric.id,
+  difficultyCounts: Object.fromEntries(["C", "F", "G", "M"].map(level => [level, questions.filter(q => q.level === level).length])),
   audioIntervalsVerified: 30, audioAlignmentMethod: "local ASR with transcript/topic/number matching and repeated short-segment recognition", humanListeningVerified: false,
   audioIntervals: timeline, audioClips: clipFiles, transcriptCorrections: corrections,
   questions: source.questions.map(q => ({ id: q.id, originalNumber: q.originalNumber, answer: q.answer, answerSource: q.answerSource, sourceParagraphs: q.sourceParagraphs, sourcePdfPages: q.sourcePdfPages, answerSourcePdfPages: q.answerSourcePdfPages })),

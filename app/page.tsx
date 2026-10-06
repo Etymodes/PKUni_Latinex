@@ -192,6 +192,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
 }
 
 const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions, ...jlpt1992Questions];
+const jlpt1992QuestionIds = new Set(jlpt1992Questions.map(question => question.id));
 const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
 const allVocabItems: VocabItem[] = [...vocabItems, ...completeVocabItems, ...multilingualVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -268,6 +269,7 @@ export default function App() {
   const [vocabularyMode, setVocabularyMode, vocabularyModeReady] = usePersistentState<VocabularyMode>(STORAGE.vocabularyMode, "context");
   const [vocabularyMemory, setVocabularyMemory, vocabularyMemoryReady] = usePersistentState<VocabularyMemory>(STORAGE.vocabularyMemory, { owner: GUEST_VOCABULARY_OWNER, stats: {} });
   const [category, setCategory] = useState<Category | "all">("all");
+  const [fullPaper, setFullPaper] = useState(false);
   const [progress, setProgress, progressReady] = usePersistentState<Progress>(STORAGE.progress, {});
   const [bookmarks, setBookmarks, bookmarksReady] = usePersistentState<string[]>(STORAGE.bookmarks, []);
   const [mobileNav, setMobileNav] = useState(false);
@@ -572,6 +574,7 @@ export default function App() {
   };
 
   const selectLanguage = (nextLanguage: LanguageCode) => {
+    setFullPaper(false);
     if (nextLanguage === language) {
       setMobileNav(false);
       return;
@@ -592,6 +595,7 @@ export default function App() {
   };
 
   const selectLanguageLevel = (value: LanguageLevel) => {
+    setFullPaper(false);
     const nextLevel = normalizePikkuLevel(language, value);
     languageLevelRef.current = nextLevel;
     setLanguageLevel(nextLevel);
@@ -599,6 +603,7 @@ export default function App() {
   };
 
   const openPractice = (nextLevel: LanguageLevel = languageLevel, nextCategory: Category | "all" = "all") => {
+    setFullPaper(false);
     nextLevel = normalizePikkuLevel(language, nextLevel);
     languageLevelRef.current = nextLevel;
     setLanguageLevel(nextLevel);
@@ -698,7 +703,7 @@ export default function App() {
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", t("错题回炉")], ["bookmarks", t("我的收藏")]]} view={view} setView={setView} />}
               {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", t("考试范围")], ["archive", t("真题档案")], ["resources", t("教材·作者·辞典")]] : [["scope", t("考试与资源")], ["resources", `${currentLanguage.labels[locale]} · ${t("资源")}`]]} view={view} setView={setView} />}
               {view === "home" && <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={openPractice} setView={setView} />}
-              {view === "practice" && <Practice key={language} bank={languageBank} level={level} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
+              {view === "practice" && <Practice key={language} bank={languageBank} level={level} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} fullPaper={language === "ja" && fullPaper} setFullPaper={setFullPaper} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "story" && (language === "la" ? <StoryMode setView={setView} /> : <StoryOutline level={level} setView={setView} />)}
               {view === "mistakes" && <QuestionCollection title={copy.mistakes} empty={copy.noMistakes} questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title={copy.bookmarks} empty={copy.noBookmarks} questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
@@ -1001,12 +1006,19 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   const percent = levelQs.length ? Math.round((done / levelQs.length) * 100) : 0;
   const grammarCategory: Category = language.id === "ja" && levelQs.some(q => q.category === "sentencePattern") ? "sentencePattern" : "syntax";
   const readingCategory: Category = language.id === "ja" && levelQs.some(q => q.category === "reading") ? "reading" : "translation";
+  const extraCategories = language.id === "ja" ? languageConfigs.ja.categories.filter(category => !["vocabulary", grammarCategory, readingCategory, "listening"].includes(category) && levelQs.some(q => q.category === category)) : [];
 
   const modes = [
     { category: "vocabulary" as Category, icon: Languages, title: copy.wordCourse, native: language.microLabels.vocabulary, detail: copy.wordCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "vocabulary").length) },
     { category: grammarCategory, icon: Layers3, title: copy.grammarCourse, native: language.microLabels.grammar, detail: copy.grammarCourseCopy, meta: copy.questionCount(levelQs.filter(q => q.category === grammarCategory).length) },
     { category: readingCategory, icon: BookOpen, title: copy.readingCourse, native: language.microLabels.reading, detail: copy.readingCourseCopy, meta: copy.questionCount(levelQs.filter(q => q.category === readingCategory).length) },
     ...(language.id === "ja" ? [{ category: "listening" as Category, icon: Headphones, title: copy.categoryListening, native: "聴解", detail: copy.listeningCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "listening").length) }] : []),
+    ...extraCategories.map(category => ({
+      category, icon: ["morphology", "syntax", "sentencePattern"].includes(category) ? Layers3 : BookOpen,
+      title: categoryName(copy, category), native: language.microLabels.practice,
+      detail: ["morphology", "syntax", "sentencePattern"].includes(category) ? copy.grammarCourseCopy : copy.readingCourseCopy,
+      meta: copy.questionCount(levelQs.filter(q => q.category === category).length),
+    })),
   ];
 
   return (
@@ -1209,7 +1221,7 @@ function StoryMode({ setView }: { setView: (view: View) => void }) {
   </div>;
 }
 
-function Practice({ bank, level, levels, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: LanguageLevel; levels: readonly LanguageLevel[]; setLevel: (l: LanguageLevel) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
+function Practice({ bank, level, levels, setLevel, category, setCategory, fullPaper, setFullPaper, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: LanguageLevel; levels: readonly LanguageLevel[]; setLevel: (l: LanguageLevel) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; fullPaper: boolean; setFullPaper: (value: boolean) => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
   const t = useInterfaceText();
   const { copy, locale, language } = useI18n();
   const [order, setOrder] = useState<"ordered" | "random">("ordered");
@@ -1217,12 +1229,12 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, progre
   const [query, setQuery] = useState("");
   const pool = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
-    const selected = bank.filter((q) => matchesLevel(q, level) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
+    const selected = bank.filter((q) => (fullPaper ? jlpt1992QuestionIds.has(q.id) : matchesLevel(q, level)) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
     return order === "random" ? shuffle(selected) : selected;
-  }, [bank, level, category, order, randomSeed, query]);
+  }, [bank, level, category, order, randomSeed, query, fullPaper]);
   const [index, setIndex] = useState(0);
 
-  useEffect(() => setIndex(0), [level, category, query]);
+  useEffect(() => setIndex(0), [level, category, query, fullPaper]);
   const question = pool[index];
 
   return (
@@ -1230,7 +1242,7 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, progre
       <div className="practice-header">
         <div><TargetKicker kind="practice" /><h1>{copy.focusedPractice}</h1><p>{copy.focusedPracticeCopy}</p></div>
         <div className="filter-row">
-          <label>{t("难度")}<select value={level} onChange={(e) => setLevel(e.target.value as LanguageLevel)}>{levels.map((item) => <option key={item} value={item}>{levelName(copy, item, language.id)}</option>)}</select></label>
+          <label>{t("难度")}<select value={fullPaper ? "paper" : level} onChange={(e) => { setFullPaper(false); setLevel(e.target.value as LanguageLevel); }}>{fullPaper && <option value="paper" disabled>{locale === "en" ? "Full paper · All levels" : "原卷跨级 · 全部等级"}</option>}{levels.map((item) => <option key={item} value={item}>{levelName(copy, item, language.id)}</option>)}</select></label>
           <label>{t("模块")}<select value={category} onChange={(e) => setCategory(e.target.value as Category | "all")}><option value="all">{t("全部模块")}</option>{languageConfigs[language.id].categories.map((key) => <option key={key} value={key}>{categoryName(copy, key)}</option>)}</select></label>
           <label>{t("顺序")}<select value={order} onChange={(e) => { setOrder(e.target.value as "ordered" | "random"); setRandomSeed((s) => s + 1); }}><option value="ordered">{t("教材域有序")}</option><option value="random">{t("随机洗牌")}</option></select></label>
         </div>
@@ -1239,12 +1251,12 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, progre
       {language.id === "ja" && <div className="exam-shortcuts" aria-label={locale === "en" ? "1992 JLPT old Level 1 paper" : "1992 年旧1級真题"}>
         <strong>1992 · {locale === "en" ? "Old Level 1" : "旧1級"}</strong>
         {([ ["all", "整卷", "Full paper"], ["vocabulary", "文字词汇", "Vocabulary"], ["listening", "听力", "Listening"], ["reading", "阅读", "Reading"], ["sentencePattern", "语法", "Grammar"] ] as const).map(([section, chinese, english]) =>
-          <button key={section} className="secondary-button" onClick={() => { setLevel("M"); setCategory(section); setQuery("1992"); setOrder("ordered"); setIndex(0); }}>{locale === "en" ? english : chinese}</button>
+          <button key={section} className="secondary-button" onClick={() => { setFullPaper(true); setCategory(section); setQuery(""); setOrder("ordered"); setIndex(0); }}>{locale === "en" ? english : chinese}</button>
         )}
       </div>}
-      {question?.provenance?.year === 1992 && <label className="exam-question-jump">{locale === "en" ? "Original question" : "选择原题号"}
+      {question && jlpt1992QuestionIds.has(question.id) && <label className="exam-question-jump">{locale === "en" ? "Original question" : "选择原题号"}
         <select aria-label={locale === "en" ? "Original question" : "选择原题号"} value={question.id} onChange={(event) => setIndex(pool.findIndex(q => q.id === event.target.value))}>
-          {pool.map(q => <option key={q.id} value={q.id}>{q.originalNumber ?? q.id}</option>)}
+          {pool.map(q => <option key={q.id} value={q.id}>{q.originalNumber ?? q.id} · {normalizePikkuLevel(q.language ?? "la", q.level)}</option>)}
         </select>
       </label>}
 
