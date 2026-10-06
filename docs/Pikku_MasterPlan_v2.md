@@ -19,7 +19,7 @@ P3.1 已通过 PR #16 合入 `main`
 - XM 解码为 M4A，30 个逐题独立录音与原文、10 张听力图和 1 张阅读图对应。录音经本机 ASR 对照、分段与完整解码，3 处原稿差异有修订记录；没有声称人工逐段听审。
 - 148 道印刷答案已匹配；阅读問題 II 第 7 题漏印答案，原选项 1 为据文推断，页面明确标注待复核。来源哈希、页码、录音时间轴和修订记录见 `data/jlpt-1992-provenance.json`，范围与复现方法见 `docs/JLPT_1992_Import.md`。
 - 固定 Drive 周报告目录本轮仍只有原汇总（修改时间 `2026-09-17T04:38:41.182Z`），无新补丁；素材库顶层为既有三个分类/待处理目录，本轮按用户指定本地源文件处理，没有移动 Drive 原资料。公开范围由用户明确决定，来源版权元数据仍保留 `rights-unclear`。
-- 验证：71/71 自动检查、TypeScript、Cloudflare/Sites/GitHub Pages 构建与 Wrangler dry-run 通过。本机 Chromium 已确认分题播放、原题号跳转、共享原文和待复核提示。已提交 [Draft PR #23](https://github.com/Etymodes/PKUni_Latinex/pull/23)。代码 `55b7e25` 的 Workers Preview 于 `2026-10-06T06:08:19Z` 成功，公开预览为 https://agent-jlpt-1992-import-pkuni-latinex.kimdac.workers.dev/ 。线上已确认日语 M 入口、30 题听力筛选、首题实际播放及切到第 2 题后播放器重置；全部 41 个媒体文件 HTTP 200 且 SHA-256 与本地一致。随后补齐日语低等级首页旧题分类回退，避免新入口遮蔽旧 syntax/translation 题，71/71 检查与双部署构建通过。当前待最终 Preview/发布确认；正式站仍以 PR #22 生产基线为准。Firefox、Augusta 及真实账号跨端未在本轮验收，不沿用历史通过结果。
+- 验证：71/71 自动检查、TypeScript、Cloudflare/Sites/GitHub Pages 构建与 Wrangler dry-run 通过。本机 Chromium 已确认分题播放、原题号跳转、共享原文和待复核提示。已提交 [Draft PR #23](https://github.com/Etymodes/PKUni_Latinex/pull/23)。代码 `55b7e25` 的 Workers Preview 于 `2026-10-06T06:08:19Z` 成功，公开预览为 https://agent-jlpt-1992-import-pkuni-latinex.kimdac.workers.dev/ 。线上已确认日语 M 入口、30 题听力筛选、首题实际播放及切到第 2 题后播放器重置；全部 41 个媒体文件 HTTP 200 且 SHA-256 与本地一致。随后补齐日语低等级首页旧题分类回退，避免新入口遮蔽旧 syntax/translation 题，71/71 检查与双部署构建通过。最终应用提交 `e5ecd8b` 的 Workers Preview 于 `2026-10-06T06:28:39Z` 成功。当前等待正式发布确认；正式站仍以 PR #22 生产基线为准。Firefox、Augusta 及真实账号跨端未在本轮验收，不沿用历史通过结果。
 ## 跨端收藏删除修复（2026-09-17，已发布）
 
 - 用户原账号小程序登录及网页到小程序的收藏同步已成功；此前小程序取消收藏到网页失败。2026-09-17 用户在修复预览中复测后回复“成功消失”，确认“小程序取消收藏 → 预览网页刷新”删除生效。该结果只覆盖本项收藏删除，不代表进度、词汇统计或真机验收通过。
