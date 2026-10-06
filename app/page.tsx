@@ -15,6 +15,7 @@ import {
   FileText,
   Flame,
   GraduationCap,
+  Headphones,
   GitBranch,
   History,
   Home,
@@ -46,12 +47,12 @@ import {
 import { createContext, useContext, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
-  categoryLabels,
   normalizePikkuLevel,
   type StudyLevel,
   type PikkuLevel,
   matchesLevel,
   questions,
+  questionOptionOrder,
   type Category,
   type LanguageCode,
   type Level,
@@ -61,6 +62,7 @@ import {
 import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
 import { languageFacts } from "@/data/language-facts";
 import { multilingualQuestions } from "@/data/multilingual-questions";
+import { jlpt1992Questions } from "@/data/jlpt-1992";
 import { multilingualSeedQuestions, multilingualVocabItems } from "@/data/multilingual-seeds";
 import { availableLearningLanguages, getCopy, getLearningLanguage, normalizeLearningLanguage, type MicroLabelKey, type LearningLanguage, type LearningLanguageId, type UiCopy, type UiLocale } from "./i18n";
 import { archiveEntries } from "@/data/archive";
@@ -138,6 +140,8 @@ function categoryName(copy: UiCopy, category: Category) {
     vocabulary: copy.categoryVocabulary,
     classics: copy.categoryClassics,
     translation: copy.categoryTranslation,
+    reading: copy.categoryReading,
+    listening: copy.categoryListening,
   })[category];
 }
 
@@ -187,13 +191,16 @@ function usePersistentState<T>(key: string, initialValue: T) {
   return [value, setValue, ready] as const;
 }
 
-const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions];
+const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions, ...jlpt1992Questions];
 const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
 const allVocabItems: VocabItem[] = [...vocabItems, ...completeVocabItems, ...multilingualVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
 const authMode = process.env.NEXT_PUBLIC_AUTH_MODE ?? "chatgpt";
-const assetPath = (path: string) => `${publicBasePath}${path}`;
+function assetPath(path: string) {
+  if (!publicBasePath || !path.startsWith("/") || path.startsWith("//") || path === publicBasePath || path.startsWith(`${publicBasePath}/`)) return path;
+  return `${publicBasePath}${path}`;
+}
 
 function syncQuestion(questionId: string) {
   const question = staticQuestionIndex.get(questionId);
@@ -995,8 +1002,9 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
 
   const modes = [
     { category: "vocabulary" as Category, icon: Languages, title: copy.wordCourse, native: language.microLabels.vocabulary, detail: copy.wordCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "vocabulary").length) },
-    { category: "syntax" as Category, icon: Layers3, title: copy.grammarCourse, native: language.microLabels.grammar, detail: copy.grammarCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "syntax").length) },
-    { category: "translation" as Category, icon: BookOpen, title: copy.readingCourse, native: language.microLabels.reading, detail: copy.readingCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "translation").length) },
+    { category: (language.id === "ja" ? "sentencePattern" : "syntax") as Category, icon: Layers3, title: copy.grammarCourse, native: language.microLabels.grammar, detail: copy.grammarCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === (language.id === "ja" ? "sentencePattern" : "syntax")).length) },
+    { category: (language.id === "ja" ? "reading" : "translation") as Category, icon: BookOpen, title: copy.readingCourse, native: language.microLabels.reading, detail: copy.readingCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === (language.id === "ja" ? "reading" : "translation")).length) },
+    ...(language.id === "ja" ? [{ category: "listening" as Category, icon: Headphones, title: copy.categoryListening, native: "聴解", detail: copy.listeningCourseCopy, meta: copy.questionCount(bank.filter((q) => matchesLevel(q, level) && q.category === "listening").length) }] : []),
   ];
 
   return (
@@ -1031,7 +1039,7 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
         <div><TargetKicker kind="courses" /><h2>{copy.todayTraining}</h2></div>
         <button className="text-button" onClick={() => openPractice(level, "all")}>{copy.allQuestions} <ArrowRight size={16} /></button>
       </div>
-      <section className="mode-grid">
+      <section className={`mode-grid ${language.id === "ja" ? "with-listening" : ""}`}>
         {modes.map(({ category, icon: Icon, title, native, detail, meta }, index) => (
           <button className="mode-card" key={category} onClick={() => openPractice(level, category)}>
             <div className="mode-number">0{index + 1}</div>
@@ -1201,7 +1209,7 @@ function StoryMode({ setView }: { setView: (view: View) => void }) {
 
 function Practice({ bank, level, levels, setLevel, category, setCategory, progress, onResult, bookmarks, setBookmarks }: { bank: Question[]; level: LanguageLevel; levels: readonly LanguageLevel[]; setLevel: (l: LanguageLevel) => void; category: Category | "all"; setCategory: (c: Category | "all") => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void; bookmarks: string[]; setBookmarks: (b: string[] | ((b: string[]) => string[])) => void }) {
   const t = useInterfaceText();
-  const { copy, language } = useI18n();
+  const { copy, locale, language } = useI18n();
   const [order, setOrder] = useState<"ordered" | "random">("ordered");
   const [randomSeed, setRandomSeed] = useState(0);
   const [query, setQuery] = useState("");
@@ -1221,11 +1229,22 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, progre
         <div><TargetKicker kind="practice" /><h1>{copy.focusedPractice}</h1><p>{copy.focusedPracticeCopy}</p></div>
         <div className="filter-row">
           <label>{t("难度")}<select value={level} onChange={(e) => setLevel(e.target.value as LanguageLevel)}>{levels.map((item) => <option key={item} value={item}>{levelName(copy, item, language.id)}</option>)}</select></label>
-          <label>{t("模块")}<select value={category} onChange={(e) => setCategory(e.target.value as Category | "all")}><option value="all">{t("全部模块")}</option>{Object.keys(categoryLabels).map((key) => <option key={key} value={key}>{categoryName(copy, key as Category)}</option>)}</select></label>
+          <label>{t("模块")}<select value={category} onChange={(e) => setCategory(e.target.value as Category | "all")}><option value="all">{t("全部模块")}</option>{languageConfigs[language.id].categories.map((key) => <option key={key} value={key}>{categoryName(copy, key)}</option>)}</select></label>
           <label>{t("顺序")}<select value={order} onChange={(e) => { setOrder(e.target.value as "ordered" | "random"); setRandomSeed((s) => s + 1); }}><option value="ordered">{t("教材域有序")}</option><option value="random">{t("随机洗牌")}</option></select></label>
         </div>
       </div>
       <label className="question-search"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("搜索题号、题干、标签、作者或来源（如 Livy）")} /><span>{pool.length}{t("题")}</span></label>
+      {language.id === "ja" && <div className="exam-shortcuts" aria-label={locale === "en" ? "1992 JLPT old Level 1 paper" : "1992 年旧1級真题"}>
+        <strong>1992 · {locale === "en" ? "Old Level 1" : "旧1級"}</strong>
+        {([ ["all", "整卷", "Full paper"], ["vocabulary", "文字词汇", "Vocabulary"], ["listening", "听力", "Listening"], ["reading", "阅读", "Reading"], ["sentencePattern", "语法", "Grammar"] ] as const).map(([section, chinese, english]) =>
+          <button key={section} className="secondary-button" onClick={() => { setLevel("M"); setCategory(section); setQuery("1992"); setOrder("ordered"); setIndex(0); }}>{locale === "en" ? english : chinese}</button>
+        )}
+      </div>}
+      {question?.provenance?.year === 1992 && <label className="exam-question-jump">{locale === "en" ? "Original question" : "选择原题号"}
+        <select aria-label={locale === "en" ? "Original question" : "选择原题号"} value={question.id} onChange={(event) => setIndex(pool.findIndex(q => q.id === event.target.value))}>
+          {pool.map(q => <option key={q.id} value={q.id}>{q.originalNumber ?? q.id}</option>)}
+        </select>
+      </label>}
 
       {question ? (
         <>
@@ -1254,12 +1273,15 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   const isMorphologyCheck = question.type === "self-check" && question.category === "morphology";
 
   useEffect(() => {
-    setOptionOrder(shuffle((question.options ?? []).map((_, index) => index)));
-  }, [question.id]);
+    setOptionOrder(questionOptionOrder(question));
+  }, [question.id, question.options, question.shuffleOptions]);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (question.type !== "choice" || submitted) return;
+      if (event.defaultPrevented || event.ctrlKey || event.altKey || event.metaKey) return;
+      if (event.target instanceof HTMLElement && event.target.closest("input, textarea, select, audio, video, [contenteditable]")) return;
+      if (event.key === "Enter" && event.target instanceof HTMLElement && event.target.closest("button, a, summary")) return;
       const number = Number(event.key);
       if (number >= 1 && number <= optionOrder.length) setSelected(optionOrder[number - 1]);
       if (event.key === "Enter" && selected !== null) {
@@ -1284,8 +1306,12 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? copy.removeBookmark : copy.bookmarkQuestion} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
       <h2>{question.prompt}</h2>
+      {question.originalNumber && <p className="question-original-number">{copy.elementary === "Core" ? "Original question: " : "原题号："}{question.originalNumber}</p>}
+      {question.passage && <div className="question-passage" lang={question.targetLang ?? language.htmlLang}>{question.passage}</div>}
       {(question.targetText || question.text || question.latin) && <blockquote lang={question.targetLang ?? language.htmlLang}>{question.targetText ?? question.text ?? question.latin}</blockquote>}
       {question.context && <p className="context-note">{question.context}</p>}
+      {question.images?.map((item) => <figure className="question-image" key={item.src}><a href={assetPath(item.src)} target="_blank" rel="noreferrer" aria-label={item.alt}><img src={assetPath(item.src)} alt={item.alt} loading="lazy" /></a></figure>)}
+      {question.audio && <QuestionAudio key={question.id} audio={question.audio} label={copy.elementary === "Core" ? "Question audio" : "本题听力"} />}
 
       {question.type === "choice" ? (
         <>
@@ -1296,7 +1322,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
               const isCorrect = submitted && optionIndex === question.answer;
               const isWrong = submitted && selected === optionIndex && optionIndex !== question.answer;
               return (
-                <button key={option} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
+                <button key={optionIndex} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
                   <span className="option-key">{visibleIndex + 1}</span><span>{option}</span>
                   {isCorrect && <Check size={18} />}{isWrong && <X size={18} />}
                 </button>
@@ -1321,10 +1347,15 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
           )}
         </div>
       )}
+      {(submitted || revealed) && question.transcript && <details className="question-transcript"><summary>{copy.elementary === "Core" ? "Listening transcript" : "听力原文"}</summary><div lang={question.targetLang ?? language.htmlLang}>{question.transcript}</div></details>}
       {status && <div className={`saved-status ${status}`}><CheckCircle2 size={15} /> {copy.recorded} {status === "correct" ? copy.mastered : status === "wrong" ? copy.wrongQuestion : copy.reviewLater}</div>}
       <div className="tag-row">{question.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
     </article>
   );
+}
+
+function QuestionAudio({ audio, label }: { audio: NonNullable<Question["audio"]>; label: string }) {
+  return <audio className="question-audio" src={assetPath(audio.src)} controls preload="metadata" aria-label={label}>{label}</audio>;
 }
 
 function DistractorNotes({ items }: { items?: string[] }) {
@@ -1582,7 +1613,7 @@ function AdminPanel({ bank, onChanged }: { bank: Question[]; onChanged: () => vo
     <div className="admin-layout"><aside><button className="primary-button" onClick={() => choose("new")}>{copy.newQuestion}</button><select value={selectedId} onChange={(e) => choose(e.target.value)}><option value="new">{copy.newQuestion.replace(/^＋|^\+/, "").trim()}</option>{bank.map((q) => <option key={q.id} value={q.id}>{q.id} · {q.prompt.slice(0, 28)}</option>)}</select></aside>
       <section className="admin-form">
         <label>{copy.questionId}<input value={draft.id} onChange={(e) => setDraft({ ...draft, id: e.target.value })} /></label>
-        <div className="admin-row"><label>{copy.difficulty}<select value={normalizePikkuLevel(language.id, draft.level)} onChange={(e) => setDraft({ ...draft, level: e.target.value as Question["level"] })}>{LEVEL_ORDER.map((v) => <option key={v} value={v}>{levelName(copy, v, language.id)}</option>)}</select></label><label>{copy.module}<select value={draft.category} onChange={(e) => setDraft({ ...draft, category: e.target.value as Category })}>{Object.keys(categoryLabels).map((v) => <option key={v} value={v}>{categoryName(copy, v as Category)}</option>)}</select></label><label>{copy.questionType}<select value={draft.type} onChange={(e) => setDraft({ ...draft, type: e.target.value as Question["type"] })}><option value="choice">{copy.multipleChoice}</option><option value="self-check">{copy.translationSelfCheck}</option></select></label></div>
+        <div className="admin-row"><label>{copy.difficulty}<select value={normalizePikkuLevel(language.id, draft.level)} onChange={(e) => setDraft({ ...draft, level: e.target.value as Question["level"] })}>{LEVEL_ORDER.map((v) => <option key={v} value={v}>{levelName(copy, v, language.id)}</option>)}</select></label><label>{copy.module}<select value={draft.category} onChange={(e) => setDraft({ ...draft, category: e.target.value as Category })}>{languageConfigs[language.id].categories.map((v) => <option key={v} value={v}>{categoryName(copy, v)}</option>)}</select></label><label>{copy.questionType}<select value={draft.type} onChange={(e) => setDraft({ ...draft, type: e.target.value as Question["type"] })}><option value="choice">{copy.multipleChoice}</option><option value="self-check">{copy.translationSelfCheck}</option></select></label></div>
         <label>{copy.prompt}<textarea rows={2} value={draft.prompt} onChange={(e) => setDraft({ ...draft, prompt: e.target.value })} /></label>
         <label>{copy.latinText}<textarea rows={2} value={draft.targetText || draft.latin || ""} onChange={(e) => setDraft(language.id === "la" ? { ...draft, latin: e.target.value } : { ...draft, targetText: e.target.value, targetLang: language.htmlLang })} /></label>
         {draft.type === "choice" ? <><label>{copy.optionsPerLine}<textarea rows={5} value={(draft.options || []).join("\n")} onChange={(e) => setDraft({ ...draft, options: e.target.value.split("\n") })} /></label><label>{copy.correctOptionNumber}<input type="number" min="1" value={(draft.answer ?? 0) + 1} onChange={(e) => setDraft({ ...draft, answer: Math.max(0, Number(e.target.value) - 1) })} /></label></> : <label>{copy.modelTranslation}<textarea rows={4} value={draft.modelAnswer || ""} onChange={(e) => setDraft({ ...draft, modelAnswer: e.target.value })} /></label>}

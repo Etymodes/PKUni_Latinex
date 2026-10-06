@@ -428,7 +428,7 @@ function normalizeBookmarkItem(value, fallbackLanguage = "la") {
 }
 
 function validQuestion(value) {
-  const categories = ["morphology", "syntax", "sentencePattern", "vocabulary", "classics", "translation"];
+  const categories = ["morphology", "syntax", "sentencePattern", "vocabulary", "classics", "translation", ...(value?.language === "ja" ? ["reading", "listening"] : [])];
   return value && typeof value.id === "string" && value.id.length <= 80
     && validPreference(value.language === undefined ? "la" : value.language, value.level) && value.level !== "mixed"
     && categories.includes(value.category) && ["choice", "self-check"].includes(value.type)
