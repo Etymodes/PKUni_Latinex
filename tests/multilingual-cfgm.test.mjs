@@ -76,9 +76,15 @@ test("canonical cumulative vocabulary retains original IDs and statistics keys",
   const originals = vocabularyCards.filter((card) => /^(la|ja|es)-\d{3}$/.test(card.id));
   assert.equal(originals.length, 56);
   const originalJapanese = originals.find((card) => card.id === "ja-010");
-  assert.deepEqual(originalJapanese, {
+  const coreFields = ["id", "language", "level", "term", "meaning", "context"];
+  assert.deepEqual(Object.fromEntries(coreFields.map(key => [key, originalJapanese[key]])), {
     id: "ja-010", language: "ja", level: "n2", term: "見極める", meaning: "看清；辨明", context: "情報の真偽を見極める。",
   });
+  assert.equal(originalJapanese.dictionary.language, originalJapanese.language);
+  assert.equal(originalJapanese.dictionary.lemma, originalJapanese.term);
+  assert.equal(originalJapanese.reading, originalJapanese.dictionary.principalParts);
+  assert.equal(originalJapanese.partOfSpeech, originalJapanese.dictionary.partOfSpeech);
+  assert.equal(originalJapanese.batch, originalJapanese.dictionary.batch);
   assert.equal(vocabularyKey(originalJapanese.language, originalJapanese.term), "ja:見極める");
   assert.equal(vocabularyMatchesLevel(originalJapanese, "F"), false);
   assert.equal(vocabularyMatchesLevel(originalJapanese, "G"), true);

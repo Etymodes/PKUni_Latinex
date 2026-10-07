@@ -800,3 +800,16 @@ h1, h2, h3, p { margin-top: 0; }
 .exam-shortcuts { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; margin: 0 0 1rem; }
 .exam-question-jump { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
 .exam-question-jump select { max-width: 100%; padding: .65rem; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: inherit; }
+
+.vocabulary-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+.vocabulary-trainer .lexicon-filters, .linked-dictionary .lexicon-filters { align-items: end; flex-wrap: wrap; }
+.vocabulary-trainer .resource-search, .linked-dictionary .resource-search { flex: 1 1 240px; margin: 0; }
+.vocabulary-predictions { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: 10px; }
+.vocabulary-predictions summary { cursor: pointer; font-weight: 600; }
+.vocabulary-predictions p { line-height: 1.7; }
+.vocabulary-predictions label { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1rem 0; }
+.vocabulary-predictions input { padding: .6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: inherit; }
+.vocabulary-source-ids { overflow-wrap: anywhere; font-size: .8rem; }
+.dictionary-learning-state { color: var(--muted); }
+.linked-dictionary > p { line-height: 1.7; }
+.linked-dictionary blockquote { margin: 1rem 0; padding-left: .8rem; border-left: 2px solid var(--line); }

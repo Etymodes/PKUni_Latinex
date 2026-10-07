@@ -34,6 +34,19 @@ const schema = [
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(user_email, language, lemma)
   )`,
+  `CREATE TABLE IF NOT EXISTS vocabulary_reviews (
+    user_email TEXT NOT NULL, event_id TEXT NOT NULL, language TEXT NOT NULL,
+    answered_at INTEGER NOT NULL, payload TEXT NOT NULL,
+    PRIMARY KEY(user_email, event_id)
+  )`,
+  `CREATE INDEX IF NOT EXISTS vocabulary_reviews_user_time
+    ON vocabulary_reviews(user_email, answered_at, event_id)`,
+  `CREATE INDEX IF NOT EXISTS vocabulary_reviews_user_language_time
+    ON vocabulary_reviews(user_email, language, answered_at, event_id)`,
+  `CREATE TABLE IF NOT EXISTS vocab_imports (
+    user_email TEXT NOT NULL, migration_id TEXT NOT NULL, payload TEXT NOT NULL,
+    PRIMARY KEY(user_email, migration_id)
+  )`,
   `CREATE TABLE IF NOT EXISTS bookmarks_by_language (
     user_email TEXT NOT NULL, language TEXT NOT NULL, question_id TEXT NOT NULL,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -406,6 +419,30 @@ function normalizeVocabularyAnswer(value) {
   return { lemma, seen: value.seen, correct: value.correctCount };
 }
 
+function reviewTimestamp(value) {
+  if (typeof value !== "string" || value.length !== 24) return null;
+  const timestamp = Date.parse(value);
+  return Number.isSafeInteger(timestamp) && timestamp >= 0 && new Date(timestamp).toISOString() === value ? timestamp : null;
+}
+
+function validReviewId(value) {
+  return typeof value === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(value);
+}
+
+function normalizeVocabularyReview(value) {
+  if (!value || !validReviewId(value.id) || typeof value.language !== "string" || !validLanguage(value.language) || typeof value.lemma !== "string") return null;
+  const lemma = value.lemma.trim().normalize("NFC");
+  if (!lemma || lemma.length > 160 || /[\u0000-\u001f\u007f]/.test(value.lemma) || !validVocabularyMode(value.mode) || value.modelVersion !== "pikku-recall-v1") return null;
+  const times = [value.predictedAt, value.targetAt, value.answeredAt].map(reviewTimestamp);
+  if (times.some(time => time === null) || times[1] < times[0] || times[2] < times[1]) return null;
+  if (!["remembered", "forgotten"].includes(value.outcome) || !Number.isFinite(value.probability) || value.probability < 0.02 || value.probability > 0.98) return null;
+  const features = value.features;
+  if (!Array.isArray(features) || features.length !== 6 || !features.every(feature => Number.isFinite(feature) && feature >= -1 && feature <= 1)
+    || features[0] !== 1 || features[1] < 0 || features[2] < 0 || ![-1, 0, 1].includes(features[4]) || features[5] !== (value.mode === "word" ? 0 : 1)) return null;
+  return { id: value.id, language: value.language, lemma, predictedAt: value.predictedAt, targetAt: value.targetAt, answeredAt: value.answeredAt,
+    outcome: value.outcome, probability: value.probability, features, modelVersion: value.modelVersion, mode: value.mode };
+}
+
 function normalizeProgressRecord(value) {
   if (!value || typeof value.questionId !== "string" || !value.questionId || value.questionId.length > 80) return null;
   if (value.language !== undefined && !validLanguage(value.language)) return null;
@@ -525,14 +562,88 @@ async function api(request, env, url) {
     return json({ ok: true, bookmarks: items.map((item) => item.questionId) });
   }
 
+  if (url.pathname === "/api/vocab/reviews" && ["GET", "POST"].includes(request.method)) {
+    if (!user) return json({ error: "请先登录" }, 401);
+    if (!hasDb) return json({ error: "复习记录存储暂不可用" }, 503);
+    if (request.method === "GET") {
+      const language = url.searchParams.get("language");
+      const limitText = url.searchParams.get("limit") ?? "500";
+      if ((language !== null && !validLanguage(language)) || !/^[1-9]\d{0,2}$/.test(limitText) || Number(limitText) > 500) return json({ error: "无效复习筛选" }, 400);
+      const limit = Number(limitText);
+      const cursorText = url.searchParams.get("cursor");
+      let cursor = null;
+      if (cursorText !== null) {
+        try { cursor = JSON.parse(atob(cursorText.replace(/-/g, "+").replace(/_/g, "/"))); } catch { return json({ error: "无效分页游标" }, 400); }
+        if (!Array.isArray(cursor) || cursor.length !== 3 || !Number.isSafeInteger(cursor[0]) || cursor[0] < 0 || !validReviewId(cursor[1]) || cursor[2] !== language) return json({ error: "无效分页游标" }, 400);
+      }
+      const result = await env.DB.prepare(`SELECT event_id, answered_at, payload FROM vocabulary_reviews WHERE user_email=?
+        ${language === null ? "" : "AND language=?"}
+        ${cursor ? "AND (answered_at > ? OR (answered_at = ? AND event_id > ?))" : ""}
+        ORDER BY answered_at, event_id LIMIT ?`)
+        .bind(user.id, ...(language === null ? [] : [language]), ...(cursor ? [cursor[0], cursor[0], cursor[1]] : []), limit + 1).all();
+      const rows = result.results.slice(0, limit);
+      const last = rows.at(-1);
+      const nextCursor = result.results.length > limit ? base64Url(new TextEncoder().encode(JSON.stringify([last.answered_at, last.event_id, language]))) : null;
+      return json({ events: rows.map(row => JSON.parse(row.payload)), nextCursor });
+    }
+    let body;
+    try { body = await request.json(); } catch { return json({ error: "无效复习记录" }, 400); }
+    if (!Array.isArray(body?.events) || body.events.length < 1 || body.events.length > 100) return json({ error: "每次需提交 1 至 100 条复习记录" }, 400);
+    const events = new Map();
+    for (const value of body.events) {
+      const event = normalizeVocabularyReview(value);
+      if (!event) return json({ error: "无效复习记录" }, 400);
+      const payload = JSON.stringify(event);
+      if (events.has(event.id) && events.get(event.id).payload !== payload) return json({ error: "同一复习编号内容冲突" }, 400);
+      events.set(event.id, { event, payload });
+    }
+    const batchPayload = JSON.stringify([...events.values()].map(({ event, payload }) => ({ event, payload, answeredAt: Date.parse(event.answeredAt) })));
+    // Two statements also fit D1 Free limits for 100 events. Keep this transactional order.
+    const results = await env.DB.batch([
+      env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
+        SELECT ?, json_extract(incoming.value, '$.event.language') AS language, json_extract(incoming.value, '$.event.lemma') AS lemma,
+          COUNT(*), SUM(json_extract(incoming.value, '$.event.outcome') = 'remembered')
+        FROM json_each(?) incoming WHERE NOT EXISTS
+          (SELECT 1 FROM vocabulary_reviews WHERE user_email=? AND event_id=json_extract(incoming.value, '$.event.id'))
+        GROUP BY language, lemma
+        ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+excluded.seen, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
+        .bind(user.id, batchPayload, user.id),
+      env.DB.prepare(`INSERT OR IGNORE INTO vocabulary_reviews (user_email, event_id, language, answered_at, payload)
+        SELECT ?, json_extract(value, '$.event.id'), json_extract(value, '$.event.language'), json_extract(value, '$.answeredAt'), json_extract(value, '$.payload')
+        FROM json_each(?)`).bind(user.id, batchPayload),
+    ]);
+    return json({ ok: true, count: events.size, inserted: results[1].meta.changes });
+  }
+
   if (url.pathname === "/api/vocab" && request.method === "POST") {
     if (!user) return json({ error: "请先登录" }, 401);
-    const body = await request.json();
-    if (body.language !== undefined && !validLanguage(body.language)) return json({ error: "无效语言" }, 400);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: "无效词汇记录" }, 400); }
+    if (!body || typeof body !== "object") return json({ error: "无效词汇记录" }, 400);
+    if (body.language !== undefined && (typeof body.language !== "string" || !validLanguage(body.language))) return json({ error: "无效语言" }, 400);
+    const migrationId = body.migrationId;
+    if (migrationId !== undefined && (typeof migrationId !== "string" || !/^[A-Za-z0-9_:-]{1,200}$/.test(migrationId)
+      || !Array.isArray(body.answers) || body.answers.length > 100)) return json({ error: "无效词汇导入" }, 400);
     const language = body.language || "la";
     const rawAnswers = Array.isArray(body.answers) ? body.answers.slice(0, 100) : [];
     const answers = rawAnswers.map(normalizeVocabularyAnswer);
     if (!answers.length || answers.some((item) => !item)) return json({ error: "无效词汇记录" }, 400);
+    if (migrationId !== undefined) {
+      if (!hasDb) return json({ error: "词汇记录存储暂不可用" }, 503);
+      const payload = JSON.stringify({ language, answers });
+      // A guest import can be retried after a lost response; its marker and totals commit together.
+      const results = await env.DB.batch([
+        env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
+          SELECT ?, ?, json_extract(value, '$.lemma') AS lemma, SUM(json_extract(value, '$.seen')), SUM(json_extract(value, '$.correct'))
+          FROM json_each(?, '$.answers') WHERE NOT EXISTS
+            (SELECT 1 FROM vocab_imports WHERE user_email=? AND migration_id=?)
+          GROUP BY lemma
+          ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+excluded.seen, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
+          .bind(user.id, language, payload, user.id, migrationId),
+        env.DB.prepare("INSERT OR IGNORE INTO vocab_imports (user_email, migration_id, payload) VALUES (?, ?, ?)").bind(user.id, migrationId, payload),
+      ]);
+      return json({ ok: true, count: answers.length, inserted: results[1].meta.changes });
+    }
     await env.DB.batch(answers.map((item) => env.DB.prepare(`INSERT INTO vocab_stats_by_language (user_email, language, lemma, seen, correct)
       VALUES (?, ?, ?, ?, ?) ON CONFLICT(user_email, language, lemma) DO UPDATE SET seen=seen+excluded.seen, correct=correct+excluded.correct, updated_at=CURRENT_TIMESTAMP`)
       .bind(user.id, language, item.lemma, item.seen, item.correct)));
@@ -603,4 +714,4 @@ export default {
   },
 };
 
-export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validQuestion, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, ensureSchema };
+export const __test = { base64Url, sha256Base64Url, sha256Hex, safeEqual, configuredOrigin, wechatConfigured, validLanguage, validPreference, validQuestion, validVocabularyMode, normalizeProgressRecord, normalizeBookmarkItem, normalizeVocabularyAnswer, normalizeVocabularyReview, ensureSchema };

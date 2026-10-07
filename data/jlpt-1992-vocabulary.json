@@ -1,0 +1,3925 @@
+[
+  {
+    "id": "ja-1992-b51431317714",
+    "lemma": "政府筋",
+    "reading": "せいふすじ",
+    "gloss": "政府有关人士；政府方面",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "政府筋は交渉が続いていると説明した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。新闻用语中的「筋」读すじ。"
+  },
+  {
+    "id": "ja-1992-3c12438046cf",
+    "lemma": "首相",
+    "reading": "しゅしょう",
+    "gloss": "首相；总理",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "首相が記者の質問に答えた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-8b06617f3244",
+    "lemma": "検討",
+    "reading": "けんとう",
+    "gloss": "研究考虑；讨论是否可行",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "日程の変更を検討する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-7e52f7da0d01",
+    "lemma": "重視",
+    "reading": "じゅうし",
+    "gloss": "重视；特别看重",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "この授業では発音を重視する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-aed0a9f1e7b9",
+    "lemma": "姿勢",
+    "reading": "しせい",
+    "gloss": "姿势；对事物的态度",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "問題に取り組む姿勢を見直す。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-954f7a78eec3",
+    "lemma": "印象",
+    "reading": "いんしょう",
+    "gloss": "印象；留在心中的感受",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "初めて会ったときの印象を覚えている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-4ae71ece558c",
+    "lemma": "狙い",
+    "reading": "ねらい",
+    "gloss": "目标；意图；瞄准之处",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この活動の狙いを説明してください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-1-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-b2daa00fe594",
+    "lemma": "普及",
+    "reading": "ふきゅう",
+    "gloss": "普及；广泛传播或使用",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "新しい道具が家庭にも普及した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-2-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-9394cdbfe133",
+    "lemma": "源",
+    "reading": "みなもと",
+    "gloss": "源头；力量或事物的来源",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "十分な睡眠が元気の源だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-2-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷读みなもと；不合并为音读げん的复合词条。"
+  },
+  {
+    "id": "ja-1992-726fac84f0a7",
+    "lemma": "徹底",
+    "reading": "てってい",
+    "gloss": "彻底落实；贯彻到底",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "安全の確認を徹底する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-2-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-096d7a0a58a7",
+    "lemma": "義務",
+    "reading": "ぎむ",
+    "gloss": "义务；必须履行的责任",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "約束を守る義務がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-2-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-b9fc49092e8f",
+    "lemma": "表向き",
+    "reading": "おもてむき",
+    "gloss": "表面上；对外宣称的样子",
+    "partOfSpeech": "名词・副词",
+    "level": "F",
+    "context": "表向きの理由は予定の変更だった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-85d8e8c3fadb",
+    "lemma": "装う",
+    "reading": "よそおう",
+    "gloss": "装作；假装某种状态；装扮",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "驚いたが、平静を装った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-3-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷词形「装って」还原为装う；本批重点为假装义。"
+  },
+  {
+    "id": "ja-1992-3216abca99d9",
+    "lemma": "混乱",
+    "reading": "こんらん",
+    "gloss": "混乱；秩序或思路紊乱",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "説明が途中で変わり、会場が混乱した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-3-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-47ea29f0c938",
+    "lemma": "模様",
+    "reading": "もよう",
+    "gloss": "花纹；情形；据观察推测的状况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "会議は予定どおり終わった模様だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-I-3-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。兼收常见花纹义；本卷「模様である」表示观察到的情形。"
+  },
+  {
+    "id": "ja-1992-d56b1d6be210",
+    "lemma": "維持",
+    "reading": "いじ",
+    "gloss": "维持；使原有状态继续",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "毎日の運動で健康を維持する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-f574265a1580",
+    "lemma": "記事",
+    "reading": "きじ",
+    "gloss": "新闻或报道文章",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "新聞で旅行の記事を読んだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；与維持读音不同。"
+  },
+  {
+    "id": "ja-1992-eeaec52b389a",
+    "lemma": "医師",
+    "reading": "いし",
+    "gloss": "医生",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "症状を医師に伝えた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-eb9a51d55772",
+    "lemma": "意地",
+    "reading": "いじ",
+    "gloss": "执拗的心气；不肯让步的坚持",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "意地を張らずに相談しよう。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。与維持同音。"
+  },
+  {
+    "id": "ja-1992-a9aab15d0126",
+    "lemma": "支持",
+    "reading": "しじ",
+    "gloss": "支持；赞同并拥护",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "多くの人がこの提案を支持した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-05306b1d731d",
+    "lemma": "証人",
+    "reading": "しょうにん",
+    "gloss": "证人；能作证的人",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "その場にいた人が証人になった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-f4455f0ea8e7",
+    "lemma": "成人",
+    "reading": "せいじん",
+    "gloss": "成年人；成年",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "成人した子どもと進路について話す。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；不据例句规定法定年龄。"
+  },
+  {
+    "id": "ja-1992-eff915ce93b9",
+    "lemma": "承認",
+    "reading": "しょうにん",
+    "gloss": "认可；批准",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "申請は担当者の承認を受けた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。与証人同音。"
+  },
+  {
+    "id": "ja-1992-3ed33beb9842",
+    "lemma": "昇進",
+    "reading": "しょうしん",
+    "gloss": "升职；职位提升",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "長年の仕事が評価され、昇進した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-7e10727cef10",
+    "lemma": "就任",
+    "reading": "しゅうにん",
+    "gloss": "就任；开始担任某职务",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "新しい部長が来月就任する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-73561ae8e0bb",
+    "lemma": "該当",
+    "reading": "がいとう",
+    "gloss": "符合条件；属于所指范围",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "条件に該当する方は申し込めます。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-065b45705084",
+    "lemma": "回答",
+    "reading": "かいとう",
+    "gloss": "回答；对问题作答",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "質問への回答をメールで送る。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；首音为清音か。"
+  },
+  {
+    "id": "ja-1992-427f0a2614d6",
+    "lemma": "高等",
+    "reading": "こうとう",
+    "gloss": "高等的；程度较高的",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "高等教育を受ける機会を広げる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-377b8a9850cd",
+    "lemma": "半島",
+    "reading": "はんとう",
+    "gloss": "半岛",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "半島の先までバスで行った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-4c6b608f9010",
+    "lemma": "街頭",
+    "reading": "がいとう",
+    "gloss": "街头；街上公共场所",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "街頭で通行人に意見を聞いた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。与該当同音。"
+  },
+  {
+    "id": "ja-1992-8dd88b62ef9a",
+    "lemma": "有効",
+    "reading": "ゆうこう",
+    "gloss": "有效；能够发挥作用",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "この券は明日まで有効です。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-4",
+      "jlpt-1992-1-vocab-V-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。 作为合法干扰项再次出现，归并到同一词头。"
+  },
+  {
+    "id": "ja-1992-bc64a1cb6420",
+    "lemma": "優勢",
+    "reading": "ゆうせい",
+    "gloss": "占优势；局势较有利",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "試合の前半は相手チームが優勢だった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-32c307967793",
+    "lemma": "誘導",
+    "reading": "ゆうどう",
+    "gloss": "引导方向或行动",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "係員が出口まで客を誘導した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-161633debb75",
+    "lemma": "友好",
+    "reading": "ゆうこう",
+    "gloss": "友好；和睦的关系",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "地域の交流を通じて友好を深める。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。与有効同音。"
+  },
+  {
+    "id": "ja-1992-a5b49a429e14",
+    "lemma": "勇敢",
+    "reading": "ゆうかん",
+    "gloss": "勇敢；面对危险不退缩",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "勇敢に行動した人に感謝する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-d2ac60d31eb4",
+    "lemma": "携帯",
+    "reading": "けいたい",
+    "gloss": "随身携带；便携",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "外出するときは水を携帯する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷为携帯用，不专指手机。"
+  },
+  {
+    "id": "ja-1992-d3b8b5c1cea3",
+    "lemma": "形態",
+    "reading": "けいたい",
+    "gloss": "形态；存在或组织的形式",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "働き方にはさまざまな形態がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。与携帯同音；词级按抽象形式义独立判断。"
+  },
+  {
+    "id": "ja-1992-db069bd72c9f",
+    "lemma": "掲載",
+    "reading": "けいさい",
+    "gloss": "刊登；登载",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "募集の案内を新聞に掲載した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-4a4dae52e9fa",
+    "lemma": "系統",
+    "reading": "けいとう",
+    "gloss": "体系；相互关联的路线或类别",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "資料を系統ごとに整理する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；本批只收一般体系义。"
+  },
+  {
+    "id": "ja-1992-b73915cd9488",
+    "lemma": "停滞",
+    "reading": "ていたい",
+    "gloss": "停滞；进展不前",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "話し合いが停滞し、結論が出ない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-f5e5aabba9e1",
+    "lemma": "襲う",
+    "reading": "おそう",
+    "gloss": "袭击；突然侵袭",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "強い雨が町を襲った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-1-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「襲った」还原。"
+  },
+  {
+    "id": "ja-1992-e624e832d6ea",
+    "lemma": "収穫",
+    "reading": "しゅうかく",
+    "gloss": "收获；收取农作物或所得成果",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "秋に米を収穫する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-1-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。保留规范表记収穫，排除収獲等错字。"
+  },
+  {
+    "id": "ja-1992-ed65777930c5",
+    "lemma": "影響",
+    "reading": "えいきょう",
+    "gloss": "影响；引起变化的作用",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "天候が試合の日程に影響する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-1-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-65a52adbd87c",
+    "lemma": "与える",
+    "reading": "あたえる",
+    "gloss": "给予；使产生某种影响",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "読書は子どもに多くの発見を与える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-1-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「与えた」还原。"
+  },
+  {
+    "id": "ja-1992-91d03edbcddb",
+    "lemma": "相次ぐ",
+    "reading": "あいつぐ",
+    "gloss": "相继发生；接连不断",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "大雨のあと、運休の知らせが相次いだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-2-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「相次いだ」还原。"
+  },
+  {
+    "id": "ja-1992-cab9dcc4ff91",
+    "lemma": "再発",
+    "reading": "さいはつ",
+    "gloss": "再次发生；复发",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "同じ問題の再発を防ぐ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-2-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-1b3be638992e",
+    "lemma": "防止",
+    "reading": "ぼうし",
+    "gloss": "防止；预先阻止发生",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "事故の防止に努める。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-2-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-c9bbe75452f5",
+    "lemma": "強調",
+    "reading": "きょうちょう",
+    "gloss": "强调；特别突出某一点",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "説明では安全の重要性を強調した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-2-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-7d577cec5856",
+    "lemma": "協調",
+    "reading": "きょうちょう",
+    "gloss": "协调；相互配合",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "互いに協調して仕事を進める。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-2-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法同音干扰项。"
+  },
+  {
+    "id": "ja-1992-3c2c8dd2092b",
+    "lemma": "説く",
+    "reading": "とく",
+    "gloss": "阐述道理；说明其重要性",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "先生は対話の大切さを説いた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「説かれる」为被动形。"
+  },
+  {
+    "id": "ja-1992-272bebb1b468",
+    "lemma": "解く",
+    "reading": "とく",
+    "gloss": "解答；解开",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "図を使って問題を解く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项「解かれる」还原。"
+  },
+  {
+    "id": "ja-1992-2844a9b01108",
+    "lemma": "溶く",
+    "reading": "とく",
+    "gloss": "把粉末等放入液体调开",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "小麦粉を水で溶く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项「溶かれる」还原；与溶ける自他不同。"
+  },
+  {
+    "id": "ja-1992-9b820d682d20",
+    "lemma": "周囲",
+    "reading": "しゅうい",
+    "gloss": "周围；周边的人或环境",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "歩く前に周囲をよく見る。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-3-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-48843eccf84d",
+    "lemma": "劣る",
+    "reading": "おとる",
+    "gloss": "不及；质量或能力较低",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "この製品は性能では他に劣らない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-3-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「劣らず」是否定形式。"
+  },
+  {
+    "id": "ja-1992-9c9d0fd9c2f6",
+    "lemma": "舞台",
+    "reading": "ぶたい",
+    "gloss": "舞台；故事或活动的发生背景",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この小説は港町を舞台にしている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-4e6188c01dac",
+    "lemma": "対照的",
+    "reading": "たいしょうてき",
+    "gloss": "形成鲜明对比的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "二人は対照的な考え方を持つ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-954a176b4651",
+    "lemma": "対称的",
+    "reading": "たいしょうてき",
+    "gloss": "对称的；两边相互对应的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "左右に対称的な形を描く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法同音干扰项。"
+  },
+  {
+    "id": "ja-1992-c89cacba47a1",
+    "lemma": "対象",
+    "reading": "たいしょう",
+    "gloss": "对象；行动或认识所指向的事物",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この調査は大学生を対象にしている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原选项「対象的」按可独立核实的基础词「対象」收录，不把其专业派生义泛化为对照。"
+  },
+  {
+    "id": "ja-1992-8f7fd5ba1fe8",
+    "lemma": "対症的",
+    "reading": "たいしょうてき",
+    "gloss": "针对已出现症状的；对症的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "報告には対症的な処置について書かれていた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法医学干扰项；本词存在及读音已核对难病信息中心 https://www.nanbyou.or.jp/glossary/対症的 。只作词义说明，非医疗建议。"
+  },
+  {
+    "id": "ja-1992-1abfcee4604f",
+    "lemma": "描く",
+    "reading": "えがく",
+    "gloss": "描绘；用作品表现",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "この物語は家族の暮らしを描く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷读えがく；同一词还有かく读法，未另建重复词条。"
+  },
+  {
+    "id": "ja-1992-d9df1eebafe3",
+    "lemma": "断面",
+    "reading": "だんめん",
+    "gloss": "切面；事物的某一侧面",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "写真から町の生活の断面が見える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-III-4-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「一断面（いちだんめん）」按基础词断面收录，保留侧面义。"
+  },
+  {
+    "id": "ja-1992-44e5e97ccab8",
+    "lemma": "養成",
+    "reading": "ようせい",
+    "gloss": "培养人才或技能",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "専門の技術者を養成する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。题干目标。"
+  },
+  {
+    "id": "ja-1992-9ad08f1da0ea",
+    "lemma": "用件",
+    "reading": "ようけん",
+    "gloss": "要办或要说的事情",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "電話で用件を短く伝えた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项「ようけん」还原。"
+  },
+  {
+    "id": "ja-1992-04e17768153c",
+    "lemma": "要点",
+    "reading": "ようてん",
+    "gloss": "要点；主要内容",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "説明の要点をノートに書く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-86342366c12a",
+    "lemma": "栄養",
+    "reading": "えいよう",
+    "gloss": "营养",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "栄養のある食事を取る。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确项与養成共有「養」。"
+  },
+  {
+    "id": "ja-1992-d179a3480d67",
+    "lemma": "容器",
+    "reading": "ようき",
+    "gloss": "容器；盛放物品的器具",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "液体を別の容器に移す。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-8ac7528ec408",
+    "lemma": "保護",
+    "reading": "ほご",
+    "gloss": "保护；照顾使免受伤害",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "自然を保護する活動に参加した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。题干目标。"
+  },
+  {
+    "id": "ja-1992-2569245c107b",
+    "lemma": "舗装",
+    "reading": "ほそう",
+    "gloss": "铺设路面",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "工事で道路を舗装している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-a9640f92b82b",
+    "lemma": "補充",
+    "reading": "ほじゅう",
+    "gloss": "补充不足的部分",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "足りない資料を補充する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-ccde7863322f",
+    "lemma": "保管",
+    "reading": "ほかん",
+    "gloss": "保管；妥善存放",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "大切な書類を引き出しに保管する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确项与保護共有「保」。"
+  },
+  {
+    "id": "ja-1992-8fa6370c26f4",
+    "lemma": "捕獲",
+    "reading": "ほかく",
+    "gloss": "捕获动物等",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "調査のために魚を捕獲した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-00a2aa449615",
+    "lemma": "優先",
+    "reading": "ゆうせん",
+    "gloss": "优先；先于其他事项处理",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "安全を何よりも優先する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。题干「優先的」按基础词优先收录。"
+  },
+  {
+    "id": "ja-1992-41005b0bb519",
+    "lemma": "優勝",
+    "reading": "ゆうしょう",
+    "gloss": "比赛中获得第一名",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "学校のチームが大会で優勝した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确项与優先共有「優」。"
+  },
+  {
+    "id": "ja-1992-f1847b9fef81",
+    "lemma": "融資",
+    "reading": "ゆうし",
+    "gloss": "融资；提供资金贷款",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "銀行に事業の融資を相談する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；不提供贷款建议。"
+  },
+  {
+    "id": "ja-1992-9308c1e460f7",
+    "lemma": "勇気",
+    "reading": "ゆうき",
+    "gloss": "勇气",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "勇気を出して意見を言った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-cd8a34c0aef1",
+    "lemma": "有能",
+    "reading": "ゆうのう",
+    "gloss": "有能力；能胜任工作",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "有能な仲間と協力して働く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-dc5b61c0da1c",
+    "lemma": "放射能",
+    "reading": "ほうしゃのう",
+    "gloss": "放射性；释放辐射的性质或能力",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "放射能について資料を読んだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。题干目标；词级按科学公共信息义独立判断，不套用该选择题等级。"
+  },
+  {
+    "id": "ja-1992-5445652df4c1",
+    "lemma": "崩壊",
+    "reading": "ほうかい",
+    "gloss": "崩塌；体系瓦解",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "長い雨で斜面が崩壊した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-88cec4771780",
+    "lemma": "封建的",
+    "reading": "ほうけんてき",
+    "gloss": "封建式的；讲究旧式身份支配的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "作品には封建的な社会が描かれている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-e07f3ce94b4c",
+    "lemma": "報告",
+    "reading": "ほうこく",
+    "gloss": "报告；汇报情况",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "調査の結果を報告する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-4f56b47f1fbd",
+    "lemma": "放送",
+    "reading": "ほうそう",
+    "gloss": "广播；播出节目",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "今夜の番組は九時から放送される。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确项与放射能共有「放」。"
+  },
+  {
+    "id": "ja-1992-db35f1125114",
+    "lemma": "標語",
+    "reading": "ひょうご",
+    "gloss": "标语；简短宣传口号",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "交通安全の標語を考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。题干目标。"
+  },
+  {
+    "id": "ja-1992-f92b36134b35",
+    "lemma": "評判",
+    "reading": "ひょうばん",
+    "gloss": "评价；口碑；引起议论的情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この店は料理の評判がよい。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-57eb8426cd01",
+    "lemma": "標本",
+    "reading": "ひょうほん",
+    "gloss": "标本；供观察研究的样本",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "授業で植物の標本を観察した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确项与標語共有「標」。"
+  },
+  {
+    "id": "ja-1992-9c2d9bebf76b",
+    "lemma": "表面",
+    "reading": "ひょうめん",
+    "gloss": "表面；外在可见的一面",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "机の表面を布で拭く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-ad7aca1a4d7c",
+    "lemma": "投票",
+    "reading": "とうひょう",
+    "gloss": "投票",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "代表を決めるために投票した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-7b76afa17e1c",
+    "lemma": "有望",
+    "reading": "ゆうぼう",
+    "gloss": "有前途；未来值得期待",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "将来有望な選手を応援する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-31c7ab1db177",
+    "lemma": "有利",
+    "reading": "ゆうり",
+    "gloss": "有利；条件较占优势",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "経験があると仕事探しに有利だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-5eab8b68e790",
+    "lemma": "有益",
+    "reading": "ゆうえき",
+    "gloss": "有益处；能带来帮助",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "会議で有益な助言を得た。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-525e70dd107b",
+    "lemma": "反応",
+    "reading": "はんのう",
+    "gloss": "反应；受到刺激后产生的回应",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "呼びかけにすぐ反応した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-7bf5d8804a59",
+    "lemma": "応用",
+    "reading": "おうよう",
+    "gloss": "应用；将知识方法用于实际",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "授業で学んだ知識を仕事に応用する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-67ae2d0a8f37",
+    "lemma": "適応",
+    "reading": "てきおう",
+    "gloss": "适应环境或条件",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "新しい生活のリズムに適応する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-2df46a992515",
+    "lemma": "応答",
+    "reading": "おうとう",
+    "gloss": "应答；对呼叫或提问作回应",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "何度呼んでも応答がなかった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-7e4b258bfa57",
+    "lemma": "縮小",
+    "reading": "しゅくしょう",
+    "gloss": "缩小范围或规模",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "会場の都合で規模を縮小した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-bdee3b8fb7b2",
+    "lemma": "短縮",
+    "reading": "たんしゅく",
+    "gloss": "缩短时间、距离等",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "作業時間を短縮する方法を考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-96b990d79297",
+    "lemma": "軽減",
+    "reading": "けいげん",
+    "gloss": "减轻负担或程度",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "新しい道具で体への負担を軽減する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-1eed1d567127",
+    "lemma": "減量",
+    "reading": "げんりょう",
+    "gloss": "减少数量或重量",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "包装を工夫してごみを減量する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；不设健康建议。"
+  },
+  {
+    "id": "ja-1992-5ec05d664c43",
+    "lemma": "参照",
+    "reading": "さんしょう",
+    "gloss": "参看资料；对照查阅",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "詳しくは添付の図をご参照ください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-a1880f698b41",
+    "lemma": "参考",
+    "reading": "さんこう",
+    "gloss": "参考；用于判断或学习的依据",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "先輩の意見を参考にした。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；常用「参考にする」。"
+  },
+  {
+    "id": "ja-1992-06f905652506",
+    "lemma": "解説",
+    "reading": "かいせつ",
+    "gloss": "解释说明内容或背景",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "図の読み方を解説する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-b31ab8595044",
+    "lemma": "解釈",
+    "reading": "かいしゃく",
+    "gloss": "解释、理解某种意义",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "この文には二つの解釈がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-dac1f37dbc45",
+    "lemma": "逃す",
+    "reading": "のがす",
+    "gloss": "错失；使目标逃掉",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "大切な機会を逃さないようにする。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「のがした」；本条读のがす。"
+  },
+  {
+    "id": "ja-1992-83d3aaec6c0a",
+    "lemma": "凌ぐ",
+    "reading": "しのぐ",
+    "gloss": "熬过困难；超过",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "木陰で暑さを凌ぐ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「しのいだ」；本批重点为渡过困难义。"
+  },
+  {
+    "id": "ja-1992-dbe3660c5217",
+    "lemma": "免れる",
+    "reading": "まぬがれる",
+    "gloss": "免遭；避免遭受不利情况",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "早く避難して被害を免れた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「まぬがれた」；另有まぬかれる读法，未另建重复词头。"
+  },
+  {
+    "id": "ja-1992-fd6bae72cbf6",
+    "lemma": "避ける",
+    "reading": "よける",
+    "gloss": "避开；让开以免接触",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "道の水たまりを避けて歩く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷选项读よける；同字另有さける读法，本条以原题读音为主。"
+  },
+  {
+    "id": "ja-1992-a92446ab724d",
+    "lemma": "ほどける",
+    "reading": "ほどける",
+    "gloss": "绳结等松开；缠绕解除",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "靴のひもがほどけた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；可写解ける，采用假名词头与本批とける区别。"
+  },
+  {
+    "id": "ja-1992-adde3aaeb8dc",
+    "lemma": "ぼやける",
+    "reading": "ぼやける",
+    "gloss": "模糊；轮廓或要点不清",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "話が長くなると、焦点がぼやける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷重点为抽象焦点义。"
+  },
+  {
+    "id": "ja-1992-c800654a0d07",
+    "lemma": "とぼける",
+    "reading": "とぼける",
+    "gloss": "装糊涂；佯装不知",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "知っているのに、とぼけないでください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-1a09f0e79a55",
+    "lemma": "ぼやく",
+    "reading": "ぼやく",
+    "gloss": "发牢骚；抱怨",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "彼は仕事が多いとぼやいた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；不要与ぼやける混同。"
+  },
+  {
+    "id": "ja-1992-46155c22cd18",
+    "lemma": "なめらか",
+    "reading": "なめらか",
+    "gloss": "光滑；顺畅",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "なめらかな布に触れる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-3bdef4cff73d",
+    "lemma": "のどか",
+    "reading": "のどか",
+    "gloss": "宁静；悠闲安适",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "川のそばにはのどかな風景が広がる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-2b28d811641b",
+    "lemma": "すこやか",
+    "reading": "すこやか",
+    "gloss": "健康健壮；身心安好",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "子どもたちがすこやかに育つ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-634d8e458503",
+    "lemma": "すみやか",
+    "reading": "すみやか",
+    "gloss": "迅速；不拖延",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "変更があれば、すみやかに連絡してください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；常用作正式通知副词すみやかに。"
+  },
+  {
+    "id": "ja-1992-37702180e1e6",
+    "lemma": "画期的",
+    "reading": "かっきてき",
+    "gloss": "划时代的；带来重大突破的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "これは通信の歴史で画期的な発明だった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-292991937bd9",
+    "lemma": "周期的",
+    "reading": "しゅうきてき",
+    "gloss": "周期性的；隔一段时间重复的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "数値は周期的に変化する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-3dc52bc52011",
+    "lemma": "定期的",
+    "reading": "ていきてき",
+    "gloss": "定期的；按一定间隔进行的",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "定期的に資料を整理する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-791dee3f2c22",
+    "lemma": "末期的",
+    "reading": "まっきてき",
+    "gloss": "处于末期的；接近崩溃阶段的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "作品は組織の末期的な混乱を描く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；不用于替用户作医疗诊断。"
+  },
+  {
+    "id": "ja-1992-50e748499e01",
+    "lemma": "ベテラン",
+    "reading": "べてらん",
+    "gloss": "经验丰富的人；老手",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ベテランの店員に仕事を教わる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-1e092278c230",
+    "lemma": "ポジション",
+    "reading": "ぽじしょん",
+    "gloss": "位置；职务；运动中的站位",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "チームで自分のポジションを確認する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-c21c17c0c51d",
+    "lemma": "キャリア",
+    "reading": "きゃりあ",
+    "gloss": "职业或专业经历；资历",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼女は通訳として長いキャリアを持つ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-d59bbe86d3e8",
+    "lemma": "トレーニング",
+    "reading": "とれーにんぐ",
+    "gloss": "训练；锻炼",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "毎朝短いトレーニングを続ける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-75e9cdd4ab01",
+    "lemma": "ほど",
+    "reading": "ほど",
+    "gloss": "程度；大约",
+    "partOfSpeech": "形式名词・助词",
+    "level": "F",
+    "context": "駅までは十分ほど歩く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷假名干扰项；采用常见数量近似义例句，不反推其他同音词。"
+  },
+  {
+    "id": "ja-1992-0746bd624955",
+    "lemma": "的",
+    "reading": "まと",
+    "gloss": "靶子；瞄准或集中针对的目标",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "的に向かって矢を放つ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷「まと」的普通词汇义；并非正确补入「復旧の～」的词。"
+  },
+  {
+    "id": "ja-1992-0d930149329d",
+    "lemma": "あと",
+    "reading": "あと",
+    "gloss": "之后；后面；剩余部分",
+    "partOfSpeech": "名词・副词",
+    "level": "C",
+    "context": "食事のあとで出かけます。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷假名干扰项；不强定为後或跡的唯一汉字。"
+  },
+  {
+    "id": "ja-1992-be332a6cc621",
+    "lemma": "めど",
+    "reading": "めど",
+    "gloss": "实现目标的预期；大致把握",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "工事が終わるめどが立った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。常用「めどが立つ」；保留原卷假名写法。"
+  },
+  {
+    "id": "ja-1992-413a12813f23",
+    "lemma": "発足",
+    "reading": "ほっそく",
+    "gloss": "组织成立并开始活动",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "地域の新しい団体が発足した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。也读はっそく；已核对小学馆大辞泉所载双读 https://kotobank.jp/word/発足-602743 。例句与中文释义未照搬词典。"
+  },
+  {
+    "id": "ja-1992-08b61ad07f85",
+    "lemma": "発生",
+    "reading": "はっせい",
+    "gloss": "发生；产生",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "機械に小さな問題が発生した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-d43e16df0b9a",
+    "lemma": "発作",
+    "reading": "ほっさ",
+    "gloss": "症状突然发作",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "発作が起きた時刻を記録した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；仅词汇义，不提供医疗判断。"
+  },
+  {
+    "id": "ja-1992-23b357c69476",
+    "lemma": "発進",
+    "reading": "はっしん",
+    "gloss": "车辆等启动前进",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "安全を確認して車を発進させる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-d507504b3f95",
+    "lemma": "過多",
+    "reading": "かた",
+    "gloss": "数量过多",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "情報過多で大切な点を見失う。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-4cac442f420f",
+    "lemma": "過剰",
+    "reading": "かじょう",
+    "gloss": "过量；超出需要",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "過剰な包装を減らす。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-db1bb7b2dcaf",
+    "lemma": "過労",
+    "reading": "かろう",
+    "gloss": "疲劳过度；过度劳累",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "忙しい時期は過労に気をつける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-258e18ad1f56",
+    "lemma": "過密",
+    "reading": "かみつ",
+    "gloss": "过于密集；安排过满",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "過密な日程を見直した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-4238d4dfb27a",
+    "lemma": "満足",
+    "reading": "まんぞく",
+    "gloss": "满足；满意",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "今回の結果に満足している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-03ea2c1df3e6",
+    "lemma": "満員",
+    "reading": "まんいん",
+    "gloss": "满员；人数达到容量",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "バスは満員です。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项；词级按基本公共交通信息独立判断。"
+  },
+  {
+    "id": "ja-1992-48a069db5e77",
+    "lemma": "満身",
+    "reading": "まんしん",
+    "gloss": "全身；整个身体",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "選手は満身の力を込めて走った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-f71a0c1291bf",
+    "lemma": "満場",
+    "reading": "まんじょう",
+    "gloss": "全场；所有在场者",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "満場の拍手が長く続いた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。正确填词；常见于満場一致。"
+  },
+  {
+    "id": "ja-1992-88f0ad101599",
+    "lemma": "満場一致",
+    "reading": "まんじょういっち",
+    "gloss": "全体在场者一致赞同",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "提案は満場一致で採択された。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。由原题正确项満場与题干一致组成的固定表达。"
+  },
+  {
+    "id": "ja-1992-80676fac9648",
+    "lemma": "規制",
+    "reading": "きせい",
+    "gloss": "限制；以规定约束",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "騒音への規制を強化する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-43a166ff5689",
+    "lemma": "規格",
+    "reading": "きかく",
+    "gloss": "产品等的规格、统一标准",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "部品の規格を確認してから注文する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-d6db3a4c57c6",
+    "lemma": "規模",
+    "reading": "きぼ",
+    "gloss": "规模；整体大小或范围",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "小さな規模で事業を始める。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-9494e665a286",
+    "lemma": "規約",
+    "reading": "きやく",
+    "gloss": "团体或服务的规章约定",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "申し込む前に利用規約を読む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-6cef1558c651",
+    "lemma": "ぐったり",
+    "reading": "ぐったり",
+    "gloss": "疲惫无力的样子",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "長く歩いて、いすにぐったりと座った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-8390c164fb0d",
+    "lemma": "ぐっすり",
+    "reading": "ぐっすり",
+    "gloss": "熟睡地；睡得很沉",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "静かな部屋でぐっすり眠った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。"
+  },
+  {
+    "id": "ja-1992-fd2d05b04246",
+    "lemma": "げっそり",
+    "reading": "げっそり",
+    "gloss": "明显消瘦；受打击而消沉",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "大変な話を聞いてげっそりした。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-941da3b0e96a",
+    "lemma": "こっそり",
+    "reading": "こっそり",
+    "gloss": "悄悄地；不让人注意地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "友人にこっそり贈り物を用意した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-V-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项。"
+  },
+  {
+    "id": "ja-1992-ea192c378342",
+    "lemma": "相当",
+    "reading": "そうとう",
+    "gloss": "相当于；程度或数量颇高",
+    "partOfSpeech": "名词・サ变・副词",
+    "level": "F",
+    "context": "この量は一日分に相当する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷目标是等值义；其他选项展示程度义。"
+  },
+  {
+    "id": "ja-1992-e77a23abc97a",
+    "lemma": "通じる",
+    "reading": "つうじる",
+    "gloss": "通达；被理解；熟悉精通",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "彼は地域の歴史に通じている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本批目标为熟悉某领域义；不因同词还有基础通达义就拆分统计键。"
+  },
+  {
+    "id": "ja-1992-1c8134a9a013",
+    "lemma": "侵す",
+    "reading": "おかす",
+    "gloss": "侵犯权利或领域",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "他人の自由を侵してはいけない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷假名おかす的正确义项；不与犯す、冒す混用。"
+  },
+  {
+    "id": "ja-1992-10fd798f7a5b",
+    "lemma": "犯す",
+    "reading": "おかす",
+    "gloss": "犯错误、罪行等",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "同じ過ちを犯さないようにする。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法同音干扰项；对应过错与犯罪选项。"
+  },
+  {
+    "id": "ja-1992-4a55ffbc4464",
+    "lemma": "冒す",
+    "reading": "おかす",
+    "gloss": "冒危险；顶着风险行动",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "危険を冒して救助に向かった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法同音干扰项。"
+  },
+  {
+    "id": "ja-1992-5f95216790cd",
+    "lemma": "掛ける",
+    "reading": "かける",
+    "gloss": "盖上；架设；施加某种动作",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "子どもに毛布を掛ける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。原卷用假名かける；本批重点覆盖义，也提示ひも・はしご・声等搭配。"
+  },
+  {
+    "id": "ja-1992-1ed1c3abe2c0",
+    "lemma": "解ける",
+    "reading": "とける",
+    "gloss": "疑问解决；结松开",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "説明を聞いて疑問が解けた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本条读とける；ほどける另以假名词头收录。"
+  },
+  {
+    "id": "ja-1992-50323d01a5bc",
+    "lemma": "溶ける",
+    "reading": "とける",
+    "gloss": "溶解；融化",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "砂糖がお湯に溶ける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法同音干扰项。"
+  },
+  {
+    "id": "ja-1992-adffc10025ad",
+    "lemma": "漏れる",
+    "reading": "もれる",
+    "gloss": "漏出、泄露；遗漏",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "名簿から自分の名前が漏れていた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷目标是应有项目未被列入；另见气体、液体、秘密义。"
+  },
+  {
+    "id": "ja-1992-16b41a95c021",
+    "lemma": "働き",
+    "reading": "はたらき",
+    "gloss": "作用、功效；工作或贡献",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この道具には熱を逃がす働きがある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷目标对应効き目。"
+  },
+  {
+    "id": "ja-1992-0be3410f9f4c",
+    "lemma": "柄",
+    "reading": "がら",
+    "gloss": "花纹；举止、气质或品性",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "あの人は柄が悪く見えても親切だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本批重点为人的举止气质义；不另按花纹义重复建词条。"
+  },
+  {
+    "id": "ja-1992-db013dc3c90c",
+    "lemma": "小柄",
+    "reading": "こがら",
+    "gloss": "身材较小",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "小柄な人にも使いやすい道具だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项中的复合词。"
+  },
+  {
+    "id": "ja-1992-fec4f11c8d64",
+    "lemma": "土地柄",
+    "reading": "とちがら",
+    "gloss": "某地特有的风土、人情或风格",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "港町らしい土地柄が感じられる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项中的复合词。"
+  },
+  {
+    "id": "ja-1992-204efde944c5",
+    "lemma": "根",
+    "reading": "ね",
+    "gloss": "根；事物根源；人的本性",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "口は厳しいが、根は優しい人だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本批重点为本性及相关比喻义。"
+  },
+  {
+    "id": "ja-1992-2d6e4874e5a0",
+    "lemma": "根も葉もない",
+    "reading": "ねもはもない",
+    "gloss": "毫无根据的",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "それは根も葉もないうわさだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项中的固定表达。"
+  },
+  {
+    "id": "ja-1992-88b13e156590",
+    "lemma": "根に持つ",
+    "reading": "ねにもつ",
+    "gloss": "记恨；久久不忘受到的伤害",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "一度叱られたことを、いつまでも根に持っている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项中的固定表达。"
+  },
+  {
+    "id": "ja-1992-9f0fe853b230",
+    "lemma": "根が深い",
+    "reading": "ねがふかい",
+    "gloss": "根深蒂固；问题由来深远",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "この対立は根が深い。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。合法干扰项中的固定表达。"
+  },
+  {
+    "id": "ja-1992-afb43b194061",
+    "lemma": "厳しい",
+    "reading": "きびしい",
+    "gloss": "严格；严酷；实现起来困难",
+    "partOfSpeech": "イ形容词",
+    "level": "F",
+    "context": "今日中に終えるのは厳しい。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-vocab-VI-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。本卷目标是困难义，另有寒冷、严格、严厉等义项。"
+  },
+  {
+    "id": "ja-1992-4e046b58fc65",
+    "lemma": "冷蔵庫",
+    "reading": "れいぞうこ",
+    "gloss": "冰箱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "牛乳を冷蔵庫に入れる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-2135892082d0",
+    "lemma": "両開き",
+    "reading": "りょうびらき",
+    "gloss": "双扇向两侧打开的形式",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "この戸棚は両開きになっている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷指冰箱门的开合结构。"
+  },
+  {
+    "id": "ja-1992-5c77079d7e63",
+    "lemma": "眉毛",
+    "reading": "まゆげ",
+    "gloss": "眉毛",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "前髪が眉毛にかかっている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-dd0ea605ead0",
+    "lemma": "肩",
+    "reading": "かた",
+    "gloss": "肩膀",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "髪を肩まで切った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-279ce2907046",
+    "lemma": "器用",
+    "reading": "きよう",
+    "gloss": "手巧；处理事情灵活熟练",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "手先が器用なので、模型作りが得意だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-a2702e2457c4",
+    "lemma": "向く",
+    "reading": "むく",
+    "gloss": "朝向；适合",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "人と話す仕事が彼に向いている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷重点为适合某工作。"
+  },
+  {
+    "id": "ja-1992-8d396db58a53",
+    "lemma": "本棚",
+    "reading": "ほんだな",
+    "gloss": "书架",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "本棚を二人の机の間に置く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-f06207867a2b",
+    "lemma": "縦長",
+    "reading": "たてなが",
+    "gloss": "纵向较长；竖长形",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "写真を縦長に切った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-6c1ad4cc68fb",
+    "lemma": "カット",
+    "reading": "かっと",
+    "gloss": "剪去；裁掉部分",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "写真の右側を少しカットする。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。外来词；只收本卷剪裁义。"
+  },
+  {
+    "id": "ja-1992-2387c9ee1a4a",
+    "lemma": "専用",
+    "reading": "せんよう",
+    "gloss": "专用；只供特定用途使用",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ここは店の専用駐車場です。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-518a66c6668a",
+    "lemma": "共用",
+    "reading": "きょうよう",
+    "gloss": "共用；多人共同使用",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "この部屋は隣の部署と共用している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-53ba1f65fb7b",
+    "lemma": "駐車場",
+    "reading": "ちゅうしゃじょう",
+    "gloss": "停车场",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "駐車場は入口の右にあります。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-6",
+      "jlpt-1992-1-listening-III-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。按基础地点、问路词独立分级。"
+  },
+  {
+    "id": "ja-1992-c1f5acd9d1eb",
+    "lemma": "曲がる",
+    "reading": "まがる",
+    "gloss": "转弯；弯曲",
+    "partOfSpeech": "五段动词",
+    "level": "C",
+    "context": "次の角を右に曲がってください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-61c1873d8678",
+    "lemma": "突き当たる",
+    "reading": "つきあたる",
+    "gloss": "走到尽头；碰上障碍",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "道の端に突き当たったら左へ進む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5f43caa8e7b4",
+    "lemma": "コック",
+    "reading": "こっく",
+    "gloss": "厨师",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "将来はコックになりたい。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-a7c62c8234a3",
+    "lemma": "軌道に乗る",
+    "reading": "きどうにのる",
+    "gloss": "步入正轨；开始顺利运作",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "新しい店の経営が軌道に乗った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-3ca38fa11825",
+    "lemma": "入場者",
+    "reading": "にゅうじょうしゃ",
+    "gloss": "进入场馆的人；入场者",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "週末は入場者が増える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-0bf469d90224",
+    "lemma": "上回る",
+    "reading": "うわまわる",
+    "gloss": "超过某一数量或标准",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "今年の参加者数は昨年を上回った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-b9a2f9c03506",
+    "lemma": "提案",
+    "reading": "ていあん",
+    "gloss": "提出方案；建议的方案",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "会議で新しい方法を提案する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-07cb799ed11f",
+    "lemma": "調整",
+    "reading": "ちょうせい",
+    "gloss": "调整；协调相关安排",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "関係する部署と日程を調整する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-I-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-4a1ed14db3ff",
+    "lemma": "屋根",
+    "reading": "やね",
+    "gloss": "屋顶",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "雨のあとで屋根を調べた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-4edfd20f0592",
+    "lemma": "天井",
+    "reading": "てんじょう",
+    "gloss": "天花板",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "天井に小さな染みがある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-1c16b9d2a803",
+    "lemma": "日程",
+    "reading": "にってい",
+    "gloss": "日程；活动日期安排",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "旅行の日程を相談する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-e570e2ad801e",
+    "lemma": "参加者",
+    "reading": "さんかしゃ",
+    "gloss": "参加者",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "参加者の人数を確認した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-787d9ce94632",
+    "lemma": "表紙",
+    "reading": "ひょうし",
+    "gloss": "书刊封面",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "青い表紙の本を探している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-98ed14a4cd67",
+    "lemma": "破れる",
+    "reading": "やぶれる",
+    "gloss": "破裂；纸、布等破损",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "かばんの中で本の表紙が破れた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-2000d5a8f314",
+    "lemma": "袖",
+    "reading": "そで",
+    "gloss": "袖子",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "上着の袖を少し短くしてもらう。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5a4b98134ef8",
+    "lemma": "詰める",
+    "reading": "つめる",
+    "gloss": "装满；缩短或缩小空隙",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "ズボンのウエストを少し詰める。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为修改衣服尺寸义。"
+  },
+  {
+    "id": "ja-1992-69bc7e0c9e8d",
+    "lemma": "面接",
+    "reading": "めんせつ",
+    "gloss": "面试；面对面考察交谈",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "アルバイトの面接を受ける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5f5b618c19f6",
+    "lemma": "会費",
+    "reading": "かいひ",
+    "gloss": "会员费；团体定期费用",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "会費は毎月払います。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-d84accc4d4cc",
+    "lemma": "半額",
+    "reading": "はんがく",
+    "gloss": "半价；金额的一半",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "この商品は今日だけ半額です。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-b5ef4b947061",
+    "lemma": "週末",
+    "reading": "しゅうまつ",
+    "gloss": "周末",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "週末は家にいます。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-a4a96e3eb8fc",
+    "lemma": "論文",
+    "reading": "ろんぶん",
+    "gloss": "论说或研究文章；论文",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "調査の結果を論文にまとめる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-ff5d9856fcd2",
+    "lemma": "書評",
+    "reading": "しょひょう",
+    "gloss": "书评；对书的介绍评论",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "新聞の書評を読んで本を選んだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-081a0abc3ac1",
+    "lemma": "随筆",
+    "reading": "ずいひつ",
+    "gloss": "随笔；散文小品",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "旅の経験を随筆に書いた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-aad0bc9770d4",
+    "lemma": "書類",
+    "reading": "しょるい",
+    "gloss": "文件；文书材料",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "必要な書類を机にそろえる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-9",
+      "jlpt-1992-1-listening-III-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-7dc5b21a3407",
+    "lemma": "安上がり",
+    "reading": "やすあがり",
+    "gloss": "花费较少；省钱",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "まとめて買うほうが安上がりだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-1ed7cf831cb8",
+    "lemma": "売上",
+    "reading": "うりあげ",
+    "gloss": "销售额；卖出所得",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "今月の売上を計算する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。可写売り上げ；沿用原卷売上，不另建重复词条。"
+  },
+  {
+    "id": "ja-1992-93312a29c055",
+    "lemma": "円高",
+    "reading": "えんだか",
+    "gloss": "日元相对升值",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "円高が輸出に与える影響を調べる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-II-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。只作经济词义说明。"
+  },
+  {
+    "id": "ja-1992-bad718108ead",
+    "lemma": "のびのび",
+    "reading": "のびのび",
+    "gloss": "自在舒展；不受拘束地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "子どもたちが公園でのびのび遊ぶ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-e49b08ab2d2b",
+    "lemma": "縛りつける",
+    "reading": "しばりつける",
+    "gloss": "绑住；用规矩等强加束缚",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "細かい規則で人を縛りつけないようにする。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。原卷「縛りつけても」还原。"
+  },
+  {
+    "id": "ja-1992-33006908cd25",
+    "lemma": "占い",
+    "reading": "うらない",
+    "gloss": "占卜；预测运势",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "雑誌の占いのページを眺めた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。只描述词义，不把占卜当事实预测。"
+  },
+  {
+    "id": "ja-1992-21893f10217e",
+    "lemma": "出費",
+    "reading": "しゅっぴ",
+    "gloss": "支出；花出去的钱",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "今月は引っ越しで出費が多い。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-97d2e2825721",
+    "lemma": "天気予報",
+    "reading": "てんきよほう",
+    "gloss": "天气预报",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "出かける前に天気予報を見る。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-393536521ac4",
+    "lemma": "届ける",
+    "reading": "とどける",
+    "gloss": "送达；报告或申报",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "書類を受付に届ける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为送达义。"
+  },
+  {
+    "id": "ja-1992-ab1f20588214",
+    "lemma": "伺う",
+    "reading": "うかがう",
+    "gloss": "请教、询问；拜访的谦让表达",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "明日の午後、お宅に伺います。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为拜访义；兼提示听、问的谦让用法。"
+  },
+  {
+    "id": "ja-1992-3fbeb5de765c",
+    "lemma": "抵抗",
+    "reading": "ていこう",
+    "gloss": "抵抗；心理上难以接受的感觉",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "初めての食べ物には少し抵抗があった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为心理接受障碍，不是电学义。"
+  },
+  {
+    "id": "ja-1992-a4ea93167d13",
+    "lemma": "誘う",
+    "reading": "さそう",
+    "gloss": "邀请；引起某种反应",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "友人を旅行に誘った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-54eec4a6e44a",
+    "lemma": "気を使う",
+    "reading": "きをつかう",
+    "gloss": "顾虑别人；费心照顾",
+    "partOfSpeech": "惯用表达",
+    "level": "F",
+    "context": "そんなに気を使わなくても大丈夫です。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-ef49add1f0b0",
+    "lemma": "材木",
+    "reading": "ざいもく",
+    "gloss": "建筑等使用的木材",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "トラックで材木を運ぶ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-c9dac76bfae3",
+    "lemma": "積み荷",
+    "reading": "つみに",
+    "gloss": "装载的货物",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "出発前に積み荷を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。词头采用正确读音つみに；原稿括注「にな」为明显录入错误，不照录为读音。"
+  },
+  {
+    "id": "ja-1992-46517a50cc54",
+    "lemma": "手落ち",
+    "reading": "ておち",
+    "gloss": "疏漏；处理上的过失",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "確認に手落ちがなかったか調べる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-d5ac2f996349",
+    "lemma": "畳",
+    "reading": "たたみ",
+    "gloss": "榻榻米；日式草席地面材料",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "畳の部屋で本を読む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-04c647a04713",
+    "lemma": "外観",
+    "reading": "がいかん",
+    "gloss": "外观；从外面看到的样子",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "建物の外観を写真に撮った。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-a9ef3e6efac1",
+    "lemma": "費用",
+    "reading": "ひよう",
+    "gloss": "费用；需要花的钱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "旅行の費用を見積もる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-a95bf2fed6e3",
+    "lemma": "開始",
+    "reading": "かいし",
+    "gloss": "开始；启动活动",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "授業の開始時刻を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-e2f7ec7ec3bb",
+    "lemma": "経営",
+    "reading": "けいえい",
+    "gloss": "经营组织或事业",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "小さな会社を経営している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-4aa94d71ecea",
+    "lemma": "確信",
+    "reading": "かくしん",
+    "gloss": "确信；坚定的信念",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "成功すると確信して準備を進めた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-listening-III-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-ed84f5ed2470",
+    "lemma": "知能",
+    "reading": "ちのう",
+    "gloss": "理解、判断及解决问题的能力",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "知能についての文章を読む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-776127c53a6d",
+    "lemma": "反射",
+    "reading": "はんしゃ",
+    "gloss": "反射；刺激引起的自动反应",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "反射によって体が動く場合がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷主要为生理反应义；不是镜面反光义。"
+  },
+  {
+    "id": "ja-1992-df5cb6a7e415",
+    "lemma": "本能",
+    "reading": "ほんのう",
+    "gloss": "本能；生来具有的行为倾向",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "文章は本能と学習を区別している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-03228aa77d9e",
+    "lemma": "熟慮",
+    "reading": "じゅくりょ",
+    "gloss": "仔细、深入地考虑",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "いくつかの案を熟慮して選んだ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-915a6633b0e9",
+    "lemma": "無防備",
+    "reading": "むぼうび",
+    "gloss": "没有防备；缺少保护",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "周囲に注意せず無防備に歩く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-b4e4100acce9",
+    "lemma": "判断",
+    "reading": "はんだん",
+    "gloss": "判断；根据情况作决定",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "状況を見て、自分で判断する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-I-0-1",
+      "jlpt-1992-1-reading_grammar-I-0-2",
+      "jlpt-1992-1-reading_grammar-I-0-3",
+      "jlpt-1992-1-reading_grammar-I-0-4",
+      "jlpt-1992-1-reading_grammar-I-0-5",
+      "jlpt-1992-1-reading_grammar-I-0-6",
+      "jlpt-1992-1-reading_grammar-I-0-7",
+      "jlpt-1992-1-reading_grammar-I-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-7f83b3638b2a",
+    "lemma": "人道的",
+    "reading": "じんどうてき",
+    "gloss": "体现对人的同情与尊重的",
+    "partOfSpeech": "ナ形容词",
+    "level": "G",
+    "context": "人道的な配慮を大切にする。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-2e1297474d84",
+    "lemma": "理念",
+    "reading": "りねん",
+    "gloss": "理念；指导思考行动的原则观念",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "団体の理念を話し合う。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-bf3d11214a91",
+    "lemma": "情け",
+    "reading": "なさけ",
+    "gloss": "同情；对他人的体谅关怀",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "困っている人への情けを忘れない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为人情、同情义。"
+  },
+  {
+    "id": "ja-1992-04e18bda4cf6",
+    "lemma": "理屈",
+    "reading": "りくつ",
+    "gloss": "道理；逻辑说辞",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "理屈だけでは相手の気持ちは分からない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-051846e0a4cf",
+    "lemma": "不合理",
+    "reading": "ふごうり",
+    "gloss": "不合道理；不合理",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "不合理な規則を見直す。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-70575e13036b",
+    "lemma": "警察官",
+    "reading": "けいさつかん",
+    "gloss": "警察；警务人员",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "道で警察官に事情を説明した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-II-0-1",
+      "jlpt-1992-1-reading_grammar-II-0-2",
+      "jlpt-1992-1-reading_grammar-II-0-3",
+      "jlpt-1992-1-reading_grammar-II-0-4",
+      "jlpt-1992-1-reading_grammar-II-0-5",
+      "jlpt-1992-1-reading_grammar-II-0-6",
+      "jlpt-1992-1-reading_grammar-II-0-7",
+      "jlpt-1992-1-reading_grammar-II-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-dd9778a0ee3b",
+    "lemma": "繁栄",
+    "reading": "はんえい",
+    "gloss": "繁荣；兴旺发展",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "町の繁栄を支えた産業を調べる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-1-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-f4604b3db248",
+    "lemma": "公害",
+    "reading": "こうがい",
+    "gloss": "生产等造成的环境污染危害",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "公害を防ぐために対策を考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-1-1",
+      "jlpt-1992-1-reading_grammar-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-ca5f735b7036",
+    "lemma": "睡眠",
+    "reading": "すいみん",
+    "gloss": "睡眠",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "毎日の睡眠時間を記録する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-2-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-36b41383f7dd",
+    "lemma": "死亡率",
+    "reading": "しぼうりつ",
+    "gloss": "死亡人数在一定群体中的比例",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "資料で年代別の死亡率を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。只给统计词义，不据原文断言医学因果。"
+  },
+  {
+    "id": "ja-1992-6a8f27b56103",
+    "lemma": "社会学者",
+    "reading": "しゃかいがくしゃ",
+    "gloss": "社会学研究者",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "社会学者が生活の変化を調査する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-3-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-00904b6827e1",
+    "lemma": "地震",
+    "reading": "じしん",
+    "gloss": "地震",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "地震のあとで周囲の安全を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-4-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-9789acc57914",
+    "lemma": "予知",
+    "reading": "よち",
+    "gloss": "事先察知；预测尚未发生的事",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "地震予知をめぐる議論を読む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-4-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。只收词义，不沿用1992原文作为当前地震学事实。"
+  },
+  {
+    "id": "ja-1992-b7b009f08d40",
+    "lemma": "諸刃の剣",
+    "reading": "もろはのつるぎ",
+    "gloss": "双刃剑；既可能有利也可能带来危害的事物",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "便利な技術も使い方によっては諸刃の剣になる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-4-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。常见比喻，不因成语形式自动归M。"
+  },
+  {
+    "id": "ja-1992-e5b8788a4e01",
+    "lemma": "機能",
+    "reading": "きのう",
+    "gloss": "功能；起到的作用",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "製品に必要な機能を考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-5-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-7eeb7497c358",
+    "lemma": "付加価値",
+    "reading": "ふかかち",
+    "gloss": "附加价值；在原有用途外增加的价值",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "使いやすさが製品の付加価値になる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-5-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-cd7d1ed5d624",
+    "lemma": "顧客",
+    "reading": "こきゃく",
+    "gloss": "顾客；客户",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "顧客の意見を聞いて改善する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-5-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-4cad53b6ae4e",
+    "lemma": "大家",
+    "reading": "たいか",
+    "gloss": "在某领域成就卓越的名家",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "この作曲家は音楽の大家として知られる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-6-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。本卷为たいか，不是房东义おおや；未合并两个异读词义。"
+  },
+  {
+    "id": "ja-1992-65ea0e3e8fab",
+    "lemma": "調和",
+    "reading": "ちょうわ",
+    "gloss": "协调；各部分相互和谐",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "建物と景色の調和を考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-7-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-44c8955024a1",
+    "lemma": "喪失",
+    "reading": "そうしつ",
+    "gloss": "丧失；失去原有事物",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "文章は自己の喪失をテーマにしている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-III-7-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-14a09b3ccb0c",
+    "lemma": "困る",
+    "reading": "こまる",
+    "gloss": "为难；遇到困难",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "急な変更でみんなが困っている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-1"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。原卷「困らせる」为使役形。"
+  },
+  {
+    "id": "ja-1992-cf9aa10571a8",
+    "lemma": "企業",
+    "reading": "きぎょう",
+    "gloss": "企业；从事经营活动的组织",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "地域の企業で働いている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-1e8c5ae4c96e",
+    "lemma": "批判",
+    "reading": "ひはん",
+    "gloss": "批评；指出问题并作评价",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "提案に対する批判を丁寧に聞く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-2"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5a31934b5308",
+    "lemma": "話し方",
+    "reading": "はなしかた",
+    "gloss": "说话方式",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "相手に合わせて話し方を変える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-3"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-9ee9610ce397",
+    "lemma": "貧しい",
+    "reading": "まずしい",
+    "gloss": "贫穷；资源或内容不足",
+    "partOfSpeech": "イ形容词",
+    "level": "F",
+    "context": "貧しい暮らしの中でも学び続けた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-4"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-c0e3cdca4dd9",
+    "lemma": "売れ行き",
+    "reading": "うれゆき",
+    "gloss": "销路；商品卖出的情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "新商品の売れ行きがよい。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-5"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-bb69e9c44a6e",
+    "lemma": "愛する",
+    "reading": "あいする",
+    "gloss": "爱；珍惜并怀有感情",
+    "partOfSpeech": "サ变动词",
+    "level": "F",
+    "context": "故郷の自然を愛している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-6"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。原卷「愛してる」是口语缩略形。"
+  },
+  {
+    "id": "ja-1992-8be82b3e0d9e",
+    "lemma": "競技場",
+    "reading": "きょうぎじょう",
+    "gloss": "体育竞技场地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "競技場まで電車で行く。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-185ed68496d8",
+    "lemma": "開催",
+    "reading": "かいさい",
+    "gloss": "举办会议或活动",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "来月、町で音楽会を開催する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-7"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-401c734c515a",
+    "lemma": "憧れ",
+    "reading": "あこがれ",
+    "gloss": "向往；憧憬",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "子どものころから海への憧れがあった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-75ca5619e2ec",
+    "lemma": "洋の東西",
+    "reading": "ようのとうざい",
+    "gloss": "东方与西方；东西方世界",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "洋の東西を問わず似た物語がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-8"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-55e9b7068c44",
+    "lemma": "独自",
+    "reading": "どくじ",
+    "gloss": "独有；具有自己的特色",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "地域には独自の文化がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-9"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-fba37d9b12ab",
+    "lemma": "経費",
+    "reading": "けいひ",
+    "gloss": "开展工作或经营所需的费用",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "出張にかかった経費を計算する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-c6b2d1946780",
+    "lemma": "儲かる",
+    "reading": "もうかる",
+    "gloss": "赚钱；获得收益",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "よく売れても、必ず儲かるとは限らない。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-10"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。原卷用假名もうかる。"
+  },
+  {
+    "id": "ja-1992-70f4c18c3276",
+    "lemma": "森林",
+    "reading": "しんりん",
+    "gloss": "森林",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "森林を守る活動に参加する。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-3f7d40f36c02",
+    "lemma": "破壊",
+    "reading": "はかい",
+    "gloss": "破坏；毁掉原有结构",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "工事による環境の破壊を防ぐ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-11"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-e06604baf4e0",
+    "lemma": "頼る",
+    "reading": "たよる",
+    "gloss": "依靠；寻求帮助",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "一人で抱えずに友人を頼る。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-09500d95dfce",
+    "lemma": "亡くなる",
+    "reading": "なくなる",
+    "gloss": "去世",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "祖父が亡くなってから一年になる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-12"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。礼貌叙述死亡；不与物品失去的無くなる混用。"
+  },
+  {
+    "id": "ja-1992-31e5997cb6ff",
+    "lemma": "付き合う",
+    "reading": "つきあう",
+    "gloss": "交往；陪同；相处",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "友人と長く付き合っている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-13"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-81bc4c052426",
+    "lemma": "解決",
+    "reading": "かいけつ",
+    "gloss": "解决问题或争议",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "みんなで相談して問題を解決した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-3088af836e94",
+    "lemma": "悩む",
+    "reading": "なやむ",
+    "gloss": "苦恼；为选择等烦恼",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "進路について悩んでいる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-14"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5f5ffadb73d8",
+    "lemma": "体力",
+    "reading": "たいりょく",
+    "gloss": "体力；身体活动能力",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "毎日歩いて体力をつける。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-0a26d3cd9ebe",
+    "lemma": "衰える",
+    "reading": "おとろえる",
+    "gloss": "衰退；能力或力量减弱",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "長く休んで体力が衰えた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-15"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-49b89d815e5e",
+    "lemma": "間違い",
+    "reading": "まちがい",
+    "gloss": "错误；弄错的地方",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "書類の間違いを直す。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-16"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-323450745cc2",
+    "lemma": "上司",
+    "reading": "じょうし",
+    "gloss": "上司；工作中的上级",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "予定の変更を上司に伝える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-16"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-24d0e8289194",
+    "lemma": "任せる",
+    "reading": "まかせる",
+    "gloss": "交给他人处理；委托",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "準備は経験のある人に任せる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-17"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-745c0fb47b71",
+    "lemma": "政治",
+    "reading": "せいじ",
+    "gloss": "政治；公共事务的治理活动",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "新聞で政治のニュースを読む。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-18"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-1a054b3135ae",
+    "lemma": "協力",
+    "reading": "きょうりょく",
+    "gloss": "合作；共同出力",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "皆さんの協力をお願いします。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-19"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-42e607ff0339",
+    "lemma": "お邪魔する",
+    "reading": "おじゃまする",
+    "gloss": "打扰；拜访时的客气说法",
+    "partOfSpeech": "サ变动词表达",
+    "level": "F",
+    "context": "お忙しいところ、お邪魔しました。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-20"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。词头保留固定礼貌表达；原卷写おじゃまいたしまして。"
+  },
+  {
+    "id": "ja-1992-896257f7fe70",
+    "lemma": "豊作",
+    "reading": "ほうさく",
+    "gloss": "丰收；农作物收成好",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "今年は米が豊作だった。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-21"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-825d3a5e6b56",
+    "lemma": "腹立たしい",
+    "reading": "はらだたしい",
+    "gloss": "令人恼火；让人生气",
+    "partOfSpeech": "イ形容词",
+    "level": "F",
+    "context": "説明もなく待たされて腹立たしい。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-22"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-d8904076e8df",
+    "lemma": "救急",
+    "reading": "きゅうきゅう",
+    "gloss": "急救；紧急救助",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "救急の連絡先を確認しておく。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-23"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-09f4cdfe2c41",
+    "lemma": "人命",
+    "reading": "じんめい",
+    "gloss": "人的生命",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "救助では人命を第一に考える。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-23"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-cea2df7d3f7c",
+    "lemma": "関わる",
+    "reading": "かかわる",
+    "gloss": "涉及；影响到；与某事有关",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "この判断は安全に関わる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-23"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。原卷正确项かかわる，按规范常用词头归并。"
+  },
+  {
+    "id": "ja-1992-9b55da96400a",
+    "lemma": "一刻を争う",
+    "reading": "いっこくをあらそう",
+    "gloss": "刻不容缓；每一刻都十分紧迫",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "救助は一刻を争う仕事だ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-23"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-6cba8cc13b79",
+    "lemma": "利用",
+    "reading": "りよう",
+    "gloss": "使用设施、服务或条件",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "この図書館は誰でも利用できる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-24"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-55ecc61b672c",
+    "lemma": "責任",
+    "reading": "せきにん",
+    "gloss": "责任；应承担的职责或后果",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "担当した仕事に責任を持つ。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-25"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-03f65015f9e6",
+    "lemma": "忙しい",
+    "reading": "いそがしい",
+    "gloss": "忙碌；没有空闲",
+    "partOfSpeech": "イ形容词",
+    "level": "C",
+    "context": "明日は忙しいです。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-26"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。按基础状态和时间表达独立分级。"
+  },
+  {
+    "id": "ja-1992-aca5afacbc4d",
+    "lemma": "島国",
+    "reading": "しまぐに",
+    "gloss": "岛国；国土由岛屿构成的国家",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "島国の交通について調べる。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-27"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-51cf1120f015",
+    "lemma": "海運業",
+    "reading": "かいうんぎょう",
+    "gloss": "海上运输行业",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "港町では海運業が発達した。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-27"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-e75e88cb9a24",
+    "lemma": "心配",
+    "reading": "しんぱい",
+    "gloss": "担心；放心不下",
+    "partOfSpeech": "名词・サ变・ナ形容词",
+    "level": "F",
+    "context": "家族のことを心配している。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-28"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-aae0a78fb060",
+    "lemma": "天才",
+    "reading": "てんさい",
+    "gloss": "天才；具有突出天赋的人",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "子どものころから音楽の天才と言われた。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-29"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-48d1a70fff47",
+    "lemma": "才能",
+    "reading": "さいのう",
+    "gloss": "才能；完成某事的突出能力",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼女には絵を描く才能がある。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-29"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-df6a868a3e52",
+    "lemma": "無理",
+    "reading": "むり",
+    "gloss": "勉强；超出能力或条件",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "疲れているなら無理をしないでください。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-30"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-9fd003a72958",
+    "lemma": "病気",
+    "reading": "びょうき",
+    "gloss": "疾病；生病的状态",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "今日は病気で学校を休みます。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-30"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-f0ddd1ecf81f",
+    "lemma": "食事",
+    "reading": "しょくじ",
+    "gloss": "吃饭；饭菜",
+    "partOfSpeech": "名词・サ变",
+    "level": "C",
+    "context": "食事は六時からです。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-31"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  },
+  {
+    "id": "ja-1992-5be5cb5c4743",
+    "lemma": "準備",
+    "reading": "じゅんび",
+    "gloss": "准备；预先安排所需事项",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "出かける準備をしている。",
+    "sourceQuestionIds": [
+      "jlpt-1992-1-reading_grammar-IV-0-31"
+    ],
+    "notes": "原创学习例句；中文释义为本次简释。语境拓展词。"
+  }
+]

@@ -68,16 +68,11 @@ import { availableLearningLanguages, getCopy, getLearningLanguage, normalizeLear
 import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems, type VocabItem } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
-import { classicalAuthors, dictionarySources, lexiconSeed, resourceChapterMappings, textbookCatalog } from "@/data/resources";
-import {
-  chooseNextVocabularyCard,
-  vocabularyCards,
-  vocabularyKey,
-  vocabularyLevelsFor,
-  vocabularyMatchesLevel,
-  type VocabularyMode,
-  type VocabularyStats,
-} from "@/data/vocabulary";
+import { classicalAuthors, resourceChapterMappings, textbookCatalog } from "@/data/resources";
+import { vocabularyKey, type VocabularyMode, type VocabularyStats } from "@/data/vocabulary";
+import { VocabularyTrainer, VocabularyDictionary } from "./vocabulary-workspace";
+import { sanitizeVocabularyReviews, type VocabularyReviewEvent } from "@/lib/vocabulary-model";
+import { syncVocabularyReviews, reviewCounts, subtractReviewCounts } from "@/lib/vocabulary-review-sync";
 import {
   storyNodesForPace,
   storyPaces,
@@ -96,7 +91,8 @@ type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
 type AccountPreference = { language: LanguageCode; level: LanguageLevel; vocabMode: VocabularyMode };
-type VocabularyMemory = { owner: string; stats: VocabularyStats };
+type LegacyVocabularyBatch = { id: string; language: LanguageCode; answers: { lemma: string; seen: number; correctCount: number }[] };
+type VocabularyMemory = { pendingLegacyBatches?: LegacyVocabularyBatch[]; owner: string; stats: VocabularyStats; reviews?: VocabularyReviewEvent[]; pendingReviewIds?: string[]; guestImport?: { id: string; stats: VocabularyStats } };
 
 const GUEST_VOCABULARY_OWNER = "guest";
 const reviewStatusLabels: Record<ReviewStatus, string> = { draft: "内容草稿", reviewed: "已复核", published: "已发布", archived: "已归档" };
@@ -240,6 +236,42 @@ function mergeVocabularyStats(remote: VocabularyStats, local: VocabularyStats, a
   return merged;
 }
 
+function sanitizeLegacyVocabularyBatches(value: unknown): LegacyVocabularyBatch[] {
+  if (!Array.isArray(value)) return [];
+  const seen = new Set<string>();
+  return value.filter((batch): batch is LegacyVocabularyBatch => {
+    if (!batch || typeof batch !== "object" || typeof batch.id !== "string" || !/^[A-Za-z0-9_:-]{1,200}$/.test(batch.id) || seen.has(batch.id)
+      || typeof batch.language !== "string" || !Object.hasOwn(languageConfigs, batch.language) || !Array.isArray(batch.answers) || batch.answers.length < 1 || batch.answers.length > 100
+      || !batch.answers.every((answer: LegacyVocabularyBatch["answers"][number]) => answer && typeof answer.lemma === "string" && answer.lemma.trim().length > 0 && answer.lemma.length <= 160
+        && Number.isInteger(answer.seen) && answer.seen >= 1 && answer.seen <= 1000 && Number.isInteger(answer.correctCount) && answer.correctCount >= 0 && answer.correctCount <= answer.seen)) return false;
+    seen.add(batch.id);
+    return true;
+  });
+}
+
+function legacyVocabularyCounts(batches: LegacyVocabularyBatch[]): VocabularyStats {
+  const counts: VocabularyStats = {};
+  for (const batch of sanitizeLegacyVocabularyBatches(batches)) for (const answer of batch.answers) {
+    const key = vocabularyKey(batch.language, answer.lemma);
+    const previous = counts[key] ?? { seen: 0, correct: 0 };
+    counts[key] = { seen: previous.seen + answer.seen, correct: previous.correct + answer.correctCount };
+  }
+  return counts;
+}
+
+function cacheVocabularyMemory(memory: VocabularyMemory) {
+  if (memory.owner === GUEST_VOCABULARY_OWNER) return;
+  try { localStorage.setItem(`${STORAGE.vocabularyMemory}:${memory.owner}`, JSON.stringify(memory)); } catch { /* Session memory remains available. */ }
+}
+
+function readCachedVocabularyMemory(owner: string): VocabularyMemory | null {
+  try {
+    const value = JSON.parse(localStorage.getItem(`${STORAGE.vocabularyMemory}:${owner}`) ?? "null");
+    if (value?.owner !== owner || !value.stats || typeof value.stats !== "object") return null;
+    return { owner, stats: value.stats, pendingLegacyBatches: sanitizeLegacyVocabularyBatches(value.pendingLegacyBatches), reviews: sanitizeVocabularyReviews(value.reviews), pendingReviewIds: Array.isArray(value.pendingReviewIds) ? value.pendingReviewIds.filter((id: unknown) => typeof id === "string") : [] };
+  } catch { return null; }
+}
+
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
@@ -268,6 +300,7 @@ export default function App() {
   const [languageLevel, setLanguageLevel, languageLevelReady] = usePersistentState<LanguageLevel>(STORAGE.languageLevel, "elementary");
   const [vocabularyMode, setVocabularyMode, vocabularyModeReady] = usePersistentState<VocabularyMode>(STORAGE.vocabularyMode, "context");
   const [vocabularyMemory, setVocabularyMemory, vocabularyMemoryReady] = usePersistentState<VocabularyMemory>(STORAGE.vocabularyMemory, { owner: GUEST_VOCABULARY_OWNER, stats: {} });
+  const [vocabularyFocus, setVocabularyFocus] = useState<string | undefined>();
   const [category, setCategory] = useState<Category | "all">("all");
   const [fullPaper, setFullPaper] = useState(false);
   const [progress, setProgress, progressReady] = usePersistentState<Progress>(STORAGE.progress, {});
@@ -287,12 +320,19 @@ export default function App() {
   const levelsByLanguageRef = useRef<Partial<Record<LanguageCode, LanguageLevel>>>({});
   const vocabularyModeRef = useRef(vocabularyMode);
   const vocabularyMemoryRef = useRef(vocabularyMemory);
+  const accountOwnerRef = useRef<string | null>(null);
+  const accountRevisionRef = useRef(0);
   const languageConfig = languageConfigs[language] ?? languageConfigs.la;
   const level = normalizePikkuLevel(language, languageLevel);
   const copy = getCopy(locale);
   const t = (text: string) => locale === "en" ? extraEnglish[text] ?? text : text;
   const currentLanguage = getLearningLanguage(language);
   const accountStorageReady = languageReady && languageLevelReady && vocabularyModeReady && vocabularyMemoryReady && progressReady && bookmarksReady;
+  const vocabularyOwnerReady = vocabularyMemoryReady && vocabularyMemory.owner === (session.authenticated && session.user ? session.user.email : GUEST_VOCABULARY_OWNER);
+  const activeVocabularyStats = vocabularyOwnerReady ? vocabularyMemory.stats : {};
+  const activeVocabularyReviews = useMemo(() => vocabularyOwnerReady ? sanitizeVocabularyReviews(vocabularyMemory.reviews) : [], [vocabularyOwnerReady, vocabularyMemory.reviews]);
+
+  useEffect(() => { if (vocabularyMemoryReady) cacheVocabularyMemory(vocabularyMemory); }, [vocabularyMemoryReady, vocabularyMemory]);
 
   useEffect(() => {
     if (!languageReady || !languageLevelReady) return;
@@ -337,43 +377,66 @@ export default function App() {
     return sync;
   }, []);
 
+  const clearAccountData = useCallback(() => {
+    accountRevisionRef.current += 1;
+    cacheVocabularyMemory(vocabularyMemoryRef.current);
+    accountOwnerRef.current = null;
+    setSession({ authenticated: false, persistence: true, user: null });
+    if (vocabularyMemoryRef.current.owner === GUEST_VOCABULARY_OWNER) { setSyncStatus("idle"); return; }
+    progressRef.current = {};
+    setProgress({});
+    bookmarkRevisionRef.current += 1;
+    bookmarksRef.current = [];
+    setBookmarks([]);
+    vocabularyModeRef.current = "context";
+    setVocabularyMode("context");
+    const guestVocabularyMemory = { owner: GUEST_VOCABULARY_OWNER, stats: {} };
+    vocabularyMemoryRef.current = guestVocabularyMemory;
+    setVocabularyMemory(guestVocabularyMemory);
+    setSyncStatus("idle");
+  }, [setBookmarks, setProgress, setVocabularyMemory, setVocabularyMode]);
+
   const refreshAccount = useCallback(async (providedSession?: Session) => {
+    const revision = ++accountRevisionRef.current;
     const nextSession = providedSession ?? await apiFetch("/api/me").then((response) => response.ok ? response.json() : null);
-    if (!nextSession) return;
+    if (!nextSession || accountRevisionRef.current !== revision) return;
+    cacheVocabularyMemory(vocabularyMemoryRef.current);
+    accountOwnerRef.current = nextSession.authenticated ? nextSession.user?.email ?? null : null;
     setSession(nextSession);
     if (!nextSession.authenticated || !nextSession.user) {
-      setSyncStatus("idle");
+      clearAccountData();
       return;
     }
 
     const bookmarkRevision = bookmarkRevisionRef.current;
     await queueAccountSync(async () => {
+      const owner = nextSession.user!.email;
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
       const response = await apiFetch("/api/stats");
       if (!response.ok) {
         setSyncStatus("error");
         return;
       }
       const stats = await response.json();
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
       const remoteProgress = stats?.progress && typeof stats.progress === "object" ? stats.progress as Progress : {};
-      const localProgress = progressRef.current;
+      const currentVocab = vocabularyMemoryRef.current;
+      const localProgress = currentVocab.owner === owner || currentVocab.owner === GUEST_VOCABULARY_OWNER ? progressRef.current : {};
       const mergedProgress = { ...localProgress, ...remoteProgress };
-      progressRef.current = mergedProgress;
-      setProgress(mergedProgress);
-      const remoteVocab = remoteVocabularyStats(stats?.vocab);
-      const localVocab = vocabularyMemoryRef.current;
+      const savedVocab = readCachedVocabularyMemory(owner);
+      const localVocab: VocabularyMemory = currentVocab.owner === owner || currentVocab.owner === GUEST_VOCABULARY_OWNER ? currentVocab : savedVocab ?? { owner, stats: {} };
       const addGuestStats = localVocab.owner === GUEST_VOCABULARY_OWNER;
+      const pendingLegacyBatches = sanitizeLegacyVocabularyBatches([...(localVocab.pendingLegacyBatches ?? []), ...(savedVocab?.pendingLegacyBatches ?? [])]);
       const localBookmarks = bookmarksRef.current;
       if (!Array.isArray(stats?.bookmarks)) throw new Error("Invalid account bookmarks");
       const remoteBookmarks: string[] = stats.bookmarks.filter((id: unknown) => typeof id === "string");
       // Only import actual guest records. An account cache must not restore remote deletions.
       const mergedBookmarks = [...new Set([...remoteBookmarks, ...(addGuestStats ? localBookmarks : [])])];
-      const mergedVocab = localVocab.owner === nextSession.user.email
-        ? mergeVocabularyStats(remoteVocab, localVocab.stats)
-        : mergeVocabularyStats(remoteVocab, addGuestStats ? localVocab.stats : {}, addGuestStats);
       if (mergedBookmarks.length !== remoteBookmarks.length) {
         const guestBookmarks = localBookmarks.filter((id) => !remoteBookmarks.includes(id));
         const guestLanguages = new Set(guestBookmarks.map((id) => syncQuestion(id).language ?? "la"));
         for (const nextLanguage of guestLanguages) {
+          if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
           const remoteLanguageBookmarks: string[] = stats.byLanguage?.[nextLanguage]?.bookmarks
             ?? remoteBookmarks.filter((id) => (syncQuestion(id).language ?? "la") === nextLanguage);
           const questionIds = [...new Set([...remoteLanguageBookmarks, ...guestBookmarks.filter((id) => (syncQuestion(id).language ?? "la") === nextLanguage)])];
@@ -384,29 +447,80 @@ export default function App() {
           }
         }
       }
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
       if (addGuestStats && Object.keys(localVocab.stats).length) {
+        const legacyPendingCounts = legacyVocabularyCounts(pendingLegacyBatches);
+        const unlogged = subtractReviewCounts(localVocab.stats, sanitizeVocabularyReviews(localVocab.reviews));
+        const legacyHistory = Object.fromEntries(Object.entries(unlogged).map(([key, stat]): [string, { seen: number; correct: number }] => {
+          const seen = Math.max(0, stat.seen - (legacyPendingCounts[key]?.seen ?? 0));
+          return [key, { seen, correct: Math.min(seen, Math.max(0, stat.correct - (legacyPendingCounts[key]?.correct ?? 0))) }];
+        }).filter(([, stat]) => stat.seen > 0));
+        const guestImport = localVocab.guestImport ?? { id: crypto.randomUUID(), stats: legacyHistory };
+        if (!localVocab.guestImport) {
+          localVocab.guestImport = guestImport;
+          const saved = { ...vocabularyMemoryRef.current, guestImport };
+          vocabularyMemoryRef.current = saved;
+          setVocabularyMemory(saved);
+        }
         const guestByLanguage: Partial<Record<LanguageCode, { lemma: string; seen: number; correctCount: number }[]>> = {};
-        for (const [key, stat] of Object.entries(localVocab.stats)) {
+        for (const [key, stat] of Object.entries(guestImport.stats)) {
           const separator = key.indexOf(":");
           const nextLanguage = key.slice(0, separator) as LanguageCode;
           if (separator < 1 || !languageConfigs[nextLanguage]) continue;
           (guestByLanguage[nextLanguage] ??= []).push({ lemma: key.slice(separator + 1), seen: stat.seen, correctCount: stat.correct });
         }
         for (const [nextLanguage, answers] of Object.entries(guestByLanguage) as [LanguageCode, { lemma: string; seen: number; correctCount: number }[]][]) {
-          const migrated = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
-          if (!migrated.ok) {
-            setSyncStatus("error");
-            return;
+          for (let offset = 0; offset < answers.length; offset += 100) {
+            if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
+            const migrated = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers: answers.slice(offset, offset + 100), migrationId: `${guestImport.id}:${nextLanguage}:${offset}` }) });
+            if (!migrated.ok) {
+              setSyncStatus("error");
+              return;
+            }
+            const result = await migrated.json();
+            if (result?.ok !== true || result.count !== Math.min(100, answers.length - offset) || ![0, 1].includes(result.inserted)) throw new Error("Invalid vocabulary history acknowledgment");
           }
         }
       }
+      for (const batch of pendingLegacyBatches) {
+        if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
+        const response = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: batch.language, answers: batch.answers, migrationId: batch.id }) });
+        if (!response.ok) throw new Error("Vocabulary measurement upload failed");
+        const result = await response.json();
+        if (result?.ok !== true || result.count !== batch.answers.length || ![0, 1].includes(result.inserted)) throw new Error("Invalid vocabulary measurement acknowledgment");
+      }
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
       if (bookmarkRevisionRef.current === bookmarkRevision) {
         bookmarksRef.current = mergedBookmarks;
         setBookmarks(mergedBookmarks);
       }
-      const nextVocabularyMemory = { owner: nextSession.user.email, stats: mergedVocab };
+      const localReviews = sanitizeVocabularyReviews(localVocab.reviews);
+      const syncMemory = { owner, reviews: sanitizeVocabularyReviews([...localReviews, ...sanitizeVocabularyReviews(savedVocab?.reviews)]),
+        pendingReviewIds: [...new Set([...(savedVocab?.pendingReviewIds ?? []), ...(addGuestStats ? localReviews.map(event => event.id) : localVocab.pendingReviewIds ?? [])])] };
+      const syncedReviews = await syncVocabularyReviews(syncMemory, owner, async (path, options) => {
+        if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) throw new Error("Account changed during vocabulary sync");
+        return apiFetch(path, options);
+      });
+      const refreshedStats = await apiFetch("/api/stats");
+      if (!refreshedStats.ok) throw new Error("Vocabulary statistics refresh failed");
+      const cloudVocabulary = remoteVocabularyStats((await refreshedStats.json()).vocab);
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
+      const latestMemory = vocabularyMemoryRef.current;
+      const sameOwner = latestMemory.owner === localVocab.owner;
+      const initialIds = new Set(sanitizeVocabularyReviews(localVocab.reviews).map(event => event.id));
+      const concurrentReviews = sameOwner ? sanitizeVocabularyReviews(latestMemory.reviews).filter(event => !initialIds.has(event.id)) : [];
+      const combinedReviews = sanitizeVocabularyReviews([...syncedReviews.reviews, ...concurrentReviews]);
+      const syncedIds = new Set(syncedReviews.syncedIds);
+      const pendingReviewIds = sameOwner ? [...new Set([...(latestMemory.pendingReviewIds ?? []), ...concurrentReviews.map(event => event.id)])].filter(id => !syncedIds.has(id)) : [];
+      const initialLegacyIds = new Set(pendingLegacyBatches.map(batch => batch.id));
+      const concurrentLegacy = sameOwner ? sanitizeLegacyVocabularyBatches(latestMemory.pendingLegacyBatches).filter(batch => !initialLegacyIds.has(batch.id)) : [];
+      const localCounts = mergeVocabularyStats(reviewCounts(concurrentReviews), legacyVocabularyCounts(concurrentLegacy), true);
+      const nextVocabularyMemory: VocabularyMemory = { owner, stats: mergeVocabularyStats(cloudVocabulary, localCounts, true), reviews: combinedReviews, pendingReviewIds, pendingLegacyBatches: concurrentLegacy };
       vocabularyMemoryRef.current = nextVocabularyMemory;
       setVocabularyMemory(nextVocabularyMemory);
+      const concurrentProgress = Object.fromEntries((sameOwner ? Object.entries(progressRef.current) : []).filter(([id, value]) => value !== localProgress[id]));
+      progressRef.current = { ...mergedProgress, ...concurrentProgress };
+      setProgress(progressRef.current);
       const unsyncedProgress = Object.entries(localProgress).filter(([id]) => !(id in remoteProgress)).map(([questionId, status]) => {
         const question = syncQuestion(questionId);
         return { questionId, status, language: question.language ?? "la", level: question.level, category: question.category };
@@ -418,6 +532,7 @@ export default function App() {
           return;
         }
       }
+      if (accountOwnerRef.current !== owner || accountRevisionRef.current !== revision) return;
       if (validAccountPreference(stats?.preference)) {
         languageRef.current = stats.preference.language;
         languageLevelRef.current = stats.preference.level;
@@ -433,29 +548,17 @@ export default function App() {
         }
       }
     }).catch(() => { /* The queue displays the sync error and keeps refresh callers safe. */ });
-  }, [queueAccountSync, setBookmarks, setLanguage, setLanguageLevel, setProgress, setVocabularyMemory, setVocabularyMode]);
+  }, [clearAccountData, queueAccountSync, setBookmarks, setLanguage, setLanguageLevel, setProgress, setVocabularyMemory, setVocabularyMode]);
 
   const waitForAccountSync = useCallback(async () => {
     await Promise.allSettled([...pendingAccountSyncs.current]);
   }, []);
 
-  const clearAccountData = useCallback(() => {
-    setSession({ authenticated: false, persistence: true, user: null });
-    progressRef.current = {};
-    setProgress({});
-    bookmarkRevisionRef.current += 1;
-    bookmarksRef.current = [];
-    setBookmarks([]);
-    vocabularyModeRef.current = "context";
-    setVocabularyMode("context");
-    const guestVocabularyMemory = { owner: GUEST_VOCABULARY_OWNER, stats: {} };
-    vocabularyMemoryRef.current = guestVocabularyMemory;
-    setVocabularyMemory(guestVocabularyMemory);
-    setSyncStatus("idle");
-  }, [setBookmarks, setProgress, setVocabularyMemory, setVocabularyMode]);
 
   useEffect(() => {
     if (isStaticPublic || !accountStorageReady) return;
+    const revision = accountRevisionRef.current;
+    let cancelled = false;
     Promise.all([
       apiFetch("/api/me").then((r) => r.ok ? r.json() : null),
       apiFetch("/api/questions").then((r) => r.ok ? r.json() : { overrides: [] }),
@@ -463,10 +566,11 @@ export default function App() {
     ]).then(([me, remote, authConfig]) => {
       setOverrides(remote?.overrides || []);
       setWechatEnabled(Boolean(authConfig?.wechat));
+      if (cancelled || accountRevisionRef.current !== revision) return;
       if (me) void refreshAccount(me);
     }).catch(() => { /* Static preview and anonymous practice remain usable. */ });
 
-    if (authMode !== "supabase") return;
+    if (authMode !== "supabase") return () => { cancelled = true; };
     const { data } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_OUT") {
         clearAccountData();
@@ -476,8 +580,15 @@ export default function App() {
         void refreshAccount();
       }, 0);
     });
-    return () => data.subscription.unsubscribe();
+    return () => { cancelled = true; data.subscription.unsubscribe(); };
   }, [accountStorageReady, clearAccountData, refreshAccount]);
+
+  useEffect(() => {
+    if (isStaticPublic) return;
+    const reconnect = () => { if (accountOwnerRef.current) void refreshAccount(); };
+    window.addEventListener("online", reconnect);
+    return () => window.removeEventListener("online", reconnect);
+  }, [refreshAccount]);
 
   const questionBank = useMemo(() => {
     const map = new Map(staticQuestions.map((question) => [question.id, question]));
@@ -494,32 +605,68 @@ export default function App() {
       progressRef.current = next;
       return next;
     });
-    if (!session.authenticated) return;
+    const owner = session.user?.email;
+    if (!session.authenticated || !owner) return;
     queueAccountSync(async () => {
+      if (accountOwnerRef.current !== owner) return;
       const response = await apiFetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ questionId: question.id, status, language: question.language ?? "la", level: question.level, category: question.category }) });
       if (!response.ok) throw new Error(t("进度同步失败"));
     });
   };
 
   const recordVocabulary = (nextLanguage: LanguageCode, answers: { lemma: string; correct: boolean }[]) => {
-    const currentMemory = vocabularyMemoryRef.current;
-    const nextStats = { ...currentMemory.stats };
-    for (const answer of answers) {
-      const key = vocabularyKey(nextLanguage, answer.lemma);
-      const current = nextStats[key] ?? { seen: 0, correct: 0 };
-      nextStats[key] = { seen: current.seen + 1, correct: current.correct + (answer.correct ? 1 : 0) };
-    }
-    const nextMemory = { ...currentMemory, stats: nextStats };
-    vocabularyMemoryRef.current = nextMemory;
-    setVocabularyMemory(nextMemory);
-    if (!session.authenticated || !session.user || currentMemory.owner !== session.user.email) return;
-    queueAccountSync(async () => {
-      const response = await apiFetch("/api/vocab", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, answers }) });
-      if (!response.ok) throw new Error(t("词汇统计同步失败"));
-    });
+    const current = vocabularyMemoryRef.current;
+    const owner = session.authenticated && session.user ? session.user.email : GUEST_VOCABULARY_OWNER;
+    if (current.owner !== owner || (accountOwnerRef.current ?? GUEST_VOCABULARY_OWNER) !== owner || !answers.length) return false;
+    const batches: LegacyVocabularyBatch[] = [];
+    for (let offset = 0; offset < answers.length; offset += 100) batches.push({ id: crypto.randomUUID(), language: nextLanguage,
+      answers: answers.slice(offset, offset + 100).map(answer => ({ lemma: answer.lemma, seen: 1, correctCount: Number(answer.correct) })) });
+    if (sanitizeLegacyVocabularyBatches(batches).length !== batches.length) return false;
+    const next: VocabularyMemory = { ...current, pendingLegacyBatches: [...sanitizeLegacyVocabularyBatches(current.pendingLegacyBatches), ...batches],
+      stats: mergeVocabularyStats(current.stats, legacyVocabularyCounts(batches), true) };
+    vocabularyMemoryRef.current = next;
+    setVocabularyMemory(next);
+    if (session.authenticated) void refreshAccount(session);
+    return true;
+  };
+
+  const recordVocabularyReview = (event: VocabularyReviewEvent) => {
+    const current = vocabularyMemoryRef.current;
+    const reviews = sanitizeVocabularyReviews(current.reviews);
+    if (!sanitizeVocabularyReviews([event]).length || reviews.some(item => item.id === event.id)) return false;
+    const owner = session.authenticated && session.user ? session.user.email : GUEST_VOCABULARY_OWNER;
+    if (current.owner !== owner || (accountOwnerRef.current ?? GUEST_VOCABULARY_OWNER) !== owner) return false;
+    const next: VocabularyMemory = { ...current, reviews: [...reviews, event],
+      pendingReviewIds: [...new Set([...(current.pendingReviewIds ?? []), event.id])],
+      stats: mergeVocabularyStats(current.stats, reviewCounts([event]), true) };
+    vocabularyMemoryRef.current = next;
+    setVocabularyMemory(next);
+    if (!session.authenticated) return true;
+    void queueAccountSync(async () => {
+      if (accountOwnerRef.current !== owner) return;
+      const snapshot = vocabularyMemoryRef.current;
+      const pending = new Set(snapshot.pendingReviewIds ?? []);
+      const events = sanitizeVocabularyReviews(snapshot.reviews).filter(item => pending.has(item.id));
+      for (let offset = 0; offset < events.length; offset += 100) {
+        if (accountOwnerRef.current !== owner) return;
+        const batch = events.slice(offset, offset + 100);
+        const response = await apiFetch("/api/vocab/reviews", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ events: batch }) });
+        if (!response.ok) throw new Error(t("词汇统计同步失败"));
+        const result = await response.json();
+        if (result?.ok !== true || result.count !== batch.length || !Number.isInteger(result.inserted) || result.inserted < 0 || result.inserted > batch.length) throw new Error("Invalid vocabulary review acknowledgment");
+        if (accountOwnerRef.current !== owner || vocabularyMemoryRef.current.owner !== owner) return;
+        const sent = new Set(batch.map(item => item.id));
+        const saved = { ...vocabularyMemoryRef.current, pendingReviewIds: (vocabularyMemoryRef.current.pendingReviewIds ?? []).filter(id => !sent.has(id)) };
+        vocabularyMemoryRef.current = saved;
+        setVocabularyMemory(saved);
+      }
+    }).catch(() => { /* The saved event stays pending and is retried on account refresh. */ });
+    return true;
   };
 
   const updateBookmarks = useCallback((next: string[] | ((current: string[]) => string[]), nextLanguage: LanguageCode) => {
+    const owner = session.user?.email;
+    if (session.authenticated && accountOwnerRef.current !== owner) return;
     const current = bookmarksRef.current;
     const resolved = typeof next === "function" ? next(current) : next;
     const unique = [...new Set(resolved)];
@@ -528,11 +675,13 @@ export default function App() {
     const bookmarkRevision = ++bookmarkRevisionRef.current;
     bookmarksRef.current = unique;
     setBookmarks(unique);
-    if (!session.authenticated || (!added.length && !removed.length)) return;
+    if (!session.authenticated || !owner || (!added.length && !removed.length)) return;
     queueAccountSync(async () => {
+      if (accountOwnerRef.current !== owner) return;
       const latest = await apiFetch("/api/stats");
       if (!latest.ok) throw new Error(t("收藏同步失败"));
       const stats = await latest.json();
+      if (accountOwnerRef.current !== owner) return;
       if (!Array.isArray(stats?.bookmarks)) throw new Error(t("收藏同步失败"));
       const remoteBookmarks: string[] = stats.bookmarks.filter((id: unknown) => typeof id === "string");
       const remoteLanguageBookmarks: string[] = stats.byLanguage?.[nextLanguage]?.bookmarks
@@ -540,13 +689,14 @@ export default function App() {
       const questionIds = [...new Set([...remoteLanguageBookmarks.filter((id) => !removed.includes(id)), ...added])];
       const response = await apiFetch("/api/bookmarks", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, questionIds }) });
       if (!response.ok) throw new Error(t("收藏同步失败"));
+      if (accountOwnerRef.current !== owner) return;
       if (bookmarkRevisionRef.current === bookmarkRevision) {
         const refreshed = [...new Set([...remoteBookmarks.filter((id) => !remoteLanguageBookmarks.includes(id)), ...questionIds])];
         bookmarksRef.current = refreshed;
         setBookmarks(refreshed);
       }
     });
-  }, [queueAccountSync, session.authenticated, setBookmarks]);
+  }, [queueAccountSync, session.authenticated, session.user, setBookmarks]);
   const updateLanguageBookmarks = useCallback((next: string[] | ((current: string[]) => string[])) => {
     const current = bookmarksRef.current;
     const currentLanguage = current.filter((id) => languageQuestionIds.has(id));
@@ -560,8 +710,10 @@ export default function App() {
   const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
 
   const syncPreference = (nextLanguage: LanguageCode, nextLevel: LanguageLevel, nextVocabularyMode: VocabularyMode = vocabularyModeRef.current) => {
-    if (!session.authenticated) return;
+    const owner = session.user?.email;
+    if (!session.authenticated || !owner) return;
     queueAccountSync(async () => {
+      if (accountOwnerRef.current !== owner) return;
       const response = await apiFetch("/api/preferences", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ language: nextLanguage, level: nextLevel, vocabMode: nextVocabularyMode }) });
       if (!response.ok) throw new Error(t("语言偏好同步失败"));
     });
@@ -708,11 +860,11 @@ export default function App() {
               {view === "mistakes" && <QuestionCollection title={copy.mistakes} empty={copy.noMistakes} questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title={copy.bookmarks} empty={copy.noBookmarks} questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "exam" && <ExamMode bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} />}
-              {view === "vocab-trainer" && <VocabularyTrainer language={language} level={languageLevel} mode={vocabularyMode} stats={vocabularyMemory.stats} onAnswer={recordVocabulary} setView={setView} />}
-              {view === "vocabulary" && <VocabularyLab level={level} onSubmit={(answers) => recordVocabulary(language, answers)} />}
+              {view === "vocab-trainer" && <VocabularyTrainer key={`${language}:${vocabularyMemory.owner}`} language={language} locale={locale} level={languageLevel} mode={vocabularyMode} stats={activeVocabularyStats} reviews={activeVocabularyReviews} owner={vocabularyMemory.owner} ready={vocabularyOwnerReady} focusId={vocabularyFocus} onReview={recordVocabularyReview} onDictionary={(id) => { setVocabularyFocus(id); setView("resources"); }} onSettings={() => setView("settings")} />}
+              {view === "vocabulary" && <VocabularyLab level={level} ready={vocabularyOwnerReady} onSubmit={(answers) => recordVocabulary(language, answers)} />}
               {view === "scope" && <Scope level={level} openPractice={openPractice} />}
               {view === "archive" && <Archive />}
-              {view === "resources" && <ResourceLibrary language={language} config={languageConfig} />}
+              {view === "resources" && <ResourceLibrary language={language} config={languageConfig} focusId={vocabularyFocus} stats={activeVocabularyStats} reviews={activeVocabularyReviews} onPractice={(id) => { setVocabularyFocus(id); setView("vocab-trainer"); }} />}
               {view === "community" && <CommunityPreview config={languageConfig} />}
               {view === "settings" && <PersonalSettings config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
@@ -1463,79 +1615,6 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   );
 }
 
-function VocabularyTrainer({ language, level, mode, stats, onAnswer, setView }: {
-  language: LanguageCode;
-  level: LanguageLevel;
-  mode: VocabularyMode;
-  stats: VocabularyStats;
-  onAnswer: (language: LanguageCode, answers: { lemma: string; correct: boolean }[]) => void;
-  setView: (view: View) => void;
-}) {
-  const t = useInterfaceText();
-  const { copy } = useI18n();
-  const eligible = useMemo(() => vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level)), [language, level]);
-  const coveredLevels = vocabularyLevelsFor(language, level);
-  const coverageLabel = coveredLevels.length > 1
-    ? `${languageLevelLabels[coveredLevels[0]]}–${languageLevelLabels[coveredLevels.at(-1)!]}`
-    : languageLevelLabels[coveredLevels[0]];
-  const [cardId, setCardId] = useState("");
-  const [revealed, setRevealed] = useState(false);
-  const [recentlyShown, setRecentlyShown] = useState<string[]>([]);
-  const [sessionTotal, setSessionTotal] = useState(0);
-  const [sessionCorrect, setSessionCorrect] = useState(0);
-
-  useEffect(() => {
-    setCardId(chooseNextVocabularyCard(eligible, stats, [])?.id ?? "");
-    setRevealed(false);
-    setRecentlyShown([]);
-    setSessionTotal(0);
-    setSessionCorrect(0);
-  }, [eligible]);
-
-  const card = eligible.find((item) => item.id === cardId) ?? eligible[0];
-  const totalSeen = eligible.reduce((total, item) => total + (stats[vocabularyKey(item.language, item.term)]?.seen ?? 0), 0);
-  const totalCorrect = eligible.reduce((total, item) => total + (stats[vocabularyKey(item.language, item.term)]?.correct ?? 0), 0);
-
-  if (!card) return <div className="page empty-state"><div><BookOpen /></div><h2>{t("本级词库正在整理")}</h2><p>{t("切换等级后再试，或稍后等待词卡扩充。")}</p></div>;
-
-  const remember = (correct: boolean) => {
-    const key = vocabularyKey(language, card.term);
-    const current = stats[key] ?? { seen: 0, correct: 0 };
-    const nextStats = { ...stats, [key]: { seen: current.seen + 1, correct: current.correct + (correct ? 1 : 0) } };
-    const nextRecent = [...recentlyShown, card.id].slice(-4);
-    const nextCard = chooseNextVocabularyCard(eligible, nextStats, nextRecent);
-    onAnswer(language, [{ lemma: card.term, correct }]);
-    setRecentlyShown(nextRecent);
-    setSessionTotal((total) => total + 1);
-    if (correct) setSessionCorrect((total) => total + 1);
-    setCardId(nextCard?.id ?? card.id);
-    setRevealed(false);
-  };
-
-  return <div className="page vocabulary-trainer">
-    <div className="practice-header vocab-trainer-header">
-      <div><TargetKicker kind="vocabulary" /><h1>{levelName(copy, level, language)} · {t("自适应背单词")}</h1><p>{t("当前涵盖")}{coverageLabel}{t("词库。没有每日上限；没记住的词会提高权重，熟词仍会低频复现，最近出现的词会暂时降权。")}</p></div>
-      <button className="secondary-button" onClick={() => setView("settings")}><Settings size={16} />{t("显示设置")}</button>
-    </div>
-    <section className="vocab-session-stats" aria-label={t("背词统计")}>
-      <div><span>{t("本轮")}</span><strong>{sessionTotal}</strong><small>{t("次判断")}</small></div>
-      <div><span>{t("本轮记得")}</span><strong>{sessionCorrect}</strong><small>{sessionTotal ? `${Math.round(sessionCorrect / sessionTotal * 100)}%` : t("尚未作答")}</small></div>
-      <div><span>{t("范围历史")}</span><strong>{totalSeen}</strong><small>{totalSeen ? `${Math.round(totalCorrect / totalSeen * 100)}% ${t("记得")}` : `${eligible.length} ${t("新词卡")}`}</small></div>
-    </section>
-    <article className="adaptive-vocab-card">
-      <span>{languageConfigs[language].nativeName} · {mode === "context" ? t("单词＋语境") : t("纯单词")}</span>
-      <h2 lang={language}>{card.term}</h2>
-      {mode === "context" && <p className="vocab-context" lang={language}>{card.context}</p>}
-      {revealed ? <div className="vocab-reveal"><span>{t("释义")}</span><strong>{card.meaning}</strong></div> : <button className="primary-button vocab-reveal-button" onClick={() => setRevealed(true)}>{t("显示释义")}</button>}
-    </article>
-    {revealed && <div className="vocab-feedback" aria-label={t("记忆反馈")}>
-      <button onClick={() => remember(false)}><XCircle size={19} /><span><strong>{t("忘了")}</strong><small>{t("提高后续出现权重")}</small></span></button>
-      <button className="remembered" onClick={() => remember(true)}><CheckCircle2 size={19} /><span><strong>{t("记得")}</strong><small>{t("降低但不永久移除")}</small></span></button>
-    </div>}
-    <p className="fine-print">{t("Pikku 依据本账号累计的见词次数与记得次数计算透明权重；首版不声称复现任何第三方未公开算法。")}</p>
-  </div>;
-}
-
 function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
   config: LanguageConfig;
   mode: VocabularyMode;
@@ -1563,7 +1642,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
   </div>;
 }
 
-function VocabularyLab({ level, onSubmit }: { level: StudyLevel; onSubmit: (answers: { lemma: string; correct: boolean }[]) => void }) {
+function VocabularyLab({ level, ready, onSubmit }: { level: StudyLevel; ready: boolean; onSubmit: (answers: { lemma: string; correct: boolean }[]) => boolean }) {
   const { copy, language } = useI18n();
   const items = useMemo(() => {
     const seen = new Set<string>();
@@ -1576,13 +1655,16 @@ function VocabularyLab({ level, onSubmit }: { level: StudyLevel; onSubmit: (answ
   const [test, setTest] = useState<VocabItem[]>([]);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [finished, setFinished] = useState(false);
+  const submittedTest = useRef<VocabItem[] | null>(null);
   const eligible = items.filter((item) => normalizePikkuLevel(language.id, item.level) === normalizePikkuLevel(language.id, level));
   const restart = () => { setTest(shuffle(eligible).slice(0, 20)); setAnswers({}); setFinished(false); };
   useEffect(() => { setTest(shuffle(items.filter((item) => normalizePikkuLevel(language.id, item.level) === normalizePikkuLevel(language.id, level))).slice(0, 20)); setAnswers({}); setFinished(false); }, [items, level]);
   const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
   const submit = () => {
+    if (!ready || submittedTest.current === test) return;
+    submittedTest.current = test;
+    if (!onSubmit(test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })))) { submittedTest.current = null; return; }
     setFinished(true);
-    onSubmit(test.map((item) => ({ lemma: item.lemma, correct: answers[item.lemma] === item.gloss })));
   };
 
   return <div className="page vocab-page">
@@ -1595,7 +1677,7 @@ function VocabularyLab({ level, onSubmit }: { level: StudyLevel; onSubmit: (answ
         return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {item.family}</span><h2 lang={item.htmlLang || language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{option}</button>)}</div></article>;
       })}
     </div>
-    {!finished ? <button className="primary-button vocab-submit" disabled={!test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
+    {!finished ? <button className="primary-button vocab-submit" disabled={!ready || !test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
     </>}
   </div>;
 }
@@ -1710,33 +1792,17 @@ function HubTabs({ items, view, setView }: { items: [View, string][]; view: View
   return <div className="hub-tabs" aria-label={t("栏目分页")}>{items.map(([id, label]) => <button key={id} className={view === id ? "active" : ""} onClick={() => setView(id)}>{label}</button>)}</div>;
 }
 
-function ResourceLibrary({ language, config }: { language: LanguageCode; config: LanguageConfig }) {
+function ResourceLibrary({ language, config, focusId, stats, reviews, onPractice }: { language: LanguageCode; config: LanguageConfig; focusId?: string; stats: VocabularyStats; reviews: VocabularyReviewEvent[]; onPractice: (id: string) => void }) {
   const { copy, locale } = useI18n();
   const languageName = getLearningLanguage(language).labels[locale];
   const t = useInterfaceText();
-  const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">("textbooks");
-  const [query, setQuery] = useState("");
-  const [lexiconBatch, setLexiconBatch] = useState("all");
-  const [lexiconReviewStatus, setLexiconReviewStatus] = useState<"all" | ReviewStatus>("all");
+  const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">(focusId ? "dictionary" : "textbooks");
   const textbooks = textbookCatalog.filter((book) => book.targetLanguage === language);
   const chapterMappings = resourceChapterMappings.filter((mapping) => mapping.targetLanguage === language);
   const periods = language === "la" ? [...new Set(classicalAuthors.map((author) => author.period))] : [];
-  const languageLexicon = lexiconSeed.filter((entry) => entry.language === language);
-  const lexiconBatches = [...new Set(languageLexicon.map((entry) => entry.batch))];
-  const lexicon = languageLexicon.filter((entry) =>
-    (lexiconBatch === "all" || entry.batch === lexiconBatch)
-    && (lexiconReviewStatus === "all" || entry.reviewStatus === lexiconReviewStatus)
-    && `${entry.lemma} ${entry.principalParts} ${entry.gloss} ${entry.derivatives.join(" ")}`.toLowerCase().includes(query.trim().toLowerCase())
-  );
-  const latestLexiconBatch = languageLexicon.reduce((latest, entry) => entry.addedOn && entry.addedOn > latest ? entry.addedOn : latest, "");
-  const weeklyLexiconCount = languageLexicon.filter((entry) => entry.addedOn === latestLexiconBatch).length;
   const currentFacts = languageFacts[language] ?? [];
 
-  useEffect(() => {
-    setQuery("");
-    setLexiconBatch("all");
-    setLexiconReviewStatus("all");
-  }, [language]);
+  useEffect(() => { if (focusId) setTab("dictionary"); }, [focusId]);
 
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">PIKKU RESOURCES · {config.nativeName}</span><h1>{languageName}{t("教材、作者与辞典")}</h1><p>{t("当前页面只显示")}{languageName}{t("资源；切换学习语言后，教材、作者、词条和语言知识会同步切换。")}</p></div></div>
@@ -1756,18 +1822,7 @@ function ResourceLibrary({ language, config }: { language: LanguageCode; config:
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>{t("建议域：")}{levelName(copy, author.examLevel, language)}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "authors" && language !== "la" && <div className="empty-state"><div><Users /></div><h2>{languageName}{t("作者图谱待建")}</h2><p>{t("当前模式不会借用拉丁语作者数据；按语言与时代核验后再加入。")}</p></div>}
-    {tab === "dictionary" && <>
-      <div className="resource-metrics"><div><strong>{lexicon.length}<small> / {languageLexicon.length}</small></strong><span>{t("当前筛选／")}{languageName}{t("词条")}</span></div><div><strong>{weeklyLexiconCount}</strong><span>{t("最近一批新增")}{latestLexiconBatch ? ` · ${latestLexiconBatch}` : ""}</span></div><div><strong>{languageLexicon.length}</strong><span>{config.nativeName}{t("已建词条")}</span></div></div>
-      <div className="lexicon-filters">
-        <label>{t("批次")}<select value={lexiconBatch} onChange={(event) => setLexiconBatch(event.target.value)}><option value="all">{t("全部批次")}</option>{lexiconBatches.map((batch) => <option key={batch} value={batch}>{batch === "foundation" ? t("基础词库") : batch}</option>)}</select></label>
-        <label>{t("内容状态")}<select value={lexiconReviewStatus} onChange={(event) => setLexiconReviewStatus(event.target.value as "all" | ReviewStatus)}><option value="all">{t("全部状态")}</option>{(Object.keys(reviewStatusLabels) as ReviewStatus[]).map((status) => <option key={status} value={status}>{t(reviewStatusLabels[status])}</option>)}</select></label>
-      </div>
-      <div className="source-card"><CircleHelp /><div><strong>{t("词条核验规则")}</strong><p>{language === "la" ? t("每周复盘先收录本周实际接触但尚未入库的词汇，再逐条核对词典形、语义、词源与例句；下列五种拉丁语辞典分别记录核验状态。") : (locale === "en" ? `Only ${languageName} entries are shown. Language-specific dictionary sources are being checked.` : `这里只显示${languageName}词条；专项词典来源仍在核验。`)}</p></div></div>
-      {language === "la" && <div className="dictionary-sources">{dictionarySources.map((source) => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div>}
-      <label className="resource-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("搜索词头、读音、中文义或派生词")} /></label>
-      <div className="lexicon-list">{lexicon.map((entry) => <article id={`lexicon-${entry.language}-${entry.lemma}`} key={`${entry.language}-${entry.lemma}`}><div><small className="lexicon-language">{entry.language.toUpperCase()}</small><h2>{entry.lemma}</h2><span>{entry.principalParts}</span><b>{entry.gloss}</b></div><p><strong>{t("词源线索")}</strong>{entry.pie}</p><p><strong>{t("派生／用法提示")}</strong>{entry.derivatives.length ? entry.derivatives.join(" · ") : t("待补充")}</p><div className="dictionary-checks lexicon-workflow"><span className={`review-status ${entry.reviewStatus}`}>{t(reviewStatusLabels[entry.reviewStatus])}</span><span>{t("批次 ·")}{entry.batch === "foundation" ? t("基础词库") : entry.batch}</span></div>{entry.language === "la" ? <div className="dictionary-checks">{dictionarySources.map((source) => <span key={source.id}>{source.id.toUpperCase()} · {entry.dictionaryStatus[source.id]}</span>)}</div> : <div className="dictionary-checks"><span>{t("专项词典 · 待核")}</span>{entry.addedOn && <span>{t("周复盘新增 ·")}{entry.addedOn}</span>}</div>}</article>)}</div>
-      {!lexicon.length && <div className="empty-state"><div><Search /></div><h2>{t("没有匹配词条")}</h2><p>{t("换一个关键词、批次或内容状态；当前页面只查询")}{languageName}{t("词库。")}</p></div>}
-    </>}
+    {tab === "dictionary" && <VocabularyDictionary key={language} language={language} locale={locale} stats={stats} reviews={reviews} focusId={focusId} onPractice={onPractice} />}
     {tab === "etymology" && <>
       <div className="etymology-progress"><Sparkles /><div><strong>{language === "la" ? etymologyFacts.length : currentFacts.length} / 365</strong><p>{language === "la" ? t("现有词源知识已接入首页随机栏目；后续按拉丁词、后裔词、语义变化与来源逐条扩充。") : (locale === "en" ? `Only ${languageName} language notes are shown, with source links.` : `当前只显示${languageName}语言知识，并保留可点击来源。`)}</p></div></div>
       {language === "la" ? <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {fact.meaning}</h2><p>{fact.note}</p><small>{t("英语：")}{fact.english.join(" · ")}{t("罗曼语：")}{fact.romance.join(" · ")}</small></article>)}</div> : <div className="fact-library">{currentFacts.map((fact, index) => <article key={fact.id}><span>{fact.kind} · {String(index + 1).padStart(3, "0")}</span><h2>{fact.title}</h2><p>{fact.summary}</p><small>{fact.example}　{fact.sources.map((source, sourceIndex) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{sourceIndex > 0 && " · "}{source.label}</a>)}</small></article>)}</div>}
