@@ -1,3 +1,5 @@
+import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
+const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
 import assert from 'node:assert/strict';
 import { before, test } from 'node:test';
 import fs from 'node:fs';
@@ -63,11 +65,11 @@ function harness({ language = 'ja', level = 'F', account = false } = {}) {
       return audio;
     },
   };
-  const questions = evaluate('lib/questions.js', { './api': api, './config': { apiOrigin: 'https://pikku.qzz.io/' }, '../data/bank': bank, '../data/shared': shared }, { wx });
+  const questions = evaluate('lib/questions.js', { './api': api, './config': { apiOrigin: 'https://pikku.qzz.io/' }, '../data/bank': bank, '../data/shared': shared, '../data/content-locale': contentLocale() }, { wx });
   let definition;
   evaluate('pages/index/index.js', {
     '../../lib/api': api, '../../lib/vocabulary': {}, '../../lib/vocabulary-page': { vocabularyActions: {} },
-    '../../data/bank': bank, '../../data/shared': shared, '../../lib/copy': copy, '../../lib/questions': questions,
+    '../../data/content-locale': contentLocale(), '../../data/bank': bank, '../../data/shared': shared, '../../lib/copy': copy, '../../lib/questions': questions,
   }, { wx, Page: value => { definition = value; } });
   const page = { ...definition, data: plain(definition.data), alive: true, generation: 0, owner: account ? 'account' : null,
     questions: bank.questions, queue: [],
@@ -299,5 +301,24 @@ test('both historical papers preserve audio-only choices and expose their transc
     await h.page.answer(event({ index: q.answer }));
     assert.equal(h.page.data.answerCorrect, true);
     assert.equal(h.page.data.visibleTranscript, q.transcript);
+  }
+});
+
+
+test('native paper occurrence labels localize while canonical learning metadata stays unchanged', () => {
+  const h = harness();
+  for (const collection of bank.questionCollections) {
+    h.page.openPaper(event({ collection: collection.id }));
+    const canonical = h.page.activeQuestion;
+    const saved = plain(canonical.occurrences);
+    assert.ok(saved.length);
+    h.page.changeLocale();
+    assert.equal(h.page.data.locale, 'en');
+    assert.notEqual(h.page.data.question.occurrences[0].label, saved[0].label);
+    assert.deepEqual(plain(h.page.data.question.occurrences), saved.map(item => ({ ...item, label: contentLocale().contentText(item.label, 'en') })));
+    assert.deepEqual(plain(canonical.occurrences), saved);
+    assert.equal(h.page.activeQuestion, canonical);
+    h.page.changeLocale();
+    assert.deepEqual(plain(h.page.data.question.occurrences), saved);
   }
 });

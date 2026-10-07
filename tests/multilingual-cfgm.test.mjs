@@ -1,3 +1,4 @@
+import { frenchArabicQuestions } from "../data/french-arabic.ts";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { languageConfigs, languageOrder } from "../data/languages.ts";
@@ -7,10 +8,10 @@ import { multilingualQuestions } from "../data/multilingual-questions.ts";
 import { multilingualSeedQuestions } from "../data/multilingual-seeds.ts";
 import { vocabularyCards, vocabularyKey, vocabularyMatchesLevel } from "../data/vocabulary.ts";
 
-const allQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions];
+const allQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions, ...frenchArabicQuestions];
 
-test("all seven languages expose only CFGM and start at C", () => {
-  assert.deepEqual(languageOrder, ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"]);
+test("all nine languages expose only CFGM and start at C", () => {
+  assert.deepEqual(languageOrder, ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"]);
   for (const language of languageOrder) {
     assert.deepEqual(languageConfigs[language].levels, ["C", "F", "G", "M"]);
     assert.equal(languageConfigs[language].defaultLevel, "C");
@@ -38,12 +39,13 @@ test("stored legacy levels route to CFGM without changing mixed into mastery", (
   assert.equal(matchesLevel(recoveredMastery, "mixed"), false);
 });
 
-test("every language and tier has its own real question and cumulative vocabulary pool", () => {
+test("each language exposes honest question coverage and a cumulative vocabulary pool", () => {
   for (const language of languageOrder) {
     for (const level of pikkuLevels) {
       const pool = allQuestions.filter((question) => (question.language ?? "la") === language && matchesLevel(question, level));
-      assert.ok(pool.length > 0, `${language}:${level} needs a question`);
-      assert.ok(pool.some((question) => (question.text ?? question.latin ?? question.targetText)?.length > 0));
+      const hasContent = !(["fr", "ar"].includes(language) && level === "M");
+      assert.equal(pool.length > 0, hasContent, `${language}:${level} must reflect reviewed content availability`);
+      assert.ok(!hasContent || pool.some((question) => (question.text ?? question.latin ?? question.targetText)?.length > 0));
       assert.ok(pool.every((question) => question.prompt.length > 0));
       const cards = vocabularyCards.filter((card) => card.language === language && vocabularyMatchesLevel(card, level));
       assert.ok(cards.length > 0, `${language}:${level} needs vocabulary`);

@@ -55,7 +55,7 @@ const INITIAL_WEIGHTS = [0, 1.2, -0.3, -0.45, -0.3, 0, 0, 0, 0, 0, 0, 0, 0, -1.2
 const WEIGHT_BOUNDS = INITIAL_WEIGHTS.map((_, index) => index === 1 ? [0, 8] : index === 7 ? [0, 0] : index === 13 ? [-8, 0] : [-4, 4]);
 const PROBABILITY_TOLERANCE = 1e-9;
 const success = (outcome: VocabularyOutcome) => outcome === "remembered" ? 1 : outcome === "approximate" ? 0.5 : 0;
-const LANGUAGES = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"];
+const LANGUAGES = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"];
 // Candidate selection reuses the fitted model, so validate/sort its history only once per draw.
 const modelHistories = new WeakMap<VocabularyModel, readonly VocabularyReviewEvent[]>();
 const DAY = 86_400_000;

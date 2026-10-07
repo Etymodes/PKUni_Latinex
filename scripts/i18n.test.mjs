@@ -1,3 +1,4 @@
+import { frenchArabicQuestions } from "../data/french-arabic.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -22,7 +23,7 @@ test("the display language excludes itself and offers its counterpart first", ()
 });
 
 test("core and switch-test languages remain available in both interfaces", () => {
-  const required = ["la", "ja", "es", "grc", "ru"];
+  const required = ["la", "ja", "es", "grc", "ru", "fr", "ar"];
   for (const locale of ["zh-CN", "en"]) {
     const available = availableLearningLanguages(locale).map((language) => language.id);
     required.forEach((id) => assert.equal(available.includes(id), true));
@@ -68,12 +69,12 @@ test("every language supplies the complete target-language heading set", () => {
   }
 });
 
-test("every target language has C F G M learning content without Latin fallback", () => {
-  const bank = [...questions, ...multilingualSeedQuestions];
+test("each target language exposes its reviewed tier coverage without Latin fallback", () => {
+  const bank = [...questions, ...multilingualSeedQuestions, ...frenchArabicQuestions];
   const levels = ["C", "F", "G", "M"];
   for (const language of learningLanguages) {
     const languageBank = bank.filter((question) => (question.language || "la") === language.id);
-    levels.forEach((level) => assert.ok(languageBank.some((question) => matchesLevel(question, level)), `${language.id} is missing ${level}`));
+    levels.forEach((level) => assert.equal(languageBank.some((question) => matchesLevel(question, level)), !(["fr", "ar"].includes(language.id) && level === "M"), `${language.id}/${level} must reflect reviewed content availability`));
   }
   assert.equal(matchesLevel({ ...multilingualSeedQuestions[0], level: "C" }, "M"), false);
 });

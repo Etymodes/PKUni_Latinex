@@ -74,7 +74,7 @@ Object.assign(zh, {
   learningModel: '个人学习模型与记录', modelNote: '先保存答题前的预测，再用实际反馈更新模型。每条记录保留日期、三种状态概率与实际结果，按语言分别学习。',
   modelSamples: '个人反馈', modelError: '三状态预测误差（越低越好）', modelBaseline: '固定猜测基准', exportReviews: '导出我的学习记录',
   exportSaved: '记录已保存，可再次点击导出分享', exportFailed: '导出失败，请检查本机存储空间',
-  supportAuthor: '支持作者', supportNote: '如果 Pikku 对你有帮助，欢迎自愿支持作者继续开发与整理内容。谢谢你的鼓励。', supportHint: '点击查看大图，或长按二维码。',
+  feedback: '意见反馈', feedbackHelp: '复制反馈表链接后，请在浏览器中打开。', supportAuthor: '支持作者', supportNote: '如果 Pikku 对你有帮助，欢迎自愿支持作者继续开发与整理内容。谢谢你的鼓励。', supportHint: '点击查看大图，或长按二维码。',
 });
 Object.assign(en, {
   dictionary: 'Dictionary', approximate: 'Approximate', approximateHelp: 'Familiar, but your understanding of the meaning is imprecise.',
@@ -90,7 +90,7 @@ Object.assign(en, {
   learningModel: 'Personal learning model and records', modelNote: 'Predictions are frozen before feedback, then actual results train the model. Dates, probabilities and outcomes are kept separately for each language.',
   modelSamples: 'Personal feedback', modelError: 'Three-state error (lower is better)', modelBaseline: 'Fixed baseline', exportReviews: 'Export my learning records',
   exportSaved: 'Saved. Tap Export again to share.', exportFailed: 'Export failed. Check device storage.',
-  supportAuthor: 'Support the author', supportNote: 'If Pikku helps you, you are welcome to support its continued development and learning materials. Thank you.', supportHint: 'Tap to enlarge, or long-press the QR code.',
+  feedback: 'Feedback', feedbackHelp: 'Copy the feedback form link, then open it in your browser.', supportAuthor: 'Support the author', supportNote: 'If Pikku helps you, you are welcome to support its continued development and learning materials. Thank you.', supportHint: 'Tap to enlarge, or long-press the QR code.',
 });
 
 module.exports = { copies: { 'zh-CN': zh, en }, levelCards };

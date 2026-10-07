@@ -19,7 +19,7 @@ export type LanguageConfig = {
 
 const standardCategories: readonly Category[] = ["morphology", "syntax", "sentencePattern", "vocabulary", "classics", "translation"];
 
-export const languageOrder: readonly LanguageCode[] = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"];
+export const languageOrder: readonly LanguageCode[] = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"];
 export const languageLevelLabels = levelLabels;
 
 export const languageConfigs: Record<LanguageCode, LanguageConfig> = {
@@ -57,6 +57,16 @@ export const languageConfigs: Record<LanguageCode, LanguageConfig> = {
     code: "grc", name: "古希腊语", nativeName: "Ἑλληνική",
     breadcrumb: "古希腊语课程与练习", mascotCopy: "你的古希腊语学习搭子",
     note: "恢复古希腊语独立种子练习，按 Pikku C/F/G/M 组织。",
+    levels: pikkuLevels, defaultLevel: "C", categories: standardCategories,
+  },
+  fr: {
+    code: "fr", name: "法语", nativeName: "français", breadcrumb: "法语课程与练习", mascotCopy: "你的法语学习搭子",
+    note: "标准法语原创起步题集；按 C/F/G/M 组织，尚非完整课程。",
+    levels: pikkuLevels, defaultLevel: "C", categories: standardCategories,
+  },
+  ar: {
+    code: "ar", name: "阿拉伯语（现代标准语）", nativeName: "العربية الفصحى", breadcrumb: "现代标准阿拉伯语课程与练习", mascotCopy: "你的阿拉伯语学习搭子",
+    note: "现代标准阿拉伯语原创起步题集，不混入地区口语；尚非完整课程。",
     levels: pikkuLevels, defaultLevel: "C", categories: standardCategories,
   },
   ru: {

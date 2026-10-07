@@ -1,5 +1,6 @@
 const api = require('./api');
 const bank = require('../data/bank');
+const { localizeVocabularyCard } = require('../data/content-locale');
 const shared = require('../data/shared');
 const recall = require('../data/vocabulary-model');
 const { reviewCounts, syncVocabularyReviews } = require('../data/vocabulary-review-sync');
@@ -44,6 +45,8 @@ function entries({ language, level, scope = 'all', query = '' }) {
     (scope === 'level' ? shared.vocabularyMatchesLevel(card, level) :
       shared.vocabularyInCollection(card, scope)) &&
     (!search || [card.term, card.reading, card.meaning, card.sourceReading, card.sourceMeaning,
+      localizeVocabularyCard(card, 'en').meaning, localizeVocabularyCard(card, 'en').sourceMeaning,
+      localizeVocabularyCard(card, 'en').usageNotes, ...(localizeVocabularyCard(card, 'en').senses || []).map(sense => sense.gloss),
       ...(card.spellingVariants || []), ...(card.readingVariants || []),
       ...(card.senses || []).map(sense => `${sense.reading} ${sense.gloss}`),
       ...(card.dictionary ? card.dictionary.derivatives : [])].filter(Boolean).join(' ').toLowerCase().includes(search)));

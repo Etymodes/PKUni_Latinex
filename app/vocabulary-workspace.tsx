@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, CheckCircle2, Search, Settings, XCircle } from "lucide-react";
 import { dictionaryEntries, vocabularyCards, vocabularyKey, vocabularyMatchesLevel, vocabularyInCollection, publicDictionaryReferences, type VocabularyCard, type VocabularyMode, type VocabularyStats } from "../data/vocabulary";
+import { contentText, localizeVocabularyCard } from "../lib/content-locale";
 import { dictionarySources } from "../data/resources";
 import type { LanguageCode } from "../data/questions";
 import type { LanguageLevel } from "../data/languages";
@@ -16,10 +17,14 @@ const outcomes: VocabularyOutcome[] = ["forgotten", "approximate", "remembered"]
 const label = (locale: string, zh: string, en: string) => locale === "en" ? en : zh;
 const effectiveMode = (card: VocabularyCard, mode: VocabularyMode): VocabularyMode => mode === "context" && card.context.trim() ? "context" : "word";
 const matchesSource = vocabularyInCollection;
-const searchText = (card: VocabularyCard) => `${card.term} ${card.spellingVariants?.join(" ") ?? ""} ${card.reading ?? ""} ${card.readingVariants?.join(" ") ?? ""} ${card.meaning} ${card.sourceReading ?? ""} ${card.sourceMeaning ?? ""} ${card.senses?.map(sense => `${sense.reading} ${sense.gloss}`).join(" ") ?? ""} ${card.dictionary?.derivatives.join(" ") ?? ""}`.toLowerCase();
+const originalSearchText = (card: VocabularyCard) => `${card.term} ${card.spellingVariants?.join(" ") ?? ""} ${card.reading ?? ""} ${card.readingVariants?.join(" ") ?? ""} ${card.meaning} ${card.sourceReading ?? ""} ${card.sourceMeaning ?? ""} ${card.senses?.map(sense => `${sense.reading} ${sense.gloss}`).join(" ") ?? ""} ${card.dictionary?.derivatives.join(" ") ?? ""}`.toLowerCase();
 
-function VocabularyDetails({ card, locale }: { card: VocabularyCard; locale: string }) {
+// Search both meaning languages without making locale changes redraw the learning card.
+const searchText = (card: VocabularyCard) => `${originalSearchText(card)} ${originalSearchText(localizeVocabularyCard(card, "en"))}`;
+
+function VocabularyDetails({ card: originalCard, locale }: { card: VocabularyCard; locale: string }) {
   const t = (zh: string, en: string) => label(locale, zh, en);
+  const card = localizeVocabularyCard(originalCard, locale);
   const otherSpellings = card.spellingVariants?.filter(value => value !== card.term) ?? [];
   const otherReadings = card.readingVariants?.filter(value => value !== card.reading && value !== card.sourceReading) ?? [];
   const additionalMeaning = card.sourceMeaning && card.sourceMeaning !== card.meaning ? card.sourceMeaning : undefined;
@@ -52,6 +57,7 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
   const [forecastDate, setForecastDate] = useState(() => localDate(new Date(Date.now() + 86400000)));
   const answered = useRef<ReviewPrediction | null>(null);
   const card = eligible.find(item => item.id === cardId);
+  const displayCard = card && localizeVocabularyCard(card, locale);
 
   function advance(events: VocabularyReviewEvent[], memory: VocabularyStats, recentIds: string[], preferred?: string) {
     const now = new Date().toISOString();
@@ -117,8 +123,8 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
     <div className="lexicon-filters"><label>{t("词汇范围", "Vocabulary scope")}<select value={scope} onChange={event => setScope(event.target.value)}><option value="level">{t("当前等级及以下", "Current level and below")}</option>{language === "ja" && <><option value="1992">{t("1992 真题词汇", "1992 exam vocabulary")}</option><option value="jlpt-1993-1">{t("1993 真题词汇", "1993 exam vocabulary")}</option><option value="ja-hlb1000-n1-u01">{t("红蓝宝书 Unit 1", "Red & Blue Unit 1")}</option><option value="2000">{t("2000词 PDF", "2000-word PDF")}</option></>}<option value="all">{t("全部词库（含待分级）", "All entries, including ungraded")}</option></select></label><label className="resource-search"><Search size={16} /><input aria-label={t("筛选词卡", "Filter cards")} placeholder={t("词头、读音或中文义", "Word, reading or meaning")} value={query} onChange={event => setQuery(event.target.value)} /></label></div>
     <section className="vocab-session-stats" aria-label={t("背词统计", "Vocabulary statistics")}><div><span>{t("当前词卡", "Available cards")}</span><strong>{eligible.length}</strong></div><div><span>{t("本轮反馈", "This session")}</span><strong>{round.total}</strong><small>{t("记得", "Remembered")} {round.remembered} · {t("近似", "Approximate")} {round.approximate} · {t("忘了", "Forgotten")} {round.total - round.remembered - round.approximate}</small></div><div><span>{t("用于个人预测的反馈", "Feedback for personal predictions")}</span><strong>{personalModel.sampleCount}</strong><small>{t("按语言独立学习", "Separate for each language")}</small></div></section>
     {!card ? <div className="empty-state"><BookOpen /><h2>{t("没有匹配词卡", "No matching cards")}</h2><p>{t("可切换词汇范围或清空搜索。", "Change the scope or clear the search.")}</p></div> : <>
-      <article className="adaptive-vocab-card"><span>{card.level ?? t("待分级", "Ungraded")} · {effectiveMode(card, mode) === "context" ? t("单词＋语境", "Word and context") : t("纯单词", "Word only")}</span><h2 lang={language}>{card.term}</h2>{effectiveMode(card, mode) === "context" && <p className="vocab-context" lang={language}>{card.context}</p>}
-        {revealed ? <div className="vocab-reveal">{card.reading && <span lang={language}>{card.reading}</span>}<strong>{card.meaning}</strong>{card.partOfSpeech && <small>{card.partOfSpeech}</small>}<VocabularyDetails card={card} locale={locale} /></div> : <button className="primary-button vocab-reveal-button" onClick={() => setRevealed(true)}>{t("显示释义", "Reveal meaning")}</button>}
+      <article className="adaptive-vocab-card"><span>{card.level ?? t("待分级", "Ungraded")} · {effectiveMode(card, mode) === "context" ? t("单词＋语境", "Word and context") : t("纯单词", "Word only")}</span><h2 lang={language} dir="auto">{card.term}</h2>{effectiveMode(card, mode) === "context" && <p className="vocab-context" lang={language} dir="auto">{card.context}</p>}
+        {revealed ? <div className="vocab-reveal">{card.reading && <span lang={language}>{card.reading}</span>}<strong>{displayCard?.meaning}</strong>{displayCard?.partOfSpeech && <small>{displayCard.partOfSpeech}</small>}<VocabularyDetails card={card} locale={locale} /></div> : <button className="primary-button vocab-reveal-button" onClick={() => setRevealed(true)}>{t("显示释义", "Reveal meaning")}</button>}
       </article>
       {!ready && <p role="status">{t("正在切换学习记录，请稍候。", "Switching learning records. Please wait.")}</p>}
       {revealed && <div className="vocab-feedback" aria-label={t("记忆反馈", "Memory feedback")}><button disabled={!ready || !prediction} onClick={() => remember("forgotten")}><XCircle size={19} /><span><strong>{t("忘了", "Forgotten")}</strong><small>{t("记录实际状态并调整复习", "Record and adapt review")}</small></span></button><button className="approximate" disabled={!ready || !prediction} onClick={() => remember("approximate")}><span className="vocab-approx-symbol" aria-hidden="true">≈</span><span><strong>{t("近似", "Approximate")}</strong><small>{t("有印象，但词义有偏差", "Familiar, but meaning is imprecise")}</small></span></button><button className="remembered" disabled={!ready || !prediction} onClick={() => remember("remembered")}><CheckCircle2 size={19} /><span><strong>{t("记得", "Remembered")}</strong><small>{t("记录实际状态并校准预测", "Record and calibrate prediction")}</small></span></button></div>}
@@ -141,14 +147,15 @@ export function VocabularyDictionary({ language, locale, stats, reviews, focusId
   return <section className="linked-dictionary">
     <p>{t("词典与背单词使用同一词条和学习记录。可查词后直接练习，也可在背词时回来查看。", "Dictionary and practice share entries and learning records. Look up a word, practise it, and return here anytime.")}</p>
     <div className="lexicon-filters"><label>{t("内容状态", "Content status")}<select value={status} onChange={event => setStatus(event.target.value)}><option value="all">{t("全部状态", "All statuses")}</option>{Object.entries(reviewLabels).map(([value, labels]) => <option key={value} value={value}>{t(...labels)}</option>)}</select></label><label className="resource-search"><Search size={17} /><input aria-label={t("搜索词典", "Search dictionary")} value={query} onChange={event => setQuery(event.target.value)} placeholder={t("词头、读音或中文义", "Word, reading or meaning")} /></label></div>
-    {language === "la" && <details><summary>{t("词典核验来源", "Dictionary verification sources")}</summary><div className="dictionary-sources">{dictionarySources.map(source => <article key={source.id}><strong>{source.name}</strong><p>{source.scope}</p><small>{source.access}</small></article>)}</div></details>}
+    {language === "la" && <details><summary>{t("词典核验来源", "Dictionary verification sources")}</summary><div className="dictionary-sources">{dictionarySources.map(source => <article key={source.id}><strong>{source.name}</strong><p>{contentText(source.scope, locale)}</p><small>{contentText(source.access, locale)}</small></article>)}</div></details>}
     <p aria-live="polite">{entries.length} / {languageEntries.length} {t("词条", "entries")}</p>
-    <div className="lexicon-list">{entries.slice(0, visibleCount).map(card => {
+    <div className="lexicon-list">{entries.slice(0, visibleCount).map(originalCard => {
+      const card = localizeVocabularyCard(originalCard, locale);
       const stat = stats[vocabularyKey(language, card.term)];
       const wordReviews = reviews.filter(event => event.language === language && event.lemma === card.term);
       const approximateCount = wordReviews.filter(event => event.outcome === "approximate").length;
       const last = wordReviews.sort((a, b) => b.answeredAt.localeCompare(a.answeredAt))[0];
-      return <article key={card.id} id={`word-${card.id}`}><div><small className="lexicon-language">{language.toUpperCase()} · {card.level ?? t("待分级", "Ungraded")}</small><h2 lang={language}>{card.term}</h2>{card.reading && <span lang={language}>{card.reading}</span>}<b>{card.meaning}</b></div>{card.partOfSpeech && <p>{card.partOfSpeech}</p>}{card.context && <blockquote lang={language}>{card.context}</blockquote>}{card.dictionary && <details><summary>{t("词源与核验线索", "Etymology and review notes")}</summary><p>{card.dictionary.pie}</p><p>{card.dictionary.derivatives.join(" · ")}</p></details>}<div className="dictionary-checks lexicon-workflow"><span className={`review-status ${card.dictionary?.reviewStatus ?? "draft"}`}>{t(...reviewLabels[card.dictionary?.reviewStatus ?? "draft"])}</span></div>
+      return <article key={card.id} id={`word-${card.id}`}><div><small className="lexicon-language">{language.toUpperCase()} · {card.level ?? t("待分级", "Ungraded")}</small><h2 lang={language} dir="auto">{card.term}</h2>{card.reading && <span lang={language}>{card.reading}</span>}<b>{card.meaning}</b></div>{card.partOfSpeech && <p>{card.partOfSpeech}</p>}{card.context && <blockquote lang={language} dir="auto">{card.context}</blockquote>}{card.dictionary && <details><summary>{t("词源与核验线索", "Etymology and review notes")}</summary><p>{card.dictionary.pie}</p><p>{card.dictionary.derivatives.join(" · ")}</p></details>}<div className="dictionary-checks lexicon-workflow"><span className={`review-status ${card.dictionary?.reviewStatus ?? "draft"}`}>{t(...reviewLabels[card.dictionary?.reviewStatus ?? "draft"])}</span></div>
         {language === "la" && card.dictionary ? <div className="dictionary-checks">{dictionarySources.map(source => <span key={source.id}>{source.id.toUpperCase()} · {card.dictionary!.dictionaryStatus[source.id] === "已核" ? t("已核", "Verified") : t("待核", "Pending")}</span>)}</div> : <p>{t("专项词典 · 待核", "Language-specific dictionary · pending")}</p>}
         <VocabularyDetails card={card} locale={locale} />
         <p className="dictionary-learning-state">{stat?.seen ? `${t("已练", "Reviewed")} ${stat.seen} · ${t("记得", "Remembered")} ${stat.correct} · ${t("近似", "Approximate")} ${approximateCount}` : t("尚未练习", "Not reviewed yet")}{last && ` · ${t("最近", "Last")}: ${t(...outcomeLabels[last.outcome])}`}</p><button className="primary-button" onClick={() => onPractice(card.id)}>{t("练这个词", "Practise this word")}</button></article>;

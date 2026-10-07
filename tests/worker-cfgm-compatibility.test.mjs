@@ -3,11 +3,11 @@ import { DatabaseSync } from "node:sqlite";
 import test from "node:test";
 import worker, { __test } from "../worker/index.js";
 
-const languages = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"];
+const languages = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"];
 const stages = ["C", "F", "G", "M"];
 const question = { id: "stable-question-id", level: "C", category: "vocabulary", type: "choice", prompt: "Choose.", options: ["yes", "no"], answer: 0, explanation: "Example." };
 
-test("seven-language CFGM validation preserves the original three-language contract", () => {
+test("nine-language CFGM validation preserves the original three-language contract", () => {
   for (const language of languages) {
     for (const level of stages) {
       assert.equal(__test.validPreference(language, level), true);
@@ -40,7 +40,7 @@ class Statement {
   async all() { return { results: this.database.prepare(this.sql).all(...this.values) }; }
 }
 
-test("production API round-trips seven languages while retaining legacy records and account isolation", async (t) => {
+test("production API round-trips nine languages while retaining legacy records and account isolation", async (t) => {
   const database = new DatabaseSync(":memory:");
   t.after(() => database.close());
   const db = {

@@ -1,3 +1,5 @@
+import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
+const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
@@ -21,6 +23,7 @@ async function harness() {
     showToast() {}, stopPullDownRefresh() {}, pageScrollTo() {},
   };
   const modules = new Map([
+    [path.join(miniRoot, 'data/content-locale.js'), { exports: contentLocale() }],
     [path.join(miniRoot, 'data/bank.js'), { exports: bank }],
     [path.join(miniRoot, 'lib/api.js'), { exports: api }],
   ]);

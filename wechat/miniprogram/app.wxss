@@ -32,7 +32,7 @@ text { overflow-wrap: anywhere; }
 .fact { background: #eaf3f8; border: 1rpx solid #cddfe8; border-radius: 18rpx; padding: 28rpx; color: #23567d; }
 .fact-title { display: block; margin-top: 12rpx; font: 600 35rpx Georgia, serif; line-height: 1.5; }
 .note { display: block; font-size: 23rpx; line-height: 1.8; color: #867d6e; margin: 18rpx 0; }
-.row-link { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12rpx; text-align: left; margin: 22rpx 0; border: 1rpx solid #e6e0d5; background: #fffefa; }
+.shell .row-link { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12rpx; text-align: left; margin: 22rpx 0; border: 1rpx solid #e6e0d5; background: #fffefa; }
 .locale-choice { flex-shrink: 0; white-space: nowrap; }
 .filters { display: flex; gap: 12rpx; margin-bottom: 22rpx; }
 .chip { flex: 1; padding: 15rpx 7rpx; border: 1rpx solid #e3ddd1; background: #fffefa; font-size: 24rpx; }

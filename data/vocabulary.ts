@@ -1,3 +1,4 @@
+import { frenchArabicVocabulary } from "./french-arabic.ts";
 import type { LanguageLevel } from "./languages";
 import type { LanguageCode } from "./questions";
 import { normalizePikkuLevel, pikkuLevels, type PikkuLevel } from "./questions.ts";
@@ -137,7 +138,7 @@ const restoredVocabularyCards: VocabularyCard[] = multilingualVocabItems.map((it
 })).filter((card) => !legacyVocabularyKeys.has(vocabularyKey(card.language, card.term)));
 
 // The dictionary and trainer consume these same objects. Keep old stats keys and IDs.
-const sharedCards = [...legacyVocabularyCards, ...restoredVocabularyCards];
+const sharedCards = [...legacyVocabularyCards, ...restoredVocabularyCards, ...frenchArabicVocabulary];
 for (const entry of lexiconSeed) {
   const existing = sharedCards.find(card => card.language === entry.language
     && (card.term === entry.lemma || card.term.split(",")[0] === entry.lemma));

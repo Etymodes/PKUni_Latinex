@@ -35,7 +35,7 @@
       <view><text class="number">{{stats.bookmarks}}</text><text>{{t.bookmarked}}</text></view>
       <view><text class="number">{{stats.words}}</text><text>{{t.wordSeen}}</text></view>
     </view>
-    <view class="fact"><text class="eyebrow">LINGUA · {{languageLabel}}</text><text class="fact-title">{{factStatement}}</text><text class="body">{{factMeaning}}</text></view>
+    <view class="fact"><text class="eyebrow">LINGUA · {{languageLabel}}</text><text class="fact-title {{language === 'ar' ? 'target-rtl' : ''}}">{{factStatement}}</text><text class="body">{{factMeaning}}</text></view>
     <view wx:if="{{isSeed}}" class="note">{{t.seedNote}}</view>
     <button class="row-link" data-view="resources" bindtap="changeView">{{t.resources}} <text>→</text></button>
     <button class="row-link" data-view="dictionary" bindtap="changeView">{{t.dictionary}} <text>→</text></button>
@@ -67,21 +67,21 @@
       <view class="question-top"><text class="eyebrow">{{questionIndex + 1}} / {{questionTotal}} · {{t.categories[question.category]}}</text><button class="text-button" bindtap="toggleBookmark" disabled="{{busy}}">{{isBookmarked ? '★ ' + t.unbookmark : '☆ ' + t.bookmark}}</button></view>
       <text wx:if="{{question.originalNumber}}" class="note">{{t.originalNumber}} · {{question.originalNumber}} · {{question.level}}</text>
       <text class="question-title">{{question.prompt}}</text>
-      <text wx:if="{{question.passage}}" class="target-text question-passage" user-select="true">{{question.passage}}</text>
-      <text wx:if="{{question.targetText || question.text || question.latin}}" class="target-text" user-select="true">{{question.targetText || question.text || question.latin}}</text>
+      <text wx:if="{{question.passage}}" class="target-text question-passage {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{question.passage}}</text>
+      <text wx:if="{{question.targetText || question.text || question.latin}}" class="target-text {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{question.targetText || question.text || question.latin}}</text>
       <text wx:if="{{question.context}}" class="body muted">{{question.context}}</text>
       <view wx:for="{{questionImages}}" wx:key="src" class="question-image"><image src="{{item.src}}" mode="widthFix" style="width:100%;" data-index="{{index}}" bindtap="previewQuestionImage" aria-label="{{item.alt || t.questionImage}}" /><text class="note">{{item.alt}}</text></view>
       <view wx:if="{{questionAudioSource}}" class="question-audio"><view class="actions"><button class="secondary" bindtap="toggleQuestionAudio">{{audioPlaying ? t.pauseAudio : t.playAudio}}</button><button class="text-button" bindtap="restartQuestionAudio">{{t.restartAudio}}</button></view><slider min="0" max="{{audioDuration || 1}}" step="1" value="{{audioCurrent}}" disabled="{{!audioDuration}}" bindchange="seekQuestionAudio" aria-label="{{t.playAudio}}" /><text class="note">{{audioTime}} / {{audioTotal}}</text><text wx:if="{{audioError}}" class="notice" role="alert">{{audioError}}</text></view>
       <text wx:if="{{question.optionsInAudio}}" class="note">{{t.optionsInAudio}}</text>
       <view wx:if="{{question.type === 'choice'}}" class="options">
-        <button wx:for="{{choices}}" wx:key="index" class="option {{submitted && item.index === question.answer ? 'answer-right' : ''}} {{submitted && item.index === selected && !answerCorrect ? 'answer-wrong' : ''}}" data-index="{{item.index}}" bindtap="answer" disabled="{{busy || submitted}}"><text class="option-number">{{index + 1}}</text><text wx:if="{{!question.optionsInAudio || submitted}}">{{item.text}}</text></button>
+        <button wx:for="{{choices}}" wx:key="index" class="option {{submitted && item.index === question.answer ? 'answer-right' : ''}} {{submitted && item.index === selected && !answerCorrect ? 'answer-wrong' : ''}}" data-index="{{item.index}}" bindtap="answer" disabled="{{busy || submitted}}"><text class="option-number">{{index + 1}}</text><text class="{{item.rtl ? 'target-rtl' : ''}}" wx:if="{{!question.optionsInAudio || submitted}}">{{item.text}}</text></button>
       </view>
       <button wx:elif="{{!revealed}}" class="secondary" bindtap="revealAnswer">{{t.reveal}}</button>
       <block wx:if="{{revealed}}">
         <view class="answer-panel"><text class="answer-title">{{submitted ? (answerCorrect ? t.right : t.mistake) : t.reveal}}</text><text wx:if="{{question.modelAnswer}}" class="body">{{question.modelAnswer}}</text><text class="body">{{question.explanation}}</text></view>
         <view wx:if="{{question.type === 'self-check' && !submitted}}" class="actions"><button class="secondary" data-correct="no" bindtap="answer" disabled="{{busy}}">{{t.selfWrong}}</button><button class="primary" data-correct="yes" bindtap="answer" disabled="{{busy}}">{{t.selfCorrect}}</button></view>
       </block>
-      <view wx:if="{{submitted && visibleTranscript}}" class="answer-panel question-transcript"><button class="text-button" bindtap="toggleTranscript">{{t.transcript}} {{transcriptOpen ? '▴' : '▾'}}</button><text wx:if="{{transcriptOpen}}" class="target-text" user-select="true">{{visibleTranscript}}</text></view>
+      <view wx:if="{{submitted && visibleTranscript}}" class="answer-panel question-transcript"><button class="text-button" bindtap="toggleTranscript">{{t.transcript}} {{transcriptOpen ? '▴' : '▾'}}</button><text wx:if="{{transcriptOpen}}" class="target-text {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{visibleTranscript}}</text></view>
       <view wx:if="{{question.occurrences.length}}" class="filters"><text wx:for="{{question.occurrences}}" wx:key="sourceQuestionId" class="chip">{{item.label}} · {{item.originalNumber}}</text></view>
       <view class="source">{{t.source}} · {{question.source}}<text wx:if="{{question.reviewStatus}}"> · {{t[question.reviewStatus]}}</text></view>
       <button class="primary" bindtap="nextQuestion" disabled="{{busy}}">{{t.next}} →</button>
@@ -97,8 +97,8 @@
     <view wx:if="{{pendingWords}}" class="notice">{{pendingWords}} {{t.pendingWords}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
     <view wx:if="{{card}}" class="panel word-panel">
       <text class="eyebrow">{{card.level || t.ungraded}} · {{vocabMode === 'context' && card.context ? t.context : t.word}}</text>
-      <text class="word-term" user-select="true">{{card.term}}</text>
-      <text wx:if="{{vocabMode === 'context' && card.context}}" class="word-context">{{card.context}}</text>
+      <text class="word-term {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{card.term}}</text>
+      <text wx:if="{{vocabMode === 'context' && card.context}}" class="word-context {{language === 'ar' ? 'target-rtl' : ''}}">{{card.context}}</text>
       <button wx:if="{{!wordRevealed}}" class="secondary" bindtap="revealWord" disabled="{{busy}}">{{t.revealWord}}</button>
       <block wx:else>
         <text wx:if="{{card.reading}}" class="body">{{card.reading}}</text><text class="word-meaning">{{card.meaning}}</text><text class="note">{{card.partOfSpeech}}</text>
@@ -123,8 +123,8 @@
     <text class="note">{{dictionaryTotal}} / {{dictionaryCount}} {{t.entries}}</text>
     <view wx:for="{{dictionaryRows}}" wx:key="id" class="panel dictionary-entry">
       <text class="eyebrow">{{item.card.level || t.ungraded}} · {{t[item.details.reviewStatus] || t.draft}}</text>
-      <text class="dictionary-term" user-select="true">{{item.card.term}}</text><text wx:if="{{item.card.reading}}" class="body">{{item.card.reading}}</text><text class="body dictionary-meaning">{{item.card.meaning}}</text><text class="note">{{item.card.partOfSpeech}}</text>
-      <text wx:if="{{item.card.context}}" class="word-context">{{item.card.context}}</text>
+      <text class="dictionary-term {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{item.card.term}}</text><text wx:if="{{item.card.reading}}" class="body">{{item.card.reading}}</text><text class="body dictionary-meaning">{{item.card.meaning}}</text><text class="note">{{item.card.partOfSpeech}}</text>
+      <text wx:if="{{item.card.context}}" class="word-context {{language === 'ar' ? 'target-rtl' : ''}}">{{item.card.context}}</text>
       <template is="word-details" data="{{details: item.details, t}}" />
       <text wx:if="{{item.details.etymology}}" class="body">{{item.details.etymology}}</text><text wx:if="{{item.details.derivatives}}" class="body">{{item.details.derivatives}}</text>
       <text class="note">{{t.reviewedWords}} {{item.stat.seen}} · {{t.remember}} {{item.stat.correct}} · {{t.approximate}} {{item.stat.approximate}}<text wx:if="{{item.stat.lastOutcome}}"> · {{t.lastOutcome}} {{t.outcomes[item.stat.lastOutcome]}}</text></text>
@@ -149,7 +149,8 @@
       <text class="note">{{t.accountNote}}</text>
     </view>
     <button class="row-link" bindtap="changeLocale" disabled="{{busy}}"><text>{{t.display}}</text><text class="locale-choice">{{locale === 'en' ? 'English ⇄ 中文' : '中文 ⇄ English'}}</text></button>
-    <button class="row-link" bindtap="toggleSupport">{{t.supportAuthor}} <text>♡</text></button>
+    <view class="support-feedback"><button class="secondary" bindtap="toggleSupport">{{t.supportAuthor}}</button><button class="secondary feedback-link" data-url="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" bindtap="copyResource">{{t.feedback}}</button></view>
+    <text class="note">{{t.feedbackHelp}}</text>
     <view wx:if="{{showSupport}}" class="panel support-panel"><text class="resource-title">{{t.supportAuthor}}</text><text class="note">{{t.supportNote}}</text><image class="support-code" src="/assets/support-author.png" mode="widthFix" show-menu-by-longpress="{{true}}" bindtap="previewSupport" /><text class="note">{{t.supportHint}}</text></view>
     <view class="panel"><text class="resource-title">{{t.privacy}}</text><text class="note">{{t.privacyText}}</text><button class="text-button" bindtap="copyWebsite">{{t.website}}</button></view>
   </block>

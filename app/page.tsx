@@ -84,6 +84,7 @@ import {
   type StorySupport,
 } from "@/data/story";
 import { extraEnglish } from "./extra-copy";
+import { contentText, localizeQuestion } from "../lib/content-locale";
 import { shuffle } from "@/lib/shuffle";
 import { apiFetch, supabase } from "@/lib/supabase";
 
@@ -990,6 +991,7 @@ function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }
 
 function LanguageFactCard({ config }: { config: LanguageConfig }) {
   const t = useInterfaceText();
+  const { locale } = useI18n();
   const facts = languageFacts[config.code] ?? [];
   const [factIndex, setFactIndex] = useState(0);
 
@@ -1003,12 +1005,12 @@ function LanguageFactCard({ config }: { config: LanguageConfig }) {
   return <section className="etymology-card">
     <div>
       <span className="eyebrow"><Sparkles size={14} />{t("PIKKU LANGUAGES · 随机语言知识")}</span>
-      <h2>{fact.title} <small>{fact.kind}</small></h2>
-      <p>{fact.summary}</p>
+      <h2>{contentText(fact.title, locale)} <small>{contentText(fact.kind, locale)}</small></h2>
+      <p>{contentText(fact.summary, locale)}</p>
     </div>
     <div className="word-family">
-      <span>{t("例子")}</span><strong>{fact.example}</strong>
-      <span>{t("来源")}</span><strong>{fact.sources.map((source, index) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{index > 0 && " · "}{source.label}</a>)}</strong>
+      <span>{t("例子")}</span><strong>{contentText(fact.example, locale)}</strong>
+      <span>{t("来源")}</span><strong>{fact.sources.map((source, index) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{index > 0 && " · "}{contentText(source.label, locale)}</a>)}</strong>
     </div>
     <button className="secondary-button" onClick={() => setFactIndex((factIndex + 1) % facts.length)}>{t("换一条")}<Shuffle size={15} /></button>
   </section>;
@@ -1383,7 +1385,7 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
   const collection = questionCollections.find(item => item.id === collectionId)!;
   const pool = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
-    const selected = bank.filter((q) => (fullPaper ? questionInCollection(q, collectionId) : matchesLevel(q, level)) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
+    const selected = bank.filter((q) => (fullPaper ? questionInCollection(q, collectionId) : matchesLevel(q, level)) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.targetText, q.latin, q.context, q.source, ...q.tags, localizeQuestion(q, "en").prompt, localizeQuestion(q, "en").context, localizeQuestion(q, "en").source, ...localizeQuestion(q, "en").tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
     const ordered = fullPaper ? selected.sort((a, b) => collectionOrder(a, collectionId) - collectionOrder(b, collectionId))
       .map(question => questionForCollection(question, collectionId)) : selected;
     return order === "random" ? shuffle(ordered) : ordered;
@@ -1432,9 +1434,10 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
   );
 }
 
-function QuestionCard({ question, status, onResult, bookmarked, onBookmark, compact = false }: { question: Question; status?: Progress[string]; onResult: (s: "correct" | "wrong" | "review") => void; bookmarked: boolean; onBookmark: () => void; compact?: boolean }) {
+function QuestionCard({ question: originalQuestion, status, onResult, bookmarked, onBookmark, compact = false }: { question: Question; status?: Progress[string]; onResult: (s: "correct" | "wrong" | "review") => void; bookmarked: boolean; onBookmark: () => void; compact?: boolean }) {
   const t = useInterfaceText();
-  const { copy, language } = useI18n();
+  const { copy, language, locale } = useI18n();
+  const question = useMemo(() => localizeQuestion(originalQuestion, locale), [originalQuestion, locale]);
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -1445,8 +1448,8 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
   const isMorphologyCheck = question.type === "self-check" && question.category === "morphology";
 
   useEffect(() => {
-    setOptionOrder(questionOptionOrder(question));
-  }, [question.id, question.options, question.shuffleOptions]);
+    setOptionOrder(questionOptionOrder(originalQuestion));
+  }, [originalQuestion.id, originalQuestion.options, originalQuestion.shuffleOptions]);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -1477,10 +1480,10 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
         <div><span className="level-pill">{levelName(copy, question.level, question.language ?? "la") }</span><span>{categoryName(copy, question.category)}</span>{question.skill && <span className="skill-pill">{question.skill}</span>}{sourceStatusLabel && <span className={`source-status ${question.sourceStatus}`}>{sourceStatusLabel}</span>}{reviewStatusLabel && <span className={`review-status ${question.reviewStatus}`}>{t(reviewStatusLabel)}</span>}<span>·</span>{question.sourceUrl ? <a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.source}</a> : <span>{question.source}</span>}</div>
         <button className={`icon-button bookmark-button ${bookmarked ? "bookmarked" : ""}`} onClick={onBookmark} aria-label={bookmarked ? copy.removeBookmark : copy.bookmarkQuestion} aria-pressed={bookmarked}><Bookmark size={19} fill={bookmarked ? "currentColor" : "none"} /></button>
       </div>
-      <h2>{question.prompt}</h2>
+      <h2 dir="auto">{question.prompt}</h2>
       {question.originalNumber && <p className="question-original-number">{copy.elementary === "Core" ? "Original question: " : "原题号："}{question.originalNumber}</p>}
-      {question.passage && <div className="question-passage" lang={question.targetLang ?? language.htmlLang}>{question.passage}</div>}
-      {(question.targetText || question.text || question.latin) && <blockquote lang={question.targetLang ?? language.htmlLang}>{question.targetText ?? question.text ?? question.latin}</blockquote>}
+      {question.passage && <div className="question-passage" dir="auto" lang={question.targetLang ?? language.htmlLang}>{question.passage}</div>}
+      {(question.targetText || question.text || question.latin) && <blockquote dir="auto" lang={question.targetLang ?? language.htmlLang}>{question.targetText ?? question.text ?? question.latin}</blockquote>}
       {question.context && <p className="context-note">{question.context}</p>}
       {question.images?.map((item) => <figure className="question-image" key={item.src}><a href={assetPath(item.src)} target="_blank" rel="noreferrer" aria-label={item.alt}><img src={assetPath(item.src)} alt={item.alt} loading="lazy" /></a></figure>)}
       {question.audio && <QuestionAudio key={question.id} audio={question.audio} label={copy.elementary === "Core" ? "Question audio" : "本题听力"} />}
@@ -1496,7 +1499,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
               const isWrong = submitted && selected === optionIndex && optionIndex !== question.answer;
               return (
                 <button key={optionIndex} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
-                  <span className="option-key">{visibleIndex + 1}</span>{(!question.optionsInAudio || submitted) && <span>{option}</span>}
+                  <span className="option-key">{visibleIndex + 1}</span>{(!question.optionsInAudio || submitted) && <span dir="auto">{option}</span>}
                   {isCorrect && <Check size={18} />}{isWrong && <X size={18} />}
                 </button>
               );
@@ -1520,7 +1523,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
           )}
         </div>
       )}
-      {(submitted || revealed) && question.transcript && <details className="question-transcript"><summary>{copy.elementary === "Core" ? "Listening transcript" : "听力原文"}</summary><div lang={question.targetLang ?? language.htmlLang}>{question.transcript}</div></details>}
+      {(submitted || revealed) && question.transcript && <details className="question-transcript"><summary>{copy.elementary === "Core" ? "Listening transcript" : "听力原文"}</summary><div dir="auto" lang={question.targetLang ?? language.htmlLang}>{question.transcript}</div></details>}
       {status && <div className={`saved-status ${status}`}><CheckCircle2 size={15} /> {copy.recorded} {status === "correct" ? copy.mastered : status === "wrong" ? copy.wrongQuestion : copy.reviewLater}</div>}
       <div className="tag-row">{question.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
     </article>
@@ -1632,6 +1635,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
   const { locale } = useI18n();
   const languageName = getLearningLanguage(config.code).labels[locale];
   const t = useInterfaceText();
+  const [showSupport, setShowSupport] = useState(false);
   return <div className="page settings-page">
     <div className="practice-header"><div><TargetKicker kind="progress" /><h1>{t("个人设置")}</h1><p>{t("设置适用于所有学习语言的背词训练；切换语言时无需重复调整。")}</p></div></div>
     <section className="settings-panel">
@@ -1646,11 +1650,19 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
       </div>
       <div className="settings-action"><span>{t("当前语言：")}{config.nativeName} · {languageName}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>{t("开始背单词")}<ArrowRight size={17} /></button></div>
     </section>
+    <section className="settings-panel support-settings">
+      <div className="settings-copy"><div><h2>Pikku <small>1.1.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="support-actions">
+        <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
+        <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>
+      </div>
+      {showSupport && <div id="author-support" className="author-support"><p>{locale === "en" ? "Optional support via WeChat Pay. All learning features remain available without a donation." : "可通过微信支付自愿支持作者；不捐款也能正常使用全部学习功能。"}</p><img src={assetPath("/support-author.png")} alt={locale === "en" ? "Author support QR code for WeChat Pay" : "微信支付支持作者二维码"} /></div>}
+    </section>
   </div>;
 }
 
 function VocabularyLab({ level, ready, onSubmit }: { level: StudyLevel; ready: boolean; onSubmit: (answers: { lemma: string; correct: boolean }[]) => boolean }) {
-  const { copy, language } = useI18n();
+  const { copy, language, locale } = useI18n();
   const items = useMemo(() => {
     const seen = new Set<string>();
     return allVocabItems.filter((item) => {
@@ -1681,7 +1693,7 @@ function VocabularyLab({ level, ready, onSubmit }: { level: StudyLevel; ready: b
     <div className="vocab-grid">
       {test.map((item, index) => {
         const options = [item.gloss, ...item.distractors].sort((a, b) => (a + item.lemma).localeCompare(b + item.lemma));
-        return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {item.family}</span><h2 lang={item.htmlLang || language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{option}</button>)}</div></article>;
+        return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {contentText(item.family, locale)}</span><h2 lang={item.htmlLang || language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{contentText(option, locale)}</button>)}</div></article>;
       })}
     </div>
     {!finished ? <button className="primary-button vocab-submit" disabled={!ready || !test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
@@ -1759,9 +1771,9 @@ function Scope({ level, openPractice }: { level: StudyLevel; openPractice: (l?: 
         <div><span>{copy.structureClassics}</span><strong>{completeBankStats.structureQuestions}</strong><small>{copy.arrangedByScope}</small></div>
         <div><span>{copy.translationSelfCheck}</span><strong>{completeBankStats.translationQuestions + staticQuestions.filter((q) => q.category === "translation" && !q.id.startsWith("tb-tra")).length}</strong><small>{copy.translationDirection}</small></div>
       </section>
-      <div className="scope-grid curriculum-grid">{[...curriculumDomains].filter((domain) => domain.level !== "mixed").sort((a, b) => LEVEL_ORDER.indexOf(normalizePikkuLevel("la", a.level)) - LEVEL_ORDER.indexOf(normalizePikkuLevel("la", b.level))).map((domain) => { const localizedLevel = levelName(copy, domain.level); return <section key={domain.level}><div className="scope-number">{normalizePikkuLevel("la", domain.level)}</div><span>{domain.latin}</span><h2>{localizedLevel}</h2><p className="authors">{domain.authors}</p><p>{domain.examUse}</p><details><summary>{copy.textbookMapping}</summary><p><strong>Wheelock:</strong> {domain.wheelock}</p><p><strong>LLPSI:</strong> {domain.llpsi}</p></details><div className="domain-columns"><div><b>{copy.vocabulary}</b><ul>{domain.vocabulary.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>{copy.morphology}</b><ul>{domain.morphology.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>{copy.syntax}</b><ul>{domain.syntax.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>{copy.sentencePatterns}</b><ul>{domain.patterns.map((v) => <li key={v}>{v}</li>)}</ul></div><div><b>{copy.classics}</b><ul>{domain.classics.map((v) => <li key={v}>{v}</li>)}</ul></div></div><button className="secondary-button" onClick={() => openPractice(domain.level, "all")}>{copy.practiceScope(localizedLevel)} <ArrowRight size={17} /></button></section>; })}</div>
+      <div className="scope-grid curriculum-grid">{[...curriculumDomains].filter((domain) => domain.level !== "mixed").sort((a, b) => LEVEL_ORDER.indexOf(normalizePikkuLevel("la", a.level)) - LEVEL_ORDER.indexOf(normalizePikkuLevel("la", b.level))).map((domain) => { const localizedLevel = levelName(copy, domain.level); return <section key={domain.level}><div className="scope-number">{normalizePikkuLevel("la", domain.level)}</div><span>{domain.latin}</span><h2>{localizedLevel}</h2><p className="authors">{contentText(domain.authors, locale)}</p><p>{contentText(domain.examUse, locale)}</p><details><summary>{copy.textbookMapping}</summary><p><strong>Wheelock:</strong> {contentText(domain.wheelock, locale)}</p><p><strong>LLPSI:</strong> {contentText(domain.llpsi, locale)}</p></details><div className="domain-columns"><div><b>{copy.vocabulary}</b><ul>{domain.vocabulary.map((v) => <li key={v}>{contentText(v, locale)}</li>)}</ul></div><div><b>{copy.morphology}</b><ul>{domain.morphology.map((v) => <li key={v}>{contentText(v, locale)}</li>)}</ul></div><div><b>{copy.syntax}</b><ul>{domain.syntax.map((v) => <li key={v}>{contentText(v, locale)}</li>)}</ul></div><div><b>{copy.sentencePatterns}</b><ul>{domain.patterns.map((v) => <li key={v}>{contentText(v, locale)}</li>)}</ul></div><div><b>{copy.classics}</b><ul>{domain.classics.map((v) => <li key={v}>{contentText(v, locale)}</li>)}</ul></div></div><button className="secondary-button" onClick={() => openPractice(domain.level, "all")}>{copy.practiceScope(localizedLevel)} <ArrowRight size={17} /></button></section>; })}</div>
       <div className="source-card"><GraduationCap /><div><strong>{levelName(copy, "M", language.id)}</strong><p>{copy.languageContentInProgress(language.labels[locale])}</p><button className="secondary-button" onClick={() => openPractice("M", "all")}>{copy.practiceScope(levelName(copy, "M", language.id))}<ArrowRight size={17} /></button></div></div>
-      <section className="coverage-section"><div className="section-heading"><div><TargetKicker kind="courses" /><h2>{copy.coverageMatrix}</h2></div></div><p>{copy.coverageIntro}</p><div className="coverage-books">{(["Wheelock", "LLPSI"] as const).map((book) => <details key={book}><summary><strong>{book}</strong><span>{textbookCoverage.filter((unit) => unit.book === book).length} {copy.chaptersClick}</span></summary><div>{textbookCoverage.filter((unit) => unit.book === book).map((unit) => <article key={`${book}-${unit.chapter}`}><b>{unit.chapter}</b><span>{unit.title}</span><p>{unit.topics}</p><small>{stageName(copy, unit.stage)} · {levelName(copy, unit.examDomain)}</small></article>)}</div></details>)}</div></section>
+      <section className="coverage-section"><div className="section-heading"><div><TargetKicker kind="courses" /><h2>{copy.coverageMatrix}</h2></div></div><p>{copy.coverageIntro}</p><div className="coverage-books">{(["Wheelock", "LLPSI"] as const).map((book) => <details key={book}><summary><strong>{book}</strong><span>{textbookCoverage.filter((unit) => unit.book === book).length} {copy.chaptersClick}</span></summary><div>{textbookCoverage.filter((unit) => unit.book === book).map((unit) => <article key={`${book}-${unit.chapter}`}><b>{unit.chapter}</b><span>{contentText(unit.title, locale)}</span><p>{contentText(unit.topics, locale)}</p><small>{stageName(copy, unit.stage)} · {levelName(copy, unit.examDomain)}</small></article>)}</div></details>)}</div></section>
       <div className="source-card"><BookOpen /><div><strong>{copy.editorialNote}</strong><p>{copy.editorialCopy}</p></div></div>
     </div>
   );
@@ -1784,7 +1796,7 @@ function Archive() {
         {archiveEntries.map((entry) => (
           <article key={entry.year} className="archive-row">
             <div className="archive-year">{entry.year}</div>
-            <div className="archive-content"><span>{archiveLevelName(copy, entry.levels)}</span><p>{entry.verified}</p><a href={entry.sourceUrl} target="_blank" rel="noreferrer">{entry.sourceLabel} <ArrowRight size={13} /></a></div>
+            <div className="archive-content"><span>{archiveLevelName(copy, entry.levels)}</span><p>{contentText(entry.verified, locale)}</p><a href={entry.sourceUrl} target="_blank" rel="noreferrer">{contentText(entry.sourceLabel, locale)} <ArrowRight size={13} /></a></div>
             <div className={entry.paperStatus === "未检出举行记录" ? "archive-status neutral" : "archive-status"}>{archiveStatusName(copy, entry.paperStatus)}</div>
           </article>
         ))}
@@ -1818,21 +1830,21 @@ function ResourceLibrary({ language, config, focusId, stats, reviews, onPractice
     </div>
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>{t("版权与改编原则")}</strong><p>{t("只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。")}</p></div></div>
-      <div className="textbook-grid">{textbooks.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{book.edition}</small></div><h2>{book.title}</h2><p className="resource-byline">{book.authors}</p><p>{book.accessNote}</p><details><summary>{t("难度域映射")}</summary><dl><dt>{levelName(copy, "C", language)}</dt><dd>{book.alignment.elementary}</dd><dt>{levelName(copy, "F", language)}</dt><dd>{book.alignment.intermediate}</dd><dt>{levelName(copy, "G", language)}</dt><dd>{book.alignment.advanced}</dd><dt>{levelName(copy, "M", language)}</dt><dd>{copy.languageContentInProgress(languageName)}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div>
+      <div className="textbook-grid">{textbooks.map((book) => <article key={book.id}><div className="resource-card-head"><span>{book.access}</span><small>{contentText(book.edition, locale)}</small></div><h2>{book.title}</h2><p className="resource-byline">{contentText(book.authors, locale)}</p><p>{contentText(book.accessNote, locale)}</p><details><summary>{t("难度域映射")}</summary><dl><dt>{levelName(copy, "C", language)}</dt><dd>{contentText(book.alignment.elementary, locale)}</dd><dt>{levelName(copy, "F", language)}</dt><dd>{contentText(book.alignment.intermediate, locale)}</dd><dt>{levelName(copy, "G", language)}</dt><dd>{contentText(book.alignment.advanced, locale)}</dd><dt>{levelName(copy, "M", language)}</dt><dd>{copy.languageContentInProgress(languageName)}</dd></dl></details><div className="tag-row">{book.strengths.map((item) => <span key={item}>{contentText(item, locale)}</span>)}</div></article>)}</div>
       {!textbooks.length && <div className="empty-state"><div><BookOpen /></div><h2>{languageName}{t("教材待建")}</h2><p>{t("当前模式不会借用拉丁语教材；核验书目与课程映射后再加入。")}</p></div>}
       <div className="section-heading resource-map-heading"><div><span>INDEX CAPITULŌRUM</span><h2>{t("章节与原创练习映射")}</h2></div><small>{t("只含元数据，不包含教材正文、答案或音频")}</small></div>
-      <div className="chapter-map-grid">{chapterMappings.map((mapping) => <article key={mapping.id}><div><span>{mapping.publicDomainStatus}</span><small>{mapping.chapter}</small></div><h3>{mapping.title}</h3><p><strong>{t("语法域")}</strong>{mapping.grammarTargets.join(" · ")}</p><p><strong>{t("词汇域")}</strong>{mapping.vocabularyTargets.join(" · ")}</p><p><strong>{t("原创化逻辑")}</strong>{mapping.exerciseLogic}</p><small>{mapping.licenseNote}</small></article>)}</div>
+      <div className="chapter-map-grid">{chapterMappings.map((mapping) => <article key={mapping.id}><div><span>{contentText(mapping.publicDomainStatus, locale)}</span><small>{contentText(mapping.chapter, locale)}</small></div><h3>{contentText(mapping.title, locale)}</h3><p><strong>{t("语法域")}</strong>{mapping.grammarTargets.map(text => contentText(text, locale)).join(" · ")}</p><p><strong>{t("词汇域")}</strong>{mapping.vocabularyTargets.map(text => contentText(text, locale)).join(" · ")}</p><p><strong>{t("原创化逻辑")}</strong>{contentText(mapping.exerciseLogic, locale)}</p><small>{contentText(mapping.licenseNote, locale)}</small></article>)}</div>
       {!chapterMappings.length && <div className="empty-state"><div><Library /></div><h2>{t("尚无章节映射")}</h2><p>{languageName}{t("章节元数据仍在核验，不显示其他语言的占位内容。")}</p></div>}
     </>}
     {tab === "authors" && language === "la" && <>
       <div className="resource-metrics"><div><strong>{classicalAuthors.length}</strong><span>{t("位首批作者")}</span></div><div><strong>{classicalAuthors.reduce((total, author) => total + author.works.length, 0)}</strong><span>{t("条作者—作品关系")}</span></div><div><strong>{periods.length}</strong><span>{t("个历史分期")}</span></div></div>
-      <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{period}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{author.chinese} · {author.genres.join("／")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>{t("建议域：")}{levelName(copy, author.examLevel, language)}</small></article>)}</div></section>)}</div>
+      <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{contentText(period, locale)}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{locale === "en" ? "" : `${author.chinese} · `}{author.genres.map(text => contentText(text, locale)).join(" / ")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>{t("建议域：")}{levelName(copy, author.examLevel, language)}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "authors" && language !== "la" && <div className="empty-state"><div><Users /></div><h2>{languageName}{t("作者图谱待建")}</h2><p>{t("当前模式不会借用拉丁语作者数据；按语言与时代核验后再加入。")}</p></div>}
     {tab === "dictionary" && <VocabularyDictionary key={language} language={language} locale={locale} stats={stats} reviews={reviews} focusId={focusId} onPractice={onPractice} />}
     {tab === "etymology" && <>
       <div className="etymology-progress"><Sparkles /><div><strong>{language === "la" ? etymologyFacts.length : currentFacts.length} / 365</strong><p>{language === "la" ? t("现有词源知识已接入首页随机栏目；后续按拉丁词、后裔词、语义变化与来源逐条扩充。") : (locale === "en" ? `Only ${languageName} language notes are shown, with source links.` : `当前只显示${languageName}语言知识，并保留可点击来源。`)}</p></div></div>
-      {language === "la" ? <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {fact.meaning}</h2><p>{fact.note}</p><small>{t("英语：")}{fact.english.join(" · ")}{t("罗曼语：")}{fact.romance.join(" · ")}</small></article>)}</div> : <div className="fact-library">{currentFacts.map((fact, index) => <article key={fact.id}><span>{fact.kind} · {String(index + 1).padStart(3, "0")}</span><h2>{fact.title}</h2><p>{fact.summary}</p><small>{fact.example}　{fact.sources.map((source, sourceIndex) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{sourceIndex > 0 && " · "}{source.label}</a>)}</small></article>)}</div>}
+      {language === "la" ? <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {contentText(fact.meaning, locale)}</h2><p>{contentText(fact.note, locale)}</p><small>{t("英语：")}{fact.english.join(" · ")}{t("罗曼语：")}{fact.romance.map(text => contentText(text, locale)).join(" · ")}</small></article>)}</div> : <div className="fact-library">{currentFacts.map((fact, index) => <article key={fact.id}><span>{contentText(fact.kind, locale)} · {String(index + 1).padStart(3, "0")}</span><h2>{contentText(fact.title, locale)}</h2><p>{contentText(fact.summary, locale)}</p><small>{contentText(fact.example, locale)}　{fact.sources.map((source, sourceIndex) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{sourceIndex > 0 && " · "}{contentText(source.label, locale)}</a>)}</small></article>)}</div>}
       {language !== "la" && !currentFacts.length && <div className="empty-state"><div><Sparkles /></div><h2>{languageName}{t("语言知识待建")}</h2><p>{t("核验来源后再加入，不显示拉丁语占位内容。")}</p></div>}
     </>}
   </div>;

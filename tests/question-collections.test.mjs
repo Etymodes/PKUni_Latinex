@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { addQuestionCollections, questionInCollection, questionForCollection } from "../data/question-collections.ts";
 import { mergeVocabularyCollection, vocabularyInCollection, publicDictionaryReferences, vocabularyKey } from "../data/vocabulary.ts";
-import { serializeBank } from "../scripts/build-wechat.mjs";
+import { brotliCompressSync, brotliDecompressSync } from "node:zlib";
+import { compressedJsonLoaderSource } from "../scripts/build-wechat.mjs";
 import vm from "node:vm";
 
 const question = { id: "old", language: "ja", level: "F", category: "vocabulary", type: "choice",
@@ -53,13 +54,17 @@ test("Japanese definitions expose real dictionary references only", () => {
     { name: "大辞泉", url: "javascript:alert(1)", note: "" }] }), [dictionary]);
 });
 
-test("native string sharing is lossless for passages, definitions, Unicode and special property names", () => {
+test("native Brotli data is lossless for passages, definitions, Unicode and special property names", () => {
   const passage = '長い同じ文章。'.repeat(30);
   const data = { questions: [{ text: passage, options: [passage, "\\\"\n"] }, { text: passage }], vocabulary: [{ sourceNotes: passage }], empty: [], zero: 0, nil: null };
-  const module = { exports: {} }; const code = serializeBank(data);
-  vm.runInNewContext(code, { module });
-  assert.deepEqual(JSON.parse(JSON.stringify(module.exports)), data);
-  assert.ok(Buffer.byteLength(code) < Buffer.byteLength(JSON.stringify(data)));
+  const module = { exports: {} };
+  const packed = brotliCompressSync(Buffer.from(JSON.stringify(data), 'utf16le'));
+  vm.runInNewContext(compressedJsonLoaderSource(), { module, wx: { getFileSystemManager: () => ({ readCompressedFileSync: () => {
+    const bytes = brotliDecompressSync(packed);
+    return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+  } }) } });
+  assert.deepEqual(JSON.parse(JSON.stringify(module.exports('fixture'))), data);
+  assert.ok(packed.byteLength < Buffer.byteLength(JSON.stringify(data)));
 });
 
 test("new spelling aliases within one import resolve to the same card and study key", () => {

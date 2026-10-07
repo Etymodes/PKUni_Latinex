@@ -10,6 +10,10 @@
     "postcss": true,
     "minified": true
   },
-  "packOptions": { "ignore": [], "include": [] },
-  "condition": {}
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "libVersion": "3.17.2"
 }

@@ -1,3 +1,6 @@
+import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
+const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
+import { loadGenerated as commonJs } from './helpers/wechat-generated.mjs';
 import assert from 'node:assert/strict';
 import { after, before, test } from 'node:test';
 import fs from 'node:fs';
@@ -5,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
-import { buildWechat } from '../scripts/build-wechat.mjs';
+import { buildWechat, buildContentLocaleSource } from '../scripts/build-wechat.mjs';
 
 const miniRoot = new URL('../wechat/miniprogram/', import.meta.url);
 const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'pikku-mini-page-'));
@@ -17,15 +20,6 @@ const event = dataset => ({ currentTarget: { dataset } });
 let bank;
 let shared;
 let copy;
-
-function commonJs(filename, cache = new Map()) {
-  if (cache.has(filename)) return cache.get(filename).exports;
-  const module = { exports: {} };
-  cache.set(filename, module);
-  vm.runInThisContext(`(function(module,exports,require){\n${fs.readFileSync(filename, 'utf8')}\n})`, { filename })(
-    module, module.exports, specifier => commonJs(path.resolve(path.dirname(filename), specifier), cache));
-  return module.exports;
-}
 
 // All page dependencies share this harness's VM and mocked wx/API. Generated
 // modules come from the isolated build, never from a stale checked-out bundle.
@@ -109,7 +103,7 @@ async function harness(options = {}) {
   const fixedMath = Object.create(Math);
   fixedMath.random = () => 0;
   loadPageModule({
-    'lib/api.js': api, 'data/bank.js': bank,
+    'data/content-locale.js': options.contentLocale || contentLocale(), 'lib/api.js': api, 'data/bank.js': bank,
     'data/shared.js': { ...shared, questionOptionOrder: question => shared.questionOptionOrder(question, () => 0) }, 'lib/copy.js': copy,
   }, { Page: value => { definition = value; }, wx, Math: fixedMath });
   const page = { ...definition, data: plain(definition.data), setData(update) { Object.assign(this.data, update); } };
@@ -444,4 +438,133 @@ test('the level selector emits the native detail event and waits for the account
   assert.equal(selectedLabel(), 'Mastery');
   h.page.changeLocale();
   assert.equal(selectedLabel(), '准母语级');
+});
+
+function translatedContent(mapping) {
+  const module = { exports: {} };
+  vm.runInNewContext(buildContentLocaleSource(), { module, exports: module.exports,
+    require: specifier => {
+      if (specifier === './french-arabic.js') return { frenchArabicEnglish: {} };
+      assert.match(specifier, /^\.\/content-en-(questions|vocabulary|resources|exams)\.js$/);
+      return mapping;
+    },
+  });
+  return module.exports;
+}
+
+test('switching content locale preserves current question, shuffled answer indices, answer state and canonical progress', async () => {
+  const canonical = latinChoice();
+  const translations = { [canonical.prompt]: 'Choose the correct form.', [canonical.explanation]: 'The ending matches the subject.' };
+  canonical.options.forEach((text, index) => { translations[text] = `English option ${index + 1}`; });
+  const h = await harness({ contentLocale: translatedContent(translations) });
+  h.page.showQuestion(canonical);
+  const order = h.page.data.choices.map(choice => choice.index);
+  h.page.changeLocale();
+  assert.equal(h.page.data.question.id, canonical.id);
+  assert.equal(h.page.data.question.prompt, translations[canonical.prompt]);
+  assert.deepEqual(h.page.data.choices.map(choice => choice.index), order);
+  assert.equal(h.page.activeQuestion, canonical);
+  assert.equal(h.page.data.submitted, false);
+  await h.page.answer(event({ index: canonical.answer }));
+  assert.equal(h.page.data.answerCorrect, true);
+  assert.equal(h.page.data.question.explanation, translations[canonical.explanation]);
+  const record = plain(h.page.record);
+  h.page.changeLocale();
+  assert.equal(h.page.data.question.prompt, canonical.prompt);
+  assert.equal(h.page.data.submitted, true);
+  assert.equal(h.page.data.answerCorrect, true);
+  assert.deepEqual(plain(h.page.record), record);
+  assert.deepEqual(plain(h.page.data.question), plain(canonical));
+  assert.equal(h.calls.filter(call => call.method === 'POST').length, 0);
+});
+
+test('word locale projection keeps frozen prediction and canonical key; dictionary filters original citation names', async () => {
+  const canonical = bank.vocabularyCards.find(card => card.language === 'ja' && card.dictionaryReferences?.length);
+  assert.ok(canonical, 'Real dictionary-backed vocabulary fixture is required.');
+  const translations = { [canonical.meaning]: 'solemn; majestic', [canonical.partOfSpeech]: 'noun; adjective' };
+  for (const reference of canonical.dictionaryReferences) {
+    translations[reference.name] = 'Dictionary citation in English';
+    translations[reference.note] = 'Meaning and reading checked against this dictionary.';
+  }
+  const h = await harness({ contentLocale: translatedContent(translations) });
+  await h.page.preference({ language: 'ja', level: canonical.level || 'F' });
+  h.page.practiseWord(event({ id: canonical.id }));
+  h.page.revealWord();
+  const selection = h.page.wordSelection;
+  const frozen = plain(selection);
+  const memory = plain(h.page.wordMemory);
+  const recent = [...h.page.recentWords];
+  h.page.changeLocale();
+  assert.equal(h.page.data.card.meaning, translations[canonical.meaning]);
+  assert.equal(h.page.data.card.term, canonical.term);
+  assert.equal(h.page.data.card.reading, canonical.reading);
+  assert.equal(h.page.wordSelection, selection);
+  assert.deepEqual(plain(selection), frozen);
+  assert.deepEqual(plain(h.page.wordMemory), memory);
+  assert.deepEqual(plain(h.page.recentWords), recent);
+  assert.equal(h.page.data.wordRevealed, true);
+  assert.ok(h.page.data.wordDetails.dictionaryReferences.length, 'Canonical whitelist must run before name translation.');
+  assert.equal(h.page.data.wordDetails.dictionaryReferences[0].name, 'Dictionary citation in English');
+  h.page.openDictionary();
+  const row = h.page.data.dictionaryRows.find(row => row.id === canonical.id);
+  assert.equal(row.card.meaning, translations[canonical.meaning]);
+  assert.deepEqual(plain(row.stat), plain(h.page.data.wordStat));
+  h.page.changeLocale();
+  assert.equal(h.page.data.card.meaning, canonical.meaning);
+  assert.deepEqual(plain(h.page.wordMemory), memory);
+});
+
+test('French and Arabic work in the native language picker, quiz and linked trainer in English', async () => {
+  const h = await harness();
+  h.page.changeLocale();
+  for (const language of ['fr', 'ar']) {
+    const index = h.page.data.languages.findIndex(item => item.id === language);
+    assert.ok(index >= 0);
+    await h.page.changeLanguage({detail:{value:index}});
+    assert.equal(h.page.data.rangeCount, 6);
+    h.page.startPractice();
+    const q = h.page.activeQuestion;
+    assert.equal(q.language, language);
+    assert.equal(h.page.data.question.text, q.text);
+    assert.equal(/[\u3400-\u9fff]/.test(h.page.data.question.prompt), false);
+    await h.page.answer(event({index:q.answer}));
+    assert.equal(h.page.data.answerCorrect, true);
+    const card = bank.vocabularyCards.find(item => item.language === language && item.level === 'C');
+    h.page.practiseWord(event({id:card.id}));
+    h.page.revealWord();
+    assert.equal(h.page.data.card.term, card.term);
+    assert.equal(/[\u3400-\u9fff]/.test(h.page.data.card.meaning), false);
+    const frozen = h.page.wordSelection;
+    h.page.changeLocale();
+    assert.equal(h.page.wordSelection, frozen);
+    assert.equal(h.page.data.card.meaning, card.meaning);
+    h.page.changeLocale();
+    await h.page.rateWord(event({outcome:'approximate'}));
+    const review = h.page.wordMemory.reviews.find(item => item.id === frozen.eventId);
+    assert.equal(review.language, language);
+    assert.equal(review.lemma, card.term);
+    assert.equal(review.outcome, 'approximate');
+    h.page.changeView(event({view:'home'}));
+  }
+  assert.equal(h.calls.filter(call => call.method === 'POST').length, 0);
+});
+
+test('English question and gloss searches keep the same canonical results when display locale switches', async () => {
+  const q = latinChoice();
+  const card = bank.vocabularyCards.find(item => item.language === 'la' && item.level === 'elementary');
+  const mapping = { [q.prompt]: 'uniquefrenchprompt', [q.explanation]: 'uniqueexplanationquery', [q.tags[0]]: 'uniquetagquery', [card.meaning]: 'uniqueglossquery' };
+  const h = await harness({contentLocale:translatedContent(mapping)});
+  for (const query of ['uniquefrenchprompt','uniqueexplanationquery','uniquetagquery']) {
+    h.page.changeSearch({detail:{value:query}});
+    const before=h.page.filtered.map(item=>item.id);
+    assert.ok(before.includes(q.id));
+    h.page.changeLocale();
+    assert.deepEqual(h.page.filtered.map(item=>item.id),before);
+  }
+  h.page.openDictionary();
+  h.page.searchDictionary({detail:{value:'uniqueglossquery'}});
+  assert.ok(h.page.data.dictionaryRows.some(row=>row.id===card.id));
+  const rows=h.page.data.dictionaryRows.map(row=>row.id);
+  h.page.changeLocale();
+  assert.deepEqual(h.page.data.dictionaryRows.map(row=>row.id),rows);
 });

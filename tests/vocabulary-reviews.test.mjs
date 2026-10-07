@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { DatabaseSync } from "node:sqlite";
 import test from "node:test";
 
-const languages = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"];
+const languages = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"];
 const event = (id, changes = {}) => ({
   id, language: "ja", lemma: "覚える", predictedAt: "2026-10-01T00:00:00.000Z", targetAt: "2026-10-02T00:00:00.000Z", answeredAt: "2026-10-02T12:00:00.000Z",
   outcome: "remembered", probability: 0.7, features: [1, 0.2, 0.3, -0.4, 1, 1], modelVersion: "pikku-recall-v1", mode: "context", ...changes,
@@ -136,7 +136,7 @@ test("authenticated identity owns events and every configured language keeps sep
   assert.deepEqual(stats().map(row => row.language).sort(), [...languages].sort());
   assert(stats().every(row => row.seen === 1 && row.correct === 1));
   assert.deepEqual(stats("bob"), [{ language: "ja", lemma: "bob-only", seen: 1, correct: 0 }]);
-  assert.equal((await request()).body.events.length, 7);
+  assert.equal((await request()).body.events.length, languages.length);
   assert.equal((await request("vocab/reviews", "GET", undefined, "bob")).body.events.length, 1);
   assert.equal((await request("vocab/reviews", "GET", undefined, null)).status, 401);
   assert.equal((await request("vocab/reviews", "POST", { events: [event("anonymous")] }, null)).status, 401);

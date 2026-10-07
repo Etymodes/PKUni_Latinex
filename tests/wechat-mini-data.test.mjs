@@ -1,3 +1,4 @@
+import { loadGenerated as loadCommonJs } from './helpers/wechat-generated.mjs';
 import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import fs from "node:fs";
@@ -12,18 +13,6 @@ const source = createSourceLoader();
 let bank;
 let shared;
 let receipt;
-
-function loadCommonJs(filename, cache = new Map()) {
-  if (cache.has(filename)) return cache.get(filename).exports;
-  const module = { exports: {} };
-  cache.set(filename, module);
-  const require = (specifier) => {
-    assert.ok(["./bank.js", "./vocabulary-model.js"].includes(specifier), "Generated helpers must not depend on Node, TypeScript, or npm at runtime.");
-    return loadCommonJs(path.resolve(path.dirname(filename), specifier), cache);
-  };
-  vm.runInThisContext(`(function(module, exports, require) {\n${fs.readFileSync(filename, "utf8")}\n})`, { filename })(module, module.exports, require);
-  return module.exports;
-}
 
 function hashes(directory, prefix = "") {
   return Object.fromEntries(fs.readdirSync(directory, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).flatMap((entry) => {
@@ -50,11 +39,12 @@ test("native bank preserves the complete website composition, metadata, IDs, and
   assert.deepEqual(bank.learningLanguages, source("app/i18n.ts").learningLanguages);
   assert.deepEqual(bank.textbookCatalog, source("data/resources.ts").textbookCatalog);
   assert.deepEqual(bank.dictionarySources, source("data/resources.ts").dictionarySources);
-  assert.deepEqual(bank.languageOrder, ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"]);
+  assert.deepEqual(bank.languageOrder, ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru", "fr", "ar"]);
   for (const language of bank.languageOrder) {
     assert.deepEqual(bank.languageConfigs[language].levels, ["C", "F", "G", "M"]);
     for (const level of ["C", "F", "G", "M"]) {
-      assert.ok(bank.questions.some((question) => (question.language ?? "la") === language && shared.matchesLevel(question, level)), `${language}/${level} needs its existing seed`);
+      const hasQuestions = bank.questions.some((question) => (question.language ?? "la") === language && shared.matchesLevel(question, level));
+      assert.equal(hasQuestions, !(["fr", "ar"].includes(language) && level === "M"), `${language}/${level} must reflect reviewed content availability`);
     }
   }
 });
@@ -99,7 +89,7 @@ test("display locale keeps the website learning-language exclusions and fallback
   for (const locale of ["zh-CN", "en"]) {
     const available = shared.availableLearningLanguages(locale);
     assert.deepEqual(available, original.availableLearningLanguages(locale));
-    assert.equal(available.length, 6);
+    assert.equal(available.length, 8);
     assert.equal(available.some((language) => language.id === (locale === "en" ? "en-us" : "zh-mandarin")), false);
     for (const id of [...bank.languageOrder, "unknown"]) assert.equal(shared.normalizeLearningLanguage(locale, id), original.normalizeLearningLanguage(locale, id));
   }
@@ -162,4 +152,21 @@ test("generated v2 model and validation retain exact website results and legacy 
   assert.equal(generated.isVocabularyReviewEvent({ ...legacy, outcome: "approximate" }), false);
   assert.deepEqual(sync.reviewCounts(events), { "ja:始める": { seen: 4, correct: 2 } });
   assert.equal(fs.readFileSync(path.join(temporaryDirectory, "data/vocabulary-model.js"), "utf8").includes(".at("), false);
+});
+
+test("generated localized content exactly matches website projections without changing canonical records", () => {
+  const original = source("lib/content-locale.ts");
+  const generated = loadCommonJs(path.join(temporaryDirectory, "data/content-locale.js"));
+  for (const locale of ["zh-CN", "en"]) {
+    for (const question of bank.questions) {
+      const saved = JSON.stringify(question);
+      assert.deepEqual(generated.localizeQuestion(question, locale), original.localizeQuestion(question, locale));
+      assert.equal(JSON.stringify(question), saved);
+    }
+    for (const card of bank.vocabularyCards) {
+      const saved = JSON.stringify(card);
+      assert.deepEqual(generated.localizeVocabularyCard(card, locale), original.localizeVocabularyCard(card, locale));
+      assert.equal(JSON.stringify(card), saved);
+    }
+  }
 });

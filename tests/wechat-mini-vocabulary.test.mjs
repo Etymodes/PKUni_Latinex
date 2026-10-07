@@ -1,3 +1,5 @@
+import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
+const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
@@ -72,7 +74,7 @@ function harness(initialOwner = null) {
     },
   };
   const vocabulary = moduleFrom(code('vocabulary'), {
-    './api': api, '../data/bank': bank, '../data/shared': shared,
+    './api': api, '../data/content-locale': contentLocale(), '../data/bank': bank, '../data/shared': shared,
     '../data/vocabulary-model': model, '../data/vocabulary-review-sync': syncing,
   }, { wx });
   return { vocabulary, storage, remote, calls, wx, api,
