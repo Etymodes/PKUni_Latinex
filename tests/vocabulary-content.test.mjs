@@ -49,9 +49,19 @@ test("exam vocabulary links all 149 source questions without fabricated question
   assert.equal(examVocabulary.find(item => item.lemma === "積み荷").reading, "つみに");
 });
 
-test("the N1 source label is not an automatic CFGM grade and ungraded entries remain explicit", () => {
-  const ungraded = vocabularyCards.filter(card => card.sourcePages?.length && !card.level);
-  assert.ok(ungraded.length > 0);
-  for (const card of ungraded) for (const level of ["C", "F", "G", "M"]) assert.equal(vocabularyMatchesLevel(card, level), false);
-  assert.ok(vocabularyCards.some(card => card.sourceQuestionIds?.length && card.level === "F"));
+test("every canonical dictionary card has an explicit CFGM grade and remains trainable", () => {
+  const allowed = ["C", "F", "G", "M"];
+  assert.equal(dictionaryEntries, vocabularyCards);
+  for (const card of vocabularyCards) {
+    assert.ok(allowed.includes(card.level), `${card.id}: missing or legacy vocabulary grade ${card.level}`);
+    assert.ok(vocabularyMatchesLevel(card, card.level), `${card.id}: eligible at its own grade`);
+    assert.ok(vocabularyMatchesLevel(card, "M"), `${card.id}: included in the complete bank`);
+    const same = dictionaryEntries.find(item => item.id === card.id);
+    assert.equal(same, card, `${card.id}: dictionary and trainer retain one canonical object`);
+    assert.equal(vocabularyKey(same.language, same.term), vocabularyKey(card.language, card.term));
+  }
+  const pdfCards = vocabularyCards.filter(card => card.sourcePages?.length);
+  assert.ok(pdfCards.some(card => card.level === "F"), "A source labeled N1 includes ordinary functional vocabulary.");
+  assert.ok(pdfCards.some(card => card.level === "G"), "Formal and abstract source vocabulary remains individually graded.");
+  assert.ok(new Set(pdfCards.map(card => card.level)).size > 1, "One source label must not become a blanket word grade.");
 });

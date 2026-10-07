@@ -551,7 +551,7 @@ test('French and Arabic work in the native language picker, quiz and linked trai
 
 test('English question and gloss searches keep the same canonical results when display locale switches', async () => {
   const q = latinChoice();
-  const card = bank.vocabularyCards.find(item => item.language === 'la' && item.level === 'elementary');
+  const card = bank.vocabularyCards.find(item => item.language === 'la' && item.level === 'C');
   const mapping = { [q.prompt]: 'uniquefrenchprompt', [q.explanation]: 'uniqueexplanationquery', [q.tags[0]]: 'uniquetagquery', [card.meaning]: 'uniqueglossquery' };
   const h = await harness({contentLocale:translatedContent(mapping)});
   for (const query of ['uniquefrenchprompt','uniqueexplanationquery','uniquetagquery']) {

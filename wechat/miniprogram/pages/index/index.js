@@ -34,7 +34,7 @@ Page({
   data: {
     locale: 'zh-CN', t: copies['zh-CN'], view: 'home', level: 'C', language: 'la', vocabMode: 'context',
     busy: false, user: null, sync: 'guest', error: '', email: '', password: '', question: null, card: null,
-    wordScope: 'level', wordQuery: '', dictionaryQuery: '', dictionaryOffset: 0, showModel: false, showSupport: false,
+    paperSearch: '', wordQuery: '', dictionaryQuery: '', dictionaryOffset: 0, showModel: false, showSupport: false,
     filter: 'all', category: 'all', search: '', browse: false, revealed: false, submitted: false, wordRevealed: false,
     choices: [], selected: -1, answerCorrect: false, questionIndex: 0, questionTotal: 0,
   },
@@ -147,6 +147,13 @@ Page({
     const selection = questionScope(all, this.data, this.record);
     this.range = selection.range;
     this.filtered = selection.filtered;
+    const collectionIds = new Set(all.flatMap(q => (q.occurrences || []).map(item => item.collectionId)));
+    const paperItems = bank.questionCollections.filter(item => collectionIds.has(item.id)).map(item => ({ id: item.id, label: locale === 'en' ? item.en : item.zh }));
+    const paperSearch = (this.data.paperSearch || '').trim().toLowerCase();
+    const matchingPapers = paperItems.filter(item => {
+      const original = bank.questionCollections.find(source => source.id === item.id);
+      return !paperSearch || [item.id, original.zh, original.en].join(' ').toLowerCase().includes(paperSearch);
+    });
     const answered = all.filter(q => this.record.progress[q.id]);
     const rows = Object.entries(this.record.vocab).filter(([key]) => key.startsWith(language + ':'));
     this.setData({
@@ -158,10 +165,10 @@ Page({
       categoryItems: categories.map(id => ({ id, label: t.categories[id] })), categoryIndex: categories.indexOf(category),
       stats: { answered: answered.length, correct: answered.filter(q => this.record.progress[q.id] === 'correct').length,
         bookmarks: all.filter(q => this.record.bookmarks.includes(q.id)).length, words: rows.reduce((total, [, value]) => total + value.seen, 0) },
-      paperItems: bank.questionCollections.map(item => ({ id: item.id, label: locale === 'en' ? item.en : item.zh })),
+      paperItems, matchingPapers, bankPaperIndex: Math.max(0, matchingPapers.findIndex(item => item.id === this.data.selectedPaper)),
       selectedPaper: this.data.selectedPaper || 'jlpt-1992-1',
-      selectedPaperIndex: Math.max(0, bank.questionCollections.findIndex(item => item.id === this.data.selectedPaper)),
-      paperHasMedia: (this.data.selectedPaper || 'jlpt-1992-1') !== 'ja-hlb1000-n1-u01',
+      selectedPaperIndex: Math.max(0, paperItems.findIndex(item => item.id === this.data.selectedPaper)),
+      paperHasMedia: Boolean(bank.questionCollections.find(item => item.id === (this.data.selectedPaper || 'jlpt-1992-1'))?.categories.includes('listening')),
       fullPaper: selection.fullPaper, paperQuestions: selection.paperQuestions, paperQuestionIndex: selection.paperQuestionIndex,
       rangeCount: this.range.length, resultCount: this.filtered.length,
       results: this.filtered.slice(0, 40).map(q => ({ id: q.id, prompt: contentText(q.prompt, locale), status: this.record.progress[q.id] || '' })),

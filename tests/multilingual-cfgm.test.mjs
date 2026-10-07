@@ -80,7 +80,7 @@ test("canonical cumulative vocabulary retains original IDs and statistics keys",
   const originalJapanese = originals.find((card) => card.id === "ja-010");
   const coreFields = ["id", "language", "level", "term", "meaning", "context"];
   assert.deepEqual(Object.fromEntries(coreFields.map(key => [key, originalJapanese[key]])), {
-    id: "ja-010", language: "ja", level: "n2", term: "見極める", meaning: "看清；辨明", context: "情報の真偽を見極める。",
+    id: "ja-010", language: "ja", level: "G", term: "見極める", meaning: "看清；辨明", context: "情報の真偽を見極める。",
   });
   assert.equal(originalJapanese.dictionary.language, originalJapanese.language);
   assert.equal(originalJapanese.dictionary.lemma, originalJapanese.term);

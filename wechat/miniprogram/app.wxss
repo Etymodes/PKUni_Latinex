@@ -11,7 +11,9 @@ text { overflow-wrap: anywhere; }
 .brand-title { display: block; color: #145489; font: 700 36rpx Georgia, "Songti SC", serif; letter-spacing: 2rpx; }
 .eyebrow { display: block; font-size: 20rpx; letter-spacing: 2rpx; font-weight: 700; color: #936a34; }
 .brand .eyebrow { margin-top: 6rpx; color: #447699; font-size: 16rpx; }
-.locale { flex: 0 0 88rpx; width: 88rpx; min-height: 88rpx; display: flex; align-items: center; justify-content: center; padding: 10rpx 12rpx; font-size: 24rpx; border: 1rpx solid #dcd7cc; background: #fffefa; }
+.shell .locale { flex: 0 0 56px; width: 56px; height: 56px; min-width: 44px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; font-size: 16px; line-height: 1.1; white-space: nowrap; overflow-wrap: normal; border: 1rpx solid #dcd7cc; background: #fffefa; }
+.locale .locale-word { font-size: 10px; white-space: nowrap; overflow-wrap: normal; }
+.locale-setting { margin: 22rpx 0; }
 .status { font-size: 21rpx; color: #736e62; margin: 16rpx 0 26rpx; }
 .dot { color: #256f60; margin-right: 7rpx; font-size: 16rpx; }
 .status-error, .status-error .dot { color: #951f36; }
@@ -33,7 +35,6 @@ text { overflow-wrap: anywhere; }
 .fact-title { display: block; margin-top: 12rpx; font: 600 35rpx Georgia, serif; line-height: 1.5; }
 .note { display: block; font-size: 23rpx; line-height: 1.8; color: #867d6e; margin: 18rpx 0; }
 .shell .row-link { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12rpx; text-align: left; margin: 22rpx 0; border: 1rpx solid #e6e0d5; background: #fffefa; }
-.locale-choice { flex-shrink: 0; white-space: nowrap; }
 .filters { display: flex; gap: 12rpx; margin-bottom: 22rpx; }
 .chip { flex: 1; padding: 15rpx 7rpx; border: 1rpx solid #e3ddd1; background: #fffefa; font-size: 24rpx; }
 .chip.chosen { color: #94233b; background: #f3e8e8; border-color: #d4b1b5; }

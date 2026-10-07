@@ -939,17 +939,10 @@ function LearningLanguagePicker({ locale, value, onChange }: { locale: UiLocale;
 }
 
 function UiLocaleSwitch({ locale, onChange }: { locale: UiLocale; onChange: (locale: UiLocale) => void }) {
-  const { copy } = useI18n();
-  return (
-    <div className="locale-switch" role="group" aria-label={copy.displayLanguage}>
-      <button type="button" className={locale === "zh-CN" ? "active" : ""} aria-pressed={locale === "zh-CN"} onClick={() => onChange("zh-CN")}>
-        <span className="locale-full">{copy.simplifiedChinese}</span><span className="locale-compact">简中</span>
-      </button>
-      <button type="button" className={locale === "en" ? "active" : ""} aria-pressed={locale === "en"} onClick={() => onChange("en")}>
-        <span className="locale-full">{copy.english}</span><span className="locale-compact">EN</span>
-      </button>
-    </div>
-  );
+  const action = locale === "en" ? "Display language: English. Switch to Simplified Chinese" : "显示语言：简体中文。切换到 English";
+  return <button type="button" className="locale-toggle" aria-label={action} title={action} onClick={() => onChange(locale === "en" ? "zh-CN" : "en")}>
+    <span aria-hidden="true">语⇌</span><small aria-hidden="true">Language</small>
+  </button>;
 }
 
 function LanguagePlaceholder({ config, level, view, setView, questionCount = 0 }: { config: LanguageConfig; level: LanguageLevel; view: View; setView: (view: View) => void; questionCount?: number }) {
@@ -1651,7 +1644,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
       <div className="settings-action"><span>{t("当前语言：")}{config.nativeName} · {languageName}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>{t("开始背单词")}<ArrowRight size={17} /></button></div>
     </section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.1.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.1.1</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>

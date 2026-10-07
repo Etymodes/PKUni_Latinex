@@ -3,7 +3,6 @@ const shared = require('../data/shared');
 const bank = require('../data/bank');
 const { contentText, localizeVocabularyCard } = require('../data/content-locale');
 const outcomes = ['forgotten', 'approximate', 'remembered'];
-const scopeIds = ['level', 'all', 'n1-2000', 'jlpt-1992', 'jlpt-1993-1', 'ja-hlb1000-n1-u01'];
 function localDate(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
@@ -25,16 +24,12 @@ const vocabularyActions = {
     if (!this.wordMemory) return;
     const { language, locale } = this.data;
     const card = this.data.card && this.wordSelection ? this.wordSelection.card : null;
-    const t = this.data.t;
     const entries = vocabulary.entries({ language, locale, query: this.data.dictionaryQuery || '' });
-    const scopes = (language === 'ja' ? scopeIds : scopeIds.slice(0, 2)).map(id => ({ id, label: t.wordScopes[id] }));
-    if (!scopes.some(item => item.id === this.data.wordScope)) this.setData({ wordScope: 'level' });
-    const eligible = vocabulary.entries({ language, locale, level: this.data.level, query: this.data.wordQuery || '', scope: this.data.wordScope })
-      .filter(item => this.data.wordScope !== 'level' || shared.vocabularyMatchesLevel(item, this.data.level));
+    const eligible = vocabulary.entries({ language, locale, level: this.data.level, query: this.data.wordQuery || '' });
     const personal = vocabulary.model(this.wordMemory, language);
     const wordStat = card ? vocabulary.wordStats(this.wordMemory, card) : null;
     this.setData({
-      wordScopeItems: scopes, wordScopeIndex: scopes.findIndex(item => item.id === this.data.wordScope), eligibleWords: eligible.length,
+      eligibleWords: eligible.length, focusedWord: Boolean(card && !shared.vocabularyMatchesLevel(card, this.data.level)),
       dictionaryTotal: entries.length, dictionaryFirst: entries.length ? (this.data.dictionaryOffset || 0) + 1 : 0, dictionaryLast: Math.min((this.data.dictionaryOffset || 0) + 40, entries.length), dictionaryCount: vocabulary.entries({ language }).length,
       dictionaryRows: this.data.view === 'dictionary' ? entries.slice(this.data.dictionaryOffset || 0, (this.data.dictionaryOffset || 0) + 40).map(item => ({
         id: item.id, card: localizeVocabularyCard(item, locale), details: details(item, locale), stat: vocabulary.wordStats(this.wordMemory, item),
@@ -50,7 +45,7 @@ const vocabularyActions = {
   nextCard(focusId) {
     if (!this.wordMemory) this.initVocabulary();
     this.wordSelection = vocabulary.select(this.wordMemory, {
-      language: this.data.language, locale: this.data.locale, level: this.data.level, scope: this.data.wordScope || 'level', query: this.data.wordQuery || '',
+      language: this.data.language, locale: this.data.locale, level: this.data.level, query: this.data.wordQuery || '',
       mode: this.data.vocabMode, recentIds: this.recentWords, focusId: typeof focusId === 'string' ? focusId : undefined,
     });
     const card = this.wordSelection && this.wordSelection.card;
@@ -85,12 +80,6 @@ const vocabularyActions = {
       }
     });
   },
-  changeWordScope(event) {
-    if (this.data.busy) return;
-    this.setData({ wordScope: this.data.wordScopeItems[Number(event.detail.value)].id });
-    this.recentWords = [];
-    this.nextCard();
-  },
   changeWordQuery(event) {
     if (this.data.busy) return;
     this.setData({ wordQuery: event.detail.value });
@@ -121,7 +110,7 @@ const vocabularyActions = {
     if (this.data.busy) return;
     const id = event.currentTarget.dataset.id;
     if (!bank.vocabularyCards.some(card => card.id === id && card.language === this.data.language)) return;
-    this.setData({ view: 'words', wordScope: 'all', wordQuery: '' });
+    this.setData({ view: 'words', wordQuery: '' });
     this.nextCard(id);
   },
   changeForecastDate(event) { this.setData({ forecastDate: event.detail.value }); this.updateForecast(); },

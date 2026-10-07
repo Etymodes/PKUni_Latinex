@@ -322,3 +322,47 @@ test('native paper occurrence labels localize while canonical learning metadata 
     assert.deepEqual(plain(h.page.data.question.occurrences), saved);
   }
 });
+
+
+test('one searchable question-bank entry handles over one hundred collections without changing levels', () => {
+  const originalCollections = bank.questionCollections.length;
+  const originalQuestions = bank.questions.length;
+  try {
+    const original = paper()[0];
+    for (let index = 1; index <= 110; index++) {
+      const id = `qa-paper-${index}`;
+      bank.questionCollections.push({ id, zh: `测试题集 ${index}`, en: `Collection ${index}`, categories: ['vocabulary'] });
+      bank.questions.push({ ...original, id: `qa-question-${index}`, occurrences: [{ collectionId: id, label: `测试题集 ${index}`, sourceQuestionId: `qa-question-${index}`, originalNumber: '1', order: 0 }] });
+    }
+    const h = harness({ level: 'C' });
+    h.page.openPaper(event({}));
+    h.page.openQuestionBank();
+    assert.equal(h.page.data.view, 'papers');
+    assert.equal(h.page.data.question, null);
+    assert.equal(h.page.activeQuestion, null);
+    assert.equal(h.page.data.fullPaper, false);
+    assert.equal(h.page.data.matchingPapers.length, originalCollections + 110);
+    h.page.searchPapers({ detail: { value: 'Collection 101' } });
+    assert.deepEqual(plain(h.page.data.matchingPapers.map(item => item.id)), ['qa-paper-101']);
+    h.page.changeLocale();
+    assert.equal(h.page.data.matchingPapers[0].label, 'Collection 101');
+    h.page.selectPaper({ detail: { value: '0' } });
+    h.page.openPaper(event({ collection: h.page.data.matchingPapers[h.page.data.bankPaperIndex].id }));
+    assert.equal(h.page.data.question.id, 'qa-question-101');
+    assert.equal(h.page.data.questionTotal, 1);
+    assert.equal(h.page.data.level, 'C');
+    assert.equal(h.page.record.preference.level, 'C');
+    assert.deepEqual(plain(h.page.data.choices.map(choice => choice.index)), [0,1,2,3]);
+    h.page.openQuestionBank();
+    h.page.searchPapers({ detail: { value: 'not-a-collection' } });
+    assert.equal(h.page.data.matchingPapers.length, 0);
+    const template = fs.readFileSync(new URL('pages/index/index.wxml', miniRoot), 'utf8');
+    assert.doesNotMatch(template, /wx:for="{{paperItems}}"/);
+    assert.match(template, /bindinput="searchPapers"/);
+    assert.match(template, /wx:if="{{paperItems.length}}" class="secondary question-bank"/);
+    assert.equal(harness({ language: 'la' }).page.data.paperItems.length, 0);
+  } finally {
+    bank.questionCollections.splice(originalCollections);
+    bank.questions.splice(originalQuestions);
+  }
+});

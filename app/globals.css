@@ -163,10 +163,13 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .language-menu button:hover { background: var(--gold-soft); }
 .language-menu button.selected { background: var(--crimson-soft); }
 .language-menu button > svg { color: var(--crimson); }
-.locale-switch { height: 38px; display: flex; align-items: center; padding: 3px; border: 1px solid var(--line-strong); border-radius: 8px; background: #ece8df; }
-.locale-switch button { height: 30px; border: 0; border-radius: 5px; background: transparent; padding: 0 9px; color: var(--muted); cursor: pointer; font-size: 10px; white-space: nowrap; }
-.locale-switch button.active { color: var(--crimson); background: var(--panel); box-shadow: 0 2px 7px rgba(52,42,29,.1); font-weight: 700; }
-.locale-compact { display: none; }
+.locale-toggle { width: 46px; height: 46px; flex: 0 0 46px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; padding: 0; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--crimson); background: var(--panel); cursor: pointer; white-space: nowrap; }
+.locale-toggle > span { font-size: 18px; font-weight: 700; line-height: 1; }
+.locale-toggle > small { font-size: 9px; line-height: 1.25; }
+.locale-toggle:hover { border-color: var(--crimson); }
+.vocabulary-range { margin: 0; align-self: center; font-size: 13px; }
+.vocabulary-range small { display: block; margin-top: 5px; color: var(--muted); }
+.vocabulary-focus { color: var(--crimson); font-size: 13px; }
 
 .page { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 46px 0 70px; }
 h1, h2, h3, p { margin-top: 0; }
@@ -674,8 +677,6 @@ h1, h2, h3, p { margin-top: 0; }
   .sidebar { padding-left: 12px; padding-right: 12px; }
   .topbar-stats { display: none; }
   .language-trigger { min-width: 205px; }
-  .locale-full { display: none; }
-  .locale-compact { display: inline; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-card:nth-child(2) { border-right: 0; }
   .stat-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -693,7 +694,6 @@ h1, h2, h3, p { margin-top: 0; }
   .language-trigger { min-width: 185px; height: 42px; }
   .language-trigger-copy > small { display: none; }
   .language-menu { width: min(310px, calc(100vw - 32px)); }
-  .locale-switch button { padding: 0 7px; }
   .account-menu > span, .account-menu > svg { display: none; }
   .account-button span { display: none; }
   .repo-link span, .public-badge span { display: none; }
