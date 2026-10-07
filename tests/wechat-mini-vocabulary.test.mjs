@@ -84,7 +84,7 @@ function choose(h, memory, extra = {}) {
 
 test('shared entries preserve both source pools, ungraded access, multiple readings and neutral details', () => {
   const h = harness();
-  assert.equal(h.vocabulary.entries({ language: 'ja' }).length, 2290);
+  assert.equal(h.vocabulary.entries({ language: 'ja' }).length, bank.vocabularyCards.filter(card => card.language === 'ja').length);
   assert.equal(h.vocabulary.entries({ language: 'ja', scope: 'n1-2000' }).length, 2013);
   assert.equal(h.vocabulary.entries({ language: 'ja', scope: 'jlpt-1992' }).length, 295);
   const ungraded = bank.vocabularyCards.find(card => card.language === 'ja' && !card.level);

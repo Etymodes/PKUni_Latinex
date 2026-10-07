@@ -1,0 +1,3873 @@
+[
+  {
+    "id": "ja-n1-list-e869539303ca",
+    "lemma": "怠る",
+    "reading": "おこたる",
+    "gloss": "疏忽应做之事",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-13bb806ceaea",
+    "lemma": "怠ける",
+    "reading": "なまける",
+    "gloss": "偷懒",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-00143c8ca773",
+    "lemma": "怠惰",
+    "reading": "たいだ",
+    "gloss": "懒惰",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-d4e5de4c2738",
+    "lemma": "怠慢",
+    "reading": "たいまん",
+    "gloss": "怠慢、玩忽职守",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-808328c89c17",
+    "lemma": "備わる",
+    "reading": "そなわる",
+    "gloss": "具备、配备有",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-3b2d3dc5c5eb",
+    "lemma": "装備",
+    "reading": "そうび",
+    "gloss": "装备",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-7e907c3ecb90",
+    "lemma": "不備",
+    "reading": "ふび",
+    "gloss": "不完备",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-d7e42812c8ad",
+    "lemma": "遮る",
+    "reading": "さえぎる",
+    "gloss": "遮挡、打断",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-087ad3d326e1",
+    "lemma": "遮断",
+    "reading": "しゃだん",
+    "gloss": "切断、阻断",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-dcc891607d24",
+    "lemma": "遮光",
+    "reading": "しゃこう",
+    "gloss": "遮光",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3a54c37fccef",
+    "lemma": "侮る",
+    "reading": "あなどる",
+    "gloss": "轻视",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-cdd8d756ae8b",
+    "lemma": "侮辱",
+    "reading": "ぶじょく",
+    "gloss": "侮辱",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-7bd07dca01c1",
+    "lemma": "侮蔑",
+    "reading": "ぶべつ",
+    "gloss": "蔑视",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-348bbc736510",
+    "lemma": "必須",
+    "reading": "ひっす",
+    "gloss": "必不可少",
+    "partOfSpeech": "名词・形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5def9905e85f",
+    "lemma": "必修",
+    "reading": "ひっしゅう",
+    "gloss": "必修",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-b8549cc28b3a",
+    "lemma": "必勝",
+    "reading": "ひっしょう",
+    "gloss": "必胜",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8fbcb8acda9b",
+    "lemma": "必至",
+    "reading": "ひっし",
+    "gloss": "必然到来、势必发生",
+    "partOfSpeech": "形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-23fb1d474f91",
+    "lemma": "必然",
+    "reading": "ひつぜん",
+    "gloss": "必然",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-01176da494a2",
+    "lemma": "必読",
+    "reading": "ひつどく",
+    "gloss": "必读",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-25765af2b344",
+    "lemma": "必需品",
+    "reading": "ひつじゅひん",
+    "gloss": "必需品",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3b73afd9c950",
+    "lemma": "下落",
+    "reading": "げらく",
+    "gloss": "下跌",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2b1f270ff8f5",
+    "lemma": "下降",
+    "reading": "かこう",
+    "gloss": "下降",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6b777bbecb02",
+    "lemma": "上り線",
+    "reading": "のぼりせん",
+    "gloss": "上行线",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-db418325961d",
+    "lemma": "上り坂",
+    "reading": "のぼりざか",
+    "gloss": "上坡；形势上升",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-622289fd90a6",
+    "lemma": "研ぐ",
+    "reading": "とぐ",
+    "gloss": "淘米、磨",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-af9a76f6604f",
+    "lemma": "研鑽",
+    "reading": "けんさん",
+    "gloss": "钻研",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5f2a071aa248",
+    "lemma": "研磨",
+    "reading": "けんま",
+    "gloss": "研磨、钻研",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-85a10575c7d1",
+    "lemma": "注ぐ",
+    "reading": "つぐ",
+    "gloss": "倒入；斟入",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "usageNotes": "这里取「つぐ」读音，指把液体倒入器皿；同形词的其他读音、义项不应覆盖。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-266125ddb97f",
+    "lemma": "注文",
+    "reading": "ちゅうもん",
+    "gloss": "点单、订购",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2e7b3bbd65a8",
+    "lemma": "注目",
+    "reading": "ちゅうもく",
+    "gloss": "关注",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-a4f8e6e89738",
+    "lemma": "仰ぐ",
+    "reading": "あおぐ",
+    "gloss": "仰望；尊敬；请求指示或帮助",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4927df1d6aa3",
+    "lemma": "仰天",
+    "reading": "ぎょうてん",
+    "gloss": "大吃一惊",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-baaecb6941d4",
+    "lemma": "仰視",
+    "reading": "ぎょうし",
+    "gloss": "仰视",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3e2b0c578db1",
+    "lemma": "信仰",
+    "reading": "しんこう",
+    "gloss": "信仰",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-aa10f2e24e18",
+    "lemma": "濯ぐ",
+    "reading": "すすぐ",
+    "gloss": "冲洗；漂洗",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "usageNotes": "此处读「すすぐ」，指用水冲去污物、洗涤剂等。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3eca9231ae5c",
+    "lemma": "洗濯",
+    "reading": "せんたく",
+    "gloss": "洗衣",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-ff715bb2483f",
+    "lemma": "浸す",
+    "reading": "ひたす",
+    "gloss": "浸泡",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-007"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2e9d76e5ad68",
+    "lemma": "漁船",
+    "reading": "ぎょせん",
+    "gloss": "渔船",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bf1b58ffb251",
+    "lemma": "漁業",
+    "reading": "ぎょぎょう",
+    "gloss": "渔业",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ab67dc8f1b71",
+    "lemma": "漁師",
+    "reading": "りょうし",
+    "gloss": "渔夫",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-fe8ccb494c75",
+    "lemma": "漁る",
+    "reading": "あさる",
+    "gloss": "打鱼、搜寻",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4960e9c04034",
+    "lemma": "入港",
+    "reading": "にゅうこう",
+    "gloss": "入港",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d41d074d459d",
+    "lemma": "漁港",
+    "reading": "ぎょこう",
+    "gloss": "渔港",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e0d274131d16",
+    "lemma": "港湾",
+    "reading": "こうわん",
+    "gloss": "港湾",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1151db5f85fb",
+    "lemma": "港",
+    "reading": "みなと",
+    "gloss": "港口",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-5b2e56e525c6",
+    "lemma": "負かす",
+    "reading": "まかす",
+    "gloss": "打败、战胜",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-01295a309899",
+    "lemma": "負ける",
+    "reading": "まける",
+    "gloss": "输",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f1eaaadda9d9",
+    "lemma": "欠かす",
+    "reading": "かかす",
+    "gloss": "缺少、缺做",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-10fd798f7a5b",
+    "lemma": "犯す",
+    "reading": "おかす",
+    "gloss": "犯下、违反",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c6b1e448ee5f",
+    "lemma": "尽かす",
+    "reading": "つかす",
+    "gloss": "耗尽；出尽",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "usageNotes": "常见「愛想を尽かす」：对某人失去好感或耐心。不要与「尽くす（つくす）」混写。",
+    "dictionaryReferences": [
+      {
+        "name": "小学馆《デジタル大辞泉》",
+        "url": "https://kotobank.jp/word/尽かす-570835",
+        "note": "核对读音「つかす」及“出尽、耗尽”的基本义。"
+      }
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-eb9a51d55772",
+    "lemma": "意地",
+    "reading": "いじ",
+    "gloss": "脾气；固执；意气",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "usageNotes": "「意地になる」「意地を張る」都可表达固执、不肯让步。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-a7b9dcc39d07",
+    "lemma": "意図",
+    "reading": "いと",
+    "gloss": "意图",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-b1fb4ed9a9c2",
+    "lemma": "意欲",
+    "reading": "いよく",
+    "gloss": "积极性、干劲",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-0f090fe5e307",
+    "lemma": "意向",
+    "reading": "いこう",
+    "gloss": "意向",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-9d7b4bb860bd",
+    "lemma": "勇ましい",
+    "reading": "いさましい",
+    "gloss": "英勇、勇敢，也可表示生气勃勃",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-a5b49a429e14",
+    "lemma": "勇敢",
+    "reading": "ゆうかん",
+    "gloss": "勇敢",
+    "partOfSpeech": "名词・形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bc8a2464b30c",
+    "lemma": "勇姿",
+    "reading": "ゆうし",
+    "gloss": "英姿、雄姿",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-0082ae05d494",
+    "lemma": "浅ましい",
+    "reading": "あさましい",
+    "gloss": "卑鄙、贪婪等",
+    "partOfSpeech": "形容词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d078ddd542b3",
+    "lemma": "浅はか",
+    "reading": "あさはか",
+    "gloss": "浅薄、欠考虑",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-36fab61cda87",
+    "lemma": "浅い",
+    "reading": "あさい",
+    "gloss": "浅、浅薄",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-1ef7a5a10e34",
+    "lemma": "好ましい",
+    "reading": "このましい",
+    "gloss": "令人满意、可取",
+    "partOfSpeech": "形容词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-97ae3bbb12d4",
+    "lemma": "好物",
+    "reading": "こうぶつ",
+    "gloss": "爱吃的东西",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-910be76e9414",
+    "lemma": "嗜好",
+    "reading": "しこう",
+    "gloss": "嗜好",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ebe06b1dfdc7",
+    "lemma": "妬ましい",
+    "reading": "ねたましい",
+    "gloss": "令人嫉妒",
+    "partOfSpeech": "形容词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-660290beee6e",
+    "lemma": "嫉妬",
+    "reading": "しっと",
+    "gloss": "嫉妒",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-efecffa0ecde",
+    "lemma": "義士",
+    "reading": "ぎし",
+    "gloss": "为正义而行动的人、义士",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-013"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3dd1b22caa55",
+    "lemma": "利息",
+    "reading": "りそく",
+    "gloss": "借贷资金产生的利息",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a6782b9cf3b6",
+    "lemma": "利益",
+    "reading": "りえき",
+    "gloss": "利益、利润",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e514cbe4e568",
+    "lemma": "子息",
+    "reading": "しそく",
+    "gloss": "对他人儿子的敬称",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-2ebd616e7344",
+    "lemma": "ため息",
+    "reading": "ためいき",
+    "gloss": "叹气",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "spellingVariants": [
+      "溜息",
+      "溜め息"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-77aad903f0ae",
+    "lemma": "元金",
+    "reading": "がんきん",
+    "gloss": "本金",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a0377908c993",
+    "lemma": "元年",
+    "reading": "がんねん",
+    "gloss": "元年",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-4900ceb323b4",
+    "lemma": "元来",
+    "reading": "がんらい",
+    "gloss": "原本、从来",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a1c1675f5df8",
+    "lemma": "元素",
+    "reading": "げんそ",
+    "gloss": "元素",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-427d68b4836a",
+    "lemma": "金庫",
+    "reading": "きんこ",
+    "gloss": "保险柜、金库",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a42315e416fa",
+    "lemma": "金融",
+    "reading": "きんゆう",
+    "gloss": "金融",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-77af46b073a5",
+    "lemma": "代金",
+    "reading": "だいきん",
+    "gloss": "货款、价款",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bbb72f61f117",
+    "lemma": "黄金",
+    "reading": "おうごん",
+    "gloss": "黄金",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a69798f797a3",
+    "lemma": "住宅ローン",
+    "reading": "じゅうたくローン",
+    "gloss": "住房贷款",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5c25457eac12",
+    "lemma": "返済",
+    "reading": "へんさい",
+    "gloss": "偿还",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-014"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-0aa35945f729",
+    "lemma": "粘る",
+    "reading": "ねばる",
+    "gloss": "发黏；顽强坚持，不轻易放弃",
+    "partOfSpeech": "五段自动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bd6f18230c92",
+    "lemma": "強がる",
+    "reading": "つよがる",
+    "gloss": "逞强",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-e99af7b00fa0",
+    "lemma": "張る",
+    "reading": "はる",
+    "gloss": "张开、绷紧、膨胀等",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5e022866b014",
+    "lemma": "頑張る",
+    "reading": "がんばる",
+    "gloss": "努力、坚持",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a0f488310771",
+    "lemma": "伸びる",
+    "reading": "のびる",
+    "gloss": "伸长、增长",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c6a45ad35456",
+    "lemma": "強豪",
+    "reading": "きょうごう",
+    "gloss": "强队、强手",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-897bb04486a1",
+    "lemma": "引き分け",
+    "reading": "ひきわけ",
+    "gloss": "平局",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c84618b2940d",
+    "lemma": "処分",
+    "reading": "しょぶん",
+    "gloss": "处理掉物品；处分、处罚",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "usageNotes": "处理旧物时可指丢弃、出售等；与处罚义须按宾语区分。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-4bb8fb544f9e",
+    "lemma": "処置",
+    "reading": "しょち",
+    "gloss": "处置、措施",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5d5c3674bd2f",
+    "lemma": "善処",
+    "reading": "ぜんしょ",
+    "gloss": "妥善处理",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-7496e00e07ee",
+    "lemma": "対処",
+    "reading": "たいしょ",
+    "gloss": "应对",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-dfcf7b9a9ac3",
+    "lemma": "昔ながら",
+    "reading": "むかしながら",
+    "gloss": "保持从前的样子、传统的",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e609c5e03638",
+    "lemma": "生まれながら",
+    "reading": "うまれながら",
+    "gloss": "天生、本来就",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-75e00c77cbfc",
+    "lemma": "素材",
+    "reading": "そざい",
+    "gloss": "材料；素材；食材",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c2ab8967002a",
+    "lemma": "感心",
+    "reading": "かんしん",
+    "gloss": "佩服；赞叹",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f7324c14e23a",
+    "lemma": "柱",
+    "reading": "はしら",
+    "gloss": "柱子、支柱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e2d592b9383b",
+    "lemma": "大黒柱",
+    "reading": "だいこくばしら",
+    "gloss": "房屋主柱；家庭或组织的支柱",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1d952002a44e",
+    "lemma": "電柱",
+    "reading": "でんちゅう",
+    "gloss": "电线杆",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-339f0c3ba83e",
+    "lemma": "支柱",
+    "reading": "しちゅう",
+    "gloss": "支柱",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-cc9d6b099914",
+    "lemma": "秤",
+    "reading": "はかり",
+    "gloss": "秤",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ddbf48e2689e",
+    "lemma": "畑",
+    "reading": "はたけ",
+    "gloss": "旱田、田地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-199a126d00a7",
+    "lemma": "田畑",
+    "reading": "たはた",
+    "gloss": "田地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-377bada41d87",
+    "lemma": "蜂",
+    "reading": "はち",
+    "gloss": "蜂",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-43b81999c249",
+    "lemma": "蜂蜜",
+    "reading": "はちみつ",
+    "gloss": "蜂蜜",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-0338c42fb072",
+    "lemma": "大規模",
+    "reading": "だいきぼ",
+    "gloss": "大规模",
+    "partOfSpeech": "名词・形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-d6db3a4c57c6",
+    "lemma": "規模",
+    "reading": "きぼ",
+    "gloss": "规模",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-0e9360affc9d",
+    "lemma": "大流行",
+    "reading": "だいりゅうこう",
+    "gloss": "大流行",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-030e2843f1ac",
+    "lemma": "大々的",
+    "reading": "だいだいてき",
+    "gloss": "大规模的",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-427560d68a06",
+    "lemma": "大地震",
+    "reading": "おおじしん",
+    "gloss": "大地震",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ad37f92db5b0",
+    "lemma": "大掃除",
+    "reading": "おおそうじ",
+    "gloss": "大扫除",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020",
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c51f5df83f44",
+    "lemma": "大海原",
+    "reading": "おおうなばら",
+    "gloss": "辽阔的大海",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-47ea29f0c938",
+    "lemma": "模様",
+    "reading": "もよう",
+    "gloss": "花纹、情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-26f74870d569",
+    "lemma": "模範",
+    "reading": "もはん",
+    "gloss": "模范",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1bb76b5fb440",
+    "lemma": "模倣",
+    "reading": "もほう",
+    "gloss": "模仿",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-37b612d00bfb",
+    "lemma": "修繕",
+    "reading": "しゅうぜん",
+    "gloss": "修缮",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4185b1cb23c7",
+    "lemma": "緻密",
+    "reading": "ちみつ",
+    "gloss": "细致、缜密",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-3c25edd44675",
+    "lemma": "密接",
+    "reading": "みっせつ",
+    "gloss": "关系密切",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f28c555697f1",
+    "lemma": "濃密",
+    "reading": "のうみつ",
+    "gloss": "浓厚、浓密",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8702c43a120d",
+    "lemma": "密着",
+    "reading": "みっちゃく",
+    "gloss": "紧贴、紧密跟随",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-530b9f2fd16c",
+    "lemma": "構成",
+    "reading": "こうせい",
+    "gloss": "结构、构成",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a1c4485b014f",
+    "lemma": "惹きつける",
+    "reading": "ひきつける",
+    "gloss": "吸引",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-3297eb102457",
+    "lemma": "遠ざかる",
+    "reading": "とおざかる",
+    "gloss": "远离",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-0f84768bde41",
+    "lemma": "退く",
+    "reading": "しりぞく",
+    "gloss": "后退、退出、退任等",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-26711d817137",
+    "lemma": "訪れる",
+    "reading": "おとずれる",
+    "gloss": "访问、到来",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-056f41ed0409",
+    "lemma": "遠回り",
+    "reading": "とおまわり",
+    "gloss": "绕远路",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-df0b0e363963",
+    "lemma": "見送る",
+    "reading": "みおくる",
+    "gloss": "目送；送别；暂缓、放弃实施",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-053a10cd89ca",
+    "lemma": "にも増して",
+    "reading": "にもまして",
+    "gloss": "比……更加……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-023"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-42750c3c7435",
+    "lemma": "予約を入れる",
+    "reading": "よやくをいれる",
+    "gloss": "预约",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e71523aa58e9",
+    "lemma": "列に並ぶ",
+    "reading": "れつにならぶ",
+    "gloss": "排队",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-e8c0e1631afa",
+    "lemma": "接触",
+    "reading": "せっしょく",
+    "gloss": "接触、碰撞",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-58ed4c69fbbb",
+    "lemma": "接着",
+    "reading": "せっちゃく",
+    "gloss": "黏合",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c04d5b9a94ae",
+    "lemma": "接近",
+    "reading": "せっきん",
+    "gloss": "接近；靠近",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008",
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-0e19d5e58f01",
+    "lemma": "切実",
+    "reading": "せつじつ",
+    "gloss": "切身、迫切",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5f0fed7fd8e0",
+    "lemma": "切開",
+    "reading": "せっかい",
+    "gloss": "切开",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-70b03fab6a59",
+    "lemma": "痛切",
+    "reading": "つうせつ",
+    "gloss": "痛切",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-55a660d42f63",
+    "lemma": "一切",
+    "reading": "いっさい",
+    "gloss": "一切",
+    "partOfSpeech": "名词・副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-957064cd2644",
+    "lemma": "前方不注意",
+    "reading": "ぜんぽうふちゅうい",
+    "gloss": "未注意前方",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-27a74cb7bf44",
+    "lemma": "指標",
+    "reading": "しひょう",
+    "gloss": "指标、参照",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-daa7c16a1d02",
+    "lemma": "屈指",
+    "reading": "くっし",
+    "gloss": "屈指可数",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-ecc3c6bb14fd",
+    "lemma": "指図",
+    "reading": "さしず",
+    "gloss": "指使、指示",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-12b642bcf43e",
+    "lemma": "小指",
+    "reading": "こゆび",
+    "gloss": "小指",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-282ec1cdeb58",
+    "lemma": "標的",
+    "reading": "ひょうてき",
+    "gloss": "目标",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-57eb8426cd01",
+    "lemma": "標本",
+    "reading": "ひょうほん",
+    "gloss": "标本",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f8d8d32b166e",
+    "lemma": "商標",
+    "reading": "しょうひょう",
+    "gloss": "商标",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-99ccf5a1bbae",
+    "lemma": "売上額",
+    "reading": "うりあげがく",
+    "gloss": "销售额",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-578c462106da",
+    "lemma": "棚上げ",
+    "reading": "たなあげ",
+    "gloss": "搁置",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-027"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c7f78d624a70",
+    "lemma": "賃上げ",
+    "reading": "ちんあげ",
+    "gloss": "涨工资",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-027"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1b4dedadd322",
+    "lemma": "値上げ",
+    "reading": "ねあげ",
+    "gloss": "涨价",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-027"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-32cdcd812cd2",
+    "lemma": "仕上げ",
+    "reading": "しあげ",
+    "gloss": "收尾、完成",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-027"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5e5943068bb0",
+    "lemma": "打ち解ける",
+    "reading": "うちとける",
+    "gloss": "消除拘束、融洽相处",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-daa8db690e44",
+    "lemma": "打ち明ける",
+    "reading": "うちあける",
+    "gloss": "吐露",
+    "partOfSpeech": "一段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2d6edd9ac35c",
+    "lemma": "打ち破る",
+    "reading": "うちやぶる",
+    "gloss": "打破",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-04ed2c98c5ee",
+    "lemma": "打ち消す",
+    "reading": "うちけす",
+    "gloss": "否定、消除",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-7928c749191a",
+    "lemma": "忘年会",
+    "reading": "ぼうねんかい",
+    "gloss": "年终聚会",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-68887c163ce0",
+    "lemma": "引退",
+    "reading": "いんたい",
+    "gloss": "退出职业活动、退役",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-42c809008976",
+    "lemma": "否決",
+    "reading": "ひけつ",
+    "gloss": "否决",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-11095d97586f",
+    "lemma": "拒否",
+    "reading": "きょひ",
+    "gloss": "拒绝",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f27086119527",
+    "lemma": "安否",
+    "reading": "あんぴ",
+    "gloss": "是否平安",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-de138911c738",
+    "lemma": "否む",
+    "reading": "いなむ",
+    "gloss": "否认、拒绝",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-40fb6d431474",
+    "lemma": "決意",
+    "reading": "けつい",
+    "gloss": "决心",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-67c53e3cbab8",
+    "lemma": "決算",
+    "reading": "けっさん",
+    "gloss": "决算",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d9862f2ecc56",
+    "lemma": "決着",
+    "reading": "けっちゃく",
+    "gloss": "了结",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6cfefaf4d653",
+    "lemma": "即決",
+    "reading": "そっけつ",
+    "gloss": "当场决定",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6270aaea0430",
+    "lemma": "貧血",
+    "reading": "ひんけつ",
+    "gloss": "贫血",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-33744a47720f",
+    "lemma": "貧困",
+    "reading": "ひんこん",
+    "gloss": "贫困",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-19fffa279777",
+    "lemma": "貧富",
+    "reading": "ひんぷ",
+    "gloss": "贫富",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-78495dd840b9",
+    "lemma": "貧乏",
+    "reading": "びんぼう",
+    "gloss": "贫穷",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2188ab45d02c",
+    "lemma": "荘厳",
+    "reading": "そうごん",
+    "gloss": "庄严；肃穆",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "usageNotes": "一般庄严气氛取「そうごん」。佛教专门用法还有「しょうごん」等读法，应按意义区分。",
+    "dictionaryReferences": [
+      {
+        "name": "小学馆《デジタル大辞泉》",
+        "url": "https://kotobank.jp/word/荘厳-79212",
+        "note": "核对一般义「そうごん」以及佛教相关读法与义项的区别。"
+      }
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-9fd45296fd46",
+    "lemma": "尊厳",
+    "reading": "そんげん",
+    "gloss": "尊严",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-fc44fb19bc3a",
+    "lemma": "厳正",
+    "reading": "げんせい",
+    "gloss": "严正",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-b8b718db5241",
+    "lemma": "厳か",
+    "reading": "おごそか",
+    "gloss": "庄严、肃穆",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-9f008ad32e93",
+    "lemma": "教会",
+    "reading": "きょうかい",
+    "gloss": "教堂",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3d3ff2df6fe8",
+    "lemma": "結婚式",
+    "reading": "けっこんしき",
+    "gloss": "婚礼",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-b8d1eed6232f",
+    "lemma": "辞意",
+    "reading": "じい",
+    "gloss": "辞职的意向",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-eeca3817a894",
+    "lemma": "辞退",
+    "reading": "じたい",
+    "gloss": "谢绝、主动退出",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-a31a9c361194",
+    "lemma": "固辞",
+    "reading": "こじ",
+    "gloss": "坚决推辞",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-0f9992f44138",
+    "lemma": "世辞",
+    "reading": "せじ",
+    "gloss": "奉承、客套话",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-1eada55fc78b",
+    "lemma": "揉める",
+    "reading": "もめる",
+    "gloss": "争执、发生纠纷",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-7d536c8c5d61",
+    "lemma": "裂ける",
+    "reading": "さける",
+    "gloss": "裂开",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-77e66bafc6e9",
+    "lemma": "強いて",
+    "reading": "しいて",
+    "gloss": "硬要、勉强",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-66205513742e",
+    "lemma": "旅行先",
+    "reading": "りょこうさき",
+    "gloss": "旅行目的地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f97b90e563dc",
+    "lemma": "見るに堪えない",
+    "reading": "みるにたえない",
+    "gloss": "不忍看、看不下去",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3e7b7a85348a",
+    "lemma": "若作り",
+    "reading": "わかづくり",
+    "gloss": "把自己打扮得比实际年龄年轻",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-30034c94f351",
+    "lemma": "格好",
+    "reading": "かっこう",
+    "gloss": "样子、装扮",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bd850de87d95",
+    "lemma": "点検",
+    "reading": "てんけん",
+    "gloss": "逐项检查；检修",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-37d6de3b487d",
+    "lemma": "引き起こす",
+    "reading": "ひきおこす",
+    "gloss": "引起；导致",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-001"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-dab2fb440d86",
+    "lemma": "応募",
+    "reading": "おうぼ",
+    "gloss": "应征；报名参加",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-16bb1d2b098c",
+    "lemma": "条件",
+    "reading": "じょうけん",
+    "gloss": "条件",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-002"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f241e48f84b9",
+    "lemma": "下り線",
+    "reading": "くだりせん",
+    "gloss": "下行线",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4e004e15d5c5",
+    "lemma": "下り坂",
+    "reading": "くだりざか",
+    "gloss": "下坡；形势走下坡路",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-64ae333848cb",
+    "lemma": "株価",
+    "reading": "かぶか",
+    "gloss": "股价",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-428ef459ddf6",
+    "lemma": "地価",
+    "reading": "ちか",
+    "gloss": "地价",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-003"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1a679a83ab28",
+    "lemma": "がらりと",
+    "reading": "がらりと",
+    "gloss": "一下子彻底改变；显著地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-65864fffbc12",
+    "lemma": "ぐるりと",
+    "reading": "ぐるりと",
+    "gloss": "转一圈；环绕一周",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-470d80c07430",
+    "lemma": "ちらっと",
+    "reading": "ちらっと",
+    "gloss": "一瞥；一闪；略微",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-81ab7b170537",
+    "lemma": "ずらっと",
+    "reading": "ずらっと",
+    "gloss": "成排地；一长排地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-92e0474a45c5",
+    "lemma": "見回す",
+    "reading": "みまわす",
+    "gloss": "环视；巡视",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-eac170cddbc4",
+    "lemma": "性格",
+    "reading": "せいかく",
+    "gloss": "性格",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-004"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-cea2df7d3f7c",
+    "lemma": "関わる",
+    "reading": "かかわる",
+    "gloss": "涉及；关系到；与某事有关",
+    "partOfSpeech": "五段自动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6cd871d56cc2",
+    "lemma": "にわたる",
+    "reading": "にわたる",
+    "gloss": "持续或遍及某段时间、地域、范围",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-fa5473b55567",
+    "lemma": "値する",
+    "reading": "あたいする",
+    "gloss": "值得；相当于某种价值",
+    "partOfSpeech": "サ变动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d826e493071f",
+    "lemma": "当たる",
+    "reading": "あたる",
+    "gloss": "碰到；相当于；正值",
+    "partOfSpeech": "五段自动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-78fced5e8407",
+    "lemma": "シンポジウム",
+    "reading": "シンポジウム",
+    "gloss": "专题研讨会",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e5f03db8ff58",
+    "lemma": "幼児教育",
+    "reading": "ようじきょういく",
+    "gloss": "幼儿教育",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8f28c59eb546",
+    "lemma": "諸問題",
+    "reading": "しょもんだい",
+    "gloss": "各种问题",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-005"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-77ee809581d5",
+    "lemma": "これといって",
+    "reading": "これといって",
+    "gloss": "没有特别值得一提的……；常与否定呼应",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-80c1bf5c201b",
+    "lemma": "今一つ",
+    "reading": "いまひとつ",
+    "gloss": "还差一点；不太令人满意",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "spellingVariants": [
+      "今ひとつ",
+      "いまひとつ"
+    ],
+    "usageNotes": "表示不够满意时常与否定或负面评价搭配，如「今一つよく分からない」。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5f52c54af064",
+    "lemma": "打って変わって",
+    "reading": "うってかわって",
+    "gloss": "与此前截然不同",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-cce765252979",
+    "lemma": "折り入って",
+    "reading": "おりいって",
+    "gloss": "郑重而诚恳地；常用于请求或商量",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-82f0bfc453bc",
+    "lemma": "好き嫌い",
+    "reading": "すききらい",
+    "gloss": "好恶；挑食",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-c3428aa0a47e",
+    "lemma": "に関して",
+    "reading": "にかんして",
+    "gloss": "关于；就……而言",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-006"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-463920d541ba",
+    "lemma": "認める",
+    "reading": "みとめる",
+    "gloss": "承认；认可；准许",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-008"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-54e61c9e6f3c",
+    "lemma": "果たす",
+    "reading": "はたす",
+    "gloss": "完成；履行；实现",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-41005b0bb519",
+    "lemma": "優勝",
+    "reading": "ゆうしょう",
+    "gloss": "夺冠；第一名",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6d53f8abc8a6",
+    "lemma": "相手",
+    "reading": "あいて",
+    "gloss": "对方；对手；伙伴",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-98b9eb5270a8",
+    "lemma": "ライバル",
+    "reading": "ライバル",
+    "gloss": "竞争对手",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-009"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-0916dacc9dcc",
+    "lemma": "意地になる",
+    "reading": "いじになる",
+    "gloss": "固执起来；意气用事",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bfa0cc9f25eb",
+    "lemma": "意地を張る",
+    "reading": "いじをはる",
+    "gloss": "固执己见；坚持不让步",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8226218065a6",
+    "lemma": "打診",
+    "reading": "だしん",
+    "gloss": "试探或询问对方意向；叩诊",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-010"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-5fe57def525b",
+    "lemma": "というもの",
+    "reading": "というもの",
+    "gloss": "接近来的一段时间，强调期间状态一直持续",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6111c4dcc904",
+    "lemma": "にしても",
+    "reading": "にしても",
+    "gloss": "即使……也……；就……而言也……",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-eda937d9ad5b",
+    "lemma": "としても",
+    "reading": "としても",
+    "gloss": "即使假设……也……",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f9b9615201d4",
+    "lemma": "というか",
+    "reading": "というか",
+    "gloss": "或者说；该说是……",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d8d7e372c5b6",
+    "lemma": "余裕",
+    "reading": "よゆう",
+    "gloss": "余地；空闲；从容应对的能力",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-b9dc78c66a97",
+    "lemma": "追う",
+    "reading": "おう",
+    "gloss": "追赶；追寻；驱逐",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-011"
+    ],
+    "usageNotes": "「仕事に追われる」用被动形，表示忙于应付工作。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-134f973376e2",
+    "lemma": "いかんでは",
+    "reading": "いかんでは",
+    "gloss": "视……的情况而定，可能……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-012"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-30eac6005aa3",
+    "lemma": "から見ると",
+    "reading": "からみると",
+    "gloss": "从……来看；根据……作判断",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-012"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3797ca9f8e38",
+    "lemma": "に限って",
+    "reading": "にかぎって",
+    "gloss": "唯独……；偏偏……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-012"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8d6a0ad44ec0",
+    "lemma": "を機に",
+    "reading": "をきに",
+    "gloss": "以……为契机",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-012"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-12ba9071de3c",
+    "lemma": "期末試験",
+    "reading": "きまつしけん",
+    "gloss": "期末考试",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-012"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e07b380b5d7e",
+    "lemma": "弱音",
+    "reading": "よわね",
+    "gloss": "泄气话；诉苦的话",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-015"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6ce1dbe7eb1e",
+    "lemma": "引っ越し",
+    "reading": "ひっこし",
+    "gloss": "搬家；迁居",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-62bd927cebc0",
+    "lemma": "家具",
+    "reading": "かぐ",
+    "gloss": "家具",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-42f87aaded3d",
+    "lemma": "適切",
+    "reading": "てきせつ",
+    "gloss": "恰当；合适",
+    "partOfSpeech": "形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-45745c0bdec0",
+    "lemma": "前向き",
+    "reading": "まえむき",
+    "gloss": "朝前；积极看待事物",
+    "partOfSpeech": "名词・形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bcabed1ac382",
+    "lemma": "緊急事態",
+    "reading": "きんきゅうじたい",
+    "gloss": "紧急情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-016"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4682f6dfe678",
+    "lemma": "にあっては",
+    "reading": "にあっては",
+    "gloss": "处于某一时期、情境或状况下",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-680db9ba4fa8",
+    "lemma": "にあっても",
+    "reading": "にあっても",
+    "gloss": "即使处于某一情境也……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-85e3074d7bee",
+    "lemma": "に至っては",
+    "reading": "にいたっては",
+    "gloss": "到了……地步；至于……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-b09e13f764e5",
+    "lemma": "にしたって",
+    "reading": "にしたって",
+    "gloss": "即使……也……；口语让步表达",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-6a25bbae5c6a",
+    "lemma": "控える",
+    "reading": "ひかえる",
+    "gloss": "临近或面临；节制；记录；等候",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-48db443cfd2b",
+    "lemma": "入試",
+    "reading": "にゅうし",
+    "gloss": "入学考试",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-fb95e9c5888e",
+    "lemma": "健康管理",
+    "reading": "けんこうかんり",
+    "gloss": "健康管理",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-017"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-26b35a1cf727",
+    "lemma": "いつもながら",
+    "reading": "いつもながら",
+    "gloss": "一如往常；每次都如此",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f139f0f53ec0",
+    "lemma": "つつある",
+    "reading": "つつある",
+    "gloss": "接动词连用形，表示正在发生或逐渐变化",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4362cb0d1491",
+    "lemma": "ずくめ",
+    "reading": "ずくめ",
+    "gloss": "清一色；全是……",
+    "partOfSpeech": "接尾表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-681c31716253",
+    "lemma": "ばかり",
+    "reading": "ばかり",
+    "gloss": "只；尽是；刚刚等，意义由接续和语境决定",
+    "partOfSpeech": "助词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-018"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-7f1937f4a2d6",
+    "lemma": "急病",
+    "reading": "きゅうびょう",
+    "gloss": "急病；突发疾病",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-019"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-0985cf1b3334",
+    "lemma": "面目を一新する",
+    "reading": "めんもくをいっしんする",
+    "gloss": "使面貌焕然一新",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-020"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d17277de67c9",
+    "lemma": "推理小説",
+    "reading": "すいりしょうせつ",
+    "gloss": "推理小说",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-658e7513990f",
+    "lemma": "描写",
+    "reading": "びょうしゃ",
+    "gloss": "描写",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-67c1a4130cc4",
+    "lemma": "密着取材",
+    "reading": "みっちゃくしゅざい",
+    "gloss": "近距离跟踪采访",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-021"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1a728efa936f",
+    "lemma": "新幹線",
+    "reading": "しんかんせん",
+    "gloss": "新干线",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-dc7744a2f62a",
+    "lemma": "現役",
+    "reading": "げんえき",
+    "gloss": "现役；仍在一线从事某项活动",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-022"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ddf8d3a59f1e",
+    "lemma": "引けを取らない",
+    "reading": "ひけをとらない",
+    "gloss": "不逊色；不输给对方",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-023"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2ff23d343494",
+    "lemma": "にもかかわらず",
+    "reading": "にもかかわらず",
+    "gloss": "尽管……却……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-023"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d708eb46b675",
+    "lemma": "に先立って",
+    "reading": "にさきだって",
+    "gloss": "在……之前；先于某事进行",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-023"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-af193481191d",
+    "lemma": "販売実績",
+    "reading": "はんばいじっせき",
+    "gloss": "销售业绩",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-023"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4c03b64379a4",
+    "lemma": "ものを",
+    "reading": "ものを",
+    "gloss": "本来可以……却……；表达遗憾、不满等",
+    "partOfSpeech": "接续表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-462e51ae5d4b",
+    "lemma": "ものではない",
+    "reading": "ものではない",
+    "gloss": "不应该……；常用于一般性劝诫",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-bf076468b2c1",
+    "lemma": "ものだ",
+    "reading": "ものだ",
+    "gloss": "表示常理、感慨、过去惯常情形等",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-32a1397fd5b9",
+    "lemma": "ものの",
+    "reading": "ものの",
+    "gloss": "虽然……但是……",
+    "partOfSpeech": "接续表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-024"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3e6479781d8f",
+    "lemma": "雪辱",
+    "reading": "せつじょく",
+    "gloss": "雪耻；挽回先前失败的名誉",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-025"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-becebac561be",
+    "lemma": "ノルマ",
+    "reading": "ノルマ",
+    "gloss": "规定的任务量；定额",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-026"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-366498d0d1dd",
+    "lemma": "ことになる",
+    "reading": "ことになる",
+    "gloss": "决定形成某种安排；推论为某种结果",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-027"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-f7b1cfd6e068",
+    "lemma": "雰囲気",
+    "reading": "ふんいき",
+    "gloss": "气氛；氛围",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-8e7f59ccb8cc",
+    "lemma": "会談",
+    "reading": "かいだん",
+    "gloss": "会谈",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-062a2931da68",
+    "lemma": "秘密",
+    "reading": "ひみつ",
+    "gloss": "秘密",
+    "partOfSpeech": "名词・形容动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-028"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e3751ecb18f7",
+    "lemma": "やれ",
+    "reading": "やれ",
+    "gloss": "用于项目之前，列举让人忙乱、抱怨等的事情",
+    "partOfSpeech": "感叹词・列举表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-3ef1b8266578",
+    "lemma": "やら",
+    "reading": "やら",
+    "gloss": "列举若干事项；常有繁杂或不确定语气",
+    "partOfSpeech": "助词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-85da526bc788",
+    "lemma": "なり",
+    "reading": "なり",
+    "gloss": "在列举中表示……也好、……也好",
+    "partOfSpeech": "助词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-39ab20713e48",
+    "lemma": "といわず",
+    "reading": "といわず",
+    "gloss": "不论……还是……；不分……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-029"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-e8afac7d62de",
+    "lemma": "を限りに",
+    "reading": "をかぎりに",
+    "gloss": "以……为最后；到……为止",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-37fbe5c4c8d9",
+    "lemma": "を境に",
+    "reading": "をさかいに",
+    "gloss": "以……为分界，前后发生变化",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-991c712e5161",
+    "lemma": "を兼ねて",
+    "reading": "をかねて",
+    "gloss": "兼作；同时兼顾另一个目的",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-9be786a20e58",
+    "lemma": "を踏まえて",
+    "reading": "をふまえて",
+    "gloss": "基于；考虑到已有事实、经验等",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-d7bd9ee83027",
+    "lemma": "出演",
+    "reading": "しゅつえん",
+    "gloss": "参加演出；出演",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-030"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2491d187e9aa",
+    "lemma": "可決",
+    "reading": "かけつ",
+    "gloss": "表决通过议案",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-59346e3f0a02",
+    "lemma": "企画案",
+    "reading": "きかくあん",
+    "gloss": "策划方案",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-031"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-1621d3c7d730",
+    "lemma": "草原",
+    "reading": "そうげん",
+    "gloss": "草原",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-1b24829b6a54",
+    "lemma": "壮健",
+    "reading": "そうけん",
+    "gloss": "强健；身体健壮",
+    "partOfSpeech": "名词・形容动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-032"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-7a159afa1752",
+    "lemma": "表明",
+    "reading": "ひょうめい",
+    "gloss": "表明；明确表达",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-2273062a5486",
+    "lemma": "内定",
+    "reading": "ないてい",
+    "gloss": "内部决定；尚未正式生效的录用等决定",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-1992-7e10727cef10",
+    "lemma": "就任",
+    "reading": "しゅうにん",
+    "gloss": "就任；担任职务",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4f533bb0f62e",
+    "lemma": "場を借りる",
+    "reading": "ばをかりる",
+    "gloss": "借某种场合或机会表达、行动",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-033"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-n1-list-eb4ce7e356e1",
+    "lemma": "惚ける",
+    "reading": "ぼける",
+    "gloss": "变得模糊；反应迟钝；说笑装傻",
+    "partOfSpeech": "一段自动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "spellingVariants": [
+      "ぼける"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-507b232bade6",
+    "lemma": "口が裂けても",
+    "reading": "くちがさけても",
+    "gloss": "即使撕开嘴也……；常接绝不说等否定",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-034"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-6b239287ee7a",
+    "lemma": "聞くに堪えない",
+    "reading": "きくにたえない",
+    "gloss": "不堪入耳；听不下去",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-14e67c72269b",
+    "lemma": "に足りない",
+    "reading": "にたりない",
+    "gloss": "不值得；不足以",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-d20868f53dc2",
+    "lemma": "にあたらない",
+    "reading": "にあたらない",
+    "gloss": "不必如此；不值得如此",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-9dccf964cae4",
+    "lemma": "にほかならない",
+    "reading": "にほかならない",
+    "gloss": "正是；无非是",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-4975883f16c0",
+    "lemma": "感謝に堪えない",
+    "reading": "かんしゃにたえない",
+    "gloss": "不胜感谢；非常感激",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-035"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-ef622501f594",
+    "lemma": "話す",
+    "reading": "はなす",
+    "gloss": "说；交谈",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-036"
+    ],
+    "usageNotes": "自谦礼貌表达可用「お話しする」，可能形式为「お話しできる」；「お話しいただく」把讲话者转为对方。",
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-92c8a29d9aa4",
+    "lemma": "いただく",
+    "reading": "いただく",
+    "gloss": "承蒙；恭敬地接受；也作吃、喝的自谦语",
+    "partOfSpeech": "五段动词・补助动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-036"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  },
+  {
+    "id": "ja-hlb1000-u01-207d8433a540",
+    "lemma": "いたす",
+    "reading": "いたす",
+    "gloss": "做的自谦、郑重表达",
+    "partOfSpeech": "五段动词・补助动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "ja-hlb1000-n1-u01-036"
+    ],
+    "notes": "词形与简释为编辑整理；仅明确列出词典链接的项目作过对应核对。"
+  }
+]

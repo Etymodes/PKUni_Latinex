@@ -42,13 +42,7 @@ before(async () => {
 after(() => fs.rmSync(temporaryDirectory, { recursive: true, force: true }));
 
 test("native bank preserves the complete website composition, metadata, IDs, and review status", () => {
-  const expected = [
-    ...source("data/questions.ts").questions,
-    ...source("data/complete-bank.ts").completeQuestions,
-    ...source("data/multilingual-questions.ts").multilingualQuestions,
-    ...source("data/multilingual-seeds.ts").multilingualSeedQuestions,
-    ...source("data/jlpt-1992.ts").jlpt1992Questions,
-  ];
+  const expected = source("data/study-questions.ts").studyQuestions;
   assert.deepEqual(bank.questions, JSON.parse(JSON.stringify(expected)));
   assert.equal(new Set(bank.questions.map((question) => question.id)).size, expected.length);
   assert.deepEqual(bank.vocabularyCards, JSON.parse(JSON.stringify(source("data/vocabulary.ts").vocabularyCards)));

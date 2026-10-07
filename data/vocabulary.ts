@@ -5,6 +5,8 @@ import { multilingualSeedQuestions, multilingualVocabItems } from "./multilingua
 import { lexiconSeed, type LexiconEntry } from "./resources.ts";
 import importedVocabulary from "./jlpt-1992-vocabulary.json" with { type: "json" };
 import n1Vocabulary from "./n1-2000-vocabulary.json" with { type: "json" };
+import vocabulary1993 from "./jlpt-1993-vocabulary.json" with { type: "json" };
+import vocabularyUnit01 from "./ja-hlb1000-n1-u01-vocabulary.json" with { type: "json" };
 
 export type VocabularyMode = "word" | "context";
 
@@ -19,6 +21,7 @@ export type VocabularyCard = {
   partOfSpeech?: string;
   batch?: string;
   sourceQuestionIds?: string[];
+  sourceCollections?: string[];
   sourcePages?: number[];
   sourceReading?: string;
   sourceMeaning?: string;
@@ -149,7 +152,7 @@ for (const entry of lexiconSeed) {
 for (const entry of importedVocabulary) {
   const existing = sharedCards.find(card => card.language === "ja" && card.term === entry.lemma);
   const fields = { reading: entry.reading, partOfSpeech: entry.partOfSpeech,
-    sourceQuestionIds: entry.sourceQuestionIds, notes: entry.notes,
+    sourceQuestionIds: entry.sourceQuestionIds, sourceCollections: ["jlpt-1992-1"], notes: entry.notes,
     usageNotes: entry.usageNotes, dictionaryReferences: entry.dictionaryReferences, batch: "1992 · 旧1級",
     context: entry.context, meaning: entry.gloss };
   if (existing) Object.assign(existing, fields, { level: entry.level as LanguageLevel });
@@ -172,6 +175,65 @@ for (const entry of n1Vocabulary) {
       batch: "N1必背2000词", ...source });
   }
 }
+type ImportedVocabulary = {
+  id: string; lemma: string; reading: string; gloss: string; partOfSpeech: string; context: string;
+  level?: LanguageLevel; sourceQuestionIds: string[]; spellingVariants?: string[]; readingVariants?: string[];
+  usageNotes?: string; dictionaryReferences?: VocabularyCard["dictionaryReferences"];
+  senses?: { reading: string; gloss: string }[];
+};
+
+export function mergeVocabularyCollection(cards: VocabularyCard[], entries: ImportedVocabulary[], collectionId: string): void {
+  const normalize = (term: string) => term.normalize("NFKC").trim();
+  const lookup = new Map<string, VocabularyCard>();
+  for (const card of cards.filter(card => card.language === "ja")) {
+    lookup.set(normalize(card.term), card);
+    for (const variant of card.spellingVariants ?? []) if (!lookup.has(normalize(variant))) lookup.set(normalize(variant), card);
+  }
+  for (const entry of entries) {
+    const existing = lookup.get(normalize(entry.lemma));
+    const card: VocabularyCard = existing ?? { id: entry.id, language: "ja", term: entry.lemma,
+      reading: entry.reading, meaning: entry.gloss, partOfSpeech: entry.partOfSpeech, context: entry.context,
+      ...(entry.level ? { level: entry.level } : {}) };
+    if (!existing) { cards.push(card); lookup.set(normalize(entry.lemma), card); }
+    card.sourceQuestionIds = [...new Set([...(card.sourceQuestionIds ?? []), ...entry.sourceQuestionIds])];
+    card.sourceCollections = [...new Set([...(card.sourceCollections ?? []), collectionId])];
+    if (!card.reading) card.reading = entry.reading;
+    if (!card.partOfSpeech) card.partOfSpeech = entry.partOfSpeech;
+    if (!card.context) card.context = entry.context;
+    if (!card.level && entry.level) card.level = entry.level;
+    if (entry.spellingVariants?.length) card.spellingVariants = [...new Set([...(card.spellingVariants ?? []), ...entry.spellingVariants])];
+    const incomingSenses = [{ reading: entry.reading, gloss: entry.gloss }, ...(entry.senses ?? [])];
+    const readings = [...(entry.readingVariants ?? []), ...incomingSenses.map(sense => sense.reading)]
+      .filter(reading => reading !== card.reading && reading !== card.sourceReading);
+    if (readings.length) card.readingVariants = [...new Set([...(card.readingVariants ?? []), ...readings])];
+    for (const sense of incomingSenses) {
+      const primary = sense.reading === card.reading && sense.gloss === card.meaning;
+      const source = sense.reading === card.sourceReading && sense.gloss === card.sourceMeaning;
+      if (!primary && !source && !card.senses?.some(item => item.reading === sense.reading && item.gloss === sense.gloss)) {
+        card.senses = [...(card.senses ?? []), { reading: sense.reading, gloss: sense.gloss, sourcePages: [] }];
+      }
+    }
+    if (!card.usageNotes && entry.usageNotes) card.usageNotes = entry.usageNotes;
+    for (const variant of card.spellingVariants ?? []) if (!lookup.has(normalize(variant))) lookup.set(normalize(variant), card);
+    if (entry.dictionaryReferences?.length) card.dictionaryReferences = [...new Map([...(card.dictionaryReferences ?? []), ...entry.dictionaryReferences].map(reference => [reference.url, reference])).values()];
+  }
+}
+
+// Only dictionary citations are shown with Japanese definitions; exam/book provenance stays internal.
+export function publicDictionaryReferences(card: VocabularyCard) {
+  return (card.dictionaryReferences ?? []).filter(reference => /^https:\/\//.test(reference.url)
+    && (card.language !== "ja" || /大辞泉|大辞林|広辞苑|廣辭苑|日本国語大辞典|日本國語大辭典|明鏡国語辞典|新明解国語辞典/.test(reference.name)));
+}
+
+export function vocabularyInCollection(card: VocabularyCard, source: string): boolean {
+  if (source === "2000" || source === "n1-2000") return Boolean(card.sourcePages?.length);
+  const collectionId = source === "1992" || source === "jlpt-1992" ? "jlpt-1992-1" : source;
+  return collectionId === "all" || Boolean(card.sourceCollections?.includes(collectionId)
+    || card.sourceQuestionIds?.some(id => id.startsWith(collectionId + "-")));
+}
+
+mergeVocabularyCollection(sharedCards, vocabulary1993 as ImportedVocabulary[], "jlpt-1993-1");
+mergeVocabularyCollection(sharedCards, vocabularyUnit01 as ImportedVocabulary[], "ja-hlb1000-n1-u01");
 export const vocabularyCards: VocabularyCard[] = sharedCards;
 export const dictionaryEntries = vocabularyCards;
 

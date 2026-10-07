@@ -1,0 +1,131 @@
+{
+  "sourceId": "ja-hlb1000-n1-u01",
+  "title": "红蓝宝书 N1 · Unit 1",
+  "sourceFile": "Pikku_JA_N1_红蓝宝书1000题_Unit01.json",
+  "sourceSha256": "288fd9c49f1f6244b2e6e943c120be6b4c9d3a60f610b3bd62b3139373d0d34b",
+  "publicationBasis": "本轮用户明确授权将Unit01的36道题及相关词汇公开导入Pikku；旧容器draft说明不覆盖本次授权。",
+  "book": {
+    "title": "红蓝宝书1000题·新日本语能力考试N1·文字·词汇·文法（练习＋详解）",
+    "editors": [
+      "许小明",
+      "Reika"
+    ],
+    "compiledBy": "新世界图书事业部",
+    "publisher": "华东理工大学出版社"
+  },
+  "unit": "01",
+  "questionNumbers": [
+    "001",
+    "002",
+    "003",
+    "004",
+    "005",
+    "006",
+    "007",
+    "008",
+    "009",
+    "010",
+    "011",
+    "012",
+    "013",
+    "014",
+    "015",
+    "016",
+    "017",
+    "018",
+    "019",
+    "020",
+    "021",
+    "022",
+    "023",
+    "024",
+    "025",
+    "026",
+    "027",
+    "028",
+    "029",
+    "030",
+    "031",
+    "032",
+    "033",
+    "034",
+    "035",
+    "036"
+  ],
+  "pages": [
+    {
+      "questionPage": 1,
+      "answerPage": 2,
+      "questionNumbers": [
+        "001",
+        "002",
+        "003",
+        "004",
+        "005",
+        "006"
+      ]
+    },
+    {
+      "questionPage": 3,
+      "answerPage": 4,
+      "questionNumbers": [
+        "007",
+        "008",
+        "009",
+        "010",
+        "011",
+        "012"
+      ]
+    },
+    {
+      "questionPage": 5,
+      "answerPage": 6,
+      "questionNumbers": [
+        "013",
+        "014",
+        "015",
+        "016",
+        "017",
+        "018"
+      ]
+    },
+    {
+      "questionPage": 7,
+      "answerPage": 8,
+      "questionNumbers": [
+        "019",
+        "020",
+        "021",
+        "022",
+        "023",
+        "024"
+      ]
+    },
+    {
+      "questionPage": 9,
+      "answerPage": 10,
+      "questionNumbers": [
+        "025",
+        "026",
+        "027",
+        "028",
+        "029",
+        "030"
+      ]
+    },
+    {
+      "questionPage": 11,
+      "answerPage": 12,
+      "questionNumbers": [
+        "031",
+        "032",
+        "033",
+        "034",
+        "035",
+        "036"
+      ]
+    }
+  ],
+  "extraction": "只选公共question字段与studyNotes中的必要语言材料；未复制attempts、firstAttemptSummary、图片引用或libraryFileId。源JSON未改动。",
+  "verification": "逐项核对所给JSON的36个教材答案；本次未重新查看书页照片，不宣称重新完成图片转录审核。"
+}

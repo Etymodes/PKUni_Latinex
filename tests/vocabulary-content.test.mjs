@@ -14,7 +14,7 @@ test("dictionary and training use one canonical entry and learning key for both 
   for (const item of examVocabulary) {
     const cards = japanese.filter(card => card.term.normalize("NFKC") === item.lemma.normalize("NFKC"));
     assert.equal(cards.length, 1, item.lemma);
-    assert.deepEqual(cards[0].sourceQuestionIds, item.sourceQuestionIds);
+    assert.ok(item.sourceQuestionIds.every(id => cards[0].sourceQuestionIds.includes(id)));
     assert.equal(cards[0].meaning, item.gloss);
     assert.equal(cards[0].level, item.level);
   }
@@ -24,9 +24,9 @@ test("dictionary and training use one canonical entry and learning key for both 
     assert.deepEqual(card.sourcePages, item.sourcePages);
     assert.equal(card.sourceReading, item.reading);
     assert.equal(card.sourceMeaning, item.gloss);
-    assert.deepEqual(card.spellingVariants, item.spellingVariants);
-    assert.deepEqual(card.readingVariants, item.readingVariants);
-    assert.deepEqual(card.senses, item.senses);
+    assert.ok((item.spellingVariants ?? []).every(value => card.spellingVariants.includes(value)));
+    assert.ok((item.readingVariants ?? []).every(value => card.readingVariants.includes(value)));
+    for (const sense of item.senses ?? []) assert.ok(card.senses.some(value => JSON.stringify(value) === JSON.stringify(sense)));
     assert.ok(item.sourcePages.length && item.sourcePages.every(page => Number.isInteger(page) && page > 0));
     assert.ok(item.reading.trim() && item.gloss.trim());
   }

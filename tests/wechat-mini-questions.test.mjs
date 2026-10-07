@@ -268,3 +268,36 @@ test('wrong/saved paper filters and original-number search keep all levels; pref
   assert.ok(h.page.range.every(q => shared.matchesLevel(q, 'C')));
   assert.equal(h.page.data.question, null);
 });
+
+
+test('all three source papers open across levels and retain source order on picker changes', () => {
+  const h = harness({ level: 'C' });
+  for (const [index, count] of [[0,149],[1,152],[2,36]]) {
+    h.page.changePaper({ detail: { value: String(index) } });
+    assert.equal(h.page.data.selectedPaper, bank.questionCollections[index].id);
+    assert.equal(h.page.data.questionTotal, count);
+    assert.equal(h.page.data.level, 'C');
+    assert.ok(h.page.queue.every(q => shared.questionInCollection(q, bank.questionCollections[index].id)));
+    assert.ok(h.page.queue.every(q => q.shuffleOptions === false));
+    assert.equal(h.page.data.question.id, h.page.queue[0].id);
+    assert.equal(h.page.data.submitted, false);
+  }
+});
+
+test('both historical papers preserve audio-only choices and expose their transcript only after answering', async () => {
+  const h = harness();
+  const source = fs.readFileSync(new URL('pages/index/index.wxml', miniRoot), 'utf8');
+  assert.match(source, /wx:if="{{!question.optionsInAudio \|\| submitted}}">{{item.text}}/);
+  for (const prefix of ['jlpt-1992-1-', 'jlpt-1993-1-']) {
+    const items = bank.questions.filter(q => q.id.startsWith(prefix) && q.optionsInAudio);
+    assert.equal(items.length, prefix.includes('1992') ? 20 : 19);
+    const q = items[0];
+    h.page.showQuestion(q);
+    assert.equal(h.page.data.submitted, false);
+    assert.equal(h.page.data.visibleTranscript, '');
+    assert.deepEqual(plain(h.page.data.choices.map(choice => choice.index)), [0,1,2,3]);
+    await h.page.answer(event({ index: q.answer }));
+    assert.equal(h.page.data.answerCorrect, true);
+    assert.equal(h.page.data.visibleTranscript, q.transcript);
+  }
+});

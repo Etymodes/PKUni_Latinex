@@ -1,0 +1,1299 @@
+{
+  "rubric": {
+    "id": "cfgm-user-screenshot-2026-10-06-v1",
+    "source": {
+      "kind": "user-provided-screenshot",
+      "date": "2026-10-06",
+      "sha256": "564df655cdd0feea52a59aee27820cc3fcaa985ec474af9c2bda6bae1c50e809",
+      "scope": "四级难度定位来自用户提供的历史对话截图；日语知识范围为截图按定位展开的整理，不冒称已找回旧语言细目文件。"
+    },
+    "levels": {
+      "C": {
+        "name": "初级 Core",
+        "definition": "刚入门能打招呼数数交易问路"
+      },
+      "F": {
+        "name": "凡级 Functional",
+        "definition": "能够正常交流"
+      },
+      "G": {
+        "name": "高级 Generative",
+        "definition": "流利的学术交流和工作还有生活"
+      },
+      "M": {
+        "name": "准母语级 Mastery",
+        "definition": "无限接近母语甚至超过母语，了解大量语言文化更深层内容"
+      }
+    },
+    "method": "根据目标考点、必要上下文、选项差异和实际解题要求，作编辑性内容分级；不是按旧考试等级映射，也不是依据实测通过率标定。",
+    "boundaries": [
+      "G 已覆盖学术、工作、社会交流及复杂语法、抽象词汇、近义搭配、正式语体和较复杂文学；完整出口为各核心技能的 C1 型功能，不作证书等价换算。",
+      "M 侧重细微语感、语域修辞、含蓄幽默反讽、文化深度和专业产出；不要求抹掉个人口音。",
+      "没有可靠的日语逐级词汇量、汉字数或完整语法清单，不编造数字门槛。",
+      "单道选择题的等级只描述其所练习的知识与理解要求，不证明说写互动等综合能力。",
+      "分级可以留空档，不为均衡而强行分配 C 或 M。"
+    ],
+    "documentation": "docs/Pikku_CFGM_Rubric.md"
+  },
+  "questions": [
+    {
+      "id": "jlpt-1993-1-vocab-I-1-1",
+      "level": "G",
+      "knowledgePoints": [
+        "事態＝じたい，指事情的状态、局面。"
+      ],
+      "rationale": "需识别叙述局势的抽象词「事態」，并区分じたい与じったい等近音形式；属较正式的抽象词汇。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-2",
+      "level": "G",
+      "knowledgePoints": [
+        "軽率＝けいそつ；軽率な行動表示轻率行动。"
+      ],
+      "rationale": "需掌握评价判断方式的「軽率」及率的读音そつ，超出具体日常名物的读音识别。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-3",
+      "level": "F",
+      "knowledgePoints": [
+        "避ける＝さける；軽率な行動を避ける。"
+      ],
+      "rationale": "考察日常表达「避免某种行为」时さける的读法，尤其排除同字另一读法よける，所需语境局部明确。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-4",
+      "level": "G",
+      "knowledgePoints": [
+        "相互＝そうご，表示彼此、相互。"
+      ],
+      "rationale": "需辨认正式关系词「相互」并区别そうご与そうごう等近音，不靠原考试等级判断。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-5",
+      "level": "F",
+      "knowledgePoints": [
+        "取り除く＝とりのぞく，去掉、消除。"
+      ],
+      "rationale": "考察常见复合动词的读音，句中消除不信任只是熟悉词义的延伸，无需处理专门论证。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-1",
+      "level": "G",
+      "knowledgePoints": [
+        "偽造＝ぎぞう，伪造货币或文件。"
+      ],
+      "rationale": "目标是法律与经济报道中常用的正式行为名词，需区分偽/造的浊音组合。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-2",
+      "level": "G",
+      "knowledgePoints": [
+        "損なう＝そこなう；信用を損なう。"
+      ],
+      "rationale": "需认出表示损害信用的抽象动词，排除賄う・補う・養う等不同词，涉及正式搭配。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-3",
+      "level": "F",
+      "knowledgePoints": [
+        "犯罪＝はんざい。"
+      ],
+      "rationale": "公共生活中常见法律名词的读音识别，选择依赖浊音而非法律专业知识。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-4",
+      "level": "F",
+      "knowledgePoints": [
+        "厳しい＝きびしい；厳しく処罰する。"
+      ],
+      "rationale": "常见形容词きびしい的基本读音，与激しい・険しい等读法区分即可。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-5",
+      "level": "G",
+      "knowledgePoints": [
+        "処罰＝しょばつ，处罚。"
+      ],
+      "rationale": "识别法律正式用语中的短音しょ和ばつ，属于正式社会词汇内容档。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-1",
+      "level": "G",
+      "knowledgePoints": [
+        "定義＝ていぎ，给概念规定含义。"
+      ],
+      "rationale": "考查学术论述中的基本抽象词，需区分定規じょうぎ等近音干扰。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-2",
+      "level": "G",
+      "knowledgePoints": [
+        "倫理的＝りんりてき，与伦理有关。"
+      ],
+      "rationale": "目标为社会伦理讨论的抽象词，且需区别与心理的等近音；原共享句误字已按题目目标订正。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-3",
+      "level": "F",
+      "knowledgePoints": [
+        "微妙＝びみょう；微妙な問題。"
+      ],
+      "rationale": "现代生活、工作中常见评价词的读音，题目只要求识别びみょう，不要求阐释伦理问题。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-4",
+      "level": "G",
+      "knowledgePoints": [
+        "絡む＝からむ；問題が絡む表示问题牵涉其中。"
+      ],
+      "rationale": "需将动词认识为抽象的牵涉关系，并排除潜む・孕む・含む读法，涉及语义延伸。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-5",
+      "level": "G",
+      "knowledgePoints": [
+        "一概に＝いちがいに，笼统地、一律地；常与否定相应。"
+      ],
+      "rationale": "需要掌握议论语体副词的固定读音及其限制性评价功能，不是一般数量表达。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-1",
+      "level": "G",
+      "knowledgePoints": [
+        "施行＝しこう，与思考同音；法律实施语境。"
+      ],
+      "rationale": "法律语体「施行」按原题取しこう，与思考配对；须排除自己じこ、事項じこう、成功せいこう的长短音差异。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "豊作＝ほうさく，与方策同音。"
+      ],
+      "rationale": "考查丰收与对策两个不同语义领域的同音汉字词，需辨别宝石ほうせき、法則ほうそく、紡績ぼうせき。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "振興＝しんこう，与進行同音。"
+      ],
+      "rationale": "需掌握产业振兴的正式词，并排除信号しんごう、人口じんこう、志向しこう的近音干扰。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "視点＝してん，与支店同音。"
+      ],
+      "rationale": "工作生活常见词的同音匹配；自伝じでん、市電しでん、進展しんてん仅需常规读音辨识。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "終始＝しゅうし，与収支同音。"
+      ],
+      "rationale": "需识别书面副词终始以及经济词收支，并区别重視じゅうし、習字しゅうじ、従事じゅうじ的音节与浊音。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-1-1",
+      "level": "F",
+      "knowledgePoints": [
+        "こうふん＝興奮。"
+      ],
+      "rationale": "常见情绪词的正确写法，排除高奮・興憤・高憤等组合即可。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-1-2",
+      "level": "F",
+      "knowledgePoints": [
+        "うず＝渦；興奮の渦。"
+      ],
+      "rationale": "识别常见名词渦的汉字，潮・泡・浪都与水相关但读音意义不同。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-1",
+      "level": "F",
+      "knowledgePoints": [
+        "くずれる＝崩れる，建筑物坍塌。"
+      ],
+      "rationale": "在地震语境中区分崩れる与倒れる・壊れる・破れる，属于常用动词基本识字。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-2",
+      "level": "G",
+      "knowledgePoints": [
+        "ししょうしゃ＝死傷者，死亡及受伤者。"
+      ],
+      "rationale": "新闻灾害报道的复合词，需要准确识别「傷」而非焼・障・消。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-3",
+      "level": "G",
+      "knowledgePoints": [
+        "だいさんじ＝大惨事，重大惨祸。"
+      ],
+      "rationale": "新闻语体固定名词的精确汉字选择，排除以災・騒・損替代惨的错误写法。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-1",
+      "level": "F",
+      "knowledgePoints": [
+        "やくしょく＝役職，职务、职位。"
+      ],
+      "rationale": "熟悉工作场景中常用名词的基本书写，识别職这一构词成分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-2",
+      "level": "F",
+      "knowledgePoints": [
+        "やめる＝辞める，辞去职务。"
+      ],
+      "rationale": "根据役職语境选择辞める，属于常用辞职表达的汉字辨识。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-3",
+      "level": "G",
+      "knowledgePoints": [
+        "いんきょ＝隠居，退休隐居生活。"
+      ],
+      "rationale": "带有传统生活制度和退居含义的词，但此题仅考现代词义书写，不涉及深层文化，归G而非M。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-1",
+      "level": "F",
+      "knowledgePoints": [
+        "じゅうたい＝渋滞，交通拥堵。"
+      ],
+      "rationale": "日常交通场景常见词，考查固定汉字渋滞而非相似错误组合。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-2",
+      "level": "F",
+      "knowledgePoints": [
+        "かいぜん＝改善，改善状况。"
+      ],
+      "rationale": "学习工作交流常用词，区分改与解、善与繕的基本写法。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-3",
+      "level": "G",
+      "knowledgePoints": [
+        "とりしまり＝取り締まり，查处、管制。"
+      ],
+      "rationale": "需识别行政执法正式用词的核心漢字締；原选项3的转录异常另外标明，不作为词汇学习条目。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-4",
+      "level": "G",
+      "knowledgePoints": [
+        "かくほ＝確保，确保、取得并保有所需资源。"
+      ],
+      "rationale": "正式公共管理表达中需准确识别「確保」，与獲・補等相近字区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-5",
+      "level": "G",
+      "knowledgePoints": [
+        "はかる＝図る；確保を図る表示谋求实现。"
+      ],
+      "rationale": "同读音測る・量る・謀る都是真实词，必须按目的及谋求的抽象搭配选择図る。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-5-1",
+      "level": "F",
+      "knowledgePoints": [
+        "かんごふ＝看護婦；现代通常称看護師。"
+      ],
+      "rationale": "历史题所用常见职业词的书写，不要求医学专业知识；旧称作为年代信息保留。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-5-2",
+      "level": "F",
+      "knowledgePoints": [
+        "はけん＝派遣，派人前往。"
+      ],
+      "rationale": "常见工作与支援场景中派遣的固定汉字，排除形近字遺和赴。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "順調与順番共用「順」；準備、純粋、循環用字不同。"
+      ],
+      "rationale": "通过常用顺利、顺序词的汉字对应即可完成，虽有正式干扰词，核心要求仍是熟悉词书写。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "模索与索引共用「索」；対策、作戦、削除分别用策・作・削。"
+      ],
+      "rationale": "需连接抽象行为模索与工具词索引，并精确辨认同音构词字。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-3",
+      "level": "F",
+      "knowledgePoints": [
+        "浪費与費用共用「費」；皮肉、肥料、疲労用皮・肥・疲。"
+      ],
+      "rationale": "目标为常见费用与浪费词的对应，主要是熟悉日常汉字的同音辨字。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "妥協与協定共用「協」；状況、共通、環境用況・共・境。"
+      ],
+      "rationale": "涉及协商和正式社会关系词，须按不同构词意义选择同音汉字。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "運営与営業共用「営」；影響、衛生、映像用影・衛・映。"
+      ],
+      "rationale": "组织运营和营业的正式工作词精确辨字，不能只按えい的读音判断。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-1",
+      "level": "G",
+      "knowledgePoints": [
+        "明朗な性格；明確・明解・明白的搭配对象不同。"
+      ],
+      "rationale": "必须区分一组近义汉字词的语义范围，选择描述开朗性格的明朗。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "事件の背景，表示事件背后的情形与因素。"
+      ],
+      "rationale": "从背景・景色・景気・光景中选择抽象原因环境义，而非可见景象或经济景气。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "人の気持ちに配慮する。"
+      ],
+      "rationale": "辨别気配・配慮・配置・分配，并掌握に配慮する的对象搭配。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "はらはらする，担心危险发生而提心吊胆。"
+      ],
+      "rationale": "具体看孩子爬树场景即可判断常用拟态词，与ひらひら・ぶかぶか・ふらふら区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-5",
+      "level": "F",
+      "knowledgePoints": [
+        "若さを保つ；保つ＝たもつ。"
+      ],
+      "rationale": "常用保持状态的搭配，区别ためる・たやす・たよる即可。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-6",
+      "level": "G",
+      "knowledgePoints": [
+        "出発を見合わせる，暂缓出发。"
+      ],
+      "rationale": "需精确区分見計らう・見習う・見逃す・見合わせる四个真实复合动词。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "すがすがしい空気，清爽的空气。"
+      ],
+      "rationale": "具体日常感受词与空气的常见搭配；无需依赖复杂篇章。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-8",
+      "level": "G",
+      "knowledgePoints": [
+        "何気ない一言，不经意说出的一句话。"
+      ],
+      "rationale": "要区分无意、不检点、难看、可怜等不同负面或中性评价，需较细词义辨析。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-9",
+      "level": "G",
+      "knowledgePoints": [
+        "猛烈な勢い，猛烈的势头。"
+      ],
+      "rationale": "在猛烈・物好き・大胆・巧み中识别强度义并搭配勢い。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-10",
+      "level": "F",
+      "knowledgePoints": [
+        "てっきり…と思っていた，原本一直以为。"
+      ],
+      "rationale": "日常会话常用的确信后发现误判表达，与きっかり・じっくり・きっちり区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-11",
+      "level": "G",
+      "knowledgePoints": [
+        "楽観的な見通し，乐观的预期。"
+      ],
+      "rationale": "经济不景气语境中选择态度评价词，需要区分间接、平均、传统等抽象形容词。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-12",
+      "level": "F",
+      "knowledgePoints": [
+        "技術的レベル，技术水平。"
+      ],
+      "rationale": "常用外来词レベル的语义识别，与ラベル・ドリル・ダブル不同。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-13",
+      "level": "G",
+      "knowledgePoints": [
+        "さじを投げる，比喻束手无策而放弃。"
+      ],
+      "rationale": "需要识别固定惯用语，不能按餐具字面意义选择；常见习语尚不足以定为M。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-14",
+      "level": "G",
+      "knowledgePoints": [
+        "良識を疑われる，良好判断力或常识受到质疑。"
+      ],
+      "rationale": "需区分良性・良好・良質・良識的适用对象和抽象评价搭配。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-15",
+      "level": "F",
+      "knowledgePoints": [
+        "流通の仕組み，流通机制。"
+      ],
+      "rationale": "常用名词仕組み的组织结构义，与仕上げ・仕立て・躾的意义区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "例の場所，双方已知的那个地点。"
+      ],
+      "rationale": "日常指称用法，与举例、先例、范例的例区分，给定释义直接限定。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "きれいに忘れる，忘得一干二净。"
+      ],
+      "rationale": "多义副词的完全义，与美丽、干净、公平义精细区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "世間でもまれる，受到社会磨炼。"
+      ],
+      "rationale": "须识别受身动词的比喻义，区别拥挤、波浪冲击与按摩的物理意义。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "オリンピックの花，最精彩、最引人注目的项目。"
+      ],
+      "rationale": "考查花的中心亮点义，并与両手に花・話に花が咲く等不同习语区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "話にならない，不值得讨论、简直不像话。"
+      ],
+      "rationale": "需根据固定搭配判断話的可讨论价值义，而非谈妥、话题或通情达理。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-6",
+      "level": "F",
+      "knowledgePoints": [
+        "大地震を知っている，亲身经历过大地震。"
+      ],
+      "rationale": "常见动词在具体事件语境中的经历义，与知道知识的基本义作局部区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-7",
+      "level": "G",
+      "knowledgePoints": [
+        "仕事の口がかかる，得到工作邀约。"
+      ],
+      "rationale": "口表示邀约、就业机会的习语用法，需区别议论、插嘴、口味等义项。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-8",
+      "level": "F",
+      "knowledgePoints": [
+        "一年生を持つ，担任一年级的教学工作。"
+      ],
+      "rationale": "熟悉学校场景中的担当义，和建立家庭、具有意义、承担费用区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-9",
+      "level": "G",
+      "knowledgePoints": [
+        "仕事の山を越す，渡过工作最艰难的阶段。"
+      ],
+      "rationale": "考查难关、高潮的比喻义，与大量堆积及押题的山区分。"
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-10",
+      "level": "F",
+      "knowledgePoints": [
+        "川の流れがゆるい，水流速度缓慢。"
+      ],
+      "rationale": "具体环境中常见形容词的速度义，与弯度缓和和尺寸松旷区别。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "缺席原因的否定修正",
+        "感冒发热与家属交通事故的区分"
+      ],
+      "rationale": "在聚会问候中跟随「ご主人はたいしたことない」「本人のほう」的修正，确认本人发热缺席。内容是常见日常说明，需排除已被否定的原因，但不要求抽象论证。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-2",
+      "level": "F",
+      "knowledgePoints": [
+        "身体部位与姿势词",
+        "不弯腰、低头、双手贴臀的条件整合"
+      ],
+      "rationale": "把「腰は曲げず」「頭だけ下げる」和手的位置对应到图。需同时记住几项动作条件，属于可正常交流者理解具体操作说明的范围；虚构国名不构成文化知识门槛。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-3",
+      "level": "F",
+      "knowledgePoints": [
+        "采访中的活动推断",
+        "登高、背重物及景色线索"
+      ],
+      "rationale": "运动名称未直接说出，要从「登る」「重い荷物を背負う」「高いところから海や山」判断登山。是熟悉活动的具体线索整合，不因省略名称自动升为G。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "天气与时间范围",
+        "转折后保留的降雨信息"
+      ],
+      "rationale": "从今晚、明天上午、明天下午和后天的预报中锁定下午，理解风停而雨继续。广播有气象词，但作答所需是普通天气和时间对比，最低合理档为F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "经营业绩的时间趋势",
+        "短期下降与长期投资回报",
+        "听觉信息对应折线图"
+      ],
+      "rationale": "要把原行业第一、约1975年下滑、1985年后回升并重夺第一的经营叙述映射到图线。包含业绩、海外转移和先期投资的抽象商业说明及时间趋势整合，超过一般生活细节检索。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-6",
+      "level": "F",
+      "knowledgePoints": [
+        "日程变更与预约顺序",
+        "职场敬语听辨",
+        "取消会议后的替代安排"
+      ],
+      "rationale": "先排除取消的上午会议，再组合理发、下午两点牙医和四点营业会议的顺序。敬语用于常见职场安排，核心是具体时间与计划；原稿漏掉牙科对话必须补正后才能公平作答。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "倒立与后向入水",
+        "儿童口语中的动作顺序"
+      ],
+      "rationale": "将儿童口语中的倒立、背部朝后下落和翻转对应到姿势图。省略和拟态表达增加听辨负担，但所需信息全部是具体动作，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-8",
+      "level": "F",
+      "knowledgePoints": [
+        "种植步骤的月份与频率",
+        "必做事项与可选繁殖",
+        "水やり与植え替え"
+      ],
+      "rationale": "在植物说明中定位四五月必须进行的浇水和换盆，排除三月保暖及想繁殖时才做的扦插。需整合时间、频率和条件，但题目要求日常操作说明；「毎年」不可误录成「毎日」。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-9",
+      "level": "F",
+      "knowledgePoints": [
+        "提案、异议与最终同意",
+        "图案相对位置",
+        "指回最初建议"
+      ],
+      "rationale": "跟随T恤设计多次提案，辨别背面、正面、斜上方和左胸，最后回到最初的左胸文字方案。属于共同制定生活活动方案的交流能力，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "报名截止时间",
+        "日期与时长的干扰排除"
+      ],
+      "rationale": "广播列出比赛日、来日年数、录音时长和旅行天数，但只需把「応募の締め切り」对应十二月十五日。正式语体增加词汇负担，必要局部仍是普通活动报名信息。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-2",
+      "level": "F",
+      "knowledgePoints": [
+        "自我介绍中的重点排序",
+        "協調性的解释性改述"
+      ],
+      "rationale": "要在开朗、好奇心等优点中识别「最大の長所」，并把与各种人相处融洽对应协作性。抽象名词有随后的直接解释，属于学习社团和面试常见交流。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-3",
+      "level": "F",
+      "knowledgePoints": [
+        "购票方式协商",
+        "排除建议与最终决策",
+        "曜日和行动方式组合"
+      ],
+      "rationale": "两人排除排队、周六及当日购票，最终决定周五不断电话预约。需保持日期与方式的对应，并跟上反复商量，属于日常安排的F技能。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "企业介绍中的过去、现在与将来",
+        "最も力を入れる的焦点信息"
+      ],
+      "rationale": "从玩具、游戏软件、体育用品和未来休闲设施中识别当前重点。作答的必要片段直接列举体育用品并说明生产，不必掌握后文抽象经营战略，因此最低合理档为F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "统计趋势与群体比较",
+        "横ばい、上向く与逆行",
+        "地区数据和全国趋势的区分"
+      ],
+      "rationale": "在男子、女子四年制、女子短大和专门学校多个统计对象间保持指向，辨别本县短大逐增与全国短大不受欢迎的相反趋势。所需是正式统计说明的对象和走势整合，归G。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-6",
+      "level": "F",
+      "knowledgePoints": [
+        "采访中认同与否定",
+        "胜因的因果焦点"
+      ],
+      "rationale": "记者连续提出外援、伤病和主场等原因，教练明确排除，并确认每位队员做好本职工作。普通体育采访的观点追踪即可，不依赖专业战术。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "寄宿家庭的作息安排",
+        "星期三例外规则",
+        "间接表达个人偏好"
+      ],
+      "rationale": "区分五点半起床、孩子七点早餐及周三大人九点早餐，再据「朝は弱い」和主人的确认得出九点。是生活安排中的例外条件与常见委婉表达，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "评价中的隐含不满",
+        "反事实条件与交通便利性"
+      ],
+      "rationale": "女方肯定餐饮、音乐和价格，最后说交通再方便些就更好。以常见条件句理解真正不足是地点交通，属于日常评价推断。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "专家评论的主张与让步",
+        "营养作用和广告宣传的区别",
+        "有限益处不等于整体有效"
+      ],
+      "rationale": "需把补充维C的局部承认与对普通饮食者无明显意义的总体立场分开，识别营养学评论对广告功效的限定和否定。抽象论证及让步关系决定答案，归G。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-3",
+      "level": "F",
+      "knowledgePoints": [
+        "车厢编号和座席类型",
+        "自由席与禁烟的条件交集"
+      ],
+      "rationale": "依据车内广播同时满足自由席十至十二号与禁烟一、十二号两条件，选十二号。广播敬语不改变任务为具体出行信息整合，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "学习任务和截止日期",
+        "明天与下周的区分"
+      ],
+      "rationale": "短对话中组合明天读英语书和做物理计算题，排除下周的演讲。是直接的学习安排，需听清补充事项及时间。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-5",
+      "level": "F",
+      "knowledgePoints": [
+        "被当作姐姐的语用含义",
+        "情绪原因的日常推断"
+      ],
+      "rationale": "把母女同行时被问是否姐姐理解为显年轻，进而判断高兴的原因。虽答案未逐字说出，但属于常见人际评价，不需深层文化典故或特殊语感。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-6",
+      "level": "F",
+      "knowledgePoints": [
+        "对比两人的同意与分歧",
+        "部分让步与转折",
+        "部屋の雰囲気"
+      ],
+      "rationale": "两人都认可房间小、离站远，只有气氛好坏意见不同。需跟上「確かに」「けど」「ともかく」的日常立场变化，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "邀请的表面理由与具体目的",
+        "実は的转折提示",
+        "見てやってくれない的请求"
+      ],
+      "rationale": "从祭典介绍转入「実は」后的孙子初登台，请对方来看表演。真实目的后来明确说出，普通邀请和请求的理解即可，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-8",
+      "level": "G",
+      "knowledgePoints": [
+        "公共议题中的立场和批评对象",
+        "道路建设与环境保护的冲突",
+        "指责言行不一致的论证"
+      ],
+      "rationale": "需概括当地居民对城市游客的批评：享受城市便利，却要求乡村为自己的休闲保持不变。答案要求整合立场、利益冲突和反问所表达的指责，属G的论证与态度理解。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-9",
+      "level": "F",
+      "knowledgePoints": [
+        "家庭谈话的情绪推断",
+        "责问与冷淡回应",
+        "背景信息与直接触发原因"
+      ],
+      "rationale": "听出孩子已合格，妻子因丈夫反应冷淡而生气，而非不在公司或回家晚。依靠日常语调、责问和上下文即可推断，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-10",
+      "level": "F",
+      "knowledgePoints": [
+        "加班用餐计划的协商",
+        "未被采纳的提案",
+        "让步后的共同决定"
+      ],
+      "rationale": "区分买回公司、回家和工作结束外食三种提案，跟随女方最后让步及加快收尾的决定。日常工作安排的连贯理解，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-11",
+      "level": "F",
+      "knowledgePoints": [
+        "行为原因与借口区分",
+        "书信转述的信息层次",
+        "试验、衣服、午餐和生病的关系"
+      ],
+      "rationale": "信中开头直接交代遇到讨厌的考试就请假，后面的衣皱、午餐和感冒是借口或对学校说法。需要保持因果层次，内容为熟悉的学校与家庭问题，归F。"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-12",
+      "level": "F",
+      "knowledgePoints": [
+        "新游戏规则的程序理解",
+        "三个假名的中间音",
+        "按示例迁移规则"
+      ],
+      "rationale": "按说明从三假名词的中间音开始接新词，从さかな取か并选カメラ。需要理解示范和即时应用，而不是预知游戏文化，因此归F；不因题型新颖升为M。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "用「仕事が忙しい」对应优先自己工作的母亲。"
+      ],
+      "rationale": "只需读取A篇第一幕的直接局部理由，并识别同义转述，不需整篇立场分析。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-2",
+      "level": "F",
+      "knowledgePoints": [
+        "○×式应答指只回答被问到的最少信息。"
+      ],
+      "rationale": "原段以短对话直接示范这种应答，所需操作是局部归纳，非抽象教育理论分析。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "结合三幕理解医生「まいります」表示难以应付。"
+      ],
+      "rationale": "需要概括不同母亲与医生沟通失灵的共同点，排除蓄意为难等无依据动机。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "「舞台裏」比喻母亲行为背后的处境。"
+      ],
+      "rationale": "需理解专栏以舞台比喻社会背景，重新解释前篇单方面观察到的母亲行为。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-5",
+      "level": "F",
+      "knowledgePoints": [
+        "父亲照顾孩子增多，是作者期望的变化。"
+      ],
+      "rationale": "末段明确以换尿布等日常照护行为说明父亲改变，题目可局部直接对应。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-6",
+      "level": "G",
+      "knowledgePoints": [
+        "比较A、B两篇，重解母亲要求注射的原因。"
+      ],
+      "rationale": "需将前篇表象与后篇丈夫不合作的背景连起来，完成跨篇因果推断。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "泣き虫の母的背景是没有亲近的育儿商量对象。"
+      ],
+      "rationale": "B篇第二幕直接说明相談相手がない，给定题干只需提取局部原因。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-8",
+      "level": "G",
+      "knowledgePoints": [
+        "读者来信反驳A篇单从医生角度责备母亲。"
+      ],
+      "rationale": "需要理解前后两篇立场转变、反讽结尾和读者批评的对象，属于论述态度综合。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-1",
+      "level": "G",
+      "knowledgePoints": [
+        "教育平等的目标与局部无法平等的现实构成矛盾。"
+      ],
+      "rationale": "需理解抽象教育论述中的目标与现实张力，并排除平等内容教育和入学权的偷换。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "第二个理由承接允许课程纳入难解教材的主张。"
+      ],
+      "rationale": "需追踪省略主语和第一、第二两条论证的共同论点，不能只看邻近句。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "教育を狭める指削弱教育向深层未知世界开放的本义。"
+      ],
+      "rationale": "要将汉字例证与作者的教育理念联系，而非把狭める当作学生人数或教师数量。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "物理教材也应写尚未解决的现象。"
+      ],
+      "rationale": "需要处理科学教育论述及否定评价，识别作者对现行教材提出的反向主张。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "历史教材应容纳随国家和时代变化的不同观点。"
+      ],
+      "rationale": "考查相对性论证的概括，并区分作者重视视角多样性与事实、资料数量。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-6",
+      "level": "G",
+      "knowledgePoints": [
+        "要するに引出对汉字、物理和历史例证的总括。"
+      ],
+      "rationale": "须识别篇章由举例到概括的关系，排除转折、转题和单纯因果连接。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-7",
+      "level": "G",
+      "knowledgePoints": [
+        "教育中的自由是人人都有接近文化深层的可能性。"
+      ],
+      "rationale": "需要综合文化最奥、未知世界与机会开放的抽象定义，区别教育内容一律相同。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-8",
+      "level": "G",
+      "knowledgePoints": [
+        "外側指替他人限定学习范围的课程决策者。"
+      ],
+      "rationale": "根据论证中的施事与受事推断隐含指称，而非泛指人类或一般民众。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-9",
+      "level": "G",
+      "knowledgePoints": [
+        "三领域共同问题是只按易懂与已知来限定教育。"
+      ],
+      "rationale": "需要跨越三个例证抽取共同批评点，处理作者对开放性与课程范围的让步。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-1-1",
+      "level": "F",
+      "knowledgePoints": [
+        "根据房间数与拥有个人房间的比例匹配三条线。"
+      ],
+      "rationale": "数字和明确比较直接给出孩子最高、母亲最低、父亲居中；需跨图文定位但不依赖专业知识。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-2-1",
+      "level": "G",
+      "knowledgePoints": [
+        "区分没有说出口的愿望与明确建议。"
+      ],
+      "rationale": "需理解父亲内心希望与儿子选择之间的隐含一致，避免把「ひそかに」误读为说服或推荐。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-3-1",
+      "level": "G",
+      "knowledgePoints": [
+        "集団是上位概念，集まり与群れ是两个子类。"
+      ],
+      "rationale": "需要将科学说明中的定义关系转成包含关系图，区分环境偶聚与共同关系形成的群体。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-4-1",
+      "level": "G",
+      "knowledgePoints": [
+        "睡眠抑制能量消耗，维持收支平衡。"
+      ],
+      "rationale": "需处理恒温动物、能源与进化的科学解释，概括因果链为节约能量而非获得或供给能量。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-5-1",
+      "level": "G",
+      "knowledgePoints": [
+        "由四人的论述判断支持学校每周五日制的立场。"
+      ],
+      "rationale": "D通过校外体验与教育责任表达支持，需识别间接立场并与A/B/C的批评区分。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "一方で连接兼顾工作与娱乐的两面。"
+      ],
+      "rationale": "常规工作生活表达中的并列对照，可用基本连接意义完成。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "お越しの節は，正式书信用语「来访之际」。"
+      ],
+      "rationale": "需要把来る的尊敬表达与书面时机表达组合，区别自谦おじゃま等方向。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "にほかならない，正是、无非就是。"
+      ],
+      "rationale": "用于强调成功原因的正式断定句式，须辨别相近助词结构。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "いかんにかかわらず，无论如何、不论状况。"
+      ],
+      "rationale": "交涉语体中表示不受对方态度影响的固定复合表达。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-5",
+      "level": "F",
+      "knowledgePoints": [
+        "問題に関しては，关于这个问题。"
+      ],
+      "rationale": "常规学习讨论中的话题表达，区别伴随、服从与原因即可。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-6",
+      "level": "G",
+      "knowledgePoints": [
+        "散歩がてら，散步时顺便做另一件事。"
+      ],
+      "rationale": "需要辨认名词接がてら的兼做功能，与ながら等接续和语义不同。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-7",
+      "level": "F",
+      "knowledgePoints": [
+        "なんという美しい街だろう，感叹多么美丽。"
+      ],
+      "rationale": "表达日常感受的感叹句式，所需意义直接。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-8",
+      "level": "G",
+      "knowledgePoints": [
+        "子育てのかたわら，一边育儿一边从事另一活动。"
+      ],
+      "rationale": "考查长期主副活动并行的书面连接表达，区别あまり、うちに、そばから。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-9",
+      "level": "F",
+      "knowledgePoints": [
+        "手伝ってくれたおかげで，受惠原因。"
+      ],
+      "rationale": "常规授受与原因表达，关键是动词简体后不插入の，おかげさま不能同样连接。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-10",
+      "level": "G",
+      "knowledgePoints": [
+        "できないとは，引用事实并表达惊讶或感慨。"
+      ],
+      "rationale": "需要理解评价句的引用标记，与条件、让步等形式区别。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-11",
+      "level": "G",
+      "knowledgePoints": [
+        "どんな悪人であろうと，无论多坏的人。"
+      ],
+      "rationale": "掌握书面推量形式构成的无条件让步，非字面未来推测。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-12",
+      "level": "G",
+      "knowledgePoints": [
+        "一日たりとも…ない，连一天也不能。"
+      ],
+      "rationale": "数词与たりとも、否定呼应，强调最小单位也不例外。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-13",
+      "level": "F",
+      "knowledgePoints": [
+        "連絡なしに，未作联系就……。"
+      ],
+      "rationale": "常规名词加なしに的缺省条件表达，不需复杂论证。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-14",
+      "level": "G",
+      "knowledgePoints": [
+        "ただ前進あるのみ，唯有前进。"
+      ],
+      "rationale": "书面限制表达及省略助词的格言式结构，须区别きり等接法。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-15",
+      "level": "G",
+      "knowledgePoints": [
+        "ことであるにせよ，即便如此。"
+      ],
+      "rationale": "承认上级命令的事实后仍指出责任，需掌握正式让步逻辑。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-16",
+      "level": "G",
+      "knowledgePoints": [
+        "良いことずくめ，全是好事。"
+      ],
+      "rationale": "后缀ずくめ表示尽是同一类内容，与ぐらい等数量形式区分。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-17",
+      "level": "G",
+      "knowledgePoints": [
+        "動こうにも動けない，想动也无法动。"
+      ],
+      "rationale": "意向形にも与能力否定配合，表达有意图却受阻。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-18",
+      "level": "G",
+      "knowledgePoints": [
+        "見るなり…行くなり，列举任选活动。"
+      ],
+      "rationale": "成对なり表示择一建议，不能误作一发生就的なり。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-19",
+      "level": "G",
+      "knowledgePoints": [
+        "父ときたら，用于提起话题并表达抱怨。"
+      ],
+      "rationale": "需识别会话中的态度色彩，区别中性条件或立场表达。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-20",
+      "level": "G",
+      "knowledgePoints": [
+        "手に入れてからというもの，自从得到之后一直。"
+      ],
+      "rationale": "て形连接からというもの，强调某事后持续显著改变。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-21",
+      "level": "G",
+      "knowledgePoints": [
+        "なのにひきかえ，与……相反。"
+      ],
+      "rationale": "比较兄弟的相反性格，要求掌握评价对比连接而非一般让步。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-22",
+      "level": "G",
+      "knowledgePoints": [
+        "能力をもってすれば，凭借这种能力。"
+      ],
+      "rationale": "书面手段条件结构をもってすれば，不与よそに等忽视义混同。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-23",
+      "level": "G",
+      "knowledgePoints": [
+        "考えればこそ，正因为考虑到……。"
+      ],
+      "rationale": "条件形加こそ强调真正原因，与一般から不能互换接续。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-24",
+      "level": "F",
+      "knowledgePoints": [
+        "使いようによっては，视使用方法而定。"
+      ],
+      "rationale": "常用动词连用形加よう表示方法，依语境排除用途与样态后缀。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-25",
+      "level": "G",
+      "knowledgePoints": [
+        "私がやらせていただきます，自谦表示承接任务。"
+      ],
+      "rationale": "需区分使役授受和敬语方向，明确行动者为说话者。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-26",
+      "level": "G",
+      "knowledgePoints": [
+        "先生がお書きになった，尊敬对方的动作。"
+      ],
+      "rationale": "考查お＋连用形＋になる的尊敬结构，区别お書きした等自谦及混合错误形式。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-27",
+      "level": "G",
+      "knowledgePoints": [
+        "同情を禁じえない，无法抑制同情。"
+      ],
+      "rationale": "书面固定惯用结构を禁じえない，需要识别得る否定形成的情感不可抑制义。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-1",
+      "level": "G",
+      "knowledgePoints": [
+        "あの人をおいてほかにはいない，除了此人别无他人。"
+      ],
+      "rationale": "固定排他表达要求后件否定其他候选，需完成句间语义呼应。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "歩くことはおろか、起き上がることすらできない。"
+      ],
+      "rationale": "把较难行为与更基本也不能做的行为构成递进否定，须判断能力尺度。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "と思いきや引出与预想相反的事实。"
+      ],
+      "rationale": "需从表面爱开玩笑推断预期，再选择孤独多愁这一反转后件。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-4",
+      "level": "G",
+      "knowledgePoints": [
+        "技術革新なしにはありえなかった，缺少条件就不可能。"
+      ],
+      "rationale": "反事实历史评价与なしには否定呼应，区别一般存在判断。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-5",
+      "level": "G",
+      "knowledgePoints": [
+        "いくら…たところで，即使做到也难以改变结果。"
+      ],
+      "rationale": "需要识别徒劳让步倾向并选择无法独立完成的否定后件。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-1",
+      "level": "F",
+      "knowledgePoints": [
+        "受験させるしかない，只能让孩子报考别校。"
+      ],
+      "rationale": "父母决定与孩子意愿不同的具体场景，结合常规使役与别无选择表达。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-2",
+      "level": "G",
+      "knowledgePoints": [
+        "なったとはいえ，虽在法律上已平等仍有现实歧视。"
+      ],
+      "rationale": "需处理法律与现实的让步对照，区分原因与时间起点。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-3",
+      "level": "G",
+      "knowledgePoints": [
+        "予想に反して，与原先预期相反。"
+      ],
+      "rationale": "根据ところが及科学力量的局限判断逆向关系，涉及抽象论证转折。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-4",
+      "level": "F",
+      "knowledgePoints": [
+        "絵葉書だらけになる，墙上到处都是明信片。"
+      ],
+      "rationale": "生活场景中だらけ表示密布的状态，和原样、省略等意义区分。"
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-5",
+      "level": "F",
+      "knowledgePoints": [
+        "自分自身の問題として考える，作为自己的问题来思考。"
+      ],
+      "rationale": "用として标示看待问题的身份或角度，主题虽为环保，题目核心是常规格关系。"
+    }
+  ]
+}

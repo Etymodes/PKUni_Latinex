@@ -42,8 +42,7 @@ function entries({ language, level, scope = 'all', query = '' }) {
   const search = String(query).trim().toLowerCase();
   return bank.vocabularyCards.filter(card => card.language === language &&
     (scope === 'level' ? shared.vocabularyMatchesLevel(card, level) :
-      scope === 'n1-2000' ? Boolean(card.sourcePages && card.sourcePages.length) :
-        scope === 'jlpt-1992' ? Boolean(card.sourceQuestionIds && card.sourceQuestionIds.length) : true) &&
+      shared.vocabularyInCollection(card, scope)) &&
     (!search || [card.term, card.reading, card.meaning, card.sourceReading, card.sourceMeaning,
       ...(card.spellingVariants || []), ...(card.readingVariants || []),
       ...(card.senses || []).map(sense => `${sense.reading} ${sense.gloss}`),
@@ -57,7 +56,7 @@ function details(card) {
     additionalMeaning: card.sourceMeaning !== card.meaning ? card.sourceMeaning || '' : '',
     usageNotes: card.usageNotes || '',
     senses: (card.senses || []).map(sense => ({ reading: sense.reading, gloss: sense.gloss })),
-    dictionaryReferences: card.dictionaryReferences || [],
+    dictionaryReferences: shared.publicDictionaryReferences(card),
     etymology: card.dictionary ? card.dictionary.pie : '',
     derivatives: card.dictionary ? card.dictionary.derivatives : [],
     reviewStatus: card.dictionary ? card.dictionary.reviewStatus : 'draft',

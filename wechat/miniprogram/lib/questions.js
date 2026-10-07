@@ -4,17 +4,18 @@ const bank = require('../data/bank');
 const shared = require('../data/shared');
 
 const questionCategories = ['all', 'vocabulary', 'morphology', 'syntax', 'sentencePattern', 'classics', 'translation', 'reading', 'listening'];
-const paperIds = new Set(bank.questions.filter(q => q.language === 'ja' && q.id.startsWith('jlpt-1992-1-')).map(q => q.id));
-const is1992Question = question => paperIds.has(question.id);
+const is1992Question = question => shared.questionInCollection(question, 'jlpt-1992-1');
 
 function questionScope(all, state, record) {
   const fullPaper = state.language === 'ja' && Boolean(state.fullPaper);
-  const range = all.filter(q => fullPaper ? is1992Question(q) : shared.matchesLevel(q, state.level));
+  const collectionId = state.selectedPaper || 'jlpt-1992-1';
+  let range = all.filter(q => fullPaper ? shared.questionInCollection(q, collectionId) : shared.matchesLevel(q, state.level));
+  if (fullPaper) range = range.sort((a, b) => shared.collectionOrder(a, collectionId) - shared.collectionOrder(b, collectionId)).map(q => shared.questionForCollection(q, collectionId));
   const query = (state.search || '').trim().toLowerCase();
   const filtered = range.filter(q => (state.filter === 'all' || (state.filter === 'wrong'
     ? record.progress[q.id] === 'wrong' || record.progress[q.id] === 'review' : record.bookmarks.includes(q.id)))
     && (state.category === 'all' || q.category === state.category)
-    && (!query || [q.prompt, q.text, q.latin, q.context, q.id, q.originalNumber, q.passage].filter(Boolean).join(' ').toLowerCase().includes(query)));
+    && (!query || [q.prompt, q.text, q.latin, q.context, q.id, q.originalNumber, q.passage, ...(q.tags || [])].filter(Boolean).join(' ').toLowerCase().includes(query)));
   const paperQuestions = fullPaper ? filtered.map(q => ({ id: q.id, label: `${q.originalNumber || q.id} · ${shared.normalizePikkuLevel(q.language || 'la', q.level)}` })) : [];
   return { fullPaper, range, filtered, paperQuestions, paperQuestionIndex: Math.max(0, paperQuestions.findIndex(q => state.question && q.id === state.question.id)) };
 }
@@ -50,12 +51,19 @@ const questionActions = {
     this.render();
   },
   toggleBrowse() { this.setData({ browse: !this.data.browse }); },
+  changePaper(event) {
+    const item = bank.questionCollections[Number(event.detail.value)];
+    if (item) this.openPaper({ currentTarget: { dataset: { collection: item.id } } });
+  },
   openPaper(event) {
     if (this.data.busy || this.data.language !== 'ja') return;
-    const requested = event && event.currentTarget.dataset.category;
+    const dataset = event && event.currentTarget.dataset || {};
+    const selectedPaper = dataset.collection || this.data.selectedPaper || 'jlpt-1992-1';
+    if (!bank.questionCollections.some(item => item.id === selectedPaper)) return;
+    const requested = dataset.category;
     const category = ['vocabulary', 'listening', 'reading', 'sentencePattern'].includes(requested) ? requested : 'all';
     this.stopQuestionAudio();
-    this.setData({ fullPaper: true, view: 'practice', filter: 'all', category, search: '', question: null, browse: false });
+    this.setData({ fullPaper: true, selectedPaper, view: 'practice', filter: 'all', category, search: '', question: null, browse: false });
     this.render();
     this.queue = this.filtered.slice();
     this.setData({ questionIndex: 0, questionTotal: this.queue.length });

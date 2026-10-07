@@ -2,7 +2,7 @@ const vocabulary = require('./vocabulary');
 const shared = require('../data/shared');
 const bank = require('../data/bank');
 const outcomes = ['forgotten', 'approximate', 'remembered'];
-const scopeIds = ['level', 'all', 'n1-2000', 'jlpt-1992'];
+const scopeIds = ['level', 'all', 'n1-2000', 'jlpt-1992', 'jlpt-1993-1', 'ja-hlb1000-n1-u01'];
 function localDate(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }

@@ -58,11 +58,11 @@ function levelCards(locale) {
     : [['C', '', '初', '级'], ['F', '', '凡', '级'], ['G', '', '高', '级'], ['M', '准', '母', '语级']];
   return labels.map(([id, prefix, emphasis, suffix]) => ({ id, prefix, emphasis, suffix, icon: '/assets/level-' + id.toLowerCase() + '.png' }));
 }
-Object.assign(zh, { paper1992: '1992 · 旧1級真题', fullPaper: '原卷跨级 · 全部等级', exitPaper: '返回所选等级', paperAll: '整卷', originalNumber: '原题号', paperVocabulary: '文字词汇', paperGrammar: '语法', transcript: '听力原文', playAudio: '播放听力', pauseAudio: '暂停', restartAudio: '从头播放', audioError: '音频未能播放，请检查网络后重试。', questionImage: '查看题图' });
-Object.assign(en, { paper1992: '1992 · Old Level 1 paper', fullPaper: 'Full paper · All levels', exitPaper: 'Return to selected level', paperAll: 'Full paper', originalNumber: 'Original question', paperVocabulary: 'Vocabulary', paperGrammar: 'Grammar', transcript: 'Listening transcript', playAudio: 'Play audio', pauseAudio: 'Pause', restartAudio: 'Restart audio', audioError: 'Audio could not play. Check your connection and retry.', questionImage: 'View question image' });
+Object.assign(zh, { paper1992: '1992 · 旧1級真题', fullPaper: '原卷跨级 · 全部等级', exitPaper: '返回所选等级', paperAll: '整卷', originalNumber: '原题号', paperVocabulary: '文字词汇', paperGrammar: '语法', transcript: '听力原文', playAudio: '播放听力', pauseAudio: '暂停', restartAudio: '从头播放', audioError: '音频未能播放，请检查网络后重试。', questionImage: '查看题图', optionsInAudio: '请听录音中的四个选项，选择编号。' });
+Object.assign(en, { paper1992: '1992 · Old Level 1 paper', fullPaper: 'Full paper · All levels', exitPaper: 'Return to selected level', paperAll: 'Full paper', originalNumber: 'Original question', paperVocabulary: 'Vocabulary', paperGrammar: 'Grammar', transcript: 'Listening transcript', playAudio: 'Play audio', pauseAudio: 'Pause', restartAudio: 'Restart audio', audioError: 'Audio could not play. Check your connection and retry.', questionImage: 'View question image', optionsInAudio: 'Listen to the four spoken options and choose a number.' });
 Object.assign(zh, {
   dictionary: '词典', approximate: '近似', approximateHelp: '有印象，但词义判断有偏差，不算忘了。',
-  wordScopes: { level: '当前等级及以下', all: '全部词库（含待分级）', 'n1-2000': '2000词 PDF', 'jlpt-1992': '1992 真题词汇' },
+  wordScopes: { level: '当前等级及以下', all: '全部词库（含待分级）', 'n1-2000': '2000词 PDF', 'jlpt-1992': '1992 真题词汇', 'jlpt-1993-1': '1993 真题词汇', 'ja-hlb1000-n1-u01': '红蓝宝书 Unit 1' },
   wordSearch: '词头、读音或中文义', entries: '词条', ungraded: '待分级', thisRound: '本轮反馈',
   emptyWords: '没有匹配词卡。可切换词汇范围或清空搜索。', pendingWords: '条反馈已保存在本机，等待同步',
   otherSpellings: '其他写法', otherReadings: '其他读音', additionalMeaning: '补充释义',
@@ -78,7 +78,7 @@ Object.assign(zh, {
 });
 Object.assign(en, {
   dictionary: 'Dictionary', approximate: 'Approximate', approximateHelp: 'Familiar, but your understanding of the meaning is imprecise.',
-  wordScopes: { level: 'Current level and below', all: 'All entries, including ungraded', 'n1-2000': '2000-word PDF', 'jlpt-1992': '1992 exam vocabulary' },
+  wordScopes: { level: 'Current level and below', all: 'All entries, including ungraded', 'n1-2000': '2000-word PDF', 'jlpt-1992': '1992 exam vocabulary', 'jlpt-1993-1': '1993 exam vocabulary', 'ja-hlb1000-n1-u01': 'Red & Blue Unit 1' },
   wordSearch: 'Word, reading or meaning', entries: 'entries', ungraded: 'Ungraded', thisRound: 'This session',
   emptyWords: 'No matching cards. Change the scope or clear the search.', pendingWords: 'reviews saved on this device, waiting to sync',
   otherSpellings: 'Other spellings', otherReadings: 'Other readings', additionalMeaning: 'Additional meaning',
