@@ -1,4 +1,5 @@
 const api = require('./api');
+const { normalizeCommunityAvatar, communityAvatarText } = require('../data/shared');
 let sequence = 0;
 const supported = language => language === 'la' || language === 'ja';
 const roomKey = page => `${page.owner || 'guest'}:${page.data.language}:${page.data.communityChannel || 'language'}`;
@@ -6,7 +7,7 @@ const current = (page, key, generation) => page.alive && page.data.view === 'com
 function messageRows(value) {
   if (!Array.isArray(value)) throw new Error('Invalid community response');
   return value.filter(item => item && typeof item.id === 'string' && typeof item.text === 'string' && typeof item.authorName === 'string')
-    .map(item => ({ id: item.id, text: item.text, authorName: item.authorName, mine: item.mine === true, createdAt: item.createdAt, detectedLanguage: item.detectedLanguage }));
+    .map(item => ({ id: item.id, text: item.text, authorName: item.authorName, mine: item.mine === true, avatar: normalizeCommunityAvatar(item.avatar), createdAt: item.createdAt, detectedLanguage: item.detectedLanguage }));
 }
 const communityActions = {
   stopCommunity() {
@@ -40,7 +41,7 @@ const communityActions = {
     const mutedUntil = this.data.communityMutedUntil;
     const muted = this.data.communityChannel !== 'study' && Date.parse(mutedUntil) > Date.now();
     this.setData({ communityError: this.data.t[this.data.communityErrorKey] || '', communityMuted: muted, communityMuteLabel: muted ? new Date(mutedUntil).toLocaleTimeString(this.data.locale === 'en' ? 'en-US' : 'zh-CN') : '',
-      communityItems: (this.communityMessages || []).map(item => ({ ...item, translation: ((this.communityTranslations || {})[item.id] || {})[this.data.locale] || '' })) });
+      communityItems: (this.communityMessages || []).map(item => ({ ...item, avatarText: communityAvatarText(item.avatar), translation: ((this.communityTranslations || {})[item.id] || {})[this.data.locale] || '' })) });
   },
   async loadCommunity() {
     if (this.data.view !== 'community' || !supported(this.data.language)) return;

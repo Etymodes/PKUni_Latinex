@@ -1,5 +1,6 @@
 import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
 const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
+const dictionary = localeSourceLoader()('lib/dictionary.ts');
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
@@ -23,6 +24,7 @@ async function harness() {
     showToast() {}, stopPullDownRefresh() {}, pageScrollTo() {},
   };
   const modules = new Map([
+    [path.join(miniRoot, 'data/dictionary.js'), { exports: dictionary }],
     [path.join(miniRoot, 'data/content-locale.js'), { exports: contentLocale() }],
     [path.join(miniRoot, 'data/bank.js'), { exports: bank }],
     [path.join(miniRoot, 'lib/api.js'), { exports: api }],
@@ -62,7 +64,7 @@ async function harness() {
 
 test('every Japanese entry can be browsed in bounded 40-word Page updates without missing or duplicate words', async () => {
   const h = await harness();
-  const expected = bank.vocabularyCards.filter(card => card.language === 'ja').map(card => card.id);
+  const expected = dictionary.searchDictionary(bank.vocabularyCards, { language: 'ja', order: 'reading' }).map(card => card.id);
   assert.ok(expected.length >= 2290);
   assert.equal(h.page.data.dictionaryOffset, 0);
   const visited = [];
@@ -122,4 +124,61 @@ test('search, language changes and practising a dictionary entry keep the pager 
   h.page.previousDictionary();
   assert.equal(h.page.data.dictionaryOffset, 0, 'previous cannot move before the first page');
   assert.ok(Math.max(...h.payloadSizes) < 1024 * 1024);
+});
+
+
+test('native dictionary filters and numbered detail reuse canonical entries without changing frozen practice', async () => {
+  const h = await harness();
+  const target = bank.vocabularyCards.find(card => card.language === 'ja' && card.level === 'G' && card.reading);
+  h.page.practiseWord(event({ id: target.id }));
+  const selection = h.page.wordSelection;
+  h.page.changeView(event({ view: 'dictionary' }));
+  const pick = (field, index) => h.page.changeDictionaryFilter({ currentTarget: { dataset: { filter: field } }, detail: { value: String(index) } });
+  pick('field', h.page.data.dictionaryFields.findIndex(item => item.id === 'reading'));
+  h.page.searchDictionary({ detail: { value: target.reading } });
+  assert.ok(h.page.data.dictionaryRows.some(row => row.id === target.id));
+  pick('level', h.page.data.dictionaryLevels.findIndex(item => item.id === 'G'));
+  assert.ok(h.page.data.dictionaryRows.every(row => row.card.level === 'G'));
+  assert.equal(h.page.data.level, 'F', 'dictionary filters never change the training grade');
+  h.page.openDictionaryEntry(event({ id: target.id }));
+  const detail = h.page.data.dictionaryDetail;
+  assert.equal(detail.id, target.id);
+  assert.deepEqual(plain(detail.senses.map(item => item.number)), detail.senses.map((_, index) => index + 1));
+  assert.deepEqual(plain(detail.etymology), plain(dictionary.dictionaryEntry(target, h.page.data.locale).etymology));
+  assert.ok(detail.etymology.every(item => item.source?.url));
+  h.page.changeLocale();
+  assert.equal(h.page.data.dictionaryDetail.id, target.id);
+  assert.equal(h.page.wordSelection, selection);
+  h.page.closeDictionaryEntry();
+  assert.equal(h.page.data.dictionaryDetail, null);
+  assert.ok(h.page.data.dictionaryRows.some(row => row.id === target.id));
+  const template = fs.readFileSync(path.join(miniRoot, 'pages/index/index.wxml'), 'utf8');
+  const list = template.slice(template.indexOf('<view class="dictionary-list">'), template.indexOf('<block wx:else><button class="text-button" bindtap="closeDictionaryEntry">'));
+  assert.doesNotMatch(list, /bindtap="practiseWord"|word-feedback|dictionaryEtymology/);
+  assert.match(template, /item.editorial.*t.learningExample/);
+});
+
+
+test('different dictionaries sharing a citation URL retain separate native list identities', async () => {
+  const h = await harness();
+  h.page.openDictionaryEntry(event({ id: 'ja-n1-list-cefe81dd8db6' }));
+  const refs = h.page.data.dictionaryDetail.references;
+  const sharedUrl = refs.filter(item => item.url === 'https://kotobank.jp/word/取組-585764');
+  assert.equal(sharedUrl.length, 2);
+  assert.equal(new Set(sharedUrl.map(item => item.key)).size, 2);
+});
+
+
+test('native dictionary preserves localized historical usage notes in both interfaces', async () => {
+  const h = await harness();
+  h.page.openDictionaryEntry(event({ id: 'ja-1993-95527740599b' }));
+  const card = bank.vocabularyCards.find(item => item.id === 'ja-1993-95527740599b');
+  assert.equal(h.page.data.dictionaryDetail.usageNotes, dictionary.dictionaryEntry(card, 'zh-CN').usageNotes);
+  assert.match(h.page.data.dictionaryDetail.usageNotes, /看護師/);
+  const original = h.page.data.dictionaryDetail.usageNotes;
+  h.page.changeLocale();
+  assert.equal(h.page.data.dictionaryDetail.usageNotes, dictionary.dictionaryEntry(card, 'en').usageNotes);
+  assert.notEqual(h.page.data.dictionaryDetail.usageNotes, original);
+  assert.match(h.page.data.dictionaryDetail.usageNotes, /historical term/i);
+  assert.match(fs.readFileSync(path.join(miniRoot, 'pages/index/index.wxml'), 'utf8'), /wx:if="\{\{dictionaryDetail.usageNotes\}\}"[^>]*>\{\{dictionaryDetail.usageNotes\}\}/);
 });

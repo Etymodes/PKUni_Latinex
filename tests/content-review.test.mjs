@@ -75,10 +75,11 @@ test("resource views consume only the active language datasets", () => {
 
   assert.match(library, /textbooks\.map/);
   assert.match(library, /chapterMappings\.map/);
-  assert.match(library, /<VocabularyDictionary\s+key=\{language\}\s+language=\{language\}/);
+  assert.match(library, /onClick=\{onDictionary\}/);
+  assert.match(pageSource, /view === "dictionary" && <VocabularyDictionary\s+key=\{language\}\s+language=\{language\}/);
   const dictionary = vocabularyWorkspaceSource.slice(vocabularyWorkspaceSource.indexOf("export function VocabularyDictionary"));
   assert.match(dictionary, /dictionaryEntries\.filter\(card => card\.language === language\)/);
-  assert.match(dictionary, /const entries = languageEntries\.filter/);
+  assert.match(dictionary, /searchDictionary\(dictionaryEntries, \{ language,/);
   assert.match(dictionary, /entries\.slice\(0, visibleCount\)\.map/);
   assert.doesNotMatch(dictionary, /dictionaryEntries\.map/);
   assert.doesNotMatch(library, /textbookCatalog\.map|resourceChapterMappings\.map/);

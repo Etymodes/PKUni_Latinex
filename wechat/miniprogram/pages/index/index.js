@@ -1,5 +1,6 @@
 const api = require('../../lib/api');
 const { communityActions } = require('../../lib/community');
+const { profileActions } = require('../../lib/profile');
 const { studyActions } = require('../../lib/study-modes');
 const vocabulary = require('../../lib/vocabulary');
 const { vocabularyActions } = require('../../lib/vocabulary-page');
@@ -33,13 +34,14 @@ function fromCloud(result) {
 Page({
   ...vocabularyActions,
   ...communityActions,
+  ...profileActions,
   ...studyActions,
   ...questionActions,
   data: {
     locale: 'zh-CN', t: copies['zh-CN'], view: 'home', level: 'C', language: 'la', vocabMode: 'context',
     busy: false, user: null, sync: 'guest', error: '', email: '', password: '', question: null, card: null,
     paperSearch: '', wordQuery: '', dictionaryQuery: '', dictionaryOffset: 0, showModel: false, showSupport: false,
-    filter: 'all', category: 'all', search: '', browse: false, revealed: false, submitted: false, wordRevealed: false,
+    reviewScope: false, filter: 'all', category: 'all', search: '', browse: false, revealed: false, submitted: false, wordRevealed: false,
     communityChannel: 'language', communityDraft: '', communityItems: [], communityWarnings: 0, communityMutedUntil: '', communityLoading: false, communitySending: false,
     examActive: false, examFinished: false, examMixed: false, measurementItems: [], measurementDone: false, measurementReady: false, browseLimit: 40,
     choices: [], selected: -1, answerCorrect: false, questionIndex: 0, questionTotal: 0,
@@ -143,13 +145,14 @@ Page({
     const language = available.some(item => item.id === pref.language) ? pref.language : 'la';
     const level = shared.normalizePikkuLevel(language, pref.level);
     const vocabMode = pref.vocabMode === 'word' ? 'word' : 'context';
+    if (language !== this.data.language) this.setData({ dictionaryQuery: '', dictionaryOffset: 0, dictionaryEntryId: '', dictionaryField: 'all', dictionaryOrder: language === 'ja' ? 'reading' : 'headword', dictionaryIndex: 'all', dictionaryLevel: 'all', dictionaryPartOfSpeech: 'all' });
     if (language !== this.data.language || level !== this.data.level || vocabMode !== this.data.vocabMode) {
       this.stopQuestionAudio();
       this.wordSelection = null;
       this.resetStudyModes();
       this.stopCommunity();
       this.queue = [];
-      this.setData({ question: null, card: null, fullPaper: false, dictionaryQuery: '', dictionaryOffset: 0 });
+      this.setData({ question: null, card: null, fullPaper: false });
     }
     this.setData({ language, level, vocabMode });
     this.render();
@@ -175,6 +178,7 @@ Page({
     const rows = Object.entries(this.record.vocab).filter(([key]) => key.startsWith(language + ':'));
     this.setData({
       t, levels: levelCards(locale), languageInfo,
+      reviewWrongCount: all.filter(q => ['wrong', 'review'].includes(this.record.progress[q.id])).length, reviewSavedCount: all.filter(q => this.record.bookmarks.includes(q.id)).length,
       languageLabel: languageInfo.labels[locale], greeting: languageInfo.greeting,
       factStatement: languageInfo.fact.statement, factMeaning: languageInfo.fact.meaning[locale],
       languages: available.map(item => ({ id: item.id, label: item.nativeName + ' · ' + item.labels[locale] })),
@@ -197,6 +201,7 @@ Page({
     this.renderQuestion();
     this.renderVocabulary();
     this.renderStudyModes();
+    this.renderProfile();
     this.updateCommunityPolling();
   },
   signedIn() {
@@ -212,12 +217,11 @@ Page({
   changeView(event) {
     if (this.data.busy) return;
     const view = event.currentTarget.dataset.view;
+    if (view === 'dictionary' && this.data.view === 'account') this.setData({ dictionaryEntryId: '' });
     if (this.data.examActive && view !== 'practice') this.finishExam();
     this.stopQuestionAudio();
     this.setData({ view });
-    this.renderVocabulary();
-    this.renderStudyModes();
-    this.updateCommunityPolling();
+    this.render();
     if (view === 'words' && !this.data.card) this.nextCard();
   },
   changeLocale() {
@@ -231,7 +235,7 @@ Page({
   async preference(next) {
     this.stopQuestionAudio();
     return this.perform(async () => {
-      if (next.language || next.level) this.setData({ fullPaper: false });
+      if (next.language || next.level) this.setData({ fullPaper: false, reviewScope: false });
       const pref = { language: this.data.language, level: this.data.level, vocabMode: this.data.vocabMode, ...next };
       if (this.signedIn()) await api.request('/api/preferences', 'PUT', pref);
       this.record.preference = pref;

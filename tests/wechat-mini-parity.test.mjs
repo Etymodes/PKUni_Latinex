@@ -21,7 +21,7 @@ async function harness() {
   const wx = {
     getStorageSync: key => storage.has(key) ? plain(storage.get(key)) : '',
     setStorageSync: (key, value) => storage.set(key, plain(value)),
-    showToast: value => toasts.push(value), setClipboardData: value => { clipboard.push(value.data); value.success(); }, stopPullDownRefresh() {},
+    showToast: value => toasts.push(value), setClipboardData: value => { clipboard.push(value.data); value.success(); }, stopPullDownRefresh() {}, pageScrollTo() {},
     previewImage: value => previews.push(value),
     env: { USER_DATA_PATH: '/fixture-user-data' },
     getFileSystemManager: () => ({ ...compressedFiles(generated), writeFile(value) { files.push(value); value.success(); } }),
@@ -83,8 +83,9 @@ test('dictionary to practice to approximate returns to the same entry and persis
   assert.deepEqual(plain(saved.probabilities), frozen.probabilities);
   assert.equal(h.page.data.roundApproximate, 1); assert.equal(h.page.data.roundRemembered, 0);
   h.page.openDictionary(); h.page.searchDictionary({ detail: { value: card.term } });
-  const row = h.page.data.dictionaryRows.find(item => item.id === card.id);
-  assert.deepEqual(plain({ seen: row.stat.seen, correct: row.stat.correct, approximate: row.stat.approximate, lastOutcome: row.stat.lastOutcome }),
+  h.page.openDictionaryEntry(event({ id: card.id }));
+  const detail = h.page.data.dictionaryDetail;
+  assert.deepEqual(plain({ seen: detail.stat.seen, correct: detail.stat.correct, approximate: detail.stat.approximate, lastOutcome: detail.stat.lastOutcome }),
     { seen: 1, correct: 0, approximate: 1, lastOutcome: 'approximate' });
   assert.equal(h.storage.get('pikku-mini-vocabulary-v2:guest').reviews.length, 1);
   assert.equal(h.page.data.pendingWords, 0, 'guest feedback is saved locally, not presented as an account sync failure');

@@ -1,7 +1,12 @@
+import { isCommunityAvatar, normalizeCommunityAvatar } from '../lib/community-avatar.ts';
 import { isCommunityAiAvailable, classifyCommunityText, translateCommunityText } from './community-ai.js';
 
-// Keep these statements identical to migrations/0007_community.sql.
+// Keep these statements identical to migrations/0007_community.sql and 0008_community_profiles.sql.
 export const communitySchema = [
+  `CREATE TABLE IF NOT EXISTS community_profiles (
+    user_id TEXT PRIMARY KEY, avatar_kind TEXT NOT NULL CHECK(avatar_kind IN ('initials','preset')),
+    avatar_value TEXT NOT NULL CHECK(length(avatar_value) BETWEEN 1 AND 32), updated_at INTEGER NOT NULL
+  )`,
   `CREATE TABLE IF NOT EXISTS community_ai_usage (
     day TEXT PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0 CHECK(count BETWEEN 0 AND 1000)
   )`,
@@ -45,6 +50,9 @@ const MINUTE = 60 * 1000;
 const validRoom = (language, channel) => ['la', 'ja'].includes(language) && ['language', 'study'].includes(channel);
 const json = (data, status = 200) => Response.json(data, { status, headers: { 'cache-control': 'no-store' } });
 const iso = value => value ? new Date(value).toISOString() : null;
+const messageWithProfile = `SELECT m.*, p.avatar_kind, p.avatar_value FROM community_messages m
+  LEFT JOIN community_profiles p ON p.user_id=m.user_id`;
+const avatarFromRow = row => normalizeCommunityAvatar(row && { kind: row.avatar_kind, value: row.avatar_value });
 
 export function communityWordCount(text, language) {
   const prose = text.normalize('NFKC').replace(/https?:\/\/\S+/giu, ' ');
@@ -58,7 +66,7 @@ function publicState(state, now = Date.now()) {
 }
 
 function publicMessage(row, user) {
-  return { id: row.id, authorName: row.author_name, mine: row.user_id === user?.id, text: row.text,
+  return { id: row.id, authorName: row.author_name, avatar: avatarFromRow(row), mine: row.user_id === user?.id, text: row.text,
     createdAt: iso(row.created_at), detectedLanguage: row.detected_language || null };
 }
 
@@ -127,7 +135,7 @@ async function requestResponse(db, row, user, inserted = false) {
   const state = { warnings: row.warnings, mutedUntil: iso(row.muted_until) };
   if (row.outcome === 'warning') return json({ error: 'language_warning', ...state }, 422);
   if (row.outcome === 'muting' || row.outcome === 'muted') return json({ error: 'muted', ...state }, 403);
-  const message = await db.prepare('SELECT * FROM community_messages WHERE id=? AND deleted_at IS NULL').bind(row.message_id).first();
+  const message = await db.prepare(`${messageWithProfile} WHERE m.id=? AND m.deleted_at IS NULL`).bind(row.message_id).first();
   return json({ message: message ? publicMessage(message, user) : null, ...state }, inserted ? 201 : 200);
 }
 
@@ -228,17 +236,35 @@ export async function communityApi(request, env, url, user) {
     const language = url.searchParams.get('language');
     const channel = url.searchParams.get('channel');
     if (!validRoom(language, channel)) return json({ error: 'invalid_room' }, 400);
-    const rows = await env.DB.prepare(`SELECT * FROM community_messages WHERE language=? AND channel=? AND deleted_at IS NULL
-      ORDER BY created_at DESC, id DESC LIMIT 50`).bind(language, channel).all();
+    const rows = await env.DB.prepare(`${messageWithProfile} WHERE m.language=? AND m.channel=? AND m.deleted_at IS NULL
+      ORDER BY m.created_at DESC, m.id DESC LIMIT 50`).bind(language, channel).all();
     const state = user ? await env.DB.prepare('SELECT * FROM community_state WHERE user_id=?').bind(user.id).first() : null;
     return json({ messages: rows.results.reverse().map(row => publicMessage(row, user)), ...publicState(state), aiAvailable: isCommunityAiAvailable(env) });
   }
   if (!user) return json({ error: 'login_required' }, 401);
+  if (url.pathname === '/api/community/profile') {
+    if (request.method === 'GET') {
+      const row = await env.DB.prepare('SELECT avatar_kind, avatar_value FROM community_profiles WHERE user_id=?').bind(user.id).first();
+      return json({ avatar: avatarFromRow(row) });
+    }
+    if (request.method === 'PUT') {
+      const body = await readBody(request);
+      if (!isCommunityAvatar(body?.avatar)) return json({ error: 'invalid_avatar' }, 400);
+      const limited = await rateLimit(env.DB, user.id, 'profile', 20);
+      if (limited) return limited;
+      const avatar = normalizeCommunityAvatar(body.avatar);
+      await env.DB.prepare(`INSERT INTO community_profiles(user_id, avatar_kind, avatar_value, updated_at) VALUES (?, ?, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET avatar_kind=excluded.avatar_kind, avatar_value=excluded.avatar_value, updated_at=excluded.updated_at`)
+        .bind(user.id, avatar.kind, avatar.value, Date.now()).run();
+      return json({ avatar });
+    }
+    return json({ error: 'not_found' }, 404);
+  }
   if (url.pathname === '/api/community/messages' && request.method === 'POST') return sendMessage(request, env, user);
   if (url.pathname === '/api/community/reports' && request.method === 'GET') {
     if (user.role !== 'admin') return json({ error: 'forbidden' }, 403);
-    const rows = await env.DB.prepare(`SELECT m.*, r.reason, r.created_at AS reported_at FROM community_reports r
-      JOIN community_messages m ON m.id=r.message_id WHERE m.deleted_at IS NULL ORDER BY r.created_at DESC LIMIT 100`).all();
+    const rows = await env.DB.prepare(`SELECT m.*, p.avatar_kind, p.avatar_value, r.reason, r.created_at AS reported_at FROM community_reports r
+      JOIN community_messages m ON m.id=r.message_id LEFT JOIN community_profiles p ON p.user_id=m.user_id WHERE m.deleted_at IS NULL ORDER BY r.created_at DESC LIMIT 100`).all();
     return json({ reports: rows.results.map(row => ({ message: publicMessage(row, user), reason: row.reason, reportedAt: iso(row.reported_at) })) });
   }
   const match = url.pathname.match(/^\/api\/community\/messages\/([A-Za-z0-9-]{1,80})(?:\/(translate|report))?$/);

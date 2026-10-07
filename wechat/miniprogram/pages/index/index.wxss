@@ -10,3 +10,23 @@
 .community-compose { width: 100%; min-height: 80px; box-sizing: border-box; padding: 12px; background: #faf7f1; border-radius: 12px; }
 .community-message .body { white-space: pre-wrap; overflow-wrap: anywhere; }
 .community-translation { border-top: 1px solid #e1d8ca; padding-top: 12px; color: #665c50; }
+
+.dictionary-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+.dictionary-filter { padding: 12px; min-height: 22px; border: 1px solid #ddd3c5; border-radius: 10px; color: #665c50; font-size: 13px; }
+.dictionary-list { border-top: 1px solid #ddd3c5; }
+.shell .dictionary-result { display: block; width: 100%; margin: 0; padding: 16px 4px; border: 0; border-bottom: 1px solid #ddd3c5; border-radius: 0; background: transparent; text-align: left; line-height: 1.5; }
+.dictionary-result-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.dictionary-result .dictionary-term { font-size: 22px; margin: 0; }
+.dictionary-reading { display: block; font-size: 13px; color: #867d6e; }
+.dictionary-summary { display: block; font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.dictionary-detail .resource-title { display: block; margin-top: 22px; }
+.dictionary-sense, .dictionary-example, .dictionary-reference { padding: 8px 0; }
+.sense-number { color: #94233b; font-weight: 700; }
+.shell .citation-link { height: auto; white-space: normal; line-height: 1.5; text-align: left; overflow-wrap: anywhere; }
+.community-author { display: flex; gap: 12px; align-items: center; }
+.message-avatar, .avatar-preview { display: flex; align-items: center; justify-content: center; background: #f2e6dd; color: #94233b; border-radius: 50%; flex-shrink: 0; }
+.message-avatar { width: 40px; height: 40px; font-size: 19px; }
+.avatar-preview { width: 72px; height: 72px; margin: 16px auto; font-size: 28px; font-weight: 700; }
+.avatar-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.shell .avatar-preset { width: 100%; min-height: 48px; padding: 8px; margin: 0; font-size: 26px; }
+.avatar-preset.chosen { outline: 2px solid #94233b; }

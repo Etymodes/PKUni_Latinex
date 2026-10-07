@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Languages, MessageCircle, Send, Users } from "lucide-react";
 import { apiFetch } from "@/lib/supabase";
+import { CommunityAvatarBadge } from "./community-avatar";
 
-type Message = { id: string; authorName: string; mine: boolean; text: string; createdAt: string; detectedLanguage: string | null };
+type Message = { avatar?: unknown; id: string; authorName: string; mine: boolean; text: string; createdAt: string; detectedLanguage: string | null };
 type Channel = "language" | "study";
 type Props = { language: string; languageName: string; locale: string; authenticated: boolean; isAdmin?: boolean };
 type RoomState = { messages: Message[]; warnings: number; mutedUntil: string | null; aiAvailable: boolean };
@@ -161,7 +162,7 @@ function CommunityRoom({ language, languageName, locale, authenticated, isAdmin,
     {isAdmin && <details className="chat-moderation"><summary>{t("举报管理", "Reported messages")}</summary><button className="text-button" onClick={() => void loadReports()}>{t("刷新待处理举报", "Refresh pending reports")}</button>{reports?.length === 0 && <p>{t("暂无待处理举报。", "No pending reports.")}</p>}{reports?.map((report, index) => <article key={`${report.message.id}:${index}`}><strong>{report.message.authorName}</strong><p dir="auto">{report.message.text}</p><small>{report.reason}</small><button className="text-button" onClick={() => void moderate(report.message, true)}>{t("删除消息并处理举报", "Delete message and resolve report")}</button></article>)}</details>}
     <div className="chat-messages" ref={scroll} role="log" aria-live="polite" aria-relevant="additions" onScroll={() => { const box = scroll.current; if (box) nearBottom.current = box.scrollHeight - box.scrollTop - box.clientHeight < 80; }}>
       {loading ? <p className="chat-empty">{t("正在加载频道…", "Loading channel…")}</p> : !room.messages.length ? <div className="chat-empty"><MessageCircle size={28} /><p>{error ? t("消息暂未加载。", "Messages have not loaded.") : t("还没有消息，来开始交流吧。", "No messages yet. Start a conversation.")}</p></div> : room.messages.map(message => <article className={`chat-message ${message.mine ? "mine" : ""}`} key={message.id}>
-        <div className="chat-meta"><strong>{message.authorName}</strong><time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString(locale === "en" ? "en-US" : "zh-CN", { hour: "2-digit", minute: "2-digit" })}</time></div>
+        <div className="chat-meta"><CommunityAvatarBadge avatar={message.avatar} locale={locale} small /><strong>{message.authorName}</strong><time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString(locale === "en" ? "en-US" : "zh-CN", { hour: "2-digit", minute: "2-digit" })}</time></div>
         <div className="chat-bubble" dir="auto">{message.text}</div>
         {translations[message.id] && <div className="chat-translation" lang={locale}><small>{t("机器翻译 · 仅供参考", "Machine translation · may contain errors")}</small><p>{translations[message.id]}</p></div>}
         <div className="chat-message-actions"><span>{languageLabel(message.detectedLanguage)}</span>{!message.mine && <button disabled={!authenticated || translating[message.id] || Boolean(translations[message.id]) || !room.aiAvailable} onClick={() => void translate(message.id)}>{translating[message.id] ? t("翻译中…", "Translating…") : translations[message.id] ? t("已翻译", "Translated") : t("译为中文", "Translate to English")}</button>}{authenticated && (message.mine || isAdmin) && <button onClick={() => void moderate(message, true)}>{t("删除", "Delete")}</button>}{authenticated && !message.mine && <button disabled={reported.includes(message.id)} onClick={() => void moderate(message, false)}>{reported.includes(message.id) ? t("已举报", "Reported") : t("举报", "Report")}</button>}</div>

@@ -1,6 +1,6 @@
 import { createSourceLoader as localeSourceLoader } from '../scripts/build-wechat.mjs';
 const contentLocale = () => localeSourceLoader()('lib/content-locale.ts');
-import { loadGenerated as commonJs } from './helpers/wechat-generated.mjs';
+import { loadGenerated as commonJs, compressedFiles } from './helpers/wechat-generated.mjs';
 import assert from 'node:assert/strict';
 import { after, before, test } from 'node:test';
 import fs from 'node:fs';
@@ -96,6 +96,7 @@ async function harness(options = {}) {
   };
   let definition;
   const wx = {
+    getFileSystemManager: () => compressedFiles(temporaryDirectory),
     getStorageSync: key => storage.has(key) ? plain(storage.get(key)) : '',
     setStorageSync: (key, value) => storage.set(key, plain(value)),
     showToast() {}, stopPullDownRefresh() {}, setClipboardData() {},
@@ -508,7 +509,7 @@ test('word locale projection keeps frozen prediction and canonical key; dictiona
   h.page.openDictionary();
   const row = h.page.data.dictionaryRows.find(row => row.id === canonical.id);
   assert.equal(row.card.meaning, translations[canonical.meaning]);
-  assert.deepEqual(plain(row.stat), plain(h.page.data.wordStat));
+  assert.deepEqual(plain(h.page.data.dictionaryDetail.stat), plain(h.page.data.wordStat));
   h.page.changeLocale();
   assert.equal(h.page.data.card.meaning, canonical.meaning);
   assert.deepEqual(plain(h.page.wordMemory), memory);
@@ -646,4 +647,53 @@ test('changed cloud content ends an active diagnostic without leaving an empty r
   assert.equal(h.page.data.examFinished, true);
   assert.equal(h.page.data.view, 'exam');
   assert.equal(h.page.data.examAnswered, 1);
+});
+
+
+test('four bottom tabs group practice and account tools while story exists only on Today', async () => {
+  const template = fs.readFileSync(new URL('pages/index/index.wxml', miniRoot), 'utf8');
+  const nav = template.slice(template.indexOf('<view class="navigation">'));
+  assert.deepEqual([...nav.matchAll(/data-view="([^"]+)"/g)].map(match => match[1]), ['home', 'practiceHub', 'community', 'account']);
+  assert.equal([...template.matchAll(/data-view="story"/g)].length, 1);
+  const home = template.slice(template.indexOf("view === 'home'"), template.indexOf("view === 'practiceHub'"));
+  assert.match(home, /data-view="story"/);
+  for (const destination of ['dictionary', 'measurement', 'words']) assert.doesNotMatch(home, new RegExp(`data-view="${destination}"`));
+  const practice = template.slice(template.indexOf("view === 'practiceHub'"), template.indexOf("view === 'courses'"));
+  for (const destination of ['courses', 'review', 'exam', 'words']) assert.match(practice, new RegExp(`data-view="${destination}"`));
+  const h = await harness();
+  h.page.changeView(event({ view: 'practiceHub' }));
+  assert.equal(h.page.data.view, 'practiceHub');
+  h.page.changeView(event({ view: 'account' }));
+  assert.equal(h.page.data.avatarPreview, '🐱');
+  assert.equal(h.calls.some(call => call.path === '/api/community/profile'), false, 'guest settings never fetch private profiles');
+  const card = bank.vocabularyCards.find(item => item.language === 'la');
+  h.page.practiseWord(event({ id: card.id }));
+  const selection = h.page.wordSelection;
+  h.page.openDictionary();
+  assert.equal(h.page.data.dictionaryDetail.id, card.id);
+  h.page.changeView(event({ view: 'account' }));
+  h.page.changeView(event({ view: 'dictionary' }));
+  assert.equal(h.page.data.dictionaryDetail, null, 'the account entry opens an independent list');
+  assert.equal(h.page.wordSelection, selection);
+});
+
+test('review center crosses levels only in the current language and exits cleanly to daily practice', async () => {
+  const h = await harness();
+  await h.page.preference({ language: 'ja', level: 'C' });
+  const high = bank.questions.find(q => q.language === 'ja' && q.level === 'G');
+  const intermediate = bank.questions.find(q => q.language === 'ja' && q.level === 'F');
+  const foreign = bank.questions.find(q => (q.language || 'la') === 'la');
+  h.page.record.progress = { [high.id]: 'wrong', [intermediate.id]: 'review', [foreign.id]: 'wrong' };
+  h.page.record.bookmarks = [high.id, foreign.id];
+  h.page.openPaper(event({ collection: 'jlpt-1992-1', category: 'listening' }));
+  h.page.openReview(event({ filter: 'wrong' }));
+  assert.deepEqual(new Set(h.page.filtered.map(q => q.id)), new Set([high.id, intermediate.id]));
+  assert.equal(h.page.data.fullPaper, false);
+  assert.equal(h.page.data.reviewScope, true);
+  assert.equal(h.page.data.level, 'C');
+  h.page.openReview(event({ filter: 'saved' }));
+  assert.deepEqual(plain(h.page.filtered.map(q => q.id)), [high.id]);
+  h.page.openOrderedPractice();
+  assert.equal(h.page.data.reviewScope, false);
+  assert.ok(h.page.range.every(q => shared.matchesLevel(q, 'C')));
 });

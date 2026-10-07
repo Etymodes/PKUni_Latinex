@@ -11,6 +11,8 @@ import { completeVocabularyReview, makePrediction, trainVocabularyModel, type Re
 
 type SharedProps = { language: LanguageCode; locale: "zh-CN" | "en"; stats: VocabularyStats; reviews: VocabularyReviewEvent[] };
 const localDate = (date = new Date()) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+import { dictionaryEntry, dictionaryFacets, searchDictionary, type DictionaryOptions, type DictionaryReference } from "../lib/dictionary";
+
 const reviewLabels: Record<string, [string, string]> = { draft: ["内容草稿", "Draft"], reviewed: ["已复核", "Reviewed"], published: ["已发布", "Published"], archived: ["已归档", "Archived"] };
 const outcomeLabels: Record<VocabularyOutcome, [string, string]> = { forgotten: ["忘了", "Forgotten"], approximate: ["近似", "Approximate"], remembered: ["记得", "Remembered"] };
 const outcomes: VocabularyOutcome[] = ["forgotten", "approximate", "remembered"];
@@ -55,6 +57,7 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
   const [forecastDate, setForecastDate] = useState(() => localDate(new Date(Date.now() + 86400000)));
   const answered = useRef<ReviewPrediction | null>(null);
   const focusRequest = useRef("");
+  const drawInputs = useRef<unknown[]>([]);
   const card = vocabularyCards.find(item => item.id === cardId && item.language === language);
   const focusedPractice = Boolean(card && !vocabularyMatchesLevel(card, level));
   const displayCard = card && localizeVocabularyCard(card, locale);
@@ -82,6 +85,10 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
   }
 
   useEffect(() => {
+    // React may replay an effect setup; retain the selected word and frozen prediction.
+    const inputs = [eligible, owner, ready, mode, focusId];
+    if (inputs.every((value, index) => Object.is(value, drawInputs.current[index]))) return;
+    drawInputs.current = inputs;
     const request = `${owner}:${ready}:${focusId ?? ""}`;
     advance(reviews, stats, [], request !== focusRequest.current ? focusId : undefined);
     focusRequest.current = request;
@@ -140,33 +147,58 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
   </div>;
 }
 
+function DictionarySource({ reference, locale }: { reference: DictionaryReference; locale: string }) {
+  return <span className="dictionary-source"><a href={reference.url} target="_blank" rel="noopener noreferrer">{reference.name} ↗</a>{reference.note && <span> · {reference.note}</span>}{reference.license && <small> · {reference.licenseUrl ? <a href={reference.licenseUrl} target="_blank" rel="noopener noreferrer">{reference.license}</a> : reference.license}</small>}</span>;
+}
+
 export function VocabularyDictionary({ language, locale, stats, reviews, focusId, onPractice }: SharedProps & { focusId?: string; onPractice: (id: string) => void }) {
   const t = (zh: string, en: string) => label(locale, zh, en);
-  const [query, setQuery] = useState(() => dictionaryEntries.find(card => card.id === focusId && card.language === language)?.term ?? "");
-  const [status, setStatus] = useState("all");
+  const [query, setQuery] = useState("");
+  const [field, setField] = useState<DictionaryOptions["field"]>("all");
+  const [order, setOrder] = useState<"headword" | "reading">(language === "ja" ? "reading" : "headword");
+  const [index, setIndex] = useState("all");
+  const [level, setLevel] = useState("all");
+  const [partOfSpeech, setPartOfSpeech] = useState("all");
+  const [selectedId, setSelectedId] = useState(focusId || "");
+  const detailHeading = useRef<HTMLHeadingElement | null>(null);
+  const lastEntryButton = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => { if (selectedId) detailHeading.current?.focus(); }, [selectedId]);
   const [visibleCount, setVisibleCount] = useState(40);
-  const languageEntries = dictionaryEntries.filter(card => card.language === language);
-  const entries = languageEntries.filter(card => (status === "all" || (card.dictionary?.reviewStatus ?? "draft") === status)
-    && searchText(card).includes(query.trim().toLowerCase()));
-  useEffect(() => { setVisibleCount(40); }, [query, status]);
-  useEffect(() => { if (focusId) { setQuery(dictionaryEntries.find(card => card.id === focusId && card.language === language)?.term ?? ""); setStatus("all"); } }, [focusId, language]);
-  return <section className="linked-dictionary">
-    <p>{t("词典与背单词使用同一词条和学习记录。可查词后直接练习，也可在背词时回来查看。", "Dictionary and practice share entries and learning records. Look up a word, practise it, and return here anytime.")}</p>
-    <div className="lexicon-filters"><label>{t("内容状态", "Content status")}<select value={status} onChange={event => setStatus(event.target.value)}><option value="all">{t("全部状态", "All statuses")}</option>{Object.entries(reviewLabels).map(([value, labels]) => <option key={value} value={value}>{t(...labels)}</option>)}</select></label><label className="resource-search"><Search size={17} /><input aria-label={t("搜索词典", "Search dictionary")} value={query} onChange={event => setQuery(event.target.value)} placeholder={t("词头、读音或中文义", "Word, reading or meaning")} /></label></div>
-    {language === "la" && <details><summary>{t("词典核验来源", "Dictionary verification sources")}</summary><div className="dictionary-sources">{dictionarySources.map(source => <article key={source.id}><strong>{source.name}</strong><p>{contentText(source.scope, locale)}</p><small>{contentText(source.access, locale)}</small></article>)}</div></details>}
-    <p aria-live="polite">{entries.length} / {languageEntries.length} {t("词条", "entries")}</p>
-    <div className="lexicon-list">{entries.slice(0, visibleCount).map(originalCard => {
-      const card = localizeVocabularyCard(originalCard, locale);
-      const stat = stats[vocabularyKey(language, card.term)];
-      const wordReviews = reviews.filter(event => event.language === language && event.lemma === card.term);
-      const approximateCount = wordReviews.filter(event => event.outcome === "approximate").length;
-      const last = wordReviews.sort((a, b) => b.answeredAt.localeCompare(a.answeredAt))[0];
-      return <article key={card.id} id={`word-${card.id}`}><div><small className="lexicon-language">{language.toUpperCase()} · {card.level}</small><h2 lang={language} dir="auto">{card.term}</h2>{card.reading && <span lang={language}>{card.reading}</span>}<b>{card.meaning}</b></div>{card.partOfSpeech && <p>{card.partOfSpeech}</p>}{card.context && <blockquote lang={language} dir="auto">{card.context}</blockquote>}{card.dictionary && <details><summary>{t("词源与核验线索", "Etymology and review notes")}</summary><p>{card.dictionary.pie}</p><p>{card.dictionary.derivatives.join(" · ")}</p></details>}<div className="dictionary-checks lexicon-workflow"><span className={`review-status ${card.dictionary?.reviewStatus ?? "draft"}`}>{t(...reviewLabels[card.dictionary?.reviewStatus ?? "draft"])}</span></div>
-        {language === "la" && card.dictionary ? <div className="dictionary-checks">{dictionarySources.map(source => <span key={source.id}>{source.id.toUpperCase()} · {card.dictionary!.dictionaryStatus[source.id] === "已核" ? t("已核", "Verified") : t("待核", "Pending")}</span>)}</div> : <p>{t("专项词典 · 待核", "Language-specific dictionary · pending")}</p>}
-        <VocabularyDetails card={card} locale={locale} />
-        <p className="dictionary-learning-state">{stat?.seen ? `${t("已练", "Reviewed")} ${stat.seen} · ${t("记得", "Remembered")} ${stat.correct} · ${t("近似", "Approximate")} ${approximateCount}` : t("尚未练习", "Not reviewed yet")}{last && ` · ${t("最近", "Last")}: ${t(...outcomeLabels[last.outcome])}`}</p><button className="primary-button" onClick={() => onPractice(card.id)}>{t("练这个词", "Practise this word")}</button></article>;
-    })}</div>
-    {entries.length > visibleCount && <button className="secondary-button" onClick={() => setVisibleCount(count => count + 40)}>{t("显示更多词条", "Show more entries")}</button>}
-    {!entries.length && <div className="empty-state"><Search /><h2>{t("没有匹配词条", "No matching entries")}</h2></div>}
+  const facets = useMemo(() => dictionaryFacets(dictionaryEntries, language, order), [language, order]);
+  const entries = useMemo(() => searchDictionary(dictionaryEntries, { language, locale, query, field, order, index, level, partOfSpeech }), [language, locale, query, field, order, index, level, partOfSpeech]);
+  const languageCount = useMemo(() => dictionaryEntries.filter(card => card.language === language).length, [language]);
+  const original = entries.find(card => card.id === selectedId) || entries[0];
+  const entry = original && dictionaryEntry(original, locale);
+  const reset = () => { setQuery(""); setIndex("all"); setLevel("all"); setPartOfSpeech("all"); setSelectedId(""); };
+  useEffect(() => { setVisibleCount(40); }, [query, field, order, index, level, partOfSpeech]);
+  useEffect(() => { if (focusId) { reset(); setSelectedId(focusId); } }, [focusId, language]);
+  const stat = original && stats[vocabularyKey(language, original.term)];
+  const wordReviews = original ? reviews.filter(event => event.language === language && event.lemma === original.term).sort((a, b) => b.answeredAt.localeCompare(a.answeredAt)) : [];
+  const last = wordReviews[0];
+  const approximate = wordReviews.filter(event => event.outcome === "approximate").length;
+  const indexLabel = (value: string) => value === "漢字" ? t("汉字", "Han characters") : value === "#" ? t("其他／未收录读音", "Other / no reading") : value;
+  return <section className="page dictionary-workspace" aria-label={t("独立词典", "Dictionary")}>
+    <div className="dictionary-title"><span>PIKKU · DICTIONARY</span><h1>{t("词典", "Dictionary")}</h1><p>{t("查词、辨义、寻词源。与背单词共用词库，查阅不会计入记忆反馈。", "Look up words, explore meanings and trace origins. Entries are shared with vocabulary practice; lookups never count as recall feedback.")}</p></div>
+    <div className="dictionary-search"><Search size={21} /><input type="search" aria-label={t("搜索词典", "Search dictionary")} value={query} onChange={event => { setQuery(event.target.value); setSelectedId(""); }} placeholder={t("输入词头、读音或中英释义", "Search a word, reading, or Chinese / English meaning")} /><select aria-label={t("检索方式", "Search field")} value={field} onChange={event => { setField(event.target.value as DictionaryOptions["field"]); setSelectedId(""); }}><option value="all">{t("综合检索", "All fields")}</option><option value="headword">{t("词头／别写", "Headword / spelling")}</option><option value="reading">{t("读音", "Reading")}</option><option value="meaning">{t("释义", "Meaning")}</option></select></div>
+    <div className="dictionary-filters"><label>{t("索引顺序", "Index order")}<select value={order} onChange={event => { setOrder(event.target.value as "headword" | "reading"); setIndex("all"); setSelectedId(""); }}><option value="headword">{t("词头字母序", "Headword order")}</option><option value="reading">{t("读音／五十音", "Reading / kana order")}</option></select></label><label>{t("等级", "Level")}<select value={level} onChange={event => { setLevel(event.target.value); setSelectedId(""); }}><option value="all">{t("全部等级", "All levels")}</option>{["C", "F", "G", "M"].map(value => <option key={value} value={value}>{value}</option>)}</select></label><label>{t("词性", "Part of speech")}<select value={partOfSpeech} onChange={event => { setPartOfSpeech(event.target.value); setSelectedId(""); }}><option value="all">{t("全部词性", "All parts of speech")}</option>{facets.partsOfSpeech.map(value => <option value={value} key={value}>{contentText(value, locale)}</option>)}</select></label><button className="text-button" onClick={reset}>{t("重置", "Reset")}</button></div>
+    <div className="dictionary-index" role="group" aria-label={t("快速索引", "Quick index")}><button aria-pressed={index === "all"} onClick={() => { setIndex("all"); setSelectedId(""); }}>{t("全部", "All")}</button>{facets.indices.map(value => <button key={value} aria-pressed={index === value} onClick={() => { setIndex(value); setSelectedId(""); }}>{indexLabel(value)}</button>)}</div>
+    <p className="dictionary-count" aria-live="polite">{entries.length} / {languageCount} {t("词条", "entries")}</p>
+    <div className={`dictionary-layout ${selectedId ? "has-selection" : ""}`}>
+      <aside className="dictionary-results" aria-label={t("词条列表", "Entries")}>
+        {entries.slice(0, visibleCount).map(card => { const item = dictionaryEntry(card, locale); return <button className={card.id === original?.id ? "active" : ""} aria-pressed={card.id === original?.id} key={card.id} onClick={event => { lastEntryButton.current = event.currentTarget; setSelectedId(card.id); }}><strong lang={language} dir="auto">{item.term}</strong>{item.reading && <small lang={language}>{item.reading}</small>}<span>{item.senses[0]?.gloss}</span></button>; })}
+        {entries.length > visibleCount && <button className="dictionary-more" onClick={() => setVisibleCount(count => count + 40)}>{t("显示更多词条", "Show more entries")}</button>}
+        {!entries.length && <p className="empty-state">{t("没有匹配词条，请调整检索条件。", "No matching entries. Try another search or filter.")}</p>}
+      </aside>
+      {entry && original && <article className="dictionary-entry" id={`word-${entry.id}`}>
+        <button className="text-button dictionary-back" onClick={() => { setSelectedId(""); requestAnimationFrame(() => lastEntryButton.current?.focus()); }}>{t("← 返回词条列表", "← Back to entries")}</button>
+        <header><div><span className="dictionary-headword-label">{language.toUpperCase()} · {entry.level}</span><h2 ref={detailHeading} tabIndex={-1} lang={language} dir="auto">{entry.term}</h2>{entry.reading && <p className="dictionary-reading" lang={language}>{entry.reading}</p>}{entry.partOfSpeech && <p>{entry.partOfSpeech}</p>}</div><button className="secondary-button" onClick={() => onPractice(entry.id)}>{t("练这个词", "Practise this word")}</button></header>
+        {(entry.spellings.length > 0 || entry.readings.length > 0) && <div className="dictionary-variants">{entry.spellings.length > 0 && <p>{t("其他写法", "Other spellings")} · <span lang={language}>{entry.spellings.join(" · ")}</span></p>}{entry.readings.length > 0 && <p>{t("其他读音", "Other readings")} · <span lang={language}>{entry.readings.join(" · ")}</span></p>}</div>}
+        <section><h3>{t("释义", "Meanings")}</h3><ol className="dictionary-senses">{entry.senses.map(sense => <li key={sense.number}><span className="sense-number">{sense.number}</span><div>{sense.reading && sense.reading !== entry.reading && <small lang={language}>{sense.reading}</small>}{sense.partOfSpeech && <small>{sense.partOfSpeech}</small>}<p>{sense.gloss}</p>{sense.source && <DictionarySource reference={sense.source} locale={locale} />}</div></li>)}</ol>{entry.usageNotes && <p>{entry.usageNotes}</p>}</section>
+        <section><h3>{t("例句与用法", "Examples & usage")}</h3>{entry.examples.length ? entry.examples.map((example, i) => <figure key={i}><blockquote lang={language} dir="auto">{example.text}</blockquote>{example.translation && <p>{example.translation}</p>}<figcaption>{example.source ? <DictionarySource reference={example.source} locale={locale} /> : t("学习例句", "Study example")}</figcaption></figure>) : <p className="dictionary-pending">{t("例句待补充。", "Examples have not been added yet.")}</p>}</section>
+        <section><h3>{t("词源", "Etymology")}</h3>{entry.etymology.length ? entry.etymology.map((item, i) => <div className="dictionary-etymology" key={i}><p>{item.text}</p><DictionarySource reference={item.source} locale={locale} /></div>) : <p className="dictionary-pending">{t("尚未收录有来源的词源说明。", "No sourced etymology has been added yet.")}</p>}</section>
+        <section className="dictionary-reference-list"><h3>{t("辞典与来源", "Dictionaries & sources")}</h3>{entry.references.length ? entry.references.map(reference => <p key={`${reference.name}:${reference.url}`}><DictionarySource reference={reference} locale={locale} /></p>) : <p className="dictionary-pending">{t("此词条目前为学习释义，辞典引文待补充。", "This entry currently contains study definitions. Dictionary citations have not been added yet.")}</p>}</section>
+        <div className="dictionary-learning-state">{stat?.seen ? `${t("已练", "Reviewed")} ${stat.seen} · ${t("记得", "Remembered")} ${stat.correct} · ${t("近似", "Approximate")} ${approximate}` : t("尚未练习", "Not reviewed yet")}{last && ` · ${t("最近", "Last")}: ${t(...outcomeLabels[last.outcome])}`}</div>
+      </article>}
+    </div>
   </section>;
 }

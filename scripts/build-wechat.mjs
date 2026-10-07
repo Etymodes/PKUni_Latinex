@@ -106,6 +106,7 @@ export function buildSharedSource(root = projectRoot) {
     sourceDeclarations("data/question-collections.ts", ["questionInCollection", "questionForCollection", "collectionOrder"], root),
     sourceDeclarations("lib/shuffle.ts", ["shuffle"], root),
     sourceDeclarations("lib/study-modes.ts", ["buildRandomExam", "buildVocabularyMeasurement"], root),
+    sourceDeclarations("lib/community-avatar.ts", ["communityAvatarPresets", "defaultCommunityAvatar", "isCommunityAvatar", "normalizeCommunityAvatar", "communityAvatarText"], root),
     sourceDeclarations("app/i18n.ts", ["availableLearningLanguages", "normalizeLearningLanguage", "getLearningLanguage"], root),
     // Preserve the website's deletion, replacement, order, and review-status behavior.
     `export function mergeQuestionOverrides(staticQuestions, overrides = []) ${callback.body.getText(page)}`,
@@ -122,6 +123,16 @@ export function buildVocabularySource(name, root = projectRoot) {
   // Array.at is newer than the mini-program ES2019 runtime. Keep its one use equivalent.
   source = source.replace("rows.at(-1)", "rows[rows.length - 1]")
     .replace('"./vocabulary-model.ts"', '"./vocabulary-model.js"');
+  return generatedNotice + ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019, removeComments: true },
+  }).outputText;
+}
+
+export function buildDictionarySource(root = projectRoot) {
+  const source = fs.readFileSync(path.join(root, "lib/dictionary.ts"), "utf8")
+    .replace(/(["'])\.\.\/data\/(vocabulary|questions)\.ts\1/g, '"./shared.js"')
+    .replace(/(["'])\.\/content-locale\.ts\1/g, '"./content-locale.js"')
+    .replace(/(["'])\.\.\/data\/dictionary-enrichment\.ts\1/g, '"./dictionary-enrichment.js"');
   return generatedNotice + ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019, removeComments: true },
   }).outputText;
@@ -176,6 +187,8 @@ export async function buildWechat({ root = projectRoot, outputDir = path.join(ro
   }
   writeCompressedJson(outputDir, 'french-arabic', { frenchArabicEnglish: createSourceLoader(root)('data/french-arabic.ts').frenchArabicEnglish });
   fs.writeFileSync(path.join(outputDir, 'data/content-locale.js'), buildContentLocaleSource(root));
+  writeCompressedJson(outputDir, 'dictionary-enrichment', createSourceLoader(root)('data/dictionary-enrichment.ts'));
+  fs.writeFileSync(path.join(outputDir, 'data/dictionary.js'), buildDictionarySource(root));
   fs.writeFileSync(path.join(outputDir, "data/shared.js"), buildSharedSource(root));
   for (const name of ["vocabulary-model", "vocabulary-review-sync"]) {
     fs.writeFileSync(path.join(outputDir, `data/${name}.js`), buildVocabularySource(name, root));
