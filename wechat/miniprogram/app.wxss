@@ -12,7 +12,11 @@ text { overflow-wrap: anywhere; }
 .eyebrow { display: block; font-size: 20rpx; letter-spacing: 2rpx; font-weight: 700; color: #936a34; }
 .brand .eyebrow { margin-top: 6rpx; color: #447699; font-size: 16rpx; }
 .shell .locale { flex: 0 0 56px; width: 56px; height: 56px; min-width: 44px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; font-size: 16px; line-height: 1.1; white-space: nowrap; overflow-wrap: normal; border: 1rpx solid #dcd7cc; background: #fffefa; }
-.locale .locale-word { font-size: 10px; white-space: nowrap; overflow-wrap: normal; }
+.locale .locale-mark { font-size: 18px; font-weight: 700; color: #94233b; white-space: nowrap; overflow-wrap: normal; }
+.locale .locale-word { font-size: 10px; font-weight: 400; color: #867d6e; white-space: nowrap; overflow-wrap: normal; }
+.shell .locale.locale-en { flex-direction: column-reverse; }
+.locale-en .locale-mark { font-size: 14px; font-weight: 400; color: #867d6e; }
+.locale-en .locale-word { font-weight: 700; color: #94233b; }
 .locale-setting { margin: 22rpx 0; }
 .status { font-size: 21rpx; color: #736e62; margin: 16rpx 0 26rpx; }
 .dot { color: #256f60; margin-right: 7rpx; font-size: 16rpx; }

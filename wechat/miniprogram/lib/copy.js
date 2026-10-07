@@ -1,7 +1,7 @@
 const zh = {
   home: '学习台', practice: '练习', words: '背词', account: '我的', resources: '资源',
   title: '每天学一点，世界近一点。', subtitle: '同一个 Pikku，随时继续你的语言之旅。',
-  learning: '学习语言', display: '显示语言', start: '开始练习', all: '全部题目', wrong: '错题复习', saved: '我的收藏',
+  learning: '学习语言', display: '显示语言', localeAction: '显示语言：简体中文。切换到 English', start: '开始练习', all: '全部题目', wrong: '错题复习', saved: '我的收藏',
   answered: '已完成', correct: '答对', bookmarked: '已收藏', wordSeen: '词汇练习',
   next: '下一题', back: '返回', previous: '上一题', bookmark: '收藏', unbookmark: '取消收藏',
   reveal: '查看参考答案', right: '回答正确', mistake: '再看一下解析', explanation: '解析',
@@ -28,7 +28,7 @@ const zh = {
 const en = {
   home: 'Today', practice: 'Practice', words: 'Words', account: 'Account', resources: 'Resources',
   title: 'A little language, every day.', subtitle: 'One Pikku account. Keep your learning close.',
-  learning: 'Learning language', display: 'Display language', start: 'Start practice', all: 'All questions', wrong: 'Review mistakes', saved: 'Bookmarks',
+  learning: 'Learning language', display: 'Display language', localeAction: 'Display language: English. Switch to Simplified Chinese', start: 'Start practice', all: 'All questions', wrong: 'Review mistakes', saved: 'Bookmarks',
   answered: 'Completed', correct: 'Correct', bookmarked: 'Saved', wordSeen: 'Word reviews',
   next: 'Next question', back: 'Back', previous: 'Previous', bookmark: 'Save', unbookmark: 'Unsave',
   reveal: 'Show model answer', right: 'Correct', mistake: 'Review the explanation', explanation: 'Explanation',

@@ -940,8 +940,8 @@ function LearningLanguagePicker({ locale, value, onChange }: { locale: UiLocale;
 
 function UiLocaleSwitch({ locale, onChange }: { locale: UiLocale; onChange: (locale: UiLocale) => void }) {
   const action = locale === "en" ? "Display language: English. Switch to Simplified Chinese" : "显示语言：简体中文。切换到 English";
-  return <button type="button" className="locale-toggle" aria-label={action} title={action} onClick={() => onChange(locale === "en" ? "zh-CN" : "en")}>
-    <span aria-hidden="true">语⇌</span><small aria-hidden="true">Language</small>
+  return <button type="button" className={`locale-toggle${locale === "en" ? " locale-en" : ""}`} aria-label={action} title={action} onClick={() => onChange(locale === "en" ? "zh-CN" : "en")}>
+    <span aria-hidden="true">{locale === "en" ? "⇋语" : "语⇌"}</span><small aria-hidden="true">Language</small>
   </button>;
 }
 
@@ -1644,7 +1644,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
       <div className="settings-action"><span>{t("当前语言：")}{config.nativeName} · {languageName}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>{t("开始背单词")}<ArrowRight size={17} /></button></div>
     </section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.1.1</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.1.2</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>
