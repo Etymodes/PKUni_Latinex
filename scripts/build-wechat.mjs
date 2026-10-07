@@ -72,6 +72,7 @@ export function loadProjectData(root = projectRoot) {
   const resources = load("data/resources.ts");
   return {
     questions,
+    questionCollections: load("data/question-collections.ts").questionCollections,
     vocabularyCards: load("data/vocabulary.ts").vocabularyCards,
     languageConfigs: languages.languageConfigs,
     languageOrder: languages.languageOrder,
@@ -100,7 +101,8 @@ export function buildSharedSource(root = projectRoot) {
   const source = [
     'const { learningLanguages } = require("./bank.js");',
     sourceDeclarations("data/questions.ts", ["pikkuLevels", "legacyPikkuLevels", "normalizePikkuLevel", "matchesLevel", "questionOptionOrder"], root),
-    sourceDeclarations("data/vocabulary.ts", ["cumulativeVocabularyLevels", "vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard"], root),
+    sourceDeclarations("data/vocabulary.ts", ["cumulativeVocabularyLevels", "vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard", "vocabularyInCollection", "publicDictionaryReferences"], root),
+    sourceDeclarations("data/question-collections.ts", ["questionInCollection", "questionForCollection", "collectionOrder"], root),
     sourceDeclarations("lib/shuffle.ts", ["shuffle"], root),
     sourceDeclarations("app/i18n.ts", ["availableLearningLanguages", "normalizeLearningLanguage", "getLearningLanguage"], root),
     // Preserve the website's deletion, replacement, order, and review-status behavior.
@@ -123,6 +125,35 @@ export function buildVocabularySource(name, root = projectRoot) {
   }).outputText;
 }
 
+export function serializeBank(data) {
+  const counts = new Map();
+  function count(value) {
+    if (typeof value === "string" && value.length >= 40) counts.set(value, (counts.get(value) ?? 0) + 1);
+    else if (Array.isArray(value)) value.forEach(count);
+    else if (value && typeof value === "object") Object.values(value).forEach(count);
+  }
+  count(data);
+  const strings = [...counts].filter(([, count]) => count > 1).map(([value]) => value);
+  const indices = new Map(strings.map((value, index) => [value, index]));
+  function literal(value) {
+    if (typeof value === "string" && indices.has(value)) return `s[${indices.get(value)}]`;
+    if (Array.isArray(value)) return `[${value.map(literal).join(",")}]`;
+    if (value && typeof value === "object") return `{${Object.entries(value).filter(([, v]) => v !== undefined).map(([k, v]) => `${JSON.stringify(k)}:${literal(v)}`).join(",")}}`;
+    return JSON.stringify(value);
+  }
+  function records(items) {
+    const keys = [...new Set(items.flatMap(item => Object.keys(item)))];
+    const rows = items.map(item => {
+      const values = keys.map(key => item[key] === undefined ? "" : literal(item[key]));
+      while (values.length && !values[values.length - 1]) values.pop();
+      return `[${values.join(",")}]`;
+    });
+    return `rows(${JSON.stringify(keys)},[${rows.join(",")}])`;
+  }
+  const body = Object.entries(data).map(([key, value]) => `${JSON.stringify(key)}:${["questions", "vocabularyCards"].includes(key) ? records(value) : literal(value)}`).join(",");
+  return `${generatedNotice}const s = ${JSON.stringify(strings)};\nconst rows = (keys, values) => values.map(row => Object.fromEntries(Object.keys(row).map(index => [keys[index], row[index]])));\nmodule.exports = {${body}};\n`;
+}
+
 function directoryBytes(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).reduce((total, entry) => {
     const filename = path.join(directory, entry.name);
@@ -134,7 +165,7 @@ export async function buildWechat({ root = projectRoot, outputDir = path.join(ro
   const data = loadProjectData(root);
   fs.mkdirSync(path.join(outputDir, "data"), { recursive: true });
   fs.mkdirSync(path.join(outputDir, "assets"), { recursive: true });
-  fs.writeFileSync(path.join(outputDir, "data/bank.js"), `${generatedNotice}module.exports = ${JSON.stringify(data)};\n`);
+  fs.writeFileSync(path.join(outputDir, "data/bank.js"), serializeBank(data));
   fs.writeFileSync(path.join(outputDir, "data/shared.js"), buildSharedSource(root));
   for (const name of ["vocabulary-model", "vocabulary-review-sync"]) {
     fs.writeFileSync(path.join(outputDir, `data/${name}.js`), buildVocabularySource(name, root));

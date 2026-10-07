@@ -1,0 +1,5477 @@
+{
+  "sourceId": "jlpt-1993",
+  "exam": "1993年日本語能力試験 旧1級",
+  "counts": {
+    "vocabulary": 65,
+    "listening": 28,
+    "reading": 22,
+    "grammar": 37,
+    "total": 152
+  },
+  "sourceDocument": {
+    "name": "1993年日语能力考试1级真题及答案.doc",
+    "sha256": "d1928c59ace4edfeafd370719fb31def753ebb57ee08488741f90c85251fd832",
+    "exportedPdfPageCount": 48
+  },
+  "listeningText": {
+    "name": "1993年日语一级听力原文及答案.txt",
+    "sha256": "53536b81860582fba29e3b14b9fdc15240b5a1454ac8b6e4602c65ede380ec02",
+    "encoding": "GB18030"
+  },
+  "sourceAudio": {
+    "name": "1993年日语N1听力音频.xm",
+    "sha256": "3f6899b46bc76f6f55fcd2a0fc923c229253f2a3e2c0cc062e63ee0679172f9e"
+  },
+  "decodedAudio": {
+    "name": "1993年日语N1听力音频.m4a",
+    "sha256": "ab90c92a8ee926e1329571980cd6d346f934378fb6461a54db379adb7f5863fc"
+  },
+  "printedAnswers": 152,
+  "inferredAnswers": 0,
+  "answerKeyPage": 48,
+  "publicImportRequested": "2026-10-07",
+  "rightsStatus": "rights-unclear",
+  "difficultyRubric": "cfgm-user-screenshot-2026-10-06-v1",
+  "difficultyCounts": {
+    "C": 0,
+    "F": 65,
+    "G": 87,
+    "M": 0
+  },
+  "audioIntervalsVerified": 28,
+  "audioAlignmentMethod": "local ASR with matching question numbers and topics, plus targeted repeat recognition for uncertain segments",
+  "humanListeningVerified": false,
+  "images": [
+    {
+      "name": "image2.png",
+      "src": "/media/jlpt-1993/image2.png",
+      "sha256": "5b4711831345280bfdfa7064e018ac0dd80db671e75e5e44e0ac680c45db602d",
+      "sizeBytes": 57499
+    },
+    {
+      "name": "image3.png",
+      "src": "/media/jlpt-1993/image3.png",
+      "sha256": "0920dbfdc159deeb18756753d4a04d3d76318568f2176dce509e1b268c397ae1",
+      "sizeBytes": 41376
+    },
+    {
+      "name": "image4.png",
+      "src": "/media/jlpt-1993/image4.png",
+      "sha256": "27683bf5d0b19410c385eec4ec2d19385458a2ae1d2da3a020cbba0805ae77b9",
+      "sizeBytes": 63711
+    },
+    {
+      "name": "image5.png",
+      "src": "/media/jlpt-1993/image5.png",
+      "sha256": "dc8ab6db1237023792550b7293c1b576aea0c3f860dd2b136dcc57ec24292621",
+      "sizeBytes": 74156
+    },
+    {
+      "name": "image6.png",
+      "src": "/media/jlpt-1993/image6.png",
+      "sha256": "58a542889ee3209f886c6ccc9a189e1bdabf6e5067d3b2ebd17f3a9d390bf37f",
+      "sizeBytes": 34611
+    },
+    {
+      "name": "image7.png",
+      "src": "/media/jlpt-1993/image7.png",
+      "sha256": "215547b8ee3cfc362aaac82feab093c097fb07f2da4aa749f6e66083d904a694",
+      "sizeBytes": 72005
+    },
+    {
+      "name": "image8.png",
+      "src": "/media/jlpt-1993/image8.png",
+      "sha256": "00f7b8c5f6a0d5151868e583b61d349c9f254f63125f425b80c383d67e142222",
+      "sizeBytes": 35055
+    },
+    {
+      "name": "image9.png",
+      "src": "/media/jlpt-1993/image9.png",
+      "sha256": "644ebdddeee5e8e8afcf72029f704842dd5bb9998f10325d9038771bd6d6a2d0",
+      "sizeBytes": 53922
+    },
+    {
+      "name": "image10.png",
+      "src": "/media/jlpt-1993/image10.png",
+      "sha256": "652042913bb67c87985c3778a5770baedeacc488b09445cb6e67ebe1014362af",
+      "sizeBytes": 57277
+    },
+    {
+      "name": "image11.jpeg",
+      "src": "/media/jlpt-1993/image11.jpeg",
+      "sha256": "39b251f4137b4d8050549157ae89468cf6b7ba8cd1083a5e534c54f863d5bf59",
+      "sizeBytes": 32605
+    },
+    {
+      "name": "image12.jpeg",
+      "src": "/media/jlpt-1993/image12.jpeg",
+      "sha256": "cbc6f0fb2693bab4dc62a47a004d68ce76b3edb832624cd396a37c82bf388085",
+      "sizeBytes": 20641
+    }
+  ],
+  "audioClips": [
+    {
+      "id": "jlpt-1993-1-listening-I-0-1",
+      "src": "/media/jlpt-1993/audio/listening-I-01.m4a",
+      "startSeconds": 99.82,
+      "endSeconds": 159.55,
+      "sha256": "e4a7f7c90c1fdd733ceb17000059886858b207d1f24a51b4f35d6e2bff2e0e53",
+      "sizeBytes": 484537,
+      "corrections": [],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-01.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-2",
+      "src": "/media/jlpt-1993/audio/listening-I-02.m4a",
+      "startSeconds": 162.65,
+      "endSeconds": 216,
+      "sha256": "b6038c72a395a2fe74a40bfc984c3f0fd231f220f7d3556dfeec64784550c5ab",
+      "sizeBytes": 432706,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-2",
+          "original": "出、手は後ろに回すんですが",
+          "corrected": "で、手は後ろに回すんですが",
+          "startSeconds": 196.97,
+          "endSeconds": 208.4,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-2",
+          "original": "ぴったりとっつける",
+          "corrected": "ぴったりとくっつける",
+          "startSeconds": 196.97,
+          "endSeconds": 208.4,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [
+        "虚构国名原稿ブィへツラ，ASR两次作ビヘツラ；保留原稿写法，题意与作答不受影响。"
+      ],
+      "fileName": "listening-I-02.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-3",
+      "src": "/media/jlpt-1993/audio/listening-I-03.m4a",
+      "startSeconds": 219.02,
+      "endSeconds": 272.76,
+      "sha256": "fff366cf36289f1900cd864a90a1a4f3fe0ccf762bf80de6da6ba40d6a1b22da",
+      "sizeBytes": 435700,
+      "corrections": [],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-03.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-4",
+      "src": "/media/jlpt-1993/audio/listening-I-04.m4a",
+      "startSeconds": 274.92,
+      "endSeconds": 327.07,
+      "sha256": "9e6dcf9ee7b929c5c022f679c83e091610d2f3bc0439d0a0bc71d1369f5b3935",
+      "sizeBytes": 423324,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-4",
+          "original": "今夜からは",
+          "corrected": "今夜半からは",
+          "startSeconds": 299.28,
+          "endSeconds": 303.2,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-04.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-5",
+      "src": "/media/jlpt-1993/audio/listening-I-05.m4a",
+      "startSeconds": 330.21,
+      "endSeconds": 383.82,
+      "sha256": "ad34ca3aab0d3515b837632be7ea92d6d24263e9afae738e2d372293e86a51d3",
+      "sizeBytes": 434935,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "長期的悲願に経った",
+          "corrected": "長期的視野に立った",
+          "startSeconds": 340.78,
+          "endSeconds": 346.77,
+          "evidenceConfidence": "medium",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both ASR passes preserve 視野に立った but render the beginning as 統計的; 長期的 is retained from the supplied source and business context."
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "業界なんば湾",
+          "corrected": "業界ナンバーワン",
+          "startSeconds": 352.82,
+          "endSeconds": 355.32,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "その投資が利して",
+          "corrected": "その投資が効いて",
+          "startSeconds": 366.2,
+          "endSeconds": 369.92,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "業界一に帰りたいかんです",
+          "corrected": "業界一に返り咲いたんです",
+          "startSeconds": 372.6,
+          "endSeconds": 375.9,
+          "evidenceConfidence": "medium",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both audio passes contain a phonetic near-match to 返り咲いた, consistent with returning to first place; exact inflection is not independently human-verified."
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-05.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-6",
+      "src": "/media/jlpt-1993/audio/listening-I-06.m4a",
+      "startSeconds": 385.7,
+      "endSeconds": 451.91,
+      "sha256": "d371edd00c577d5062c5d87ca6848270742b63c8bde3aae9e4c02ee036a25be4",
+      "sizeBytes": 536713,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-6",
+          "original": "女：それから四時に、営業部の会議です。",
+          "corrected": "女：はい、二時に［歯科医院名不確定］に予約が入れてあります。\n男：ああ、そうだったな。歯医者だ。やれやれ。\n女：それから四時に、営業部の会議です。",
+          "startSeconds": 429.72,
+          "endSeconds": 438.68,
+          "evidenceConfidence": "high_for_2pm_dentist_medium_for_clinic_name",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both full/crop ASR independently include the omitted 2pm appointment and 歯医者 response. Clinic name is not resolved by the two independent passes (山中市会議/山中市会員). An editorial uncertainty marker is used rather than presenting the inferred 山中歯科医院 as an exact transcript."
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-06.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-7",
+      "src": "/media/jlpt-1993/audio/listening-I-07.m4a",
+      "startSeconds": 453.81,
+      "endSeconds": 500.64,
+      "sha256": "1f047aa3c5526a2b6017dca9aa30008ea30098959fbfcf085b79e649cdc47d0e",
+      "sizeBytes": 380022,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-7",
+          "original": "どんな姿勢跳び込み",
+          "corrected": "どんな姿勢で跳び込み",
+          "startSeconds": 461.25,
+          "endSeconds": 466.37,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-7",
+          "original": "後ろ向きに落ちてた",
+          "corrected": "後ろ向きに落ちてった",
+          "startSeconds": 478.1,
+          "endSeconds": 483.96,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-07.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-8",
+      "src": "/media/jlpt-1993/audio/listening-I-08.m4a",
+      "startSeconds": 503.04,
+      "endSeconds": 576.34,
+      "sha256": "e5a4b4c779f36c9496db3a9ce4aece4143acca34941800e9c340383e767b4057",
+      "sizeBytes": 593754,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-8",
+          "original": "これは毎日欠かさず行います",
+          "corrected": "これは毎年欠かさず行います",
+          "startSeconds": 550.36,
+          "endSeconds": 554.7,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Repeated full and independent crop passes agree on 毎年; daily watering elsewhere remains 毎日."
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-08.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-9",
+      "src": "/media/jlpt-1993/audio/listening-I-09.m4a",
+      "startSeconds": 579.06,
+      "endSeconds": 641.5,
+      "sha256": "c5245e86a98d9d923513e2c3fb4f3802431e38f9074ccf09bd64974d8554577f",
+      "sizeBytes": 506565,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-9",
+          "original": "はじめに行ったみたいに",
+          "corrected": "はじめに言ったみたいに",
+          "startSeconds": 627.75,
+          "endSeconds": 631.49,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-I-09.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-1",
+      "src": "/media/jlpt-1993/audio/listening-II-01.m4a",
+      "startSeconds": 740.99,
+      "endSeconds": 817.98,
+      "sha256": "73d30ba0890482e03ed5b6fed7e4ff67fc67de66b9d98a28f47e951549f62b92",
+      "sizeBytes": 624190,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "コンテストに出ない人",
+          "corrected": "コンテストに出たい人",
+          "startSeconds": 746.56,
+          "endSeconds": 750.8,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "弁論大会の出張者",
+          "corrected": "弁論大会の出場者",
+          "startSeconds": 751.95,
+          "endSeconds": 757.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "募集資格",
+          "corrected": "応募資格",
+          "startSeconds": 758.76,
+          "endSeconds": 766.3,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "募集の締め切り",
+          "corrected": "応募の締め切り",
+          "startSeconds": 782.7,
+          "endSeconds": 786.5,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-01.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-2",
+      "src": "/media/jlpt-1993/audio/listening-II-02.m4a",
+      "startSeconds": 820.94,
+      "endSeconds": 903.78,
+      "sha256": "11f818e9eeb2a8f57e6753826efd5df21f29bf9eed21b9e4c08244c562129c27",
+      "sizeBytes": 671081,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-2",
+          "original": "とりえとして",
+          "corrected": "とりえでして",
+          "startSeconds": 840.78,
+          "endSeconds": 851.32,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-2",
+          "original": "最大の長処と思う",
+          "corrected": "最大の長所だと思う",
+          "startSeconds": 858.11,
+          "endSeconds": 864.21,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-02.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-3",
+      "src": "/media/jlpt-1993/audio/listening-II-03.m4a",
+      "startSeconds": 905.83,
+      "endSeconds": 997.4,
+      "sha256": "bdddae337a6e7239aed3319362ce970a4785fd3dd5725d2cff21063aee6f8f56",
+      "sizeBytes": 741721,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "電話予約もお開始",
+          "corrected": "電話予約も開始",
+          "startSeconds": 931.6,
+          "endSeconds": 938.76,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "こういう時で、",
+          "corrected": "こういう時って、",
+          "startSeconds": 939.06,
+          "endSeconds": 943.94,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "当日券ってでもあるよ",
+          "corrected": "当日券って手もあるよ",
+          "startSeconds": 955.94,
+          "endSeconds": 958.26,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-03.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-4",
+      "src": "/media/jlpt-1993/audio/listening-II-04.m4a",
+      "startSeconds": 1000.51,
+      "endSeconds": 1083.1,
+      "sha256": "5b182f3e07b40ef0e37c01cccaee655f633a5ce244af49300b984e00ed62e9b4",
+      "sizeBytes": 669263,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-4",
+          "original": "事業を広大して",
+          "corrected": "事業を拡大して",
+          "startSeconds": 1052.75,
+          "endSeconds": 1056.55,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-04.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-5",
+      "src": "/media/jlpt-1993/audio/listening-II-05.m4a",
+      "startSeconds": 1085.22,
+      "endSeconds": 1167.91,
+      "sha256": "39e849c8131f10a74b29aa23e27c8bdc0fa7daa39e417c060b2d033ecaf87da0",
+      "sizeBytes": 670092,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "ある券の",
+          "corrected": "ある県の",
+          "startSeconds": 1087.59,
+          "endSeconds": 1092.42,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "男子は欲張りですね",
+          "corrected": "男子は横ばいですね",
+          "startSeconds": 1101.86,
+          "endSeconds": 1107.62,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "目立った変化見られません",
+          "corrected": "目立った変化は見られません",
+          "startSeconds": 1108.12,
+          "endSeconds": 1114.53,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "めずらしい現像",
+          "corrected": "めずらしい現象",
+          "startSeconds": 1126.85,
+          "endSeconds": 1133.37,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-05.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-6",
+      "src": "/media/jlpt-1993/audio/listening-II-06.m4a",
+      "startSeconds": 1171.21,
+      "endSeconds": 1260.83,
+      "sha256": "38af02179d91d796aa6df0fe2fae039b90fc8abcffe191f1f81c4d367ab810f0",
+      "sizeBytes": 726369,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "協力の選手",
+          "corrected": "強力な選手",
+          "startSeconds": 1193.04,
+          "endSeconds": 1202.16,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "怪我日とはいました",
+          "corrected": "怪我人はいました",
+          "startSeconds": 1213.68,
+          "endSeconds": 1219.86,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "怪我人が多かったかです",
+          "corrected": "怪我人が多かったからです",
+          "startSeconds": 1250.88,
+          "endSeconds": 1255.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-06.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-7",
+      "src": "/media/jlpt-1993/audio/listening-II-07.m4a",
+      "startSeconds": 1263.13,
+      "endSeconds": 1342.16,
+      "sha256": "2b053058a182fcc8bb97d8d21885664d58e15154b1ca89e757611b6b3ee62f72",
+      "sizeBytes": 640382,
+      "corrections": [],
+      "unresolvedNotes": [],
+      "fileName": "listening-II-07.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-1",
+      "src": "/media/jlpt-1993/audio/listening-III-01.m4a",
+      "startSeconds": 1435.78,
+      "endSeconds": 1507.04,
+      "sha256": "ed58113f5aafa0fe9f74c6c16eae1984163fa65cd934291440585fd22981a84a",
+      "sizeBytes": 577590,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-1",
+          "original": "バンドまで行ったの",
+          "corrected": "バンドまでいたの",
+          "startSeconds": 1458.11,
+          "endSeconds": 1462.97,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [
+        "「しめた感じ」原稿可能有漏字，ASR未能可靠澄清；保留原文，不凭语感改写。"
+      ],
+      "fileName": "listening-III-01.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-2",
+      "src": "/media/jlpt-1993/audio/listening-III-02.m4a",
+      "startSeconds": 1510.64,
+      "endSeconds": 1590.92,
+      "sha256": "d7c3825c5e253349c18a87ca6ddc957fa86b68ac6fe15796b71a43fa66697942",
+      "sizeBytes": 650851,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "補給することができわけ",
+          "corrected": "補給することができるわけ",
+          "startSeconds": 1535.93,
+          "endSeconds": 1541.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "コーラー",
+          "corrected": "コーラ",
+          "startSeconds": 1554.92,
+          "endSeconds": 1561.66,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "少し増し",
+          "corrected": "少しまし",
+          "startSeconds": 1554.92,
+          "endSeconds": 1561.66,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-02.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-3",
+      "src": "/media/jlpt-1993/audio/listening-III-03.m4a",
+      "startSeconds": 1595.65,
+      "endSeconds": 1689.4,
+      "sha256": "d6939ac27959375db23d54f9c0602f184799ad6f5e6d3d4b3fa06d345d58ca9e",
+      "sizeBytes": 759326,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-3",
+          "original": "あっ、指定席で、ここ？",
+          "corrected": "あっ、指定席ね、ここ。",
+          "startSeconds": 1615.46,
+          "endSeconds": 1619.12,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-3",
+          "original": "列車の何号に",
+          "corrected": "列車の何号車に",
+          "startSeconds": 1668,
+          "endSeconds": 1672.08,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-03.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-4",
+      "src": "/media/jlpt-1993/audio/listening-III-04.m4a",
+      "startSeconds": 1691.62,
+      "endSeconds": 1758.76,
+      "sha256": "21f3448283a965044f41f680f60400dbd14aad279a904e7b9220e2c05e836b59",
+      "sizeBytes": 544536,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-4",
+          "original": "女：あっ、ニンさん",
+          "corrected": "男：あっ、ニンさん",
+          "startSeconds": 1711.66,
+          "endSeconds": 1717.34,
+          "evidenceConfidence": "medium_structural",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": "The subsequent woman asks 英語の？ and the man answers そう. The first turn is assigned to the man for conversational consistency; speaker attribution is inferred, not supplied by ASR."
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-04.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-5",
+      "src": "/media/jlpt-1993/audio/listening-III-05.m4a",
+      "startSeconds": 1761.49,
+      "endSeconds": 1817.97,
+      "sha256": "1d52600ed168a315539d295f6180faa5fe89a781b8f9ca067e0b71f8d39ad19c",
+      "sizeBytes": 458142,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-5",
+          "original": "お姉さんですかったって",
+          "corrected": "お姉さんですかだって",
+          "startSeconds": 1781.46,
+          "endSeconds": 1785.18,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-05.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-6",
+      "src": "/media/jlpt-1993/audio/listening-III-06.m4a",
+      "startSeconds": 1820.6,
+      "endSeconds": 1890.16,
+      "sha256": "c5f7894a859833227b2e959512b8adda3f87dd8fb86661d33dc1c1c7b2de8084",
+      "sizeBytes": 563653,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-6",
+          "original": "部屋の料理にていてです",
+          "corrected": "部屋の料金についてです",
+          "startSeconds": 1870.96,
+          "endSeconds": 1874.63,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Full audio ASR yields 領金 and cropped pass 領域; actual question choices and the room price discussion support 料金. This is option 1, not the correct option 2."
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-06.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-7",
+      "src": "/media/jlpt-1993/audio/listening-III-07.m4a",
+      "startSeconds": 1892.45,
+      "endSeconds": 1986.56,
+      "sha256": "1b37087b395845b0bc0512218a16ab141fcb762862d44b0ec96288a8cc5a2cc4",
+      "sizeBytes": 762433,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "代価のおじいさん",
+          "corrected": "大家のおじいさん",
+          "startSeconds": 1895.08,
+          "endSeconds": 1899.84,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "日本の伝統的もの",
+          "corrected": "日本の伝統的なもの",
+          "startSeconds": 1908.33,
+          "endSeconds": 1916.8,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "うちの孫だね",
+          "corrected": "うちの孫がね",
+          "startSeconds": 1935.42,
+          "endSeconds": 1936.78,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-07.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-8",
+      "src": "/media/jlpt-1993/audio/listening-III-08.m4a",
+      "startSeconds": 1989.21,
+      "endSeconds": 2081.22,
+      "sha256": "9695535d2b7965431b9dbb9d545253c8f7dd4515d7fcfb3fdacab629f52f9db4",
+      "sizeBytes": 745060,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "意見を言っていただきました",
+          "corrected": "意見を言っていただきましょう",
+          "startSeconds": 1997.74,
+          "endSeconds": 2010.74,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "道路を作るなど、反対",
+          "corrected": "道路を作るなと、反対",
+          "startSeconds": 2010.74,
+          "endSeconds": 2014.48,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "いつもでもこれを残して",
+          "corrected": "いつまでもこれを残して",
+          "startSeconds": 2020.23,
+          "endSeconds": 2024.69,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-08.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-9",
+      "src": "/media/jlpt-1993/audio/listening-III-09.m4a",
+      "startSeconds": 2084.86,
+      "endSeconds": 2170,
+      "sha256": "34343e157f7302c954f9f9d4a254086cbcfd6581a3088165fbb0cdfead161a54",
+      "sizeBytes": 689951,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-9",
+          "original": "結果について話しいます",
+          "corrected": "結果について話しています",
+          "startSeconds": 2085.76,
+          "endSeconds": 2092.55,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-9",
+          "original": "子供が試合に失敗した",
+          "corrected": "子供が試験に失敗した",
+          "startSeconds": 2160.52,
+          "endSeconds": 2163.87,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-09.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-10",
+      "src": "/media/jlpt-1993/audio/listening-III-10.m4a",
+      "startSeconds": 2173.58,
+      "endSeconds": 2266.24,
+      "sha256": "bb73787746aed2f0c2cfe59c912a85b32d5982a174ac4ad2c9d805db06b3f68b",
+      "sizeBytes": 750368,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "思ったんだなあ",
+          "corrected": "思ったんだけどなあ",
+          "startSeconds": 2185.65,
+          "endSeconds": 2190.07,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "ちゃんと食事したよ",
+          "corrected": "ちゃんと食事したいよ",
+          "startSeconds": 2215.65,
+          "endSeconds": 2221.23,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "男：それしゃ。",
+          "corrected": "男：そうしよう。",
+          "startSeconds": 2238.57,
+          "endSeconds": 2240.15,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "この二人たちは食事",
+          "corrected": "この人たちは食事",
+          "startSeconds": 2243.13,
+          "endSeconds": 2246.77,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-10.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-11",
+      "src": "/media/jlpt-1993/audio/listening-III-11.m4a",
+      "startSeconds": 2269.55,
+      "endSeconds": 2355.09,
+      "sha256": "99512db74231c39856b6a46a39a805ce46fbfaeeebf165b36c53f8d5f8070703",
+      "sizeBytes": 693289,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "アナウンサが女の人に手紙",
+          "corrected": "アナウンサーが女の人の手紙",
+          "startSeconds": 2271.85,
+          "endSeconds": 2277.81,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "その前の日当たり",
+          "corrected": "その前の日あたり",
+          "startSeconds": 2295.24,
+          "endSeconds": 2299.72,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "学校を休んでいます",
+          "corrected": "学校を休んでしまいます",
+          "startSeconds": 2300.2,
+          "endSeconds": 2308.58,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [],
+      "fileName": "listening-III-11.m4a"
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-12",
+      "src": "/media/jlpt-1993/audio/listening-III-12.m4a",
+      "startSeconds": 2357.49,
+      "endSeconds": 2466.3,
+      "sha256": "d1bea18f5ec9abb4dae46df59fea5049f990ccddd20bdfafb77227589d73bae2",
+      "sizeBytes": 881014,
+      "corrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-12",
+          "original": "?つくえ?",
+          "corrected": "「つくえ」",
+          "startSeconds": 2386.56,
+          "endSeconds": 2390.65,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Source DOC preserves the quotation marks and the supplied TXT lost them; no semantic change."
+        }
+      ],
+      "unresolvedNotes": [
+        "游戏名原稿ヘソとり，ASR作レスト取り/ヘッド取り；按三假名中央音的规则和原稿保留ヘソとり。"
+      ],
+      "fileName": "listening-III-12.m4a"
+    }
+  ],
+  "questions": [
+    {
+      "id": "jlpt-1993-1-vocab-I-1-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問1 (1)",
+      "sourceParagraphs": [
+        9
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-1",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問1 (2)",
+      "sourceParagraphs": [
+        11
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-1",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問1 (3)",
+      "sourceParagraphs": [
+        13
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-1",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問1 (4)",
+      "sourceParagraphs": [
+        15
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-1",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-1-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問1 (5)",
+      "sourceParagraphs": [
+        17
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-1",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問2 (1)",
+      "sourceParagraphs": [
+        21
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-2",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問2 (2)",
+      "sourceParagraphs": [
+        23
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-2",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問2 (3)",
+      "sourceParagraphs": [
+        25
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "passageId": "vocab-I-2",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問2 (4)",
+      "sourceParagraphs": [
+        27
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "passageId": "vocab-I-2",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-2-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問2 (5)",
+      "sourceParagraphs": [
+        29
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "passageId": "vocab-I-2",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問3 (1)",
+      "sourceParagraphs": [
+        33
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": "vocab-I-3",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 32,
+          "original": "論理的",
+          "corrected": "倫理的",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "同句所测词在下方第2题明确为倫理的，原共享句误作論理的。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問3 (2)",
+      "sourceParagraphs": [
+        35
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": "vocab-I-3",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 32,
+          "original": "論理的",
+          "corrected": "倫理的",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "同句所测词在下方第2题明确为倫理的，原共享句误作論理的。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問3 (3)",
+      "sourceParagraphs": [
+        37
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": "vocab-I-3",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 32,
+          "original": "論理的",
+          "corrected": "倫理的",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "同句所测词在下方第2题明确为倫理的，原共享句误作論理的。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問3 (4)",
+      "sourceParagraphs": [
+        39
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": "vocab-I-3",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 32,
+          "original": "論理的",
+          "corrected": "倫理的",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "同句所测词在下方第2题明确为倫理的，原共享句误作論理的。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-I-3-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題I 問3 (5)",
+      "sourceParagraphs": [
+        41
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": "vocab-I-3",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 32,
+          "original": "論理的",
+          "corrected": "倫理的",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "同句所测词在下方第2题明确为倫理的，原共享句误作論理的。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題II (1)",
+      "sourceParagraphs": [
+        49
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題II (2)",
+      "sourceParagraphs": [
+        51
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題II (3)",
+      "sourceParagraphs": [
+        53
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題II (4)",
+      "sourceParagraphs": [
+        55
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-II-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題II (5)",
+      "sourceParagraphs": [
+        57
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-1-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問1 (1)",
+      "sourceParagraphs": [
+        65
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-1",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-1-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問1 (2)",
+      "sourceParagraphs": [
+        67
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-1",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問2 (1)",
+      "sourceParagraphs": [
+        71
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-2",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問2 (2)",
+      "sourceParagraphs": [
+        73
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-2",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-2-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問2 (3)",
+      "sourceParagraphs": [
+        75
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-2",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問3 (1)",
+      "sourceParagraphs": [
+        79
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-3",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問3 (2)",
+      "sourceParagraphs": [
+        81
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-3",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-3-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問3 (3)",
+      "sourceParagraphs": [
+        83
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-3",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問4 (1)",
+      "sourceParagraphs": [
+        87
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問4 (2)",
+      "sourceParagraphs": [
+        89
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "passageId": "vocab-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問4 (3)",
+      "sourceParagraphs": [
+        91
+      ],
+      "sourcePdfPages": [
+        3,
+        4
+      ],
+      "passageId": "vocab-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": [
+        "原选项3为「取「)縛まり」，转录异常但为非正确选项，未自行替换为未经原件证实的汉字词。词汇表排除此项。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問4 (4)",
+      "sourceParagraphs": [
+        93
+      ],
+      "sourcePdfPages": [
+        3,
+        4
+      ],
+      "passageId": "vocab-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-4-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問4 (5)",
+      "sourceParagraphs": [
+        95
+      ],
+      "sourcePdfPages": [
+        3,
+        4
+      ],
+      "passageId": "vocab-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-5-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問5 (1)",
+      "sourceParagraphs": [
+        99
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "passageId": "vocab-III-5",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-III-5-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題III 問5 (2)",
+      "sourceParagraphs": [
+        101
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "passageId": "vocab-III-5",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題IV (1)",
+      "sourceParagraphs": [
+        109
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題IV (2)",
+      "sourceParagraphs": [
+        111
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題IV (3)",
+      "sourceParagraphs": [
+        113
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題IV (4)",
+      "sourceParagraphs": [
+        115
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-IV-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題IV (5)",
+      "sourceParagraphs": [
+        117
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (1)",
+      "sourceParagraphs": [
+        125
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (2)",
+      "sourceParagraphs": [
+        127
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (3)",
+      "sourceParagraphs": [
+        129
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (4)",
+      "sourceParagraphs": [
+        131
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 131,
+          "original": "大入",
+          "corrected": "大人",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "人/入误录，指担心孩子坠落的大人。"
+        },
+        {
+          "paragraph": 131,
+          "original": "ふらふち",
+          "corrected": "ふらふら",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "拟态词末字误录，原四选项顺序不变。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (5)",
+      "sourceParagraphs": [
+        133
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (6)",
+      "sourceParagraphs": [
+        135
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (7)",
+      "sourceParagraphs": [
+        137
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 137,
+          "original": "まなぱなしい",
+          "corrected": "はなばなしい",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "与すがすがしい/わかわかしい/なれなれしい并列的形容词，明显假名转录误字。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (8)",
+      "sourceParagraphs": [
+        139
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (9)",
+      "sourceParagraphs": [
+        141
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-10",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (10)",
+      "sourceParagraphs": [
+        143
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-11",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (11)",
+      "sourceParagraphs": [
+        145
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-12",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (12)",
+      "sourceParagraphs": [
+        147
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-13",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (13)",
+      "sourceParagraphs": [
+        149
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-14",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (14)",
+      "sourceParagraphs": [
+        151
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-V-0-15",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題V (15)",
+      "sourceParagraphs": [
+        153
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (1)",
+      "sourceParagraphs": [
+        161
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (2)",
+      "sourceParagraphs": [
+        163
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (3)",
+      "sourceParagraphs": [
+        165
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 165,
+          "original": "世問",
+          "corrected": "世間",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "世間でもまれる的固定搭配。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (4)",
+      "sourceParagraphs": [
+        167
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 167,
+          "original": "はなぱなしく",
+          "corrected": "はなばなしく",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "華々しく的读音为はなばなしく。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (5)",
+      "sourceParagraphs": [
+        169
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (6)",
+      "sourceParagraphs": [
+        171
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (7)",
+      "sourceParagraphs": [
+        173
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (8)",
+      "sourceParagraphs": [
+        175
+      ],
+      "sourcePdfPages": [
+        8
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (9)",
+      "sourceParagraphs": [
+        177
+      ],
+      "sourcePdfPages": [
+        8
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-vocab-VI-0-10",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "文字・語彙 問題VI (10)",
+      "sourceParagraphs": [
+        179
+      ],
+      "sourcePdfPages": [
+        8
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 1番",
+      "sourceParagraphs": [
+        199
+      ],
+      "sourcePdfPages": [
+        11,
+        12
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 2番",
+      "sourceParagraphs": [
+        201
+      ],
+      "sourcePdfPages": [
+        12,
+        13
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-2",
+          "original": "出、手は後ろに回すんですが",
+          "corrected": "で、手は後ろに回すんですが",
+          "startSeconds": 196.97,
+          "endSeconds": 208.4,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-2",
+          "original": "ぴったりとっつける",
+          "corrected": "ぴったりとくっつける",
+          "startSeconds": 196.97,
+          "endSeconds": 208.4,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [
+        "虚构国名原稿ブィへツラ，ASR两次作ビヘツラ；保留原稿写法，题意与作答不受影响。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 3番",
+      "sourceParagraphs": [
+        203
+      ],
+      "sourcePdfPages": [
+        13,
+        14
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 4番",
+      "sourceParagraphs": [
+        205
+      ],
+      "sourcePdfPages": [
+        14,
+        15
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-4",
+          "original": "今夜からは",
+          "corrected": "今夜半からは",
+          "startSeconds": 299.28,
+          "endSeconds": 303.2,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 5番",
+      "sourceParagraphs": [
+        207
+      ],
+      "sourcePdfPages": [
+        15,
+        16
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "長期的悲願に経った",
+          "corrected": "長期的視野に立った",
+          "startSeconds": 340.78,
+          "endSeconds": 346.77,
+          "evidenceConfidence": "medium",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both ASR passes preserve 視野に立った but render the beginning as 統計的; 長期的 is retained from the supplied source and business context."
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "業界なんば湾",
+          "corrected": "業界ナンバーワン",
+          "startSeconds": 352.82,
+          "endSeconds": 355.32,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "その投資が利して",
+          "corrected": "その投資が効いて",
+          "startSeconds": 366.2,
+          "endSeconds": 369.92,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-5",
+          "original": "業界一に帰りたいかんです",
+          "corrected": "業界一に返り咲いたんです",
+          "startSeconds": 372.6,
+          "endSeconds": 375.9,
+          "evidenceConfidence": "medium",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both audio passes contain a phonetic near-match to 返り咲いた, consistent with returning to first place; exact inflection is not independently human-verified."
+        }
+      ],
+      "unresolvedNotes": [
+        "部分措辞修订仅有中等把握，详见语音对照记录；本题答案仍以印刷答案和题意为准。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 6番",
+      "sourceParagraphs": [
+        209
+      ],
+      "sourcePdfPages": [
+        16,
+        17
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-6",
+          "original": "女：それから四時に、営業部の会議です。",
+          "corrected": "女：はい、二時に［歯科医院名不確定］に予約が入れてあります。\n男：ああ、そうだったな。歯医者だ。やれやれ。\n女：それから四時に、営業部の会議です。",
+          "startSeconds": 429.72,
+          "endSeconds": 438.68,
+          "evidenceConfidence": "high_for_2pm_dentist_medium_for_clinic_name",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Both full/crop ASR independently include the omitted 2pm appointment and 歯医者 response. Clinic name is not resolved by the two independent passes (山中市会議/山中市会員). An editorial uncertainty marker is used rather than presenting the inferred 山中歯科医院 as an exact transcript."
+        }
+      ],
+      "unresolvedNotes": [
+        "原文以［歯科医院名不確定］明示尚未确定的诊所专名；两点牙科预约及日程答案已核对。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 7番",
+      "sourceParagraphs": [
+        211
+      ],
+      "sourcePdfPages": [
+        17,
+        18
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-7",
+          "original": "どんな姿勢跳び込み",
+          "corrected": "どんな姿勢で跳び込み",
+          "startSeconds": 461.25,
+          "endSeconds": 466.37,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-I-0-7",
+          "original": "後ろ向きに落ちてた",
+          "corrected": "後ろ向きに落ちてった",
+          "startSeconds": 478.1,
+          "endSeconds": 483.96,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 8番",
+      "sourceParagraphs": [
+        213
+      ],
+      "sourcePdfPages": [
+        18,
+        19
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-8",
+          "original": "これは毎日欠かさず行います",
+          "corrected": "これは毎年欠かさず行います",
+          "startSeconds": 550.36,
+          "endSeconds": 554.7,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Repeated full and independent crop passes agree on 毎年; daily watering elsewhere remains 毎日."
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-I-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題I 9番",
+      "sourceParagraphs": [
+        215
+      ],
+      "sourcePdfPages": [
+        19,
+        20
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 215,
+          "original": "どのデザインにしましたか。",
+          "corrected": "どのデザインにしますか。",
+          "method": "audio-and-independent-transcript-comparison",
+          "reason": "题干与录音及独立听力TXT问句时态一致。"
+        }
+      ],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-I-0-9",
+          "original": "はじめに行ったみたいに",
+          "corrected": "はじめに言ったみたいに",
+          "startSeconds": 627.75,
+          "endSeconds": 631.49,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 1番",
+      "sourceParagraphs": [
+        236
+      ],
+      "sourcePdfPages": [
+        21
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "コンテストに出ない人",
+          "corrected": "コンテストに出たい人",
+          "startSeconds": 746.56,
+          "endSeconds": 750.8,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "弁論大会の出張者",
+          "corrected": "弁論大会の出場者",
+          "startSeconds": 751.95,
+          "endSeconds": 757.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "募集資格",
+          "corrected": "応募資格",
+          "startSeconds": 758.76,
+          "endSeconds": 766.3,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-1",
+          "original": "募集の締め切り",
+          "corrected": "応募の締め切り",
+          "startSeconds": 782.7,
+          "endSeconds": 786.5,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 2番",
+      "sourceParagraphs": [
+        238
+      ],
+      "sourcePdfPages": [
+        21,
+        22
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-2",
+          "original": "とりえとして",
+          "corrected": "とりえでして",
+          "startSeconds": 840.78,
+          "endSeconds": 851.32,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-2",
+          "original": "最大の長処と思う",
+          "corrected": "最大の長所だと思う",
+          "startSeconds": 858.11,
+          "endSeconds": 864.21,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 3番",
+      "sourceParagraphs": [
+        240
+      ],
+      "sourcePdfPages": [
+        22,
+        23
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "電話予約もお開始",
+          "corrected": "電話予約も開始",
+          "startSeconds": 931.6,
+          "endSeconds": 938.76,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "こういう時で、",
+          "corrected": "こういう時って、",
+          "startSeconds": 939.06,
+          "endSeconds": 943.94,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-3",
+          "original": "当日券ってでもあるよ",
+          "corrected": "当日券って手もあるよ",
+          "startSeconds": 955.94,
+          "endSeconds": 958.26,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 4番",
+      "sourceParagraphs": [
+        242
+      ],
+      "sourcePdfPages": [
+        23
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-4",
+          "original": "事業を広大して",
+          "corrected": "事業を拡大して",
+          "startSeconds": 1052.75,
+          "endSeconds": 1056.55,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 5番",
+      "sourceParagraphs": [
+        244
+      ],
+      "sourcePdfPages": [
+        23,
+        24
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "ある券の",
+          "corrected": "ある県の",
+          "startSeconds": 1087.59,
+          "endSeconds": 1092.42,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "男子は欲張りですね",
+          "corrected": "男子は横ばいですね",
+          "startSeconds": 1101.86,
+          "endSeconds": 1107.62,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "目立った変化見られません",
+          "corrected": "目立った変化は見られません",
+          "startSeconds": 1108.12,
+          "endSeconds": 1114.53,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-5",
+          "original": "めずらしい現像",
+          "corrected": "めずらしい現象",
+          "startSeconds": 1126.85,
+          "endSeconds": 1133.37,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 6番",
+      "sourceParagraphs": [
+        246
+      ],
+      "sourcePdfPages": [
+        24
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "協力の選手",
+          "corrected": "強力な選手",
+          "startSeconds": 1193.04,
+          "endSeconds": 1202.16,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "怪我日とはいました",
+          "corrected": "怪我人はいました",
+          "startSeconds": 1213.68,
+          "endSeconds": 1219.86,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-II-0-6",
+          "original": "怪我人が多かったかです",
+          "corrected": "怪我人が多かったからです",
+          "startSeconds": 1250.88,
+          "endSeconds": 1255.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-II-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題II 7番",
+      "sourceParagraphs": [
+        248
+      ],
+      "sourcePdfPages": [
+        24,
+        25
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 1番",
+      "sourceParagraphs": [
+        259
+      ],
+      "sourcePdfPages": [
+        25,
+        26
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-1",
+          "original": "バンドまで行ったの",
+          "corrected": "バンドまでいたの",
+          "startSeconds": 1458.11,
+          "endSeconds": 1462.97,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": [
+        "「しめた感じ」原稿可能有漏字，ASR未能可靠澄清；保留原文，不凭语感改写。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 2番",
+      "sourceParagraphs": [
+        261
+      ],
+      "sourcePdfPages": [
+        26
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "補給することができわけ",
+          "corrected": "補給することができるわけ",
+          "startSeconds": 1535.93,
+          "endSeconds": 1541.59,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "コーラー",
+          "corrected": "コーラ",
+          "startSeconds": 1554.92,
+          "endSeconds": 1561.66,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-2",
+          "original": "少し増し",
+          "corrected": "少しまし",
+          "startSeconds": 1554.92,
+          "endSeconds": 1561.66,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 3番",
+      "sourceParagraphs": [
+        263
+      ],
+      "sourcePdfPages": [
+        26,
+        27
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-3",
+          "original": "あっ、指定席で、ここ？",
+          "corrected": "あっ、指定席ね、ここ。",
+          "startSeconds": 1615.46,
+          "endSeconds": 1619.12,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-3",
+          "original": "列車の何号に",
+          "corrected": "列車の何号車に",
+          "startSeconds": 1668,
+          "endSeconds": 1672.08,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 4番",
+      "sourceParagraphs": [
+        265
+      ],
+      "sourcePdfPages": [
+        27,
+        28
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-4",
+          "original": "女：あっ、ニンさん",
+          "corrected": "男：あっ、ニンさん",
+          "startSeconds": 1711.66,
+          "endSeconds": 1717.34,
+          "evidenceConfidence": "medium_structural",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": "The subsequent woman asks 英語の？ and the man answers そう. The first turn is assigned to the man for conversational consistency; speaker attribution is inferred, not supplied by ASR."
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 5番",
+      "sourceParagraphs": [
+        267
+      ],
+      "sourcePdfPages": [
+        28
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-5",
+          "original": "お姉さんですかったって",
+          "corrected": "お姉さんですかだって",
+          "startSeconds": 1781.46,
+          "endSeconds": 1785.18,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 6番",
+      "sourceParagraphs": [
+        269
+      ],
+      "sourcePdfPages": [
+        28,
+        29
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-6",
+          "original": "部屋の料理にていてです",
+          "corrected": "部屋の料金についてです",
+          "startSeconds": 1870.96,
+          "endSeconds": 1874.63,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Full audio ASR yields 領金 and cropped pass 領域; actual question choices and the room price discussion support 料金. This is option 1, not the correct option 2."
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 7番",
+      "sourceParagraphs": [
+        271
+      ],
+      "sourcePdfPages": [
+        29
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "代価のおじいさん",
+          "corrected": "大家のおじいさん",
+          "startSeconds": 1895.08,
+          "endSeconds": 1899.84,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "日本の伝統的もの",
+          "corrected": "日本の伝統的なもの",
+          "startSeconds": 1908.33,
+          "endSeconds": 1916.8,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-7",
+          "original": "うちの孫だね",
+          "corrected": "うちの孫がね",
+          "startSeconds": 1935.42,
+          "endSeconds": 1936.78,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 8番",
+      "sourceParagraphs": [
+        273
+      ],
+      "sourcePdfPages": [
+        29,
+        30
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "意見を言っていただきました",
+          "corrected": "意見を言っていただきましょう",
+          "startSeconds": 1997.74,
+          "endSeconds": 2010.74,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "道路を作るなど、反対",
+          "corrected": "道路を作るなと、反対",
+          "startSeconds": 2010.74,
+          "endSeconds": 2014.48,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-8",
+          "original": "いつもでもこれを残して",
+          "corrected": "いつまでもこれを残して",
+          "startSeconds": 2020.23,
+          "endSeconds": 2024.69,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 9番",
+      "sourceParagraphs": [
+        275
+      ],
+      "sourcePdfPages": [
+        30
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-9",
+          "original": "結果について話しいます",
+          "corrected": "結果について話しています",
+          "startSeconds": 2085.76,
+          "endSeconds": 2092.55,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-9",
+          "original": "子供が試合に失敗した",
+          "corrected": "子供が試験に失敗した",
+          "startSeconds": 2160.52,
+          "endSeconds": 2163.87,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-10",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 10番",
+      "sourceParagraphs": [
+        277
+      ],
+      "sourcePdfPages": [
+        30,
+        31
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "思ったんだなあ",
+          "corrected": "思ったんだけどなあ",
+          "startSeconds": 2185.65,
+          "endSeconds": 2190.07,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "ちゃんと食事したよ",
+          "corrected": "ちゃんと食事したいよ",
+          "startSeconds": 2215.65,
+          "endSeconds": 2221.23,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "男：それしゃ。",
+          "corrected": "男：そうしよう。",
+          "startSeconds": 2238.57,
+          "endSeconds": 2240.15,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-10",
+          "original": "この二人たちは食事",
+          "corrected": "この人たちは食事",
+          "startSeconds": 2243.13,
+          "endSeconds": 2246.77,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-11",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 11番",
+      "sourceParagraphs": [
+        279
+      ],
+      "sourcePdfPages": [
+        31,
+        32
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "アナウンサが女の人に手紙",
+          "corrected": "アナウンサーが女の人の手紙",
+          "startSeconds": 2271.85,
+          "endSeconds": 2277.81,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "その前の日当たり",
+          "corrected": "その前の日あたり",
+          "startSeconds": 2295.24,
+          "endSeconds": 2299.72,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        },
+        {
+          "id": "jlpt-1993-1-listening-III-0-11",
+          "original": "学校を休んでいます",
+          "corrected": "学校を休んでしまいます",
+          "startSeconds": 2300.2,
+          "endSeconds": 2308.58,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json"
+          ],
+          "note": ""
+        }
+      ],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-listening-III-0-12",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "聴解 問題III 12番",
+      "sourceParagraphs": [
+        281
+      ],
+      "sourcePdfPages": [
+        32
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [
+        {
+          "id": "jlpt-1993-1-listening-III-0-12",
+          "original": "?つくえ?",
+          "corrected": "「つくえ」",
+          "startSeconds": 2386.56,
+          "endSeconds": 2390.65,
+          "evidenceConfidence": "high",
+          "basis": "local_audio_ASR_and_source_context",
+          "evidence": [
+            "full-timing.json",
+            "short-verification.json"
+          ],
+          "note": "Source DOC preserves the quotation marks and the supplied TXT lost them; no semantic change."
+        }
+      ],
+      "unresolvedNotes": [
+        "游戏名原稿ヘソとり，ASR作レスト取り/ヘッド取り；按三假名中央音的规则和原稿保留ヘソとり。"
+      ]
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (1)",
+      "sourceParagraphs": [
+        292,
+        294
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        35
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (2)",
+      "sourceParagraphs": [
+        296,
+        298
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        35
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (3)",
+      "sourceParagraphs": [
+        300,
+        302
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        35
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (4)",
+      "sourceParagraphs": [
+        304,
+        306
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        35
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (5)",
+      "sourceParagraphs": [
+        308,
+        310
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        35
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 308,
+          "original": "変花",
+          "corrected": "変化",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "对应正文同一句的変化。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (6)",
+      "sourceParagraphs": [
+        312,
+        314
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        36
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 312,
+          "original": "間6",
+          "corrected": "問6",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "题号标签误字。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (7)",
+      "sourceParagraphs": [
+        316,
+        318
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        36
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-I-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題I (8)",
+      "sourceParagraphs": [
+        320,
+        322
+      ],
+      "sourcePdfPages": [
+        33,
+        34,
+        36
+      ],
+      "passageId": "reading-I",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (1)",
+      "sourceParagraphs": [
+        331,
+        333
+      ],
+      "sourcePdfPages": [
+        36,
+        37
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (2)",
+      "sourceParagraphs": [
+        335,
+        337
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 337,
+          "original": "古典との問",
+          "corrected": "古典との間",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "正文对应表述为古典との間。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (3)",
+      "sourceParagraphs": [
+        339,
+        341
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (4)",
+      "sourceParagraphs": [
+        343,
+        345
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (5)",
+      "sourceParagraphs": [
+        347,
+        349
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (6)",
+      "sourceParagraphs": [
+        351,
+        353
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (7)",
+      "sourceParagraphs": [
+        355,
+        357
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        38
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (8)",
+      "sourceParagraphs": [
+        359,
+        361
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        39
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-II-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題II (9)",
+      "sourceParagraphs": [
+        363,
+        365
+      ],
+      "sourcePdfPages": [
+        36,
+        37,
+        39
+      ],
+      "passageId": "reading-II",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-1-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題III 問1 (1)",
+      "sourceParagraphs": [
+        374,
+        376,
+        373
+      ],
+      "sourcePdfPages": [
+        39,
+        40
+      ],
+      "passageId": "reading-III-1",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-2-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題III 問2 (1)",
+      "sourceParagraphs": [
+        381,
+        383
+      ],
+      "sourcePdfPages": [
+        40
+      ],
+      "passageId": "reading-III-2",
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-3-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題III 問3 (1)",
+      "sourceParagraphs": [
+        388,
+        390,
+        387
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "passageId": "reading-III-3",
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-4-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題III 問4 (1)",
+      "sourceParagraphs": [
+        395,
+        397
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "passageId": "reading-III-4",
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-III-5-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題III 問5 (1)",
+      "sourceParagraphs": [
+        402,
+        404
+      ],
+      "sourcePdfPages": [
+        41,
+        42
+      ],
+      "passageId": "reading-III-5",
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (1)",
+      "sourceParagraphs": [
+        411,
+        413
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (2)",
+      "sourceParagraphs": [
+        415,
+        417
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 415,
+          "original": "お立ちよりぐださい",
+          "corrected": "お立ちよりください",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "请求表达ください的浊音误录。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (3)",
+      "sourceParagraphs": [
+        419,
+        421
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (4)",
+      "sourceParagraphs": [
+        423,
+        425
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 423,
+          "original": "にかかわちず",
+          "corrected": "にかかわらず",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "固定表达いかんにかかわらず。"
+        },
+        {
+          "paragraph": 423,
+          "original": "こちちはこちち",
+          "corrected": "こちらはこちら",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "指己方立场的こちら误录。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (5)",
+      "sourceParagraphs": [
+        427,
+        429
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-6",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (6)",
+      "sourceParagraphs": [
+        431,
+        433
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 433,
+          "original": "ながち",
+          "corrected": "ながら",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "与がてら等并列的连接形式，末字明显误录。"
+        },
+        {
+          "paragraph": 431,
+          "original": "散歩　　　ちょっと",
+          "corrected": "散歩_______ちょっと",
+          "method": "blank-display-normalization",
+          "reason": "原题以全角空格留空，数字题面明确显示填空位置。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-7",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (7)",
+      "sourceParagraphs": [
+        435,
+        437
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-8",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (8)",
+      "sourceParagraphs": [
+        439,
+        441
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-9",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (9)",
+      "sourceParagraphs": [
+        443,
+        445
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-10",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (10)",
+      "sourceParagraphs": [
+        447,
+        449
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-11",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (11)",
+      "sourceParagraphs": [
+        451,
+        453
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-12",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (12)",
+      "sourceParagraphs": [
+        455,
+        457
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-13",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (13)",
+      "sourceParagraphs": [
+        459,
+        461
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-14",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (14)",
+      "sourceParagraphs": [
+        463,
+        465
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-15",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (15)",
+      "sourceParagraphs": [
+        467,
+        469
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-16",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (16)",
+      "sourceParagraphs": [
+        471,
+        473
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-17",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (17)",
+      "sourceParagraphs": [
+        475,
+        477
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-18",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (18)",
+      "sourceParagraphs": [
+        479,
+        481
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 479,
+          "original": "映画お見る",
+          "corrected": "映画を見る",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "宾格助词を误录为お。"
+        },
+        {
+          "paragraph": 479,
+          "original": "音楽会行く",
+          "corrected": "音楽会に行く",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "运动目标格助词に漏录。"
+        },
+        {
+          "paragraph": 479,
+          "original": "気分転換お図った",
+          "corrected": "気分転換を図った",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "宾格助词を误录为お。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-19",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (19)",
+      "sourceParagraphs": [
+        483,
+        485
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-20",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (20)",
+      "sourceParagraphs": [
+        487,
+        489
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [
+        {
+          "paragraph": 487,
+          "original": "摂影",
+          "corrected": "撮影",
+          "method": "editorial-obvious-transcription-correction",
+          "reason": "手持相机拍摄，应为撮影。"
+        }
+      ],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-21",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (21)",
+      "sourceParagraphs": [
+        491,
+        493
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-22",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (22)",
+      "sourceParagraphs": [
+        495,
+        497
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-23",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (23)",
+      "sourceParagraphs": [
+        499,
+        501
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-24",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (24)",
+      "sourceParagraphs": [
+        503,
+        505
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-25",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (25)",
+      "sourceParagraphs": [
+        507,
+        509
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-26",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (26)",
+      "sourceParagraphs": [
+        511,
+        513
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-IV-0-27",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題IV (27)",
+      "sourceParagraphs": [
+        515,
+        517
+      ],
+      "sourcePdfPages": [
+        44
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題V (1)",
+      "sourceParagraphs": [
+        524,
+        526
+      ],
+      "sourcePdfPages": [
+        45
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題V (2)",
+      "sourceParagraphs": [
+        528,
+        530
+      ],
+      "sourcePdfPages": [
+        45
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題V (3)",
+      "sourceParagraphs": [
+        532,
+        534
+      ],
+      "sourcePdfPages": [
+        45
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題V (4)",
+      "sourceParagraphs": [
+        536,
+        538
+      ],
+      "sourcePdfPages": [
+        45
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-V-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題V (5)",
+      "sourceParagraphs": [
+        540,
+        542
+      ],
+      "sourcePdfPages": [
+        46
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-1",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題VI (1)",
+      "sourceParagraphs": [
+        549,
+        551
+      ],
+      "sourcePdfPages": [
+        46
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-2",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題VI (2)",
+      "sourceParagraphs": [
+        553,
+        555
+      ],
+      "sourcePdfPages": [
+        46
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 4,
+      "answerIndex": 3,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-3",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題VI (3)",
+      "sourceParagraphs": [
+        557,
+        559
+      ],
+      "sourcePdfPages": [
+        46
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 2,
+      "answerIndex": 1,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-4",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題VI (4)",
+      "sourceParagraphs": [
+        561,
+        563
+      ],
+      "sourcePdfPages": [
+        47
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 1,
+      "answerIndex": 0,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    },
+    {
+      "id": "jlpt-1993-1-reading_grammar-VI-0-5",
+      "sourceId": "jlpt-1993",
+      "originalNumber": "読解・文法 問題VI (5)",
+      "sourceParagraphs": [
+        565,
+        567
+      ],
+      "sourcePdfPages": [
+        47
+      ],
+      "passageId": null,
+      "answerSource": "printed-answer-key",
+      "answer": 3,
+      "answerIndex": 2,
+      "answerSourcePdfPages": [
+        48
+      ],
+      "editorialCorrections": [],
+      "transcriptCorrections": [],
+      "unresolvedNotes": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "source-transcription-artifacts",
+      "severity": "information",
+      "message": "原文件是带答案及听力脚本的转录资料，并非保证无误的原始印刷扫描。保留原段落/图片；明显非听力误字以订正表逐条记录，听力另行对照音频。"
+    },
+    {
+      "code": "unusual-distractor-preserved",
+      "questionId": "jlpt-1993-1-vocab-III-4-3",
+      "severity": "review",
+      "message": "原选项3为「取「)縛まり」，转录异常但为非正确选项，未自行替换为未经原件证实的汉字词。词汇表排除此项。"
+    },
+    {
+      "code": "legacy-nurse-word",
+      "questionId": "jlpt-1993-1-vocab-III-5-1",
+      "severity": "information",
+      "message": "原卷词为看護婦，按历史题保留；词汇注明旧称，现代一般用看護師。"
+    },
+    {
+      "code": "source-unclosed-quote",
+      "questionId": "jlpt-1993-1-vocab-IV-0-1",
+      "severity": "information",
+      "message": "选项2原稿在（じゅん）前多一个未闭合「，且未完整下划线；保留原文字，括号中目标仍明确，不影响选项顺序或答案。"
+    }
+  ],
+  "listeningOptionPresentation": {
+    "audioOnlyOptionQuestionCount": 19,
+    "field": "optionsInAudio:true",
+    "evidence": "问题II/III注明「絵などはありません」，转录DOC仅在聴解スクリプト内写出播报选项，原答题处为1–4空号。",
+    "behavior": "保留options中实际播报文字供答案与审计；作答前界面只显示编号，提交后可展开原文。",
+    "sourcePdfPages": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  },
+  "validation": {
+    "questionCount": 152,
+    "uniqueQuestionIds": 152,
+    "fourOptionsEach": true,
+    "allPrintedAnswersMatched": true,
+    "listeningTranscriptAnswersMatched": 28,
+    "publicQuestionImageCount": 11,
+    "allQuestionImagesVisuallyInspected": true,
+    "answerImagePublished": false,
+    "exampleImagePublished": false
+  }
+}

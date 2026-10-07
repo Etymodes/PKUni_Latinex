@@ -39,8 +39,11 @@ export type Question = {
   images?: { src: string; alt: string }[];
   audio?: { src: string };
   transcript?: string;
+  optionsInAudio?: boolean;
   shuffleOptions?: boolean;
   originalNumber?: string;
+  occurrences?: { collectionId: string; label: string; sourceQuestionId: string; originalNumber: string;
+    order: number; options?: string[]; answer?: number; explanation?: string; distractorExplanations?: string[] }[];
   provenance?: {
     exam: string;
     year: number;

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { vocabularyInCollection, publicDictionaryReferences } from "../data/vocabulary.ts";
 
 const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React, module: ts.ModuleKind.ESNext } }).outputText;
 const model = await import(`data:text/javascript;base64,${Buffer.from(compile(fs.readFileSync(new URL("../lib/vocabulary-model.ts", import.meta.url), "utf8"))).toString("base64")}`);
@@ -29,7 +30,7 @@ function harness(component = "VocabularyTrainer", props = {}) {
   const slots = []; let cursor = 0, dirty = true, effects = [], tree, sequence = 0;
   const predictions = [], accepted = [];
   const c = {
-    vocabularyCards: cards, dictionaryEntries: cards,
+    vocabularyCards: cards, dictionaryEntries: cards, vocabularyInCollection, publicDictionaryReferences,
     dictionarySources: [{ id: "old", name: "Oxford Latin Dictionary", scope: "Latin", access: "Print" }, { id: "ls", name: "Lewis & Short", scope: "Latin", access: "Public domain" }],
     vocabularyKey: (language, term) => `${language}:${term}`,
     vocabularyMatchesLevel: (card, level) => card.level && ["C", "F", "G", "M"].indexOf(card.level) <= ["C", "F", "G", "M"].indexOf(level),

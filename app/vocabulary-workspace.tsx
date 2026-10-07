@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, CheckCircle2, Search, Settings, XCircle } from "lucide-react";
-import { dictionaryEntries, vocabularyCards, vocabularyKey, vocabularyMatchesLevel, type VocabularyCard, type VocabularyMode, type VocabularyStats } from "../data/vocabulary";
+import { dictionaryEntries, vocabularyCards, vocabularyKey, vocabularyMatchesLevel, vocabularyInCollection, publicDictionaryReferences, type VocabularyCard, type VocabularyMode, type VocabularyStats } from "../data/vocabulary";
 import { dictionarySources } from "../data/resources";
 import type { LanguageCode } from "../data/questions";
 import type { LanguageLevel } from "../data/languages";
@@ -15,7 +15,7 @@ const outcomeLabels: Record<VocabularyOutcome, [string, string]> = { forgotten: 
 const outcomes: VocabularyOutcome[] = ["forgotten", "approximate", "remembered"];
 const label = (locale: string, zh: string, en: string) => locale === "en" ? en : zh;
 const effectiveMode = (card: VocabularyCard, mode: VocabularyMode): VocabularyMode => mode === "context" && card.context.trim() ? "context" : "word";
-const matchesSource = (card: VocabularyCard, source: string) => source === "1992" ? Boolean(card.sourceQuestionIds?.length) : source === "2000" ? Boolean(card.sourcePages?.length) : true;
+const matchesSource = vocabularyInCollection;
 const searchText = (card: VocabularyCard) => `${card.term} ${card.spellingVariants?.join(" ") ?? ""} ${card.reading ?? ""} ${card.readingVariants?.join(" ") ?? ""} ${card.meaning} ${card.sourceReading ?? ""} ${card.sourceMeaning ?? ""} ${card.senses?.map(sense => `${sense.reading} ${sense.gloss}`).join(" ") ?? ""} ${card.dictionary?.derivatives.join(" ") ?? ""}`.toLowerCase();
 
 function VocabularyDetails({ card, locale }: { card: VocabularyCard; locale: string }) {
@@ -30,7 +30,7 @@ function VocabularyDetails({ card, locale }: { card: VocabularyCard; locale: str
     {card.usageNotes && <p>{card.usageNotes}</p>}
     {additionalMeaning && <p>{t("补充释义", "Additional meaning")}: {additionalMeaning}</p>}
     {card.senses?.map((sense, index) => <p key={index}><span lang={card.language}>{sense.reading}</span> · {sense.gloss}</p>)}
-    {card.dictionaryReferences?.map(reference => <p key={reference.url}><a href={reference.url} target="_blank" rel="noreferrer">{reference.name}</a> · {reference.note}</p>)}
+    {publicDictionaryReferences(card).map(reference => <p key={reference.url}><a href={reference.url} target="_blank" rel="noreferrer">{reference.name}</a> · {reference.note}</p>)}
   </>;
 }
 
@@ -114,7 +114,7 @@ export function VocabularyTrainer({ language, locale, level, mode, stats, review
 
   return <div className="page vocabulary-trainer">
     <div className="practice-header vocab-trainer-header"><div><span>VOCABULARY</span><h1>{t("自适应背单词", "Adaptive vocabulary")}</h1><p>{t("根据你的实际反馈学习，优先复习容易忘记的词，同时保留新词探索。", "Learns from your feedback, revisits words you may forget, and keeps introducing new words.")}</p></div><div className="vocabulary-actions"><button className="secondary-button" onClick={() => onDictionary(card?.id)}><BookOpen size={16} />{t("词典", "Dictionary")}</button><button className="secondary-button" onClick={onSettings}><Settings size={16} />{t("显示设置", "Display settings")}</button></div></div>
-    <div className="lexicon-filters"><label>{t("词汇范围", "Vocabulary scope")}<select value={scope} onChange={event => setScope(event.target.value)}><option value="level">{t("当前等级及以下", "Current level and below")}</option>{language === "ja" && <><option value="1992">{t("1992 真题词汇", "1992 exam vocabulary")}</option><option value="2000">{t("2000词 PDF", "2000-word PDF")}</option></>}<option value="all">{t("全部词库（含待分级）", "All entries, including ungraded")}</option></select></label><label className="resource-search"><Search size={16} /><input aria-label={t("筛选词卡", "Filter cards")} placeholder={t("词头、读音或中文义", "Word, reading or meaning")} value={query} onChange={event => setQuery(event.target.value)} /></label></div>
+    <div className="lexicon-filters"><label>{t("词汇范围", "Vocabulary scope")}<select value={scope} onChange={event => setScope(event.target.value)}><option value="level">{t("当前等级及以下", "Current level and below")}</option>{language === "ja" && <><option value="1992">{t("1992 真题词汇", "1992 exam vocabulary")}</option><option value="jlpt-1993-1">{t("1993 真题词汇", "1993 exam vocabulary")}</option><option value="ja-hlb1000-n1-u01">{t("红蓝宝书 Unit 1", "Red & Blue Unit 1")}</option><option value="2000">{t("2000词 PDF", "2000-word PDF")}</option></>}<option value="all">{t("全部词库（含待分级）", "All entries, including ungraded")}</option></select></label><label className="resource-search"><Search size={16} /><input aria-label={t("筛选词卡", "Filter cards")} placeholder={t("词头、读音或中文义", "Word, reading or meaning")} value={query} onChange={event => setQuery(event.target.value)} /></label></div>
     <section className="vocab-session-stats" aria-label={t("背词统计", "Vocabulary statistics")}><div><span>{t("当前词卡", "Available cards")}</span><strong>{eligible.length}</strong></div><div><span>{t("本轮反馈", "This session")}</span><strong>{round.total}</strong><small>{t("记得", "Remembered")} {round.remembered} · {t("近似", "Approximate")} {round.approximate} · {t("忘了", "Forgotten")} {round.total - round.remembered - round.approximate}</small></div><div><span>{t("用于个人预测的反馈", "Feedback for personal predictions")}</span><strong>{personalModel.sampleCount}</strong><small>{t("按语言独立学习", "Separate for each language")}</small></div></section>
     {!card ? <div className="empty-state"><BookOpen /><h2>{t("没有匹配词卡", "No matching cards")}</h2><p>{t("可切换词汇范围或清空搜索。", "Change the scope or clear the search.")}</p></div> : <>
       <article className="adaptive-vocab-card"><span>{card.level ?? t("待分级", "Ungraded")} · {effectiveMode(card, mode) === "context" ? t("单词＋语境", "Word and context") : t("纯单词", "Word only")}</span><h2 lang={language}>{card.term}</h2>{effectiveMode(card, mode) === "context" && <p className="vocab-context" lang={language}>{card.context}</p>}

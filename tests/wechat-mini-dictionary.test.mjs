@@ -60,7 +60,7 @@ async function harness() {
 test('every Japanese entry can be browsed in bounded 40-word Page updates without missing or duplicate words', async () => {
   const h = await harness();
   const expected = bank.vocabularyCards.filter(card => card.language === 'ja').map(card => card.id);
-  assert.equal(expected.length, 2290);
+  assert.ok(expected.length >= 2290);
   assert.equal(h.page.data.dictionaryOffset, 0);
   const visited = [];
   const offsets = [];
@@ -72,12 +72,12 @@ test('every Japanese entry can be browsed in bounded 40-word Page updates withou
     h.page.moreDictionary();
   }
   assert.deepEqual(visited, expected);
-  assert.equal(new Set(visited).size, 2290);
+  assert.equal(new Set(visited).size, expected.length);
   assert.equal(h.page.data.dictionaryOffset, offsets.at(-1), 'next cannot move beyond the last page');
-  assert.equal(h.page.data.dictionaryRows.length, 10);
+  assert.equal(h.page.data.dictionaryRows.length, expected.length % 40 || 40);
   h.page.previousDictionary();
-  assert.equal(h.page.data.dictionaryOffset, 2240);
-  assert.deepEqual(plain(h.page.data.dictionaryRows.map(row => row.id)), expected.slice(2240, 2280));
+  assert.equal(h.page.data.dictionaryOffset, offsets.at(-2));
+  assert.deepEqual(plain(h.page.data.dictionaryRows.map(row => row.id)), expected.slice(offsets.at(-2), offsets.at(-2) + 40));
   assert.ok(Math.max(...h.payloadSizes) < 1024 * 1024);
 });
 

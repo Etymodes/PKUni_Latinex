@@ -28,7 +28,7 @@
       <text class="eyebrow">{{greeting}}</text><text class="hero-title">{{t.title}}</text><text class="body muted">{{t.subtitle}}</text>
       <button class="primary" bindtap="startPractice" disabled="{{busy || !rangeCount}}">{{t.start}} →</button>
     </view>
-    <button wx:if="{{language === 'ja'}}" class="secondary" bindtap="openPaper" disabled="{{busy}}">{{t.paper1992}} →</button>
+    <view wx:if="{{language === 'ja'}}"><button wx:for="{{paperItems}}" wx:key="id" class="secondary" data-collection="{{item.id}}" bindtap="openPaper" disabled="{{busy}}">{{item.label}} →</button></view>
     <view class="stats">
       <view><text class="number">{{stats.answered}}</text><text>{{t.answered}}</text></view>
       <view><text class="number">{{stats.correct}}</text><text>{{t.correct}}</text></view>
@@ -44,8 +44,8 @@
 
   <block wx:if="{{view === 'practice'}}">
     <view wx:if="{{language === 'ja'}}" class="panel paper-selector">
-      <text class="section-title">{{t.paper1992}}</text>
-      <view class="filters"><button class="chip" bindtap="openPaper" disabled="{{busy}}">{{t.paperAll}}</button><button class="chip" data-category="vocabulary" bindtap="openPaper" disabled="{{busy}}">{{t.paperVocabulary}}</button><button class="chip" data-category="listening" bindtap="openPaper" disabled="{{busy}}">{{t.categories.listening}}</button><button class="chip" data-category="reading" bindtap="openPaper" disabled="{{busy}}">{{t.categories.reading}}</button><button class="chip" data-category="sentencePattern" bindtap="openPaper" disabled="{{busy}}">{{t.paperGrammar}}</button></view>
+      <picker mode="selector" range="{{paperItems}}" range-key="label" value="{{selectedPaperIndex}}" bindchange="changePaper" disabled="{{busy}}"><view class="language-picker">{{paperItems[selectedPaperIndex].label}}⌄</view></picker>
+      <view class="filters"><button class="chip" bindtap="openPaper" disabled="{{busy}}">{{t.paperAll}}</button><button class="chip" data-category="vocabulary" bindtap="openPaper" disabled="{{busy}}">{{t.paperVocabulary}}</button><button wx:if="{{paperHasMedia}}" class="chip" data-category="listening" bindtap="openPaper" disabled="{{busy}}">{{t.categories.listening}}</button><button wx:if="{{paperHasMedia}}" class="chip" data-category="reading" bindtap="openPaper" disabled="{{busy}}">{{t.categories.reading}}</button><button class="chip" data-category="sentencePattern" bindtap="openPaper" disabled="{{busy}}">{{t.paperGrammar}}</button></view>
       <block wx:if="{{fullPaper}}"><text class="note">{{t.fullPaper}}</text><button class="text-button" bindtap="exitPaper" disabled="{{busy}}">{{t.exitPaper}}</button><picker wx:if="{{paperQuestions.length}}" mode="selector" range="{{paperQuestions}}" range-key="label" value="{{paperQuestionIndex}}" bindchange="jumpQuestion" disabled="{{busy}}"><view class="language-picker">{{t.originalNumber}} · {{paperQuestions[paperQuestionIndex].label}}⌄</view></picker></block>
     </view>
     <view class="filters">
@@ -72,8 +72,9 @@
       <text wx:if="{{question.context}}" class="body muted">{{question.context}}</text>
       <view wx:for="{{questionImages}}" wx:key="src" class="question-image"><image src="{{item.src}}" mode="widthFix" style="width:100%;" data-index="{{index}}" bindtap="previewQuestionImage" aria-label="{{item.alt || t.questionImage}}" /><text class="note">{{item.alt}}</text></view>
       <view wx:if="{{questionAudioSource}}" class="question-audio"><view class="actions"><button class="secondary" bindtap="toggleQuestionAudio">{{audioPlaying ? t.pauseAudio : t.playAudio}}</button><button class="text-button" bindtap="restartQuestionAudio">{{t.restartAudio}}</button></view><slider min="0" max="{{audioDuration || 1}}" step="1" value="{{audioCurrent}}" disabled="{{!audioDuration}}" bindchange="seekQuestionAudio" aria-label="{{t.playAudio}}" /><text class="note">{{audioTime}} / {{audioTotal}}</text><text wx:if="{{audioError}}" class="notice" role="alert">{{audioError}}</text></view>
+      <text wx:if="{{question.optionsInAudio}}" class="note">{{t.optionsInAudio}}</text>
       <view wx:if="{{question.type === 'choice'}}" class="options">
-        <button wx:for="{{choices}}" wx:key="index" class="option {{submitted && item.index === question.answer ? 'answer-right' : ''}} {{submitted && item.index === selected && !answerCorrect ? 'answer-wrong' : ''}}" data-index="{{item.index}}" bindtap="answer" disabled="{{busy || submitted}}"><text class="option-number">{{index + 1}}</text><text>{{item.text}}</text></button>
+        <button wx:for="{{choices}}" wx:key="index" class="option {{submitted && item.index === question.answer ? 'answer-right' : ''}} {{submitted && item.index === selected && !answerCorrect ? 'answer-wrong' : ''}}" data-index="{{item.index}}" bindtap="answer" disabled="{{busy || submitted}}"><text class="option-number">{{index + 1}}</text><text wx:if="{{!question.optionsInAudio || submitted}}">{{item.text}}</text></button>
       </view>
       <button wx:elif="{{!revealed}}" class="secondary" bindtap="revealAnswer">{{t.reveal}}</button>
       <block wx:if="{{revealed}}">
@@ -81,6 +82,7 @@
         <view wx:if="{{question.type === 'self-check' && !submitted}}" class="actions"><button class="secondary" data-correct="no" bindtap="answer" disabled="{{busy}}">{{t.selfWrong}}</button><button class="primary" data-correct="yes" bindtap="answer" disabled="{{busy}}">{{t.selfCorrect}}</button></view>
       </block>
       <view wx:if="{{submitted && visibleTranscript}}" class="answer-panel question-transcript"><button class="text-button" bindtap="toggleTranscript">{{t.transcript}} {{transcriptOpen ? '▴' : '▾'}}</button><text wx:if="{{transcriptOpen}}" class="target-text" user-select="true">{{visibleTranscript}}</text></view>
+      <view wx:if="{{question.occurrences.length}}" class="filters"><text wx:for="{{question.occurrences}}" wx:key="sourceQuestionId" class="chip">{{item.label}} · {{item.originalNumber}}</text></view>
       <view class="source">{{t.source}} · {{question.source}}<text wx:if="{{question.reviewStatus}}"> · {{t[question.reviewStatus]}}</text></view>
       <button class="primary" bindtap="nextQuestion" disabled="{{busy}}">{{t.next}} →</button>
     </view>

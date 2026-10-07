@@ -62,7 +62,8 @@ import {
 import { languageConfigs, languageLevelLabels, languageOrder, type LanguageConfig, type LanguageLevel } from "@/data/languages";
 import { languageFacts } from "@/data/language-facts";
 import { multilingualQuestions } from "@/data/multilingual-questions";
-import { jlpt1992Questions } from "@/data/jlpt-1992";
+import { studyQuestions } from "@/data/study-questions";
+import { questionCollections, questionInCollection, questionForCollection, collectionOrder } from "@/data/question-collections";
 import { multilingualSeedQuestions, multilingualVocabItems } from "@/data/multilingual-seeds";
 import { availableLearningLanguages, getCopy, getLearningLanguage, normalizeLearningLanguage, type MicroLabelKey, type LearningLanguage, type LearningLanguageId, type UiCopy, type UiLocale } from "./i18n";
 import { archiveEntries } from "@/data/archive";
@@ -187,8 +188,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
   return [value, setValue, ready] as const;
 }
 
-const staticQuestions = [...questions, ...completeQuestions, ...multilingualQuestions, ...multilingualSeedQuestions, ...jlpt1992Questions];
-const jlpt1992QuestionIds = new Set(jlpt1992Questions.map(question => question.id));
+const staticQuestions = [...studyQuestions];
 const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
 const allVocabItems: VocabItem[] = [...vocabItems, ...completeVocabItems, ...multilingualVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -1379,14 +1379,18 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
   const [order, setOrder] = useState<"ordered" | "random">("ordered");
   const [randomSeed, setRandomSeed] = useState(0);
   const [query, setQuery] = useState("");
+  const [collectionId, setCollectionId] = useState("jlpt-1992-1");
+  const collection = questionCollections.find(item => item.id === collectionId)!;
   const pool = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
-    const selected = bank.filter((q) => (fullPaper ? jlpt1992QuestionIds.has(q.id) : matchesLevel(q, level)) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
-    return order === "random" ? shuffle(selected) : selected;
-  }, [bank, level, category, order, randomSeed, query, fullPaper]);
+    const selected = bank.filter((q) => (fullPaper ? questionInCollection(q, collectionId) : matchesLevel(q, level)) && (category === "all" || q.category === category) && (!normalized || [q.id, q.prompt, q.text, q.latin, q.context, q.source, ...q.tags].filter(Boolean).join(" ").toLocaleLowerCase().includes(normalized)));
+    const ordered = fullPaper ? selected.sort((a, b) => collectionOrder(a, collectionId) - collectionOrder(b, collectionId))
+      .map(question => questionForCollection(question, collectionId)) : selected;
+    return order === "random" ? shuffle(ordered) : ordered;
+  }, [bank, level, category, order, randomSeed, query, fullPaper, collectionId]);
   const [index, setIndex] = useState(0);
 
-  useEffect(() => setIndex(0), [level, category, query, fullPaper]);
+  useEffect(() => setIndex(0), [level, category, query, fullPaper, collectionId]);
   const question = pool[index];
 
   return (
@@ -1400,13 +1404,15 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
         </div>
       </div>
       <label className="question-search"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("搜索题号、题干、标签、作者或来源（如 Livy）")} /><span>{pool.length}{t("题")}</span></label>
-      {language.id === "ja" && <div className="exam-shortcuts" aria-label={locale === "en" ? "1992 JLPT old Level 1 paper" : "1992 年旧1級真题"}>
-        <strong>1992 · {locale === "en" ? "Old Level 1" : "旧1級"}</strong>
-        {([ ["all", "整卷", "Full paper"], ["vocabulary", "文字词汇", "Vocabulary"], ["listening", "听力", "Listening"], ["reading", "阅读", "Reading"], ["sentencePattern", "语法", "Grammar"] ] as const).map(([section, chinese, english]) =>
+      {language.id === "ja" && <div className="exam-shortcuts" aria-label={locale === "en" ? "Question collections" : "真题与教材题集"}>
+        <label>{locale === "en" ? "Collection" : "题集"}<select aria-label={locale === "en" ? "Collection" : "题集"} value={collectionId} onChange={event => { setCollectionId(event.target.value); setFullPaper(true); setCategory("all"); setQuery(""); setOrder("ordered"); setIndex(0); }}>
+          {questionCollections.map(item => <option key={item.id} value={item.id}>{locale === "en" ? item.en : item.zh}</option>)}
+        </select></label>
+        {([ ["all", "整卷", "Full paper"], ["vocabulary", "文字词汇", "Vocabulary"], ["listening", "听力", "Listening"], ["reading", "阅读", "Reading"], ["sentencePattern", "语法", "Grammar"] ] as const).filter(([section]) => section === "all" || collection.categories.includes(section)).map(([section, chinese, english]) =>
           <button key={section} className="secondary-button" onClick={() => { setFullPaper(true); setCategory(section); setQuery(""); setOrder("ordered"); setIndex(0); }}>{locale === "en" ? english : chinese}</button>
         )}
       </div>}
-      {question && jlpt1992QuestionIds.has(question.id) && <label className="exam-question-jump">{locale === "en" ? "Original question" : "选择原题号"}
+      {question && Boolean(question.occurrences?.length) && <label className="exam-question-jump">{locale === "en" ? "Original question" : "选择原题号"}
         <select aria-label={locale === "en" ? "Original question" : "选择原题号"} value={question.id} onChange={(event) => setIndex(pool.findIndex(q => q.id === event.target.value))}>
           {pool.map(q => <option key={q.id} value={q.id}>{q.originalNumber ?? q.id} · {normalizePikkuLevel(q.language ?? "la", q.level)}</option>)}
         </select>
@@ -1415,7 +1421,7 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
       {question ? (
         <>
           <div className="question-progress"><span>{copy.questionPosition(index + 1, pool.length)}</span><div><i style={{ width: `${((index + 1) / pool.length) * 100}%` }} /></div><span>{category === "all" ? copy.comprehensive : categoryName(copy, category)}</span></div>
-          <QuestionCard key={question.id} question={question} status={progress[question.id]} onResult={(status) => onResult(question, status)} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} />
+          <QuestionCard key={`${fullPaper ? collectionId : "level"}:${question.id}`} question={question} status={progress[question.id]} onResult={(status) => onResult(question, status)} bookmarked={bookmarks.includes(question.id)} onBookmark={() => setBookmarks((b) => b.includes(question.id) ? b.filter((id) => id !== question.id) : [...b, question.id])} />
           <div className="question-nav">
             <button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> {copy.previous}</button>
             <button className="primary-button" onClick={() => setIndex((i) => Math.min(pool.length - 1, i + 1))} disabled={index === pool.length - 1}>{copy.next} <ArrowRight size={17} /></button>
@@ -1481,6 +1487,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
 
       {question.type === "choice" ? (
         <>
+          {question.optionsInAudio && <p className="context-note">{copy.elementary === "Core" ? "Listen to the four spoken options and choose a number." : "请听录音中的四个选项，选择编号。"}</p>}
           <div className="option-list" role="radiogroup" aria-label={copy.chooseAnswer}>
             {optionOrder.map((optionIndex, visibleIndex) => {
               const option = question.options?.[optionIndex];
@@ -1489,7 +1496,7 @@ function QuestionCard({ question, status, onResult, bookmarked, onBookmark, comp
               const isWrong = submitted && selected === optionIndex && optionIndex !== question.answer;
               return (
                 <button key={optionIndex} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
-                  <span className="option-key">{visibleIndex + 1}</span><span>{option}</span>
+                  <span className="option-key">{visibleIndex + 1}</span>{(!question.optionsInAudio || submitted) && <span>{option}</span>}
                   {isCorrect && <Check size={18} />}{isWrong && <X size={18} />}
                 </button>
               );

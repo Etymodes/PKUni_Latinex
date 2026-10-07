@@ -9,7 +9,9 @@ import { completeQuestions } from "../data/complete-bank.ts";
 import { languageConfigs } from "../data/languages.ts";
 import { multilingualQuestions } from "../data/multilingual-questions.ts";
 import { multilingualSeedQuestions } from "../data/multilingual-seeds.ts";
-import importedQuestions from "../data/jlpt-1992.json" with { type: "json" };
+import originalQuestions from "../data/jlpt-1992.json" with { type: "json" };
+import { addQuestionCollections, questionCollections, questionInCollection, questionForCollection, collectionOrder } from "../data/question-collections.ts";
+const importedQuestions = addQuestionCollections([], [{ id: "jlpt-1992-1", questions: originalQuestions }]).questions;
 
 // Run the handlers and render expressions actually wired into the page.
 const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
@@ -42,7 +44,7 @@ class Element {
 function harness() {
   const context = {
     publicBasePath: "/PKUni_Latinex", HTMLElement: Element, questionOptionOrder, matchesLevel, normalizePikkuLevel, languageConfigs,
-    jlpt1992QuestionIds: new Set(importedQuestions.map(question => question.id)),
+    questionCollections, questionInCollection, questionForCollection, collectionOrder,
     React: { Fragment: "fragment", createElement: (type, props, ...children) => ({ type: typeof type === "function" ? type.name : type, props, children }) },
     copy: getCopy("zh-CN"), language: getLearningLanguage("ja"), level: "M", bank: importedQuestions,
     useInterfaceText: () => text => text,
@@ -66,7 +68,7 @@ const mixedPaper = importedQuestions.map((question, index) => ({ ...question, le
 function practiceHarness() {
   const c = harness();
   c.useI18n = () => ({ copy: getCopy("en"), locale: "en", language: getLearningLanguage("ja") });
-  const state = ["ordered", 0, "", 0];
+  const state = ["ordered", 0, "", "jlpt-1992-1", 0];
   const levelChanges = [];
   const props = {
     bank: mixedPaper, level: "F", levels: ["C", "F", "G", "M"], category: "all", fullPaper: false,
@@ -221,12 +223,12 @@ test("the full-paper shortcut spans grades without changing the selected grade a
   assert.equal(options.length, 149);
   assert.deepEqual([...new Set(options.map(option => option.children.at(-1)))], ["C", "F", "G", "M"]);
   selector.props.onChange({ target: { value: importedQuestions[148].id } });
-  assert.equal(h.state[3], 148);
+  assert.equal(h.state[4], 148);
 });
 
 test("full-paper searches and section shortcuts stay within the precise source, independent of grade", () => {
   const h = practiceHarness();
-  h.props.bank = [...mixedPaper, { ...mixedPaper[0], id: "unrelated-1992-question" }];
+  h.props.bank = [...mixedPaper, { ...mixedPaper[0], id: "unrelated-1992-question", occurrences: [] }];
   h.props.fullPaper = true;
   const count = rendered => nodes(rendered.find(node => node.props?.className === "question-search")).find(node => node.type === "span").children[0];
   let rendered = h.render();
@@ -266,4 +268,37 @@ test("the app exits full-paper mode on same-grade selection, language changes an
   assert.equal(c.fullPaper, false);
   assert.equal(c.languageLevel, "G");
   assert.equal(c.category, "reading");
+});
+
+test("switching a repeated question between collections resets the rendered answer component", () => {
+  const h = practiceHarness();
+  const same = { ...mixedPaper[0], occurrences: [
+    ...mixedPaper[0].occurrences,
+    { collectionId: "jlpt-1993-1", label: "1993", sourceQuestionId: "repeat", originalNumber: "問12", order: 0, options: [...mixedPaper[0].options].reverse(), answer: 3 - mixedPaper[0].answer },
+  ] };
+  h.props.bank = [same]; h.props.fullPaper = true;
+  const first = h.render().find(node => node.type === "QuestionCard");
+  h.state[3] = "jlpt-1993-1";
+  const second = h.render().find(node => node.type === "QuestionCard");
+  assert.equal(first.props.question.id, second.props.question.id);
+  assert.notEqual(first.props.key, second.props.key, "React must reset submitted/selected/transcript state when the source changes");
+  assert.deepEqual(second.props.question.options, [...mixedPaper[0].options].reverse());
+});
+
+
+test("spoken listening choices are numbered until the answer is submitted", () => {
+  const c = harness();
+  const question = { id: "audio-only", level: "F", category: "listening", type: "choice", prompt: "Listen.", optionsInAudio: true, shuffleOptions: false, options: ["spoken one", "spoken two", "spoken three", "spoken four"], answer: 2, source: "Sample", tags: [], explanation: "Answer.", transcript: "Hidden dialogue" };
+  for (const submitted of [false, true]) {
+    const states = [null, submitted, false, "", [0, 1, 2, 3]];
+    c.useState = () => [states.shift(), () => {}];
+    const rendered = nodes(c.QuestionCard({ question, onResult() {}, onBookmark() {}, bookmarked: false }));
+    const radios = rendered.filter(node => node.props?.role === "radio");
+    assert.equal(radios.length, 4);
+    for (let index = 0; index < 4; index++) {
+      assert.equal(JSON.stringify(radios[index]).includes(question.options[index]), submitted);
+      assert.equal(radios[index].children[0].children[0], index + 1);
+    }
+    assert.equal(rendered.some(node => node.props?.className === "question-transcript"), submitted);
+  }
 });
