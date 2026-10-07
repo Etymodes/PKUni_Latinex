@@ -1,0 +1,1 @@
+{ "desc": "Pikku learning home", "rules": [{ "action": "allow", "page": "*" }] }

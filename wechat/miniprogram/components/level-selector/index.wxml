@@ -1,0 +1,15 @@
+<view class="selector">
+  <view class="level-row">
+    <view wx:for="{{items}}" wx:key="id" class="level-slot">
+      <button size="mini" class="level-button tone-{{item.id}} {{value === item.id ? 'is-selected' : ''}} {{disabled ? 'is-disabled' : ''}}" data-level="{{item.id}}" bindtap="choose" disabled="{{disabled}}" aria-label="{{item.id + ' · ' + item.prefix + item.emphasis + item.suffix}}" aria-pressed="{{value === item.id}}">
+        <image class="level-watermark" src="{{item.icon}}" mode="aspectFit" aria-hidden="true" />
+        <text class="level-symbol">{{item.emphasis}}</text>
+        <view wx:if="{{value === item.id}}" class="selection-mark"></view>
+      </button>
+    </view>
+  </view>
+  <view wx:if="{{selected}}" class="level-caption">
+    <text class="caption-label">{{caption}}</text>
+    <text class="caption-value tone-{{selected.id}}">{{selected.id}} · {{selected.prefix}}<text class="caption-emphasis">{{selected.emphasis}}</text>{{selected.suffix}}</text>
+  </view>
+</view>

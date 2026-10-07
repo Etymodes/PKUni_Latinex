@@ -1,0 +1,161 @@
+<template name="word-details">
+  <text wx:if="{{details.otherSpellings}}" class="body">{{t.otherSpellings}} · {{details.otherSpellings}}</text>
+  <text wx:if="{{details.additionalReading}}" class="body">{{details.additionalReading}}</text>
+  <text wx:if="{{details.otherReadings}}" class="body">{{t.otherReadings}} · {{details.otherReadings}}</text>
+  <text wx:if="{{details.additionalMeaning}}" class="body">{{t.additionalMeaning}} · {{details.additionalMeaning}}</text>
+  <text wx:if="{{details.usageNotes}}" class="body">{{details.usageNotes}}</text>
+  <text wx:for="{{details.senses}}" wx:key="index" class="body">{{item.reading}} · {{item.gloss}}</text>
+  <view wx:for="{{details.dictionaryReferences}}" wx:key="url" class="body"><button class="text-button" data-url="{{item.url}}" bindtap="copyResource">{{item.name}} ↗</button><text>{{item.note}}</text></view>
+</template>
+<view class="shell">
+  <view class="brand-row">
+    <image class="logo" src="/assets/logo.png" mode="aspectFit" />
+    <view class="brand"><text class="brand-title">哔丘 Pikku</text><text class="eyebrow">COTĪDIĒ PAULUM</text></view>
+    <button class="locale" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}">{{locale === 'en' ? '中文' : 'EN'}}</button>
+  </view>
+  <view class="status {{sync === 'failed' ? 'status-error' : ''}}"><text class="dot">●</text> {{t[sync]}}</view>
+  <view wx:if="{{error}}" class="notice" role="alert">{{error}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
+
+  <block wx:if="{{view !== 'account' && view !== 'resources'}}">
+    <picker mode="selector" range="{{languages}}" range-key="label" value="{{languageIndex}}" bindchange="changeLanguage" disabled="{{busy}}">
+      <view class="language-picker"><text class="muted">{{t.learning}}</text><text>{{languageLabel}}⌄</text></view>
+    </picker>
+    <level-selector value="{{level}}" locale="{{locale}}" disabled="{{busy}}" bindchange="changeLevel" />
+  </block>
+
+  <block wx:if="{{view === 'home'}}">
+    <view class="hero panel">
+      <text class="eyebrow">{{greeting}}</text><text class="hero-title">{{t.title}}</text><text class="body muted">{{t.subtitle}}</text>
+      <button class="primary" bindtap="startPractice" disabled="{{busy || !rangeCount}}">{{t.start}} →</button>
+    </view>
+    <button wx:if="{{language === 'ja'}}" class="secondary" bindtap="openPaper" disabled="{{busy}}">{{t.paper1992}} →</button>
+    <view class="stats">
+      <view><text class="number">{{stats.answered}}</text><text>{{t.answered}}</text></view>
+      <view><text class="number">{{stats.correct}}</text><text>{{t.correct}}</text></view>
+      <view><text class="number">{{stats.bookmarks}}</text><text>{{t.bookmarked}}</text></view>
+      <view><text class="number">{{stats.words}}</text><text>{{t.wordSeen}}</text></view>
+    </view>
+    <view class="fact"><text class="eyebrow">LINGUA · {{languageLabel}}</text><text class="fact-title">{{factStatement}}</text><text class="body">{{factMeaning}}</text></view>
+    <view wx:if="{{isSeed}}" class="note">{{t.seedNote}}</view>
+    <button class="row-link" data-view="resources" bindtap="changeView">{{t.resources}} <text>→</text></button>
+    <button class="row-link" data-view="dictionary" bindtap="changeView">{{t.dictionary}} <text>→</text></button>
+    <text class="note">{{t.contentNote}}</text>
+  </block>
+
+  <block wx:if="{{view === 'practice'}}">
+    <view wx:if="{{language === 'ja'}}" class="panel paper-selector">
+      <text class="section-title">{{t.paper1992}}</text>
+      <view class="filters"><button class="chip" bindtap="openPaper" disabled="{{busy}}">{{t.paperAll}}</button><button class="chip" data-category="vocabulary" bindtap="openPaper" disabled="{{busy}}">{{t.paperVocabulary}}</button><button class="chip" data-category="listening" bindtap="openPaper" disabled="{{busy}}">{{t.categories.listening}}</button><button class="chip" data-category="reading" bindtap="openPaper" disabled="{{busy}}">{{t.categories.reading}}</button><button class="chip" data-category="sentencePattern" bindtap="openPaper" disabled="{{busy}}">{{t.paperGrammar}}</button></view>
+      <block wx:if="{{fullPaper}}"><text class="note">{{t.fullPaper}}</text><button class="text-button" bindtap="exitPaper" disabled="{{busy}}">{{t.exitPaper}}</button><picker wx:if="{{paperQuestions.length}}" mode="selector" range="{{paperQuestions}}" range-key="label" value="{{paperQuestionIndex}}" bindchange="jumpQuestion" disabled="{{busy}}"><view class="language-picker">{{t.originalNumber}} · {{paperQuestions[paperQuestionIndex].label}}⌄</view></picker></block>
+    </view>
+    <view class="filters">
+      <button class="chip {{filter === 'all' ? 'chosen' : ''}}" data-filter="all" bindtap="changeFilter" disabled="{{busy}}">{{t.all}}</button>
+      <button class="chip {{filter === 'wrong' ? 'chosen' : ''}}" data-filter="wrong" bindtap="changeFilter" disabled="{{busy}}">{{t.wrong}}</button>
+      <button class="chip {{filter === 'saved' ? 'chosen' : ''}}" data-filter="saved" bindtap="changeFilter" disabled="{{busy}}">{{t.saved}}</button>
+    </view>
+    <block wx:if="{{!question}}">
+      <picker mode="selector" range="{{categoryItems}}" range-key="label" value="{{categoryIndex}}" bindchange="changeCategory" disabled="{{busy}}"><view class="language-picker">{{t.categories[category]}}⌄ <text class="muted">{{resultCount}} {{t.results}}</text></view></picker>
+      <input class="search" placeholder="{{t.search}}" value="{{search}}" bindinput="changeSearch" maxlength="100" disabled="{{busy}}" />
+      <button wx:if="{{resultCount}}" class="primary" bindtap="startPractice" disabled="{{busy}}">{{t.start}} →</button>
+      <view wx:else class="panel empty">{{t.empty}}</view>
+      <button wx:if="{{resultCount}}" class="text-button" bindtap="toggleBrowse">{{t.browse}}⌄</button>
+      <view wx:if="{{browse}}" class="question-list">
+        <button wx:for="{{results}}" wx:key="id" class="question-link" data-id="{{item.id}}" bindtap="openQuestion" disabled="{{busy}}"><text>{{item.prompt}}</text><text class="muted">{{item.id}} {{item.status === 'correct' ? '✓' : ''}}</text></button>
+      </view>
+    </block>
+    <view wx:else class="panel question-panel">
+      <view class="question-top"><text class="eyebrow">{{questionIndex + 1}} / {{questionTotal}} · {{t.categories[question.category]}}</text><button class="text-button" bindtap="toggleBookmark" disabled="{{busy}}">{{isBookmarked ? '★ ' + t.unbookmark : '☆ ' + t.bookmark}}</button></view>
+      <text wx:if="{{question.originalNumber}}" class="note">{{t.originalNumber}} · {{question.originalNumber}} · {{question.level}}</text>
+      <text class="question-title">{{question.prompt}}</text>
+      <text wx:if="{{question.passage}}" class="target-text question-passage" user-select="true">{{question.passage}}</text>
+      <text wx:if="{{question.targetText || question.text || question.latin}}" class="target-text" user-select="true">{{question.targetText || question.text || question.latin}}</text>
+      <text wx:if="{{question.context}}" class="body muted">{{question.context}}</text>
+      <view wx:for="{{questionImages}}" wx:key="src" class="question-image"><image src="{{item.src}}" mode="widthFix" style="width:100%;" data-index="{{index}}" bindtap="previewQuestionImage" aria-label="{{item.alt || t.questionImage}}" /><text class="note">{{item.alt}}</text></view>
+      <view wx:if="{{questionAudioSource}}" class="question-audio"><view class="actions"><button class="secondary" bindtap="toggleQuestionAudio">{{audioPlaying ? t.pauseAudio : t.playAudio}}</button><button class="text-button" bindtap="restartQuestionAudio">{{t.restartAudio}}</button></view><slider min="0" max="{{audioDuration || 1}}" step="1" value="{{audioCurrent}}" disabled="{{!audioDuration}}" bindchange="seekQuestionAudio" aria-label="{{t.playAudio}}" /><text class="note">{{audioTime}} / {{audioTotal}}</text><text wx:if="{{audioError}}" class="notice" role="alert">{{audioError}}</text></view>
+      <view wx:if="{{question.type === 'choice'}}" class="options">
+        <button wx:for="{{choices}}" wx:key="index" class="option {{submitted && item.index === question.answer ? 'answer-right' : ''}} {{submitted && item.index === selected && !answerCorrect ? 'answer-wrong' : ''}}" data-index="{{item.index}}" bindtap="answer" disabled="{{busy || submitted}}"><text class="option-number">{{index + 1}}</text><text>{{item.text}}</text></button>
+      </view>
+      <button wx:elif="{{!revealed}}" class="secondary" bindtap="revealAnswer">{{t.reveal}}</button>
+      <block wx:if="{{revealed}}">
+        <view class="answer-panel"><text class="answer-title">{{submitted ? (answerCorrect ? t.right : t.mistake) : t.reveal}}</text><text wx:if="{{question.modelAnswer}}" class="body">{{question.modelAnswer}}</text><text class="body">{{question.explanation}}</text></view>
+        <view wx:if="{{question.type === 'self-check' && !submitted}}" class="actions"><button class="secondary" data-correct="no" bindtap="answer" disabled="{{busy}}">{{t.selfWrong}}</button><button class="primary" data-correct="yes" bindtap="answer" disabled="{{busy}}">{{t.selfCorrect}}</button></view>
+      </block>
+      <view wx:if="{{submitted && visibleTranscript}}" class="answer-panel question-transcript"><button class="text-button" bindtap="toggleTranscript">{{t.transcript}} {{transcriptOpen ? '▴' : '▾'}}</button><text wx:if="{{transcriptOpen}}" class="target-text" user-select="true">{{visibleTranscript}}</text></view>
+      <view class="source">{{t.source}} · {{question.source}}<text wx:if="{{question.reviewStatus}}"> · {{t[question.reviewStatus]}}</text></view>
+      <button class="primary" bindtap="nextQuestion" disabled="{{busy}}">{{t.next}} →</button>
+    </view>
+  </block>
+
+  <block wx:if="{{view === 'words'}}">
+    <view class="language-picker"><text class="muted">{{t.wordMode}}</text><button class="text-button" bindtap="changeWordMode" disabled="{{busy}}">{{t[vocabMode]}} ⇄</button></view>
+    <picker mode="selector" range="{{wordScopeItems}}" range-key="label" value="{{wordScopeIndex}}" bindchange="changeWordScope" disabled="{{busy}}"><view class="language-picker">{{t.wordScopes[wordScope]}}⌄ <text class="muted">{{eligibleWords}} {{t.entries}}</text></view></picker>
+    <input class="search" placeholder="{{t.wordSearch}}" value="{{wordQuery}}" bindinput="changeWordQuery" maxlength="100" disabled="{{busy}}" />
+    <button class="row-link" bindtap="openDictionary" disabled="{{busy}}">{{t.dictionary}} <text>→</text></button>
+    <text class="note">{{t.thisRound}} {{roundTotal || 0}} · {{t.remember}} {{roundRemembered || 0}} · {{t.approximate}} {{roundApproximate || 0}}</text>
+    <view wx:if="{{pendingWords}}" class="notice">{{pendingWords}} {{t.pendingWords}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
+    <view wx:if="{{card}}" class="panel word-panel">
+      <text class="eyebrow">{{card.level || t.ungraded}} · {{vocabMode === 'context' && card.context ? t.context : t.word}}</text>
+      <text class="word-term" user-select="true">{{card.term}}</text>
+      <text wx:if="{{vocabMode === 'context' && card.context}}" class="word-context">{{card.context}}</text>
+      <button wx:if="{{!wordRevealed}}" class="secondary" bindtap="revealWord" disabled="{{busy}}">{{t.revealWord}}</button>
+      <block wx:else>
+        <text wx:if="{{card.reading}}" class="body">{{card.reading}}</text><text class="word-meaning">{{card.meaning}}</text><text class="note">{{card.partOfSpeech}}</text>
+        <template is="word-details" data="{{details: wordDetails, t}}" />
+        <view class="actions word-feedback"><button class="secondary" data-outcome="forgotten" bindtap="rateWord" disabled="{{busy}}">{{t.forget}}</button><button class="approximate-button" data-outcome="approximate" bindtap="rateWord" disabled="{{busy}}">≈ {{t.approximate}}</button><button class="primary" data-outcome="remembered" bindtap="rateWord" disabled="{{busy}}">{{t.remember}}</button></view>
+        <text class="note">{{t.approximateHelp}}</text>
+        <view class="forecast">
+          <picker mode="date" value="{{forecastDate}}" start="{{today}}" bindchange="changeForecastDate"><view class="language-picker">{{t.forecastDate}} <text>{{forecastDate}}⌄</text></view></picker>
+          <block wx:if="{{future}}"><text class="body">{{t.predicted}} · {{t.outcomes[future.outcome]}}</text><text class="note">{{t.forget}} {{future.forgotten}}% · {{t.approximate}} {{future.approximate}}% · {{t.remember}} {{future.remembered}}%</text><text wx:if="{{!future.hasTimedHistory}}" class="note">{{t.noTimedHistory}}</text></block>
+          <text class="note">{{t.forecastNote}}</text>
+        </view>
+      </block>
+    </view>
+    <view wx:else class="panel empty">{{t.emptyWords}}</view>
+    <button class="row-link" bindtap="toggleModel">{{t.learningModel}} <text>⌄</text></button>
+    <view wx:if="{{showModel}}" class="panel"><text class="body">{{t.modelNote}}</text><text class="body">{{t.modelSamples}} {{modelSamples}}</text><text wx:if="{{modelError !== ''}}" class="note">{{t.modelError}} {{modelError}} · {{modelCount}} {{t.entries}} · {{t.modelBaseline}} {{modelBaseline}}</text><button class="secondary" bindtap="exportWordReviews" disabled="{{!modelSamples}}">{{t.exportReviews}}</button></view>
+  </block>
+
+  <block wx:if="{{view === 'dictionary'}}">
+    <text class="section-title">{{t.dictionary}} · {{languageLabel}}</text><text class="note">{{t.dictionaryNote}}</text>
+    <input class="search" placeholder="{{t.wordSearch}}" value="{{dictionaryQuery}}" bindinput="searchDictionary" maxlength="100" />
+    <text class="note">{{dictionaryTotal}} / {{dictionaryCount}} {{t.entries}}</text>
+    <view wx:for="{{dictionaryRows}}" wx:key="id" class="panel dictionary-entry">
+      <text class="eyebrow">{{item.card.level || t.ungraded}} · {{t[item.details.reviewStatus] || t.draft}}</text>
+      <text class="dictionary-term" user-select="true">{{item.card.term}}</text><text wx:if="{{item.card.reading}}" class="body">{{item.card.reading}}</text><text class="body dictionary-meaning">{{item.card.meaning}}</text><text class="note">{{item.card.partOfSpeech}}</text>
+      <text wx:if="{{item.card.context}}" class="word-context">{{item.card.context}}</text>
+      <template is="word-details" data="{{details: item.details, t}}" />
+      <text wx:if="{{item.details.etymology}}" class="body">{{item.details.etymology}}</text><text wx:if="{{item.details.derivatives}}" class="body">{{item.details.derivatives}}</text>
+      <text class="note">{{t.reviewedWords}} {{item.stat.seen}} · {{t.remember}} {{item.stat.correct}} · {{t.approximate}} {{item.stat.approximate}}<text wx:if="{{item.stat.lastOutcome}}"> · {{t.lastOutcome}} {{t.outcomes[item.stat.lastOutcome]}}</text></text>
+      <button class="primary" data-id="{{item.id}}" bindtap="practiseWord" disabled="{{busy}}">{{t.practiseWord}}</button>
+    </view>
+    <view wx:if="{{dictionaryTotal}}" class="actions"><button class="secondary" bindtap="previousDictionary" disabled="{{!dictionaryOffset}}">{{t.previousEntries}}</button><button class="secondary" bindtap="moreDictionary" disabled="{{dictionaryLast >= dictionaryTotal}}">{{t.nextEntries}}</button></view><text wx:if="{{dictionaryTotal}}" class="note">{{dictionaryFirst}}–{{dictionaryLast}} / {{dictionaryTotal}}</text><view wx:if="{{!dictionaryTotal}}" class="panel empty">{{t.emptyDictionary}}</view>
+  </block>
+
+  <block wx:if="{{view === 'resources'}}">
+    <text class="section-title">{{t.resources}} · {{languageLabel}}</text><text class="note">{{t.resourceNote}}</text>
+    <view wx:if="{{!textbooks.length && !dictionaries.length}}" class="panel empty">{{t.noResources}}</view>
+    <view wx:for="{{textbooks}}" wx:key="id" class="panel resource"><text class="resource-title">{{item.title}}</text><text class="body">{{item.authors}} · {{item.edition}}</text><text class="note">{{item.accessNote}}</text></view>
+    <view wx:for="{{dictionaries}}" wx:key="id" class="panel resource"><text class="resource-title">{{item.name}}</text><text class="body">{{item.scope}}</text><text class="note">{{item.access}}</text></view>
+  </block>
+
+  <block wx:if="{{view === 'account'}}">
+    <text class="section-title">{{t.account}}</text>
+    <view class="panel account-panel">
+      <text class="body">{{t.accountIntro}}</text>
+      <block wx:if="{{user}}"><text class="account-email">{{user.email}}</text><button class="primary" bindtap="refresh" loading="{{busy}}" disabled="{{busy}}">{{t.refresh}}</button><button class="text-button" bindtap="signOut" disabled="{{busy}}">{{t.signOut}}</button></block>
+      <block wx:else><input class="field" type="text" value="{{email}}" placeholder="{{t.email}}" bindinput="inputEmail" maxlength="254" disabled="{{busy}}" /><input class="field" password="true" value="{{password}}" placeholder="{{t.password}}" bindinput="inputPassword" maxlength="256" bindconfirm="signIn" disabled="{{busy}}" /><button class="primary" bindtap="signIn" loading="{{busy}}" disabled="{{busy}}">{{t.signIn}}</button><text class="note">{{t.websiteHelp}}</text><button class="text-button" bindtap="copyWebsite">{{t.register}} ↗</button></block>
+      <text class="note">{{t.accountNote}}</text>
+    </view>
+    <button class="row-link" bindtap="changeLocale" disabled="{{busy}}"><text>{{t.display}}</text><text class="locale-choice">{{locale === 'en' ? 'English ⇄ 中文' : '中文 ⇄ English'}}</text></button>
+    <button class="row-link" bindtap="toggleSupport">{{t.supportAuthor}} <text>♡</text></button>
+    <view wx:if="{{showSupport}}" class="panel support-panel"><text class="resource-title">{{t.supportAuthor}}</text><text class="note">{{t.supportNote}}</text><image class="support-code" src="/assets/support-author.png" mode="widthFix" show-menu-by-longpress="{{true}}" bindtap="previewSupport" /><text class="note">{{t.supportHint}}</text></view>
+    <view class="panel"><text class="resource-title">{{t.privacy}}</text><text class="note">{{t.privacyText}}</text><button class="text-button" bindtap="copyWebsite">{{t.website}}</button></view>
+  </block>
+  <view class="bottom-space"></view>
+  <view class="navigation">
+    <button class="nav-item {{view === 'home' ? 'selected' : ''}}" data-view="home" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">⌂</text><text>{{t.home}}</text></button>
+    <button class="nav-item {{view === 'practice' ? 'selected' : ''}}" data-view="practice" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">≡</text><text>{{t.practice}}</text></button>
+    <button class="nav-item {{view === 'words' || view === 'dictionary' ? 'selected' : ''}}" data-view="words" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">Aa</text><text>{{t.words}}</text></button>
+    <button class="nav-item {{view === 'account' ? 'selected' : ''}}" data-view="account" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">◎</text><text>{{t.account}}</text></button>
+  </view>
+</view>
