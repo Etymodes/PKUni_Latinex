@@ -39,11 +39,10 @@ function save(memory) {
   wx.setStorageSync(STORAGE_PREFIX + encodeURIComponent(memory.owner), memory);
   return memory;
 }
-function entries({ language, level, scope = 'all', query = '' }) {
+function entries({ language, level, query = '' }) {
   const search = String(query).trim().toLowerCase();
   return bank.vocabularyCards.filter(card => card.language === language &&
-    (scope === 'level' ? shared.vocabularyMatchesLevel(card, level) :
-      shared.vocabularyInCollection(card, scope)) &&
+    (!level || shared.vocabularyMatchesLevel(card, level)) &&
     (!search || [card.term, card.reading, card.meaning, card.sourceReading, card.sourceMeaning,
       localizeVocabularyCard(card, 'en').meaning, localizeVocabularyCard(card, 'en').sourceMeaning,
       localizeVocabularyCard(card, 'en').usageNotes, ...(localizeVocabularyCard(card, 'en').senses || []).map(sense => sense.gloss),
@@ -75,7 +74,9 @@ function forecast(memory, card, targetAt, mode = 'word', now = nowISO(), fitted)
 function select(memory, options) {
   const { language, mode = 'word', recentIds = [], focusId, now = nowISO(), random = Math.random } = options;
   const fitted = recall.trainVocabularyModel(memory.reviews, language, now);
-  const candidates = entries(options).map(card => {
+  const focus = focusId && bank.vocabularyCards.find(card => card.id === focusId && card.language === language);
+  const pool = focus ? [focus] : entries({ ...options, level: options.level || 'C' });
+  const candidates = pool.map(card => {
     const prediction = forecast(memory, card, now, mode, now, fitted);
     const stat = memory.stats[keyFor(card)];
     const weight = (stat && stat.seen ? 1 + 5 * (1 - prediction.probabilities.remembered - 0.5 * prediction.probabilities.approximate) : 3) * (recentIds.includes(card.id) ? 0.15 : 1);

@@ -102,7 +102,7 @@ export function buildSharedSource(root = projectRoot) {
   const source = [
     'const { learningLanguages } = require("./bank.js");',
     sourceDeclarations("data/questions.ts", ["pikkuLevels", "legacyPikkuLevels", "normalizePikkuLevel", "matchesLevel", "questionOptionOrder"], root),
-    sourceDeclarations("data/vocabulary.ts", ["cumulativeVocabularyLevels", "vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard", "vocabularyInCollection", "publicDictionaryReferences"], root),
+    sourceDeclarations("data/vocabulary.ts", ["vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard", "vocabularyInCollection", "publicDictionaryReferences"], root),
     sourceDeclarations("data/question-collections.ts", ["questionInCollection", "questionForCollection", "collectionOrder"], root),
     sourceDeclarations("lib/shuffle.ts", ["shuffle"], root),
     sourceDeclarations("app/i18n.ts", ["availableLearningLanguages", "normalizeLearningLanguage", "getLearningLanguage"], root),

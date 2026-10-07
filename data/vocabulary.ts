@@ -8,6 +8,7 @@ import importedVocabulary from "./jlpt-1992-vocabulary.json" with { type: "json"
 import n1Vocabulary from "./n1-2000-vocabulary.json" with { type: "json" };
 import vocabulary1993 from "./jlpt-1993-vocabulary.json" with { type: "json" };
 import vocabularyUnit01 from "./ja-hlb1000-n1-u01-vocabulary.json" with { type: "json" };
+import vocabularyLevelOverrides from "./vocabulary-levels.json" with { type: "json" };
 
 export type VocabularyMode = "word" | "context";
 
@@ -235,35 +236,28 @@ export function vocabularyInCollection(card: VocabularyCard, source: string): bo
 
 mergeVocabularyCollection(sharedCards, vocabulary1993 as ImportedVocabulary[], "jlpt-1993-1");
 mergeVocabularyCollection(sharedCards, vocabularyUnit01 as ImportedVocabulary[], "ja-hlb1000-n1-u01");
+// Grade the unified canonical entries without replacing IDs, terms or learning keys.
+const reviewedLevels: Record<string, string> = vocabularyLevelOverrides;
+for (const card of sharedCards) {
+  const level = reviewedLevels[card.id] ?? card.level;
+  if (!pikkuLevels.includes(level as PikkuLevel)) throw new Error(`Missing CFGM vocabulary level: ${card.id}`);
+  card.level = level as PikkuLevel;
+}
 export const vocabularyCards: VocabularyCard[] = sharedCards;
 export const dictionaryEntries = vocabularyCards;
-
-const cumulativeVocabularyLevels: Partial<Record<LanguageCode, readonly LanguageLevel[]>> = {
-  la: ["elementary", "intermediate", "advanced"],
-  ja: ["n4", "n3", "n2", "n1"],
-  es: ["a1", "a2", "b1", "b2", "c1", "c2"],
-};
 
 export function vocabularyKey(language: LanguageCode, term: string) {
   return `${language}:${term}`;
 }
 
 export function vocabularyLevelsFor(language: LanguageCode, level: LanguageLevel) {
-  if (pikkuLevels.includes(level as PikkuLevel)) {
-    return pikkuLevels.slice(0, pikkuLevels.indexOf(level as PikkuLevel) + 1);
-  }
-  const levels = cumulativeVocabularyLevels[language] ?? [];
-  const selected = language === "la" && level === "mixed" ? "intermediate" : level;
-  const index = levels.indexOf(selected);
-  return index < 0 ? [] : levels.slice(0, index + 1);
+  // Legacy saved preferences still route to a CFGM stage; cards are graded independently.
+  const selected = language === "la" && level === "mixed" ? "F" : normalizePikkuLevel(language, level);
+  return pikkuLevels.slice(0, pikkuLevels.indexOf(selected) + 1);
 }
 
 export function vocabularyMatchesLevel(card: VocabularyCard, level: LanguageLevel) {
-  if (!card.level) return false; // Ungraded dictionary words remain available through explicit dictionary practice.
-  const cardLevel = pikkuLevels.includes(level as PikkuLevel)
-    ? normalizePikkuLevel(card.language, card.level)
-    : card.level;
-  return vocabularyLevelsFor(card.language, level).includes(cardLevel);
+  return Boolean(card.level && vocabularyLevelsFor(card.language, level).includes(normalizePikkuLevel(card.language, card.level)));
 }
 
 export function adaptiveVocabularyWeight(stat?: VocabularyStat, recentlyShown = false) {

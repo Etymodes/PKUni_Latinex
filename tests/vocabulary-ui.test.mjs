@@ -4,7 +4,7 @@ import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
 import { contentText, localizeVocabularyCard } from "../lib/content-locale.ts";
-import { vocabularyInCollection, publicDictionaryReferences } from "../data/vocabulary.ts";
+import { vocabularyLevelsFor, publicDictionaryReferences } from "../data/vocabulary.ts";
 
 const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React, module: ts.ModuleKind.ESNext } }).outputText;
 const model = await import(`data:text/javascript;base64,${Buffer.from(compile(fs.readFileSync(new URL("../lib/vocabulary-model.ts", import.meta.url), "utf8"))).toString("base64")}`);
@@ -17,7 +17,7 @@ const at = day => new Date(Date.UTC(2026, 0, day, 12)).toISOString();
 const plain = value => JSON.parse(JSON.stringify(value));
 const cards = [
   { id: "both", language: "ja", level: "F", term: "合同", reading: "ごうどう", meaning: "联合", context: "合同で調査する。", batch: "1992 · 旧1級", sourceQuestionIds: ["question-1"], sourcePages: [5], sourceReading: "ごうどう", sourceMeaning: "合并；共同", notes: "1992 原卷 question-1", sourceNotes: "2000词 PDF 原页 5", usageNotes: "词义用法提示", dictionaryReferences: [{ name: "小学馆《大辞泉》", url: "https://kotobank.jp/word/example", note: "已核对读音" }], dictionary: { reviewStatus: "reviewed", batch: "1992 · 旧1級", derivatives: [], dictionaryStatus: {}, pie: "待核" } },
-  { id: "pdf", language: "ja", term: "日向", spellingVariants: ["日向", "日なた"], readingVariants: ["ヒナタ"], reading: "ひなた", meaning: "向阳处", context: "", sourcePages: [9, 15], senses: [{ reading: "ひなた", gloss: "向阳处", sourcePages: [9] }, { reading: "ひゅうが", gloss: "旧国名日向", sourcePages: [15] }] },
+  { id: "pdf", language: "ja", level: "C", term: "日向", spellingVariants: ["日向", "日なた"], readingVariants: ["ヒナタ"], reading: "ひなた", meaning: "向阳处", context: "", sourcePages: [9, 15], senses: [{ reading: "ひなた", gloss: "向阳处", sourcePages: [9] }, { reading: "ひゅうが", gloss: "旧国名日向", sourcePages: [15] }] },
   { id: "exam", language: "ja", level: "G", term: "躊躇", reading: "ちゅうちょ", meaning: "犹豫", context: "", sourceQuestionIds: ["question-2"], batch: "1992 · 旧1級" },
   { id: "latin", language: "la", level: "C", term: "casa", meaning: "房屋", context: "", dictionary: { reviewStatus: "published", batch: "foundation", pie: "Latin origin", derivatives: ["case"], dictionaryStatus: { old: "已核", ls: "待核" } } },
 ];
@@ -31,7 +31,7 @@ function harness(component = "VocabularyTrainer", props = {}) {
   const slots = []; let cursor = 0, dirty = true, effects = [], tree, sequence = 0;
   const predictions = [], accepted = [];
   const c = {
-    contentText, localizeVocabularyCard, vocabularyCards: cards, dictionaryEntries: cards, vocabularyInCollection, publicDictionaryReferences,
+    contentText, localizeVocabularyCard, vocabularyCards: cards, dictionaryEntries: cards, vocabularyLevelsFor, publicDictionaryReferences,
     dictionarySources: [{ id: "old", name: "Oxford Latin Dictionary", scope: "Latin", access: "Print" }, { id: "ls", name: "Lewis & Short", scope: "Latin", access: "Public domain" }],
     vocabularyKey: (language, term) => `${language}:${term}`,
     vocabularyMatchesLevel: (card, level) => card.level && ["C", "F", "G", "M"].indexOf(card.level) <= ["C", "F", "G", "M"].indexOf(level),
@@ -124,11 +124,12 @@ test("Latin dictionary verification and content status remain available without 
   assert.match(content(japanese.tree()), /Language-specific dictionary · pending/);
 });
 
-test("trainer supports both source scopes and reveals PDF variants only after revealing the answer", () => {
+test("trainer uses one cumulative bank and reveals alternate senses only after revealing the answer", () => {
   const h = harness();
   assert(!content(h.tree()).includes("合并；共同"));
   assert(!content(h.tree()).includes("ごうどう"));
-  h.change(h.select("Vocabulary scope"), "2000");
+  assert.equal(h.select("Vocabulary scope"), undefined);
+  assert.match(content(h.tree()), /One vocabulary bank.*C · F/);
   h.click(h.button("Reveal meaning"));
   assert.match(content(h.tree()), /合并；共同/);
   const meaning = h.find(node => node.props.className === "vocab-reveal");
@@ -244,4 +245,16 @@ test("switching the interface locale preserves the current word, reveal state an
   assert.deepEqual(h.accepted[0].features, before.features);
   assert.deepEqual(h.accepted[0].probabilities, before.probabilities);
   assert.equal(h.accepted[0].targetAt, before.predictedAt, "Exploring a future date never labels that forecast as an actual review.");
+});
+
+test("dictionary focus targets one higher-level word, then returns to the cumulative pool without widening it", () => {
+  const h = harness("VocabularyTrainer", { level: "C", focusId: "exam" });
+  assert.equal(h.find(node => node.type === "h2").children[0], "躊躇");
+  assert.match(content(h.tree()), /Focused practice/);
+  h.click(h.button("Reveal meaning"));
+  h.click(h.button("Approximate"));
+  assert.equal(h.accepted[0].lemma, "躊躇");
+  assert.equal(h.find(node => node.type === "h2").children[0], "日向");
+  assert.doesNotMatch(content(h.tree()), /Focused practice/);
+  assert.equal(h.props.level, "C");
 });

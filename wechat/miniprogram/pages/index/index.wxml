@@ -11,7 +11,7 @@
   <view class="brand-row">
     <image class="logo" src="/assets/logo.png" mode="aspectFit" />
     <view class="brand"><text class="brand-title">哔丘 Pikku</text><text class="eyebrow">COTĪDIĒ PAULUM</text></view>
-    <button class="locale" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}">{{locale === 'en' ? '中文' : 'EN'}}</button>
+    <button class="locale" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}"><text>语⇌</text><text class="locale-word">Language</text></button>
   </view>
   <view class="status {{sync === 'failed' ? 'status-error' : ''}}"><text class="dot">●</text> {{t[sync]}}</view>
   <view wx:if="{{error}}" class="notice" role="alert">{{error}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
@@ -28,7 +28,7 @@
       <text class="eyebrow">{{greeting}}</text><text class="hero-title">{{t.title}}</text><text class="body muted">{{t.subtitle}}</text>
       <button class="primary" bindtap="startPractice" disabled="{{busy || !rangeCount}}">{{t.start}} →</button>
     </view>
-    <view wx:if="{{language === 'ja'}}"><button wx:for="{{paperItems}}" wx:key="id" class="secondary" data-collection="{{item.id}}" bindtap="openPaper" disabled="{{busy}}">{{item.label}} →</button></view>
+    <button wx:if="{{paperItems.length}}" class="secondary question-bank" bindtap="openQuestionBank" disabled="{{busy}}">{{t.questionBank}} →</button>
     <view class="stats">
       <view><text class="number">{{stats.answered}}</text><text>{{t.answered}}</text></view>
       <view><text class="number">{{stats.correct}}</text><text>{{t.correct}}</text></view>
@@ -42,8 +42,20 @@
     <text class="note">{{t.contentNote}}</text>
   </block>
 
+  <block wx:if="{{view === 'papers'}}">
+    <text class="section-title">{{t.questionBank}}</text>
+    <input class="search" placeholder="{{t.searchPapers}}" value="{{paperSearch}}" bindinput="searchPapers" maxlength="100" disabled="{{busy}}" />
+    <text class="note">{{matchingPapers.length}} {{t.paperCollections}}</text>
+    <block wx:if="{{matchingPapers.length}}">
+      <picker mode="selector" range="{{matchingPapers}}" range-key="label" value="{{bankPaperIndex}}" bindchange="selectPaper" disabled="{{busy}}"><view class="language-picker">{{matchingPapers[bankPaperIndex].label}}⌄</view></picker>
+      <button class="primary" data-collection="{{matchingPapers[bankPaperIndex].id}}" bindtap="openPaper" disabled="{{busy}}">{{t.openPaper}} →</button>
+    </block>
+    <view wx:else class="panel empty">{{t.emptyPapers}}</view>
+  </block>
+
   <block wx:if="{{view === 'practice'}}">
-    <view wx:if="{{language === 'ja'}}" class="panel paper-selector">
+    <view wx:if="{{paperItems.length}}" class="panel paper-selector">
+      <button class="text-button" bindtap="openQuestionBank" disabled="{{busy}}">{{t.questionBank}} →</button>
       <picker mode="selector" range="{{paperItems}}" range-key="label" value="{{selectedPaperIndex}}" bindchange="changePaper" disabled="{{busy}}"><view class="language-picker">{{paperItems[selectedPaperIndex].label}}⌄</view></picker>
       <view class="filters"><button class="chip" bindtap="openPaper" disabled="{{busy}}">{{t.paperAll}}</button><button class="chip" data-category="vocabulary" bindtap="openPaper" disabled="{{busy}}">{{t.paperVocabulary}}</button><button wx:if="{{paperHasMedia}}" class="chip" data-category="listening" bindtap="openPaper" disabled="{{busy}}">{{t.categories.listening}}</button><button wx:if="{{paperHasMedia}}" class="chip" data-category="reading" bindtap="openPaper" disabled="{{busy}}">{{t.categories.reading}}</button><button class="chip" data-category="sentencePattern" bindtap="openPaper" disabled="{{busy}}">{{t.paperGrammar}}</button></view>
       <block wx:if="{{fullPaper}}"><text class="note">{{t.fullPaper}}</text><button class="text-button" bindtap="exitPaper" disabled="{{busy}}">{{t.exitPaper}}</button><picker wx:if="{{paperQuestions.length}}" mode="selector" range="{{paperQuestions}}" range-key="label" value="{{paperQuestionIndex}}" bindchange="jumpQuestion" disabled="{{busy}}"><view class="language-picker">{{t.originalNumber}} · {{paperQuestions[paperQuestionIndex].label}}⌄</view></picker></block>
@@ -90,12 +102,13 @@
 
   <block wx:if="{{view === 'words'}}">
     <view class="language-picker"><text class="muted">{{t.wordMode}}</text><button class="text-button" bindtap="changeWordMode" disabled="{{busy}}">{{t[vocabMode]}} ⇄</button></view>
-    <picker mode="selector" range="{{wordScopeItems}}" range-key="label" value="{{wordScopeIndex}}" bindchange="changeWordScope" disabled="{{busy}}"><view class="language-picker">{{t.wordScopes[wordScope]}}⌄ <text class="muted">{{eligibleWords}} {{t.entries}}</text></view></picker>
+    <text class="note">{{t.levelVocabulary}} · {{eligibleWords}} {{t.entries}}</text>
     <input class="search" placeholder="{{t.wordSearch}}" value="{{wordQuery}}" bindinput="changeWordQuery" maxlength="100" disabled="{{busy}}" />
     <button class="row-link" bindtap="openDictionary" disabled="{{busy}}">{{t.dictionary}} <text>→</text></button>
     <text class="note">{{t.thisRound}} {{roundTotal || 0}} · {{t.remember}} {{roundRemembered || 0}} · {{t.approximate}} {{roundApproximate || 0}}</text>
     <view wx:if="{{pendingWords}}" class="notice">{{pendingWords}} {{t.pendingWords}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
     <view wx:if="{{card}}" class="panel word-panel">
+      <text wx:if="{{focusedWord}}" class="note">{{t.focusedWord}}</text>
       <text class="eyebrow">{{card.level || t.ungraded}} · {{vocabMode === 'context' && card.context ? t.context : t.word}}</text>
       <text class="word-term {{language === 'ar' ? 'target-rtl' : ''}}" user-select="true">{{card.term}}</text>
       <text wx:if="{{vocabMode === 'context' && card.context}}" class="word-context {{language === 'ar' ? 'target-rtl' : ''}}">{{card.context}}</text>
@@ -148,7 +161,7 @@
       <block wx:else><input class="field" type="text" value="{{email}}" placeholder="{{t.email}}" bindinput="inputEmail" maxlength="254" disabled="{{busy}}" /><input class="field" password="true" value="{{password}}" placeholder="{{t.password}}" bindinput="inputPassword" maxlength="256" bindconfirm="signIn" disabled="{{busy}}" /><button class="primary" bindtap="signIn" loading="{{busy}}" disabled="{{busy}}">{{t.signIn}}</button><text class="note">{{t.websiteHelp}}</text><button class="text-button" bindtap="copyWebsite">{{t.register}} ↗</button></block>
       <text class="note">{{t.accountNote}}</text>
     </view>
-    <button class="row-link" bindtap="changeLocale" disabled="{{busy}}"><text>{{t.display}}</text><text class="locale-choice">{{locale === 'en' ? 'English ⇄ 中文' : '中文 ⇄ English'}}</text></button>
+    <button class="locale locale-setting" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}"><text>语⇌</text><text class="locale-word">Language</text></button>
     <view class="support-feedback"><button class="secondary" bindtap="toggleSupport">{{t.supportAuthor}}</button><button class="secondary feedback-link" data-url="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" bindtap="copyResource">{{t.feedback}}</button></view>
     <text class="note">{{t.feedbackHelp}}</text>
     <view wx:if="{{showSupport}}" class="panel support-panel"><text class="resource-title">{{t.supportAuthor}}</text><text class="note">{{t.supportNote}}</text><image class="support-code" src="/assets/support-author.png" mode="widthFix" show-menu-by-longpress="{{true}}" bindtap="previewSupport" /><text class="note">{{t.supportHint}}</text></view>
@@ -157,7 +170,7 @@
   <view class="bottom-space"></view>
   <view class="navigation">
     <button class="nav-item {{view === 'home' ? 'selected' : ''}}" data-view="home" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">⌂</text><text>{{t.home}}</text></button>
-    <button class="nav-item {{view === 'practice' ? 'selected' : ''}}" data-view="practice" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">≡</text><text>{{t.practice}}</text></button>
+    <button class="nav-item {{view === 'practice' || view === 'papers' ? 'selected' : ''}}" data-view="practice" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">≡</text><text>{{t.practice}}</text></button>
     <button class="nav-item {{view === 'words' || view === 'dictionary' ? 'selected' : ''}}" data-view="words" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">Aa</text><text>{{t.words}}</text></button>
     <button class="nav-item {{view === 'account' ? 'selected' : ''}}" data-view="account" bindtap="changeView" disabled="{{busy}}"><text class="nav-symbol">◎</text><text>{{t.account}}</text></button>
   </view>

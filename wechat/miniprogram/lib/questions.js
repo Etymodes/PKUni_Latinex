@@ -13,7 +13,7 @@ function displayQuestion(question, locale) {
 }
 
 function questionScope(all, state, record) {
-  const fullPaper = state.language === 'ja' && Boolean(state.fullPaper);
+  const fullPaper = Boolean(state.fullPaper);
   const collectionId = state.selectedPaper || 'jlpt-1992-1';
   let range = all.filter(q => fullPaper ? shared.questionInCollection(q, collectionId) : shared.matchesLevel(q, state.level));
   if (fullPaper) range = range.sort((a, b) => shared.collectionOrder(a, collectionId) - shared.collectionOrder(b, collectionId)).map(q => shared.questionForCollection(q, collectionId));
@@ -60,15 +60,31 @@ const questionActions = {
     this.render();
   },
   toggleBrowse() { this.setData({ browse: !this.data.browse }); },
+  openQuestionBank() {
+    if (this.data.busy) return;
+    this.stopQuestionAudio();
+    this.queue = [];
+    this.activeQuestion = null;
+    this.setData({ view: 'papers', paperSearch: '', question: null, fullPaper: false, category: 'all', search: '' });
+    this.render();
+  },
+  searchPapers(event) {
+    this.setData({ paperSearch: event.detail.value });
+    this.render();
+  },
+  selectPaper(event) {
+    const item = this.data.matchingPapers[Number(event.detail.value)];
+    if (item) { this.setData({ selectedPaper: item.id }); this.render(); }
+  },
   changePaper(event) {
-    const item = bank.questionCollections[Number(event.detail.value)];
+    const item = this.data.paperItems[Number(event.detail.value)];
     if (item) this.openPaper({ currentTarget: { dataset: { collection: item.id } } });
   },
   openPaper(event) {
-    if (this.data.busy || this.data.language !== 'ja') return;
+    if (this.data.busy) return;
     const dataset = event && event.currentTarget.dataset || {};
     const selectedPaper = dataset.collection || this.data.selectedPaper || 'jlpt-1992-1';
-    if (!bank.questionCollections.some(item => item.id === selectedPaper)) return;
+    if (!this.data.paperItems.some(item => item.id === selectedPaper)) return;
     const requested = dataset.category;
     const category = ['vocabulary', 'listening', 'reading', 'sentencePattern'].includes(requested) ? requested : 'all';
     this.stopQuestionAudio();

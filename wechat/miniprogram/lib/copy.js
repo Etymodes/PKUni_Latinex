@@ -62,9 +62,8 @@ Object.assign(zh, { paper1992: '1992 · 旧1級真题', fullPaper: '原卷跨级
 Object.assign(en, { paper1992: '1992 · Old Level 1 paper', fullPaper: 'Full paper · All levels', exitPaper: 'Return to selected level', paperAll: 'Full paper', originalNumber: 'Original question', paperVocabulary: 'Vocabulary', paperGrammar: 'Grammar', transcript: 'Listening transcript', playAudio: 'Play audio', pauseAudio: 'Pause', restartAudio: 'Restart audio', audioError: 'Audio could not play. Check your connection and retry.', questionImage: 'View question image', optionsInAudio: 'Listen to the four spoken options and choose a number.' });
 Object.assign(zh, {
   dictionary: '词典', approximate: '近似', approximateHelp: '有印象，但词义判断有偏差，不算忘了。',
-  wordScopes: { level: '当前等级及以下', all: '全部词库（含待分级）', 'n1-2000': '2000词 PDF', 'jlpt-1992': '1992 真题词汇', 'jlpt-1993-1': '1993 真题词汇', 'ja-hlb1000-n1-u01': '红蓝宝书 Unit 1' },
   wordSearch: '词头、读音或中文义', entries: '词条', ungraded: '待分级', thisRound: '本轮反馈',
-  emptyWords: '没有匹配词卡。可切换词汇范围或清空搜索。', pendingWords: '条反馈已保存在本机，等待同步',
+  emptyWords: '当前等级没有匹配词卡。可清空搜索或调整等级。', pendingWords: '条反馈已保存在本机，等待同步',
   otherSpellings: '其他写法', otherReadings: '其他读音', additionalMeaning: '补充释义',
   dictionaryNote: '词典与背单词共用词条和学习记录。查词后可直接练习，查看释义本身不算作记得。',
   reviewedWords: '已练', lastOutcome: '最近', practiseWord: '练这个词', previousEntries: '上一页', nextEntries: '下一页', emptyDictionary: '没有匹配词条。',
@@ -78,9 +77,8 @@ Object.assign(zh, {
 });
 Object.assign(en, {
   dictionary: 'Dictionary', approximate: 'Approximate', approximateHelp: 'Familiar, but your understanding of the meaning is imprecise.',
-  wordScopes: { level: 'Current level and below', all: 'All entries, including ungraded', 'n1-2000': '2000-word PDF', 'jlpt-1992': '1992 exam vocabulary', 'jlpt-1993-1': '1993 exam vocabulary', 'ja-hlb1000-n1-u01': 'Red & Blue Unit 1' },
   wordSearch: 'Word, reading or meaning', entries: 'entries', ungraded: 'Ungraded', thisRound: 'This session',
-  emptyWords: 'No matching cards. Change the scope or clear the search.', pendingWords: 'reviews saved on this device, waiting to sync',
+  emptyWords: 'No matching cards at this level. Clear the search or change your level.', pendingWords: 'reviews saved on this device, waiting to sync',
   otherSpellings: 'Other spellings', otherReadings: 'Other readings', additionalMeaning: 'Additional meaning',
   dictionaryNote: 'Dictionary and practice share entries and learning records. Looking up a meaning does not count as remembering it.',
   reviewedWords: 'Reviewed', lastOutcome: 'Last', practiseWord: 'Practise this word', previousEntries: 'Previous page', nextEntries: 'Next page', emptyDictionary: 'No matching entries.',
@@ -92,5 +90,8 @@ Object.assign(en, {
   exportSaved: 'Saved. Tap Export again to share.', exportFailed: 'Export failed. Check device storage.',
   feedback: 'Feedback', feedbackHelp: 'Copy the feedback form link, then open it in your browser.', supportAuthor: 'Support the author', supportNote: 'If Pikku helps you, you are welcome to support its continued development and learning materials. Thank you.', supportHint: 'Tap to enlarge, or long-press the QR code.',
 });
+
+Object.assign(zh, { questionBank: '题库', searchPapers: '搜索年份或题集名称', paperCollections: '套题集', openPaper: '打开题集', emptyPapers: '没有匹配的题集。', levelVocabulary: '当前等级及以下', focusedWord: '定向练习：本次仅练此词，下一词返回当前等级范围。' });
+Object.assign(en, { questionBank: 'Question bank', searchPapers: 'Search by year or collection title', paperCollections: 'collections', openPaper: 'Open collection', emptyPapers: 'No matching collections.', levelVocabulary: 'Current level and below', focusedWord: 'Focused practice: this word only. The next word returns to your level range.' });
 
 module.exports = { copies: { 'zh-CN': zh, en }, levelCards };

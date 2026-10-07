@@ -81,18 +81,19 @@ function harness(initialOwner = null) {
     owner(value) { owner = value; }, intercept(value) { intercept = value; } };
 }
 function choose(h, memory, extra = {}) {
-  return h.vocabulary.select(memory, { language: 'ja', scope: 'jlpt-1992', mode: 'context', now, random: () => 0, ...extra });
+  return h.vocabulary.select(memory, { language: 'ja', level: 'M', mode: 'context', now, random: () => 0, ...extra });
 }
 
-test('shared entries preserve both source pools, ungraded access, multiple readings and neutral details', () => {
+test('unified entries retain every canonical word, cumulative CFGM levels, readings and neutral details', () => {
   const h = harness();
   assert.equal(h.vocabulary.entries({ language: 'ja' }).length, bank.vocabularyCards.filter(card => card.language === 'ja').length);
-  assert.equal(h.vocabulary.entries({ language: 'ja', scope: 'n1-2000' }).length, 2013);
-  assert.equal(h.vocabulary.entries({ language: 'ja', scope: 'jlpt-1992' }).length, 295);
-  const ungraded = bank.vocabularyCards.find(card => card.language === 'ja' && !card.level);
-  assert.ok(ungraded);
-  assert.equal(h.vocabulary.entries({ language: 'ja', scope: 'level', level: 'M' }).includes(ungraded), false);
-  assert.ok(h.vocabulary.entries({ language: 'ja', query: ungraded.term }).some(card => card.id === ungraded.id));
+  for (const language of bank.languageOrder) {
+    for (const level of ['C', 'F', 'G', 'M']) {
+      const expected = bank.vocabularyCards.filter(card => card.language === language && shared.vocabularyMatchesLevel(card, level));
+      assert.deepEqual(h.vocabulary.entries({ language, level }).map(card => card.id), expected.map(card => card.id));
+      assert.deepEqual(h.vocabulary.entries({ language, level, scope: 'all' }).map(card => card.id), expected.map(card => card.id), 'obsolete scope cannot bypass the current level');
+    }
+  }
   const senses = bank.vocabularyCards.find(card => card.senses && card.senses.length > 1);
   assert.ok(senses);
   assert.ok(h.vocabulary.entries({ language: senses.language, query: senses.senses[1].reading }).some(card => card.id === senses.id));
