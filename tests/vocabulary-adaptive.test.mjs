@@ -9,15 +9,17 @@ const {
   vocabularyMatchesLevel,
 } = await import("../data/vocabulary.ts");
 
-test("the seed bank covers every published Pikku language level", () => {
-  const expected = [
-    "la:elementary", "la:intermediate", "la:advanced",
-    "ja:n4", "ja:n3", "ja:n2", "ja:n1",
-    "es:a1", "es:a2", "es:b1", "es:b2", "es:c1", "es:c2",
-  ];
-  const actual = new Set(vocabularyCards.map((card) => `${card.language}:${card.level}`));
-  for (const key of expected) assert.equal(actual.has(key), true, `${key} should have vocabulary cards`);
-  assert.equal(vocabularyCards.every((card) => card.context.length > 0), true);
+test("all historic word-card identities survive dictionary unification and individual regrading", () => {
+  for (const [language, count] of [["la", 16], ["ja", 16], ["es", 24]]) {
+    for (let index = 1; index <= count; index++) {
+      const id = `${language}-${String(index).padStart(3, "0")}`;
+      const card = vocabularyCards.find(item => item.id === id);
+      assert.ok(card, `Preserve existing progress identity: ${id}`);
+      assert.equal(card.language, language);
+      assert.ok(card.context.length > 0, `${id} retains its learning context`);
+    }
+  }
+  assert.ok(vocabularyCards.every(card => card.term.trim() && card.meaning.trim()));
 });
 
 test("weak words outweigh new words and mastered words", () => {

@@ -2,16 +2,34 @@ import type { LanguageLevel } from "./languages";
 import type { LanguageCode } from "./questions";
 import { normalizePikkuLevel, pikkuLevels, type PikkuLevel } from "./questions.ts";
 import { multilingualSeedQuestions, multilingualVocabItems } from "./multilingual-seeds.ts";
+import { lexiconSeed, type LexiconEntry } from "./resources.ts";
+import importedVocabulary from "./jlpt-1992-vocabulary.json" with { type: "json" };
+import n1Vocabulary from "./n1-2000-vocabulary.json" with { type: "json" };
 
 export type VocabularyMode = "word" | "context";
 
 export type VocabularyCard = {
   id: string;
   language: LanguageCode;
-  level: LanguageLevel;
+  level?: LanguageLevel;
   term: string;
   meaning: string;
   context: string;
+  reading?: string;
+  partOfSpeech?: string;
+  batch?: string;
+  sourceQuestionIds?: string[];
+  sourcePages?: number[];
+  sourceReading?: string;
+  sourceMeaning?: string;
+  sourceNotes?: string;
+  spellingVariants?: string[];
+  readingVariants?: string[];
+  senses?: { reading: string; gloss: string; sourcePages: number[] }[];
+  notes?: string;
+  usageNotes?: string;
+  dictionaryReferences?: { name: string; url: string; note: string }[];
+  dictionary?: LexiconEntry;
 };
 
 export type VocabularyStat = { seen: number; correct: number };
@@ -115,8 +133,47 @@ const restoredVocabularyCards: VocabularyCard[] = multilingualVocabItems.map((it
   context: item.lemma,
 })).filter((card) => !legacyVocabularyKeys.has(vocabularyKey(card.language, card.term)));
 
-// Existing cards keep their IDs, content and stats keys when a recovered seed overlaps.
-export const vocabularyCards = [...legacyVocabularyCards, ...restoredVocabularyCards];
+// The dictionary and trainer consume these same objects. Keep old stats keys and IDs.
+const sharedCards = [...legacyVocabularyCards, ...restoredVocabularyCards];
+for (const entry of lexiconSeed) {
+  const existing = sharedCards.find(card => card.language === entry.language
+    && (card.term === entry.lemma || card.term.split(",")[0] === entry.lemma));
+  if (existing) {
+    Object.assign(existing, { dictionary: entry, reading: entry.principalParts, partOfSpeech: entry.partOfSpeech, batch: entry.batch });
+  } else {
+    sharedCards.push({ id: `lexicon-${entry.language}-${entry.lemma}`, language: entry.language,
+      term: entry.lemma, meaning: entry.gloss, context: "", reading: entry.principalParts,
+      partOfSpeech: entry.partOfSpeech, batch: entry.batch, dictionary: entry });
+  }
+}
+for (const entry of importedVocabulary) {
+  const existing = sharedCards.find(card => card.language === "ja" && card.term === entry.lemma);
+  const fields = { reading: entry.reading, partOfSpeech: entry.partOfSpeech,
+    sourceQuestionIds: entry.sourceQuestionIds, notes: entry.notes,
+    usageNotes: entry.usageNotes, dictionaryReferences: entry.dictionaryReferences, batch: "1992 · 旧1級",
+    context: entry.context, meaning: entry.gloss };
+  if (existing) Object.assign(existing, fields, { level: entry.level as LanguageLevel });
+  else sharedCards.push({ id: entry.id, language: "ja", term: entry.lemma, level: entry.level as LanguageLevel, ...fields });
+}
+for (const entry of n1Vocabulary) {
+  const existing = sharedCards.find(card => card.language === "ja" && card.term.normalize("NFKC") === entry.lemma.normalize("NFKC"));
+  const source = { sourcePages: entry.sourcePages, sourceReading: entry.reading,
+    sourceMeaning: entry.gloss, sourceNotes: entry.notes,
+    spellingVariants: (entry as { spellingVariants?: string[] }).spellingVariants,
+    readingVariants: (entry as { readingVariants?: string[] }).readingVariants,
+    senses: (entry as { senses?: VocabularyCard["senses"] }).senses };
+  if (existing) {
+    Object.assign(existing, source);
+    if (!existing.reading) existing.reading = entry.reading;
+    if (!existing.partOfSpeech) existing.partOfSpeech = entry.partOfSpeech;
+  } else {
+    sharedCards.push({ id: entry.id, language: "ja", term: entry.lemma, reading: entry.reading,
+      meaning: entry.gloss, partOfSpeech: entry.partOfSpeech, context: entry.context,
+      batch: "N1必背2000词", ...source });
+  }
+}
+export const vocabularyCards: VocabularyCard[] = sharedCards;
+export const dictionaryEntries = vocabularyCards;
 
 const cumulativeVocabularyLevels: Partial<Record<LanguageCode, readonly LanguageLevel[]>> = {
   la: ["elementary", "intermediate", "advanced"],
@@ -139,6 +196,7 @@ export function vocabularyLevelsFor(language: LanguageCode, level: LanguageLevel
 }
 
 export function vocabularyMatchesLevel(card: VocabularyCard, level: LanguageLevel) {
+  if (!card.level) return false; // Ungraded dictionary words remain available through explicit dictionary practice.
   const cardLevel = pikkuLevels.includes(level as PikkuLevel)
     ? normalizePikkuLevel(card.language, card.level)
     : card.level;

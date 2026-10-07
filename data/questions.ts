@@ -1,3 +1,5 @@
+import { shuffle } from "../lib/shuffle.ts";
+
 export type LanguageCode = "zh-mandarin" | "en-us" | "la" | "ja" | "es" | "grc" | "ru";
 export type PikkuLevel = "C" | "F" | "G" | "M";
 export const pikkuLevels: readonly PikkuLevel[] = ["C", "F", "G", "M"];
@@ -17,7 +19,7 @@ export function normalizePikkuLevel(language: LanguageCode, level: string): Pikk
   if (pikkuLevels.includes(level as PikkuLevel)) return level as PikkuLevel;
   return legacyPikkuLevels[language]?.[level as StudyLevel] ?? "C";
 }
-export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation";
+export type Category = "morphology" | "syntax" | "sentencePattern" | "vocabulary" | "classics" | "translation" | "reading" | "listening";
 export type ReviewStatus = "draft" | "reviewed" | "published" | "archived";
 
 export type Question = {
@@ -33,6 +35,21 @@ export type Question = {
   targetText?: string;
   targetLang?: string;
   context?: string;
+  passage?: string;
+  images?: { src: string; alt: string }[];
+  audio?: { src: string };
+  transcript?: string;
+  shuffleOptions?: boolean;
+  originalNumber?: string;
+  provenance?: {
+    exam: string;
+    year: number;
+    level: string;
+    section: string;
+    questionNumber: string;
+    sourceFiles: { name: string; sha256?: string; pages?: number[] }[];
+    rightsStatus?: "public-domain" | "authorized" | "original" | "personal-use-only" | "internal-reference" | "rights-unclear";
+  };
   options?: string[];
   answer?: number;
   modelAnswer?: string;
@@ -44,6 +61,11 @@ export type Question = {
   reviewStatus?: ReviewStatus;
   distractorExplanations?: string[];
 };
+
+export function questionOptionOrder(question: Pick<Question, "options" | "shuffleOptions">, random = Math.random): number[] {
+  const indices = (question.options ?? []).map((_, index) => index);
+  return question.shuffleOptions === false ? indices : shuffle(indices, random);
+}
 
 export const questions: Question[] = [
   {
@@ -323,6 +345,8 @@ export const categoryLabels: Record<Category, string> = {
   vocabulary: "词典回溯",
   classics: "古典阅读",
   translation: "分句翻译",
+  reading: "阅读理解",
+  listening: "听力理解",
 };
 
 export const levelLabels: Record<StudyLevel, string> = {
