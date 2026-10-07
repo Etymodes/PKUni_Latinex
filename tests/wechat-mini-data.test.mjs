@@ -18,7 +18,7 @@ function loadCommonJs(filename, cache = new Map()) {
   const module = { exports: {} };
   cache.set(filename, module);
   const require = (specifier) => {
-    assert.equal(specifier, "./bank.js", "Generated helpers must not depend on Node, TypeScript, or npm at runtime.");
+    assert.ok(["./bank.js", "./vocabulary-model.js"].includes(specifier), "Generated helpers must not depend on Node, TypeScript, or npm at runtime.");
     return loadCommonJs(path.resolve(path.dirname(filename), specifier), cache);
   };
   vm.runInThisContext(`(function(module, exports, require) {\n${fs.readFileSync(filename, "utf8")}\n})`, { filename })(module, module.exports, require);
@@ -47,10 +47,11 @@ test("native bank preserves the complete website composition, metadata, IDs, and
     ...source("data/complete-bank.ts").completeQuestions,
     ...source("data/multilingual-questions.ts").multilingualQuestions,
     ...source("data/multilingual-seeds.ts").multilingualSeedQuestions,
+    ...source("data/jlpt-1992.ts").jlpt1992Questions,
   ];
   assert.deepEqual(bank.questions, JSON.parse(JSON.stringify(expected)));
   assert.equal(new Set(bank.questions.map((question) => question.id)).size, expected.length);
-  assert.deepEqual(bank.vocabularyCards, source("data/vocabulary.ts").vocabularyCards);
+  assert.deepEqual(bank.vocabularyCards, JSON.parse(JSON.stringify(source("data/vocabulary.ts").vocabularyCards)));
   assert.deepEqual(bank.languageConfigs, source("data/languages.ts").languageConfigs);
   assert.deepEqual(bank.learningLanguages, source("app/i18n.ts").learningLanguages);
   assert.deepEqual(bank.textbookCatalog, source("data/resources.ts").textbookCatalog);
@@ -126,6 +127,10 @@ test("option shuffle is copied from the website and does not mutate the bank", (
   const options = ["A", "B", "C", "D"];
   for (const value of [0, 0.2, 0.8, 0.999999]) assert.deepEqual(shared.shuffle(options, () => value), source("lib/shuffle.ts").shuffle(options, () => value));
   assert.deepEqual(options, ["A", "B", "C", "D"]);
+  for (const question of bank.questions) {
+    assert.deepEqual(shared.questionOptionOrder(question, () => 0.2), source("data/questions.ts").questionOptionOrder(question, () => 0.2));
+  }
+  assert.deepEqual(shared.questionOptionOrder({ options, shuffleOptions: false }, () => 0), [0, 1, 2, 3]);
 });
 
 test("generated JavaScript and original-image PNGs rebuild deterministically below the main-package limit", async () => {
@@ -141,4 +146,26 @@ test("generated JavaScript and original-image PNGs rebuild deterministically bel
     assert.equal(png.readUInt32BE(16), 192);
     assert.equal(png.readUInt32BE(20), 192);
   }
+});
+
+
+test("generated v2 model and validation retain exact website results and legacy v1 events", () => {
+  const generated = loadCommonJs(path.join(temporaryDirectory, "data/vocabulary-model.js"));
+  const original = source("lib/vocabulary-model.ts");
+  const sync = loadCommonJs(path.join(temporaryDirectory, "data/vocabulary-review-sync.js"));
+  const events = [];
+  const now = "2026-10-07T00:00:00.000Z";
+  for (const [index, outcome] of ["forgotten", "approximate", "remembered"].entries()) {
+    const prediction = original.makePrediction(events, "ja", "始める", now, "word", undefined, now);
+    assert.deepEqual(generated.makePrediction(events, "ja", "始める", now, "word", undefined, now), prediction);
+    events.push(original.completeVocabularyReview(prediction, outcome, now, `same-${index}`));
+  }
+  const legacy = { ...events[0], id: "legacy", modelVersion: "pikku-recall-v1", outcome: "remembered", probability: 0.98 };
+  delete legacy.probabilities;
+  events.push(legacy);
+  assert.deepEqual(generated.trainVocabularyModel(events, "ja", now), original.trainVocabularyModel(events, "ja", now));
+  assert.deepEqual(generated.sanitizeVocabularyReviews(events), original.sanitizeVocabularyReviews(events));
+  assert.equal(generated.isVocabularyReviewEvent({ ...legacy, outcome: "approximate" }), false);
+  assert.deepEqual(sync.reviewCounts(events), { "ja:始める": { seen: 4, correct: 2 } });
+  assert.equal(fs.readFileSync(path.join(temporaryDirectory, "data/vocabulary-model.js"), "utf8").includes(".at("), false);
 });

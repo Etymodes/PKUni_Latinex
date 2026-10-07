@@ -13,3 +13,5 @@ dist
 /wechat/miniprogram/assets/
 /wechat/project.private.config.json
 /wechat/miniprogram_npm/
+
+/wechat/.qa/

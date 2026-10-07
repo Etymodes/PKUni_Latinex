@@ -3,11 +3,11 @@ import { after, before, test } from 'node:test';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 import { buildWechat } from '../scripts/build-wechat.mjs';
 
 const miniRoot = new URL('../wechat/miniprogram/', import.meta.url);
-const pageSource = fs.readFileSync(new URL('pages/index/index.js', miniRoot), 'utf8');
 const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'pikku-mini-page-'));
 const plain = value => JSON.parse(JSON.stringify(value));
 const guestKey = 'pikku-mini-guest-v1';
@@ -27,6 +27,31 @@ function commonJs(filename, cache = new Map()) {
   return module.exports;
 }
 
+// All page dependencies share this harness's VM and mocked wx/API. Generated
+// modules come from the isolated build, never from a stale checked-out bundle.
+function loadPageModule(mocks, globals) {
+  const root = fileURLToPath(miniRoot);
+  const context = vm.createContext(globals);
+  const cache = new Map(Object.entries(mocks).map(([name, exports]) => [path.resolve(root, name), { exports }]));
+  function load(filename) {
+    filename = path.resolve(filename);
+    if (!path.extname(filename)) filename += '.js';
+    const relative = path.relative(root, filename);
+    assert.ok(relative && !relative.startsWith('..') && !path.isAbsolute(relative), `Unexpected page dependency ${filename}`);
+    if (cache.has(filename)) return cache.get(filename).exports;
+    const module = { exports: {} };
+    cache.set(filename, module);
+    const sourceFile = relative.startsWith(`data${path.sep}`) ? path.join(temporaryDirectory, relative) : filename;
+    const execute = vm.runInContext(`(function(module, exports, require) {\n${fs.readFileSync(sourceFile, 'utf8')}\n})`, context, { filename });
+    execute(module, module.exports, specifier => {
+      assert.ok(specifier.startsWith('.'), `Unexpected external page dependency ${specifier}`);
+      return load(path.resolve(path.dirname(filename), specifier));
+    });
+    return module.exports;
+  }
+  return load(path.join(root, 'pages/index/index.js'));
+}
+
 before(async () => {
   await buildWechat({ outputDir: temporaryDirectory });
   bank = commonJs(path.join(temporaryDirectory, 'data/bank.js'));
@@ -44,6 +69,7 @@ async function harness(options = {}) {
     session: options.session || null,
     stats: options.stats || { progress: {}, bookmarks: [], vocab: [] },
     overrides: [],
+    reviews: [],
     statsError: null,
     request: null,
   };
@@ -56,8 +82,19 @@ async function harness(options = {}) {
       return plain(state.stats);
     },
     request: async (url, method, data) => {
-      calls.push({ path: url, method, data: plain(data), owner: state.session?.user.id || null });
+      calls.push({ path: url, method, data: data === undefined ? undefined : plain(data), owner: state.session?.user.id || null });
+      if (method === 'GET' && url.startsWith('/api/vocab/reviews?')) return { events: plain(state.reviews), nextCursor: null };
       if (state.request) return state.request(url, method, data);
+      if (method === 'POST' && url === '/api/vocab/reviews') {
+        const inserted = data.events.filter(event => !state.reviews.some(saved => saved.id === event.id));
+        for (const event of inserted) {
+          state.reviews.push(plain(event));
+          let row = state.stats.vocab.find(row => row.language === event.language && row.lemma === event.lemma);
+          if (!row) { row = { language: event.language, lemma: event.lemma, seen: 0, correct: 0 }; state.stats.vocab.push(row); }
+          row.seen++; row.correct += Number(event.outcome === 'remembered');
+        }
+        return { ok: true, count: data.events.length, inserted: inserted.length };
+      }
       return { ok: true };
     },
     signIn: async () => { state.session = sessionFor('signed-in'); return state.session; },
@@ -71,14 +108,10 @@ async function harness(options = {}) {
   };
   const fixedMath = Object.create(Math);
   fixedMath.random = () => 0;
-  vm.runInNewContext(pageSource, {
-    Page: value => { definition = value; }, wx, Math: fixedMath,
-    require: name => {
-      const modules = { '../../lib/api': api, '../../data/bank': bank, '../../data/shared': shared, '../../lib/copy': copy };
-      assert.ok(Object.hasOwn(modules, name), `Unexpected page dependency ${name}`);
-      return modules[name];
-    },
-  }, { filename: 'wechat/miniprogram/pages/index/index.js' });
+  loadPageModule({
+    'lib/api.js': api, 'data/bank.js': bank,
+    'data/shared.js': { ...shared, questionOptionOrder: question => shared.questionOptionOrder(question, () => 0) }, 'lib/copy.js': copy,
+  }, { Page: value => { definition = value; }, wx, Math: fixedMath });
   const page = { ...definition, data: plain(definition.data), setData(update) { Object.assign(this.data, update); } };
   const refresh = page.refresh;
   let refreshing;
@@ -300,20 +333,31 @@ test('removing the last bookmark sends an empty language list and stays removed 
   assert.equal(h.storage.has(guestKey), false);
 });
 
-test('an ambiguous failed vocabulary POST is not repeated or counted locally', async () => {
+test('a committed review with a lost reply stays pending and is recovered without another increment', async () => {
   const h = await harness({ session: sessionFor('account') });
   h.page.nextCard();
   const card = h.page.data.card;
   h.page.revealWord();
-  h.state.request = async () => { throw Object.assign(new Error('reply lost after write'), { status: 0 }); };
-  await h.page.rateWord(event({ correct: 'yes' }));
-  assert.equal(h.calls.filter(call => call.path === '/api/vocab').length, 1);
-  assert.deepEqual(h.calls.find(call => call.path === '/api/vocab').data, { language: card.language, answers: [{ lemma: card.term, correct: true }] });
-  assert.equal(h.page.record.vocab[shared.vocabularyKey(card.language, card.term)], undefined);
+  h.state.request = async (url, method, data) => {
+    assert.equal(url, '/api/vocab/reviews'); assert.equal(method, 'POST');
+    h.state.reviews.push(...plain(data.events));
+    h.state.stats.vocab = [{ language: card.language, lemma: card.term, seen: 1, correct: 0 }];
+    throw Object.assign(new Error('reply lost after write'), { status: 0 });
+  };
+  await h.page.rateWord(event({ outcome: 'approximate' }));
+  const posts = () => h.calls.filter(call => call.path === '/api/vocab/reviews' && call.method === 'POST');
+  assert.equal(posts().length, 1);
+  assert.equal(posts()[0].data.events[0].outcome, 'approximate');
+  assert.deepEqual(plain(h.page.record.vocab[shared.vocabularyKey(card.language, card.term)]), { seen: 1, correct: 0 });
+  assert.equal(h.page.wordMemory.pendingReviewIds.length, 1);
   assert.equal(h.page.data.wordRevealed, false);
-  await h.page.rateWord(event({ correct: 'yes' }));
+  await h.page.rateWord(event({ outcome: 'approximate' }));
+  h.state.request = null;
   await h.page.refresh();
-  assert.equal(h.calls.filter(call => call.path === '/api/vocab').length, 1);
+  assert.equal(posts().length, 1);
+  assert.equal(h.page.wordMemory.pendingReviewIds.length, 0);
+  assert.equal(h.page.wordMemory.reviews.filter(row => row.outcome === 'approximate').length, 1);
+  assert.deepEqual(plain(h.page.record.vocab[shared.vocabularyKey(card.language, card.term)]), { seen: 1, correct: 0 });
 });
 
 test('locale choices, level labels and colors, and question filters match the native learning range', async () => {

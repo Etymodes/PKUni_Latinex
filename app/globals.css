@@ -220,6 +220,7 @@ h1, h2, h3, p { margin-top: 0; }
 .section-heading span, .exam-banner > div > span, .scope-grid section > span { color: var(--gold); font: 600 9px var(--serif-la); letter-spacing: .18em; }
 .section-heading h2 { font: 600 22px var(--serif-cn); margin: 4px 0 0; }
 .mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.mode-grid.with-listening { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .mode-card { min-height: 222px; border: 1px solid var(--line); background: var(--panel); text-align: left; padding: 24px; position: relative; cursor: pointer; transition: .2s ease; overflow: hidden; }
 .mode-card:hover { transform: translateY(-3px); border-color: #c9baa5; box-shadow: var(--shadow); }
 .mode-number { position: absolute; right: 17px; top: 12px; color: #eee9df; font: 600 42px var(--serif-la); }
@@ -275,6 +276,15 @@ h1, h2, h3, p { margin-top: 0; }
 .bookmark-button.bookmarked { color: var(--crimson); }
 .question-card h2 { font: 600 clamp(18px, 2.5vw, 23px) var(--serif-cn); margin-bottom: 18px; }
 .question-card blockquote { margin: 0 0 23px; padding: 22px 24px; border-left: 3px solid var(--gold); background: #f7f2e8; font: 600 clamp(20px, 3vw, 27px)/1.55 var(--serif-la); letter-spacing: .01em; }
+.question-original-number { color: var(--muted); font-size: 12px; }
+.question-passage, .question-transcript > div { white-space: pre-wrap; line-height: 1.9; overflow-wrap: anywhere; }
+.question-passage { margin: 20px 0; padding: 20px; border: 1px solid var(--line); background: #fdfbf6; font-size: 16px; }
+.question-image { margin: 20px 0; }
+.question-image img { display: block; width: 100%; height: auto; }
+.question-audio { display: block; width: 100%; margin: 20px 0; }
+.question-transcript { margin-top: 20px; padding: 16px; background: var(--gold-soft); }
+.question-transcript summary { cursor: pointer; font-weight: 600; }
+.question-transcript > div { margin-top: 12px; }
 .context-note { color: var(--muted); font-size: 11px; margin-top: -13px; }
 .option-list { display: grid; gap: 9px; }
 .option { width: 100%; min-height: 51px; border: 1px solid var(--line); background: #fff; border-radius: 5px; display: grid; grid-template-columns: 27px 1fr auto; align-items: center; gap: 11px; text-align: left; padding: 8px 14px; cursor: pointer; font-size: 13px; }
@@ -376,9 +386,11 @@ h1, h2, h3, p { margin-top: 0; }
 .vocab-reveal span, .vocab-reveal strong { display: block; }
 .vocab-reveal span { color: var(--muted); font-size: 9px; }
 .vocab-reveal strong { margin-top: 5px; font: 600 20px var(--serif-cn); }
-.vocab-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.vocab-feedback { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
 .vocab-feedback button { min-height: 62px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #d9a6a2; border-radius: 5px; color: #963c35; background: var(--red-soft); cursor: pointer; }
 .vocab-feedback button.remembered { color: var(--green); border-color: #99c4a9; background: var(--green-soft); }
+.vocab-feedback button.approximate { color: #775818; border-color: #cdbb83; background: var(--gold-soft); }
+.vocab-feedback .vocab-approx-symbol { font-size: 23px; line-height: 1; }
 .vocab-feedback span, .vocab-feedback strong, .vocab-feedback small { display: block; text-align: left; }
 .vocab-feedback small { margin-top: 2px; opacity: .78; font-size: 9px; }
 .vocabulary-trainer > .fine-print { margin-top: 14px !important; text-align: center; color: var(--muted); }
@@ -684,7 +696,7 @@ h1, h2, h3, p { margin-top: 0; }
   .home-feature-grid { grid-template-columns: 1fr; }
   .story-entry-card, .language-knowledge-card { min-height: 315px; padding: 28px 24px; }
   .language-knowledge-card .text-button { left: 24px; }
-  .mode-grid { grid-template-columns: 1fr; }
+  .mode-grid, .mode-grid.with-listening { grid-template-columns: 1fr; }
   .mode-card { min-height: 205px; }
   .story-banner { grid-template-columns: auto 1fr; }
   .story-banner .secondary-button { grid-column: 2; justify-self: start; }
@@ -734,6 +746,9 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 480px) {
+  .vocab-feedback { gap: 6px; }
+  .vocab-feedback button { flex-direction: column; gap: 4px; padding: 10px 6px; }
+  .vocab-feedback span, .vocab-feedback strong, .vocab-feedback small { text-align: center; }
   .topbar-title { display: none; }
   .language-trigger { min-width: 0; width: min(185px, calc(100vw - 190px)); }
   .language-trigger-copy > span { gap: 6px; }
@@ -786,3 +801,20 @@ h1, h2, h3, p { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+.exam-shortcuts { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; margin: 0 0 1rem; }
+.exam-question-jump { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+.exam-question-jump select { max-width: 100%; padding: .65rem; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: inherit; }
+
+.vocabulary-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+.vocabulary-trainer .lexicon-filters, .linked-dictionary .lexicon-filters { align-items: end; flex-wrap: wrap; }
+.vocabulary-trainer .resource-search, .linked-dictionary .resource-search { flex: 1 1 240px; margin: 0; }
+.vocabulary-predictions { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: 10px; }
+.vocabulary-predictions summary { cursor: pointer; font-weight: 600; }
+.vocabulary-predictions p { line-height: 1.7; }
+.vocabulary-predictions label { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1rem 0; }
+.vocabulary-predictions input { padding: .6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: inherit; }
+.vocabulary-source-ids { overflow-wrap: anywhere; font-size: .8rem; }
+.dictionary-learning-state { color: var(--muted); }
+.linked-dictionary > p { line-height: 1.7; }
+.linked-dictionary blockquote { margin: 1rem 0; padding-left: .8rem; border-left: 2px solid var(--line); }

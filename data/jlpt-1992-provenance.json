@@ -1,0 +1,3057 @@
+{
+  "exam": "1992年日本語能力試験 旧1級",
+  "counts": {
+    "vocabulary": 65,
+    "listening": 30,
+    "reading": 23,
+    "grammar": 31,
+    "total": 149
+  },
+  "sourceSha256": "476ec042ea7d97c23d75b97e2f6f498c01657bb3d17186c57c6c9b88b1f25b7f",
+  "audioSha256": "41663d7cee42c6d1d8a007c2f7bf5da0f7a7dbb52eeec53811b9048a7f60c4f0",
+  "sourceDocumentPages": 44,
+  "printedAnswers": 148,
+  "inferredAnswers": 1,
+  "publicImportRequested": "2026-10-06",
+  "rightsStatus": "rights-unclear",
+  "difficultyRubric": "cfgm-user-screenshot-2026-10-06-v1",
+  "difficultyCounts": {
+    "C": 0,
+    "F": 89,
+    "G": 60,
+    "M": 0
+  },
+  "audioIntervalsVerified": 30,
+  "audioAlignmentMethod": "local ASR with transcript/topic/number matching and repeated short-segment recognition",
+  "humanListeningVerified": false,
+  "audioIntervals": [
+    {
+      "id": "jlpt-1992-1-listening-I-0-1",
+      "section": "I",
+      "number": 1,
+      "topic": "冷蔵庫",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 102.26,
+      "endSeconds": 154.46,
+      "speechStartSeconds": 102.66,
+      "speechEndSeconds": 153.81,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-2",
+      "section": "I",
+      "number": 2,
+      "topic": "ヘアスタイル",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 158.69,
+      "endSeconds": 191.69,
+      "speechStartSeconds": 159.09,
+      "speechEndSeconds": 191.04,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-3",
+      "section": "I",
+      "number": 3,
+      "topic": "太郎君の仕事",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 196.34,
+      "endSeconds": 233.1,
+      "speechStartSeconds": 196.74,
+      "speechEndSeconds": 232.45,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-4",
+      "section": "I",
+      "number": 4,
+      "topic": "子供部屋",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 237.46,
+      "endSeconds": 291.87,
+      "speechStartSeconds": 237.86,
+      "speechEndSeconds": 291.22,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-5",
+      "section": "I",
+      "number": 5,
+      "topic": "写真の切り取り",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 295.34,
+      "endSeconds": 350.88,
+      "speechStartSeconds": 295.74,
+      "speechEndSeconds": 350.23,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-6",
+      "section": "I",
+      "number": 6,
+      "topic": "駐車場",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 355.01,
+      "endSeconds": 400.54,
+      "speechStartSeconds": 355.41,
+      "speechEndSeconds": 399.89,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-7",
+      "section": "I",
+      "number": 7,
+      "topic": "マラソンのコース",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 405.71,
+      "endSeconds": 475.93,
+      "speechStartSeconds": 406.11,
+      "speechEndSeconds": 475.28,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-8",
+      "section": "I",
+      "number": 8,
+      "topic": "佐々木さんの職歴",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 480.34,
+      "endSeconds": 539.15,
+      "speechStartSeconds": 480.74,
+      "speechEndSeconds": 538.5,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-9",
+      "section": "I",
+      "number": 9,
+      "topic": "美術館の入場者数",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 544.1,
+      "endSeconds": 593.09,
+      "speechStartSeconds": 544.5,
+      "speechEndSeconds": 592.44,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-10",
+      "section": "I",
+      "number": 10,
+      "topic": "会社の提案経路",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 598.6,
+      "endSeconds": 645.1,
+      "speechStartSeconds": 599,
+      "speechEndSeconds": 644.45,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-1",
+      "section": "II",
+      "number": 1,
+      "topic": "雨漏り",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 759.45,
+      "endSeconds": 822.23,
+      "speechStartSeconds": 759.85,
+      "speechEndSeconds": 821.58,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-2",
+      "section": "II",
+      "number": 2,
+      "topic": "国際交流パーティー",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 826.58,
+      "endSeconds": 891.01,
+      "speechStartSeconds": 826.98,
+      "speechEndSeconds": 890.36,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-3",
+      "section": "II",
+      "number": 3,
+      "topic": "届いた本の状態",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 895.85,
+      "endSeconds": 957.01,
+      "speechStartSeconds": 896.25,
+      "speechEndSeconds": 956.36,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-4",
+      "section": "II",
+      "number": 4,
+      "topic": "スーツの直し",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 961.37,
+      "endSeconds": 1034.57,
+      "speechStartSeconds": 961.77,
+      "speechEndSeconds": 1033.92,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-5",
+      "section": "II",
+      "number": 5,
+      "topic": "アルバイトの時間",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1038.89,
+      "endSeconds": 1115.33,
+      "speechStartSeconds": 1039.29,
+      "speechEndSeconds": 1114.68,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-6",
+      "section": "II",
+      "number": 6,
+      "topic": "スポーツクラブの費用",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1120.25,
+      "endSeconds": 1190.92,
+      "speechStartSeconds": 1120.65,
+      "speechEndSeconds": 1190.27,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-7",
+      "section": "II",
+      "number": 7,
+      "topic": "会える曜日",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1195.45,
+      "endSeconds": 1258.23,
+      "speechStartSeconds": 1195.85,
+      "speechEndSeconds": 1257.58,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-8",
+      "section": "II",
+      "number": 8,
+      "topic": "論文集の内容",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1262.12,
+      "endSeconds": 1333.92,
+      "speechStartSeconds": 1262.52,
+      "speechEndSeconds": 1333.27,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-9",
+      "section": "II",
+      "number": 9,
+      "topic": "コピー機の使用",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1338.15,
+      "endSeconds": 1411.62,
+      "speechStartSeconds": 1338.55,
+      "speechEndSeconds": 1410.97,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-10",
+      "section": "II",
+      "number": 10,
+      "topic": "自動車輸出の売上",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1415.82,
+      "endSeconds": 1487.63,
+      "speechStartSeconds": 1416.22,
+      "speechEndSeconds": 1486.98,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-1",
+      "section": "III",
+      "number": 1,
+      "topic": "子供の育て方",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1605.52,
+      "endSeconds": 1675.42,
+      "speechStartSeconds": 1605.92,
+      "speechEndSeconds": 1674.77,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-2",
+      "section": "III",
+      "number": 2,
+      "topic": "星占い",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1679.62,
+      "endSeconds": 1756.02,
+      "speechStartSeconds": 1680.02,
+      "speechEndSeconds": 1755.37,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-3",
+      "section": "III",
+      "number": 3,
+      "topic": "天気予報",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1760.87,
+      "endSeconds": 1833.81,
+      "speechStartSeconds": 1761.27,
+      "speechEndSeconds": 1833.16,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-4",
+      "section": "III",
+      "number": 4,
+      "topic": "保険会社の電話",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1837.46,
+      "endSeconds": 1913.78,
+      "speechStartSeconds": 1837.86,
+      "speechEndSeconds": 1913.13,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-5",
+      "section": "III",
+      "number": 5,
+      "topic": "ほやの好み",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1918.24,
+      "endSeconds": 1987.82,
+      "speechStartSeconds": 1918.64,
+      "speechEndSeconds": 1987.17,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-6",
+      "section": "III",
+      "number": 6,
+      "topic": "旅行への招待",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 1993.09,
+      "endSeconds": 2070.05,
+      "speechStartSeconds": 1993.49,
+      "speechEndSeconds": 2069.4,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-7",
+      "section": "III",
+      "number": 7,
+      "topic": "材木落下の事故",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 2073.82,
+      "endSeconds": 2136.96,
+      "speechStartSeconds": 2074.22,
+      "speechEndSeconds": 2136.31,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-8",
+      "section": "III",
+      "number": 8,
+      "topic": "畳のある図書館",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 2141.01,
+      "endSeconds": 2234.29,
+      "speechStartSeconds": 2141.41,
+      "speechEndSeconds": 2233.64,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-9",
+      "section": "III",
+      "number": 9,
+      "topic": "プロジェクトの費用",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 2239.22,
+      "endSeconds": 2314.95,
+      "speechStartSeconds": 2239.62,
+      "speechEndSeconds": 2314.3,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-10",
+      "section": "III",
+      "number": 10,
+      "topic": "会社経営の方針",
+      "src": "media/jlpt-1992-1kyu-listening.m4a",
+      "startSeconds": 2319.48,
+      "endSeconds": 2395.67,
+      "speechStartSeconds": 2319.88,
+      "speechEndSeconds": 2395.02,
+      "verification": "Local Japanese ASR question-number/topic sequence matched to supplied exam transcript; merged number boundaries rechecked using short independent crops.",
+      "evidence": [
+        "full-timing.json",
+        "listening-source-transcripts.json"
+      ]
+    }
+  ],
+  "audioClips": [
+    {
+      "id": "jlpt-1992-1-listening-I-0-1",
+      "src": "/media/jlpt-1992/audio/listening-I-01.m4a",
+      "sizeBytes": 423882,
+      "sha256": "954244065d7e58be8dd473888bd4e353c4a96d7411a44a7a04fbed1031f82187"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-2",
+      "src": "/media/jlpt-1992/audio/listening-I-02.m4a",
+      "sizeBytes": 268216,
+      "sha256": "5d825048ce71389e8bb20476a7567ad9d24d4525782e8031de0973db182233af"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-3",
+      "src": "/media/jlpt-1992/audio/listening-I-03.m4a",
+      "sizeBytes": 298676,
+      "sha256": "dce704ea686b892ce8af76f297591c290d75dbdb21dfc5a2ab9d4a458f162c74"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-4",
+      "src": "/media/jlpt-1992/audio/listening-I-04.m4a",
+      "sizeBytes": 441344,
+      "sha256": "fcd8ce6f80c33a8f5c1c2a235502f85131dcbe2a4121c4de155c03cdda37a730"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-5",
+      "src": "/media/jlpt-1992/audio/listening-I-05.m4a",
+      "sizeBytes": 450710,
+      "sha256": "c43144d05ad82bb3f0268e72d9443fede71fa516aa52a166884f491578e7d05f"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-6",
+      "src": "/media/jlpt-1992/audio/listening-I-06.m4a",
+      "sizeBytes": 369661,
+      "sha256": "e984316efd3aa770a1dbcac88783b9e489f4bc71ab4558c32d885e8c9c3262c9"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-7",
+      "src": "/media/jlpt-1992/audio/listening-I-07.m4a",
+      "sizeBytes": 569039,
+      "sha256": "69b14449483362692c49575cfb49225481561d5cdebfc15297c1c07f7d7472ae"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-8",
+      "src": "/media/jlpt-1992/audio/listening-I-08.m4a",
+      "sizeBytes": 476993,
+      "sha256": "4eeea739dd6664bc9775aea0db5d609b61860748e4f0412fad7b5b97763c4e65"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-9",
+      "src": "/media/jlpt-1992/audio/listening-I-09.m4a",
+      "sizeBytes": 397457,
+      "sha256": "2de3ec18b760d5ce8e30974a8769978777e2dd8c5a3c28b135a135273c4e2178"
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-10",
+      "src": "/media/jlpt-1992/audio/listening-I-10.m4a",
+      "sizeBytes": 377570,
+      "sha256": "6f0c478b669c3a966d9ad364252bdbcbb7c94b24ca9ebad00cfb78aaa2f4611a"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-1",
+      "src": "/media/jlpt-1992/audio/listening-II-01.m4a",
+      "sizeBytes": 508958,
+      "sha256": "897e64abe28ced87646ccad9cb3ed50a12982090dd2c21f4b8e8380dc222f3fd"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-2",
+      "src": "/media/jlpt-1992/audio/listening-II-02.m4a",
+      "sizeBytes": 522506,
+      "sha256": "3d1c349defb4bdfee4068eeb422b894ad6bb7a96483ceb4fa7f5e748c7bf40bf"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-3",
+      "src": "/media/jlpt-1992/audio/listening-II-03.m4a",
+      "sizeBytes": 495807,
+      "sha256": "fea420421d0190a827f378b15de8fcd9f259f06bc8d49048980c1af4a8a08dd6"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-4",
+      "src": "/media/jlpt-1992/audio/listening-II-04.m4a",
+      "sizeBytes": 593500,
+      "sha256": "e9ed2a29edce01c5f5ba8221572b96f57c401bb77b8b583af46dd4a728c52e68"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-5",
+      "src": "/media/jlpt-1992/audio/listening-II-05.m4a",
+      "sizeBytes": 619761,
+      "sha256": "0855f4469c3da7557dcf64b13598e5afc8353ed31f55d8c43ccebb48eca4ad1c"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-6",
+      "src": "/media/jlpt-1992/audio/listening-II-06.m4a",
+      "sizeBytes": 572723,
+      "sha256": "63a443dbbc5dade2ac67a002af60667f628208338d992a66fa88e2e38e9a99a9"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-7",
+      "src": "/media/jlpt-1992/audio/listening-II-07.m4a",
+      "sizeBytes": 509384,
+      "sha256": "e5785925838a518db69e737260af45e5e8a4143836141cd58caf36e5b3752fa3"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-8",
+      "src": "/media/jlpt-1992/audio/listening-II-08.m4a",
+      "sizeBytes": 582184,
+      "sha256": "e321bbd7357c79c35ac4a7491082727c4a2d0c89572c58c94062fdbf8bb18460"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-9",
+      "src": "/media/jlpt-1992/audio/listening-II-09.m4a",
+      "sizeBytes": 595736,
+      "sha256": "a3bff42412956a3343a0a96378c790c3c1119cb5b9d0b78cf10a2f19cb0c35f1"
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-10",
+      "src": "/media/jlpt-1992/audio/listening-II-10.m4a",
+      "sizeBytes": 581840,
+      "sha256": "7d8a1ebba0f7cc4af6fb26b59f396d2d9f8ed17d116cdf90ada0e8456b22fa98"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-1",
+      "src": "/media/jlpt-1992/audio/listening-III-01.m4a",
+      "sizeBytes": 566813,
+      "sha256": "ff900c44a40a1fbef6775aa61105fdf1f21ca5c4ea788c75130fce9040dfe97b"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-2",
+      "src": "/media/jlpt-1992/audio/listening-III-02.m4a",
+      "sizeBytes": 619450,
+      "sha256": "2b8a1e5f9354ac75adbc9d0e1a3221dc19a8441be5c8776a44d29f78e0b35717"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-3",
+      "src": "/media/jlpt-1992/audio/listening-III-03.m4a",
+      "sizeBytes": 591215,
+      "sha256": "1041d2a5d104007f148ffc86c597b55b5b87f31d2ec99b32e7a5708314db2b17"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-4",
+      "src": "/media/jlpt-1992/audio/listening-III-04.m4a",
+      "sizeBytes": 618572,
+      "sha256": "20bc19a0873c9dcef10bb31dc988ec0b8d89444ca5db0c6a142dbcfa7c5ddb07"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-5",
+      "src": "/media/jlpt-1992/audio/listening-III-05.m4a",
+      "sizeBytes": 564184,
+      "sha256": "4652684b585713273199892df27feb8d8a7774b42713bed62238c4bffb90c305"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-6",
+      "src": "/media/jlpt-1992/audio/listening-III-06.m4a",
+      "sizeBytes": 623944,
+      "sha256": "50df86e1e216ee6f542019a77d8d26a5decff026319eb45cea34e6bb8253850a"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-7",
+      "src": "/media/jlpt-1992/audio/listening-III-07.m4a",
+      "sizeBytes": 512279,
+      "sha256": "edd5132e69a0e752b588e252b4a40224be40de256f68ab4857bee93a01ee83bf"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-8",
+      "src": "/media/jlpt-1992/audio/listening-III-08.m4a",
+      "sizeBytes": 755767,
+      "sha256": "3ac8aa062774611654af4a92b416f596ee8af7700835bbd2b6e68a2a09ac864d"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-9",
+      "src": "/media/jlpt-1992/audio/listening-III-09.m4a",
+      "sizeBytes": 613689,
+      "sha256": "ca5e6ec721b864df7a3c6ebb9fcfadd1a94cb3df0fb3dbfa320c5a73b996f424"
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-10",
+      "src": "/media/jlpt-1992/audio/listening-III-10.m4a",
+      "sizeBytes": 617518,
+      "sha256": "2561b7440a6a5157b29cc7588336bc7267f8e5d4d6c3acbce54f6459cfa53c6a"
+    }
+  ],
+  "transcriptCorrections": [
+    {
+      "id": "jlpt-1992-1-listening-I-0-7",
+      "original": "しばらく走ると、公園がありますから、その公園の向こうへは行かないように、分かりましたね。",
+      "corrected": "しばらく走ると、公園がありますから、その公園の手前で左に折れ、ぐるりと公園を回って帰ってきます。駐車場の向こうへは行かないように、分かりましたね。",
+      "startSeconds": 452.2,
+      "endSeconds": 465.96,
+      "evidenceConfidence": "high_for_missing_route_sentences_and_parking_reference; demonstrative_その_vs_この_not_resolved",
+      "basis": "local_audio_ASR",
+      "evidence": [
+        "full-timing.json: 452.43-465.96",
+        "short-verification.json: I7-directions"
+      ],
+      "note": "Two local ASR passes agree on the omitted left-turn/return instruction and 駐車場. They differ on その/この; その is retained from the source. No human listening claim is made."
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-10",
+      "original": "昨年度の売上はどれですか。",
+      "corrected": "昨年度の売上はどうでしたか。",
+      "startSeconds": 1423.5,
+      "endSeconds": 1426.38,
+      "evidenceConfidence": "high",
+      "basis": "local_audio_ASR",
+      "evidence": [
+        "full-timing.json: 1423.50-1426.26 and 1462.48-1486.98",
+        "short-verification.json: II10-question"
+      ],
+      "note": "Question wording is heard twice in the recording and supported by the independent short ASR pass; answer mapping is unaffected."
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-6",
+      "original": "今年も行きますが、来年からは行かないつもりです",
+      "corrected": "今年は行きますが、来年からは行かないつもりです",
+      "startSeconds": 2051.92,
+      "endSeconds": 2056.74,
+      "evidenceConfidence": "high",
+      "basis": "local_audio_ASR",
+      "evidence": [
+        "full-timing.json: 2050.85-2056.74",
+        "short-verification.json: III6-option2"
+      ],
+      "note": "Option 2 は/も discrepancy is reproduced in full and short ASR; the answer remains option 2."
+    }
+  ],
+  "questions": [
+    {
+      "id": "jlpt-1992-1-vocab-I-1-1",
+      "originalNumber": "文字・語彙 問題I 問1 (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        9
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-2",
+      "originalNumber": "文字・語彙 問題I 問1 (2)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        11
+      ],
+      "sourcePdfPages": [
+        1,
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-3",
+      "originalNumber": "文字・語彙 問題I 問1 (3)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        13
+      ],
+      "sourcePdfPages": [
+        1,
+        21,
+        31
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-4",
+      "originalNumber": "文字・語彙 問題I 問1 (4)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        15
+      ],
+      "sourcePdfPages": [
+        1,
+        20
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-5",
+      "originalNumber": "文字・語彙 問題I 問1 (5)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        17
+      ],
+      "sourcePdfPages": [
+        1,
+        30
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-6",
+      "originalNumber": "文字・語彙 問題I 問1 (6)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        19
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-1-7",
+      "originalNumber": "文字・語彙 問題I 問1 (7)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        21
+      ],
+      "sourcePdfPages": [
+        1
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-2-1",
+      "originalNumber": "文字・語彙 問題I 問2 (1)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        25
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-2-2",
+      "originalNumber": "文字・語彙 問題I 問2 (2)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        27
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-2-3",
+      "originalNumber": "文字・語彙 問題I 問2 (3)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        29
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-2-4",
+      "originalNumber": "文字・語彙 問題I 問2 (4)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        31
+      ],
+      "sourcePdfPages": [
+        1,
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-3-1",
+      "originalNumber": "文字・語彙 問題I 問3 (1)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        35
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-3-2",
+      "originalNumber": "文字・語彙 問題I 問3 (2)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        37
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-3-3",
+      "originalNumber": "文字・語彙 問題I 問3 (3)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        39
+      ],
+      "sourcePdfPages": [
+        2,
+        38,
+        39
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-I-3-4",
+      "originalNumber": "文字・語彙 問題I 問3 (4)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        41
+      ],
+      "sourcePdfPages": [
+        2,
+        30
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-II-0-1",
+      "originalNumber": "文字・語彙 問題II (1)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        49
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-II-0-2",
+      "originalNumber": "文字・語彙 問題II (2)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        51
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-II-0-3",
+      "originalNumber": "文字・語彙 問題II (3)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        53
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-II-0-4",
+      "originalNumber": "文字・語彙 問題II (4)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        55
+      ],
+      "sourcePdfPages": [
+        2
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-II-0-5",
+      "originalNumber": "文字・語彙 問題II (5)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        57
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-1-1",
+      "originalNumber": "文字・語彙 問題III 問1 (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        65
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-1-2",
+      "originalNumber": "文字・語彙 問題III 問1 (2)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        67
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-1-3",
+      "originalNumber": "文字・語彙 問題III 問1 (3)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        69
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-1-4",
+      "originalNumber": "文字・語彙 問題III 問1 (4)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        71
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-2-1",
+      "originalNumber": "文字・語彙 問題III 問2 (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        75
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-2-2",
+      "originalNumber": "文字・語彙 問題III 問2 (2)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        77
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-2-3",
+      "originalNumber": "文字・語彙 問題III 問2 (3)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        79
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-2-4",
+      "originalNumber": "文字・語彙 問題III 問2 (4)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        81
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-3-1",
+      "originalNumber": "文字・語彙 問題III 問3 (1)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        85
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-3-2",
+      "originalNumber": "文字・語彙 問題III 問3 (2)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        87
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-3-3",
+      "originalNumber": "文字・語彙 問題III 問3 (3)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        89
+      ],
+      "sourcePdfPages": [
+        3
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-4-1",
+      "originalNumber": "文字・語彙 問題III 問4 (1)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        93
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-4-2",
+      "originalNumber": "文字・語彙 問題III 問4 (2)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        95
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-4-3",
+      "originalNumber": "文字・語彙 問題III 問4 (3)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        97
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-III-4-4",
+      "originalNumber": "文字・語彙 問題III 問4 (4)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        99
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-IV-0-1",
+      "originalNumber": "文字・語彙 問題IV (1)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        107
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-IV-0-2",
+      "originalNumber": "文字・語彙 問題IV (2)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        109
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-IV-0-3",
+      "originalNumber": "文字・語彙 問題IV (3)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        111
+      ],
+      "sourcePdfPages": [
+        4
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-IV-0-4",
+      "originalNumber": "文字・語彙 問題IV (4)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        113
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-IV-0-5",
+      "originalNumber": "文字・語彙 問題IV (5)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        115
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-1",
+      "originalNumber": "文字・語彙 問題V (1)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        123
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-2",
+      "originalNumber": "文字・語彙 問題V (2)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        125
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-3",
+      "originalNumber": "文字・語彙 問題V (3)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        127
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-4",
+      "originalNumber": "文字・語彙 問題V (4)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        129
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-5",
+      "originalNumber": "文字・語彙 問題V (5)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        131
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-6",
+      "originalNumber": "文字・語彙 問題V (6)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        133
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-7",
+      "originalNumber": "文字・語彙 問題V (7)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        135
+      ],
+      "sourcePdfPages": [
+        5
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-8",
+      "originalNumber": "文字・語彙 問題V (8)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        137
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-9",
+      "originalNumber": "文字・語彙 問題V (9)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        139
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-10",
+      "originalNumber": "文字・語彙 問題V (10)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        141
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-11",
+      "originalNumber": "文字・語彙 問題V (11)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        143
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-12",
+      "originalNumber": "文字・語彙 問題V (12)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        145
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-13",
+      "originalNumber": "文字・語彙 問題V (13)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        147
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-14",
+      "originalNumber": "文字・語彙 問題V (14)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        149
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-V-0-15",
+      "originalNumber": "文字・語彙 問題V (15)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        151
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-1",
+      "originalNumber": "文字・語彙 問題VI (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        159
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-2",
+      "originalNumber": "文字・語彙 問題VI (2)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        161
+      ],
+      "sourcePdfPages": [
+        6
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-3",
+      "originalNumber": "文字・語彙 問題VI (3)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        163
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-4",
+      "originalNumber": "文字・語彙 問題VI (4)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        165
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-5",
+      "originalNumber": "文字・語彙 問題VI (5)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        167
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-6",
+      "originalNumber": "文字・語彙 問題VI (6)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        169
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-7",
+      "originalNumber": "文字・語彙 問題VI (7)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        171
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-8",
+      "originalNumber": "文字・語彙 問題VI (8)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        173
+      ],
+      "sourcePdfPages": [
+        7
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-9",
+      "originalNumber": "文字・語彙 問題VI (9)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        175
+      ],
+      "sourcePdfPages": [
+        8
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-vocab-VI-0-10",
+      "originalNumber": "文字・語彙 問題VI (10)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        177
+      ],
+      "sourcePdfPages": [
+        8
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-1",
+      "originalNumber": "聴解 問題I 1番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        197
+      ],
+      "sourcePdfPages": [
+        11
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-2",
+      "originalNumber": "聴解 問題I 2番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        199
+      ],
+      "sourcePdfPages": [
+        12
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-3",
+      "originalNumber": "聴解 問題I 3番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        201
+      ],
+      "sourcePdfPages": [
+        13
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-4",
+      "originalNumber": "聴解 問題I 4番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        203
+      ],
+      "sourcePdfPages": [
+        14
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-5",
+      "originalNumber": "聴解 問題I 5番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        205
+      ],
+      "sourcePdfPages": [
+        15
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-6",
+      "originalNumber": "聴解 問題I 6番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        207
+      ],
+      "sourcePdfPages": [
+        16
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-7",
+      "originalNumber": "聴解 問題I 7番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        209
+      ],
+      "sourcePdfPages": [
+        17
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-8",
+      "originalNumber": "聴解 問題I 8番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        211
+      ],
+      "sourcePdfPages": [
+        18
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-9",
+      "originalNumber": "聴解 問題I 9番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        213
+      ],
+      "sourcePdfPages": [
+        19
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-I-0-10",
+      "originalNumber": "聴解 問題I 10番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        215
+      ],
+      "sourcePdfPages": [
+        20
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-1",
+      "originalNumber": "聴解 問題II 1番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        236
+      ],
+      "sourcePdfPages": [
+        22
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-2",
+      "originalNumber": "聴解 問題II 2番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        238
+      ],
+      "sourcePdfPages": [
+        22
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-3",
+      "originalNumber": "聴解 問題II 3番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        240
+      ],
+      "sourcePdfPages": [
+        23
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-4",
+      "originalNumber": "聴解 問題II 4番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        242
+      ],
+      "sourcePdfPages": [
+        23
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-5",
+      "originalNumber": "聴解 問題II 5番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        244
+      ],
+      "sourcePdfPages": [
+        24
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-6",
+      "originalNumber": "聴解 問題II 6番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        246
+      ],
+      "sourcePdfPages": [
+        24
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-7",
+      "originalNumber": "聴解 問題II 7番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        248
+      ],
+      "sourcePdfPages": [
+        25
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-8",
+      "originalNumber": "聴解 問題II 8番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        250
+      ],
+      "sourcePdfPages": [
+        25
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-9",
+      "originalNumber": "聴解 問題II 9番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        252
+      ],
+      "sourcePdfPages": [
+        26
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-II-0-10",
+      "originalNumber": "聴解 問題II 10番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        254
+      ],
+      "sourcePdfPages": [
+        26
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-1",
+      "originalNumber": "聴解 問題III 1番",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        265
+      ],
+      "sourcePdfPages": [
+        27
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-2",
+      "originalNumber": "聴解 問題III 2番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        267
+      ],
+      "sourcePdfPages": [
+        27
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-3",
+      "originalNumber": "聴解 問題III 3番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        269
+      ],
+      "sourcePdfPages": [
+        28
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-4",
+      "originalNumber": "聴解 問題III 4番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        271
+      ],
+      "sourcePdfPages": [
+        28
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-5",
+      "originalNumber": "聴解 問題III 5番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        273
+      ],
+      "sourcePdfPages": [
+        29
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-6",
+      "originalNumber": "聴解 問題III 6番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        275
+      ],
+      "sourcePdfPages": [
+        29
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-7",
+      "originalNumber": "聴解 問題III 7番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        277
+      ],
+      "sourcePdfPages": [
+        30
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-8",
+      "originalNumber": "聴解 問題III 8番",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        279
+      ],
+      "sourcePdfPages": [
+        30
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-9",
+      "originalNumber": "聴解 問題III 9番",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        281
+      ],
+      "sourcePdfPages": [
+        30
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-listening-III-0-10",
+      "originalNumber": "聴解 問題III 10番",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        283
+      ],
+      "sourcePdfPages": [
+        31
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-1",
+      "originalNumber": "読解・文法 問題I (1)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        294,
+        296
+      ],
+      "sourcePdfPages": [
+        33
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-2",
+      "originalNumber": "読解・文法 問題I (2)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        298,
+        300
+      ],
+      "sourcePdfPages": [
+        33
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-3",
+      "originalNumber": "読解・文法 問題I (3)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        302,
+        304
+      ],
+      "sourcePdfPages": [
+        33
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-4",
+      "originalNumber": "読解・文法 問題I (4)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        306,
+        308
+      ],
+      "sourcePdfPages": [
+        33
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-5",
+      "originalNumber": "読解・文法 問題I (5)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        310,
+        312
+      ],
+      "sourcePdfPages": [
+        33
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-6",
+      "originalNumber": "読解・文法 問題I (6)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        314,
+        316
+      ],
+      "sourcePdfPages": [
+        34
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-7",
+      "originalNumber": "読解・文法 問題I (7)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        318,
+        320
+      ],
+      "sourcePdfPages": [
+        34
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-I-0-8",
+      "originalNumber": "読解・文法 問題I (8)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        322,
+        324
+      ],
+      "sourcePdfPages": [
+        34
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-1",
+      "originalNumber": "読解・文法 問題II (1)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        333,
+        335
+      ],
+      "sourcePdfPages": [
+        35
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-2",
+      "originalNumber": "読解・文法 問題II (2)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        337,
+        339
+      ],
+      "sourcePdfPages": [
+        35
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-3",
+      "originalNumber": "読解・文法 問題II (3)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        341,
+        343
+      ],
+      "sourcePdfPages": [
+        35
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-4",
+      "originalNumber": "読解・文法 問題II (4)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        345,
+        347
+      ],
+      "sourcePdfPages": [
+        36
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-5",
+      "originalNumber": "読解・文法 問題II (5)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        349,
+        351
+      ],
+      "sourcePdfPages": [
+        36
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-6",
+      "originalNumber": "読解・文法 問題II (6)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        353,
+        355
+      ],
+      "sourcePdfPages": [
+        36
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-7",
+      "originalNumber": "読解・文法 問題II (7)",
+      "answer": 1,
+      "answerSource": "model-inferred-from-passage",
+      "sourceParagraphs": [
+        357,
+        359
+      ],
+      "sourcePdfPages": [
+        36
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-II-0-8",
+      "originalNumber": "読解・文法 問題II (8)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        361,
+        363
+      ],
+      "sourcePdfPages": [
+        36
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-1-1",
+      "originalNumber": "読解・文法 問題III 問1 (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        372,
+        374
+      ],
+      "sourcePdfPages": [
+        37
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-2-1",
+      "originalNumber": "読解・文法 問題III 問2 (1)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        379,
+        381,
+        378
+      ],
+      "sourcePdfPages": [
+        38
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-3-1",
+      "originalNumber": "読解・文法 問題III 問3 (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        386,
+        388
+      ],
+      "sourcePdfPages": [
+        38
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-4-1",
+      "originalNumber": "読解・文法 問題III 問4 (1)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        393,
+        395
+      ],
+      "sourcePdfPages": [
+        39
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-5-1",
+      "originalNumber": "読解・文法 問題III 問5 (1)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        400,
+        402
+      ],
+      "sourcePdfPages": [
+        39
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-6-1",
+      "originalNumber": "読解・文法 問題III 問6 (1)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        407,
+        409
+      ],
+      "sourcePdfPages": [
+        39
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-III-7-1",
+      "originalNumber": "読解・文法 問題III 問7 (1)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        414,
+        416
+      ],
+      "sourcePdfPages": [
+        40
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-1",
+      "originalNumber": "読解・文法 問題IV (1)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        423,
+        425
+      ],
+      "sourcePdfPages": [
+        40
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-2",
+      "originalNumber": "読解・文法 問題IV (2)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        427,
+        429
+      ],
+      "sourcePdfPages": [
+        40
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-3",
+      "originalNumber": "読解・文法 問題IV (3)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        431,
+        433
+      ],
+      "sourcePdfPages": [
+        40
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-4",
+      "originalNumber": "読解・文法 問題IV (4)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        435,
+        437
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-5",
+      "originalNumber": "読解・文法 問題IV (5)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        439,
+        441
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-6",
+      "originalNumber": "読解・文法 問題IV (6)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        443,
+        445
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-7",
+      "originalNumber": "読解・文法 問題IV (7)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        447,
+        449
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-8",
+      "originalNumber": "読解・文法 問題IV (8)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        451,
+        453
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-9",
+      "originalNumber": "読解・文法 問題IV (9)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        455,
+        457
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-10",
+      "originalNumber": "読解・文法 問題IV (10)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        459,
+        461
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-11",
+      "originalNumber": "読解・文法 問題IV (11)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        463,
+        465
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-12",
+      "originalNumber": "読解・文法 問題IV (12)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        467,
+        469
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-13",
+      "originalNumber": "読解・文法 問題IV (13)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        471,
+        473
+      ],
+      "sourcePdfPages": [
+        41
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-14",
+      "originalNumber": "読解・文法 問題IV (14)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        475,
+        477
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-15",
+      "originalNumber": "読解・文法 問題IV (15)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        479,
+        481
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-16",
+      "originalNumber": "読解・文法 問題IV (16)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        483,
+        485
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-17",
+      "originalNumber": "読解・文法 問題IV (17)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        487,
+        489
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-18",
+      "originalNumber": "読解・文法 問題IV (18)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        491,
+        493
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-19",
+      "originalNumber": "読解・文法 問題IV (19)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        495,
+        497
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-20",
+      "originalNumber": "読解・文法 問題IV (20)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        499,
+        501
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-21",
+      "originalNumber": "読解・文法 問題IV (21)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        503,
+        505
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-22",
+      "originalNumber": "読解・文法 問題IV (22)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        507,
+        509
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-23",
+      "originalNumber": "読解・文法 問題IV (23)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        511,
+        513
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-24",
+      "originalNumber": "読解・文法 問題IV (24)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        515,
+        517
+      ],
+      "sourcePdfPages": [
+        42
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-25",
+      "originalNumber": "読解・文法 問題IV (25)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        519,
+        521
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-26",
+      "originalNumber": "読解・文法 問題IV (26)",
+      "answer": 2,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        523,
+        525
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-27",
+      "originalNumber": "読解・文法 問題IV (27)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        527,
+        529
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-28",
+      "originalNumber": "読解・文法 問題IV (28)",
+      "answer": 1,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        531,
+        533
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-29",
+      "originalNumber": "読解・文法 問題IV (29)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        535,
+        537
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-30",
+      "originalNumber": "読解・文法 問題IV (30)",
+      "answer": 3,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        539,
+        541
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1992-1-reading_grammar-IV-0-31",
+      "originalNumber": "読解・文法 問題IV (31)",
+      "answer": 4,
+      "answerSource": "printed-answer-key",
+      "sourceParagraphs": [
+        543,
+        545
+      ],
+      "sourcePdfPages": [
+        43
+      ],
+      "answerSourcePdfPages": [
+        44
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "questionId": "jlpt-1992-1-reading_grammar-II-0-7",
+      "severity": "review",
+      "code": "missing-printed-answer",
+      "message": "原答案图只印「問7」，其后未印选项号。正文把「不合理な部分」与「理屈や理性だけで判断を下すのではなく、その前後の事情や個々の状況を参考にして」对应，因此推断选项1「理屈だけで判断しないこと」。"
+    },
+    {
+      "severity": "information",
+      "code": "source-transcription-artifacts",
+      "message": "源文件本身含录入/OCR错字，例如「日本入」「入間」「とのように」「スポーツグラフ」等。结构化正文忠实保留，未无依据改写；听力原文以原文件为准，仍需对照音频逐句核验。"
+    },
+    {
+      "severity": "information",
+      "code": "legacy-level",
+      "message": "试卷为1992年旧制1級，不可标成2010年后JLPT N1官方真题；可归入内部N1/高阶学习范围，但来源标签必须保留旧1級。"
+    }
+  ]
+}

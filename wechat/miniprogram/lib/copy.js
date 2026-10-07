@@ -23,7 +23,7 @@ const zh = {
   privacy: '账号与数据', privacyText: '登录时，邮箱及密码经 HTTPS 发送至 Pikku 现有身份服务。学习记录、收藏及词汇统计保存到网站同一账号；登录凭据保存在本机。退出会清除本机登录凭据。游客学习记录保存在本机。',
   contentNote: '切换显示语言会改变界面；已有题干、释义和资料保留原文。',
   choose: '选择学习范围', search: '搜索题目', results: '题目', open: '打开', browse: '浏览题库',
-  categories: { all: '全部题型', vocabulary: '词汇', morphology: '词形', syntax: '句法', sentencePattern: '句型', classics: '原典', translation: '翻译' },
+  categories: { all: '全部题型', vocabulary: '词汇', morphology: '词形', syntax: '句法', sentencePattern: '句型', classics: '原典', translation: '翻译', reading: '阅读', listening: '听力' },
 };
 const en = {
   home: 'Today', practice: 'Practice', words: 'Words', account: 'Account', resources: 'Resources',
@@ -50,7 +50,7 @@ const en = {
   privacy: 'Account and data', privacyText: 'Your email and password are sent over HTTPS to Pikku’s existing identity service. Progress, bookmarks and word statistics are stored in the same website account. Sign-in credentials are stored on this device and removed on sign-out. Guest records stay on this device.',
   contentNote: 'The display setting changes the interface. Existing questions, meanings and resources keep their original text.',
   choose: 'Choose your learning range', search: 'Search questions', results: 'questions', open: 'Open', browse: 'Browse questions',
-  categories: { all: 'All types', vocabulary: 'Vocabulary', morphology: 'Morphology', syntax: 'Syntax', sentencePattern: 'Patterns', classics: 'Classics', translation: 'Translation' },
+  categories: { all: 'All types', vocabulary: 'Vocabulary', morphology: 'Morphology', syntax: 'Syntax', sentencePattern: 'Patterns', classics: 'Classics', translation: 'Translation', reading: 'Reading', listening: 'Listening' },
 };
 function levelCards(locale) {
   const labels = locale === 'en'
@@ -58,4 +58,39 @@ function levelCards(locale) {
     : [['C', '', '初', '级'], ['F', '', '凡', '级'], ['G', '', '高', '级'], ['M', '准', '母', '语级']];
   return labels.map(([id, prefix, emphasis, suffix]) => ({ id, prefix, emphasis, suffix, icon: '/assets/level-' + id.toLowerCase() + '.png' }));
 }
+Object.assign(zh, { paper1992: '1992 · 旧1級真题', fullPaper: '原卷跨级 · 全部等级', exitPaper: '返回所选等级', paperAll: '整卷', originalNumber: '原题号', paperVocabulary: '文字词汇', paperGrammar: '语法', transcript: '听力原文', playAudio: '播放听力', pauseAudio: '暂停', restartAudio: '从头播放', audioError: '音频未能播放，请检查网络后重试。', questionImage: '查看题图' });
+Object.assign(en, { paper1992: '1992 · Old Level 1 paper', fullPaper: 'Full paper · All levels', exitPaper: 'Return to selected level', paperAll: 'Full paper', originalNumber: 'Original question', paperVocabulary: 'Vocabulary', paperGrammar: 'Grammar', transcript: 'Listening transcript', playAudio: 'Play audio', pauseAudio: 'Pause', restartAudio: 'Restart audio', audioError: 'Audio could not play. Check your connection and retry.', questionImage: 'View question image' });
+Object.assign(zh, {
+  dictionary: '词典', approximate: '近似', approximateHelp: '有印象，但词义判断有偏差，不算忘了。',
+  wordScopes: { level: '当前等级及以下', all: '全部词库（含待分级）', 'n1-2000': '2000词 PDF', 'jlpt-1992': '1992 真题词汇' },
+  wordSearch: '词头、读音或中文义', entries: '词条', ungraded: '待分级', thisRound: '本轮反馈',
+  emptyWords: '没有匹配词卡。可切换词汇范围或清空搜索。', pendingWords: '条反馈已保存在本机，等待同步',
+  otherSpellings: '其他写法', otherReadings: '其他读音', additionalMeaning: '补充释义',
+  dictionaryNote: '词典与背单词共用词条和学习记录。查词后可直接练习，查看释义本身不算作记得。',
+  reviewedWords: '已练', lastOutcome: '最近', practiseWord: '练这个词', previousEntries: '上一页', nextEntries: '下一页', emptyDictionary: '没有匹配词条。',
+  outcomes: { forgotten: '忘了', approximate: '近似', remembered: '记得' },
+  forecastDate: '预测日期', predicted: '预计选择', noTimedHistory: '这个词还没有带日期的反馈，不同日期暂时显示相同的初始估计。',
+  forecastNote: '假设此后不再复习这个词。反馈不足时使用初始估计，不代表已验证准确。',
+  learningModel: '个人学习模型与记录', modelNote: '先保存答题前的预测，再用实际反馈更新模型。每条记录保留日期、三种状态概率与实际结果，按语言分别学习。',
+  modelSamples: '个人反馈', modelError: '三状态预测误差（越低越好）', modelBaseline: '固定猜测基准', exportReviews: '导出我的学习记录',
+  exportSaved: '记录已保存，可再次点击导出分享', exportFailed: '导出失败，请检查本机存储空间',
+  supportAuthor: '支持作者', supportNote: '如果 Pikku 对你有帮助，欢迎自愿支持作者继续开发与整理内容。谢谢你的鼓励。', supportHint: '点击查看大图，或长按二维码。',
+});
+Object.assign(en, {
+  dictionary: 'Dictionary', approximate: 'Approximate', approximateHelp: 'Familiar, but your understanding of the meaning is imprecise.',
+  wordScopes: { level: 'Current level and below', all: 'All entries, including ungraded', 'n1-2000': '2000-word PDF', 'jlpt-1992': '1992 exam vocabulary' },
+  wordSearch: 'Word, reading or meaning', entries: 'entries', ungraded: 'Ungraded', thisRound: 'This session',
+  emptyWords: 'No matching cards. Change the scope or clear the search.', pendingWords: 'reviews saved on this device, waiting to sync',
+  otherSpellings: 'Other spellings', otherReadings: 'Other readings', additionalMeaning: 'Additional meaning',
+  dictionaryNote: 'Dictionary and practice share entries and learning records. Looking up a meaning does not count as remembering it.',
+  reviewedWords: 'Reviewed', lastOutcome: 'Last', practiseWord: 'Practise this word', previousEntries: 'Previous page', nextEntries: 'Next page', emptyDictionary: 'No matching entries.',
+  outcomes: { forgotten: 'Forgotten', approximate: 'Approximate', remembered: 'Remembered' },
+  forecastDate: 'Prediction date', predicted: 'Predicted choice', noTimedHistory: 'No dated feedback for this word yet. Different dates show the same initial estimate.',
+  forecastNote: 'Assumes no further reviews. Sparse history uses an initial estimate, not proven accuracy.',
+  learningModel: 'Personal learning model and records', modelNote: 'Predictions are frozen before feedback, then actual results train the model. Dates, probabilities and outcomes are kept separately for each language.',
+  modelSamples: 'Personal feedback', modelError: 'Three-state error (lower is better)', modelBaseline: 'Fixed baseline', exportReviews: 'Export my learning records',
+  exportSaved: 'Saved. Tap Export again to share.', exportFailed: 'Export failed. Check device storage.',
+  supportAuthor: 'Support the author', supportNote: 'If Pikku helps you, you are welcome to support its continued development and learning materials. Thank you.', supportHint: 'Tap to enlarge, or long-press the QR code.',
+});
+
 module.exports = { copies: { 'zh-CN': zh, en }, levelCards };

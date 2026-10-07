@@ -161,11 +161,13 @@ async function usableSession() {
 }
 
 async function request(path, method = 'GET', data) {
-  if (typeof path !== 'string' || !/^\/api\/[a-z0-9/-]+$/.test(path)) {
+  const reviewPage = typeof path === 'string' && /^\/api\/vocab\/reviews\?limit=500(?:&cursor=[A-Za-z0-9_-]{1,2048})?$/.test(path);
+  if (typeof path !== 'string' || (!/^\/api\/[a-z0-9/-]+$/.test(path) && !reviewPage)) {
     throw error('Invalid API path.', 400, 'INVALID_REQUEST');
   }
   if (typeof method !== 'string') throw error('Invalid request method.', 400, 'INVALID_REQUEST');
   method = method.toUpperCase();
+  if (reviewPage && method !== 'GET') throw error('Invalid API query.', 400, 'INVALID_REQUEST');
   load();
   const expected = generation;
   const publicQuestions = path === '/api/questions' && method === 'GET';

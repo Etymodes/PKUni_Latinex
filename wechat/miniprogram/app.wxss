@@ -53,3 +53,29 @@ text { overflow-wrap: anywhere; }
 .section-title { display: block; font: 600 43rpx Georgia, "Songti SC", serif; margin: 30rpx 0; }.resource-title { display: block; font-size: 30rpx; font-weight: 600; }.account-email { display: block; color: #23567d; margin: 25rpx 0; font-size: 30rpx; }
 .bottom-space { height: 170rpx; }.navigation { position: fixed; bottom: 0; left: 0; right: 0; display: flex; padding: 8rpx 20rpx calc(14rpx + env(safe-area-inset-bottom)); background: #fffefa; border-top: 1rpx solid #e3ddd2; z-index: 10; }
 .nav-item { width: 25%; background: transparent; color: #847e71; padding: 12rpx 5rpx; border-radius: 12rpx; font-size: 22rpx; text-align: center; }.nav-item text { display: block; }.nav-symbol { font-size: 35rpx; line-height: 1.2; margin-bottom: 5rpx; font-family: Georgia, serif; }.nav-item.selected { color: #94233b; font-weight: 600; }
+
+.word-feedback { gap: 12rpx; }.word-feedback button { padding: 20rpx 8rpx; font-size: 26rpx; }
+.approximate-button { background: #f4e7cb; color: #785319; margin-top: 24rpx; }
+.forecast { text-align: left; border-top: 1rpx solid #e8e1d6; margin-top: 30rpx; padding-top: 26rpx; }
+.dictionary-term { display: block; font: 600 43rpx Georgia, serif; margin-top: 16rpx; }.dictionary-meaning { color: #256f60; font-weight: 600; }
+.support-panel { text-align: center; }.support-code { display: block; width: 100%; max-width: 520rpx; margin: 20rpx auto; }
+
+/* Original paper: long readings, figures and per-question listening. */
+.paper-selector .section-title { font-size: 32rpx; margin: 0 0 22rpx; }
+.paper-selector .filters { flex-wrap: wrap; }
+.paper-selector .chip { flex: 1 1 150rpx; min-height: 76rpx; }
+.paper-selector .language-picker { overflow-wrap: anywhere; margin-bottom: 0; }
+.question-panel { min-width: 0; }
+.question-panel .question-title { white-space: pre-wrap; }
+.question-passage { font-size: 30rpx; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; }
+.question-image { width: 100%; min-width: 0; margin: 24rpx 0; }
+.question-image image { display: block; width: 100%; max-width: 100%; }
+.question-image .note { margin-top: 10rpx; }
+.question-audio { border: 1rpx solid #e3ddd1; border-radius: 14rpx; padding: 18rpx; margin: 24rpx 0; }
+.question-audio .actions { flex-wrap: wrap; gap: 12rpx; }
+.question-audio .actions button { flex: 1 1 160rpx; min-height: 80rpx; margin-top: 0; padding: 18rpx 12rpx; }
+.question-audio slider { margin: 24rpx 0 12rpx; }
+.question-audio .note { margin: 0; font-variant-numeric: tabular-nums; }
+.question-audio .notice { margin: 18rpx 0 0; }
+.question-transcript .text-button { width: 100%; text-align: left; }
+.question-transcript .target-text { font-size: 29rpx; line-height: 1.9; margin: 12rpx 0 0; padding: 0; background: transparent; white-space: pre-wrap; overflow-wrap: anywhere; }

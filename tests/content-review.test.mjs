@@ -9,6 +9,7 @@ const questionSources = await Promise.all([
 const questionSource = questionSources.join("\n");
 const resourceSource = await readFile(new URL("../data/resources.ts", import.meta.url), "utf8");
 const pageSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+const vocabularyWorkspaceSource = await readFile(new URL("../app/vocabulary-workspace.tsx", import.meta.url), "utf8");
 
 const candidateIds = ["ja-n1-003", "ja-n1-004", "i-mor-04", "i-syn-08", "es-a2-002", "es-b1-003"];
 
@@ -74,7 +75,12 @@ test("resource views consume only the active language datasets", () => {
 
   assert.match(library, /textbooks\.map/);
   assert.match(library, /chapterMappings\.map/);
-  assert.match(library, /languageLexicon\.filter/);
+  assert.match(library, /<VocabularyDictionary\s+key=\{language\}\s+language=\{language\}/);
+  const dictionary = vocabularyWorkspaceSource.slice(vocabularyWorkspaceSource.indexOf("export function VocabularyDictionary"));
+  assert.match(dictionary, /dictionaryEntries\.filter\(card => card\.language === language\)/);
+  assert.match(dictionary, /const entries = languageEntries\.filter/);
+  assert.match(dictionary, /entries\.slice\(0, visibleCount\)\.map/);
+  assert.doesNotMatch(dictionary, /dictionaryEntries\.map/);
   assert.doesNotMatch(library, /textbookCatalog\.map|resourceChapterMappings\.map/);
   assert.match(library, /language === "la" \? etymologyFacts\.length : currentFacts\.length/);
 });

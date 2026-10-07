@@ -3,7 +3,9 @@ import { readFileSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
 import test from 'node:test';
 import vm from 'node:vm';
-import { buildSharedSource, loadProjectData } from '../scripts/build-wechat.mjs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { buildSharedSource, buildVocabularySource, loadProjectData } from '../scripts/build-wechat.mjs';
 import worker, { __test } from '../worker/index.js';
 
 const miniRoot = new URL('../wechat/miniprogram/', import.meta.url);
@@ -23,23 +25,70 @@ function commonJs(code, dependencies = {}, globals = {}) {
   return module.exports;
 }
 
+// Recursively load real page helpers in one isolated VM, while keeping the
+// fixture API and generated bank/shared modules authoritative for every import.
+function loadPageModule(mocks, globals) {
+  const root = fileURLToPath(miniRoot);
+  const context = vm.createContext(globals);
+  const cache = new Map(Object.entries(mocks).map(([name, exports]) => [path.resolve(root, name), { exports }]));
+  const generated = new Map(['vocabulary-model', 'vocabulary-review-sync'].map(name =>
+    [path.resolve(root, `data/${name}.js`), buildVocabularySource(name)]));
+  function load(filename) {
+    filename = path.resolve(filename);
+    if (!path.extname(filename)) filename += '.js';
+    const relative = path.relative(root, filename);
+    assert.ok(relative && !relative.startsWith('..') && !path.isAbsolute(relative), `Unexpected page dependency ${filename}`);
+    if (cache.has(filename)) return cache.get(filename).exports;
+    const module = { exports: {} };
+    cache.set(filename, module);
+    const code = generated.has(filename) ? generated.get(filename) : readFileSync(filename, 'utf8');
+    const execute = vm.runInContext(`(function(module, exports, require) {\n${code}\n})`, context, { filename });
+    execute(module, module.exports, specifier => {
+      assert.ok(specifier.startsWith('.'), `Unexpected external page dependency ${specifier}`);
+      return load(path.resolve(path.dirname(filename), specifier));
+    });
+    return module.exports;
+  }
+  return load(path.join(root, 'pages/index/index.js'));
+}
+
 // The same in-memory D1 adapter used by the existing Worker compatibility test.
 class Statement {
   constructor(database, sql, values = []) { Object.assign(this, { database, sql, values }); }
   bind(...values) { return new Statement(this.database, this.sql, values); }
-  async run() { return this.database.prepare(this.sql).run(...this.values); }
+  execute() {
+    const prepared = this.database.prepare(this.sql);
+    if (/^\s*(SELECT|PRAGMA)\b/i.test(this.sql)) return { results: prepared.all(...this.values) };
+    const result = prepared.run(...this.values);
+    return { results: [], meta: { changes: Number(result.changes) } };
+  }
+  async run() { return this.execute(); }
   async first() { return this.database.prepare(this.sql).get(...this.values) ?? null; }
-  async all() { return { results: this.database.prepare(this.sql).all(...this.values) }; }
+  async all() { return this.execute(); }
 }
 
 test('native answers and word ratings round-trip through the real API and Worker once per action, with account isolation', async t => {
   const database = new DatabaseSync(':memory:');
   t.after(() => database.close());
   const config = commonJs(source('lib/config.js'));
+  let batchChain = Promise.resolve();
   const env = {
     DB: {
       prepare: sql => new Statement(database, sql),
-      batch: async statements => Promise.all(statements.map(statement => /^\s*(SELECT|PRAGMA)\b/i.test(statement.sql) ? statement.all() : statement.run())),
+      batch(statements) {
+        assert.ok(statements.length <= 50);
+        assert.ok(statements.every(statement => statement.values.length <= 100));
+        const operation = batchChain.then(() => {
+          database.exec('BEGIN');
+          try {
+            const results = statements.map(statement => statement.execute());
+            database.exec('COMMIT');
+            return results;
+          } catch (error) { database.exec('ROLLBACK'); throw error; }
+        });
+        batchChain = operation.catch(() => {});
+        return operation;
+      },
     },
     SUPABASE_URL: config.supabaseUrl,
     SUPABASE_PUBLISHABLE_KEY: 'fixture-publishable-key',
@@ -83,9 +132,9 @@ test('native answers and word ratings round-trip through the real API and Worker
   const bank = plain(loadProjectData());
   const shared = commonJs(buildSharedSource(), { './bank.js': bank });
   let definition;
-  commonJs(source('pages/index/index.js'), {
-    '../../lib/api': api, '../../data/bank': bank, '../../data/shared': shared,
-    '../../lib/copy': commonJs(source('lib/copy.js')),
+  loadPageModule({
+    'lib/api.js': api, 'data/bank.js': bank, 'data/shared.js': shared,
+    'lib/copy.js': commonJs(source('lib/copy.js')),
   }, { wx, Page: value => { definition = value; } });
   const page = { ...definition, data: plain(definition.data), setData(update) { Object.assign(this.data, update); } };
   const refresh = page.refresh;
@@ -118,19 +167,19 @@ test('native answers and word ratings round-trip through the real API and Worker
 
   page.changeView(event({ view: 'words' }));
   const expectedWords = {};
-  for (const correct of [true, false]) {
+  for (const outcome of ['remembered', 'approximate', 'forgotten']) {
     const card = page.data.card;
     const key = shared.vocabularyKey(card.language, card.term);
     const previous = expectedWords[key] || { seen: 0, correct: 0 };
-    expectedWords[key] = { seen: previous.seen + 1, correct: previous.correct + Number(correct) };
+    expectedWords[key] = { seen: previous.seen + 1, correct: previous.correct + Number(outcome === 'remembered') };
     page.revealWord();
-    const answer = event({ correct: correct ? 'yes' : 'no' });
+    const answer = event({ outcome });
     await Promise.all([page.rateWord(answer), page.rateWord(answer)]);
     await page.rateWord(answer);
   }
-  for (const path of ['progress', 'vocab']) {
-    assert.equal(calls.filter(call => call.url === `${config.apiOrigin}/api/${path}` && call.method === 'POST').length, 2);
-  }
+  assert.equal(calls.filter(call => call.url === `${config.apiOrigin}/api/progress` && call.method === 'POST').length, 2);
+  assert.equal(calls.filter(call => call.url === `${config.apiOrigin}/api/vocab/reviews` && call.method === 'POST').length, 3);
+  assert.equal(calls.filter(call => call.url === `${config.apiOrigin}/api/vocab` && call.method === 'POST').length, 0);
 
   // Read the exact endpoint used by the website, independently of native UI state.
   const response = await worker.fetch(new Request(`${config.apiOrigin}/api/stats`, {

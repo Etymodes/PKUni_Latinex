@@ -17,9 +17,10 @@ export function createSourceLoader(root = projectRoot) {
     const module = { exports: {} };
     cache.set(filename, module);
     const source = fs.readFileSync(filename, "utf8");
+    if (filename.endsWith(".json")) { module.exports = JSON.parse(source); return module.exports; }
     const compiled = ts.transpileModule(source, {
       fileName: filename,
-      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true },
     }).outputText;
     const localRequire = (specifier) => {
       if (!specifier.startsWith(".")) throw new Error(`Unexpected data dependency: ${specifier}`);
@@ -98,13 +99,25 @@ export function buildSharedSource(root = projectRoot) {
   if (!callback || !ts.isArrowFunction(callback) || !ts.isBlock(callback.body)) throw new Error("Review changed website question override logic before packaging.");
   const source = [
     'const { learningLanguages } = require("./bank.js");',
-    sourceDeclarations("data/questions.ts", ["pikkuLevels", "legacyPikkuLevels", "normalizePikkuLevel", "matchesLevel"], root),
+    sourceDeclarations("data/questions.ts", ["pikkuLevels", "legacyPikkuLevels", "normalizePikkuLevel", "matchesLevel", "questionOptionOrder"], root),
     sourceDeclarations("data/vocabulary.ts", ["cumulativeVocabularyLevels", "vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard"], root),
     sourceDeclarations("lib/shuffle.ts", ["shuffle"], root),
     sourceDeclarations("app/i18n.ts", ["availableLearningLanguages", "normalizeLearningLanguage", "getLearningLanguage"], root),
     // Preserve the website's deletion, replacement, order, and review-status behavior.
     `export function mergeQuestionOverrides(staticQuestions, overrides = []) ${callback.body.getText(page)}`,
   ].join("\n\n");
+  return generatedNotice + ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019, removeComments: true },
+  }).outputText;
+}
+
+// Generate the same model and validation/sync contract; no mini-program model fork.
+export function buildVocabularySource(name, root = projectRoot) {
+  if (!["vocabulary-model", "vocabulary-review-sync"].includes(name)) throw new Error("Unexpected shared module.");
+  let source = fs.readFileSync(path.join(root, `lib/${name}.ts`), "utf8");
+  // Array.at is newer than the mini-program ES2019 runtime. Keep its one use equivalent.
+  source = source.replace("rows.at(-1)", "rows[rows.length - 1]")
+    .replace('"./vocabulary-model.ts"', '"./vocabulary-model.js"');
   return generatedNotice + ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019, removeComments: true },
   }).outputText;
@@ -123,6 +136,11 @@ export async function buildWechat({ root = projectRoot, outputDir = path.join(ro
   fs.mkdirSync(path.join(outputDir, "assets"), { recursive: true });
   fs.writeFileSync(path.join(outputDir, "data/bank.js"), `${generatedNotice}module.exports = ${JSON.stringify(data)};\n`);
   fs.writeFileSync(path.join(outputDir, "data/shared.js"), buildSharedSource(root));
+  for (const name of ["vocabulary-model", "vocabulary-review-sync"]) {
+    fs.writeFileSync(path.join(outputDir, `data/${name}.js`), buildVocabularySource(name, root));
+  }
+  const support = path.join(root, "wechat/static/support-author.png");
+  if (fs.existsSync(support)) fs.copyFileSync(support, path.join(outputDir, "assets/support-author.png"));
   fs.copyFileSync(path.join(root, "public/pkuni-latinex-logo-final.png"), path.join(outputDir, "assets/logo.png"));
   for (const level of ["c", "f", "g", "m"]) {
     await sharp(path.join(root, `public/level-icons/${level}.svg`)).resize(192, 192).png().toFile(path.join(outputDir, `assets/level-${level}.png`));
