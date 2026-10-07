@@ -386,9 +386,11 @@ h1, h2, h3, p { margin-top: 0; }
 .vocab-reveal span, .vocab-reveal strong { display: block; }
 .vocab-reveal span { color: var(--muted); font-size: 9px; }
 .vocab-reveal strong { margin-top: 5px; font: 600 20px var(--serif-cn); }
-.vocab-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.vocab-feedback { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
 .vocab-feedback button { min-height: 62px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #d9a6a2; border-radius: 5px; color: #963c35; background: var(--red-soft); cursor: pointer; }
 .vocab-feedback button.remembered { color: var(--green); border-color: #99c4a9; background: var(--green-soft); }
+.vocab-feedback button.approximate { color: #775818; border-color: #cdbb83; background: var(--gold-soft); }
+.vocab-feedback .vocab-approx-symbol { font-size: 23px; line-height: 1; }
 .vocab-feedback span, .vocab-feedback strong, .vocab-feedback small { display: block; text-align: left; }
 .vocab-feedback small { margin-top: 2px; opacity: .78; font-size: 9px; }
 .vocabulary-trainer > .fine-print { margin-top: 14px !important; text-align: center; color: var(--muted); }
@@ -744,6 +746,9 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 480px) {
+  .vocab-feedback { gap: 6px; }
+  .vocab-feedback button { flex-direction: column; gap: 4px; padding: 10px 6px; }
+  .vocab-feedback span, .vocab-feedback strong, .vocab-feedback small { text-align: center; }
   .topbar-title { display: none; }
   .language-trigger { min-width: 0; width: min(185px, calc(100vw - 190px)); }
   .language-trigger-copy > span { gap: 6px; }

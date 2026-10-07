@@ -293,6 +293,21 @@ test("a committed review with a lost response stays pending until refresh confir
   assert.equal(h.calls.filter(call => call.path === "/api/vocab/reviews" && call.method === "POST").length, 1);
 });
 
+test("an approximate review survives account sync as a distinct state and increments only the review count", async () => {
+  const h = harness();
+  const event = { ...review("partial-meaning"), outcome: "approximate", modelVersion: "pikku-recall-v2", probability: 0.2,
+    probabilities: { forgotten: 0.3, approximate: 0.5, remembered: 0.2 } };
+  assert.equal(h.c.recordVocabularyReview(event), true);
+  assert.equal(h.c.recordVocabularyReview(event), false);
+  await h.drain();
+  await h.c.refreshAccount(account);
+  assert.equal(h.remoteReviews.size, 1);
+  assert.deepEqual(plain(h.c.vocabularyMemoryRef.current.stats), { "la:casa": { seen: 1, correct: 0 } });
+  assert.equal(h.c.vocabularyMemoryRef.current.reviews[0].outcome, "approximate");
+  assert.deepEqual(plain(h.c.vocabularyMemoryRef.current.reviews[0].probabilities), event.probabilities);
+  assert.deepEqual(plain(h.c.vocabularyMemoryRef.current.pendingReviewIds), []);
+});
+
 test("legacy measurements keep their batch IDs after a lost response and retry every 100-item chunk once", async () => {
   const h = harness();
   h.state.failLegacy = true;

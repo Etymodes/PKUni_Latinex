@@ -14,7 +14,7 @@ const lab = ast.statements.find(node => ts.isFunctionDeclaration(node) && node.n
 const at = day => new Date(Date.UTC(2026, 0, day, 12)).toISOString();
 const plain = value => JSON.parse(JSON.stringify(value));
 const cards = [
-  { id: "both", language: "ja", level: "F", term: "合同", reading: "ごうどう", meaning: "联合", context: "合同で調査する。", batch: "1992 · 旧1級", sourceQuestionIds: ["question-1"], sourcePages: [5], sourceReading: "ごうどう", sourceMeaning: "合并；共同", dictionary: { reviewStatus: "reviewed", batch: "1992 · 旧1級", derivatives: [], dictionaryStatus: {}, pie: "待核" } },
+  { id: "both", language: "ja", level: "F", term: "合同", reading: "ごうどう", meaning: "联合", context: "合同で調査する。", batch: "1992 · 旧1級", sourceQuestionIds: ["question-1"], sourcePages: [5], sourceReading: "ごうどう", sourceMeaning: "合并；共同", notes: "1992 原卷 question-1", sourceNotes: "2000词 PDF 原页 5", usageNotes: "词义用法提示", dictionaryReferences: [{ name: "小学馆《大辞泉》", url: "https://kotobank.jp/word/example", note: "已核对读音" }], dictionary: { reviewStatus: "reviewed", batch: "1992 · 旧1級", derivatives: [], dictionaryStatus: {}, pie: "待核" } },
   { id: "pdf", language: "ja", term: "日向", spellingVariants: ["日向", "日なた"], readingVariants: ["ヒナタ"], reading: "ひなた", meaning: "向阳处", context: "", sourcePages: [9, 15], senses: [{ reading: "ひなた", gloss: "向阳处", sourcePages: [9] }, { reading: "ひゅうが", gloss: "旧国名日向", sourcePages: [15] }] },
   { id: "exam", language: "ja", level: "G", term: "躊躇", reading: "ちゅうちょ", meaning: "犹豫", context: "", sourceQuestionIds: ["question-2"], batch: "1992 · 旧1級" },
   { id: "latin", language: "la", level: "C", term: "casa", meaning: "房屋", context: "", dictionary: { reviewStatus: "published", batch: "foundation", pie: "Latin origin", derivatives: ["case"], dictionaryStatus: { old: "已核", ls: "待核" } } },
@@ -82,22 +82,19 @@ function harness(component = "VocabularyTrainer", props = {}) {
   };
 }
 
-test("dictionary source filters count overlap in both sources without duplicate cards and retain batch/status filters", () => {
+test("dictionary hides import provenance and collection labels while retaining status filtering", () => {
   const h = harness("VocabularyDictionary", { focusId: undefined });
-  const sourceOptions = nodes(h.select("Source")).filter(node => node.type === "option");
-  assert(content(sourceOptions.find(node => node.props.value === "1992")).includes("( 2 )"));
-  assert(content(sourceOptions.find(node => node.props.value === "2000")).includes("( 2 )"));
   const ids = () => nodes(h.tree()).filter(node => node.type === "article" && node.props.id).map(node => node.props.id);
-  h.change(h.select("Source"), "2000");
-  assert.deepEqual(ids(), ["word-both", "word-pdf"]);
-  h.change(h.select("Collection"), "foundation");
-  assert.deepEqual(ids(), ["word-pdf"]);
-  h.change(h.select("Collection"), "all"); h.change(h.select("Content status"), "reviewed");
+  assert.deepEqual(ids(), ["word-both", "word-pdf", "word-exam"]);
+  assert.doesNotMatch(content(h.tree()), /1992|2000|PDF|question-1|question-2|pages|foundation/);
+  assert.match(content(h.tree()), /小学馆《大辞泉》.*已核对读音/);
+  assert.match(content(h.tree()), /词义用法提示/);
+  assert.equal(h.select("Source"), undefined);
+  assert.equal(h.select("Collection"), undefined);
+  h.change(h.select("Content status"), "reviewed");
   assert.deepEqual(ids(), ["word-both"]);
   h.change(h.select("Content status"), "draft");
-  assert.deepEqual(ids(), ["word-pdf"]);
-  h.change(h.select("Source"), "1992");
-  assert.deepEqual(ids(), ["word-exam"]);
+  assert.deepEqual(ids(), ["word-pdf", "word-exam"]);
 });
 
 test("alternate PDF readings and senses are searchable, with the same practice ID and learning key", () => {
@@ -106,11 +103,9 @@ test("alternate PDF readings and senses are searchable, with the same practice I
   const search = h.find(node => node.type === "input"); h.change(search, "ひゅうが");
   const article = h.find(node => node.type === "article" && node.props.id);
   assert.equal(article.props.id, "word-pdf");
-  assert.match(content(article), /旧国名日向/); assert.match(content(article), /Reviewed 3/); assert.match(content(article), /pages.*15/);
+  assert.match(content(article), /旧国名日向/); assert.match(content(article), /Reviewed 3/); assert.doesNotMatch(content(article), /pages|PDF|2000/);
   h.click(h.button("Practise this word")); assert.deepEqual(practised, ["pdf"]);
-  const source = h.find(node => node.type === "details" && content(node).includes("2000-word PDF source"));
-  assert.equal(source.props.open, undefined, "dictionary source details start collapsed");
-  assert.match(content(source), /Other spellings.*日なた/);
+  assert.match(content(article), /Other spellings.*日なた/);
   h.change(h.find(node => node.type === "input"), "日なた");
   assert.equal(h.find(node => node.type === "article" && node.props.id)?.props.id, "word-pdf", "alternate spelling finds the canonical card");
   h.change(h.find(node => node.type === "input"), "ヒナタ");
@@ -134,7 +129,9 @@ test("trainer supports both source scopes and reveals PDF variants only after re
   h.change(h.select("Vocabulary scope"), "2000");
   h.click(h.button("Reveal meaning"));
   assert.match(content(h.tree()), /合并；共同/);
-  assert.equal(h.find(node => node.type === "details" && content(node).includes("2000-word PDF source")).props.open, true);
+  const meaning = h.find(node => node.props.className === "vocab-reveal");
+  assert.doesNotMatch(content(meaning), /1992|2000|PDF|question-1|pages/);
+  assert.match(content(meaning), /小学馆《大辞泉》.*已核对读音/);
   h.change(h.find(node => node.type === "input" && node.props["aria-label"] === "Filter cards"), "日向");
   assert.equal(h.find(node => node.type === "h2").children[0], "日向");
   assert(!content(h.tree()).includes("ひゅうが"));
@@ -182,6 +179,25 @@ test("legacy measurement waits for accepted persistence and records one result p
   allow = true; const callback = h.button("Submit").props.onClick; callback(); callback(); h.render();
   assert.equal(submissions.length, 2); assert.deepEqual(submissions[1], [{ lemma: "合同", correct: true }]);
   assert(!h.button("Submit"));
+});
+
+test("approximate is the middle feedback state, saved once and shown distinctly in the linked dictionary", () => {
+  const h = harness("VocabularyTrainer", { locale: "zh-CN" });
+  h.click(h.button("显示释义"));
+  const feedback = h.find(node => node.props["aria-label"] === "记忆反馈");
+  const buttons = feedback.children.filter(node => node?.type === "button");
+  assert.deepEqual(buttons.map(button => content(nodes(button).find(node => node.type === "strong"))), ["忘了", "近似", "记得"]);
+  assert.match(content(buttons[1]), /近似.*有印象，但词义有偏差/);
+  const frozen = h.predictions.find(prediction => prediction.lemma === "合同" && prediction.targetAt === prediction.predictedAt);
+  const submit = buttons[1].props.onClick; submit(); submit(); h.render();
+  assert.equal(h.accepted.length, 1);
+  assert.equal(h.accepted[0].outcome, "approximate");
+  assert.deepEqual(h.accepted[0].probabilities, frozen.probabilities);
+  const stats = h.find(node => node.props["aria-label"] === "背词统计");
+  assert.match(content(stats).replace(/\s+/g, " "), /记得 0 · 近似 1 · 忘了 0/);
+  const dictionary = harness("VocabularyDictionary", { locale: "zh-CN", focusId: "both", stats: { "ja:合同": { seen: 1, correct: 0 } }, reviews: h.accepted });
+  assert.match(content(dictionary.tree()), /已练 1 · 记得 0 · 近似 1.*最近: 近似/);
+  assert.doesNotMatch(content(dictionary.tree()), /最近: 忘了/);
 });
 
 

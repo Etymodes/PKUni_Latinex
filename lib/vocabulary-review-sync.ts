@@ -9,6 +9,7 @@ export function reviewCounts(events: VocabularyReviewEvent[]): VocabularyStats {
   for (const event of sanitizeVocabularyReviews(events)) {
     const key = `${event.language}:${event.lemma}`;
     const previous = stats[key] ?? { seen: 0, correct: 0 };
+    // Approximate is one review, but never a fractional or fully correct answer.
     stats[key] = { seen: previous.seen + 1, correct: previous.correct + Number(event.outcome === "remembered") };
   }
   return stats;

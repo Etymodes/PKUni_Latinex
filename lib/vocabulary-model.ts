@@ -1,8 +1,10 @@
-/** A small per-language online logistic model; probabilities are estimates, not mastery labels. */
-export const VOCABULARY_MODEL_VERSION = "pikku-recall-v1";
+/** A small per-language online three-class model; probabilities are estimates, not mastery labels. */
+export const VOCABULARY_MODEL_VERSION = "pikku-recall-v2";
+const LEGACY_MODEL_VERSION = "pikku-recall-v1";
 export const VOCABULARY_FEATURE_COUNT = 6;
 export type VocabularyMode = "word" | "context";
-export type VocabularyOutcome = "remembered" | "forgotten";
+export type VocabularyOutcome = "forgotten" | "approximate" | "remembered";
+export type VocabularyProbabilities = Readonly<Record<VocabularyOutcome, number>>;
 export type VocabularyBaselineStat = { seen: number; correct: number; asOf?: string };
 
 export type ReviewPrediction = Readonly<{
@@ -11,6 +13,7 @@ export type ReviewPrediction = Readonly<{
   predictedAt: string;
   targetAt: string;
   probability: number;
+  probabilities: VocabularyProbabilities;
   features: readonly number[];
   modelVersion: typeof VOCABULARY_MODEL_VERSION;
   mode: VocabularyMode;
@@ -18,11 +21,14 @@ export type ReviewPrediction = Readonly<{
   hasTimedHistory: boolean;
 }>;
 
-export type VocabularyReviewEvent = Readonly<Omit<ReviewPrediction, "historyCount" | "hasTimedHistory"> & {
+type ReviewEvidence = Omit<ReviewPrediction, "historyCount" | "hasTimedHistory" | "modelVersion" | "probabilities"> & {
   id: string;
   answeredAt: string;
-  outcome: VocabularyOutcome;
-}>;
+};
+export type VocabularyReviewEvent = Readonly<ReviewEvidence & (
+  { modelVersion: typeof LEGACY_MODEL_VERSION; outcome: "forgotten" | "remembered"; probabilities?: never }
+  | { modelVersion: typeof VOCABULARY_MODEL_VERSION; outcome: VocabularyOutcome; probabilities: VocabularyProbabilities }
+)>;
 
 export type VocabularyModel = Readonly<{
   modelVersion: typeof VOCABULARY_MODEL_VERSION;
@@ -39,10 +45,16 @@ export type VocabularyModel = Readonly<{
   }>;
 }>;
 
-// Schema v1: bias, log elapsed days, log repetitions, smoothed success rate,
-// previous outcome, context mode. Counts/time use log(1+x)/(1+log(1+x)); no retention cap.
-const INITIAL_WEIGHTS = [0, -2.4, 0.6, 0.9, 0.6, 0];
-const WEIGHT_BOUNDS = [[-4, 4], [-8, 0], [0, 4], [0, 4], [0, 4], [-2, 2]];
+// Both versions retain six features: bias, log elapsed days, log repetitions,
+// smoothed success rate, previous outcome (-1/0/1), context mode. Approximate
+// contributes 0.5 to success and 0 as the previous outcome. No retention cap.
+const OUTCOMES: readonly VocabularyOutcome[] = ["forgotten", "approximate", "remembered"];
+// Flat rows follow OUTCOMES order. Elapsed-time constraints keep full recall
+// non-increasing with delay while allowing the middle class its own learned bias.
+const INITIAL_WEIGHTS = [0, 1.2, -0.3, -0.45, -0.3, 0, 0, 0, 0, 0, 0, 0, 0, -1.2, 0.3, 0.45, 0.3, 0];
+const WEIGHT_BOUNDS = INITIAL_WEIGHTS.map((_, index) => index === 1 ? [0, 8] : index === 7 ? [0, 0] : index === 13 ? [-8, 0] : [-4, 4]);
+const PROBABILITY_TOLERANCE = 1e-9;
+const success = (outcome: VocabularyOutcome) => outcome === "remembered" ? 1 : outcome === "approximate" ? 0.5 : 0;
 const LANGUAGES = ["zh-mandarin", "en-us", "la", "ja", "es", "grc", "ru"];
 // Candidate selection reuses the fitted model, so validate/sort its history only once per draw.
 const modelHistories = new WeakMap<VocabularyModel, readonly VocabularyReviewEvent[]>();
@@ -61,9 +73,27 @@ const validLanguage = (value: unknown): value is string => typeof value === "str
   LANGUAGES.includes(value);
 const validMode = (value: unknown): value is VocabularyMode => value === "word" || value === "context";
 
-function probability(weights: readonly number[], features: readonly number[]) {
-  const score = clamp(weights.reduce((sum, weight, index) => sum + weight * features[index], 0), -12, 12);
-  return clamp(1 / (1 + Math.exp(-score)), 0.02, 0.98);
+function softmax(weights: readonly number[], features: readonly number[]) {
+  const logits = OUTCOMES.map((_, row) => features.reduce((sum, feature, column) => sum + weights[row * VOCABULARY_FEATURE_COUNT + column] * feature, 0));
+  const maximum = Math.max(...logits);
+  const scores = logits.map(logit => Math.exp(logit - maximum));
+  const total = scores.reduce((sum, score) => sum + score, 0);
+  return scores.map(score => score / total);
+}
+
+function probabilities(weights: readonly number[], features: readonly number[]): VocabularyProbabilities {
+  // A 2% floor for each class bounds log loss without breaking the sum-to-one invariant.
+  const [forgotten, approximate, remembered] = softmax(weights, features).map(value => 0.02 + 0.94 * value);
+  return Object.freeze({ forgotten, approximate, remembered });
+}
+
+function validProbabilities(value: unknown, remembered: number): value is VocabularyProbabilities {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const values = value as Record<string, unknown>;
+  if (!OUTCOMES.every(outcome => typeof values[outcome] === "number" && Number.isFinite(values[outcome]) && (values[outcome] as number) >= 0.02 && (values[outcome] as number) <= 0.96)) return false;
+  const distribution = value as VocabularyProbabilities;
+  return Math.abs(OUTCOMES.reduce((sum, outcome) => sum + distribution[outcome], 0) - 1) <= PROBABILITY_TOLERANCE
+    && Math.abs(distribution.remembered - remembered) <= PROBABILITY_TOLERANCE;
 }
 
 /** Trust boundary for local-storage / API records. Unknown schema versions are not trained. */
@@ -72,12 +102,14 @@ export function isVocabularyReviewEvent(value: unknown): value is VocabularyRevi
   const item = value as Record<string, unknown>;
   if (typeof item.id !== "string" || !/^[A-Za-z0-9_-]{1,128}$/.test(item.id) ||
       !validLanguage(item.language) || !cleanText(item.lemma, 160) ||
-      item.modelVersion !== VOCABULARY_MODEL_VERSION || !validMode(item.mode) ||
-      (item.outcome !== "remembered" && item.outcome !== "forgotten") ||
+      (item.modelVersion !== VOCABULARY_MODEL_VERSION && item.modelVersion !== LEGACY_MODEL_VERSION) || !validMode(item.mode) ||
+      !OUTCOMES.includes(item.outcome as VocabularyOutcome) ||
       typeof item.probability !== "number" || !Number.isFinite(item.probability) ||
-      item.probability < 0.02 || item.probability > 0.98 ||
+      item.probability < 0.02 || item.probability > (item.modelVersion === LEGACY_MODEL_VERSION ? 0.98 : 0.96) ||
       !Array.isArray(item.features) || item.features.length !== VOCABULARY_FEATURE_COUNT ||
       !item.features.every((feature: unknown) => typeof feature === "number" && Number.isFinite(feature) && feature >= -1 && feature <= 1)) return false;
+  if (item.modelVersion === LEGACY_MODEL_VERSION ? item.outcome === "approximate"
+    : !validProbabilities(item.probabilities, item.probability as number)) return false;
   const features = item.features as number[];
   if (features[0] !== 1 || features[1] < 0 || features[2] < 0 ||
       ![-1, 0, 1].includes(features[4]) || features[5] !== (item.mode === "context" ? 1 : 0)) return false;
@@ -100,8 +132,11 @@ export function normalizeVocabularyReviewEvents(value: unknown): VocabularyRevie
       id: item.id, language: item.language, lemma: item.lemma.trim().normalize("NFC"),
       predictedAt: new Date(item.predictedAt).toISOString(),
       targetAt: new Date(item.targetAt).toISOString(), answeredAt: new Date(item.answeredAt).toISOString(),
-      outcome: item.outcome, probability: item.probability, features: Object.freeze([...item.features]),
-      modelVersion: VOCABULARY_MODEL_VERSION, mode: item.mode,
+      probability: item.probability, features: Object.freeze([...item.features]),
+      mode: item.mode,
+      ...(item.modelVersion === LEGACY_MODEL_VERSION
+        ? { modelVersion: LEGACY_MODEL_VERSION, outcome: item.outcome }
+        : { modelVersion: VOCABULARY_MODEL_VERSION, outcome: item.outcome, probabilities: Object.freeze({ forgotten: item.probabilities.forgotten, approximate: item.probabilities.approximate, remembered: item.probabilities.remembered }) }),
     }));
   }
   return events.sort((left, right) => Date.parse(left.answeredAt) - Date.parse(right.answeredAt) ||
@@ -120,25 +155,33 @@ export function trainVocabularyModel(
   const weights = [...INITIAL_WEIGHTS];
   let brier = 0;
   let logLoss = 0;
+  let evaluatedCount = 0;
   rows.forEach((event, index) => {
-    const outcome = event.outcome === "remembered" ? 1 : 0;
-    // Prequential scores use the actual saved BEFORE-answer prediction, never a refitted score.
-    brier += (event.probability - outcome) ** 2;
-    logLoss -= outcome * Math.log(event.probability) + (1 - outcome) * Math.log(1 - event.probability);
-    const error = probability(weights, event.features) - outcome;
-    const rate = 0.15 / Math.sqrt(1 + index / 50);
-    for (let feature = 0; feature < weights.length; feature += 1) {
-      weights[feature] = clamp(weights[feature] - rate *
-        (error * event.features[feature] + 0.005 * (weights[feature] - INITIAL_WEIGHTS[feature])),
-      WEIGHT_BOUNDS[feature][0], WEIGHT_BOUNDS[feature][1]);
+    // Only v2 has a saved three-class forecast. Never invent v1 probabilities or
+    // compare its binary Brier score with a three-class baseline.
+    if (event.modelVersion === VOCABULARY_MODEL_VERSION) {
+      evaluatedCount += 1;
+      brier += OUTCOMES.reduce((sum, outcome) => sum + (event.probabilities[outcome] - Number(event.outcome === outcome)) ** 2, 0);
+      logLoss -= Math.log(event.probabilities[event.outcome]);
     }
+    const fitted = softmax(weights, event.features);
+    const rate = 0.15 / Math.sqrt(1 + index / 50);
+    OUTCOMES.forEach((outcome, row) => {
+      const error = fitted[row] - Number(event.outcome === outcome);
+      for (let feature = 0; feature < VOCABULARY_FEATURE_COUNT; feature += 1) {
+        const weight = row * VOCABULARY_FEATURE_COUNT + feature;
+        weights[weight] = clamp(weights[weight] - rate *
+          (error * event.features[feature] + 0.005 * (weights[weight] - INITIAL_WEIGHTS[weight])),
+        WEIGHT_BOUNDS[weight][0], WEIGHT_BOUNDS[weight][1]);
+      }
+    });
   });
   const model = Object.freeze({
     modelVersion: VOCABULARY_MODEL_VERSION, language, cutoffAt: new Date(cutoff).toISOString(),
     weights: Object.freeze(weights), sampleCount: rows.length,
-    metrics: Object.freeze({ count: rows.length, brier: rows.length ? brier / rows.length : null,
-      logLoss: rows.length ? logLoss / rows.length : null,
-      baselineBrier: rows.length ? 0.25 : null, baselineLogLoss: rows.length ? Math.log(2) : null }),
+    metrics: Object.freeze({ count: evaluatedCount, brier: evaluatedCount ? brier / evaluatedCount : null,
+      logLoss: evaluatedCount ? logLoss / evaluatedCount : null,
+      baselineBrier: evaluatedCount ? 2 / 3 : null, baselineLogLoss: evaluatedCount ? Math.log(3) : null }),
   });
   modelHistories.set(model, rows);
   return model;
@@ -159,7 +202,7 @@ export function makePrediction(
   const cutoffAt = new Date(predicted).toISOString();
   const normalizedLemma = lemma.trim().normalize("NFC");
   const model = trainedModel?.language === language && trainedModel.cutoffAt === cutoffAt &&
-    trainedModel.modelVersion === VOCABULARY_MODEL_VERSION && trainedModel.weights.length === VOCABULARY_FEATURE_COUNT &&
+    trainedModel.modelVersion === VOCABULARY_MODEL_VERSION && trainedModel.weights.length === INITIAL_WEIGHTS.length &&
     trainedModel.weights.every((weight, index) => Number.isFinite(weight) &&
       weight >= WEIGHT_BOUNDS[index][0] && weight <= WEIGHT_BOUNDS[index][1])
     ? trainedModel : trainVocabularyModel(events, language, cutoffAt);
@@ -167,7 +210,7 @@ export function makePrediction(
     event.lemma === normalizedLemma && Date.parse(event.answeredAt) <= predicted);
   const last = rows.at(-1);
   let count = rows.length;
-  let correct = rows.filter((event) => event.outcome === "remembered").length;
+  let correct = rows.reduce((total, event) => total + success(event.outcome), 0);
   // A dated legacy snapshot may inform cold start; undated totals could contain future outcomes.
   const baselineTime = baselineStat?.asOf === undefined ? NaN : isoTime(baselineStat.asOf);
   if (!count && baselineStat && Number.isSafeInteger(baselineStat.seen) &&
@@ -179,10 +222,11 @@ export function makePrediction(
   const features = Object.freeze([
     1, last ? compress(Math.max(0, target - Date.parse(last.answeredAt)) / DAY) : 0,
     compress(count), 2 * ((correct + 2) / (count + 4)) - 1,
-    last ? (last.outcome === "remembered" ? 1 : -1) : 0, mode === "context" ? 1 : 0,
+    last ? 2 * success(last.outcome) - 1 : 0, mode === "context" ? 1 : 0,
   ]);
+  const distribution = probabilities(model.weights, features);
   return Object.freeze({ language, lemma: normalizedLemma, predictedAt: cutoffAt,
-    targetAt: new Date(target).toISOString(), probability: probability(model.weights, features), features,
+    targetAt: new Date(target).toISOString(), probability: distribution.remembered, probabilities: distribution, features,
     modelVersion: VOCABULARY_MODEL_VERSION, mode, historyCount: rows.length, hasTimedHistory: Boolean(last) });
 }
 
@@ -193,7 +237,7 @@ export function completeVocabularyReview(
 ): VocabularyReviewEvent {
   const event = { id, language: prediction.language, lemma: prediction.lemma, predictedAt: prediction.predictedAt,
     targetAt: prediction.targetAt, answeredAt: answeredAtISO, outcome, probability: prediction.probability,
-    features: [...prediction.features], modelVersion: prediction.modelVersion, mode: prediction.mode };
+    features: [...prediction.features], modelVersion: prediction.modelVersion, probabilities: { ...prediction.probabilities }, mode: prediction.mode };
   if (!isVocabularyReviewEvent(event)) throw new RangeError("Invalid completed review; answer must follow its target time");
   return normalizeVocabularyReviewEvents([event])[0];
 }

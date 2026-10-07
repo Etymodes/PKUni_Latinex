@@ -8,6 +8,10 @@ const event = (id, changes = {}) => ({
   id, language: "ja", lemma: "覚える", predictedAt: "2026-10-01T00:00:00.000Z", targetAt: "2026-10-02T00:00:00.000Z", answeredAt: "2026-10-02T12:00:00.000Z",
   outcome: "remembered", probability: 0.7, features: [1, 0.2, 0.3, -0.4, 1, 1], modelVersion: "pikku-recall-v1", mode: "context", ...changes,
 });
+const eventV2 = (id, changes = {}) => event(id, {
+  modelVersion: "pikku-recall-v2", outcome: "approximate", probability: 0.3,
+  probabilities: { forgotten: 0.2, approximate: 0.5, remembered: 0.3 }, ...changes,
+});
 
 class Statement {
   constructor(database, sql, values = []) { Object.assign(this, { database, sql, values }); }
@@ -79,6 +83,50 @@ test("review writes are append-only and idempotent, including simultaneous retri
   assert.deepEqual(stats(), [{ language: "ja", lemma: "覚える", seen: 6, correct: 4 }]);
 });
 
+test("three-state reviews retain their probabilities and count approximate separately without rewriting v1 history", async t => {
+  const { request, stats } = await setup(t);
+  const events = [event("old-remembered"), event("old-forgotten", { outcome: "forgotten" }),
+    eventV2("new-remembered", { outcome: "remembered" }), eventV2("new-approximate"), eventV2("new-forgotten", { outcome: "forgotten" })];
+  const writes = await Promise.all([1, 2].map(() => request("vocab/reviews", "POST", { events })));
+  assert(writes.every(result => result.status === 200));
+  assert.deepEqual(writes.map(result => result.body.inserted).sort(), [0, 5]);
+  const stored = (await request()).body.events;
+  assert.deepEqual(new Map(stored.map(item => [item.id, item])), new Map(events.map(item => [item.id, item])));
+  assert.equal(stored.filter(item => item.outcome === "approximate").length, 1);
+  assert.equal(stored.filter(item => item.outcome === "forgotten").length, 2);
+  assert(stored.filter(item => item.modelVersion === "pikku-recall-v1").every(item => !("probabilities" in item)));
+  assert.deepEqual(stats(), [{ language: "ja", lemma: "覚える", seen: 5, correct: 2 }]);
+  assert.equal((await request("vocab/reviews", "POST", { events: [eventV2("old-remembered")] })).body.inserted, 0);
+  assert.equal((await request()).body.events.find(item => item.id === "old-remembered").modelVersion, "pikku-recall-v1");
+  assert.equal((await request("vocab/reviews", "POST", { events: [eventV2("new-approximate")] }, "bob")).body.inserted, 1);
+  assert.deepEqual(stats("bob"), [{ language: "ja", lemma: "覚える", seen: 1, correct: 0 }]);
+});
+
+test("v2 probability validation is atomic and v1 cannot impersonate three-state feedback", async t => {
+  const { request, stats, __test } = await setup(t);
+  const invalid = [
+    { probabilities: undefined }, { probabilities: null }, { probabilities: [] },
+    { probabilities: { forgotten: 0.2, remembered: 0.3 } },
+    { probabilities: { forgotten: 0.2, approximate: "0.5", remembered: 0.3 } },
+    { probability: 0.98, probabilities: { forgotten: 0.01, approximate: 0.01, remembered: 0.98 } },
+    { probabilities: { forgotten: 0.2, approximate: 0.51, remembered: 0.3 } },
+    { probability: 0.31 }, { modelVersion: "pikku-recall-v1" },
+    { probabilities: { forgotten: 0.2, approximate: 0.50000001, remembered: 0.3 } },
+    { probability: 0.30000001 },
+  ];
+  for (const changes of invalid) {
+    assert.equal((await request("vocab/reviews", "POST", { events: [event("must-not-partially-write"), eventV2("invalid", changes)] })).status, 400, JSON.stringify(changes));
+  }
+  assert.equal(__test.normalizeVocabularyReview(eventV2("nan", { probabilities: { forgotten: 0.2, approximate: NaN, remembered: 0.3 } })), null);
+  assert.equal((await request("vocab/reviews", "POST", { events: [eventV2("conflict"), eventV2("conflict", { outcome: "forgotten" })] })).status, 400);
+  assert.deepEqual(stats(), []);
+  assert.deepEqual((await request()).body.events, []);
+  const boundary = eventV2("boundary", { probability: 0.96, probabilities: { forgotten: 0.02, approximate: 0.02, remembered: 0.96 } });
+  const tolerated = eventV2("tolerance", { probability: 0.3000000005, probabilities: { forgotten: 0.2, approximate: 0.5000000005, remembered: 0.3 } });
+  assert.equal((await request("vocab/reviews", "POST", { events: [boundary, tolerated, event("legacy-boundary", { probability: 0.98 })] })).body.inserted, 3);
+  assert.deepEqual(stats(), [{ language: "ja", lemma: "覚える", seen: 3, correct: 1 }]);
+});
+
 test("authenticated identity owns events and every configured language keeps separate statistics", async t => {
   const { request, stats } = await setup(t);
   for (const language of languages) {
@@ -129,9 +177,9 @@ test("event and statistics writes roll back together when any event insertion fa
   assert.deepEqual(stats(), [{ language: "ja", lemma: "覚える", seen: 2, correct: 2 }]);
 });
 
-test("review pagination handles tied times, user/language filters and the full 500-item page boundary", async t => {
+test("mixed v1/v2 review pagination handles tied times, user/language filters and the full 500-item page boundary", async t => {
   const { request } = await setup(t);
-  const events = Array.from({ length: 503 }, (_, index) => event(`page-${String(index).padStart(4, "0")}`, {
+  const events = Array.from({ length: 503 }, (_, index) => (index % 2 ? eventV2 : event)(`page-${String(index).padStart(4, "0")}`, {
     language: index % 2 ? "la" : "ja", answeredAt: new Date(Date.parse("2026-10-02T12:00:00.000Z") + index % 3).toISOString(),
   }));
   for (let offset = 0; offset < events.length; offset += 100) assert.equal((await request("vocab/reviews", "POST", { events: events.slice(offset, offset + 100) })).body.inserted, Math.min(100, events.length - offset));

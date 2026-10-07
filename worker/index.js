@@ -432,15 +432,28 @@ function validReviewId(value) {
 function normalizeVocabularyReview(value) {
   if (!value || !validReviewId(value.id) || typeof value.language !== "string" || !validLanguage(value.language) || typeof value.lemma !== "string") return null;
   const lemma = value.lemma.trim().normalize("NFC");
-  if (!lemma || lemma.length > 160 || /[\u0000-\u001f\u007f]/.test(value.lemma) || !validVocabularyMode(value.mode) || value.modelVersion !== "pikku-recall-v1") return null;
+  if (!lemma || lemma.length > 160 || /[\u0000-\u001f\u007f]/.test(value.lemma) || !validVocabularyMode(value.mode)
+    || !["pikku-recall-v1", "pikku-recall-v2"].includes(value.modelVersion)) return null;
+  const threeState = value.modelVersion === "pikku-recall-v2";
   const times = [value.predictedAt, value.targetAt, value.answeredAt].map(reviewTimestamp);
   if (times.some(time => time === null) || times[1] < times[0] || times[2] < times[1]) return null;
-  if (!["remembered", "forgotten"].includes(value.outcome) || !Number.isFinite(value.probability) || value.probability < 0.02 || value.probability > 0.98) return null;
+  if (!(threeState ? ["remembered", "approximate", "forgotten"] : ["remembered", "forgotten"]).includes(value.outcome)
+    || !Number.isFinite(value.probability) || value.probability < 0.02 || value.probability > (threeState ? 0.96 : 0.98)) return null;
+  let probabilities;
+  if (threeState) {
+    const input = value.probabilities;
+    if (!input || typeof input !== "object" || Array.isArray(input)) return null;
+    const values = [input.forgotten, input.approximate, input.remembered];
+    if (!values.every(probability => Number.isFinite(probability) && probability >= 0.02 && probability <= 0.96)
+      || Math.abs(values.reduce((sum, probability) => sum + probability, 0) - 1) > 1e-9
+      || Math.abs(value.probability - input.remembered) > 1e-9) return null;
+    probabilities = { forgotten: input.forgotten, approximate: input.approximate, remembered: input.remembered };
+  }
   const features = value.features;
   if (!Array.isArray(features) || features.length !== 6 || !features.every(feature => Number.isFinite(feature) && feature >= -1 && feature <= 1)
     || features[0] !== 1 || features[1] < 0 || features[2] < 0 || ![-1, 0, 1].includes(features[4]) || features[5] !== (value.mode === "word" ? 0 : 1)) return null;
   return { id: value.id, language: value.language, lemma, predictedAt: value.predictedAt, targetAt: value.targetAt, answeredAt: value.answeredAt,
-    outcome: value.outcome, probability: value.probability, features, modelVersion: value.modelVersion, mode: value.mode };
+    outcome: value.outcome, probability: value.probability, ...(threeState ? { probabilities } : {}), features, modelVersion: value.modelVersion, mode: value.mode };
 }
 
 function normalizeProgressRecord(value) {

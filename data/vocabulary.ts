@@ -27,6 +27,8 @@ export type VocabularyCard = {
   readingVariants?: string[];
   senses?: { reading: string; gloss: string; sourcePages: number[] }[];
   notes?: string;
+  usageNotes?: string;
+  dictionaryReferences?: { name: string; url: string; note: string }[];
   dictionary?: LexiconEntry;
 };
 
@@ -147,7 +149,8 @@ for (const entry of lexiconSeed) {
 for (const entry of importedVocabulary) {
   const existing = sharedCards.find(card => card.language === "ja" && card.term === entry.lemma);
   const fields = { reading: entry.reading, partOfSpeech: entry.partOfSpeech,
-    sourceQuestionIds: entry.sourceQuestionIds, notes: entry.notes, batch: "1992 · 旧1級",
+    sourceQuestionIds: entry.sourceQuestionIds, notes: entry.notes,
+    usageNotes: entry.usageNotes, dictionaryReferences: entry.dictionaryReferences, batch: "1992 · 旧1級",
     context: entry.context, meaning: entry.gloss };
   if (existing) Object.assign(existing, fields, { level: entry.level as LanguageLevel });
   else sharedCards.push({ id: entry.id, language: "ja", term: entry.lemma, level: entry.level as LanguageLevel, ...fields });

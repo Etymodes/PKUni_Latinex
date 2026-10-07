@@ -6,6 +6,8 @@ const event = (id, changes = {}) => ({
   id, language: "ja", lemma: "覚える", predictedAt: "2026-10-01T00:00:00.000Z", targetAt: "2026-10-01T00:00:00.000Z", answeredAt: "2026-10-01T00:00:01.000Z",
   outcome: "remembered", probability: 0.5, features: [1, 0, 0, 0, 0, 0], modelVersion: "pikku-recall-v1", mode: "word", ...changes,
 });
+const eventV2 = (id, changes = {}) => event(id, { modelVersion: "pikku-recall-v2", outcome: "approximate", probability: 0.3,
+  probabilities: { forgotten: 0.2, approximate: 0.5, remembered: 0.3 }, ...changes });
 const makeEvents = count => Array.from({ length: count }, (_, index) => event(`review-${String(index).padStart(5, "0")}`));
 
 function mockApi(initial = []) {
@@ -71,6 +73,26 @@ test("guest legacy aggregates exclude unique new review contributions before eve
   assert.deepEqual(subtractReviewCounts({ "ja:覚える": { seen: 1, correct: 0 } }, [remembered, forgotten]), {}, "Inconsistent historical totals cannot become negative");
 });
 
+test("mixed-version guest sync preserves approximate outcomes and subtracts one seen but no fully correct answer", async () => {
+  const reviews = [event("legacy-remembered"), eventV2("approximate"), eventV2("forgotten", { outcome: "forgotten" }),
+    eventV2("remembered", { outcome: "remembered" })];
+  const memory = { owner: "guest", reviews: [...reviews, reviews[1]], pendingReviewIds: [] };
+  assert.deepEqual(reviewCounts(memory.reviews), { "ja:覚える": { seen: 4, correct: 2 } });
+  assert.deepEqual(subtractReviewCounts({ "ja:覚える": { seen: 7, correct: 4 } }, memory.reviews), { "ja:覚える": { seen: 3, correct: 2 } });
+  const api = mockApi([reviews[0]]);
+  api.failPostAt = 1; api.commitBeforeFailure = true;
+  await assert.rejects(syncVocabularyReviews(memory, "alice", api.fetcher), /upload failed/);
+  const result = await syncVocabularyReviews(memory, "alice", api.fetcher);
+  assert.equal(api.posts.length, 1, "A retry discovers all committed v2 IDs before uploading again");
+  assert.equal(result.reviews.length, 4);
+  assert.equal(result.reviews.filter(item => item.outcome === "approximate").length, 1);
+  assert.equal(result.reviews.filter(item => item.outcome === "forgotten").length, 1);
+  assert.deepEqual(result.reviews.find(item => item.id === "approximate"), reviews[1]);
+  assert.deepEqual(result.reviews.find(item => item.id === "legacy-remembered"), reviews[0]);
+  assert.deepEqual(reviewCounts(result.reviews), { "ja:覚える": { seen: 4, correct: 2 } });
+  assert.deepEqual(new Set(result.syncedIds), new Set(reviews.map(item => item.id)));
+});
+
 test("sync downloads every 500-record page and prefers the server's canonical event payload", async () => {
   const remote = makeEvents(1001);
   const api = mockApi(remote);
@@ -108,6 +130,9 @@ test("malformed or overlapping cloud pages stop the sync before any pending uplo
     [{ events: [event("first")], nextCursor: "one" }, { events: [event("first")], nextCursor: "two" }],
     [{ events: [event("first")], nextCursor: "same" }, { events: [event("second")], nextCursor: "same" }],
     [{ events: [event("schema", { modelVersion: "future-version" })], nextCursor: null }],
+    [{ events: [event("false-v1-approximate", { outcome: "approximate" })], nextCursor: null }],
+    [{ events: [eventV2("missing-probabilities", { probabilities: undefined })], nextCursor: null }],
+    [{ events: [eventV2("inconsistent-probabilities", { probability: 0.7 })], nextCursor: null }],
   ];
   for (const pages of malformedPages) {
     let offset = 0;
