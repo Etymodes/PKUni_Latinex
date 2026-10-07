@@ -11,7 +11,7 @@
   <view class="brand-row">
     <image class="logo" src="/assets/logo.png" mode="aspectFit" />
     <view class="brand"><text class="brand-title">哔丘 Pikku</text><text class="eyebrow">COTĪDIĒ PAULUM</text></view>
-    <button class="locale" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}"><text>语⇌</text><text class="locale-word">Language</text></button>
+    <button class="locale {{locale === 'en' ? 'locale-en' : ''}}" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.localeAction}}"><text class="locale-mark">{{locale === 'en' ? '⇋语' : '语⇌'}}</text><text class="locale-word">Language</text></button>
   </view>
   <view class="status {{sync === 'failed' ? 'status-error' : ''}}"><text class="dot">●</text> {{t[sync]}}</view>
   <view wx:if="{{error}}" class="notice" role="alert">{{error}}<button class="text-button" bindtap="refresh" disabled="{{busy}}">{{t.refresh}}</button></view>
@@ -161,7 +161,7 @@
       <block wx:else><input class="field" type="text" value="{{email}}" placeholder="{{t.email}}" bindinput="inputEmail" maxlength="254" disabled="{{busy}}" /><input class="field" password="true" value="{{password}}" placeholder="{{t.password}}" bindinput="inputPassword" maxlength="256" bindconfirm="signIn" disabled="{{busy}}" /><button class="primary" bindtap="signIn" loading="{{busy}}" disabled="{{busy}}">{{t.signIn}}</button><text class="note">{{t.websiteHelp}}</text><button class="text-button" bindtap="copyWebsite">{{t.register}} ↗</button></block>
       <text class="note">{{t.accountNote}}</text>
     </view>
-    <button class="locale locale-setting" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.display}}"><text>语⇌</text><text class="locale-word">Language</text></button>
+    <button class="locale locale-setting {{locale === 'en' ? 'locale-en' : ''}}" bindtap="changeLocale" disabled="{{busy}}" aria-label="{{t.localeAction}}"><text class="locale-mark">{{locale === 'en' ? '⇋语' : '语⇌'}}</text><text class="locale-word">Language</text></button>
     <view class="support-feedback"><button class="secondary" bindtap="toggleSupport">{{t.supportAuthor}}</button><button class="secondary feedback-link" data-url="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" bindtap="copyResource">{{t.feedback}}</button></view>
     <text class="note">{{t.feedbackHelp}}</text>
     <view wx:if="{{showSupport}}" class="panel support-panel"><text class="resource-title">{{t.supportAuthor}}</text><text class="note">{{t.supportNote}}</text><image class="support-code" src="/assets/support-author.png" mode="widthFix" show-menu-by-longpress="{{true}}" bindtap="previewSupport" /><text class="note">{{t.supportHint}}</text></view>
