@@ -62,6 +62,7 @@ const questionActions = {
   toggleBrowse() { this.setData({ browse: !this.data.browse }); },
   openQuestionBank() {
     if (this.data.busy) return;
+    this.resetStudyModes();
     this.stopQuestionAudio();
     this.queue = [];
     this.activeQuestion = null;
@@ -82,6 +83,7 @@ const questionActions = {
   },
   openPaper(event) {
     if (this.data.busy) return;
+    this.resetStudyModes();
     const dataset = event && event.currentTarget.dataset || {};
     const selectedPaper = dataset.collection || this.data.selectedPaper || 'jlpt-1992-1';
     if (!this.data.paperItems.some(item => item.id === selectedPaper)) return;
@@ -107,6 +109,7 @@ const questionActions = {
   },
   startPractice() {
     if (this.data.busy) return;
+    this.resetStudyModes();
     if (this.data.view === 'home') {
       this.setData({ fullPaper: false, filter: 'all', category: 'all', search: '' });
       this.render();
@@ -144,16 +147,19 @@ const questionActions = {
   nextQuestion() {
     if (this.data.busy) return;
     const index = this.data.questionIndex + 1;
+    if (this.data.examActive && index >= (this.queue || []).length) { this.finishExam(); return; }
     this.setData({ questionIndex: index });
     this.showQuestion(this.queue && this.queue[index]);
     if (!this.data.question) this.render();
   },
   async answer(event) {
     if (this.data.busy || this.data.submitted || !this.data.question) return;
+    if (this.data.examActive && Date.now() >= this.examDeadline) { this.finishExam(); return; }
     const q = this.activeQuestion || this.data.question;
     const selected = Number(event.currentTarget.dataset.index);
     if (q.type === 'choice' && (!Number.isInteger(selected) || selected < 0 || selected >= (q.options || []).length)) return;
     const correct = q.type === 'choice' ? selected === q.answer : event.currentTarget.dataset.correct === 'yes';
+    if (this.data.examActive) this.examAnswers[q.id] = correct;
     this.setData({ selected: q.type === 'choice' ? selected : -1, revealed: true, submitted: true, answerCorrect: correct, visibleTranscript: q.transcript || '' });
     return this.perform(async () => {
       const status = correct ? 'correct' : 'wrong';

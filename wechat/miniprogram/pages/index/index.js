@@ -1,4 +1,6 @@
 const api = require('../../lib/api');
+const { communityActions } = require('../../lib/community');
+const { studyActions } = require('../../lib/study-modes');
 const vocabulary = require('../../lib/vocabulary');
 const { vocabularyActions } = require('../../lib/vocabulary-page');
 const bank = require('../../data/bank');
@@ -30,16 +32,21 @@ function fromCloud(result) {
 
 Page({
   ...vocabularyActions,
+  ...communityActions,
+  ...studyActions,
   ...questionActions,
   data: {
     locale: 'zh-CN', t: copies['zh-CN'], view: 'home', level: 'C', language: 'la', vocabMode: 'context',
     busy: false, user: null, sync: 'guest', error: '', email: '', password: '', question: null, card: null,
     paperSearch: '', wordQuery: '', dictionaryQuery: '', dictionaryOffset: 0, showModel: false, showSupport: false,
     filter: 'all', category: 'all', search: '', browse: false, revealed: false, submitted: false, wordRevealed: false,
+    communityChannel: 'language', communityDraft: '', communityItems: [], communityWarnings: 0, communityMutedUntil: '', communityLoading: false, communitySending: false,
+    examActive: false, examFinished: false, examMixed: false, measurementItems: [], measurementDone: false, measurementReady: false, browseLimit: 40,
     choices: [], selected: -1, answerCorrect: false, questionIndex: 0, questionTotal: 0,
   },
   onLoad() {
     this.alive = true;
+    this.visible = false;
     this.generation = 0;
     this.owner = null;
     this.record = readGuest();
@@ -51,9 +58,12 @@ Page({
     this.applyPreference();
     this.refresh();
   },
-  onHide() { this.stopQuestionAudio(); },
-  onUnload() { this.destroyQuestionAudio(); this.alive = false; this.generation++; },
+  onHide() { this.visible = false; this.stopQuestionAudio(); this.stopCommunity(); this.stopExamClock(); },
+  onUnload() { this.visible = false; this.stopCommunity(); this.stopExamClock(); this.destroyQuestionAudio(); this.alive = false; this.generation++; },
   onShow() {
+    this.visible = true;
+    this.updateCommunityPolling();
+    this.tickExamClock();
     if (this.shown && !this.data.busy) this.refresh();
     this.shown = true;
   },
@@ -69,6 +79,8 @@ Page({
       if (this.alive && generation === this.generation) {
         if (this.owner && !api.getSession()) {
           this.owner = null;
+          this.resetStudyModes();
+          this.stopCommunity();
           this.record = readGuest();
           this.initVocabulary();
           this.stopQuestionAudio();
@@ -89,6 +101,8 @@ Page({
       const owner = session ? session.user.id : null;
       if (owner !== this.owner) {
         this.owner = owner;
+        this.resetStudyModes();
+        this.stopCommunity();
         this.record = owner ? emptyRecord() : readGuest();
         this.initVocabulary();
         this.stopQuestionAudio();
@@ -104,6 +118,7 @@ Page({
         const version = JSON.stringify(overrides);
         this.questions = shared.mergeQuestionOverrides(bank.questions, overrides);
         if (this.overrideVersion !== version) {
+          if (this.data.examActive) this.finishExam();
           this.stopQuestionAudio();
           this.queue = [];
           this.setData({ question: null });
@@ -131,6 +146,8 @@ Page({
     if (language !== this.data.language || level !== this.data.level || vocabMode !== this.data.vocabMode) {
       this.stopQuestionAudio();
       this.wordSelection = null;
+      this.resetStudyModes();
+      this.stopCommunity();
       this.queue = [];
       this.setData({ question: null, card: null, fullPaper: false, dictionaryQuery: '', dictionaryOffset: 0 });
     }
@@ -171,7 +188,7 @@ Page({
       paperHasMedia: Boolean(bank.questionCollections.find(item => item.id === (this.data.selectedPaper || 'jlpt-1992-1'))?.categories.includes('listening')),
       fullPaper: selection.fullPaper, paperQuestions: selection.paperQuestions, paperQuestionIndex: selection.paperQuestionIndex,
       rangeCount: this.range.length, resultCount: this.filtered.length,
-      results: this.filtered.slice(0, 40).map(q => ({ id: q.id, prompt: contentText(q.prompt, locale), status: this.record.progress[q.id] || '' })),
+      results: this.filtered.slice(0, this.data.browseLimit || 40).map(q => ({ id: q.id, prompt: contentText(q.prompt, locale), status: this.record.progress[q.id] || '' })),
       isSeed: ['zh-mandarin', 'en-us', 'grc', 'ru', 'fr', 'ar'].includes(language),
       textbooks: (bank.textbookCatalog || []).filter(item => item.targetLanguage === language).map(item => Object.fromEntries(Object.entries(item).map(([key, value]) => [key, typeof value === 'string' ? contentText(value, locale) : value]))),
       dictionaries: language === 'la' ? (bank.dictionarySources || []).map(item => ({ ...item, name: contentText(item.name, locale), scope: contentText(item.scope, locale), access: contentText(item.access, locale) })) : [],
@@ -179,6 +196,8 @@ Page({
     });
     this.renderQuestion();
     this.renderVocabulary();
+    this.renderStudyModes();
+    this.updateCommunityPolling();
   },
   signedIn() {
     const session = api.getSession();
@@ -193,9 +212,12 @@ Page({
   changeView(event) {
     if (this.data.busy) return;
     const view = event.currentTarget.dataset.view;
+    if (this.data.examActive && view !== 'practice') this.finishExam();
     this.stopQuestionAudio();
     this.setData({ view });
     this.renderVocabulary();
+    this.renderStudyModes();
+    this.updateCommunityPolling();
     if (view === 'words' && !this.data.card) this.nextCard();
   },
   changeLocale() {
@@ -254,6 +276,8 @@ Page({
       this.setData({ password: '' });
       const session = await api.signIn(this.data.email.trim(), password);
       this.owner = session.user.id;
+      this.resetStudyModes();
+      this.stopCommunity();
       this.record = emptyRecord();
       this.initVocabulary();
       this.stopQuestionAudio();
@@ -270,6 +294,8 @@ Page({
   signOut() {
     if (this.data.busy) return;
     this.generation++;
+    this.resetStudyModes();
+    this.stopCommunity();
     api.signOut();
     this.owner = null;
     this.record = readGuest();

@@ -568,3 +568,82 @@ test('English question and gloss searches keep the same canonical results when d
   h.page.changeLocale();
   assert.deepEqual(h.page.data.dictionaryRows.map(row=>row.id),rows);
 });
+
+
+test('every language exposes ordered questions, a same-language diagnostic and cumulative vocabulary measurement', async () => {
+  const h = await harness();
+  for (const language of bank.languageOrder) {
+    h.page.record.preference = { language, level: 'G', vocabMode: 'word' };
+    // English UI makes Mandarin available; Chinese UI makes English available.
+    h.page.setData({ locale: language === 'zh-mandarin' ? 'en' : 'zh-CN' });
+    h.page.applyPreference();
+    assert.equal(h.page.data.language, language);
+    assert.equal(h.page.data.courseLevels.length, 4);
+    h.page.openOrderedPractice();
+    assert.equal(h.page.data.browse, true);
+    h.page.startOrderedPractice();
+    assert.deepEqual(plain(h.page.queue.map(q => q.id)), plain(h.page.filtered.map(q => q.id)));
+    h.page.startExam();
+    assert.equal(h.page.data.examActive, true);
+    assert.ok(h.page.queue.length <= 9 && h.page.queue.length > 0);
+    assert.ok(h.page.queue.every(q => (q.language || 'la') === language && shared.matchesLevel(q, 'G')));
+    const ids = h.page.queue.map(q => q.id);
+    h.page.changeLocale();
+    if (h.page.data.language === language) assert.deepEqual(plain(h.page.queue.map(q => q.id)), plain(ids));
+    h.page.finishExam();
+    h.page.startMeasurement();
+    assert.ok(h.page.measurement.items.length > 0 && h.page.measurement.items.length <= 20);
+    const eligible = bank.vocabularyCards.filter(card => card.language === h.page.data.language && shared.vocabularyMatchesLevel(card, 'G'));
+    assert.equal(h.page.measurement.pool, eligible.length);
+    assert.ok(h.page.measurement.items.every(item => eligible.some(card => card.id === item.id)));
+  }
+  assert.equal(h.calls.filter(call => call.method === 'POST').length, 0);
+});
+
+test('diagnostic scoring is per round and an expired or skipped question never borrows old progress', async () => {
+  const h = await harness();
+  h.page.record.progress = Object.fromEntries(bank.questions.map(q => [q.id, 'correct']));
+  h.page.startExam();
+  const q = h.page.activeQuestion;
+  await h.page.answer(event({ index: q.answer }));
+  assert.equal(Object.keys(h.page.examAnswers).length, 1);
+  h.page.nextQuestion();
+  h.page.examDeadline = Date.now() - 1;
+  await h.page.answer(event({ index: h.page.activeQuestion.answer }));
+  assert.equal(h.page.data.examActive, false);
+  assert.equal(h.page.data.examAnswered, 1);
+  assert.equal(h.page.data.examCorrect, 1);
+});
+
+test('measurement freezes choices across locale, records once and never fabricates recall events', async () => {
+  const h = await harness();
+  h.page.startMeasurement();
+  const items = plain(h.page.measurement.items);
+  h.page.changeLocale();
+  assert.deepEqual(plain(h.page.measurement.items), items);
+  for (const item of items) h.page.answerMeasurement(event({ index: item.options.indexOf(item.gloss) }));
+  assert.equal(h.page.data.measurementReady, true);
+  const before = Object.values(h.page.wordMemory.stats).reduce((total, stat) => total + stat.seen, 0);
+  await h.page.finishMeasurement();
+  await h.page.finishMeasurement();
+  assert.equal(h.page.data.measurementDone, true);
+  assert.equal(h.page.data.measurementScore, items.length);
+  assert.equal(Object.values(h.page.wordMemory.stats).reduce((total, stat) => total + stat.seen, 0), before + items.length);
+  assert.equal(h.page.wordMemory.reviews.length, 0);
+  assert.equal(h.page.wordMemory.pendingReviewIds.length, 0);
+  assert.equal(h.calls.filter(call => call.method === 'POST').length, 0);
+});
+
+
+test('changed cloud content ends an active diagnostic without leaving an empty running exam', async () => {
+  const h = await harness();
+  h.page.startExam();
+  const q = h.page.activeQuestion;
+  await h.page.answer(event({ index: q.answer }));
+  h.state.overrides = [{ questionId: q.id, action: 'delete' }];
+  await h.page.refresh();
+  assert.equal(h.page.data.examActive, false);
+  assert.equal(h.page.data.examFinished, true);
+  assert.equal(h.page.data.view, 'exam');
+  assert.equal(h.page.data.examAnswered, 1);
+});

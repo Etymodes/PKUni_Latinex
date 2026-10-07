@@ -105,6 +105,7 @@ export function buildSharedSource(root = projectRoot) {
     sourceDeclarations("data/vocabulary.ts", ["vocabularyKey", "vocabularyLevelsFor", "vocabularyMatchesLevel", "adaptiveVocabularyWeight", "chooseNextVocabularyCard", "vocabularyInCollection", "publicDictionaryReferences"], root),
     sourceDeclarations("data/question-collections.ts", ["questionInCollection", "questionForCollection", "collectionOrder"], root),
     sourceDeclarations("lib/shuffle.ts", ["shuffle"], root),
+    sourceDeclarations("lib/study-modes.ts", ["buildRandomExam", "buildVocabularyMeasurement"], root),
     sourceDeclarations("app/i18n.ts", ["availableLearningLanguages", "normalizeLearningLanguage", "getLearningLanguage"], root),
     // Preserve the website's deletion, replacement, order, and review-status behavior.
     `export function mergeQuestionOverrides(staticQuestions, overrides = []) ${callback.body.getText(page)}`,

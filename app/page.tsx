@@ -70,19 +70,12 @@ import { archiveEntries } from "@/data/archive";
 import { curriculumDomains, etymologyFacts, textbookCoverage, vocabItems, type VocabItem } from "@/data/curriculum";
 import { completeBankStats, completeQuestions, completeVocabItems } from "@/data/complete-bank";
 import { classicalAuthors, resourceChapterMappings, textbookCatalog } from "@/data/resources";
-import { vocabularyKey, type VocabularyMode, type VocabularyStats } from "@/data/vocabulary";
+import { vocabularyCards, vocabularyLevelsFor, vocabularyKey, type VocabularyMode, type VocabularyStats } from "@/data/vocabulary";
 import { VocabularyTrainer, VocabularyDictionary } from "./vocabulary-workspace";
 import { sanitizeVocabularyReviews, type VocabularyReviewEvent } from "@/lib/vocabulary-model";
 import { syncVocabularyReviews, reviewCounts, subtractReviewCounts } from "@/lib/vocabulary-review-sync";
-import {
-  storyNodesForPace,
-  storyPaces,
-  storyScore,
-  storyStageLabels,
-  xiangshanLatinStory,
-  type StoryPace,
-  type StorySupport,
-} from "@/data/story";
+import { CommunityWorkspace } from "./community-workspace";
+import { buildRandomExam, buildVocabularyMeasurement, type VocabularyMeasurementItem } from "@/lib/study-modes";
 import { extraEnglish } from "./extra-copy";
 import { contentText, localizeQuestion } from "../lib/content-locale";
 import { shuffle } from "@/lib/shuffle";
@@ -191,7 +184,6 @@ function usePersistentState<T>(key: string, initialValue: T) {
 
 const staticQuestions = [...studyQuestions];
 const staticQuestionIndex = new Map(staticQuestions.map((question) => [question.id, question]));
-const allVocabItems: VocabItem[] = [...vocabItems, ...completeVocabItems, ...multilingualVocabItems];
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isStaticPublic = process.env.NEXT_PUBLIC_STATIC_PUBLIC === "true";
 const authMode = process.env.NEXT_PUBLIC_AUTH_MODE ?? "chatgpt";
@@ -851,22 +843,21 @@ export default function App() {
 
         <main id="main-content">
           <>
-              {language === "la" && (["practice", "story", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", t("有序选题")], ["story", t("剧情任务")], ["exam", t("随机组卷")], ["vocab-trainer", t("背单词")], ["vocabulary", t("词汇量测量")]]} view={view} setView={setView} />}
-              {language !== "la" && (["practice", "vocab-trainer"] as View[]).includes(view) && <HubTabs items={[["practice", t("有序选题")], ["vocab-trainer", t("背单词")]]} view={view} setView={setView} />}
+              {(["practice", "story", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", t("有序选题")], ["story", t("剧情任务")], ["exam", t("随机组卷")], ["vocab-trainer", t("背单词")], ["vocabulary", t("词汇量测量")]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", t("错题回炉")], ["bookmarks", t("我的收藏")]]} view={view} setView={setView} />}
               {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", t("考试范围")], ["archive", t("真题档案")], ["resources", t("教材·作者·辞典")]] : [["scope", t("考试与资源")], ["resources", `${currentLanguage.labels[locale]} · ${t("资源")}`]]} view={view} setView={setView} />}
               {view === "home" && <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={openPractice} setView={setView} />}
               {view === "practice" && <Practice key={language} bank={languageBank} level={level} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} fullPaper={language === "ja" && fullPaper} setFullPaper={setFullPaper} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
-              {view === "story" && (language === "la" ? <StoryMode setView={setView} /> : <StoryOutline level={level} setView={setView} />)}
+              {view === "story" && <StoryOutline setView={setView} />}
               {view === "mistakes" && <QuestionCollection title={copy.mistakes} empty={copy.noMistakes} questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title={copy.bookmarks} empty={copy.noBookmarks} questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
-              {view === "exam" && <ExamMode bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} />}
+              {view === "exam" && <ExamMode key={`${language}:${session.user?.email ?? "guest"}`} bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} />}
               {view === "vocab-trainer" && <VocabularyTrainer key={`${language}:${vocabularyMemory.owner}`} language={language} locale={locale} level={languageLevel} mode={vocabularyMode} stats={activeVocabularyStats} reviews={activeVocabularyReviews} owner={vocabularyMemory.owner} ready={vocabularyOwnerReady} focusId={vocabularyFocus} onReview={recordVocabularyReview} onDictionary={(id) => { setVocabularyFocus(id); setView("resources"); }} onSettings={() => setView("settings")} />}
-              {view === "vocabulary" && <VocabularyLab level={level} ready={vocabularyOwnerReady} onSubmit={(answers) => recordVocabulary(language, answers)} />}
+              {view === "vocabulary" && <VocabularyLab key={`${language}:${vocabularyMemory.owner}`} level={level} ready={vocabularyOwnerReady} onSubmit={(answers) => recordVocabulary(language, answers)} />}
               {view === "scope" && <Scope level={level} openPractice={openPractice} />}
               {view === "archive" && <Archive />}
               {view === "resources" && <ResourceLibrary language={language} config={languageConfig} focusId={vocabularyFocus} stats={activeVocabularyStats} reviews={activeVocabularyReviews} onPractice={(id) => { setVocabularyFocus(id); setView("vocab-trainer"); }} />}
-              {view === "community" && <CommunityPreview config={languageConfig} />}
+              {view === "community" && <CommunityWorkspace key={`${language}:${locale}:${session.user?.email ?? "guest"}`} language={language} languageName={currentLanguage.labels[locale]} locale={locale} authenticated={session.authenticated} isAdmin={session.user?.role === "admin"} />}
               {view === "settings" && <PersonalSettings config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
             </>
@@ -1174,9 +1165,8 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
         <article className="story-entry-card">
           <TargetKicker kind="story"><Sparkles size={14} /></TargetKicker>
           <h1>{copy.storyRoute(language.labels[locale])}</h1>
-          <p>{copy.storyEntryCopy}</p>
-          <div className="story-cast-row"><span>{copy.mainCast}</span><ChevronRight size={14} /><span>{copy.targetLanguagePair(language.labels[locale])}</span></div>
-          <button className="primary-button" onClick={() => setView("story")}>{copy.enterStory} <ArrowRight size={17} /></button>
+          <p>{locale === "en" ? "Story mode is being redesigned. Keep learning through courses, practice and vocabulary." : "剧情模式正在重新设计。你可以先通过课程、练习和背单词继续学习。"}</p>
+          <button className="primary-button" onClick={() => setView("story")}>{locale === "en" ? "Coming soon" : "即将推出"} <ArrowRight size={17} /></button>
           <strong className="story-greeting" lang={language.htmlLang}>{language.greeting}</strong>
         </article>
 
@@ -1213,12 +1203,6 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
         ))}
       </section>
 
-      {language.id === "la" && <section className="story-banner">
-        <div className="story-banner-mark"><Landmark /></div>
-        <div><span>{t("FABULA INVESTIGANDA · P3.3 原型")}</span><h2>{t("香山碑文与版本线索")}</h2><p>{t("和“五方言路”完成一条 8–12 分钟的拉丁语文献侦探任务；另有 3 分钟复习和 20 分钟深读。")}</p></div>
-        <button className="secondary-button" onClick={() => setView("story")}>{t("进入剧情")}<ArrowRight size={17} /></button>
-      </section>}
-
       <section className="exam-banner">
         <div className="banner-icon"><Trophy /></div>
         <div><TargetKicker kind="exam" /><h2>{copy.examReady}</h2><p>{copy.examReadyCopy}</p></div>
@@ -1228,143 +1212,11 @@ function Dashboard({ bank, level, progress, bookmarks, openPractice, setView }: 
   );
 }
 
-function StoryOutline({ level, setView }: { level: StudyLevel; setView: (view: View) => void }) {
+function StoryOutline({ setView }: { setView: (view: View) => void }) {
   const { copy, locale, language } = useI18n();
-  return (
-    <div className="page story-page">
-      <div className="practice-header">
-        <div><TargetKicker kind="story"><Sparkles size={14} /></TargetKicker><h1>{copy.storyRoute(language.labels[locale])}</h1><p>{copy.storyFrameworkCopy}</p></div>
-        <button className="secondary-button" onClick={() => setView("home")}><ArrowLeft size={16} />{copy.backToOverview}</button>
-      </div>
-      <section className="story-stage" aria-label={copy.storyFrameworkTitle}>
-        <div className="story-scene-copy"><span>{copy.storyFrameworkTitle}</span><h2 lang={language.htmlLang}>{language.greeting}</h2><p>{copy.learningPath(language.labels[locale], levelName(copy, level, language.id))}</p></div>
-        <div className="story-role-card"><strong>{copy.mainCast}</strong><span>×</span><strong>{copy.targetLanguagePair(language.labels[locale])}</strong></div>
-        <div className="story-dialogue"><LanguageWordmark language={language} /><p>{copy.storyCharactersPending}</p></div>
-      </section>
-    </div>
-  );
-}
-
-
-function StoryMode({ setView }: { setView: (view: View) => void }) {
-  const t = useInterfaceText();
-  const [phase, setPhase] = useState<"intro" | "play" | "done">("intro");
-  const [pace, setPace] = useState<StoryPace>("standard");
-  const [support, setSupport] = useState<StorySupport>("guided");
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [choiceOrders, setChoiceOrders] = useState<Record<string, string[]>>({});
-  const paceOrder: StoryPace[] = ["quick", "standard", "deep"];
-  const nodes = storyNodesForPace(pace);
-  const node = nodes[step];
-  const selectedChoice = node?.choices?.find((choice) => choice.id === answers[node.id]);
-  const visibleChoices = node?.choices
-    ? (choiceOrders[node.id] ?? node.choices.map((choice) => choice.id)).flatMap((id) => {
-        const choice = node.choices?.find((item) => item.id === id);
-        return choice ? [choice] : [];
-      })
-    : [];
-  const score = storyScore(answers, nodes);
-
-  const start = (nextPace = pace) => {
-    const nextNodes = storyNodesForPace(nextPace);
-    setPace(nextPace);
-    setStep(0);
-    setAnswers({});
-    setChoiceOrders(Object.fromEntries(nextNodes.map((item) => [item.id, shuffle(item.choices ?? []).map((choice) => choice.id)])));
-    setPhase("play");
-  };
-
-  const advance = () => {
-    if (step >= nodes.length - 1) setPhase("done");
-    else setStep((current) => current + 1);
-  };
-
-  if (phase === "intro") return <div className="page story-page">
-    <section className="story-intro">
-      <span className="eyebrow"><Landmark size={14} />{t("FABULA INVESTIGANDA · 剧情任务")}</span>
-      <div className="story-intro-heading">
-        <div><h1>{xiangshanLatinStory.title}</h1><p>{xiangshanLatinStory.subtitle}</p></div>
-        <span>{t("建议中级 · 所有等级可试")}</span>
-      </div>
-      <p className="story-lead">{xiangshanLatinStory.setting}{t("。你会先理解线索、向同伴缩小问题、提交转写判断，再把同一策略迁移到新句。")}</p>
-      <div className="story-objectives">
-        {xiangshanLatinStory.objectives.map((objective) => <span key={objective}><Check size={15} />{objective}</span>)}
-      </div>
-      <p className="story-source-note">{t("原创训练场景 · 非史料原文 · 不设性别、国籍或身份预设")}</p>
-    </section>
-
-    <section className="story-setup" aria-label={t("剧情任务设置")}>
-      <div><span className="eyebrow">{t("TEMPO · 任务长度")}</span><h2>{t("这次走哪条路线？")}</h2></div>
-      <div className="story-pace-grid">
-        {paceOrder.map((item) => <button key={item} className={pace === item ? "active" : ""} onClick={() => setPace(item)} aria-pressed={pace === item}>
-          <strong>{t(storyPaces[item].label)}</strong><span>{t(storyPaces[item].duration)}</span><small>{t(storyPaces[item].description)}</small>
-        </button>)}
-      </div>
-      <div className="story-support-row">
-        <div><strong>{t("引导强度")}</strong><span>{t("只影响提示多少，不改变题目结果。")}</span></div>
-        <div>
-          <button className={support === "guided" ? "active" : ""} onClick={() => setSupport("guided")} aria-pressed={support === "guided"}>{t("更多讲解")}</button>
-          <button className={support === "immersive" ? "active" : ""} onClick={() => setSupport("immersive")} aria-pressed={support === "immersive"}>{t("更沉浸")}</button>
-        </div>
-      </div>
-      <div className="story-actions"><button className="primary-button" onClick={() => start()}>{t("开始")}{t(storyPaces[pace].label)} <ArrowRight size={17} /></button><button className="text-button" onClick={() => setView("practice")}>{t("返回训练中心")}</button></div>
-    </section>
-  </div>;
-
-  if (phase === "done") return <div className="page story-page">
-    <section className="story-complete">
-      <div className="story-complete-seal"><CheckCircle2 /></div>
-      <span className="eyebrow">{t("ECHO COMPLETUM · 闭环完成")}</span>
-      <h1>{t("线索已经串起来了。")}</h1>
-      <p>{t("本轮完成")}{nodes.length}{t("个情境节点，")}{score.total}{t("次判断中命中")}<strong>{score.correct}</strong>{t("次。错选不会阻断剧情；反馈已把注意力带回有限动词、名词与分词的一致关系。")}</p>
-      <div className="story-summary-grid">
-        <div><span>{t("核心策略")}</span><strong>{t("先主干，后分词一致")}</strong></div>
-        <div><span>{t("目标词目")}</span><strong>{xiangshanLatinStory.targetItems.join(" · ")}</strong></div>
-        <div><span>{t("本轮路线")}</span><strong>{t(storyPaces[pace].label)} · {t(storyPaces[pace].duration)}</strong></div>
-      </div>
-      <div className="story-complete-actions">
-        {pace !== "quick" && <button className="secondary-button" onClick={() => start("quick")}>{t("3 分钟回声复习")}</button>}
-        {pace !== "deep" && <button className="secondary-button" onClick={() => start("deep")}>{t("打开 20 分钟深读")}</button>}
-        <button className="secondary-button" onClick={() => setView("resources")}>{t("打开资源库")}</button>
-        <button className="primary-button" onClick={() => setView("practice")}>{t("回到训练中心")}</button>
-      </div>
-      <small>{t("本阶段为静态原型，只在本次章节中计算判断结果；账号级剧情进度和错因权重将在下一迭代接入。")}</small>
-    </section>
-  </div>;
-
   return <div className="page story-page">
-    <div className="story-toolbar">
-      <button className="text-button" onClick={() => setPhase("intro")}><ArrowLeft size={16} />{t("退出任务")}</button>
-      <span>{t(storyPaces[pace].label)} · {support === "guided" ? t("更多讲解") : t("更沉浸")}</span>
-      <strong>{step + 1} / {nodes.length}</strong>
-    </div>
-    <div className="story-progress" aria-label={`${t("剧情进度")} ${step + 1} / ${nodes.length}`}><i style={{ width: `${((step + 1) / nodes.length) * 100}%` }} /></div>
-    <ol className="story-stage-list" aria-label={t("学习闭环阶段")}>
-      {nodes.map((item, index) => <li key={item.id} className={index === step ? "active" : index < step ? "done" : ""}><span>{index < step ? "✓" : index + 1}</span>{t(storyStageLabels[item.stage])}</li>)}
-    </ol>
-
-    <article className="story-scene">
-      <header><span>{t(storyStageLabels[node.stage])}</span><small>{node.place}</small><h1>{node.title}</h1></header>
-      <p className="story-copy">{node.body}</p>
-      {node.targetText && <blockquote lang="la">{node.targetText}</blockquote>}
-      {support === "guided" && node.guidedNote && <aside className="story-guidance"><CircleHelp size={17} /><div><strong>{t("观察提示")}</strong><p>{node.guidedNote}</p></div></aside>}
-      {pace === "deep" && node.deepNote && <details className="story-deep-note" open><summary>{t("文献深读注")}</summary><p>{node.deepNote}</p></details>}
-      {node.prompt && <h2>{node.prompt}</h2>}
-      {node.choices && <div className="story-choices">
-        {visibleChoices.map((choice, choiceIndex) => <button key={choice.id} className={selectedChoice?.id === choice.id ? `selected ${choice.correct ? "correct" : "wrong"}` : ""} onClick={() => setAnswers((current) => ({ ...current, [node.id]: choice.id }))} disabled={Boolean(selectedChoice)} aria-pressed={selectedChoice?.id === choice.id}>
-          <span>{String.fromCharCode(65 + choiceIndex)}</span>{choice.label}
-        </button>)}
-      </div>}
-      {selectedChoice && <div className={`story-feedback ${selectedChoice.correct ? "correct" : "wrong"}`} role="status">
-        {selectedChoice.correct ? <CheckCircle2 size={18} /> : <CircleHelp size={18} />}
-        <div><strong>{selectedChoice.correct ? t("线索成立") : t("先保留这个误差")}</strong><p>{selectedChoice.feedback}</p>{!selectedChoice.correct && node.repairPrompt && <small>{t("修复提示：")}{node.repairPrompt}</small>}</div>
-      </div>}
-      <footer>
-        <button className="secondary-button" onClick={() => step > 0 ? setStep((current) => current - 1) : setPhase("intro")}><ArrowLeft size={16} />{step > 0 ? t("上一幕") : t("返回设置")}</button>
-        <button className="primary-button" onClick={advance} disabled={Boolean(node.choices?.length) && !selectedChoice}>{step === nodes.length - 1 ? t("完成任务") : t("继续")}<ArrowRight size={16} /></button>
-      </footer>
-    </article>
+    <div className="practice-header"><div><TargetKicker kind="story"><Sparkles size={14} /></TargetKicker><h1>{copy.storyRoute(language.labels[locale])}</h1></div></div>
+    <section className="story-pending"><Sparkles size={36} /><h2>{locale === "en" ? "Coming soon" : "即将推出"}</h2><p>{locale === "en" ? "Story mode is being redesigned. Courses, practice and vocabulary are available now." : "剧情模式正在重新设计。课程、练习和背单词功能现已可用。"}</p><button className="primary-button" onClick={() => setView("practice")}>{locale === "en" ? "Go to courses & practice" : "前往课程与练习"}<ArrowRight size={17} /></button></section>
   </div>;
 }
 
@@ -1554,13 +1406,14 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   const [seconds, setSeconds] = useState(180 * 60);
   const [examQuestions, setExamQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
+  const [roundAnswers, setRoundAnswers] = useState<Progress>({});
   const [paperType, setPaperType] = useState<"official" | "diagnostic" | "mixed">("diagnostic");
 
   useEffect(() => {
     if (language.id !== "la") setPaperType("diagnostic");
     setStarted(false);
     setFinished(false);
-    setExamQuestions([]);
+    setExamQuestions([]); setRoundAnswers({});
   }, [language.id]);
 
   useEffect(() => {
@@ -1575,15 +1428,14 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   useEffect(() => { if (seconds === 0 && started) setFinished(true); }, [seconds, started]);
 
   const start = () => {
+    setRoundAnswers({});
     if (paperType === "official" && language.id === "la") {
       const matching = bank.filter((q) => q.id.startsWith("pku-mock-") && matchesLevel(q, level));
       const nextQuestions = shuffle(matching).slice(0, 1);
       if (!nextQuestions.length) return;
       setExamQuestions(nextQuestions); setIndex(0); setSeconds(180 * 60); setFinished(false); setStarted(true); return;
     }
-    const objective = shuffle(bank.filter((q) => (paperType === "mixed" || matchesLevel(q, level)) && q.type === "choice")).slice(0, 8);
-    const translation = shuffle(bank.filter((q) => (paperType === "mixed" || matchesLevel(q, level)) && q.type === "self-check")).slice(0, 1);
-    const nextQuestions = [...objective, ...translation];
+    const nextQuestions = buildRandomExam(bank, level, paperType === "mixed");
     if (!nextQuestions.length) return;
     setExamQuestions(nextQuestions); setIndex(0); setSeconds(20 * 60); setFinished(false); setStarted(true);
   };
@@ -1591,7 +1443,7 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   const selectableLevels = paperType === "official" ? LEVEL_ORDER.slice(0, 2) : LEVEL_ORDER;
   const plannedQuestions = paperType === "official"
     ? Math.min(1, bank.filter((question) => question.id.startsWith("pku-mock-") && matchesLevel(question, level)).length)
-    : Math.min(9, bank.filter((question) => paperType === "mixed" || matchesLevel(question, level)).length);
+    : buildRandomExam(bank, level, paperType === "mixed", () => 0).length;
 
   if (!started) return (
     <div className="page exam-start">
@@ -1604,7 +1456,7 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
     </div>
   );
 
-  const doneCount = examQuestions.filter((q) => progress[q.id]).length;
+  const doneCount = examQuestions.filter((q) => roundAnswers[q.id]).length;
   if (finished) return <div className="page exam-start"><div className="exam-intro-icon"><Trophy /></div><TargetKicker kind="exam" /><h1>{copy.examFinished}</h1><p>{copy.examSummary(doneCount, examQuestions.length)}</p><button className="primary-button large" onClick={start}>{copy.anotherExam} <RotateCcw size={18} /></button></div>;
 
   const current = examQuestions[index];
@@ -1612,7 +1464,7 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
   return (
     <div className="page exam-live">
       <div className="exam-toolbar"><div><span>{copy.examLevel(levelName(copy, level, language.id))}</span><strong>{copy.questionPosition(index + 1, examQuestions.length)}</strong></div><div className={`timer ${seconds < 600 ? "urgent" : ""}`}><Clock3 size={18} />{formatTime(seconds)}</div><button className="secondary-button" onClick={() => setFinished(true)}>{copy.submitExam}</button></div>
-      <QuestionCard key={current.id} question={current} status={progress[current.id]} onResult={(status) => onResult(current, status)} bookmarked={false} onBookmark={() => {}} />
+      <QuestionCard key={current.id} question={current} status={roundAnswers[current.id]} onResult={(status) => { setRoundAnswers(previous => ({ ...previous, [current.id]: status })); onResult(current, status); }} bookmarked={false} onBookmark={() => {}} />
       <div className="question-nav"><button className="secondary-button" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}><ArrowLeft size={17} /> {copy.previous}</button>{index < examQuestions.length - 1 ? <button className="primary-button" onClick={() => setIndex((i) => i + 1)}>{copy.next} <ArrowRight size={17} /></button> : <button className="primary-button" onClick={() => setFinished(true)}>{copy.finishExam} <Check size={17} /></button>}</div>
     </div>
   );
@@ -1644,7 +1496,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
       <div className="settings-action"><span>{t("当前语言：")}{config.nativeName} · {languageName}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>{t("开始背单词")}<ArrowRight size={17} /></button></div>
     </section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.1.2</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.2.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>
@@ -1656,21 +1508,14 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
 
 function VocabularyLab({ level, ready, onSubmit }: { level: StudyLevel; ready: boolean; onSubmit: (answers: { lemma: string; correct: boolean }[]) => boolean }) {
   const { copy, language, locale } = useI18n();
-  const items = useMemo(() => {
-    const seen = new Set<string>();
-    return allVocabItems.filter((item) => {
-      if ((item.language ?? "la") !== language.id || seen.has(item.lemma)) return false;
-      seen.add(item.lemma);
-      return true;
-    });
-  }, [language.id]);
-  const [test, setTest] = useState<VocabItem[]>([]);
+  const items = useMemo(() => vocabularyCards.filter(card => card.language === language.id), [language.id]);
+  const [test, setTest] = useState<VocabularyMeasurementItem[]>([]);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [finished, setFinished] = useState(false);
-  const submittedTest = useRef<VocabItem[] | null>(null);
-  const eligible = items.filter((item) => normalizePikkuLevel(language.id, item.level) === normalizePikkuLevel(language.id, level));
-  const restart = () => { setTest(shuffle(eligible).slice(0, 20)); setAnswers({}); setFinished(false); };
-  useEffect(() => { setTest(shuffle(items.filter((item) => normalizePikkuLevel(language.id, item.level) === normalizePikkuLevel(language.id, level))).slice(0, 20)); setAnswers({}); setFinished(false); }, [items, level]);
+  const submittedTest = useRef<VocabularyMeasurementItem[] | null>(null);
+  const eligible = items.filter(item => item.level && vocabularyLevelsFor(language.id, level).includes(normalizePikkuLevel(language.id, item.level)));
+  const restart = () => { setTest(buildVocabularyMeasurement(items, level)); setAnswers({}); setFinished(false); };
+  useEffect(() => { setTest(buildVocabularyMeasurement(items, level)); setAnswers({}); setFinished(false); }, [items, level]);
   const score = test.filter((item) => answers[item.lemma] === item.gloss).length;
   const submit = () => {
     if (!ready || submittedTest.current === test) return;
@@ -1685,11 +1530,11 @@ function VocabularyLab({ level, ready, onSubmit }: { level: StudyLevel; ready: b
     <div className="official-note"><Languages /><div><strong>{copy.vocabularyRound(levelName(copy, level, language.id), test.length)}</strong><p>{copy.vocabularySyncNote}</p></div></div>
     <div className="vocab-grid">
       {test.map((item, index) => {
-        const options = [item.gloss, ...item.distractors].sort((a, b) => (a + item.lemma).localeCompare(b + item.lemma));
-        return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {contentText(item.family, locale)}</span><h2 lang={item.htmlLang || language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{contentText(option, locale)}</button>)}</div></article>;
+        const options = item.options;
+        return <article className="vocab-item" key={item.lemma}><span>{String(index + 1).padStart(2, "0")} · {item.level}</span><h2 lang={language.htmlLang}>{item.lemma}</h2><div>{options.map((option) => <button key={option} disabled={finished} className={`${answers[item.lemma] === option ? "selected" : ""} ${finished && option === item.gloss ? "correct" : ""}`} onClick={() => setAnswers((current) => ({ ...current, [item.lemma]: option }))}>{contentText(option, locale)}</button>)}</div></article>;
       })}
     </div>
-    {!finished ? <button className="primary-button vocab-submit" disabled={!ready || !test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{copy.vocabularyEstimate(Math.round((score / Math.max(test.length, 1)) * eligible.length), eligible.length)}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
+    {!finished ? <button className="primary-button vocab-submit" disabled={!ready || !test.length || Object.keys(answers).length !== test.length} onClick={submit}>{copy.submitMeasure}</button> : <section className="vocab-result"><Trophy /><div><span>{copy.currentResult}</span><h2>{score} / {test.length}</h2><p>{locale === "en" ? `Recognition in this sample only · ${eligible.length} words in the selected stages. This is not a total vocabulary-size estimate.` : `本次仅测量抽样识别率 · 当前等级范围共 ${eligible.length} 词，不代表语言总词汇量。`}</p></div><button className="secondary-button" onClick={restart}>{copy.retest}</button></section>}
     </>}
   </div>;
 }
@@ -1841,19 +1686,6 @@ function ResourceLibrary({ language, config, focusId, stats, reviews, onPractice
       {language !== "la" && !currentFacts.length && <div className="empty-state"><div><Sparkles /></div><h2>{languageName}{t("语言知识待建")}</h2><p>{t("核验来源后再加入，不显示拉丁语占位内容。")}</p></div>}
     </>}
   </div>;
-}
-
-function CommunityPreview({ config }: { config: LanguageConfig }) {
-  const { locale } = useI18n();
-  const languageName = getLearningLanguage(config.code).labels[locale];
-  const t = useInterfaceText();
-  const channel = {
-    la: ["CANĀLIS LATĪNUS", t("公共拉丁语频道"), t("正文只使用拉丁语。可交流日常、阅读原典、主动拉丁语写作与翻译；引用其他语言时需附拉丁语说明。")],
-    ja: ["日本語チャンネル", t("日语限定频道"), t("正文只使用日语。可交流日常、阅读、写作和翻译；引用其他语言时需附日语说明。")],
-    es: ["CANAL EN ESPAÑOL", t("西班牙语限定频道"), t("正文只使用西班牙语。可交流日常、阅读、写作和翻译；引用其他语言时需附西班牙语说明。")],
-  }[config.code as "la" | "ja" | "es"] ?? [config.nativeName, `${languageName} · ${t("频道")}`, t("在这里分享学习方法与目标语言练习。")] ;
-
-  return <div className="page community-page"><div className="practice-header"><div><span className="eyebrow">FORUM PIKKU · {config.nativeName}</span><h1>{languageName}{t("交流社区")}</h1><p>{t("频道结构已预留；账号、举报、限流与审核规则完成后再开放发帖。")}</p></div></div><div className="community-grid"><article><Languages /><span>{channel[0]}</span><h2>{channel[1]}</h2><p>{channel[2]}</p><button disabled>{t("即将开放")}</button></article><article><Users /><span>PIKKU · SITE &amp; STUDY</span><h2>{t("网站与学习频道")}</h2><p>{t("可使用界面语言，只讨论网站设计、功能优化、报错、学习方法和使用心得。")}</p><button disabled>{t("即将开放")}</button></article></div><div className="source-card"><CircleHelp /><div><strong>{t("为什么暂不直接开放？")}</strong><p>{t("公共社区需要先具备内容举报、管理员审核、频率限制、隐私说明和数据保留规则，避免测试功能变成安全缺口。")}</p></div></div></div>;
 }
 
 function EmptyState({ text }: { text: string; kind?: string }) {

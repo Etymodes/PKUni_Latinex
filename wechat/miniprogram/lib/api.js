@@ -68,13 +68,13 @@ function assertCurrent(expected) {
   if (generation !== expected) throw error('The signed-in account has changed.', 409, 'SESSION_CHANGED');
 }
 
-function send(url, method, data, header) {
+function send(url, method, data, header, timeout = 15000) {
   return new Promise((resolve, reject) => {
     const fail = () => reject(error('Unable to connect. Check your network and try again.', 0, 'NETWORK_ERROR'));
     try {
       wx.request({
         url, method, data, header: { 'Content-Type': 'application/json', ...header },
-        timeout: 15000,
+        timeout,
         dataType: 'json',
         success(response) {
           const status = Number(response.statusCode) || 0;
@@ -90,7 +90,9 @@ function send(url, method, data, header) {
           }
           if (status < 200 || status >= 300) {
             const message = body && (body.error_description || body.msg || body.message || body.error);
-            reject(error(typeof message === 'string' ? message.slice(0, 240) : 'Request failed.', status, 'HTTP_ERROR'));
+            const failure = error(typeof message === 'string' ? message.slice(0, 240) : 'Request failed.', status, 'HTTP_ERROR');
+            failure.details = body && typeof body === 'object' ? { error: body.error, warnings: body.warnings, mutedUntil: body.mutedUntil, retryAfterSeconds: body.retryAfterSeconds } : {};
+            reject(failure);
           } else {
             resolve(body === '' || body === undefined ? null : body);
           }
@@ -162,21 +164,23 @@ async function usableSession() {
 
 async function request(path, method = 'GET', data) {
   const reviewPage = typeof path === 'string' && /^\/api\/vocab\/reviews\?limit=500(?:&cursor=[A-Za-z0-9_-]{1,2048})?$/.test(path);
-  if (typeof path !== 'string' || (!/^\/api\/[a-z0-9/-]+$/.test(path) && !reviewPage)) {
+  const communityPage = typeof path === 'string' && /^\/api\/community\?language=(la|ja)&channel=(language|study)$/.test(path);
+  if (typeof path !== 'string' || (!/^\/api\/[a-z0-9/-]+$/.test(path) && !reviewPage && !communityPage)) {
     throw error('Invalid API path.', 400, 'INVALID_REQUEST');
   }
   if (typeof method !== 'string') throw error('Invalid request method.', 400, 'INVALID_REQUEST');
   method = method.toUpperCase();
-  if (reviewPage && method !== 'GET') throw error('Invalid API query.', 400, 'INVALID_REQUEST');
+  if ((reviewPage || communityPage) && method !== 'GET') throw error('Invalid API query.', 400, 'INVALID_REQUEST');
   load();
   const expected = generation;
   const publicQuestions = path === '/api/questions' && method === 'GET';
   const publicMe = path === '/api/me' && method === 'GET' && !session;
   try {
-    const active = publicQuestions || publicMe ? null : await usableSession();
+    const active = publicQuestions || publicMe || (communityPage && !session) ? null : await usableSession();
     assertCurrent(expected);
     const body = await send(`${config.apiOrigin}${path}`, method, data,
-      active ? { Authorization: `Bearer ${active.access_token}` } : {});
+      active ? { Authorization: `Bearer ${active.access_token}` } : {},
+      method === 'POST' && (path === '/api/community/messages' || /^\/api\/community\/messages\/[^/]+\/translate$/.test(path)) ? 45000 : 15000);
     assertCurrent(expected);
     return body;
   } catch (failure) {

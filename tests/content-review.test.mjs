@@ -71,7 +71,7 @@ test("resource records declare one target language", () => {
 });
 
 test("resource views consume only the active language datasets", () => {
-  const library = pageSource.slice(pageSource.indexOf("function ResourceLibrary"), pageSource.indexOf("function CommunityPreview"));
+  const library = pageSource.slice(pageSource.indexOf("function ResourceLibrary"), pageSource.indexOf("function EmptyState"));
 
   assert.match(library, /textbooks\.map/);
   assert.match(library, /chapterMappings\.map/);
