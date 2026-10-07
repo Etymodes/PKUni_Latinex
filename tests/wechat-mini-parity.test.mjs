@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { compressedFiles } from './helpers/wechat-generated.mjs';
 import { buildWechat } from '../scripts/build-wechat.mjs';
 
 const root = fileURLToPath(new URL('../wechat/miniprogram/', import.meta.url));
@@ -16,14 +17,14 @@ after(() => fs.rmSync(generated, { recursive: true, force: true }));
 
 async function harness() {
   const storage = new Map([['pikku-mini-guest-v1', { progress: {}, bookmarks: [], vocab: {}, preference: { language: 'ja', level: 'G', vocabMode: 'context' } }]]);
-  const previews = [], files = [], shares = [], toasts = [];
+  const previews = [], files = [], shares = [], toasts = [], clipboard = [];
   const wx = {
     getStorageSync: key => storage.has(key) ? plain(storage.get(key)) : '',
     setStorageSync: (key, value) => storage.set(key, plain(value)),
-    showToast: value => toasts.push(value), stopPullDownRefresh() {},
+    showToast: value => toasts.push(value), setClipboardData: value => { clipboard.push(value.data); value.success(); }, stopPullDownRefresh() {},
     previewImage: value => previews.push(value),
     env: { USER_DATA_PATH: '/fixture-user-data' },
-    getFileSystemManager: () => ({ writeFile(value) { files.push(value); value.success(); } }),
+    getFileSystemManager: () => ({ ...compressedFiles(generated), writeFile(value) { files.push(value); value.success(); } }),
     shareFileMessage: value => shares.push(value),
   };
   const api = { getSession: () => null, getOverrides: async () => ({ overrides: [] }),
@@ -55,7 +56,7 @@ async function harness() {
   page.refresh = function (...args) { refreshing = refresh.apply(this, args); return refreshing; };
   page.onLoad(); await refreshing;
   assert.equal(page.data.busy, false); assert.equal(page.owner, null);
-  return { page, bank, storage, previews, files, shares, toasts };
+  return { page, bank, storage, previews, files, shares, toasts, clipboard };
 }
 
 function cardFor(h) {
@@ -134,4 +135,21 @@ test('personal JSON export writes only the current language evidence and invokes
   assert.ok(content.reviews.every(row => row.language === 'ja'));
   assert.equal(h.shares[0].filePath, file.filePath);
   assert.deepEqual(Object.keys(content).sort(), ['exportedAt', 'language', 'reviews', 'version']);
+});
+
+test('feedback sits beside support and copies the authorized form with an honest browser instruction', async () => {
+  const h = await harness();
+  const url='https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG';
+  const before=plain(h.page.wordMemory);
+  for (const locale of ['zh-CN','en']) {
+    if(h.page.data.locale!==locale)h.page.changeLocale();
+    h.page.copyResource(event({url}));
+    assert.equal(h.clipboard.at(-1),url);
+    assert.equal(h.toasts.at(-1).title,h.page.data.t.copied);
+    assert.match(h.page.data.t.feedbackHelp, locale==='en' ? /browser/ : /浏览器/);
+  }
+  const wxml=fs.readFileSync(new URL('../wechat/miniprogram/pages/index/index.wxml',import.meta.url),'utf8');
+  assert.match(wxml, /support-feedback[^]*toggleSupport[^]*feedback-link/);
+  assert.ok(wxml.includes(url));
+  assert.deepEqual(plain(h.page.wordMemory),before);
 });

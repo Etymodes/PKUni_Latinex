@@ -179,7 +179,7 @@ export const etymologyFacts: EtymologyFact[] = [
   { latin: "cor, cordis", meaning: "心", english: ["cordial", "courage"], romance: ["意大利语 cuore", "西班牙语 corazón", "法语 cœur"], note: "英语 cordial 通过拉丁/法语进入；courage 的远源也是“心”。" },
   { latin: "scrībō, scrībere", meaning: "写", english: ["scribe", "describe", "manuscript"], romance: ["意大利语 scrivere", "西班牙语 escribir", "法语 écrire"], note: "前缀改变动作方向，词根 scrīb-/scrīpt- 保留“写”的概念。" },
   { latin: "pater, patris", meaning: "父亲", english: ["paternal", "patron"], romance: ["意大利语 padre", "西班牙语 padre", "法语 père"], note: "英语 father 与拉丁 pater 是印欧同源词，并非直接借入。" },
-  { latin: "lūx, lūcis", meaning: "光", english: ["lucid", "translucent"], romance: ["意大利语 luce", "西班牙语 luz", "法语 lueur"], note: "完成词干和派生词常保存 lūc- 这一词干。" },
+  { latin: "lūx, lūcis", meaning: "光", english: ["lucid", "translucent"], romance: ["意大利语 luce", "西班牙语 luz", "法语 lueur"], note: "派生词常保存 lūc- 这一词干。" },
   { latin: "veniō, venīre", meaning: "来", english: ["convene", "intervene", "advent"], romance: ["意大利语 venire", "西班牙语 venir", "法语 venir"], note: "英语 advent 来自 ad- + venīre 的完成分词词干 vent-." },
   { latin: "dūcō, dūcere", meaning: "引导", english: ["conduct", "educate", "reduce"], romance: ["意大利语 condurre", "西班牙语 conducir", "法语 conduire"], note: "dūc- 与完成分词词干 duct- 在英语派生词中交替出现。" },
   { latin: "cīvitās, cīvitātis", meaning: "公民共同体／国家", english: ["civic", "civilization", "city"], romance: ["意大利语 città", "西班牙语 ciudad", "法语 cité"], note: "古典语义不总等于现代“城市”，翻译需依政治语境。" },

@@ -3,6 +3,7 @@ const vocabulary = require('../../lib/vocabulary');
 const { vocabularyActions } = require('../../lib/vocabulary-page');
 const bank = require('../../data/bank');
 const shared = require('../../data/shared');
+const { contentText } = require('../../data/content-locale');
 const { copies, levelCards } = require('../../lib/copy');
 const { questionCategories, questionScope, questionActions } = require('../../lib/questions');
 const GUEST_KEY = 'pikku-mini-guest-v1';
@@ -163,12 +164,13 @@ Page({
       paperHasMedia: (this.data.selectedPaper || 'jlpt-1992-1') !== 'ja-hlb1000-n1-u01',
       fullPaper: selection.fullPaper, paperQuestions: selection.paperQuestions, paperQuestionIndex: selection.paperQuestionIndex,
       rangeCount: this.range.length, resultCount: this.filtered.length,
-      results: this.filtered.slice(0, 40).map(q => ({ id: q.id, prompt: q.prompt, status: this.record.progress[q.id] || '' })),
-      isSeed: ['zh-mandarin', 'en-us', 'grc', 'ru'].includes(language),
-      textbooks: (bank.textbookCatalog || []).filter(item => item.targetLanguage === language),
-      dictionaries: language === 'la' ? (bank.dictionarySources || []) : [],
+      results: this.filtered.slice(0, 40).map(q => ({ id: q.id, prompt: contentText(q.prompt, locale), status: this.record.progress[q.id] || '' })),
+      isSeed: ['zh-mandarin', 'en-us', 'grc', 'ru', 'fr', 'ar'].includes(language),
+      textbooks: (bank.textbookCatalog || []).filter(item => item.targetLanguage === language).map(item => Object.fromEntries(Object.entries(item).map(([key, value]) => [key, typeof value === 'string' ? contentText(value, locale) : value]))),
+      dictionaries: language === 'la' ? (bank.dictionarySources || []).map(item => ({ ...item, name: contentText(item.name, locale), scope: contentText(item.scope, locale), access: contentText(item.access, locale) })) : [],
       isBookmarked: this.data.question ? this.record.bookmarks.includes(this.data.question.id) : false,
     });
+    this.renderQuestion();
     this.renderVocabulary();
   },
   signedIn() {
@@ -194,7 +196,7 @@ Page({
     this.stopQuestionAudio();
     const locale = this.data.locale === 'en' ? 'zh-CN' : 'en';
     wx.setStorageSync(LOCALE_KEY, locale);
-    this.setData({ locale, t: copies[locale], question: null, card: null });
+    this.setData({ locale, t: copies[locale] });
     this.applyPreference();
   },
   async preference(next) {
@@ -271,5 +273,5 @@ Page({
     this.applyPreference();
   },
   copyWebsite() { wx.setClipboardData({ data: 'https://pikku.qzz.io/', success: () => wx.showToast({ title: this.data.t.copied, icon: 'none' }) }); },
-  copyResource(event) { wx.setClipboardData({ data: event.currentTarget.dataset.url }); },
+  copyResource(event) { wx.setClipboardData({ data: event.currentTarget.dataset.url, success: () => wx.showToast({ title: this.data.t.copied, icon: 'none' }) }); },
 });

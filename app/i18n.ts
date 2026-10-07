@@ -7,7 +7,9 @@ export type LearningLanguageId =
   | "ja"
   | "es"
   | "grc"
-  | "ru";
+  | "ru"
+  | "fr"
+  | "ar";
 
 export type MicroLabelKey =
   | "overview"
@@ -29,7 +31,7 @@ export type LearningLanguage = {
   id: LearningLanguageId;
   nativeName: string;
   labels: Record<UiLocale, string>;
-  palette: "cn" | "us" | "la" | "jp" | "es" | "gr" | "ru";
+  palette: "cn" | "us" | "la" | "jp" | "es" | "gr" | "ru" | "fr" | "ar";
   htmlLang: string;
   greeting: string;
   microLabels: Record<MicroLabelKey, string>;
@@ -75,6 +77,74 @@ export const learningLanguages: LearningLanguage[] = [
     microLabels: { overview: "Обзор на сегодня", story: "Сюжетный режим", knowledge: "О языке", courses: "Курсы", grammar: "Грамматика", reading: "Чтение", practice: "Практика", vocabulary: "Лексика", review: "Повторение", exam: "Пробный экзамен", progress: "Прогресс", scope: "Объём обучения", archive: "Архив", admin: "Управление" },
     fact: { statement: "В русском языке шесть основных падежей.", meaning: { "zh-CN": "俄语通常教授六个主要格；格变化共同编码句法关系和部分语义角色。", en: "Russian is commonly taught with six main cases, whose forms encode syntactic relations and some semantic roles." } },
   },
+{
+  "id": "fr",
+  "nativeName": "français",
+  "labels": {
+    "zh-CN": "法语",
+    "en": "French"
+  },
+  "palette": "fr",
+  "htmlLang": "fr",
+  "greeting": "Bonjour !",
+  "microLabels": {
+    "overview": "Vue du jour",
+    "story": "Histoire",
+    "knowledge": "Notes de langue",
+    "courses": "Cours",
+    "grammar": "Grammaire",
+    "reading": "Lecture",
+    "practice": "Exercices",
+    "vocabulary": "Vocabulaire",
+    "review": "Révision",
+    "exam": "Test blanc",
+    "progress": "Progrès",
+    "scope": "Programme",
+    "archive": "Archives",
+    "admin": "Administration"
+  },
+  "fact": {
+    "statement": "En français, le nom possède un genre grammatical.",
+    "meaning": {
+      "zh-CN": "法语名词具有语法性，限定词和形容词通常与名词保持性数一致。",
+      "en": "French nouns have grammatical gender; determiners and adjectives normally agree in gender and number."
+    }
+  }
+},
+{
+  "id": "ar",
+  "nativeName": "العربية الفصحى",
+  "labels": {
+    "zh-CN": "阿拉伯语（现代标准语）",
+    "en": "Arabic (Modern Standard)"
+  },
+  "palette": "ar",
+  "htmlLang": "ar",
+  "greeting": "مرحبًا!",
+  "microLabels": {
+    "overview": "نظرة عامة",
+    "story": "القصة",
+    "knowledge": "معلومات لغوية",
+    "courses": "الدروس",
+    "grammar": "القواعد",
+    "reading": "القراءة",
+    "practice": "التدريب",
+    "vocabulary": "المفردات",
+    "review": "المراجعة",
+    "exam": "اختبار تجريبي",
+    "progress": "التقدم",
+    "scope": "نطاق التعلم",
+    "archive": "الأرشيف",
+    "admin": "الإدارة"
+  },
+  "fact": {
+    "statement": "تُكْتَبُ العَرَبِيَّةُ مِنَ اليَمِينِ إِلَى اليَسَارِ.",
+    "meaning": {
+      "zh-CN": "阿拉伯文字从右向左书写。本模块学习现代标准阿拉伯语，不以某一地区口语替代。",
+      "en": "Arabic script runs from right to left. This module teaches Modern Standard Arabic, rather than a regional dialect."
+    }
+  }
+},
 ];
 
 export function availableLearningLanguages(locale: UiLocale) {

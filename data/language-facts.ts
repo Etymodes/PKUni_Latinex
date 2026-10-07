@@ -10,6 +10,26 @@ export type LanguageFact = {
 };
 
 export const languageFacts: Record<LanguageCode, readonly LanguageFact[]> = {
+"fr": [
+  {
+    "id": "fr-structure",
+    "kind": "语言结构",
+    "title": "法语的性数一致",
+    "summary": "法语名词具有语法性，限定词和形容词通常与名词保持性数一致。",
+    "example": "En français, le nom possède un genre grammatical.",
+    "sources": []
+  }
+],
+"ar": [
+  {
+    "id": "ar-structure",
+    "kind": "语言结构",
+    "title": "现代标准阿拉伯语与书写方向",
+    "summary": "阿拉伯文字从右向左书写。本模块学习现代标准阿拉伯语，不以某一地区口语替代。",
+    "example": "تُكْتَبُ العَرَبِيَّةُ مِنَ اليَمِينِ إِلَى اليَسَارِ.",
+    "sources": []
+  }
+],
   la: [],
   "zh-mandarin": [{
     id: "zh-mandarin-tones", kind: "语言结构", title: "普通话的声调",

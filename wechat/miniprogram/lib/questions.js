@@ -2,9 +2,15 @@ const api = require('./api');
 const config = require('./config');
 const bank = require('../data/bank');
 const shared = require('../data/shared');
+const { contentText, localizeQuestion } = require('../data/content-locale');
 
 const questionCategories = ['all', 'vocabulary', 'morphology', 'syntax', 'sentencePattern', 'classics', 'translation', 'reading', 'listening'];
 const is1992Question = question => shared.questionInCollection(question, 'jlpt-1992-1');
+
+function displayQuestion(question, locale) {
+  const display = localizeQuestion(question, locale);
+  return display.occurrences ? { ...display, occurrences: display.occurrences.map(item => ({ ...item, label: contentText(item.label, locale) })) } : display;
+}
 
 function questionScope(all, state, record) {
   const fullPaper = state.language === 'ja' && Boolean(state.fullPaper);
@@ -12,10 +18,13 @@ function questionScope(all, state, record) {
   let range = all.filter(q => fullPaper ? shared.questionInCollection(q, collectionId) : shared.matchesLevel(q, state.level));
   if (fullPaper) range = range.sort((a, b) => shared.collectionOrder(a, collectionId) - shared.collectionOrder(b, collectionId)).map(q => shared.questionForCollection(q, collectionId));
   const query = (state.search || '').trim().toLowerCase();
-  const filtered = range.filter(q => (state.filter === 'all' || (state.filter === 'wrong'
+  const filtered = range.filter(q => {
+    const english = localizeQuestion(q, 'en');
+    return (state.filter === 'all' || (state.filter === 'wrong'
     ? record.progress[q.id] === 'wrong' || record.progress[q.id] === 'review' : record.bookmarks.includes(q.id)))
     && (state.category === 'all' || q.category === state.category)
-    && (!query || [q.prompt, q.text, q.latin, q.context, q.id, q.originalNumber, q.passage, ...(q.tags || [])].filter(Boolean).join(' ').toLowerCase().includes(query)));
+    && (!query || [q.prompt, q.explanation, q.text, q.latin, q.context, q.id, q.originalNumber, q.passage, ...(q.tags || []), english.prompt, english.context, english.explanation, ...(english.tags || [])].filter(Boolean).join(' ').toLowerCase().includes(query));
+  });
   const paperQuestions = fullPaper ? filtered.map(q => ({ id: q.id, label: `${q.originalNumber || q.id} · ${shared.normalizePikkuLevel(q.language || 'la', q.level)}` })) : [];
   return { fullPaper, range, filtered, paperQuestions, paperQuestionIndex: Math.max(0, paperQuestions.findIndex(q => state.question && q.id === state.question.id)) };
 }
@@ -100,13 +109,21 @@ const questionActions = {
   },
   showQuestion(question) {
     this.destroyQuestionAudio();
-    const choices = question ? shared.questionOptionOrder(question).map(index => ({ index, text: question.options[index] })) : [];
-    const images = question ? (question.images || []).map(image => ({ ...image, src: mediaUrl(image.src) })).filter(image => image.src) : [];
-    this.setData({ question: question || null, questionImages: images, questionAudioSource: question ? mediaUrl(question.audio && question.audio.src) : '',
+    this.activeQuestion = question || null;
+    const display = question ? displayQuestion(question, this.data.locale) : null;
+    const choices = question ? shared.questionOptionOrder(question).map(index => ({ index, text: display.options[index], rtl: /[\u0600-\u06ff]/.test(display.options[index]) })) : [];
+    const images = question ? (display.images || []).map(image => ({ ...image, src: mediaUrl(image.src) })).filter(image => image.src) : [];
+    this.setData({ question: display, questionImages: images, questionAudioSource: question ? mediaUrl(question.audio && question.audio.src) : '',
       visibleTranscript: '', transcriptOpen: false, choices, revealed: false, submitted: false, selected: -1, answerCorrect: false,
       audioPlaying: false, audioError: '', audioCurrent: 0, audioDuration: 0, audioTime: '0:00', audioTotal: '0:00',
       paperQuestionIndex: Math.max(0, (this.data.paperQuestions || []).findIndex(item => question && item.id === question.id)),
       isBookmarked: question ? this.record.bookmarks.includes(question.id) : false });
+  },
+  renderQuestion() {
+    if (!this.data.question || !this.activeQuestion) return;
+    const question = displayQuestion(this.activeQuestion, this.data.locale);
+    this.setData({ question, questionImages: (question.images || []).map(image => ({ ...image, src: mediaUrl(image.src) })).filter(image => image.src), choices: this.data.choices.map(choice => ({ index: choice.index, text: question.options[choice.index], rtl: /[\u0600-\u06ff]/.test(question.options[choice.index]) })),
+      visibleTranscript: this.data.submitted ? question.transcript || '' : '' });
   },
   nextQuestion() {
     if (this.data.busy) return;
@@ -117,7 +134,7 @@ const questionActions = {
   },
   async answer(event) {
     if (this.data.busy || this.data.submitted || !this.data.question) return;
-    const q = this.data.question;
+    const q = this.activeQuestion || this.data.question;
     const selected = Number(event.currentTarget.dataset.index);
     if (q.type === 'choice' && (!Number.isInteger(selected) || selected < 0 || selected >= (q.options || []).length)) return;
     const correct = q.type === 'choice' ? selected === q.answer : event.currentTarget.dataset.correct === 'yes';

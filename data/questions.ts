@@ -1,6 +1,6 @@
 import { shuffle } from "../lib/shuffle.ts";
 
-export type LanguageCode = "zh-mandarin" | "en-us" | "la" | "ja" | "es" | "grc" | "ru";
+export type LanguageCode = "zh-mandarin" | "en-us" | "la" | "ja" | "es" | "grc" | "ru" | "fr" | "ar";
 export type PikkuLevel = "C" | "F" | "G" | "M";
 export const pikkuLevels: readonly PikkuLevel[] = ["C", "F", "G", "M"];
 export type Level = "elementary" | "intermediate" | "mixed" | "advanced";
@@ -215,7 +215,7 @@ export const questions: Question[] = [
     latin: "Urbēs ab hostibus nōn oppugnātae essent.",
     options: ["oppugnātae", "essent", "hostibus", "nōn"],
     answer: 0,
-    explanation: "oppugnātae 是完成被动分词，采用阴性复数主格，与阴性复数主语 urbēs 一致；essent 是 sum 的愈过去时虚拟式第三人称复数，只标记人称和数。整个 oppugnātae essent 才是完成系统被动谓语，不能把变化概括为单纯的 ‘-t 变 -nt’。",
+    explanation: "oppugnātae 是完成被动分词，采用阴性复数主格，与阴性复数主语 urbēs 一致；essent 是 sum 的未完成时虚拟式第三人称复数，只标记人称和数。整个 oppugnātae essent 才是完成系统被动谓语，不能把变化概括为单纯的 ‘-t 变 -nt’。",
     tags: ["完成被动分词", "性数格一致", "过去反事实"], source: "本周学习错误 · 去身份化原创复核题", sourceStatus: "original",
   },
   {

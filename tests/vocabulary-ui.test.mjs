@@ -3,6 +3,7 @@ import fs from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { contentText, localizeVocabularyCard } from "../lib/content-locale.ts";
 import { vocabularyInCollection, publicDictionaryReferences } from "../data/vocabulary.ts";
 
 const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React, module: ts.ModuleKind.ESNext } }).outputText;
@@ -30,7 +31,7 @@ function harness(component = "VocabularyTrainer", props = {}) {
   const slots = []; let cursor = 0, dirty = true, effects = [], tree, sequence = 0;
   const predictions = [], accepted = [];
   const c = {
-    vocabularyCards: cards, dictionaryEntries: cards, vocabularyInCollection, publicDictionaryReferences,
+    contentText, localizeVocabularyCard, vocabularyCards: cards, dictionaryEntries: cards, vocabularyInCollection, publicDictionaryReferences,
     dictionarySources: [{ id: "old", name: "Oxford Latin Dictionary", scope: "Latin", access: "Print" }, { id: "ls", name: "Lewis & Short", scope: "Latin", access: "Public domain" }],
     vocabularyKey: (language, term) => `${language}:${term}`,
     vocabularyMatchesLevel: (card, level) => card.level && ["C", "F", "G", "M"].indexOf(card.level) <= ["C", "F", "G", "M"].indexOf(level),
@@ -215,4 +216,32 @@ test("context preference uses the actual displayed mode for frozen predictions, 
     h.click(h.button("Remembered"));
     assert.equal(h.accepted[0].mode, expectedMode); assert.equal(h.accepted[0].features[5], indicator);
   }
+});
+
+test("switching the interface locale preserves the current word, reveal state and frozen prediction", () => {
+  const h = harness("VocabularyTrainer", { locale: "zh-CN" });
+  const before = h.predictions.find(prediction => prediction.lemma === "合同" && prediction.targetAt === prediction.predictedAt);
+  assert(before);
+  h.click(h.button("显示释义"));
+  h.change(h.input("date"), "2030-01-01");
+  const predictionCount = h.predictions.length;
+  h.render({ locale: "en" });
+  assert.equal(h.find(node => node.type === "h2").children[0], "合同");
+  assert(h.button("Approximate"), "The same card remains revealed with English feedback controls.");
+  assert.equal(h.input("date").props.value, "2030-01-01");
+  assert.equal(h.predictions.length, predictionCount, "Locale changes do not recompute a frozen prediction or forecast.");
+  assert.equal(h.accepted.length, 0);
+  h.render({ locale: "zh-CN" });
+  assert(h.button("近似"));
+  assert.equal(h.find(node => node.type === "h2").children[0], "合同");
+  assert.equal(h.predictions.length, predictionCount);
+  h.render({ locale: "en" });
+  const submit = h.button("Approximate").props.onClick;
+  submit(); submit(); h.render();
+  assert.equal(h.accepted.length, 1);
+  assert.equal(h.accepted[0].outcome, "approximate");
+  assert.equal(h.accepted[0].lemma, "合同", "Feedback retains the canonical learning key.");
+  assert.deepEqual(h.accepted[0].features, before.features);
+  assert.deepEqual(h.accepted[0].probabilities, before.probabilities);
+  assert.equal(h.accepted[0].targetAt, before.predictedAt, "Exploring a future date never labels that forecast as an actual review.");
 });

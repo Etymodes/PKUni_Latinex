@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { localizeQuestion, contentText } from "../lib/content-locale.ts";
 import { getCopy, getLearningLanguage } from "../app/i18n.ts";
 import { matchesLevel, normalizePikkuLevel, questionOptionOrder, questions } from "../data/questions.ts";
 import { completeQuestions } from "../data/complete-bank.ts";
@@ -43,7 +44,7 @@ class Element {
 }
 function harness() {
   const context = {
-    publicBasePath: "/PKUni_Latinex", HTMLElement: Element, questionOptionOrder, matchesLevel, normalizePikkuLevel, languageConfigs,
+    localizeQuestion, contentText, publicBasePath: "/PKUni_Latinex", HTMLElement: Element, questionOptionOrder, matchesLevel, normalizePikkuLevel, languageConfigs,
     questionCollections, questionInCollection, questionForCollection, collectionOrder,
     React: { Fragment: "fragment", createElement: (type, props, ...children) => ({ type: typeof type === "function" ? type.name : type, props, children }) },
     copy: getCopy("zh-CN"), language: getLearningLanguage("ja"), level: "M", bank: importedQuestions,
@@ -301,4 +302,96 @@ test("spoken listening choices are numbered until the answer is submitted", () =
     }
     assert.equal(rendered.some(node => node.props?.className === "question-transcript"), submitted);
   }
+});
+
+function questionStateHarness(question) {
+  const c = harness(), slots = [], accepted = [], listeners = new Map();
+  let cursor = 0, dirty = true, effects = [], tree, locale = "zh-CN", optionOrderCalls = 0;
+  c.RotateCcw = "RotateCcw";
+  c.window = { addEventListener: (name, callback) => listeners.set(name, callback),
+    removeEventListener: (name, callback) => { if (listeners.get(name) === callback) listeners.delete(name); } };
+  c.questionOptionOrder = () => (++optionOrderCalls === 1 ? [2, 0, 3, 1] : [1, 3, 0, 2]);
+  c.useI18n = () => ({ copy: getCopy(locale), locale, language: getLearningLanguage(question.language ?? "la") });
+  c.useInterfaceText = () => text => contentText(text, locale);
+  c.useState = initial => {
+    const index = cursor++;
+    if (!slots[index]) slots[index] = { value: typeof initial === "function" ? initial() : initial };
+    return [slots[index].value, value => {
+      const next = typeof value === "function" ? value(slots[index].value) : value;
+      if (!Object.is(next, slots[index].value)) { slots[index].value = next; dirty = true; }
+    }];
+  };
+  c.useMemo = (compute, deps) => {
+    const index = cursor++, previous = slots[index];
+    if (!previous || deps.some((value, position) => !Object.is(value, previous.deps[position]))) {
+      slots[index] = { value: compute(), deps };
+    }
+    return slots[index].value;
+  };
+  c.useEffect = (effect, deps) => {
+    const index = cursor++, previous = slots[index];
+    if (!previous || deps.some((value, position) => !Object.is(value, previous.deps[position]))) {
+      slots[index] = { deps };
+      effects.push(() => { previous?.cleanup?.(); slots[index].cleanup = effect(); });
+    }
+  };
+  const props = { question, bookmarked: false, onBookmark() {}, onResult: result => accepted.push(result) };
+  function render(nextLocale = locale) {
+    locale = nextLocale;
+    let passes = 0;
+    do {
+      cursor = 0; dirty = false; effects = [];
+      tree = nodes(c.QuestionCard(props)); effects.forEach(effect => effect());
+      assert(++passes < 15, "QuestionCard effects must settle");
+    } while (dirty);
+    return tree;
+  }
+  render();
+  return { accepted, render, tree: () => tree, optionOrderCalls: () => optionOrderCalls,
+    click(node) { assert(node && !node.props.disabled); node.props.onClick(); render(); } };
+}
+
+test("switching the interface locale preserves the current choice, shuffled order and submitted answer", () => {
+  const question = questions.find(item => item.type === "choice" && item.options?.length === 4
+    && item.options.some(option => /[\u3400-\u9fff]/.test(option)));
+  assert(question, "Use a real question with translated instructional options.");
+  const h = questionStateHarness(question);
+  const radios = () => h.tree().filter(node => node.props?.role === "radio");
+  const order = () => radios().map(node => node.props.key);
+  const originalOrder = order();
+  h.click(radios().find(node => node.props.key === question.answer));
+  h.render("en");
+  assert.deepEqual(order(), originalOrder);
+  assert.equal(h.optionOrderCalls(), 1, "A locale projection must not rerun option shuffling.");
+  assert.equal(radios().find(node => node.props["aria-checked"]).props.key, question.answer);
+  assert.equal(h.tree().find(node => node.type === "h2").children[0], localizeQuestion(question, "en").prompt);
+  assert.equal(h.accepted.length, 0, "Changing the interface language does not submit an answer.");
+  h.click(h.tree().find(node => node.props?.className === "primary-button submit-answer"));
+  assert.deepEqual(h.accepted, ["correct"]);
+  h.render("zh-CN");
+  assert.deepEqual(order(), originalOrder);
+  assert.equal(h.optionOrderCalls(), 1);
+  assert(radios().every(node => node.props.disabled));
+  assert.equal(radios().find(node => node.props["aria-checked"]).props.key, question.answer);
+  assert.equal(h.tree().find(node => node.type === "Feedback").props.correct, true);
+  assert.equal(h.tree().find(node => node.type === "Feedback").props.explanation, question.explanation);
+  assert.deepEqual(h.accepted, ["correct"], "Returning to Chinese must not save a second answer.");
+});
+
+test("switching the interface locale keeps a written self-check answer and its revealed state", () => {
+  const question = questions.find(item => item.type === "self-check" && item.modelAnswer);
+  assert(question);
+  const h = questionStateHarness(question), draft = "My unfinished translation and analysis.";
+  h.tree().find(node => node.type === "textarea").props.onChange({ target: { value: draft } });
+  h.render();
+  h.click(h.tree().find(node => node.type === "button" && node.props?.className === "primary-button"));
+  h.render("en");
+  assert.equal(h.tree().find(node => node.type === "textarea").props.value, draft);
+  const answer = h.tree().find(node => node.props?.className === "model-answer");
+  assert(answer, "The answer stays revealed across the locale change.");
+  assert.equal(nodes(answer).find(node => node.type === "p").children[0], localizeQuestion(question, "en").modelAnswer);
+  h.render("zh-CN");
+  assert.equal(h.tree().find(node => node.type === "textarea").props.value, draft);
+  assert(h.tree().some(node => node.props?.className === "model-answer"));
+  assert.deepEqual(h.accepted, [], "Changing language must not rate a self-check answer.");
 });

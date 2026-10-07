@@ -392,6 +392,8 @@ const languageLevels = {
   es: [...pikkuLevels, "a1", "a2", "b1", "b2", "c1", "c2"],
   grc: pikkuLevels,
   ru: pikkuLevels,
+  fr: pikkuLevels,
+  ar: pikkuLevels,
 };
 
 function validLanguage(language) {
