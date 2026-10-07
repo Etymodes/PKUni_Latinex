@@ -31,7 +31,8 @@ function load(owner, legacyStats) {
   const value = saved && saved.owner === owner ? saved : {};
   const reviews = recall.sanitizeVocabularyReviews(value.reviews);
   const ids = new Set(Array.isArray(value.pendingReviewIds) ? value.pendingReviewIds : []);
-  return { owner, stats: cleanStats(value.stats || legacyStats), reviews,
+  const pendingMeasurements = (Array.isArray(value.pendingMeasurements) ? value.pendingMeasurements : []).filter(batch => batch && /^[A-Za-z0-9_-]{1,128}$/.test(batch.id) && bank.languageOrder.includes(batch.language) && Array.isArray(batch.items) && batch.items.length > 0 && batch.items.length <= 100 && batch.items.every(item => item && typeof item.lemma === 'string' && item.lemma.trim() && typeof item.correct === 'boolean'));
+  return { owner, stats: cleanStats(value.stats || legacyStats), reviews, pendingMeasurements, lastMeasurementId: typeof value.lastMeasurementId === 'string' ? value.lastMeasurementId : '',
     pendingReviewIds: reviews.filter(event => ids.has(event.id)).map(event => event.id) };
 }
 function save(memory) {
@@ -97,7 +98,7 @@ function review(memory, selection, outcome, answeredAt = nowISO()) {
   const event = recall.completeVocabularyReview(selection.prediction, outcome, answeredAt, selection.eventId);
   const key = `${event.language}:${event.lemma}`;
   const stat = current.stats[key] || { seen: 0, correct: 0 };
-  return save({ owner: memory.owner,
+  return save({ ...current, owner: memory.owner,
     stats: { ...current.stats, [key]: { seen: stat.seen + 1, correct: stat.correct + Number(outcome === 'remembered') } },
     reviews: recall.sanitizeVocabularyReviews([...current.reviews, event]),
     pendingReviewIds: [...current.pendingReviewIds, event.id] });
@@ -116,6 +117,14 @@ async function sync(owner) {
   if (syncing.has(owner)) return syncing.get(owner);
   const pending = (async () => {
     const before = load(owner);
+    const acknowledgedMeasurements = new Set();
+    for (const batch of before.pendingMeasurements) {
+      assertOwner(owner);
+      const receipt = await api.request('/api/vocab', 'POST', { language: batch.language, migrationId: batch.id, answers: batch.items });
+      assertOwner(owner);
+      if (!receipt || receipt.ok !== true || receipt.count !== batch.items.length) throw new Error('Invalid vocabulary measurement receipt.');
+      acknowledgedMeasurements.add(batch.id);
+    }
     const result = await syncVocabularyReviews(before, owner, async (path, options = {}) => {
       assertOwner(owner);
       const body = await api.request(path, options.method || 'GET', options.body ? JSON.parse(options.body) : undefined);
@@ -137,11 +146,29 @@ async function sync(owner) {
       const previous = stats[key] || { seen: 0, correct: 0 };
       stats[key] = { seen: previous.seen + stat.seen, correct: previous.correct + stat.correct };
     }
-    const memory = save({ owner, stats, reviews: recall.sanitizeVocabularyReviews([...result.reviews, ...current.reviews]), pendingReviewIds });
+    const pendingMeasurements = current.pendingMeasurements.filter(batch => !acknowledgedMeasurements.has(batch.id));
+    for (const batch of pendingMeasurements) for (const item of batch.items) {
+      const key = shared.vocabularyKey(batch.language, item.lemma), previous = stats[key] || { seen: 0, correct: 0 };
+      stats[key] = { seen: previous.seen + 1, correct: previous.correct + Number(item.correct) };
+    }
+    const memory = save({ ...current, owner, stats, pendingMeasurements, reviews: recall.sanitizeVocabularyReviews([...result.reviews, ...current.reviews]), pendingReviewIds });
     return { memory, cloud };
   })();
   syncing.set(owner, pending);
   try { return await pending; } finally { if (syncing.get(owner) === pending) syncing.delete(owner); }
 }
 
-module.exports = { load, entries, details, select, review, sync, wordStats, forecast, model };
+function recordMeasurement(memory, language, id, items) {
+  const owner = ownerKey(memory.owner);
+  assertOwner(owner);
+  if (!bank.languageOrder.includes(language) || !/^[A-Za-z0-9_-]{1,128}$/.test(id) || !Array.isArray(items) || !items.length || items.length > 100 || items.some(item => !item || typeof item.lemma !== 'string' || !item.lemma.trim() || typeof item.correct !== 'boolean')) throw new Error('Invalid vocabulary measurement');
+  const current = load(owner, memory.stats);
+  if (current.lastMeasurementId === id || current.pendingMeasurements.some(batch => batch.id === id)) return current;
+  const stats = { ...current.stats };
+  for (const item of items) {
+    const key = shared.vocabularyKey(language, item.lemma), previous = stats[key] || { seen: 0, correct: 0 };
+    stats[key] = { seen: previous.seen + 1, correct: previous.correct + Number(item.correct) };
+  }
+  return save({ ...current, stats, lastMeasurementId: id, pendingMeasurements: owner === 'guest' ? current.pendingMeasurements : [...current.pendingMeasurements, { id, language, items }] });
+}
+module.exports = { load, entries, details, select, review, sync, wordStats, forecast, model, recordMeasurement };

@@ -29,6 +29,12 @@
       <button class="primary" bindtap="startPractice" disabled="{{busy || !rangeCount}}">{{t.start}} →</button>
     </view>
     <button wx:if="{{paperItems.length}}" class="secondary question-bank" bindtap="openQuestionBank" disabled="{{busy}}">{{t.questionBank}} →</button>
+    <view class="study-grid">
+      <button class="secondary" data-view="courses" bindtap="changeView">{{t.courses}}</button><button class="secondary" bindtap="openOrderedPractice">{{t.orderedPractice}}</button>
+      <button class="secondary" data-view="story" bindtap="changeView">{{t.story}}</button><button class="secondary" data-view="exam" bindtap="changeView">{{t.randomExam}}</button>
+      <button class="secondary" data-view="words" bindtap="changeView">{{t.words}}</button><button class="secondary" data-view="measurement" bindtap="changeView">{{t.measurement}}</button>
+      <button class="secondary" data-view="community" bindtap="changeView">{{t.community}}</button>
+    </view>
     <view class="stats">
       <view><text class="number">{{stats.answered}}</text><text>{{t.answered}}</text></view>
       <view><text class="number">{{stats.correct}}</text><text>{{t.correct}}</text></view>
@@ -40,6 +46,39 @@
     <button class="row-link" data-view="resources" bindtap="changeView">{{t.resources}} <text>→</text></button>
     <button class="row-link" data-view="dictionary" bindtap="changeView">{{t.dictionary}} <text>→</text></button>
     <text class="note">{{t.contentNote}}</text>
+  </block>
+
+  <block wx:if="{{view === 'courses'}}">
+    <text class="section-title">{{t.courses}} · {{languageLabel}}</text><text class="note">{{t.courseNote}}</text>
+    <view wx:for="{{courseLevels}}" wx:key="level" class="panel"><text class="section-title">{{item.level}}</text><text class="body">{{item.questions}} {{t.results}} · {{item.words}} {{t.entries}}</text><button class="primary" data-level="{{item.level}}" bindtap="openCourseLevel" disabled="{{busy || !item.questions}}">{{t.orderedPractice}}</button></view>
+  </block>
+  <block wx:if="{{view === 'story'}}"><view class="panel empty"><text class="section-title">{{t.story}} · {{t.comingSoon}}</text><text class="body">{{t.storySoon}}</text></view></block>
+  <block wx:if="{{view === 'exam'}}">
+    <text class="section-title">{{t.randomExam}} · {{languageLabel}}</text><text class="note">{{t.examNote}}</text>
+    <view class="language-picker"><text>{{t.mixedLevels}}</text><switch checked="{{examMixed}}" bindchange="changeExamMixed" /></view>
+    <view wx:if="{{examFinished}}" class="panel"><text class="section-title">{{t.examResult}}</text><text class="body">{{t.examAnswered}} {{examAnswered}} / {{examTotal}} · {{t.examCorrect}} {{examCorrect}}</text></view>
+    <text wx:if="{{examEmpty}}" class="note">{{t.empty}}</text><button class="primary" bindtap="startExam" disabled="{{busy}}">{{t.startExam}}</button>
+  </block>
+  <block wx:if="{{view === 'measurement'}}">
+    <text class="section-title">{{t.measurement}} · {{languageLabel}}</text><text class="note">{{t.measurementNote}}</text>
+    <block wx:if="{{measurementItems.length && !measurementDone}}">
+      <view wx:if="{{!measurementReady}}" class="panel"><text class="eyebrow">{{measurementIndex + 1}} / {{measurementTotal}}</text><text class="word-term {{language === 'ar' ? 'target-rtl' : ''}}">{{measurementItem.lemma}}</text><button wx:for="{{measurementItem.options}}" wx:key="index" class="option" data-index="{{item.index}}" bindtap="answerMeasurement" disabled="{{busy}}">{{item.text}}</button></view>
+      <view wx:else class="panel"><text class="body">{{t.measurementReady}}</text><button class="primary" bindtap="finishMeasurement" disabled="{{busy}}">{{t.submitMeasurement}}</button></view>
+    </block>
+    <block wx:else><view wx:if="{{measurementDone}}" class="panel"><text class="body">{{t.measurementScore}} {{measurementScore}} / {{measurementTotal}}</text><text class="body">{{t.measurementEstimate}} {{measurementEstimate}} / {{measurementPool}}</text></view><text wx:if="{{measurementEmpty}}" class="note">{{t.emptyWords}}</text><button class="primary" bindtap="startMeasurement" disabled="{{busy}}">{{t.startMeasurement}}</button></block>
+  </block>
+  <block wx:if="{{view === 'community'}}">
+    <text class="section-title">{{t.community}} · {{languageLabel}}</text>
+    <block wx:if="{{communityEnabled}}">
+      <view class="filters"><button class="chip {{communityChannel === 'language' ? 'chosen' : ''}}" data-channel="language" bindtap="changeCommunityChannel">{{t.communityLanguage}}</button><button class="chip {{communityChannel === 'study' ? 'chosen' : ''}}" data-channel="study" bindtap="changeCommunityChannel">{{t.communityStudy}}</button></view>
+      <text class="note">{{t.communityRule}}</text><text wx:if="{{communityWarnings}}" class="note">{{t.communityWarnings}} {{communityWarnings}} / 4</text>
+      <text wx:if="{{communityMuted}}" class="notice">{{t.communityMutedUntil}} {{communityMuteLabel}}</text><text wx:if="{{communityAiAvailable === false && !communityLoading}}" class="note">{{t.communityNoAI}}</text>
+      <view wx:if="{{communityError}}" class="notice" role="alert">{{communityError}}</view><button class="text-button" bindtap="loadCommunity" loading="{{communityLoading}}">{{t.communityRefresh}}</button>
+      <view wx:if="{{!communityItems.length && !communityLoading && !communityError}}" class="panel empty">{{t.communityEmpty}}</view>
+      <view wx:for="{{communityItems}}" wx:key="id" class="panel community-message"><text class="eyebrow">{{item.authorName}}</text><text class="body" user-select="true">{{item.text}}</text><text wx:if="{{item.translation}}" class="body community-translation">{{item.translation}}</text><view wx:if="{{user}}" class="actions"><button wx:if="{{!item.mine}}" class="text-button" data-id="{{item.id}}" bindtap="translateCommunity" disabled="{{!!communityTranslating}}">{{t.communityTranslate}}</button><button class="text-button" data-id="{{item.id}}" data-action="{{item.mine ? 'delete' : 'report'}}" bindtap="moderateCommunity">{{item.mine ? t.communityDelete : t.communityReport}}</button></view></view>
+      <view wx:if="{{user}}" class="panel"><textarea class="community-compose" maxlength="1000" value="{{communityDraft}}" placeholder="{{t.communityMessage}}" bindinput="inputCommunity" disabled="{{communitySending || communityMuted}}" auto-height="{{true}}" /><button class="primary" bindtap="sendCommunity" loading="{{communitySending}}" disabled="{{communitySending || communityMuted || !communityDraft}}">{{t.communitySend}}</button></view>
+      <view wx:else class="panel"><text class="body">{{t.communitySignIn}}</text><button class="primary" data-view="account" bindtap="changeView">{{t.signIn}}</button></view>
+    </block><view wx:else class="panel empty">{{t.communitySoon}}</view>
   </block>
 
   <block wx:if="{{view === 'papers'}}">
@@ -54,6 +93,8 @@
   </block>
 
   <block wx:if="{{view === 'practice'}}">
+    <view wx:if="{{examActive}}" class="language-picker"><text>{{t.randomExam}} · {{examTime}}</text><button class="text-button" bindtap="finishExam">{{t.finishExam}}</button></view>
+    <block wx:if="{{!examActive}}">
     <view wx:if="{{paperItems.length}}" class="panel paper-selector">
       <button class="text-button" bindtap="openQuestionBank" disabled="{{busy}}">{{t.questionBank}} →</button>
       <picker mode="selector" range="{{paperItems}}" range-key="label" value="{{selectedPaperIndex}}" bindchange="changePaper" disabled="{{busy}}"><view class="language-picker">{{paperItems[selectedPaperIndex].label}}⌄</view></picker>
@@ -65,15 +106,18 @@
       <button class="chip {{filter === 'wrong' ? 'chosen' : ''}}" data-filter="wrong" bindtap="changeFilter" disabled="{{busy}}">{{t.wrong}}</button>
       <button class="chip {{filter === 'saved' ? 'chosen' : ''}}" data-filter="saved" bindtap="changeFilter" disabled="{{busy}}">{{t.saved}}</button>
     </view>
+    </block>
     <block wx:if="{{!question}}">
       <picker mode="selector" range="{{categoryItems}}" range-key="label" value="{{categoryIndex}}" bindchange="changeCategory" disabled="{{busy}}"><view class="language-picker">{{t.categories[category]}}⌄ <text class="muted">{{resultCount}} {{t.results}}</text></view></picker>
       <input class="search" placeholder="{{t.search}}" value="{{search}}" bindinput="changeSearch" maxlength="100" disabled="{{busy}}" />
       <button wx:if="{{resultCount}}" class="primary" bindtap="startPractice" disabled="{{busy}}">{{t.start}} →</button>
       <view wx:else class="panel empty">{{t.empty}}</view>
+      <button wx:if="{{resultCount}}" class="secondary" bindtap="startOrderedPractice" disabled="{{busy}}">{{t.orderedStart}}</button>
       <button wx:if="{{resultCount}}" class="text-button" bindtap="toggleBrowse">{{t.browse}}⌄</button>
       <view wx:if="{{browse}}" class="question-list">
         <button wx:for="{{results}}" wx:key="id" class="question-link" data-id="{{item.id}}" bindtap="openQuestion" disabled="{{busy}}"><text>{{item.prompt}}</text><text class="muted">{{item.id}} {{item.status === 'correct' ? '✓' : ''}}</text></button>
       </view>
+      <button wx:if="{{browse && results.length < resultCount}}" class="text-button" bindtap="moreQuestions">{{t.moreQuestions}}</button>
     </block>
     <view wx:else class="panel question-panel">
       <view class="question-top"><text class="eyebrow">{{questionIndex + 1}} / {{questionTotal}} · {{t.categories[question.category]}}</text><button class="text-button" bindtap="toggleBookmark" disabled="{{busy}}">{{isBookmarked ? '★ ' + t.unbookmark : '☆ ' + t.bookmark}}</button></view>

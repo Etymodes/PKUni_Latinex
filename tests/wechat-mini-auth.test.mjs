@@ -240,3 +240,28 @@ test('synchronous wx failures and malformed successful JSON are normalized', asy
   h.respond(0, 200, '<html>not JSON</html>');
   await rejected;
 });
+
+
+test('community reads are anonymous or personalized, and unsafe queries remain blocked', async () => {
+  const guest = harness();
+  const reading = guest.api.request('/api/community?language=la&channel=language');
+  await sent();
+  assert.equal(guest.calls[0].header.Authorization, undefined);
+  guest.respond(0, 200, { messages: [], warnings: 0, mutedUntil: null, aiAvailable: false });
+  await reading;
+  await assert.rejects(guest.api.request('/api/community/messages', 'POST', {}), { code: 'AUTH_REQUIRED' });
+  for (const url of ['/api/community?language=fr&channel=study', '/api/community?language=ja&channel=study&owner=bob']) await assert.rejects(guest.api.request(url), { code: 'INVALID_REQUEST' });
+  const signed = harness(tokenResponse('alice'));
+  const personalized = signed.api.request('/api/community?language=ja&channel=study');
+  await sent();
+  assert.ok(signed.calls[0].header.Authorization);
+  assert.equal(signed.calls[0].timeout, 15000);
+  signed.respond(0, 200, { messages: [] });
+  await personalized;
+  const writing = signed.api.request('/api/community/messages', 'POST', { text: 'fixture only' });
+  await sent();
+  assert.equal(signed.calls[1].timeout, 45000);
+  const detail = { error: 'muted', warnings: 4, mutedUntil: '2026-10-07T12:00:00Z', privateData: 'must not be copied' };
+  signed.respond(1, 403, detail);
+  await assert.rejects(writing, failure => failure.details.error === 'muted' && failure.details.warnings === 4 && failure.details.mutedUntil === detail.mutedUntil && !Object.hasOwn(failure.details, 'privateData'));
+});

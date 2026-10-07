@@ -838,3 +838,45 @@ h1, h2, h3, p { margin-top: 0; }
 .author-support { margin-top: 20px; }
 .author-support p { color: var(--muted); font-size: 12px; line-height: 1.7; }
 .author-support img { display: block; width: min(320px, 100%); height: auto; margin: 16px auto 0; }
+
+/* Shared course availability and public discussion rooms. */
+.story-pending { display: grid; justify-items: center; gap: 16px; padding: 72px 24px; text-align: center; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
+.story-pending > svg { color: var(--crimson); }
+.story-pending p { max-width: 580px; color: var(--muted); line-height: 1.7; }
+.community-channels { display: flex; gap: 12px; margin-bottom: 20px; }
+.community-channels button { display: flex; align-items: center; gap: 12px; flex: 1; padding: 18px; text-align: left; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.community-channels button.active { border-color: var(--crimson); background: #f5e9eb; color: var(--crimson); }
+.community-channels span { font-weight: 700; }
+.community-channels small { display: block; margin-top: 4px; font-weight: 400; color: var(--muted); }
+.chat-room { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper); }
+.chat-rules { display: flex; align-items: flex-start; gap: 12px; padding: 20px; border-bottom: 1px solid var(--line); }
+.chat-rules > svg { flex-shrink: 0; color: var(--crimson); }
+.chat-rules p { margin: 6px 0; font-size: 14px; line-height: 1.6; }
+.chat-rules small { color: var(--muted); font-size: 12px; line-height: 1.5; }
+.chat-status, .chat-notice { padding: 12px 20px; margin: 0; font-size: 13px; line-height: 1.6; background: #f3eee5; }
+.chat-messages { height: min(54vh, 560px); min-height: 280px; overflow-y: auto; overscroll-behavior: contain; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.chat-empty { margin: auto; text-align: center; color: var(--muted); }
+.chat-empty svg { margin: auto; }
+.chat-message { align-self: flex-start; max-width: min(85%, 700px); min-width: 100px; }
+.chat-message.mine { align-self: flex-end; }
+.chat-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; padding-bottom: 6px; font-size: 12px; }
+.chat-meta time, .chat-message-actions > span { color: var(--muted); }
+.chat-bubble { padding: 12px 16px; background: #efebe4; border-radius: 2px 14px 14px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
+.chat-message.mine .chat-bubble { background: #f3e5e8; border-radius: 14px 2px 14px 14px; }
+.chat-message-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 12px; }
+.chat-message-actions button { border: 0; padding: 0; color: var(--crimson); background: transparent; }
+.chat-message-actions button:disabled { opacity: .5; }
+.chat-translation { margin-top: 8px; padding: 12px 16px; border-left: 2px solid var(--crimson); background: #f8f5ee; overflow-wrap: anywhere; }
+.chat-translation small { color: var(--muted); }
+.chat-translation p { margin: 8px 0 0; white-space: pre-wrap; }
+.chat-error { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; background: #fcebea; color: #8a2030; font-size: 14px; }
+.chat-error button { flex-shrink: 0; border: 0; text-decoration: underline; background: transparent; }
+.chat-composer { padding: 18px 20px; border-top: 1px solid var(--line); }
+.chat-composer textarea { display: block; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); resize: vertical; line-height: 1.5; font: inherit; }
+.chat-composer > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.chat-composer small { color: var(--muted); font-size: 12px; }
+@media (max-width: 600px) { .community-channels button { padding: 12px; gap: 8px; } .community-channels small { font-size: 11px; } .chat-messages { padding: 16px; } .chat-message { max-width: 95%; } .chat-rules, .chat-composer { padding: 16px; } .chat-composer > div { align-items: flex-end; } .chat-composer .primary-button { padding: 10px 16px; } }
+
+.chat-moderation { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.chat-moderation article { padding: 12px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+.chat-moderation article button { display: block; margin-top: 8px; }

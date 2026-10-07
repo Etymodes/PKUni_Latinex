@@ -1,7 +1,10 @@
+import { communityApi, communitySchema } from './community.js';
+
 const JSON_HEADERS = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" };
 const OAUTH_TTL = { transaction: 10 * 60, code: 5 * 60, token: 10 * 60 };
 
 const schema = [
+  ...communitySchema,
   `CREATE TABLE IF NOT EXISTS users (
     email TEXT PRIMARY KEY, display_name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'student',
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_seen TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -489,9 +492,15 @@ function validQuestion(value) {
 
 async function api(request, env, url) {
   const hasDb = await ensureSchema(env);
-  const auth = await identity(request, env);
+  const isCommunity = url.pathname === "/api/community" || url.pathname.startsWith("/api/community/");
+  // Public Workers must verify community identity; forwarded oai-* headers are not trusted here.
+  const auth = isCommunity ? await supabaseIdentity(request, env) : await identity(request, env);
   const user = auth?.rejected ? null : auth;
   if (hasDb && user) await touchUser(env, user);
+  if (isCommunity) {
+    try { return await communityApi(request, env, url, user); }
+    catch { return json({ error: "community_unavailable" }, 503); }
+  }
 
   if (url.pathname === "/api/me" && request.method === "GET") {
     const publicUser = user ? { email: user.email, name: user.name, role: user.role } : null;

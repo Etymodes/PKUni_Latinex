@@ -5,7 +5,9 @@
   "compatibility_date": "2026-07-14",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
+  "ai": { "binding": "AI" },
   "vars": {
+    "COMMUNITY_AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
     "SUPABASE_URL": "https://tudwzkosrzrusxgpjkfe.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_egUjJAxCx5wnNT4yZUk6DQ_d_4m-XQ5",
     "GITHUB_ADMIN_LOGINS": "Etymodes",

@@ -13,7 +13,7 @@ await cp(
   resolve(dist, ".openai", "hosting.json"),
 );
 
-await cp(resolve(root, "worker", "index.js"), resolve(dist, "server", "index.js"));
+await cp(resolve(root, "worker"), resolve(dist, "server"), { recursive: true });
 
 const manifest = JSON.parse(
   await readFile(resolve(dist, ".openai", "hosting.json"), "utf8"),

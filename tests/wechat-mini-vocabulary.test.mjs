@@ -278,7 +278,7 @@ test('actual mini API and Worker share v1/v2 events and retry a committed write 
       ...(options.method === 'GET' ? {} : { body: JSON.stringify(options.data) }) });
     worker.fetch(request, env).then(async response => {
       const data = await response.json();
-      if (dropReply && options.method === 'POST' && options.url.endsWith('/api/vocab/reviews')) {
+      if (dropReply && options.method === 'POST' && options.url.endsWith(dropReply === 'measurement' ? '/api/vocab' : '/api/vocab/reviews')) {
         dropReply = false; options.fail({ errMsg: 'reply lost after server committed' });
       } else options.success({ statusCode: response.status, data });
     }).catch(options.fail);
@@ -310,6 +310,18 @@ test('actual mini API and Worker share v1/v2 events and retry a committed write 
   assert.equal(web.events.find(item => item.id === selection.eventId).modelVersion, 'pikku-recall-v2');
   assert.equal(requests.filter(item => item.method === 'POST' && item.url.endsWith('/api/vocab/reviews')).length, 2,
     'The retry discovers the committed event rather than posting its count again');
+  memory = h.vocabulary.recordMeasurement(memory, 'ja', 'mini-measure-retry', [{ lemma: first.card.term, correct: true }]);
+  dropReply = 'measurement';
+  await assert.rejects(h.vocabulary.sync('alice'), { code: 'NETWORK_ERROR' });
+  assert.equal(h.vocabulary.load('alice').pendingMeasurements.length, 1);
+  assert.deepEqual(plain((await api.getStats()).vocab.map(({ seen, correct }) => ({ seen, correct }))), [{ seen: 8, correct: 5 }]);
+  ({ memory } = await h.vocabulary.sync('alice'));
+  assert.equal(memory.pendingMeasurements.length, 0);
+  assert.equal(memory.reviews.length, 2, 'measurement does not manufacture recall events');
+  assert.deepEqual(plain(memory.stats[`ja:${first.card.term}`]), { seen: 8, correct: 5 });
+  memory = h.vocabulary.recordMeasurement(memory, 'ja', 'mini-measure-retry', [{ lemma: first.card.term, correct: true }]);
+  assert.deepEqual(plain(memory.stats[`ja:${first.card.term}`]), { seen: 8, correct: 5 });
+
 });
 
 test('malformed aggregate stats cannot acknowledge or discard a pending local event', async () => {
@@ -321,4 +333,18 @@ test('malformed aggregate stats cannot acknowledge or discard a pending local ev
   assert.equal(h.vocabulary.load('alice').pendingReviewIds.length, 1);
   h.intercept(null);
   assert.equal((await h.vocabulary.sync('alice')).memory.pendingReviewIds.length, 0);
+});
+
+
+test('measurement batches retain legacy guest counts without importing them into another account', async () => {
+  const h = harness();
+  let memory = h.vocabulary.load(null, { 'ja:学ぶ': { seen: 4, correct: 2 } });
+  memory = h.vocabulary.recordMeasurement(memory, 'ja', 'guest-measure', [{ lemma: '学ぶ', correct: true }]);
+  assert.deepEqual(plain(memory.stats['ja:学ぶ']), { seen: 5, correct: 3 });
+  assert.equal(memory.pendingMeasurements.length, 0);
+  assert.equal(memory.reviews.length, 0);
+  h.owner('alice');
+  assert.deepEqual(plain(h.vocabulary.load('alice').stats), {});
+  assert.throws(() => h.vocabulary.recordMeasurement(memory, 'ja', 'wrong-owner', [{ lemma: '学ぶ', correct: true }]), { code: 'SESSION_CHANGED' });
+  assert.equal(h.calls.length, 0);
 });

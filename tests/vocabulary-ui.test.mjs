@@ -6,6 +6,10 @@ import ts from "typescript";
 import { contentText, localizeVocabularyCard } from "../lib/content-locale.ts";
 import { vocabularyLevelsFor, publicDictionaryReferences } from "../data/vocabulary.ts";
 
+import { getCopy, getLearningLanguage } from "../app/i18n.ts";
+import { matchesLevel } from "../data/questions.ts";
+import { buildRandomExam, buildVocabularyMeasurement } from "../lib/study-modes.ts";
+
 const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React, module: ts.ModuleKind.ESNext } }).outputText;
 const model = await import(`data:text/javascript;base64,${Buffer.from(compile(fs.readFileSync(new URL("../lib/vocabulary-model.ts", import.meta.url), "utf8"))).toString("base64")}`);
 const source = fs.readFileSync(new URL("../app/vocabulary-workspace.tsx", import.meta.url), "utf8");
@@ -13,6 +17,7 @@ const code = compile(source.replace(/^import .*;\r?$/gm, "").replace(/^export /g
 const page = fs.readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
 const ast = ts.createSourceFile("page.tsx", page, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
 const lab = ast.statements.find(node => ts.isFunctionDeclaration(node) && node.name.text === "VocabularyLab");
+const exam = ast.statements.find(node => ts.isFunctionDeclaration(node) && node.name.text === "ExamMode");
 const at = day => new Date(Date.UTC(2026, 0, day, 12)).toISOString();
 const plain = value => JSON.parse(JSON.stringify(value));
 const cards = [
@@ -60,13 +65,18 @@ function harness(component = "VocabularyTrainer", props = {}) {
       if (!previous || deps.some((value, position) => !Object.is(value, previous.deps[position]))) { slots[index] = { deps }; effects.push(effect); }
     },
   };
-  for (const icon of ["BookOpen", "CheckCircle2", "Search", "Settings", "XCircle", "Shuffle", "TargetKicker", "EmptyState", "Languages", "Trophy"]) c[icon] = icon;
+  for (const icon of ["BookOpen", "CheckCircle2", "Search", "Settings", "XCircle", "Shuffle", "TargetKicker", "EmptyState", "Languages", "Trophy", "TimerReset", "Landmark", "BarChart3", "Clock3", "FileText", "ArrowRight", "RotateCcw", "ArrowLeft", "Check", "QuestionCard"]) c[icon] = icon;
   vm.createContext(c); vm.runInContext(code, c);
-  c.allVocabItems = [{ language: "ja", level: "F", lemma: "合同", gloss: "联合", distractors: ["分裂"], family: "test" }];
-  c.useI18n = () => ({ copy: { vocabularyRound: () => "Round", vocabularyEstimate: () => "Estimate", submitMeasure: "Submit" }, language: { id: "ja", htmlLang: "ja" } });
+  c.buildVocabularyMeasurement = buildVocabularyMeasurement;
+  c.buildRandomExam = buildRandomExam; c.matchesLevel = matchesLevel; c.LEVEL_ORDER = ["C", "F", "G", "M"];
+  c.window = { setInterval: () => 1, clearInterval() {} }; c.formatTime = seconds => String(seconds);
+  if (component === "VocabularyLab") c.vocabularyCards = [cards[0], { ...cards[2], meaning: "分裂" }];
+  c.useI18n = () => component === "ExamMode"
+    ? ({ copy: getCopy(current.locale), language: getLearningLanguage(current.language), locale: current.locale })
+    : ({ copy: { vocabularyRound: () => "Round", vocabularyEstimate: () => "Estimate", submitMeasure: "Submit" }, language: { id: current.language, htmlLang: current.language }, locale: current.locale });
   c.normalizePikkuLevel = (_, level) => level; c.levelName = (_, level) => level; c.shuffle = items => [...items];
-  vm.runInContext(compile(lab.getText(ast)), c);
-  const current = { language: "ja", locale: "en", level: "F", mode: "word", stats: {}, reviews: [], owner: "guest", ready: true, focusId: "both", onReview(event) { accepted.push(event); return true; }, onDictionary() {}, onSettings() {}, onPractice() {}, ...props };
+  vm.runInContext(compile(lab.getText(ast) + "\n" + exam.getText(ast)), c);
+  const current = { language: "ja", locale: component === "VocabularyLab" ? "zh-CN" : "en", level: "F", mode: "word", stats: {}, reviews: [], owner: "guest", ready: true, focusId: "both", onReview(event) { accepted.push(event); return true; }, onDictionary() {}, onSettings() {}, onPractice() {}, ...props };
   function render(update) {
     if (update) Object.assign(current, update);
     let passes = 0;
@@ -257,4 +267,76 @@ test("dictionary focus targets one higher-level word, then returns to the cumula
   assert.equal(h.find(node => node.type === "h2").children[0], "日向");
   assert.doesNotMatch(content(h.tree()), /Focused practice/);
   assert.equal(h.props.level, "C");
+});
+
+
+test("measurement locale switches preserve sampled words, canonical option order, selections and one accepted submission", () => {
+  const submissions = [];
+  const h = harness("VocabularyLab", { locale: "zh-CN", level: "G", onSubmit: answers => { submissions.push(plain(answers)); return true; } });
+  const articles = () => nodes(h.tree()).filter(node => node.type === "article" && node.props.className === "vocab-item");
+  const snapshot = () => articles().map(article => ({ lemma: article.props.key, options: nodes(article).filter(node => node.type === "button").map(button => button.props.key) }));
+  const before = snapshot();
+  const union = articles().find(article => article.props.key === "合同");
+  h.click(nodes(union).find(node => node.type === "button" && node.props.key === "联合"));
+  const selectedBefore = nodes(h.tree()).filter(node => node.type === "button" && /selected/.test(node.props.className || "")).map(button => button.props.key);
+  h.render({ locale: "en" });
+  assert.deepEqual(snapshot(), before, "Locale does not resample or reshuffle this round");
+  assert.deepEqual(nodes(h.tree()).filter(node => node.type === "button" && /selected/.test(node.props.className || "")).map(button => button.props.key), selectedBefore);
+  assert.equal(content(h.find(node => node.type === "button" && node.props.key === "分裂")), contentText("分裂", "en"));
+  assert.notEqual(contentText("分裂", "en"), "分裂", "The selected round still updates its visible translation");
+  h.render({ locale: "zh-CN" });
+  assert.deepEqual(snapshot(), before);
+  for (const article of articles()) {
+    const answer = article.props.key === "合同" ? "联合" : "分裂";
+    h.click(nodes(article).find(node => node.type === "button" && node.props.key === answer));
+  }
+  const submit = h.button("Submit").props.onClick; submit(); submit(); h.render();
+  assert.equal(submissions.length, 1);
+  assert.deepEqual(submissions[0].slice().sort((a,b) => a.lemma.localeCompare(b.lemma)), [{ lemma: "合同", correct: true }, { lemma: "躊躇", correct: true }].sort((a,b) => a.lemma.localeCompare(b.lemma)));
+  h.render({ locale: "en" });
+  assert(!h.button("Submit"), "Changing the interface language does not reopen a completed measurement");
+  assert.match(content(h.tree()), /2\s*\/\s*2/);
+  let mountingKey = "";
+  const visit = node => { if (ts.isJsxSelfClosingElement(node) && node.tagName.getText(ast) === "VocabularyLab") mountingKey = node.attributes.properties.find(prop => prop.name?.text === "key")?.getText(ast) || ""; ts.forEachChild(node, visit); };
+  visit(ast);
+  assert(mountingKey && !/locale/.test(mountingKey), "The real App mount identity must not discard the round on locale changes");
+});
+
+test("random-exam completion counts only this round and resets on restart rather than reusing historical progress", () => {
+  let mountExpression;
+  const visit = node => {
+    if (ts.isJsxSelfClosingElement(node) && node.tagName.getText(ast) === "ExamMode") mountExpression = node.attributes.properties.find(prop => prop.name?.text === "key")?.initializer?.expression;
+    ts.forEachChild(node, visit);
+  };
+  visit(ast);
+  assert(mountExpression, "The real App mounts exam state under an account-specific identity");
+  const mountKey = (email, locale = "en", language = "ja") => vm.runInNewContext(mountExpression.getText(ast), { language, locale, session: { user: email ? { email } : null } });
+  assert.equal(mountKey("alice@example.test"), "ja:alice@example.test");
+  assert.notEqual(mountKey("alice@example.test"), mountKey("bob@example.test"));
+  assert.notEqual(mountKey("alice@example.test"), mountKey(null));
+  assert.notEqual(mountKey("alice@example.test"), mountKey("alice@example.test", "en", "la"));
+  assert.equal(mountKey("alice@example.test", "en"), mountKey("alice@example.test", "zh-CN"));
+  const bank = ["old-correct", "old-wrong"].map(id => ({ id, language: "ja", level: "F", type: "choice", category: "vocabulary", prompt: "Choose", options: ["one", "two"], answer: 0, explanation: "Reason", tags: [], source: "test" }));
+  const saved = [];
+  const h = harness("ExamMode", { bank, level: "F", progress: { "old-correct": "correct", "old-wrong": "wrong" }, setLevel() {}, onResult: (question, status) => saved.push([question.id, status]) });
+  h.click(h.button("Start mock exam"));
+  const displayed = () => h.find(node => node.type === "QuestionCard");
+  assert.equal(displayed().props.status, undefined, "Old progress must not mark a new round as already answered");
+  h.click(h.button("Submit"));
+  assert.match(content(h.tree()), /completed 0 of 2/);
+  assert.deepEqual(saved, []);
+  h.click(h.button("Try another paper"));
+  const first = displayed().props.question.id;
+  displayed().props.onResult("wrong"); h.render();
+  assert.equal(displayed().props.status, "wrong");
+  h.click(h.button("Next"));
+  assert.notEqual(displayed().props.question.id, first);
+  assert.equal(displayed().props.status, undefined);
+  h.click(h.button("Submit"));
+  assert.match(content(h.tree()), /completed 1 of 2/);
+  assert.deepEqual(saved, [[first, "wrong"]]);
+  h.click(h.button("Try another paper"));
+  assert.equal(displayed().props.status, undefined);
+  h.click(h.button("Submit"));
+  assert.match(content(h.tree()), /completed 0 of 2/);
 });
