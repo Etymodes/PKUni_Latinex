@@ -23,6 +23,7 @@ function harness(props = {}) {
   const current = { language: 'la', languageName: 'Latin', locale: 'en', authenticated: true, channel: 'language', ...props };
   const context = {
     Languages: 'Languages', MessageCircle: 'MessageCircle', Send: 'Send', Users: 'Users',
+    CommunityAvatarBadge: 'CommunityAvatarBadge',
     AbortController, Set, console, process: { env: { NEXT_PUBLIC_AUTH_MODE: 'supabase' } },
     Date: class extends Date { constructor(...args) { super(...(args.length ? args : [now])); } static now() { return now; } },
     crypto: { randomUUID: () => 'attempt-' + (++sequence) },

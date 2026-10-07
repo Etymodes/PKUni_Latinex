@@ -170,3 +170,21 @@ test("generated localized content exactly matches website projections without ch
     }
   }
 });
+
+
+test("native dictionary and avatar modules exactly reproduce shared website content and validation", () => {
+  const generated = loadCommonJs(path.join(temporaryDirectory, "data/dictionary.js"));
+  const original = source("lib/dictionary.ts");
+  for (const language of bank.languageOrder) {
+    for (const order of ["headword", "reading"]) {
+      assert.deepEqual(generated.dictionaryFacets(bank.vocabularyCards, language, order), original.dictionaryFacets(bank.vocabularyCards, language, order));
+      assert.deepEqual(generated.searchDictionary(bank.vocabularyCards, { language, order }).map(card => card.id), original.searchDictionary(bank.vocabularyCards, { language, order }).map(card => card.id));
+    }
+  }
+  for (const locale of ["zh-CN", "en"]) for (const card of bank.vocabularyCards) assert.deepEqual(generated.dictionaryEntry(card, locale), original.dictionaryEntry(card, locale));
+  const native = loadCommonJs(path.join(temporaryDirectory, "data/shared.js")), avatar = source("lib/community-avatar.ts");
+  for (const value of [null, { kind: 'initials', value: 'A' }, { kind: 'initials', value: 'Abc' }, { kind: 'initials', value: 'ABC' }, ...avatar.communityAvatarPresets.map(item => ({kind:'preset',value:item.id}))]) {
+    assert.equal(native.isCommunityAvatar(value), avatar.isCommunityAvatar(value));
+    assert.equal(native.communityAvatarText(value), avatar.communityAvatarText(value));
+  }
+});

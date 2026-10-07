@@ -43,8 +43,10 @@ test('migration and runtime schema agree; word counting handles Japanese and exa
   const { communitySchema, communityWordCount } = await import('../worker/community.js');
   const db = new DatabaseSync(':memory:'); try {
     db.exec(await readFile(new URL('../migrations/0007_community.sql', import.meta.url), 'utf8'));
+    db.exec(await readFile(new URL('../migrations/0008_community_profiles.sql', import.meta.url), 'utf8'));
+    assert.deepEqual(db.prepare('PRAGMA table_info(community_profiles)').all().map(column => column.name), ['user_id', 'avatar_kind', 'avatar_value', 'updated_at'], 'The standalone migration creates the profile schema before runtime initialization');
     for (const sql of communitySchema) db.exec(sql);
-    assert.equal(db.prepare("SELECT count(*) AS n FROM sqlite_master WHERE type='table' AND name LIKE 'community_%'").get().n, 8);
+    assert.equal(db.prepare("SELECT count(*) AS n FROM sqlite_master WHERE type='table' AND name LIKE 'community_%'").get().n, 9);
   } finally { db.close(); }
   assert.equal(communityWordCount('1 2 3 4 5 6 https://example.test/a/b/c/d/e', 'la'), 0);
   assert.equal(communityWordCount('one two three four five', 'la'), 5);
@@ -148,4 +150,86 @@ test('concurrent translation requests share one inference and cached translation
   database.prepare('UPDATE community_ai_usage SET count=1000 WHERE day=?').run('2026-10-07');
   assert.equal((await request(path,'POST',{locale:'en'},'bob')).status,200); assert.equal(calls,1);
   assert.equal((await request(path,'POST',{locale:'zh-CN'})).status,503); assert.equal(calls,1);
+});
+
+
+test('avatar shared validator accepts only exact ASCII initials or the twelve named presets', async () => {
+  const { communityAvatarPresets, defaultCommunityAvatar, isCommunityAvatar, normalizeCommunityAvatar, communityAvatarText } = await import('../lib/community-avatar.ts');
+  assert.equal(communityAvatarPresets.length, 12);
+  assert.equal(new Set(communityAvatarPresets.map(item => item.id)).size, 12);
+  assert.deepEqual(defaultCommunityAvatar, { kind: 'preset', value: 'cat' });
+  for (const value of ['A', 'Z', 'AB', 'XY', 'Aa', 'Ab', 'Abc', 'Zzz']) {
+    assert(isCommunityAvatar({ kind: 'initials', value }), value);
+    assert.equal(communityAvatarText({ kind: 'initials', value }), value);
+  }
+  for (const preset of communityAvatarPresets) {
+    assert(preset.zh && preset.en && preset.emoji);
+    assert(isCommunityAvatar({ kind: 'preset', value: preset.id }));
+    assert.equal(communityAvatarText({ kind: 'preset', value: preset.id }), preset.emoji);
+  }
+  for (const value of ['', 'a', 'ab', 'abc', 'ABC', 'ABc', 'aB', 'AaaB', 'Abcd', ' A', 'A ', 'A\n', 'AB\r\n', 'A\u2028', 'A\u200b', 'Ａ', 'Ä', '猫', '🐱', 'A1', 'A_', 'https://example.test/a.png']) {
+    assert.equal(isCommunityAvatar({ kind: 'initials', value }), false, JSON.stringify(value));
+  }
+  for (const value of [null, [], {}, { kind: 'url', value: 'https://example.test/a.png' }, { kind: 'preset', value: 'Cat' }, { kind: 'preset', value: 'toString' }, { kind: 'preset', value: '🐱' }, { kind: 'preset', value: 'cat', url: 'https://example.test/a.png' }, { kind: 'initials', value: 12 }, { value: 'A', other: true }]) {
+    assert.equal(isCommunityAvatar(value), false);
+    assert.deepEqual(normalizeCommunityAvatar(value), defaultCommunityAvatar);
+    assert.equal(communityAvatarText(value), '🐱');
+  }
+  const fallback = normalizeCommunityAvatar(null); fallback.value = 'dog';
+  assert.deepEqual(normalizeCommunityAvatar(null), { kind: 'preset', value: 'cat' }, 'Fallback values do not share mutable returned state');
+});
+
+test('avatar profiles require verified login and PUT only affects the authenticated account', async t => {
+  const { request, database } = await setup(t, false);
+  for (const account of [null, 'invalid']) for (const method of ['GET', 'PUT']) {
+    assert.equal((await request('/profile', method, method === 'PUT' ? { avatar: { kind: 'initials', value: 'AB' } } : undefined, account, { 'oai-authenticated-user-email': 'alice@example.test' })).status, 401);
+  }
+  assert.equal(database.prepare('SELECT count(*) AS n FROM community_profiles').get().n, 0);
+  assert.deepEqual((await request('/profile')).body, { avatar: { kind: 'preset', value: 'cat' } });
+  assert.equal(database.prepare('SELECT count(*) AS n FROM community_profiles').get().n, 0, 'Reading the default does not create a profile');
+  assert.deepEqual((await request('/profile','PUT',{ avatar: { kind: 'initials', value: 'AB' }, userId: 'supabase:bob', user_id: 'supabase:bob' })).body, { avatar: { kind: 'initials', value: 'AB' } });
+  assert.deepEqual((await request('/profile','GET',undefined,'bob')).body.avatar, { kind: 'preset', value: 'cat' });
+  assert.equal((await request('/profile','PUT',{ avatar: { kind: 'preset', value: 'fox' } },'bob',{ 'oai-authenticated-user-email': 'alice@example.test' })).status,200);
+  assert.deepEqual((await request('/profile')).body.avatar, { kind: 'initials', value: 'AB' });
+  assert.deepEqual((await request('/profile','GET',undefined,'bob')).body.avatar, { kind: 'preset', value: 'fox' });
+  assert.equal(database.prepare('SELECT count(*) AS n FROM community_profiles').get().n, 2);
+});
+
+test('invalid avatar writes are rejected without changing saved profile, warnings or learning records', async t => {
+  const { request, database } = await setup(t, false);
+  await request('/profile','PUT',{ avatar: { kind: 'initials', value: 'Abc' } });
+  database.prepare('INSERT INTO community_state(user_id,warnings,muted_until) VALUES(?,?,?)').run('supabase:alice',4,Date.now()+3600000);
+  database.prepare('INSERT INTO vocab_stats_by_language(user_email,language,lemma,seen,correct) VALUES(?,?,?,?,?)').run('supabase:alice','ja','猫',7,3);
+  const before = database.prepare('SELECT * FROM community_profiles').get();
+  const invalid = [null, [], {}, { kind: 'preset', value: 'unknown' }, { kind: 'preset', value: 'https://example.test/a.png' }, { kind: 'image', value: 'cat' }, { kind: 'initials', value: 'ABC' }, { kind: 'initials', value: 'A\n' }, { kind: 'initials', value: 'Ａ' }, { kind: 'initials', value: 'A', url: 'data:image/png;base64,AA' }];
+  for (const avatar of invalid) { const result = await request('/profile','PUT',{avatar}); assert.equal(result.status,400); assert.equal(result.body.error,'invalid_avatar'); }
+  assert.equal((await request('/profile','PUT','{broken')).status,400);
+  assert.deepEqual(database.prepare('SELECT * FROM community_profiles').get(), before);
+  assert.equal((await request('/profile','PUT',{avatar:{kind:'preset',value:'panda'}})).status,200, 'An existing chat mute does not prohibit avatar changes');
+  assert.equal(database.prepare('SELECT warnings FROM community_state WHERE user_id=?').get('supabase:alice').warnings,4);
+  assert.deepEqual({ ...database.prepare('SELECT seen,correct FROM vocab_stats_by_language WHERE user_email=?').get('supabase:alice') },{seen:7,correct:3});
+});
+
+test('historical public messages, idempotent receipts and reports all show the current author avatar', async t => {
+  const { request, send, database } = await setup(t, false);
+  const first = await send('avatar-post',{text:'Salve'});
+  const id = first.body.message.id;
+  assert.deepEqual(first.body.message.avatar,{kind:'preset',value:'cat'});
+  const bob = await send('bob-post',{text:'こんにちは'},'bob');
+  const original = database.prepare('SELECT * FROM community_messages WHERE id=?').get(id);
+  await request(`/messages/${id}/report`,'POST',{reason:'Review'},'bob');
+  await request('/profile','PUT',{avatar:{kind:'initials',value:'Ab'}});
+  let rows = (await request('?language=ja&channel=language','GET',undefined,null)).body.messages;
+  assert.deepEqual(rows.find(row=>row.id===id).avatar,{kind:'initials',value:'Ab'});
+  assert.deepEqual(rows.find(row=>row.id===bob.body.message.id).avatar,{kind:'preset',value:'cat'});
+  assert(!JSON.stringify(rows).includes('supabase:')); assert(!JSON.stringify(rows).includes('@example.test'));
+  assert.deepEqual((await send('avatar-post',{text:'Salve'})).body.message.avatar,{kind:'initials',value:'Ab'});
+  assert.deepEqual((await request('/reports','GET',undefined,'admin')).body.reports[0].message.avatar,{kind:'initials',value:'Ab'});
+  await request('/profile','PUT',{avatar:{kind:'preset',value:'grapes'}});
+  rows=(await request()).body.messages;
+  assert.deepEqual(rows.find(row=>row.id===id).avatar,{kind:'preset',value:'grapes'});
+  assert.deepEqual(database.prepare('SELECT * FROM community_messages WHERE id=?').get(id),original,'Changing a profile never rewrites message identity or content');
+  database.prepare("UPDATE community_profiles SET avatar_value='https://invalid.test/a' WHERE user_id=?").run('supabase:alice');
+  assert.deepEqual((await request('/profile')).body.avatar,{kind:'preset',value:'cat'},'Unexpected stored values are never surfaced as external URLs');
+  assert.deepEqual((await request()).body.messages.find(row=>row.id===id).avatar,{kind:'preset',value:'cat'});
 });

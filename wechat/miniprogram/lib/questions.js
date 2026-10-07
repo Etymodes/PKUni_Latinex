@@ -13,9 +13,9 @@ function displayQuestion(question, locale) {
 }
 
 function questionScope(all, state, record) {
-  const fullPaper = Boolean(state.fullPaper);
+  const fullPaper = Boolean(state.fullPaper) && !state.reviewScope;
   const collectionId = state.selectedPaper || 'jlpt-1992-1';
-  let range = all.filter(q => fullPaper ? shared.questionInCollection(q, collectionId) : shared.matchesLevel(q, state.level));
+  let range = all.filter(q => fullPaper ? shared.questionInCollection(q, collectionId) : state.reviewScope || shared.matchesLevel(q, state.level));
   if (fullPaper) range = range.sort((a, b) => shared.collectionOrder(a, collectionId) - shared.collectionOrder(b, collectionId)).map(q => shared.questionForCollection(q, collectionId));
   const query = (state.search || '').trim().toLowerCase();
   const filtered = range.filter(q => {
@@ -40,6 +40,15 @@ const timeLabel = seconds => {
 };
 
 const questionActions = {
+  openReview(event) {
+    if (this.data.busy) return;
+    const filter = event.currentTarget.dataset.filter;
+    if (!['wrong', 'saved'].includes(filter)) return;
+    this.stopQuestionAudio();
+    this.resetStudyModes();
+    this.setData({ view: 'practice', reviewScope: true, fullPaper: false, filter, category: 'all', search: '', question: null, browse: true, browseLimit: 40 });
+    this.render();
+  },
   changeFilter(event) {
     if (this.data.busy) return;
     this.stopQuestionAudio();
@@ -66,7 +75,7 @@ const questionActions = {
     this.stopQuestionAudio();
     this.queue = [];
     this.activeQuestion = null;
-    this.setData({ view: 'papers', paperSearch: '', question: null, fullPaper: false, category: 'all', search: '' });
+    this.setData({ view: 'papers', reviewScope: false, paperSearch: '', question: null, fullPaper: false, category: 'all', search: '' });
     this.render();
   },
   searchPapers(event) {
@@ -90,7 +99,7 @@ const questionActions = {
     const requested = dataset.category;
     const category = ['vocabulary', 'listening', 'reading', 'sentencePattern'].includes(requested) ? requested : 'all';
     this.stopQuestionAudio();
-    this.setData({ fullPaper: true, selectedPaper, view: 'practice', filter: 'all', category, search: '', question: null, browse: false });
+    this.setData({ reviewScope: false, fullPaper: true, selectedPaper, view: 'practice', filter: 'all', category, search: '', question: null, browse: false });
     this.render();
     this.queue = this.filtered.slice();
     this.setData({ questionIndex: 0, questionTotal: this.queue.length });
@@ -111,7 +120,7 @@ const questionActions = {
     if (this.data.busy) return;
     this.resetStudyModes();
     if (this.data.view === 'home') {
-      this.setData({ fullPaper: false, filter: 'all', category: 'all', search: '' });
+      this.setData({ reviewScope: false, fullPaper: false, filter: 'all', category: 'all', search: '' });
       this.render();
     }
     this.queue = this.data.fullPaper ? this.filtered.slice() : shared.shuffle(this.filtered);

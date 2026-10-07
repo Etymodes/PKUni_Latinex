@@ -4,9 +4,19 @@
 
 ## 认证与公开数据
 
-社区路由只使用现有 `supabaseIdentity()` 验证 Bearer token，**不信任外部传入的 `oai-authenticated-*` 请求头**。公开消息只包含 `id / authorName / mine / text / createdAt / detectedLanguage`，不返回邮箱、内部账号 ID、模型提示词或凭据。`authorName` 是显示名，不代表唯一身份认证。
+社区路由只使用现有 `supabaseIdentity()` 验证 Bearer token，**不信任外部传入的 `oai-authenticated-*` 请求头**。公开消息只包含 `id / authorName / avatar / mine / text / createdAt / detectedLanguage`，不返回邮箱、内部账号 ID、模型提示词或凭据。`authorName` 是显示名，不代表唯一身份认证。
 
 消息属于公开内容；语言检查和按需翻译会将相关正文交给 Cloudflare Workers AI。前端以纯文本渲染。删除使用 `deleted_at` 软删除：消息不再出现在公开列表、举报待办或翻译端点中，数据库记录及已存翻译不会自动物理清除。
+
+## 账号头像
+
+`Avatar` 仅有 `{kind:'initials'|'preset', value:string}` 两个字段。字母头像严格接受 1–2 个 ASCII 大写字母，或 1 个大写后接 1–2 个小写：例如 `A`、`AB`、`Ab`、`Abc`；`ABC`、`ab`、全角/带重音字母、空白与换行均不接受，也不会自动裁切或改大小写。
+
+图案只接受共享允许列表中的固定 ID：`cat / dog / fox / rabbit / panda / owl / apple / strawberry / cherry / lemon / peach / grapes`，对应六种动物与六种水果 emoji，包含中英名称。默认是 `{kind:'preset',value:'cat'}`。不接收任意 URL、图片、上传文件或自行传入的 emoji。
+
+共享常量、类型、严格校验与显示转换位于 `lib/community-avatar.ts`。预览不写数据库，显式保存才调用 PUT。头像按服务端验证的账号 ID 存在 `community_profiles`；GET/PUT 都必须登录，客户端指定其他账号 ID 无效，管理员也通过该端点只改自己的头像。
+
+公开消息、发送幂等回执和管理员举报列表均实时关联作者当前头像，因此修改后旧消息也显示新头像。不会重写消息正文/作者、警告状态或学习记录；旧账号无资料和异常存储值均安全回退到默认猫图案。公开响应不附带头像 URL或额外账号标识。
 
 ## 语言规则与幂等性
 
@@ -26,6 +36,8 @@
 
 | 方法与路径 | 输入/用途 | 成功响应 |
 | --- | --- | --- |
+| `GET /api/community/profile` | 登录，读取自己的当前头像 | `{avatar}`；未设置时返回默认猫图案 |
+| `PUT /api/community/profile` | 登录，`{avatar}`，只更新本人 | `{avatar}`；校验失败 400 `invalid_avatar`，原资料不变 |
 | `GET /api/community?language=la&channel=language` | 合法 language/channel 必填，匿名可读 | `{messages,warnings,mutedUntil,aiAvailable}`；最近 50 条，按时间正序 |
 | `POST /api/community/messages` | `{language,channel,text,clientId}`，登录 | `{message,warnings,mutedUntil}`；首次 201，完成后幂等重试 200；原消息已删除时 message 为 null |
 | `POST /api/community/messages/:id/translate` | `{locale:'en'|'zh-CN'}`，登录 | `{translation,detectedLanguage}`，按消息 ID 与 locale 共享缓存 |
@@ -33,20 +45,20 @@
 | `POST /api/community/messages/:id/report` | `{reason}`，登录；1–500 字符 | `{ok:true}`；同一账号同一消息的重复举报不增加记录 |
 | `GET /api/community/reports` | 仅管理员 | `{reports:[{message,reason,reportedAt}]}`；最新 100 条未删除消息的举报 |
 
-常见错误：400 `invalid_room / invalid_message / invalid_locale / invalid_report`；401 `login_required`；403 `forbidden` 或 `muted`；404 `message_not_found / not_found`；409 `client_id_conflict`；422 `language_warning`；429 `rate_limited`；503 `language_check_unavailable / translation_unavailable / request_pending / community_unavailable`。
+常见错误：400 `invalid_room / invalid_message / invalid_locale / invalid_report / invalid_avatar`；401 `login_required`；403 `forbidden` 或 `muted`；404 `message_not_found / not_found`；409 `client_id_conflict`；422 `language_warning`；429 `rate_limited`；503 `language_check_unavailable / translation_unavailable / request_pending / community_unavailable`。
 
 警告/禁言响应携带 `warnings` 和 `mutedUntil`；限速/检测暂不可用/处理中响应携带 `retryAfterSeconds`。`request_pending` 表示已有同一请求在处理，应保留正文和 clientId 稍后重试。
 
 ## 限额、部署与故障
 
-- 每账号每个固定 60 秒窗口：发送 20 次、未命中缓存的翻译 10 次、举报 10 次。已完成发送的幂等重试、命中缓存的翻译不另扣相应额度。
+- 每账号每个固定 60 秒窗口：发送 20 次、未命中缓存的翻译 10 次、举报 10 次、头像保存 20 次。已完成发送的幂等重试、命中缓存的翻译不另扣相应额度。
 - 全站、所有账号和所有模型任务共用 **UTC 每日 1000 次 `AI.run` 硬上限**。每次调用前先用 D1 原子预留；检测首轮与第二次确认各占 1 次，翻译占 1 次。失败/超时已发起的调用不退还额度。达到上限或 D1 不可用时不调用模型、不处罚用户。
 - 同一发送 ID 和同一消息/翻译语言使用数据库短租约，防止并发重试重复推理；租约 60 秒自动可接管。处理中返回 503 `request_pending`，建议 3 秒后重试。已完成幂等回执和翻译缓存不消耗 AI 日额度。
 - 单次识别输出上限 800 token，翻译 2400 token；单次模型等待最多 15 秒。外语确认可有两次调用，加数据库耗时，客户端社区请求应允许至少 45 秒。超时仅结束等待，Workers AI 绑定没有承诺取消底层推理或计费。
 - `wrangler.jsonc` 配置 `AI` 绑定及 `COMMUNITY_AI_MODEL`，默认 `@cf/qwen/qwen3-30b-a3b-fp8`，不向客户端提供密钥。`aiAvailable` 只表示 Workers AI 绑定已配置，不能证明当前额度或某条消息的推理一定成功。
 - 1000 次是调用次数限制，不是“所有调用必定免费”的承诺。需另在 Cloudflare 后台观察实际使用量及账户限额。
 
-`migrations/0007_community.sql` 与 `worker/community.js` 导出的 `communitySchema` 同构，全部为 `CREATE ... IF NOT EXISTS`。后者已接入现有 `ensureSchema()`：**Workers Git 集成发布新代码后，首次 API 请求会在现有 D1 绑定中自动创建所需表**，无需依赖本地 CLI 凭据或先运行远端迁移命令。建表失败不标记完成，后续请求可重试；已有学习进度表不会被覆盖。若 D1 绑定缺失，社区返回 503。具备运维凭据时仍可正常运行显式迁移来维护迁移登记。
+`migrations/0007_community.sql`、`0008_community_profiles.sql` 与 `worker/community.js` 导出的 `communitySchema` 同构，全部为 `CREATE ... IF NOT EXISTS`。后者已接入现有 `ensureSchema()`：**Workers Git 集成发布新代码后，首次 API 请求会在现有 D1 绑定中自动创建所需表**，无需依赖本地 CLI 凭据或先运行远端迁移命令。建表失败不标记完成，后续请求可重试；已有学习进度表不会被覆盖。若 D1 绑定缺失，社区返回 503。具备运维凭据时仍可正常运行显式迁移来维护迁移登记。
 
 本次只在隔离 SQLite 与模拟 AI 响应中验证规则、事务、并发和接口，不冒充真实模型准确率验收。Latin 不在所选模型公开明确保证的覆盖范围内；上线需以实际拉丁语学习者文本抽查，不可靠时保留“不确定、不处罚”的退路。
 
@@ -56,4 +68,4 @@
 
 ## 本地验证
 
-`tests/community.test.mjs` 使用真实内存 SQLite 事务验证：伪造头拒绝、并发幂等、跨频道处罚、到期归零、数据库回滚、账号及全站限速、翻译并发缓存、举报与删除授权。`tests/community-ai.test.mjs` 验证模型适配契约、不确定退路与每次调用的额度预留。测试不发送真实群聊消息。
+`tests/community.test.mjs` 使用真实内存 SQLite 事务验证：伪造头拒绝、并发幂等、跨频道处罚、到期归零、数据库回滚、账号及全站限速、翻译并发缓存、举报与删除授权，以及头像严格校验、账号隔离、历史消息动态头像。`tests/community-ai.test.mjs` 验证模型适配契约、不确定退路与每次调用的额度预留。测试不发送真实群聊消息。

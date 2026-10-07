@@ -31,7 +31,7 @@ const studyActions = {
     if (this.data.busy) return;
     this.stopQuestionAudio();
     this.resetStudyModes();
-    this.setData({ view: 'practice', fullPaper: false, filter: 'all', category: 'all', search: '', question: null, browse: true, browseLimit: 40 });
+    this.setData({ view: 'practice', reviewScope: false, fullPaper: false, filter: 'all', category: 'all', search: '', question: null, browse: true, browseLimit: 40 });
     this.render();
   },
   startOrderedPractice() {
@@ -49,7 +49,7 @@ const studyActions = {
     this.queue = shared.buildRandomExam(this.questions.filter(q => (q.language || 'la') === this.data.language), this.data.level, this.data.examMixed);
     if (!this.queue.length) { this.setData({ examEmpty: true }); return; }
     this.examDeadline = Date.now() + 20 * 60 * 1000;
-    this.setData({ view: 'practice', examActive: true, examEmpty: false, fullPaper: false, browse: false, questionIndex: 0, questionTotal: this.queue.length });
+    this.setData({ view: 'practice', examActive: true, examEmpty: false, reviewScope: false, fullPaper: false, browse: false, questionIndex: 0, questionTotal: this.queue.length });
     this.showQuestion(this.queue[0]);
     this.tickExamClock();
   },

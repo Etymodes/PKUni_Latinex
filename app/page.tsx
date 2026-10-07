@@ -74,6 +74,7 @@ import { vocabularyCards, vocabularyLevelsFor, vocabularyKey, type VocabularyMod
 import { VocabularyTrainer, VocabularyDictionary } from "./vocabulary-workspace";
 import { sanitizeVocabularyReviews, type VocabularyReviewEvent } from "@/lib/vocabulary-model";
 import { syncVocabularyReviews, reviewCounts, subtractReviewCounts } from "@/lib/vocabulary-review-sync";
+import { CommunityAvatarSettings } from "./community-avatar";
 import { CommunityWorkspace } from "./community-workspace";
 import { buildRandomExam, buildVocabularyMeasurement, type VocabularyMeasurementItem } from "@/lib/study-modes";
 import { extraEnglish } from "./extra-copy";
@@ -81,7 +82,7 @@ import { contentText, localizeQuestion } from "../lib/content-locale";
 import { shuffle } from "@/lib/shuffle";
 import { apiFetch, supabase } from "@/lib/supabase";
 
-type View = "home" | "practice" | "story" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "community" | "settings" | "admin";
+type View = "home" | "practice" | "story" | "vocab-trainer" | "mistakes" | "bookmarks" | "exam" | "vocabulary" | "scope" | "archive" | "resources" | "dictionary" | "community" | "settings" | "admin";
 type Progress = Record<string, "correct" | "wrong" | "review">;
 type Session = { authenticated: boolean; persistence?: boolean; authError?: string; user: null | { email: string; name: string; role: "student" | "admin" } };
 type Override = { id: string; deleted: boolean; question: Question | null };
@@ -106,7 +107,7 @@ const STORAGE = {
 const I18nContext = createContext<{ locale: UiLocale; copy: UiCopy; language: LearningLanguage }>({ locale: "zh-CN", copy: getCopy("zh-CN"), language: getLearningLanguage("la") });
 
 const LEVEL_ORDER: PikkuLevel[] = ["C", "F", "G", "M"];
-const VIEW_MICRO_LABEL: Record<View, MicroLabelKey> = { home: "overview", story: "story", practice: "practice", mistakes: "review", bookmarks: "review", exam: "exam", vocabulary: "vocabulary", "vocab-trainer": "vocabulary", scope: "scope", archive: "archive", resources: "archive", community: "courses", settings: "progress", admin: "admin" };
+const VIEW_MICRO_LABEL: Record<View, MicroLabelKey> = { home: "overview", story: "story", practice: "practice", mistakes: "review", bookmarks: "review", exam: "exam", vocabulary: "vocabulary", "vocab-trainer": "vocabulary", scope: "scope", archive: "archive", resources: "archive", dictionary: "vocabulary", community: "courses", settings: "progress", admin: "admin" };
 
 function useI18n() {
   return useContext(I18nContext);
@@ -768,8 +769,8 @@ export default function App() {
     { id: "settings", label: locale === "en" ? "Settings" : t("个人设置"), icon: User },
     ...(session.user?.role === "admin" ? [{ id: "admin" as View, label: copy.admin, icon: Settings }] : []),
   ];
-  const activeSection: View = (["exam", "vocabulary", "vocab-trainer"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources"] as View[]).includes(view) ? "scope" : view;
-  const viewTitles: Partial<Record<View, string>> = { exam: copy.randomExam, story: copy.storyMode, "vocab-trainer": copy.vocabulary, vocabulary: copy.vocabularyMeasure, bookmarks: copy.bookmarks, archive: copy.archive, resources: copy.archive };
+  const activeSection: View = (["exam", "vocabulary", "vocab-trainer"] as View[]).includes(view) ? "practice" : view === "bookmarks" ? "mistakes" : (["archive", "resources", "dictionary"] as View[]).includes(view) ? "scope" : view;
+  const viewTitles: Partial<Record<View, string>> = { exam: copy.randomExam, story: copy.storyMode, "vocab-trainer": copy.vocabulary, vocabulary: copy.vocabularyMeasure, bookmarks: copy.bookmarks, archive: copy.archive, resources: copy.archive, dictionary: locale === "en" ? "Dictionary" : "词典" };
 
   return (
     <I18nContext.Provider value={{ locale, copy, language: currentLanguage }}>
@@ -845,20 +846,21 @@ export default function App() {
           <>
               {(["practice", "story", "exam", "vocab-trainer", "vocabulary"] as View[]).includes(view) && <HubTabs items={[["practice", t("有序选题")], ["story", t("剧情任务")], ["exam", t("随机组卷")], ["vocab-trainer", t("背单词")], ["vocabulary", t("词汇量测量")]]} view={view} setView={setView} />}
               {(["mistakes", "bookmarks"] as View[]).includes(view) && <HubTabs items={[["mistakes", t("错题回炉")], ["bookmarks", t("我的收藏")]]} view={view} setView={setView} />}
-              {(["scope", "archive", "resources"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", t("考试范围")], ["archive", t("真题档案")], ["resources", t("教材·作者·辞典")]] : [["scope", t("考试与资源")], ["resources", `${currentLanguage.labels[locale]} · ${t("资源")}`]]} view={view} setView={setView} />}
+              {(["scope", "archive", "resources", "dictionary"] as View[]).includes(view) && <HubTabs items={language === "la" ? [["scope", t("考试范围")], ["archive", t("真题档案")], ["resources", t("教材·作者·辞典")], ["dictionary", locale === "en" ? "Dictionary" : "词典"]] : [["scope", t("考试与资源")], ["resources", `${currentLanguage.labels[locale]} · ${t("资源")}`], ["dictionary", locale === "en" ? "Dictionary" : "词典"]]} view={view} setView={setView} />}
               {view === "home" && <Dashboard bank={languageBank} level={level} progress={progress} bookmarks={languageBookmarks} openPractice={openPractice} setView={setView} />}
               {view === "practice" && <Practice key={language} bank={languageBank} level={level} levels={languageConfig.levels} setLevel={selectLanguageLevel} category={category} setCategory={setCategory} fullPaper={language === "ja" && fullPaper} setFullPaper={setFullPaper} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "story" && <StoryOutline setView={setView} />}
               {view === "mistakes" && <QuestionCollection title={copy.mistakes} empty={copy.noMistakes} questions={languageBank.filter((q) => progress[q.id] === "wrong" || progress[q.id] === "review")} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "bookmarks" && <QuestionCollection title={copy.bookmarks} empty={copy.noBookmarks} questions={languageBank.filter((q) => languageBookmarks.includes(q.id))} progress={progress} onResult={recordProgress} bookmarks={languageBookmarks} setBookmarks={updateLanguageBookmarks} />}
               {view === "exam" && <ExamMode key={`${language}:${session.user?.email ?? "guest"}`} bank={languageBank} level={level} setLevel={selectLanguageLevel} progress={progress} onResult={recordProgress} />}
-              {view === "vocab-trainer" && <VocabularyTrainer key={`${language}:${vocabularyMemory.owner}`} language={language} locale={locale} level={languageLevel} mode={vocabularyMode} stats={activeVocabularyStats} reviews={activeVocabularyReviews} owner={vocabularyMemory.owner} ready={vocabularyOwnerReady} focusId={vocabularyFocus} onReview={recordVocabularyReview} onDictionary={(id) => { setVocabularyFocus(id); setView("resources"); }} onSettings={() => setView("settings")} />}
+              {view === "vocab-trainer" && <VocabularyTrainer key={`${language}:${vocabularyMemory.owner}`} language={language} locale={locale} level={languageLevel} mode={vocabularyMode} stats={activeVocabularyStats} reviews={activeVocabularyReviews} owner={vocabularyMemory.owner} ready={vocabularyOwnerReady} focusId={vocabularyFocus} onReview={recordVocabularyReview} onDictionary={(id) => { setVocabularyFocus(id); setView("dictionary"); }} onSettings={() => setView("settings")} />}
               {view === "vocabulary" && <VocabularyLab key={`${language}:${vocabularyMemory.owner}`} level={level} ready={vocabularyOwnerReady} onSubmit={(answers) => recordVocabulary(language, answers)} />}
               {view === "scope" && <Scope level={level} openPractice={openPractice} />}
               {view === "archive" && <Archive />}
-              {view === "resources" && <ResourceLibrary language={language} config={languageConfig} focusId={vocabularyFocus} stats={activeVocabularyStats} reviews={activeVocabularyReviews} onPractice={(id) => { setVocabularyFocus(id); setView("vocab-trainer"); }} />}
+              {view === "resources" && <ResourceLibrary language={language} config={languageConfig} onDictionary={() => { setVocabularyFocus(undefined); setView("dictionary"); }} />}
+              {view === "dictionary" && <VocabularyDictionary key={language} language={language} locale={locale} stats={activeVocabularyStats} reviews={activeVocabularyReviews} focusId={vocabularyFocus} onPractice={(id) => { setVocabularyFocus(id); setView("vocab-trainer"); }} />}
               {view === "community" && <CommunityWorkspace key={`${language}:${locale}:${session.user?.email ?? "guest"}`} language={language} languageName={currentLanguage.labels[locale]} locale={locale} authenticated={session.authenticated} isAdmin={session.user?.role === "admin"} />}
-              {view === "settings" && <PersonalSettings config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
+              {view === "settings" && <PersonalSettings key={session.user?.email ?? "guest"} config={languageConfig} mode={vocabularyMode} setMode={selectVocabularyMode} setView={setView} authenticated={session.authenticated} />}
               {view === "admin" && session.user?.role === "admin" && <AdminPanel bank={languageBank} onChanged={() => apiFetch("/api/questions").then((r) => r.json()).then((data) => setOverrides(data.overrides || []))} />}
             </>
         </main>
@@ -1495,8 +1497,10 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
       </div>
       <div className="settings-action"><span>{t("当前语言：")}{config.nativeName} · {languageName}</span><button className="primary-button" onClick={() => setView("vocab-trainer")}>{t("开始背单词")}<ArrowRight size={17} /></button></div>
     </section>
+    <CommunityAvatarSettings locale={locale} authenticated={authenticated} />
+    <section className="settings-panel"><div className="settings-copy"><Languages /><div><h2>{locale === "en" ? "Vocabulary check" : "词汇量测量"}</h2><p>{locale === "en" ? "Check recognition of words at your level and below." : "测量当前等级及以下词汇的识别情况。"}</p></div></div><button className="secondary-button" onClick={() => setView("vocabulary")}>{locale === "en" ? "Start a vocabulary check" : "开始测词"}<ArrowRight size={17} /></button></section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.2.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.3.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>
@@ -1649,22 +1653,22 @@ function HubTabs({ items, view, setView }: { items: [View, string][]; view: View
   return <div className="hub-tabs" aria-label={t("栏目分页")}>{items.map(([id, label]) => <button key={id} className={view === id ? "active" : ""} onClick={() => setView(id)}>{label}</button>)}</div>;
 }
 
-function ResourceLibrary({ language, config, focusId, stats, reviews, onPractice }: { language: LanguageCode; config: LanguageConfig; focusId?: string; stats: VocabularyStats; reviews: VocabularyReviewEvent[]; onPractice: (id: string) => void }) {
+function ResourceLibrary({ language, config, onDictionary }: { language: LanguageCode; config: LanguageConfig; onDictionary: () => void }) {
   const { copy, locale } = useI18n();
   const languageName = getLearningLanguage(language).labels[locale];
   const t = useInterfaceText();
-  const [tab, setTab] = useState<"textbooks" | "authors" | "dictionary" | "etymology">(focusId ? "dictionary" : "textbooks");
+  const [tab, setTab] = useState<"textbooks" | "authors" | "etymology">("textbooks");
   const textbooks = textbookCatalog.filter((book) => book.targetLanguage === language);
   const chapterMappings = resourceChapterMappings.filter((mapping) => mapping.targetLanguage === language);
   const periods = language === "la" ? [...new Set(classicalAuthors.map((author) => author.period))] : [];
   const currentFacts = languageFacts[language] ?? [];
 
-  useEffect(() => { if (focusId) setTab("dictionary"); }, [focusId]);
 
   return <div className="page resource-page">
     <div className="practice-header"><div><span className="eyebrow">PIKKU RESOURCES · {config.nativeName}</span><h1>{languageName}{t("教材、作者与辞典")}</h1><p>{t("当前页面只显示")}{languageName}{t("资源；切换学习语言后，教材、作者、词条和语言知识会同步切换。")}</p></div></div>
+    <button className="dictionary-resource-entry secondary-button" onClick={onDictionary}><BookOpen size={19} />{locale === "en" ? "Open dictionary" : "打开独立词典"}<ArrowRight size={17} /></button>
     <div className="resource-tabs" role="tablist">
-      {([['textbooks', t("教材对齐")], ['authors', t("作者图谱")], ['dictionary', `${languageName} · ${t("词典")}`], ['etymology', t("语言知识")]] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
+      {([['textbooks', t("教材对齐")], ['authors', t("作者图谱")], ['etymology', t("语言知识")]] as const).map(([id, label]) => <button role="tab" aria-selected={tab === id} className={tab === id ? "active" : ""} key={id} onClick={() => setTab(id)}>{label}</button>)}
     </div>
     {tab === "textbooks" && <>
       <div className="source-card"><BookOpen /><div><strong>{t("版权与改编原则")}</strong><p>{t("只索引官方页面、公版文献和合法预览。版权教材用于知识点与考纲映射，公开题库发布原创题目，不上传来源不明的 PDF，也不复刻整章练习。")}</p></div></div>
@@ -1679,7 +1683,7 @@ function ResourceLibrary({ language, config, focusId, stats, reviews, onPractice
       <div className="author-timeline">{periods.map((period) => <section key={period}><h2>{contentText(period, locale)}</h2><div>{classicalAuthors.filter((author) => author.period === period).map((author) => <article key={author.id}><span>{author.dates}</span><h3>{author.name}</h3><p>{locale === "en" ? "" : `${author.chinese} · `}{author.genres.map(text => contentText(text, locale)).join(" / ")}</p><ul>{author.works.map((work) => <li key={work}>{work}</li>)}</ul><small>{t("建议域：")}{levelName(copy, author.examLevel, language)}</small></article>)}</div></section>)}</div>
     </>}
     {tab === "authors" && language !== "la" && <div className="empty-state"><div><Users /></div><h2>{languageName}{t("作者图谱待建")}</h2><p>{t("当前模式不会借用拉丁语作者数据；按语言与时代核验后再加入。")}</p></div>}
-    {tab === "dictionary" && <VocabularyDictionary key={language} language={language} locale={locale} stats={stats} reviews={reviews} focusId={focusId} onPractice={onPractice} />}
+
     {tab === "etymology" && <>
       <div className="etymology-progress"><Sparkles /><div><strong>{language === "la" ? etymologyFacts.length : currentFacts.length} / 365</strong><p>{language === "la" ? t("现有词源知识已接入首页随机栏目；后续按拉丁词、后裔词、语义变化与来源逐条扩充。") : (locale === "en" ? `Only ${languageName} language notes are shown, with source links.` : `当前只显示${languageName}语言知识，并保留可点击来源。`)}</p></div></div>
       {language === "la" ? <div className="fact-library">{etymologyFacts.map((fact, index) => <article key={`${fact.latin}-${index}`}><span>DIES {String(index + 1).padStart(3, "0")}</span><h2>{fact.latin} · {contentText(fact.meaning, locale)}</h2><p>{contentText(fact.note, locale)}</p><small>{t("英语：")}{fact.english.join(" · ")}{t("罗曼语：")}{fact.romance.map(text => contentText(text, locale)).join(" · ")}</small></article>)}</div> : <div className="fact-library">{currentFacts.map((fact, index) => <article key={fact.id}><span>{contentText(fact.kind, locale)} · {String(index + 1).padStart(3, "0")}</span><h2>{contentText(fact.title, locale)}</h2><p>{contentText(fact.summary, locale)}</p><small>{contentText(fact.example, locale)}　{fact.sources.map((source, sourceIndex) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{sourceIndex > 0 && " · "}{contentText(source.label, locale)}</a>)}</small></article>)}</div>}

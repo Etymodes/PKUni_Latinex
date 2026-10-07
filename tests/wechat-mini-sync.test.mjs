@@ -135,7 +135,7 @@ test('native answers and word ratings round-trip through the real API and Worker
   const shared = commonJs(buildSharedSource(), { './bank.js': bank });
   let definition;
   loadPageModule({
-    'data/content-locale.js': contentLocale(), 'lib/api.js': api, 'data/bank.js': bank, 'data/shared.js': shared,
+    'data/dictionary.js': localeSourceLoader()('lib/dictionary.ts'), 'data/content-locale.js': contentLocale(), 'lib/api.js': api, 'data/bank.js': bank, 'data/shared.js': shared,
     'lib/copy.js': commonJs(source('lib/copy.js')),
   }, { wx, Page: value => { definition = value; } });
   const page = { ...definition, data: plain(definition.data), setData(update) { Object.assign(this.data, update); } };

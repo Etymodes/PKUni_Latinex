@@ -880,3 +880,84 @@ h1, h2, h3, p { margin-top: 0; }
 .chat-moderation { padding: 16px 20px; border-bottom: 1px solid var(--line); }
 .chat-moderation article { padding: 12px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
 .chat-moderation article button { display: block; margin-top: 8px; }
+
+/* Dictionary: browsable entries, independent from recall cards. */
+.dictionary-title { margin-bottom: 24px; }
+.dictionary-title > span { color: var(--crimson); letter-spacing: .16em; font-size: 11px; }
+.dictionary-title h1 { margin: 9px 0; font-family: var(--serif-cn); font-size: 38px; }
+.dictionary-title p { color: var(--muted); line-height: 1.7; max-width: 760px; }
+.dictionary-search { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px; padding: 12px 16px; box-shadow: 0 3px 12px rgba(52,42,29,.03); }
+.dictionary-search > svg { flex-shrink: 0; color: var(--crimson); }
+.dictionary-search input { min-width: 0; width: 100%; border: 0; background: transparent; padding: 6px 0; font: inherit; }
+.dictionary-search select { border: 0; border-left: 1px solid var(--line); padding: 8px 0 8px 12px; background: transparent; max-width: 180px; }
+.dictionary-filters { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 12px; padding: 16px 0; }
+.dictionary-filters label { display: grid; gap: 7px; font-size: 12px; color: var(--muted); max-width: 270px; }
+.dictionary-filters select { border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; background: var(--panel); color: var(--ink); max-width: 100%; }
+.dictionary-filters > button { margin: 0 0 10px auto; }
+.dictionary-index { display: flex; gap: 6px; flex-wrap: wrap; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.dictionary-index button { min-width: 34px; min-height: 34px; padding: 6px 10px; border: 1px solid transparent; border-radius: 6px; background: transparent; }
+.dictionary-index button[aria-pressed="true"] { border-color: var(--crimson); color: var(--crimson); background: var(--crimson-soft); }
+.dictionary-count { font-size: 12px; color: var(--muted); margin: 16px 0; }
+.dictionary-layout { display: grid; grid-template-columns: minmax(200px, 28%) minmax(0, 1fr); gap: 20px; align-items: start; }
+.dictionary-results { display: grid; max-height: 75vh; overflow-y: auto; padding-right: 4px; }
+.dictionary-results > button { text-align: start; display: grid; gap: 7px; width: 100%; background: transparent; padding: 16px 14px; border: 1px solid transparent; border-bottom: 1px solid var(--line); border-radius: 6px; }
+.dictionary-results > button.active { border: 1px solid var(--line-strong); background: var(--panel); box-shadow: inset 3px 0 var(--crimson); }
+.dictionary-results strong { font-size: 17px; overflow-wrap: anywhere; }
+.dictionary-results small { color: var(--muted); }
+.dictionary-results button > span { font-size: 12px; line-height: 1.6; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dictionary-results .dictionary-more { color: var(--crimson); text-align: center; }
+.dictionary-entry { padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); min-width: 0; overflow-wrap: anywhere; }
+.dictionary-entry > header { display: flex; align-items: start; flex-wrap: wrap; justify-content: space-between; gap: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.dictionary-headword-label { color: var(--crimson); font-size: 11px; letter-spacing: .08em; }
+.dictionary-entry h2 { font-size: 32px; margin: 12px 0 8px; font-family: var(--serif-la), var(--serif-cn); }
+.dictionary-entry header p { margin: 8px 0; color: var(--muted); }
+.dictionary-entry > section { margin-top: 28px; }
+.dictionary-entry h3 { color: var(--crimson); font-size: 14px; margin-bottom: 16px; }
+.dictionary-senses { list-style: none; margin: 0; padding: 0; }
+.dictionary-senses li { display: flex; align-items: start; gap: 12px; margin: 14px 0; line-height: 1.75; }
+.dictionary-senses .sense-number { color: var(--crimson); font-family: var(--serif-la); min-width: 20px; font-weight: 700; }
+.dictionary-senses p { margin: 0 0 6px; }
+.dictionary-senses small { display: inline-block; margin-right: 10px; color: var(--muted); }
+.dictionary-source { font-size: 12px; color: var(--muted); line-height: 1.65; }
+.dictionary-source a { color: var(--crimson); text-underline-offset: 3px; }
+.dictionary-entry figure { margin: 12px 0 20px; padding: 12px 16px; background: var(--paper); border-left: 2px solid var(--line-strong); }
+.dictionary-entry blockquote { margin: 0 0 8px; font-size: 17px; line-height: 1.8; }
+.dictionary-entry figure p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+.dictionary-entry figcaption { font-size: 11px; color: var(--muted); }
+.dictionary-etymology p { line-height: 1.8; }
+.dictionary-pending { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.dictionary-variants { padding-top: 12px; color: var(--muted); font-size: 13px; }
+.dictionary-learning-state { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 24px; font-size: 12px; color: var(--muted); }
+.dictionary-back { display: none; }
+.dictionary-resource-entry { margin-bottom: 20px; }
+.community-avatar { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 16px; background: var(--gold-soft); border: 1px solid var(--line-strong); color: var(--crimson); font: 600 28px/1 var(--serif-la); }
+.community-avatar.small { width: 34px; height: 34px; border-radius: 10px; font-size: 18px; }
+.chat-meta { align-items: center; }
+.avatar-type { display: flex; gap: 10px; margin: 20px 0; }
+.avatar-type button { padding: 10px 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.avatar-type button[aria-pressed="true"], .avatar-presets button[aria-pressed="true"] { border-color: var(--crimson); background: var(--crimson-soft); color: var(--crimson); }
+.avatar-presets { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; max-width: 620px; }
+.avatar-presets button { display: grid; justify-items: center; gap: 8px; padding: 14px 6px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.avatar-presets button > span { font-size: 30px; }
+.avatar-presets small { font-size: 11px; }
+.avatar-initials { display: grid; gap: 12px; }
+.avatar-initials input { max-width: 220px; padding: 14px; border-radius: 10px; border: 1px solid var(--line-strong); font: 600 26px var(--serif-la); background: var(--paper); }
+.avatar-initials small { color: var(--muted); line-height: 1.6; }
+.avatar-initials [role="alert"] { font-size: 13px; color: var(--crimson); }
+.avatar-save { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.avatar-save p { font-size: 13px; color: var(--muted); }
+@media (max-width: 700px) {
+  .dictionary-title h1 { font-size: 30px; }
+  .dictionary-search { flex-wrap: wrap; gap: 6px; padding: 10px 12px; }
+  .dictionary-search input { flex: 1; }
+  .dictionary-search select { width: 100%; max-width: none; border-left: 0; border-top: 1px solid var(--line); padding: 10px 0 4px; }
+  .dictionary-filters { gap: 10px; }
+  .dictionary-filters label { flex: 1 1 140px; min-width: 0; max-width: none; }
+  .dictionary-filters select { min-width: 0; width: 100%; }
+  .dictionary-layout { display: block; }
+  .dictionary-results { max-height: none; }
+  .dictionary-entry { padding: 20px; }
+  .dictionary-layout:not(.has-selection) .dictionary-entry, .dictionary-layout.has-selection .dictionary-results { display: none; }
+  .dictionary-back { display: inline-flex; margin-bottom: 20px; }
+  .avatar-presets { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

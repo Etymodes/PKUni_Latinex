@@ -1,3 +1,5 @@
+import { createSourceLoader } from '../scripts/build-wechat.mjs';
+const avatarHelpers = createSourceLoader()('lib/community-avatar.ts');
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
@@ -15,7 +17,7 @@ function harness(owner = null) {
   let handler = async path => path.includes('?') ? response([]) : { message: row() };
   const api = { getSession: () => session, request: async (path, method = 'GET', data) => { calls.push({ path, method, data }); return handler(path, method, data); } };
   const module = { exports: {} };
-  vm.runInNewContext(source, { module, require: () => api, wx: { showModal: options => options.success({ confirm: true }), showToast() {} },
+  vm.runInNewContext(source, { module, require: name => name === './api' ? api : avatarHelpers, wx: { showModal: options => options.success({ confirm: true }), showToast() {} },
     setTimeout: (fn, delay) => { timers.set(++timerId, { fn, delay }); return timerId; }, clearTimeout: id => timers.delete(id) });
   const page = { ...module.exports.communityActions, alive: true, visible: true, owner, generation: 0,
     data: { language: 'la', locale: 'en', t: copiesModule.exports.copies.en, view: 'community', communityChannel: 'language', communityDraft: '', communityItems: [] },
@@ -130,4 +132,16 @@ test('hiding preserves the same-room draft; terminal mute clears retry ID and er
   h.page.data.locale = 'zh-CN'; h.page.data.t = copiesModule.exports.copies['zh-CN']; h.page.renderCommunity();
   assert.equal(h.page.data.communityError, h.page.data.t.communityMute);
   h.page.visible = false; h.page.stopCommunity();
+});
+
+
+test('message avatars use shared initials/preset validation and refresh for historical messages', async () => {
+  const h = harness();
+  h.handle(async () => response([{ ...row(), avatar: { kind: 'initials', value: 'Abc' } }, { ...row('fallback'), avatar: { kind: 'url', value: 'https://example.test/avatar.png' } }]));
+  await h.page.loadCommunity();
+  assert.equal(h.page.data.communityItems[0].avatarText, 'Abc');
+  assert.equal(h.page.data.communityItems[1].avatarText, '🐱');
+  h.handle(async () => response([{ ...row(), avatar: { kind: 'preset', value: 'apple' } }]));
+  await h.page.loadCommunity();
+  assert.equal(h.page.data.communityItems[0].avatarText, '🍎');
 });
