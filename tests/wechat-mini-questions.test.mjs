@@ -277,7 +277,7 @@ test('wrong/saved paper filters and original-number search keep all levels; pref
 
 test('all source collections open across levels and retain source order on picker changes', () => {
   const h = harness({ level: 'C' });
-  for (const [index, count] of [[0,149],[1,152],[2,36],[3,123],[4,149],[5,146],[6,148],[7,154],[8,157],[9,155],[10,156],[11,159],[12,156],[13,155]]) {
+  for (const [index, count] of [[0,149],[1,152],[2,36],[3,123],[4,149],[5,146],[6,148],[7,154],[8,157],[9,155],[10,156],[11,159],[12,156],[13,155],[14,154],[15,154]]) {
     h.page.changePaper({ detail: { value: String(index) } });
     assert.equal(h.page.data.selectedPaper, bank.questionCollections[index].id);
     assert.equal(h.page.data.questionTotal, count);

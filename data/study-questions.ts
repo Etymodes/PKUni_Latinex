@@ -16,6 +16,8 @@ import jlpt2001 from "./jlpt-2001.json" with { type: "json" };
 import jlpt2002 from "./jlpt-2002.json" with { type: "json" };
 import jlpt2003 from "./jlpt-2003.json" with { type: "json" };
 import jlpt2004 from "./jlpt-2004.json" with { type: "json" };
+import jlpt2005 from "./jlpt-2005.json" with { type: "json" };
+import jlpt2006 from "./jlpt-2006.json" with { type: "json" };
 import unit01 from "./ja-hlb1000-n1-u01.json" with { type: "json" };
 import { addQuestionCollections } from "./question-collections.ts";
 import type { Question } from "./questions.ts";
@@ -35,6 +37,8 @@ const combined = addQuestionCollections([...questions, ...completeQuestions, ...
   { id: "jlpt-2002-1", questions: jlpt2002 as Question[] },
   { id: "jlpt-2003-1", questions: jlpt2003 as Question[] },
   { id: "jlpt-2004-1", questions: jlpt2004 as Question[] },
+  { id: "jlpt-2005-1", questions: jlpt2005 as Question[] },
+  { id: "jlpt-2006-1", questions: jlpt2006 as Question[] },
 ]);
 export const studyQuestions: Question[] = combined.questions;
 export const questionAliases = combined.aliases;

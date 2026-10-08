@@ -100,7 +100,7 @@ test("old formats are classified from inspected task evidence, not source levels
   assert.equal(classifyJlptQuestion(find("jlpt-1992-1-reading_grammar-III-1-1")), "reading-short");
   assert.equal(classifyJlptQuestion(find("jlpt-1992-1-reading_grammar-III-2-1")), null, "A statistical graph is not automatically modern information retrieval.");
   const listening = Japanese.filter(question => question.category === "listening");
-  assert.equal(listening.length, 363);
+  assert.equal(listening.length, 423);
   assert(listening.every(question => question.audio && classifyJlptQuestion(question) === null));
   assert.equal(classifyJlptQuestion(fixture("wrong-category", "reading-short", "G", { category: "vocabulary" })), null);
   assert.equal(classifyJlptQuestion(fixture("unknown-type", "invented-task")), null);
