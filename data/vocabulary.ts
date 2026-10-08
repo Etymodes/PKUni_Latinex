@@ -10,6 +10,8 @@ import vocabulary1993 from "./jlpt-1993-vocabulary.json" with { type: "json" };
 import vocabulary1994 from "./jlpt-1994-vocabulary.json" with { type: "json" };
 import vocabulary1995 from "./jlpt-1995-vocabulary.json" with { type: "json" };
 import vocabulary1996 from "./jlpt-1996-vocabulary.json" with { type: "json" };
+import vocabulary1997 from "./jlpt-1997-vocabulary.json" with { type: "json" };
+import vocabulary1998 from "./jlpt-1998-vocabulary.json" with { type: "json" };
 import vocabularyUnit01 from "./ja-hlb1000-n1-u01-vocabulary.json" with { type: "json" };
 import vocabularyLevelOverrides from "./vocabulary-levels.json" with { type: "json" };
 
@@ -242,6 +244,8 @@ mergeVocabularyCollection(sharedCards, vocabularyUnit01 as ImportedVocabulary[],
 mergeVocabularyCollection(sharedCards, vocabulary1994 as ImportedVocabulary[], "jlpt-1994-1");
 mergeVocabularyCollection(sharedCards, vocabulary1995 as ImportedVocabulary[], "jlpt-1995-1");
 mergeVocabularyCollection(sharedCards, vocabulary1996 as ImportedVocabulary[], "jlpt-1996-1");
+mergeVocabularyCollection(sharedCards, vocabulary1997 as ImportedVocabulary[], "jlpt-1997-1");
+mergeVocabularyCollection(sharedCards, vocabulary1998 as ImportedVocabulary[], "jlpt-1998-1");
 // Grade the unified canonical entries without replacing IDs, terms or learning keys.
 const reviewedLevels: Record<string, string> = vocabularyLevelOverrides;
 for (const card of sharedCards) {
