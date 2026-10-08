@@ -18,7 +18,7 @@ import unicodedata
 import pdfplumber
 
 REPO = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = REPO.parent / "4-赠品-尚岸日语赠品" / "N1必背2000词PDF.pdf"
+DEFAULT_SOURCE = Path("D:/Etymodes/日语/已处理/词汇/N1必背2000词PDF.pdf")
 SOURCE_SHA256 = "2f8b65adb45c9d90a2dbcf06a75b86195e27c68c1d36227ee0212afaa54c5ac3"
 POS = re.compile(r"^［([^］]+)］\s*(.*)$")
 PITCH = re.compile(r"[⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫]+")
@@ -336,7 +336,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output", type=Path, default=REPO / "data/n1-2000-vocabulary.json")
-    parser.add_argument("--audit-dir", type=Path, default=REPO.parent / "vocab-import")
+    parser.add_argument("--audit-dir", type=Path, default=REPO / ".qa/content-processing/vocab-import")
     parser.add_argument("--render", type=int, nargs="*", default=[])
     args = parser.parse_args()
     sha256 = hashlib.sha256(args.source.read_bytes()).hexdigest()

@@ -15,3 +15,5 @@ dist
 /wechat/miniprogram_npm/
 
 /wechat/.qa/
+
+/.qa/
