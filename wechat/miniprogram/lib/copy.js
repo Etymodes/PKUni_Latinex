@@ -121,3 +121,18 @@ Object.assign(en, {
 });
 
 module.exports = { copies: { 'zh-CN': zh, en }, levelCards };
+
+Object.assign(zh, {
+  quickExam: '20 分钟快速诊断', jlptExam: 'JLPT 结构练习', jlptNote: '按 N3／N2／N1 科目与题型结构练习现有 CFGM 题。考试档位不会修改学习等级；既有旧卷题不因此成为现行同级 JLPT 试题。',
+  jlptCountNote: '题数为参考配额，听力实际时长可能随音频略有变化。缺题不跨级补齐；结果只记录本次答对数，不换算官方分数。',
+  jlptAvailable: '可用', jlptSelected: '已选', jlptMissing: '缺题', jlptReference: '参考配额', jlptCoverage: '当前覆盖', jlptMinutes: '分钟',
+  jlptIncomplete: '当前题库不足以组成完整结构卷。可按科目顺序练习现有题，空科目自动跳过。', jlptPracticeAvailable: '练习现有题', jlptStart: '开始结构练习', jlptNoQuestions: '此档位暂无符合题型的题目，请选择其他档位或快速诊断。',
+  jlptSection: '科目', jlptSectionQuestion: '本科题号', jlptNextSection: '结束本科，进入下一科', jlptSkipped: '无题，已跳过', jlptOfficial: '查看官方考试科目与时间',
+});
+Object.assign(en, {
+  quickExam: '20-minute quick diagnostic', jlptExam: 'JLPT structure practice', jlptNote: 'Practise existing CFGM questions using N3, N2 or N1 sections and question types. This exam choice does not change your study level or certify historical questions as current JLPT items at that level.',
+  jlptCountNote: 'Item quotas are approximate; actual listening duration may vary with the audio. Missing items are never filled from another grade. Results show this round’s correct answers, not official scaled scores.',
+  jlptAvailable: 'Available', jlptSelected: 'Selected', jlptMissing: 'Missing', jlptReference: 'Reference quota', jlptCoverage: 'Current coverage', jlptMinutes: 'min',
+  jlptIncomplete: 'There are not enough questions for a complete structure. Practise available items in section order; empty sections are skipped.', jlptPracticeAvailable: 'Practise available questions', jlptStart: 'Start structure practice', jlptNoQuestions: 'No questions match this level and its types yet. Choose another level or the quick diagnostic.',
+  jlptSection: 'Section', jlptSectionQuestion: 'Within section', jlptNextSection: 'End this section and move on', jlptSkipped: 'No questions; skipped', jlptOfficial: 'Official test sections and timing',
+});

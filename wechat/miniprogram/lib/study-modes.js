@@ -1,5 +1,6 @@
 const bank = require('../data/bank');
 const shared = require('../data/shared');
+const jlpt = require('../data/jlpt-exam');
 const vocabulary = require('./vocabulary');
 const { localizeVocabularyCard } = require('../data/content-locale');
 let sequence = 0;
@@ -8,13 +9,26 @@ const studyActions = {
   resetStudyModes() {
     this.stopExamClock();
     this.examAnswers = {};
+    this.examPlan = null;
+    this.examSections = [];
+    this.examSectionIndex = 0; this.examSectionStart = 0; this.examSectionEnd = 0;
     this.measurement = null;
-    this.setData({ examActive: false, examFinished: false, measurementItems: [], measurementDone: false, measurementReady: false, measurementIndex: 0 });
+    this.setData({ examActive: false, examFinished: false, examIsJlpt: false, examSectionTitle: '', examQuestionType: '', examSectionResults: [], measurementItems: [], measurementDone: false, measurementReady: false, measurementIndex: 0 });
   },
   renderStudyModes() {
     const questions = this.questions.filter(q => (q.language || 'la') === this.data.language);
     const cards = bank.vocabularyCards.filter(card => card.language === this.data.language);
     this.setData({ courseLevels: ['C', 'F', 'G', 'M'].map(level => ({ level, questions: questions.filter(q => shared.matchesLevel(q, level)).length, words: cards.filter(card => shared.vocabularyMatchesLevel(card, level)).length })) });
+    const locale = this.data.locale === 'en' ? 'en' : 'zh';
+    if (this.data.language === 'ja' && this.data.view === 'exam') {
+      const profileId = this.data.examProfile || ({ C: 'n3', F: 'n2' }[this.data.level] || 'n1');
+      const preview = jlpt.buildJlptExam(questions, profileId, () => 0);
+      this.setData({ examProfile: profileId, jlptProfiles: jlpt.jlptExamProfiles.map(profile => ({ id: profile.id, label: `${profile.id.toUpperCase()} (${profile.level})` })),
+        jlptComplete: preview.complete, jlptTotalSelected: preview.totalSelected, jlptTotalRequired: preview.totalRequired,
+        jlptSections: preview.sections.map(section => ({ id: section.id, label: section.label[locale], minutes: section.minutes,
+          selected: section.questions.length, types: preview.coverage.filter(item => item.sectionId === section.id).map(item => ({ ...item, label: item.label[locale] })) })) });
+    }
+    this.renderExamSection();
     if (this.measurement) {
       const translate = meaning => localizeVocabularyCard({ meaning }, this.data.locale).meaning;
       const item = this.measurement.items[this.data.measurementIndex];
@@ -42,30 +56,75 @@ const studyActions = {
   },
   moreQuestions() { this.setData({ browseLimit: (this.data.browseLimit || 40) + 40 }); this.render(); },
   changeExamMixed(event) { if (!this.data.examActive) this.setData({ examMixed: event.detail.value === true }); },
+  changeExamFormat(event) {
+    if (this.data.busy || this.data.examActive) return;
+    const format = event.currentTarget.dataset.format;
+    if (!['quick', 'jlpt'].includes(format)) return;
+    this.resetStudyModes();
+    this.setData({ examFormat: format, examEmpty: false }); this.renderStudyModes();
+  },
+  changeExamProfile(event) {
+    if (this.data.busy || this.data.examActive) return;
+    const profile = event.currentTarget.dataset.profile;
+    if (!jlpt.jlptExamProfiles.some(item => item.id === profile)) return;
+    this.resetStudyModes();
+    this.setData({ examProfile: profile, examEmpty: false }); this.renderStudyModes();
+  },
   startExam() {
     if (this.data.busy) return;
     this.stopQuestionAudio();
     this.resetStudyModes();
-    this.queue = shared.buildRandomExam(this.questions.filter(q => (q.language || 'la') === this.data.language), this.data.level, this.data.examMixed);
+    const questions = this.questions.filter(q => (q.language || 'la') === this.data.language);
+    if (this.data.language === 'ja' && this.data.examFormat === 'jlpt') {
+      this.examPlan = jlpt.buildJlptExam(questions, this.data.examProfile || ({ C: 'n3', F: 'n2' }[this.data.level] || 'n1'));
+      this.examSections = this.examPlan.sections.filter(section => section.questions.length);
+      this.queue = this.examPlan.questions;
+      this.setData({ examIsJlpt: true });
+    } else this.queue = shared.buildRandomExam(questions, this.data.level, this.data.examMixed);
     if (!this.queue.length) { this.setData({ examEmpty: true }); return; }
-    this.examDeadline = Date.now() + 20 * 60 * 1000;
     this.setData({ view: 'practice', examActive: true, examEmpty: false, reviewScope: false, fullPaper: false, browse: false, questionIndex: 0, questionTotal: this.queue.length });
-    this.showQuestion(this.queue[0]);
-    this.tickExamClock();
+    if (this.examPlan) { this.beginExamSection(0); return; }
+    this.examDeadline = Date.now() + 20 * 60 * 1000;
+    this.showQuestion(this.queue[0]); this.tickExamClock();
   },
+  beginExamSection(index) {
+    const section = this.examSections[index];
+    if (!section) { this.finishExam(); return; }
+    this.examSectionIndex = index;
+    this.examSectionStart = this.examSections.slice(0, index).reduce((total, item) => total + item.questions.length, 0);
+    this.examSectionEnd = this.examSectionStart + section.questions.length;
+    this.examDeadline = Date.now() + section.minutes * 60 * 1000;
+    this.setData({ questionIndex: this.examSectionStart });
+    this.showQuestion(this.queue[this.examSectionStart]); this.tickExamClock();
+  },
+  renderExamSection() {
+    if (!this.examPlan) return;
+    const locale = this.data.locale === 'en' ? 'en' : 'zh';
+    const section = this.examSections[this.examSectionIndex];
+    const type = this.activeQuestion && this.examPlan.questionTypes[this.activeQuestion.id];
+    this.setData({ examProfileLabel: `${this.examPlan.profile.id.toUpperCase()} (${this.examPlan.profile.level})`,
+      examSectionTitle: section ? section.label[locale] : '', examQuestionType: type ? type.label[locale] : '',
+      examSectionNumber: section ? this.examSectionIndex + 1 : 0, examSectionCount: this.examSections.length,
+      examSectionQuestion: section ? this.data.questionIndex - this.examSectionStart + 1 : 0, examSectionTotal: section ? section.questions.length : 0,
+      examSectionResults: this.examPlan.sections.map(item => ({ id: item.id, label: item.label[locale], total: item.questions.length,
+        answered: item.questions.filter(q => Object.prototype.hasOwnProperty.call(this.examAnswers || {}, q.id)).length,
+        correct: item.questions.filter(q => (this.examAnswers || {})[q.id] === true).length })) });
+  },
+  nextExamSection() { if (!this.data.busy && this.data.examActive && this.examPlan) this.beginExamSection(this.examSectionIndex + 1); },
+  expireExamSection() { if (this.examPlan) this.beginExamSection(this.examSectionIndex + 1); else this.finishExam(); },
   tickExamClock() {
     this.stopExamClock();
     if (!this.data.examActive) return;
     const remaining = Math.max(0, Math.ceil((this.examDeadline - Date.now()) / 1000));
     this.setData({ examTime: `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(2, '0')}` });
-    if (!remaining) { this.finishExam(); return; }
+    if (!remaining) { this.expireExamSection(); return; }
     if (this.visible) this.examTimer = setTimeout(() => this.tickExamClock(), 1000);
   },
   finishExam() {
     if (!this.data.examActive) return;
-    this.stopExamClock();
-    this.stopQuestionAudio();
+    this.stopExamClock(); this.stopQuestionAudio();
     this.setData({ view: 'exam', examActive: false, examFinished: true, question: null, examAnswered: Object.keys(this.examAnswers || {}).length, examCorrect: Object.values(this.examAnswers || {}).filter(Boolean).length, examTotal: (this.queue || []).length });
+    this.renderStudyModes();
   },
   startMeasurement() {
     if (this.data.busy) return;

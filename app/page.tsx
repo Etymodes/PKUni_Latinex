@@ -74,6 +74,7 @@ import { vocabularyCards, vocabularyLevelsFor, vocabularyKey, type VocabularyMod
 import { VocabularyTrainer, VocabularyDictionary } from "./vocabulary-workspace";
 import { sanitizeVocabularyReviews, type VocabularyReviewEvent } from "@/lib/vocabulary-model";
 import { syncVocabularyReviews, reviewCounts, subtractReviewCounts } from "@/lib/vocabulary-review-sync";
+import { JlptExamWorkspace } from "./jlpt-exam-workspace";
 import { CommunityAvatarSettings } from "./community-avatar";
 import { CommunityWorkspace } from "./community-workspace";
 import { buildRandomExam, buildVocabularyMeasurement, type VocabularyMeasurementItem } from "@/lib/study-modes";
@@ -1281,7 +1282,7 @@ function Practice({ bank, level, levels, setLevel, category, setCategory, fullPa
   );
 }
 
-function QuestionCard({ question: originalQuestion, status, onResult, bookmarked, onBookmark, compact = false }: { question: Question; status?: Progress[string]; onResult: (s: "correct" | "wrong" | "review") => void; bookmarked: boolean; onBookmark: () => void; compact?: boolean }) {
+function QuestionCard({ question: originalQuestion, status, onResult, bookmarked, onBookmark, compact = false, lockAnswer = false }: { question: Question; status?: Progress[string]; onResult: (s: "correct" | "wrong" | "review") => void; bookmarked: boolean; onBookmark: () => void; compact?: boolean; lockAnswer?: boolean }) {
   const t = useInterfaceText();
   const { copy, language, locale } = useI18n();
   const question = useMemo(() => localizeQuestion(originalQuestion, locale), [originalQuestion, locale]);
@@ -1290,6 +1291,7 @@ function QuestionCard({ question: originalQuestion, status, onResult, bookmarked
   const [revealed, setRevealed] = useState(false);
   const [translation, setTranslation] = useState("");
   const [optionOrder, setOptionOrder] = useState<number[]>([]);
+  const answered = submitted || (lockAnswer && Boolean(status));
   const sourceStatusLabel = question.sourceStatus === "original" ? t("原创复核题") : question.sourceStatus === "public-domain" ? t("公版原文") : question.sourceStatus === "official-framework" ? t("官方框架") : null;
   const reviewStatusLabel = question.reviewStatus ? reviewStatusLabels[question.reviewStatus] : null;
   const isMorphologyCheck = question.type === "self-check" && question.category === "morphology";
@@ -1300,7 +1302,7 @@ function QuestionCard({ question: originalQuestion, status, onResult, bookmarked
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
-      if (question.type !== "choice" || submitted) return;
+      if (question.type !== "choice" || answered) return;
       if (event.defaultPrevented || event.ctrlKey || event.altKey || event.metaKey) return;
       if (event.target instanceof HTMLElement && event.target.closest("input, textarea, select, audio, video, [contenteditable]")) return;
       if (event.key === "Enter" && event.target instanceof HTMLElement && event.target.closest("button, a, summary")) return;
@@ -1313,10 +1315,10 @@ function QuestionCard({ question: originalQuestion, status, onResult, bookmarked
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [onResult, optionOrder, question, selected, submitted]);
+  }, [onResult, optionOrder, question, selected, answered]);
 
   const submit = () => {
-    if (selected === null) return;
+    if (selected === null || answered) return;
     setSubmitted(true);
     onResult(selected === question.answer ? "correct" : "wrong");
   };
@@ -1342,18 +1344,18 @@ function QuestionCard({ question: originalQuestion, status, onResult, bookmarked
             {optionOrder.map((optionIndex, visibleIndex) => {
               const option = question.options?.[optionIndex];
               if (option === undefined) return null;
-              const isCorrect = submitted && optionIndex === question.answer;
-              const isWrong = submitted && selected === optionIndex && optionIndex !== question.answer;
+              const isCorrect = answered && optionIndex === question.answer;
+              const isWrong = answered && selected === optionIndex && optionIndex !== question.answer;
               return (
-                <button key={optionIndex} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !submitted && setSelected(optionIndex)} disabled={submitted}>
-                  <span className="option-key">{visibleIndex + 1}</span>{(!question.optionsInAudio || submitted) && <span dir="auto">{option}</span>}
+                <button key={optionIndex} role="radio" aria-checked={selected === optionIndex} className={`option ${selected === optionIndex ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`} onClick={() => !answered && setSelected(optionIndex)} disabled={answered}>
+                  <span className="option-key">{visibleIndex + 1}</span>{(!question.optionsInAudio || answered) && <span dir="auto">{option}</span>}
                   {isCorrect && <Check size={18} />}{isWrong && <X size={18} />}
                 </button>
               );
             })}
           </div>
-          {!submitted ? <button className="primary-button submit-answer" onClick={submit} disabled={selected === null}>{copy.submitAnswer}</button> : (
-            <Feedback correct={selected === question.answer} explanation={question.explanation} distractorExplanations={question.distractorExplanations} />
+          {!answered ? <button className="primary-button submit-answer" onClick={submit} disabled={selected === null}>{copy.submitAnswer}</button> : (
+            <Feedback correct={lockAnswer && status ? status === "correct" : selected === question.answer} explanation={question.explanation} distractorExplanations={question.distractorExplanations} />
           )}
         </>
       ) : (
@@ -1370,7 +1372,7 @@ function QuestionCard({ question: originalQuestion, status, onResult, bookmarked
           )}
         </div>
       )}
-      {(submitted || revealed) && question.transcript && <details className="question-transcript"><summary>{copy.elementary === "Core" ? "Listening transcript" : "听力原文"}</summary><div dir="auto" lang={question.targetLang ?? language.htmlLang}>{question.transcript}</div></details>}
+      {(answered || revealed) && question.transcript && <details className="question-transcript"><summary>{copy.elementary === "Core" ? "Listening transcript" : "听力原文"}</summary><div dir="auto" lang={question.targetLang ?? language.htmlLang}>{question.transcript}</div></details>}
       {status && <div className={`saved-status ${status}`}><CheckCircle2 size={15} /> {copy.recorded} {status === "correct" ? copy.mastered : status === "wrong" ? copy.wrongQuestion : copy.reviewLater}</div>}
       <div className="tag-row">{question.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
     </article>
@@ -1402,14 +1404,14 @@ function QuestionCollection({ title, empty, questions: items, progress, onResult
 }
 
 function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Question[]; level: StudyLevel; setLevel: (l: StudyLevel) => void; progress: Progress; onResult: (q: Question, s: Progress[string]) => void }) {
-  const { copy, language } = useI18n();
+  const { copy, language, locale } = useI18n();
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
   const [seconds, setSeconds] = useState(180 * 60);
   const [examQuestions, setExamQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
   const [roundAnswers, setRoundAnswers] = useState<Progress>({});
-  const [paperType, setPaperType] = useState<"official" | "diagnostic" | "mixed">("diagnostic");
+  const [paperType, setPaperType] = useState<"official" | "diagnostic" | "mixed" | "jlpt">("diagnostic");
 
   useEffect(() => {
     if (language.id !== "la") setPaperType("diagnostic");
@@ -1447,10 +1449,12 @@ function ExamMode({ bank, level, setLevel, progress, onResult }: { bank: Questio
     ? Math.min(1, bank.filter((question) => question.id.startsWith("pku-mock-") && matchesLevel(question, level)).length)
     : buildRandomExam(bank, level, paperType === "mixed", () => 0).length;
 
+  if (paperType === "jlpt" && language.id === "ja") return <><div className="jlpt-mode-back"><button className="text-button" onClick={() => setPaperType("diagnostic")}>{locale === "en" ? "← Quick practice modes" : "← 返回快速组卷"}</button></div><JlptExamWorkspace bank={bank} level={level} locale={locale} onResult={onResult} renderQuestion={(question, status, answer) => <QuestionCard key={question.id} question={question} status={status} lockAnswer onResult={answer} bookmarked={false} onBookmark={() => {}} />} /></>;
+
   if (!started) return (
     <div className="page exam-start">
       <div className="exam-intro-icon"><TimerReset /></div><TargetKicker kind="exam" /><h1>{copy.examTitle}</h1><p>{paperType === "official" ? copy.officialPaperCopy : copy.diagnosticPaperCopy}</p>
-      <div className="paper-type">{language.id === "la" && <button className={paperType === "official" ? "active" : ""} onClick={() => { setPaperType("official"); if (normalizePikkuLevel(language.id, level) === "G" || normalizePikkuLevel(language.id, level) === "M") setLevel("C"); }}><Landmark size={17} />{copy.officialPaper}</button>}<button className={paperType === "diagnostic" ? "active" : ""} onClick={() => setPaperType("diagnostic")}><BarChart3 size={17} />{copy.diagnosticPaper}</button><button className={paperType === "mixed" ? "active" : ""} onClick={() => setPaperType("mixed")}><Shuffle size={17} />{copy.elementary === "Core" ? "Mixed-stage practice" : "混合等级组题"}</button></div>
+      <div className="paper-type">{language.id === "ja" && <button onClick={() => setPaperType("jlpt")}><FileText size={17} />{locale === "en" ? "JLPT N3–N1 structures" : "JLPT N3–N1 结构组卷"}</button>}{language.id === "la" && <button className={paperType === "official" ? "active" : ""} onClick={() => { setPaperType("official"); if (normalizePikkuLevel(language.id, level) === "G" || normalizePikkuLevel(language.id, level) === "M") setLevel("C"); }}><Landmark size={17} />{copy.officialPaper}</button>}<button className={paperType === "diagnostic" ? "active" : ""} onClick={() => setPaperType("diagnostic")}><BarChart3 size={17} />{copy.diagnosticPaper}</button><button className={paperType === "mixed" ? "active" : ""} onClick={() => setPaperType("mixed")}><Shuffle size={17} />{copy.elementary === "Core" ? "Mixed-stage practice" : "混合等级组题"}</button></div>
       <div className="exam-facts"><div><Clock3 /><strong>{paperType === "official" ? 180 : 20}</strong><span>{copy.countdownMinutes}</span></div><div><FileText /><strong>{paperType === "official" ? 1 : plannedQuestions}</strong><span>{paperType === "official" ? copy.fullTranslation : copy.diagnosticTasks}</span></div><div><BookOpen /><strong>{paperType === "official" ? "≈180" : normalizePikkuLevel(language.id, level)}</strong><span>{paperType === "official" ? copy.continuousWords : copy.learningStage}</span></div></div>
       <div className="exam-level"><span>{copy.selectDifficulty}</span>{selectableLevels.map((l) => <button key={l} className={level === l ? "active" : ""} onClick={() => setLevel(l)}>{levelName(copy, l, language.id)}</button>)}</div>
       <button className="primary-button large" onClick={start} disabled={plannedQuestions === 0}>{copy.startExam} <ArrowRight size={18} /></button>
@@ -1500,7 +1504,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
     <CommunityAvatarSettings locale={locale} authenticated={authenticated} />
     <section className="settings-panel"><div className="settings-copy"><Languages /><div><h2>{locale === "en" ? "Vocabulary check" : "词汇量测量"}</h2><p>{locale === "en" ? "Check recognition of words at your level and below." : "测量当前等级及以下词汇的识别情况。"}</p></div></div><button className="secondary-button" onClick={() => setView("vocabulary")}>{locale === "en" ? "Start a vocabulary check" : "开始测词"}<ArrowRight size={17} /></button></section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.3.0</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.3.1</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>

@@ -43,7 +43,7 @@ Page({
     paperSearch: '', wordQuery: '', dictionaryQuery: '', dictionaryOffset: 0, showModel: false, showSupport: false,
     reviewScope: false, filter: 'all', category: 'all', search: '', browse: false, revealed: false, submitted: false, wordRevealed: false,
     communityChannel: 'language', communityDraft: '', communityItems: [], communityWarnings: 0, communityMutedUntil: '', communityLoading: false, communitySending: false,
-    examActive: false, examFinished: false, examMixed: false, measurementItems: [], measurementDone: false, measurementReady: false, browseLimit: 40,
+    examActive: false, examFinished: false, examMixed: false, examFormat: 'quick', examProfile: '', examIsJlpt: false, measurementItems: [], measurementDone: false, measurementReady: false, browseLimit: 40,
     choices: [], selected: -1, answerCorrect: false, questionIndex: 0, questionTotal: 0,
   },
   onLoad() {

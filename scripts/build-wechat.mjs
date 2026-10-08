@@ -138,6 +138,15 @@ export function buildDictionarySource(root = projectRoot) {
   }).outputText;
 }
 
+export function buildJlptExamSource(root = projectRoot) {
+  const source = fs.readFileSync(path.join(root, "lib/jlpt-exam.ts"), "utf8")
+    .replace(/(["'])\.\.\/data\/questions(?:\.ts)?\1/g, '"./shared.js"')
+    .replace(/(["'])\.\/shuffle(?:\.ts)?\1/g, '"./shared.js"');
+  return generatedNotice + ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019, removeComments: true },
+  }).outputText;
+}
+
 export function buildContentLocaleSource(root = projectRoot) {
   const source = fs.readFileSync(path.join(root, "lib/content-locale.ts"), "utf8")
     .replace(/(["'])\.\.\/data\/(content-en-[^"']+)\.json\1/g, '"./$2.js"')
@@ -190,6 +199,7 @@ export async function buildWechat({ root = projectRoot, outputDir = path.join(ro
   writeCompressedJson(outputDir, 'dictionary-enrichment', createSourceLoader(root)('data/dictionary-enrichment.ts'));
   fs.writeFileSync(path.join(outputDir, 'data/dictionary.js'), buildDictionarySource(root));
   fs.writeFileSync(path.join(outputDir, "data/shared.js"), buildSharedSource(root));
+  fs.writeFileSync(path.join(outputDir, "data/jlpt-exam.js"), buildJlptExamSource(root));
   for (const name of ["vocabulary-model", "vocabulary-review-sync"]) {
     fs.writeFileSync(path.join(outputDir, `data/${name}.js`), buildVocabularySource(name, root));
   }

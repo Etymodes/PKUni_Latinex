@@ -73,7 +73,7 @@ function harness(component = "VocabularyTrainer", props = {}, entries = cards, {
       if (!previous || deps.some((value, position) => !Object.is(value, previous.deps[position]))) { slots[index] = { deps }; effects.push(effect); }
     },
   };
-  for (const icon of ["BookOpen", "CheckCircle2", "Search", "Settings", "XCircle", "Shuffle", "TargetKicker", "EmptyState", "Languages", "Trophy", "TimerReset", "Landmark", "BarChart3", "Clock3", "FileText", "ArrowRight", "RotateCcw", "ArrowLeft", "Check", "QuestionCard"]) c[icon] = icon;
+  for (const icon of ["BookOpen", "CheckCircle2", "Search", "Settings", "XCircle", "Shuffle", "TargetKicker", "EmptyState", "Languages", "Trophy", "TimerReset", "Landmark", "BarChart3", "Clock3", "FileText", "ArrowRight", "RotateCcw", "ArrowLeft", "Check", "QuestionCard", "JlptExamWorkspace"]) c[icon] = icon;
   vm.createContext(c); vm.runInContext(code, c);
   c.buildVocabularyMeasurement = buildVocabularyMeasurement;
   c.buildRandomExam = buildRandomExam; c.matchesLevel = matchesLevel; c.LEVEL_ORDER = ["C", "F", "G", "M"];
