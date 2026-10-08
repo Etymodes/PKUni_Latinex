@@ -1,0 +1,2568 @@
+{
+  "sourceId": "jlpt-1998",
+  "status": "complete",
+  "publicationStatus": "ready-for-release",
+  "counts": {
+    "vocabulary": 65,
+    "reading": 22,
+    "sentencePattern": 35,
+    "listening": 32,
+    "total": 154
+  },
+  "sourceDocument": {
+    "name": "1995年1级真题.pdf（1995–2009.12 合订本）",
+    "sha256": "e3555741c8f14b855a32e7d09b42eb790492e3818a85a875f99d84703c752e00",
+    "pageCount": 640,
+    "pageNumbering": "physical PDF page, one-based; printed page = physical page - 10"
+  },
+  "printedAnswers": 154,
+  "inferredAnswers": 0,
+  "corrections": [
+    {
+      "paragraph": 34,
+      "original": "。。",
+      "corrected": "。",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 70,
+      "original": "毎期",
+      "corrected": "毎朝",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 166,
+      "original": "京都は",
+      "corrected": "京都へ",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 174,
+      "original": "まるて",
+      "corrected": "まるで",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 230,
+      "original": "おさまる",
+      "corrected": "おさまり",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 254,
+      "original": "(58)　　 (58)",
+      "corrected": "(58)",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 282,
+      "original": "会社と交渉",
+      "corrected": "会社との交渉",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 284,
+      "original": "言動にははしる",
+      "corrected": "言動にはしる",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 284,
+      "original": "は　　　　ない",
+      "corrected": "はない",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 314,
+      "original": "(6　　　　　(64)",
+      "corrected": "(64)",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "paragraph": 318,
+      "original": "セーターな",
+      "corrected": "セーターは",
+      "reason": "对照扫描试卷校正DOC误录"
+    },
+    {
+      "scope": "transcription",
+      "reason": "DOC/OCR typos checked against scanned questions, printed explanations and listening text; punctuation normalized."
+    },
+    {
+      "scope": "listening",
+      "reason": "Original text typos and mismatched repeated prompts corrected using the audio alignment and companion printed script; audio excludes example, break and advertising sections."
+    },
+    {
+      "scope": "reading",
+      "reason": "Restored circled references, removed OCR debris and attached original diagrams."
+    },
+    {
+      "scope": "listening-source",
+      "reason": "1998 independent DOC omits I-6 dialogue and I-7/I-8; restored from physical pp. 518–519. Printed answer key used independently of DOC annotations."
+    }
+  ],
+  "pending": [],
+  "questions": [
+    {
+      "id": "jlpt-1998-1-vocab-I-1",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        14
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-2",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        16
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-3",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        18
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-4",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        20
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-5",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        22
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-6",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        26,
+        28
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-7",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        30
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-8",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        32
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-9",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        36
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-10",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        38
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-11",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        40
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-12",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        44
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-13",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        46
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-14",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        48
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-I-15",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        50
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-II-16",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        54,
+        56
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-II-17",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        485
+      ],
+      "sourceParagraphs": [
+        58,
+        60
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-II-18",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        62,
+        64
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-II-19",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        66,
+        68
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-II-20",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        70,
+        72
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-21",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        78
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-22",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        80
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-23",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        82
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-24",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        88
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-25",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        90
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-26",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        92
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-27",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        96
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-28",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        98
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-29",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        100
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-30",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        104
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-31",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        106
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-32",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        108
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-33",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        110
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-34",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        114
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-III-35",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486
+      ],
+      "sourceParagraphs": [
+        116
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-IV-36",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        486,
+        487
+      ],
+      "sourceParagraphs": [
+        120,
+        122,
+        124,
+        126,
+        128
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-IV-37",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        130,
+        132,
+        134,
+        136,
+        138
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-IV-38",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        140,
+        142,
+        144,
+        146,
+        148
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-IV-39",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        150,
+        152,
+        154,
+        156,
+        158
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-IV-40",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        160,
+        162,
+        164,
+        166,
+        168
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-41",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        172,
+        174
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-42",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        176,
+        178
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-43",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        180,
+        182
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-44",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        184,
+        186
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-45",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        188,
+        190
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-46",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        192,
+        194
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-47",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        196,
+        198
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-48",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        200,
+        202
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-49",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        204,
+        206
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-50",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        208,
+        210
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-51",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        212,
+        214
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-52",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487
+      ],
+      "sourceParagraphs": [
+        216,
+        218
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-53",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        487,
+        488
+      ],
+      "sourceParagraphs": [
+        220,
+        222
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-54",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        224,
+        226
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-V-55",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        228,
+        230
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-56",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        234,
+        236,
+        238,
+        240,
+        242
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-57",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        244,
+        246,
+        248,
+        250,
+        252
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-58",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        254,
+        256,
+        258,
+        260,
+        262
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-59",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        264,
+        266,
+        268,
+        270,
+        272
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-60",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        274,
+        276,
+        278,
+        280,
+        282
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-61",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        284,
+        286,
+        288,
+        290,
+        292
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-62",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488
+      ],
+      "sourceParagraphs": [
+        294,
+        296,
+        298,
+        300,
+        302
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-63",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        488,
+        489
+      ],
+      "sourceParagraphs": [
+        304,
+        306,
+        308,
+        310,
+        312
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-64",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": [
+        314,
+        316,
+        318,
+        320,
+        322
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-vocab-VI-65",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": [
+        324,
+        326,
+        328,
+        330,
+        332
+      ]
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-1",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-2",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-3",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-4",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-5",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-6",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-7",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-I-8",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        493,
+        494
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-9",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-10",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-11",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-12",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-13",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-14",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495,
+        496
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-II-15",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        495,
+        496
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-16",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        496
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-17",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        496
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-18",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        496
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-19",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        497
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-20",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        497
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-21",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        497,
+        498
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-reading-III-22",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        498,
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-23",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-24",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-25",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-26",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-27",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-28",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-29",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-30",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-31",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-32",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-33",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-34",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-35",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-36",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        499
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-37",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-38",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-39",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-40",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-41",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-42",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-43",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-IV-44",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-45",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-46",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-47",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-48",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-49",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-50",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-V-51",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-52",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-53",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        500
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-54",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        501
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-55",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        501
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-56",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        501
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-grammar-VI-57",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        501
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-1",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-2",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-3",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-4",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        489
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-5",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        490
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-6",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        490
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-7",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        490
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-8",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        490
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-9",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        490
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-10",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        491
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-11",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        491
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-12",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        491
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-13",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        492
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-14",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        492
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-15",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        492
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-1",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        520
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-2",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        520
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-3",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        520
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-4",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        520,
+        521
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-5",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        521
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-6",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        521
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-7",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        521
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-8",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        521
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-9",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        522
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-10",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        522
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-11",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        522
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-12",
+      "printedAnswer": 1,
+      "answerIndex": 0,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        522,
+        523
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-13",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        523
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-14",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        523
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-15",
+      "printedAnswer": 2,
+      "answerIndex": 1,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        523
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-16",
+      "printedAnswer": 4,
+      "answerIndex": 3,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        523,
+        524
+      ],
+      "sourceParagraphs": []
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-17",
+      "printedAnswer": 3,
+      "answerIndex": 2,
+      "answerKeyPages": [
+        501,
+        502
+      ],
+      "questionPages": [
+        524
+      ],
+      "sourceParagraphs": []
+    }
+  ],
+  "audioAlignment": [
+    {
+      "id": "jlpt-1998-1-listening-I-1",
+      "startSeconds": 92.6,
+      "endSeconds": 132.44,
+      "sha256": "6416cba8dfe3d1fd30badb2190c6d968b00bfecced34d4794c487521ac23033a",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-2",
+      "startSeconds": 133.34,
+      "endSeconds": 181.36,
+      "sha256": "346079827ff56c3ba5280bc2682205249903188848169191ba6151591fe14cd8",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-3",
+      "startSeconds": 182.26,
+      "endSeconds": 213.92,
+      "sha256": "af89c70e24912d4c0ece7eb952a3140c2076381f931cab723baaaa2f4ecf01d8",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-4",
+      "startSeconds": 214.82,
+      "endSeconds": 253.62,
+      "sha256": "89407d8d429e2290e4fee037f1b93ad6fbee06cd6c2d11e7e89360b18aecdeeb",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-5",
+      "startSeconds": 254.52,
+      "endSeconds": 288.26,
+      "sha256": "9076df41720d41370d67e0e0344188a912e4da31a9e32d241d768476cff61560",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-6",
+      "startSeconds": 289.16,
+      "endSeconds": 321.58,
+      "sha256": "5b0b4513e862a4ffb5e78b114b0de6defd9f76eb67204539c8e6ad72e1e3fd13",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-7",
+      "startSeconds": 322.48,
+      "endSeconds": 351.18,
+      "sha256": "48554de878c3f6308f6dc2ede69e1d7c56d5f232a897ff54723dfa6765047763",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-8",
+      "startSeconds": 352.08,
+      "endSeconds": 416.9,
+      "sha256": "844999481ff4d479cd9ba02bf9c0e4dac969ebbb15f90225c96a2eeeeee150c6",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-9",
+      "startSeconds": 417.8,
+      "endSeconds": 476.88,
+      "sha256": "57679f95e4433d3ecc2a532973aef2da0672f4da4e0614c3a7689341614c45d1",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-10",
+      "startSeconds": 477.78,
+      "endSeconds": 564.44,
+      "sha256": "afbf051e1fa24cf1a80f7a6d12c9024e86fa85fb873b05c7c2d1febefac82924",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-11",
+      "startSeconds": 565.34,
+      "endSeconds": 608.18,
+      "sha256": "fbdc3476f707f12ba3cc68f3088e80246e0f9d3a77e575cb6c4e15a29b70ea08",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-12",
+      "startSeconds": 609.08,
+      "endSeconds": 694.02,
+      "sha256": "a15c04ed20c33f893943a3bcf13b8c97e8baf075a3982b8cc4e038a3793733fc",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-13",
+      "startSeconds": 694.92,
+      "endSeconds": 765.5,
+      "sha256": "5d560525455d7175fa3803013f713304d2603c2f2e2574eac2713900f8ebdabc",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-14",
+      "startSeconds": 766.4,
+      "endSeconds": 818.48,
+      "sha256": "cb8d5c12fe71e17b18664b2b4ff60aa4b8d8ae7a505eb2cce820b3671e94e72b",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-I-15",
+      "startSeconds": 819.38,
+      "endSeconds": 889.8,
+      "sha256": "b9ab393d62af436cdcb19ce6d5581ee45394225b07bdf5cc9c93cf2b73d4cbe7",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-1",
+      "startSeconds": 1001.04,
+      "endSeconds": 1053.0,
+      "sha256": "aa11d3fdd02da948582db2d1cf2707be0de1bc05940dc4494e9faf77957e2490",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-2",
+      "startSeconds": 1053.9,
+      "endSeconds": 1119.22,
+      "sha256": "88fc3bec194d277e9eb18fb17fe98b2e015ff296087180b731b4b8338b690f2b",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-3",
+      "startSeconds": 1120.12,
+      "endSeconds": 1171.66,
+      "sha256": "ef218b6974d673bd2b7d8f51279f1c8ae6368788203396862fd383beac02627a",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-4",
+      "startSeconds": 1172.56,
+      "endSeconds": 1245.94,
+      "sha256": "49d84e71e7e967c2ea3faecdcff2b945df63807709b112b9b22b3391652dce5b",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-5",
+      "startSeconds": 1246.84,
+      "endSeconds": 1305.68,
+      "sha256": "99255c1fae6730acaa638c437a10e63e6c9fd764af213204dde9d75982fd3182",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-6",
+      "startSeconds": 1306.58,
+      "endSeconds": 1361.3,
+      "sha256": "949f8d75255eac2b68571ed237a0d57a0cea0dbe976255d3736187770717580f",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-7",
+      "startSeconds": 1362.2,
+      "endSeconds": 1428.7,
+      "sha256": "b93917d357631169775ebf8d057994259219f94ab3957cdfbb5c33436363d25b",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-8",
+      "startSeconds": 1429.6,
+      "endSeconds": 1493.34,
+      "sha256": "ef53cf313c0868696dc5fde6b4a3e286ad634b82265d1465ec75b1d5d90833dd",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-9",
+      "startSeconds": 1494.24,
+      "endSeconds": 1583.94,
+      "sha256": "5d9e3ed5abce61ac41350580807d911c066a7c2765e2c4bd1a5da933570624b8",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-10",
+      "startSeconds": 1584.84,
+      "endSeconds": 1658.4,
+      "sha256": "4802d07111b9480905251a8c4b6b79dded2212fc1ad6524a2e5097c92c376174",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-11",
+      "startSeconds": 1702.44,
+      "endSeconds": 1779.0,
+      "sha256": "072881868dc6d071242f3f905f42c17b1716711eb07cf051ec31746fd7dee738",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-12",
+      "startSeconds": 1779.9,
+      "endSeconds": 1855.14,
+      "sha256": "c9fb12ca2685e2b314d07f58026bee592b12346dfb69182f5f4747f242adb9d3",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-13",
+      "startSeconds": 1856.04,
+      "endSeconds": 1944.54,
+      "sha256": "de823f3d18dd7b1a68cd3722f6e355dd1c96c342f9a0c469c7bf386f08decd3b",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-14",
+      "startSeconds": 1945.44,
+      "endSeconds": 2017.46,
+      "sha256": "fe809b95ba8385b3ec3ee64b82abcf5342592ea7121d6f866e62eb8a344215d6",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-15",
+      "startSeconds": 2018.36,
+      "endSeconds": 2100.34,
+      "sha256": "43ad520b34f3a619c5a1b80f3ce41a1a885a5ce84b136fb0c47d6418f8c34953",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-16",
+      "startSeconds": 2101.24,
+      "endSeconds": 2180.6,
+      "sha256": "a49e0ee00c39d6c085ef0e941350dd0ec3a87956b26342ef7af2d8af99176b71",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    },
+    {
+      "id": "jlpt-1998-1-listening-II-17",
+      "startSeconds": 2181.5,
+      "endSeconds": 2265.8,
+      "sha256": "f69750152e95084644f4987acf57d6aa2c6969395bbfc011929188880aa4f2e6",
+      "method": "Local speech timestamps checked against original numbered listening script; example, break and outro excluded."
+    }
+  ],
+  "difficultyCounts": {
+    "F": 65,
+    "G": 89
+  },
+  "difficultyRubric": "cfgm-user-screenshot-2026-10-06-v1"
+}

@@ -1,0 +1,6831 @@
+[
+  {
+    "id": "ja-2005-085bffdc5d92",
+    "lemma": "折衷",
+    "reading": "せっちゅう",
+    "gloss": "折中；调和不同方式",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "日本の一般家庭では和洋折衷の献立が多いようだ。ハンバーグにみそ汁といった組み合わせはその典型だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-1",
+      "jlpt-2005-1-vocab-I-2",
+      "jlpt-2005-1-vocab-I-3"
+    ]
+  },
+  {
+    "id": "ja-2005-37e1993f46d4",
+    "lemma": "献立",
+    "reading": "こんだて",
+    "gloss": "菜单；饭菜安排",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "日本の一般家庭では和洋折衷の献立が多いようだ。ハンバーグにみそ汁といった組み合わせはその典型だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-2"
+    ]
+  },
+  {
+    "id": "ja-2005-23cf2513b44c",
+    "lemma": "典型",
+    "reading": "てんけい",
+    "gloss": "典型；代表性范例",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "日本の一般家庭では和洋折衷の献立が多いようだ。ハンバーグにみそ汁といった組み合わせはその典型だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-3"
+    ]
+  },
+  {
+    "id": "ja-2005-3a3ab47edd7a",
+    "lemma": "真珠",
+    "reading": "しんじゅ",
+    "gloss": "珍珠",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "土産に真珠と陶器を勧められた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-4",
+      "jlpt-2005-1-vocab-I-5",
+      "jlpt-2005-1-vocab-I-6"
+    ]
+  },
+  {
+    "id": "ja-2005-0af4ac332b39",
+    "lemma": "陶器",
+    "reading": "とうき",
+    "gloss": "陶器",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "土産に真珠と陶器を勧められた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-5"
+    ]
+  },
+  {
+    "id": "ja-2005-7a0d906db5d4",
+    "lemma": "勧める",
+    "reading": "すすめる",
+    "gloss": "推荐；劝告",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "土産に真珠と陶器を勧められた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-6"
+    ]
+  },
+  {
+    "id": "ja-2005-f565734b53a0",
+    "lemma": "苗",
+    "reading": "なえ",
+    "gloss": "幼苗",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "花の苗を鉢に入れ、育て方のメモを添えて友人にあげた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-7"
+    ]
+  },
+  {
+    "id": "ja-2005-3dbcec5a7984",
+    "lemma": "鉢",
+    "reading": "はち",
+    "gloss": "花盆；钵",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "花の苗を鉢に入れ、育て方のメモを添えて友人にあげた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-8"
+    ]
+  },
+  {
+    "id": "ja-2005-49511dd047a1",
+    "lemma": "添える",
+    "reading": "そえる",
+    "gloss": "附上；添加",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "花の苗を鉢に入れ、育て方のメモを添えて友人にあげた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-9"
+    ]
+  },
+  {
+    "id": "ja-2005-5838a4856ac9",
+    "lemma": "連日",
+    "reading": "れんじつ",
+    "gloss": "连日；每天",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼は連日徹夜で練習し、本番に臨んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-10"
+    ]
+  },
+  {
+    "id": "ja-2005-6bb8b0b21664",
+    "lemma": "徹夜",
+    "reading": "てつや",
+    "gloss": "通宵；熬夜",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "彼は連日徹夜で練習し、本番に臨んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-11"
+    ]
+  },
+  {
+    "id": "ja-2005-067480cf0eed",
+    "lemma": "臨む",
+    "reading": "のぞむ",
+    "gloss": "面对；参加",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "彼は連日徹夜で練習し、本番に臨んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-12"
+    ]
+  },
+  {
+    "id": "ja-2005-dc4fa4c1e9f4",
+    "lemma": "復興",
+    "reading": "ふっこう",
+    "gloss": "复兴；重建",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "学校の復興に尽くし、生徒たちから慕われていた田中先生が老衰で亡くなったそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-13"
+    ]
+  },
+  {
+    "id": "ja-2005-2e55a47ac1aa",
+    "lemma": "慕う",
+    "reading": "したう",
+    "gloss": "敬爱；仰慕",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "学校の復興に尽くし、生徒たちから慕われていた田中先生が老衰で亡くなったそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-14"
+    ]
+  },
+  {
+    "id": "ja-2005-7708bb7eeab8",
+    "lemma": "老衰",
+    "reading": "ろうすい",
+    "gloss": "年老体衰",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "学校の復興に尽くし、生徒たちから慕われていた田中先生が老衰で亡くなったそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-13",
+      "jlpt-2005-1-vocab-I-14",
+      "jlpt-2005-1-vocab-I-15"
+    ]
+  },
+  {
+    "id": "ja-2005-cc6489007699",
+    "lemma": "介抱",
+    "reading": "かいほう",
+    "gloss": "照料病人或伤者",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "道に倒れていた人を介抱した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-16"
+    ]
+  },
+  {
+    "id": "ja-2005-4af22cb33c93",
+    "lemma": "負債",
+    "reading": "ふさい",
+    "gloss": "债务；负债",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "事業に失敗して、大きな負債が残った。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-17"
+    ]
+  },
+  {
+    "id": "ja-2005-5cf1b15d05de",
+    "lemma": "披露",
+    "reading": "ひろう",
+    "gloss": "公开展示；披露",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "新しい本社ビルがいよいよ来週披露される。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-18"
+    ]
+  },
+  {
+    "id": "ja-2005-fa32c4e99c14",
+    "lemma": "修飾",
+    "reading": "しゅうしょく",
+    "gloss": "语法上的修饰",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "「白い花」の「白い」は「花」を修飾する形容詞だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-19"
+    ]
+  },
+  {
+    "id": "ja-2005-3e38dbd66cf3",
+    "lemma": "意地",
+    "reading": "いじ",
+    "gloss": "固执；意气",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "つまらない意地を張るな。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-20"
+    ]
+  },
+  {
+    "id": "ja-2005-e5e554e36899",
+    "lemma": "敏感",
+    "reading": "びんかん",
+    "gloss": "敏感",
+    "partOfSpeech": "形容动词",
+    "level": "F",
+    "context": "彼は音にびんかんで、車のそうおんが気になって眠れないとなげいている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-8",
+      "jlpt-2005-1-vocab-III-21"
+    ]
+  },
+  {
+    "id": "ja-2005-1244aee762c2",
+    "lemma": "騒音",
+    "reading": "そうおん",
+    "gloss": "噪声",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼は音にびんかんで、車のそうおんが気になって眠れないとなげいている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-22"
+    ]
+  },
+  {
+    "id": "ja-2005-1790884da490",
+    "lemma": "嘆く",
+    "reading": "なげく",
+    "gloss": "叹息；悲叹",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "彼は音にびんかんで、車のそうおんが気になって眠れないとなげいている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-23"
+    ]
+  },
+  {
+    "id": "ja-2005-b9ba74447cba",
+    "lemma": "魂",
+    "reading": "たましい",
+    "gloss": "灵魂",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "その時彼は、人々のたましいをきゅうさいすることが自分のしめいだとさとった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-24"
+    ]
+  },
+  {
+    "id": "ja-2005-37294dfe5d9b",
+    "lemma": "救済",
+    "reading": "きゅうさい",
+    "gloss": "救助；救济",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "その時彼は、人々のたましいをきゅうさいすることが自分のしめいだとさとった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-25"
+    ]
+  },
+  {
+    "id": "ja-2005-33aed1edf80b",
+    "lemma": "使命",
+    "reading": "しめい",
+    "gloss": "使命；职责",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "その時彼は、人々のたましいをきゅうさいすることが自分のしめいだとさとった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-26"
+    ]
+  },
+  {
+    "id": "ja-2005-d6a0412c4630",
+    "lemma": "悟る",
+    "reading": "さとる",
+    "gloss": "领悟；明白",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "その時彼は、人々のたましいをきゅうさいすることが自分のしめいだとさとった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-27"
+    ]
+  },
+  {
+    "id": "ja-2005-927239f76b2b",
+    "lemma": "委託",
+    "reading": "いたく",
+    "gloss": "委托",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "村からいたくされたいせきのはっくつ調査は、その目的をほぼとげることができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-28"
+    ]
+  },
+  {
+    "id": "ja-2005-9184cf271e3a",
+    "lemma": "遺跡",
+    "reading": "いせき",
+    "gloss": "遗迹",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "村からいたくされたいせきのはっくつ調査は、その目的をほぼとげることができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-29"
+    ]
+  },
+  {
+    "id": "ja-2005-76048e819ec7",
+    "lemma": "発掘",
+    "reading": "はっくつ",
+    "gloss": "发掘；挖掘",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "村からいたくされたいせきのはっくつ調査は、その目的をほぼとげることができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-1",
+      "jlpt-2005-1-vocab-III-30"
+    ]
+  },
+  {
+    "id": "ja-2005-43f4698258cc",
+    "lemma": "遂げる",
+    "reading": "とげる",
+    "gloss": "完成；实现",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "村からいたくされたいせきのはっくつ調査は、その目的をほぼとげることができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-31"
+    ]
+  },
+  {
+    "id": "ja-2005-2e91224730cf",
+    "lemma": "率いる",
+    "reading": "ひきいる",
+    "gloss": "率领",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "彼がひきいるチームは、これまでちくせきしてきたぼうだいなデータを活用すべくしこうを重ねている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-32"
+    ]
+  },
+  {
+    "id": "ja-2005-a6705e62ea36",
+    "lemma": "蓄積",
+    "reading": "ちくせき",
+    "gloss": "积累",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "彼がひきいるチームは、これまでちくせきしてきたぼうだいなデータを活用すべくしこうを重ねている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-33"
+    ]
+  },
+  {
+    "id": "ja-2005-afc32b929201",
+    "lemma": "膨大",
+    "reading": "ぼうだい",
+    "gloss": "庞大",
+    "partOfSpeech": "形容动词",
+    "level": "G",
+    "context": "彼がひきいるチームは、これまでちくせきしてきたぼうだいなデータを活用すべくしこうを重ねている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-34"
+    ]
+  },
+  {
+    "id": "ja-2005-0c272426b350",
+    "lemma": "試行",
+    "reading": "しこう",
+    "gloss": "试行；试验",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "彼がひきいるチームは、これまでちくせきしてきたぼうだいなデータを活用すべくしこうを重ねている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-35"
+    ]
+  },
+  {
+    "id": "ja-2005-33b6b4eba50c",
+    "lemma": "課題",
+    "reading": "かだい",
+    "gloss": "课题；待解决的问题",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "取り組むべき(か)だいがたくさんある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36"
+    ]
+  },
+  {
+    "id": "ja-2005-772eaab3fea9",
+    "lemma": "全盛",
+    "reading": "ぜんせい",
+    "gloss": "鼎盛；全盛时期",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "そのころは日本映画がぜん(せい)の時代だった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-37"
+    ]
+  },
+  {
+    "id": "ja-2005-0c60fda70108",
+    "lemma": "渋滞",
+    "reading": "じゅうたい",
+    "gloss": "交通堵塞；停滞",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "道路がじゅう(たい)していて、パーティーに遅れた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-2005-2705b1742cd8",
+    "lemma": "勘違い",
+    "reading": "かんちがい",
+    "gloss": "误会；理解错误",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "(かん)ちがいをしてみんなに笑われた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-39"
+    ]
+  },
+  {
+    "id": "ja-2005-1d1a726d51f8",
+    "lemma": "宣言",
+    "reading": "せんげん",
+    "gloss": "宣言；宣布",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "その国は昨年独立を(せん)げんした。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-40"
+    ]
+  },
+  {
+    "id": "ja-2005-b354988081d4",
+    "lemma": "形勢",
+    "reading": "けいせい",
+    "gloss": "局势；形势",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "昨日のゲームは後半に形勢が一気に逆転した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-41"
+    ]
+  },
+  {
+    "id": "ja-2005-c72cb3a00b45",
+    "lemma": "厳密",
+    "reading": "げんみつ",
+    "gloss": "严密；严格准确",
+    "partOfSpeech": "形容动词",
+    "level": "G",
+    "context": "裁判では、法律の厳密な適用がなされなければならない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-vocab-V-42"
+    ]
+  },
+  {
+    "id": "ja-2005-fd02a3e4e0f1",
+    "lemma": "取り次ぐ",
+    "reading": "とりつぐ",
+    "gloss": "转接；传达",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "電話をほかの人に取り次ぐときには、かけてきた方の名前を必ず確認してください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-43"
+    ]
+  },
+  {
+    "id": "ja-2005-0d0840ab0ce7",
+    "lemma": "もろに",
+    "reading": "もろに",
+    "gloss": "直接地；不折不扣地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "台風の影響をもろに受けて、収穫が激減した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44"
+    ]
+  },
+  {
+    "id": "ja-2005-5a702dfe63cc",
+    "lemma": "付録",
+    "reading": "ふろく",
+    "gloss": "附录；附赠品",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "このカレンダーは雑誌の付録なので、これだけを買うことはできません。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-45"
+    ]
+  },
+  {
+    "id": "ja-2005-448977c0a477",
+    "lemma": "返却",
+    "reading": "へんきゃく",
+    "gloss": "归还",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "レポートのために図書館から借りていた本を返却した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-46"
+    ]
+  },
+  {
+    "id": "ja-2005-5986882fb360",
+    "lemma": "肝心",
+    "reading": "かんじん",
+    "gloss": "关键；最重要",
+    "partOfSpeech": "形容动词",
+    "level": "F",
+    "context": "みんなそろったのに肝心な人がまだ来ない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-47"
+    ]
+  },
+  {
+    "id": "ja-2005-05373521d865",
+    "lemma": "ややこしい",
+    "reading": "ややこしい",
+    "gloss": "复杂难懂；麻烦",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "このカメラは操作がややこしいので、評判が悪かった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48"
+    ]
+  },
+  {
+    "id": "ja-2005-5c689174d99d",
+    "lemma": "未練",
+    "reading": "みれん",
+    "gloss": "留恋；难以割舍",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "転職の話があるが、今の職場に未練があってなかなか決心がつかない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-49"
+    ]
+  },
+  {
+    "id": "ja-2005-84f2f9ee5a1e",
+    "lemma": "概説",
+    "reading": "がいせつ",
+    "gloss": "概述",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "これは日本文学について概説した本です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-50"
+    ]
+  },
+  {
+    "id": "ja-2005-fb5705a5c75c",
+    "lemma": "何とぞ",
+    "reading": "なにとぞ",
+    "gloss": "务请；恳请",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "今後とも、何とぞよろしくお願い申し上げます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-51"
+    ]
+  },
+  {
+    "id": "ja-2005-e2b9305288b9",
+    "lemma": "スペース",
+    "reading": "スペース",
+    "gloss": "空间；空位",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "大きいテーブルを買いたいけれど、この部屋には置くスペースがない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-52"
+    ]
+  },
+  {
+    "id": "ja-2005-4f8c2e4ca878",
+    "lemma": "愚か",
+    "reading": "おろか",
+    "gloss": "愚蠢",
+    "partOfSpeech": "形容动词",
+    "level": "F",
+    "context": "自分の経験だけですべてを判断するのはおろかなことだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-53"
+    ]
+  },
+  {
+    "id": "ja-2005-a83d79ad52bb",
+    "lemma": "冴える",
+    "reading": "さえる",
+    "gloss": "头脑清醒敏锐",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "昨日はぐっすり眠れたので、今日は頭がさえている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-54"
+    ]
+  },
+  {
+    "id": "ja-2005-c5d82eeb91f9",
+    "lemma": "圏",
+    "reading": "けん",
+    "gloss": "某种活动或文化的范围",
+    "partOfSpeech": "接尾词",
+    "level": "G",
+    "context": "同じ英語圏の国といっても、そこで使われている英語はさまざまだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-55"
+    ]
+  },
+  {
+    "id": "ja-2005-5b76d0551408",
+    "lemma": "足",
+    "reading": "あし",
+    "gloss": "交通工具；出行手段",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "少々足の便が悪いですが、静かで良いホテルです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-56"
+    ]
+  },
+  {
+    "id": "ja-2005-2bf6aee5a4b2",
+    "lemma": "遠い",
+    "reading": "とおい",
+    "gloss": "关系疏远；缺乏亲近感",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "親しかった友人でも、長く会わずにいると、遠く感じるようになるものだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57"
+    ]
+  },
+  {
+    "id": "ja-2005-748bdea828e7",
+    "lemma": "塞がる",
+    "reading": "ふさがる",
+    "gloss": "被占用；腾不出空",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "金曜日は会議室はすべてふさがっています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-58"
+    ]
+  },
+  {
+    "id": "ja-2005-6797ebb583bf",
+    "lemma": "勘定",
+    "reading": "かんじょう",
+    "gloss": "结账；支付账款",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "お勘定したいんですけど、カードでもいいですか、現金でないとだめですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-59"
+    ]
+  },
+  {
+    "id": "ja-2005-d693e7870978",
+    "lemma": "流れる",
+    "reading": "ながれる",
+    "gloss": "计划或活动取消",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "雨で運動会が流れたそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-60"
+    ]
+  },
+  {
+    "id": "ja-2005-972595fec547",
+    "lemma": "まるまる",
+    "reading": "まるまる",
+    "gloss": "全部；完整地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "せっかくのアイデアをまるまる人に使われてしまった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-61"
+    ]
+  },
+  {
+    "id": "ja-2005-1b29df5aa1ec",
+    "lemma": "交付",
+    "reading": "こうふ",
+    "gloss": "发放；颁发",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "国から各大学に補助金が交付された。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-62"
+    ]
+  },
+  {
+    "id": "ja-2005-bf2b7fb4f990",
+    "lemma": "軽率",
+    "reading": "けいそつ",
+    "gloss": "轻率；考虑不周",
+    "partOfSpeech": "形容动词",
+    "level": "G",
+    "context": "人を軽率に批判するのはやめた方がいい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-63"
+    ]
+  },
+  {
+    "id": "ja-2005-041001a0c6f8",
+    "lemma": "露骨",
+    "reading": "ろこつ",
+    "gloss": "露骨；毫不掩饰",
+    "partOfSpeech": "形容动词",
+    "level": "G",
+    "context": "露骨にいやな顔をしてはいけない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-64"
+    ]
+  },
+  {
+    "id": "ja-2005-220b3cff3d8c",
+    "lemma": "奢る",
+    "reading": "おごる",
+    "gloss": "请客；替别人付钱",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "今日は私がおごるからどんどん注文して。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-65"
+    ]
+  },
+  {
+    "id": "ja-010",
+    "lemma": "見極める",
+    "reading": "みきわめる",
+    "gloss": "看清；辨明",
+    "partOfSpeech": "一段他动词",
+    "level": "G",
+    "context": "情報の真偽を見極める。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19"
+    ]
+  },
+  {
+    "id": "ja-012",
+    "lemma": "招く",
+    "reading": "まねく",
+    "gloss": "招致；引起",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "誤解を招きかねない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-014",
+    "lemma": "促す",
+    "reading": "うながす",
+    "gloss": "促使；催促",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "改善を促す。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-g-seed-12",
+    "lemma": "かえって",
+    "reading": "かえって",
+    "gloss": "反而；结果与预期相反 / on the contrary",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "普段6時間の睡眠を習慣とする人が、このごろ疲れているから、今晩早く休もうといつもより早く布団に入ったりしても、なかなか寝付けず、かえって疲れるというようなことが起こります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "lexicon-ja-影響",
+    "lemma": "影響",
+    "reading": "えいきょう",
+    "gloss": "影响；引起变化的作用",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "天候が試合の日程に影響する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "lexicon-ja-効果",
+    "lemma": "効果",
+    "reading": "こうか",
+    "gloss": "效果；作用产生的结果",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "男:眠らなきゃ、眠らなきゃと思うと目が覚めちゃうだろう?努力するのは逆効果だから、やめたほうがいいよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-15"
+    ]
+  },
+  {
+    "id": "lexicon-ja-伝える",
+    "lemma": "伝える",
+    "reading": "つたえる",
+    "gloss": "传达；告诉；传承",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "主張を確実に伝えるために、初めに自分が何を伝えたいのかを明確にします。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "lexicon-ja-詳しい",
+    "lemma": "詳しい",
+    "reading": "くわしい",
+    "gloss": "详细的；熟悉的",
+    "partOfSpeech": "イ形容词",
+    "level": "F",
+    "context": "あんた、詳しいんでしょう?なんかここんとこ、よく映んなくなっちゃったのよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-8"
+    ]
+  },
+  {
+    "id": "lexicon-ja-把握",
+    "lemma": "把握",
+    "reading": "はあく",
+    "gloss": "把握；掌握",
+    "partOfSpeech": "名词／サ变动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "lexicon-ja-情報",
+    "lemma": "情報",
+    "reading": "じょうほう",
+    "gloss": "信息；情报",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "こちらがオープンルームと言って、市民に開放されるスペース、情報化社会に対応して、パソコンが自由に使えます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-16",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1992-3c12438046cf",
+    "lemma": "首相",
+    "reading": "しゅしょう",
+    "gloss": "首相；总理",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "首相が記者の質問に答えた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-19",
+      "jlpt-2005-1-grammar-V-47"
+    ]
+  },
+  {
+    "id": "ja-1992-aed0a9f1e7b9",
+    "lemma": "姿勢",
+    "reading": "しせい",
+    "gloss": "姿势；对事物的态度",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "問題に取り組む姿勢を見直す。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-54"
+    ]
+  },
+  {
+    "id": "ja-1992-954f7a78eec3",
+    "lemma": "印象",
+    "reading": "いんしょう",
+    "gloss": "印象；留在心中的感受",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "初めて会ったときの印象を覚えている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1992-096d7a0a58a7",
+    "lemma": "義務",
+    "reading": "ぎむ",
+    "gloss": "义务；必须履行的责任",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "約束を守る義務がある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-62"
+    ]
+  },
+  {
+    "id": "ja-1992-d56b1d6be210",
+    "lemma": "維持",
+    "reading": "いじ",
+    "gloss": "维持；使原有状态继续",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "毎日の運動で健康を維持する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-20"
+    ]
+  },
+  {
+    "id": "ja-1992-eeaec52b389a",
+    "lemma": "医師",
+    "reading": "いし",
+    "gloss": "医生",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "症状を医師に伝えた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-20"
+    ]
+  },
+  {
+    "id": "ja-1992-065b45705084",
+    "lemma": "回答",
+    "reading": "かいとう",
+    "gloss": "回答；对问题作答",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "質問への回答をメールで送る。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1992-e624e832d6ea",
+    "lemma": "収穫",
+    "reading": "しゅうかく",
+    "gloss": "收获；收取农作物或所得成果",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "秋に米を収穫する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44"
+    ]
+  },
+  {
+    "id": "ja-1992-65a52adbd87c",
+    "lemma": "与える",
+    "reading": "あたえる",
+    "gloss": "给予；使产生某种影响",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "読書は子どもに多くの発見を与える。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1992-9b820d682d20",
+    "lemma": "周囲",
+    "reading": "しゅうい",
+    "gloss": "周围；周边的人或环境",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "歩く前に周囲をよく見る。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1992-f92b36134b35",
+    "lemma": "評判",
+    "reading": "ひょうばん",
+    "gloss": "评价；口碑；引起议论的情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この店は料理の評判がよい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48",
+      "jlpt-2005-1-grammar-IV-28"
+    ]
+  },
+  {
+    "id": "ja-1992-9c2d9bebf76b",
+    "lemma": "表面",
+    "reading": "ひょうめん",
+    "gloss": "表面；外在可见的一面",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "机の表面を布で拭く。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-60"
+    ]
+  },
+  {
+    "id": "ja-1992-06f905652506",
+    "lemma": "解説",
+    "reading": "かいせつ",
+    "gloss": "解释说明内容或背景",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "図の読み方を解説する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-grammar-VI-57"
+    ]
+  },
+  {
+    "id": "ja-1992-fd6bae72cbf6",
+    "lemma": "避ける",
+    "reading": "よける",
+    "gloss": "避开；让开以免接触",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "道の水たまりを避けて歩く。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1992-3bdef4cff73d",
+    "lemma": "のどか",
+    "reading": "のどか",
+    "gloss": "宁静；悠闲安适",
+    "partOfSpeech": "ナ形容词",
+    "level": "F",
+    "context": "川のそばにはのどかな風景が広がる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-53"
+    ]
+  },
+  {
+    "id": "ja-1992-50e748499e01",
+    "lemma": "ベテラン",
+    "reading": "べてらん",
+    "gloss": "经验丰富的人；老手",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ベテランの店員に仕事を教わる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1992-75e9cdd4ab01",
+    "lemma": "ほど",
+    "reading": "ほど",
+    "gloss": "程度；大约",
+    "partOfSpeech": "形式名词・助词",
+    "level": "F",
+    "context": "駅までは十分ほど歩く。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-grammar-IV-25",
+      "jlpt-2005-1-grammar-IV-31",
+      "jlpt-2005-1-grammar-V-50",
+      "jlpt-2005-1-grammar-VI-55",
+      "jlpt-2005-1-listening-I-12",
+      "jlpt-2005-1-listening-II-4",
+      "jlpt-2005-1-listening-II-12",
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1992-258e18ad1f56",
+    "lemma": "過密",
+    "reading": "かみつ",
+    "gloss": "过于密集；安排过满",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "G",
+    "context": "過密な日程を見直した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-42"
+    ]
+  },
+  {
+    "id": "ja-1992-4238d4dfb27a",
+    "lemma": "満足",
+    "reading": "まんぞく",
+    "gloss": "满足；满意",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "今回の結果に満足している。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8"
+    ]
+  },
+  {
+    "id": "ja-1992-80676fac9648",
+    "lemma": "規制",
+    "reading": "きせい",
+    "gloss": "限制；以规定约束",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "騒音への規制を強化する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-39"
+    ]
+  },
+  {
+    "id": "ja-1992-d6db3a4c57c6",
+    "lemma": "規模",
+    "reading": "きぼ",
+    "gloss": "规模；整体大小或范围",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "小さな規模で事業を始める。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-8390c164fb0d",
+    "lemma": "ぐっすり",
+    "reading": "ぐっすり",
+    "gloss": "熟睡地；睡得很沉",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "静かな部屋でぐっすり眠った。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-54"
+    ]
+  },
+  {
+    "id": "ja-1992-16b41a95c021",
+    "lemma": "働き",
+    "reading": "はたらき",
+    "gloss": "作用、功效；工作或贡献",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この道具には熱を逃がす働きがある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-afb43b194061",
+    "lemma": "厳しい",
+    "reading": "きびしい",
+    "gloss": "严格；严酷；实现起来困难",
+    "partOfSpeech": "イ形容词",
+    "level": "F",
+    "context": "今日中に終えるのは厳しい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-reading-III-23",
+      "jlpt-2005-1-grammar-IV-36"
+    ]
+  },
+  {
+    "id": "ja-1992-4e046b58fc65",
+    "lemma": "冷蔵庫",
+    "reading": "れいぞうこ",
+    "gloss": "冰箱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "牛乳を冷蔵庫に入れる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-7"
+    ]
+  },
+  {
+    "id": "ja-1992-a2702e2457c4",
+    "lemma": "向く",
+    "reading": "むく",
+    "gloss": "朝向；适合",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "人と話す仕事が彼に向いている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1992-07cb799ed11f",
+    "lemma": "調整",
+    "reading": "ちょうせい",
+    "gloss": "调整；协调相关安排",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "関係する部署と日程を調整する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-17"
+    ]
+  },
+  {
+    "id": "ja-1992-e570e2ad801e",
+    "lemma": "参加者",
+    "reading": "さんかしゃ",
+    "gloss": "参加者",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "参加者の人数を確認した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-59"
+    ]
+  },
+  {
+    "id": "ja-1992-a4a96e3eb8fc",
+    "lemma": "論文",
+    "reading": "ろんぶん",
+    "gloss": "论说或研究文章；论文",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "調査の結果を論文にまとめる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-6"
+    ]
+  },
+  {
+    "id": "ja-1992-1ed7cf831cb8",
+    "lemma": "売上",
+    "reading": "うりあげ",
+    "gloss": "销售额；卖出所得",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "今月の売上を計算する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1992-97d2e2825721",
+    "lemma": "天気予報",
+    "reading": "てんきよほう",
+    "gloss": "天气预报",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "出かける前に天気予報を見る。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-9"
+    ]
+  },
+  {
+    "id": "ja-1992-a95bf2fed6e3",
+    "lemma": "開始",
+    "reading": "かいし",
+    "gloss": "开始；启动活动",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "授業の開始時刻を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-64"
+    ]
+  },
+  {
+    "id": "ja-1992-776127c53a6d",
+    "lemma": "反射",
+    "reading": "はんしゃ",
+    "gloss": "反射；刺激引起的自动反应",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "反射によって体が動く場合がある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-11"
+    ]
+  },
+  {
+    "id": "ja-1992-b4e4100acce9",
+    "lemma": "判断",
+    "reading": "はんだん",
+    "gloss": "判断；根据情况作决定",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "状況を見て、自分で判断する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-53",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-ca5f735b7036",
+    "lemma": "睡眠",
+    "reading": "すいみん",
+    "gloss": "睡眠",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "毎日の睡眠時間を記録する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1992-00904b6827e1",
+    "lemma": "地震",
+    "reading": "じしん",
+    "gloss": "地震",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "地震のあとで周囲の安全を確認する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1992-cf9aa10571a8",
+    "lemma": "企業",
+    "reading": "きぎょう",
+    "gloss": "企业；从事经营活动的组织",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "地域の企業で働いている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-grammar-VI-59"
+    ]
+  },
+  {
+    "id": "ja-1992-1e8c5ae4c96e",
+    "lemma": "批判",
+    "reading": "ひはん",
+    "gloss": "批评；指出问题并作评价",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "提案に対する批判を丁寧に聞く。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-63",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1992-323450745cc2",
+    "lemma": "上司",
+    "reading": "じょうし",
+    "gloss": "上司；工作中的上级",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "予定の変更を上司に伝える。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1992-745c0fb47b71",
+    "lemma": "政治",
+    "reading": "せいじ",
+    "gloss": "政治；公共事务的治理活动",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "新聞で政治のニュースを読む。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57",
+      "jlpt-2005-1-grammar-VI-56"
+    ]
+  },
+  {
+    "id": "ja-1992-1a054b3135ae",
+    "lemma": "協力",
+    "reading": "きょうりょく",
+    "gloss": "合作；共同出力",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "皆さんの協力をお願いします。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-d8904076e8df",
+    "lemma": "救急",
+    "reading": "きゅうきゅう",
+    "gloss": "急救；紧急救助",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "救急の連絡先を確認しておく。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1992-55ecc61b672c",
+    "lemma": "責任",
+    "reading": "せきにん",
+    "gloss": "责任；应承担的职责或后果",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "担当した仕事に責任を持つ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-03f65015f9e6",
+    "lemma": "忙しい",
+    "reading": "いそがしい",
+    "gloss": "忙碌；没有空闲",
+    "partOfSpeech": "イ形容词",
+    "level": "C",
+    "context": "明日は忙しいです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-30",
+      "jlpt-2005-1-listening-II-6"
+    ]
+  },
+  {
+    "id": "ja-1992-df6a868a3e52",
+    "lemma": "無理",
+    "reading": "むり",
+    "gloss": "勉强；超出能力或条件",
+    "partOfSpeech": "名词・ナ形容词",
+    "level": "F",
+    "context": "疲れているなら無理をしないでください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1992-9fd003a72958",
+    "lemma": "病気",
+    "reading": "びょうき",
+    "gloss": "疾病；生病的状态",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "今日は病気で学校を休みます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1992-f0ddd1ecf81f",
+    "lemma": "食事",
+    "reading": "しょくじ",
+    "gloss": "吃饭；饭菜",
+    "partOfSpeech": "名词・サ变",
+    "level": "C",
+    "context": "食事は六時からです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0bc018eafe74",
+    "lemma": "上がり",
+    "reading": "あがり",
+    "gloss": "告一段落；收益",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "男女の争う声に振り向くと、ひとりの女が立ち上がり、持っていたグラスを逆さにして飲み物をこぼし始めた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b7ea5adccf67",
+    "lemma": "親孝行",
+    "reading": "おやこうこう",
+    "gloss": "孝顺父母",
+    "partOfSpeech": "名词・な形容词・サ变自动词",
+    "level": "F",
+    "context": "親孝行という話をすれば、私はいろんな人に、子供に期待するなよ、ということを言うんですね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-n1-list-efd950dc9635",
+    "lemma": "回避",
+    "reading": "かいひ",
+    "gloss": "回避；推卸",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "しっぽに痛みを感じたら、スイッチを押して電気ショックを回避(注3)できるのである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-47d080b29aec",
+    "lemma": "回覧",
+    "reading": "かいらん",
+    "gloss": "传阅",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-50"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d2ca8f8df8ac",
+    "lemma": "かかりつけ",
+    "reading": "かかりつけ",
+    "gloss": "经常就诊",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "後は、「かかりつけの病院(注6)は?」、と、はじかれるように聞かれたことだけしか思い出せない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b7ab4fa54454",
+    "lemma": "片言",
+    "reading": "かたこと",
+    "gloss": "片言只语；（幼儿及外国人）不完整的话语",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "そのうちに片言でパパ、なんて言ったりする。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d0ece16030d8",
+    "lemma": "傍ら",
+    "reading": "かたわら",
+    "gloss": "旁边；一边……一边……",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "かたわら",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-33"
+    ]
+  },
+  {
+    "id": "ja-n1-list-3175f3be347d",
+    "lemma": "加担",
+    "reading": "かたん",
+    "gloss": "袒护；参与",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "その結果が化学・生物・核兵器の開発に加担する(注3)ことはないか、あるいはわれわれの生活ないしは地球という生態系(注4)に思いもよらぬ影響を与えることがないかに思い(注5)を馳せる機会は、必ずしも多くはない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b485078f211f",
+    "lemma": "兆し",
+    "reading": "きざし",
+    "gloss": "预兆，苗头",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "幸い、2002年には若干回復の兆しを見せ、2004年に至ってはもっとも多い時に匹敵する数字となっています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-062da33c1f86",
+    "lemma": "逆転",
+    "reading": "ぎゃくてん",
+    "gloss": "倒转；形势逆转",
+    "partOfSpeech": "名词・サ变自他动词",
+    "level": "F",
+    "context": "また、心の豊かさ派とものの豊かさ派の逆転が一箇所だけ見られます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-41",
+      "jlpt-2005-1-listening-I-6"
+    ]
+  },
+  {
+    "id": "ja-n1-list-934dbf29ed75",
+    "lemma": "窮乏",
+    "reading": "きゅうぼう",
+    "gloss": "贫穷，贫困",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-16"
+    ]
+  },
+  {
+    "id": "ja-n1-list-71e138a59fac",
+    "lemma": "行政",
+    "reading": "ぎょうせい",
+    "gloss": "行政",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "これらのアイデアは市民の皆さんから出されたもので、これほど市民の声が行政に反映されているところはほかにはありません。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-n1-list-9a84b918399a",
+    "lemma": "局面",
+    "reading": "きょくめん",
+    "gloss": "局面，局势",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "教育は本来平等を目指すべきものだが、しかし残念ながらある局面では平等たり得ない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-48bf60118059",
+    "lemma": "均衡",
+    "reading": "きんこう",
+    "gloss": "平衡，平均",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "二つの勢力は均衡を保っている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-41"
+    ]
+  },
+  {
+    "id": "ja-n1-list-14b2b0b723b1",
+    "lemma": "緊迫",
+    "reading": "きんぱく",
+    "gloss": "紧迫，紧张",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "救急隊員注4)の緊迫(注5)した医療用語が飛び交い、心臓マッサージが始まる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4fed06bfa716",
+    "lemma": "啓蒙",
+    "reading": "けいもう",
+    "gloss": "启蒙，启发",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "かれらが架けるその橋は、専門化した科学技術を公開して市民を啓蒙(注8)するという一方通行のものであってはいけない、インタープリターには科学者がふだん忘れがちな社会への波及(注9)効果、倫理的(注10)問題、他の科学技術や学問分野との連繋(注11)の可能性なども鋭く指摘してほしい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-848d16ee2602",
+    "lemma": "激減",
+    "reading": "げきげん",
+    "gloss": "锐减，剧减",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "台風の影響をもろに受けて、収穫が激減した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44"
+    ]
+  },
+  {
+    "id": "ja-n1-list-cf06e266d5db",
+    "lemma": "結成",
+    "reading": "けっせい",
+    "gloss": "结成，组成",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "男：杉山バンドが結成されてから30年。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ba2fa54b8d16",
+    "lemma": "抗議",
+    "reading": "こうぎ",
+    "gloss": "抗议",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "テレビ番組の表現が差別的だったので、さっそく放送局に抗議した。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-n1-list-18eecd351e5d",
+    "lemma": "考古学",
+    "reading": "こうこがく",
+    "gloss": "考古学",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "女：そう言えば、考古学の授業で夏休みに調査があるって言ったわね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-1"
+    ]
+  },
+  {
+    "id": "ja-n1-list-97892f24c78b",
+    "lemma": "好評",
+    "reading": "こうひょう",
+    "gloss": "好评，称赞",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-61"
+    ]
+  },
+  {
+    "id": "ja-n1-list-fb162f8fb625",
+    "lemma": "個性",
+    "reading": "こせい",
+    "gloss": "个性",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "最終審査にはベテラン女優の赤野久美子や、若手個性派女優の山下由佳の名前が出て着ました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-n1-list-3d9442ff4787",
+    "lemma": "根性",
+    "reading": "こんじょう",
+    "gloss": "秉性；毅力，耐性",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "水を飲むことで疲労が増し、胃腸にも悪い、という\"理由\"でしたが、実は根性(注)論がその背景にあったのです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-22"
+    ]
+  },
+  {
+    "id": "ja-n1-list-2a5a91d91d4c",
+    "lemma": "最良",
+    "reading": "さいりょう",
+    "gloss": "最佳，最好",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "言語は人間に与えられた最上で最良の贈物であって、その贈物の大部分は本を媒介として人間に示されているんですね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "ja-n1-list-29f2923d804c",
+    "lemma": "支え",
+    "reading": "ささえ",
+    "gloss": "支持，支撑",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-92879acbdb7c",
+    "lemma": "仕組み",
+    "reading": "しくみ",
+    "gloss": "结构，构造",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "（注2）インタフェース：人間が容易にコンピューターを使えるようにするための仕組み",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-7eca57f3f2fe",
+    "lemma": "嗜好品",
+    "reading": "しこうひん",
+    "gloss": "嗜好品（烟、酒等）",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "女：嗜好品（しこうひん）はちょっと、普段からなれているものは好みがあるのでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-f69840d2c4bc",
+    "lemma": "示唆",
+    "reading": "しさ",
+    "gloss": "暗示，启示",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "インタープリターは専門用語の単なる直訳者(注6)ではなく、問題を指摘し、進むべき方向を示唆(注7)する、科学と実生活の橋渡しをする解説・評論者である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-f2d41c08f287",
+    "lemma": "実生活",
+    "reading": "じっせいかつ",
+    "gloss": "实际生活",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "インタープリターは専門用語の単なる直訳者(注6)ではなく、問題を指摘し、進むべき方向を示唆(注7)する、科学と実生活の橋渡しをする解説・評論者である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4e3221d029a0",
+    "lemma": "指摘",
+    "reading": "してき",
+    "gloss": "指出，指摘",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "⑤こうした点に関して、科学者は外部から指摘される必要がある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-7f81accd1768",
+    "lemma": "地元",
+    "reading": "じもと",
+    "gloss": "本地，当地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "高田さんより二つ年上の義兄で、地元の農業高校で教鞭をとっている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-53"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d47e0316fc56",
+    "lemma": "収集",
+    "reading": "しゅうしゅう",
+    "gloss": "收集；收藏",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "コイン収集家なら、200 円で譲ってくれと言うかもしれない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-19"
+    ]
+  },
+  {
+    "id": "ja-n1-list-cf110b4d8ece",
+    "lemma": "出生",
+    "reading": "しゅっしょう",
+    "gloss": "出生",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "F",
+    "context": "1989年に、１人の女性が一生の間に平均して何人の子供を産むかという合計特殊出生率が1.57になったときに、1.57ショックといって大騒ぎになった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-12659e20a459",
+    "lemma": "情景",
+    "reading": "じょうけい",
+    "gloss": "情景，光景",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "(岸本加世子「岸本加世子の台本にないセリフ」2003年1月11日付朝日新聞による)(注1)カフェ:飲食をする店の一つ(注2)あんた:あなた(注3)いささか陳腐だ:よくある情景だ(注4)救急隊員:急な病気や事故にあった人を病院まで運ぶ職員(注5)緊迫する:物事の様子が非常に緊張し、油断のできない状態になる(注6)かかりつけの病院：いつも診てもらっている病院",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4bb8fb544f9e",
+    "lemma": "処置",
+    "reading": "しょち",
+    "gloss": "处置，处理；措施；（医疗）处理",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-9"
+    ]
+  },
+  {
+    "id": "ja-n1-list-42645891cfa4",
+    "lemma": "庶民",
+    "reading": "しょみん",
+    "gloss": "百姓，普通人",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "あの大統領は庶民性をそなえているがゆえに、人気を集めているという。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b3ad23d69cfd",
+    "lemma": "進出",
+    "reading": "しんしゅつ",
+    "gloss": "进入",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "男：日本では今出生率の低下は問題となっています、女性の社会進出で結婚年齢が上昇したことや、未婚の女性が増加したことが原因だと言われています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-2d16d8c40a13",
+    "lemma": "進路",
+    "reading": "しんろ",
+    "gloss": "前进的道路",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-40"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ad2c605775cf",
+    "lemma": "推移",
+    "reading": "すいい",
+    "gloss": "推移，变迁",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "男の人が過去二十年間の売上推移について話しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-443a31fb110d",
+    "lemma": "世論",
+    "reading": "せろん",
+    "gloss": "舆论",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "（グラフ：内閣総理大臣官房広報室編『月刊世論調査』1993年5月号大蔵省印刷局による）",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-n1-list-809f7f917b36",
+    "lemma": "全集",
+    "reading": "ぜんしゅう",
+    "gloss": "全集",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "(武田泰淳「武田泰淳全集第16巻による)(注)あたりさわりのないように:無難に",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-93421b06249c",
+    "lemma": "専念",
+    "reading": "せんねん",
+    "gloss": "一心一意",
+    "partOfSpeech": "名词・サ变自他动词",
+    "level": "G",
+    "context": "良質の情報は優れた③表現能力をともなわなくてはならないが、実際のところ、研究に専念している科学者には時間的余裕がなく、そうした表現能力を磨くいとま(注2)もないのが普通である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a2fd5f254199",
+    "lemma": "先方",
+    "reading": "せんぽう",
+    "gloss": "对方；前方，目的地",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "でも山田さん、あの、先方との契約の書類が、火事で。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-649c8d4fca22",
+    "lemma": "第一",
+    "reading": "だいいち",
+    "gloss": "第一；首先",
+    "partOfSpeech": "名词・副词",
+    "level": "C",
+    "context": "将来の仕事について、小学生と中学生がそれぞれ第一に大切だと思っていることは何ですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-957aa665d572",
+    "lemma": "体験",
+    "reading": "たいけん",
+    "gloss": "体验",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "もし、一日体験入学の方をご希望でしたら、お電話でご予約を承ります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-423316166f64",
+    "lemma": "台本",
+    "reading": "だいほん",
+    "gloss": "脚本，剧本",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "(岸本加世子「岸本加世子の台本にないセリフ」2003年1月11日付朝日新聞による)(注1)カフェ:飲食をする店の一つ(注2)あんた:あなた(注3)いささか陳腐だ:よくある情景だ(注4)救急隊員:急な病気や事故にあった人を病院まで運ぶ職員(注5)緊迫する:物事の様子が非常に緊張し、油断のできない状態になる(注6)かかりつけの病院：いつも診てもらっている病院",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-bed728ad0adf",
+    "lemma": "断言",
+    "reading": "だんげん",
+    "gloss": "断言，断定",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "その新人候補は、今回の選挙に必ず当選してみせると断言してはばからない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "ja-n1-list-976d81068861",
+    "lemma": "提供",
+    "reading": "ていきょう",
+    "gloss": "提供",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "先生は、私の研究の問題点を具体的にしてきし、しりょうのていきょうとじょげんをおしまれなかった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4dc6810e0d7d",
+    "lemma": "転職",
+    "reading": "てんしょく",
+    "gloss": "跳槽",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "F",
+    "context": "男:ええ?技術を身につけて転職する気じゃないの?",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-49"
+    ]
+  },
+  {
+    "id": "ja-n1-list-7aa63af3f929",
+    "lemma": "同情",
+    "reading": "どうじょう",
+    "gloss": "同情",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8"
+    ]
+  },
+  {
+    "id": "ja-n1-list-e099cf3a508e",
+    "lemma": "同盟",
+    "reading": "どうめい",
+    "gloss": "同盟；结盟",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-n1-list-6d3234fdfddf",
+    "lemma": "得点",
+    "reading": "とくてん",
+    "gloss": "得分",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "F",
+    "context": "今の得点を表しているのはどれですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-6"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c892339ebc46",
+    "lemma": "とげ",
+    "reading": "とげ",
+    "gloss": "刺；尖酸，带刺儿",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "村からいたくされたいせきのはっくつ調査は、その目的をほぼとげることができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-28",
+      "jlpt-2005-1-vocab-III-29",
+      "jlpt-2005-1-vocab-III-30",
+      "jlpt-2005-1-vocab-III-31"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d7d7ce790b9a",
+    "lemma": "配置",
+    "reading": "はいち",
+    "gloss": "配置，布置",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "二人はどういう配置で絵をかけることにしましたか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-4"
+    ]
+  },
+  {
+    "id": "ja-n1-list-6ad49c404550",
+    "lemma": "波及",
+    "reading": "はきゅう",
+    "gloss": "波及，影响",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "かれらが架けるその橋は、専門化した科学技術を公開して市民を啓蒙(注8)するという一方通行のものであってはいけない、インタープリターには科学者がふだん忘れがちな社会への波及(注9)効果、倫理的(注10)問題、他の科学技術や学問分野との連繋(注11)の可能性なども鋭く指摘してほしい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-3fe70390670a",
+    "lemma": "暴露",
+    "reading": "ばくろ",
+    "gloss": "暴露，泄露",
+    "partOfSpeech": "名词・サ变自他动词",
+    "level": "G",
+    "context": "これは、自分をやっつけた相手に対しても、寛大な態度を示したい、つまり自分の心のひろさを証明したいためであり、結局は心のひろさではなくて、心のせまさを暴露していることになる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ac5628c2a5dc",
+    "lemma": "橋渡し",
+    "reading": "はしわたし",
+    "gloss": "架桥；当中介人",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "インタープリターは専門用語の単なる直訳者(注6)ではなく、問題を指摘し、進むべき方向を示唆(注7)する、科学と実生活の橋渡しをする解説・評論者である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-dd9728e48746",
+    "lemma": "匹敵",
+    "reading": "ひってき",
+    "gloss": "匹敌",
+    "partOfSpeech": "名词・サ变自动词",
+    "level": "G",
+    "context": "この数は静岡市や新潟市のような地方中核都市の人口に匹敵し、それだけの数の人々がすべて交通事故で姿を消してしまったことを意味する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4018bfbc75c4",
+    "lemma": "美点",
+    "reading": "びてん",
+    "gloss": "长处，优点",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "どうしても、ほめられない相手もあるが、少しでも美点を発見するように努力すれば、たいがいはほめられる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-8c824404672f",
+    "lemma": "人気",
+    "reading": "ひとけ",
+    "gloss": "人的气息，有人的样子",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この人、人気あるから。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38",
+      "jlpt-2005-1-grammar-VI-59",
+      "jlpt-2005-1-listening-I-13",
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0e00077df328",
+    "lemma": "非難",
+    "reading": "ひなん",
+    "gloss": "非难，责备",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "G",
+    "context": "彼の行為は規則いはんだと一時非難されたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-e87f0a22e815",
+    "lemma": "微量",
+    "reading": "びりょう",
+    "gloss": "微量，少量",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "化学物質過敏症は、アレルギーと中毒の要素を兼ね備えていますが、明らかな違いは、今までの概念では考えられない極めて微量な物質に反応するということです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c490ed32c4b1",
+    "lemma": "昼下がり",
+    "reading": "ひるさがり",
+    "gloss": "过午",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "特に残暑の厳しい日の昼下がり、慣れぬ東京のしかも分かりにくい世田谷を、地図を片手に迷い迷い来てくれたらしく、二人ともシャツに汗がしみ出していました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-759edd9927b8",
+    "lemma": "平常",
+    "reading": "へいじょう",
+    "gloss": "平常，平时",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "次に鉄道ですが、現在運転を取り止めたり、見合わせたりする電車が目立っています、空港は雪が積もり、空の便も遅れがありましたが、今は平常どおりの運行となっております。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a1944dd78e0f",
+    "lemma": "紡績",
+    "reading": "ぼうせき",
+    "gloss": "纺纱",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-17"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ef3b91fd9a14",
+    "lemma": "補助",
+    "reading": "ほじょ",
+    "gloss": "补助",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-62"
+    ]
+  },
+  {
+    "id": "ja-n1-list-5ede695b38bc",
+    "lemma": "本番",
+    "reading": "ほんばん",
+    "gloss": "（电影、广播等）正式播出，正式演出",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼は連日徹夜で練習し、本番に臨んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-10",
+      "jlpt-2005-1-vocab-I-11",
+      "jlpt-2005-1-vocab-I-12"
+    ]
+  },
+  {
+    "id": "ja-n1-list-19e84b921e68",
+    "lemma": "見込み",
+    "reading": "みこみ",
+    "gloss": "希望；可能性；预料",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "午後になって、風は収まりますが、雨は降り続く見込みですので、一日中、傘が必要でしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-56"
+    ]
+  },
+  {
+    "id": "ja-n1-list-5dd0a11a5759",
+    "lemma": "無関心",
+    "reading": "むかんしん",
+    "gloss": "不关心，不感兴趣",
+    "partOfSpeech": "名词・な形容词",
+    "level": "F",
+    "context": "これなど下流に対する無関心の典型である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-afbdbeb04629",
+    "lemma": "目盛り",
+    "reading": "めもり",
+    "gloss": "度数，刻度",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ただし、5分以下の場合、例えば、4分に設定したい時は、図のように一度10分以上の目盛りまで回して、それから4分の目盛りに戻してください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-6a11b952d550",
+    "lemma": "ゆとり",
+    "reading": "ゆとり",
+    "gloss": "宽裕，余裕",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "教えることは嫌いではない、知的な仕事であるのもいいが、もうすこし経済的にゆとりがほしいと思っていた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-8caa00860876",
+    "lemma": "領域",
+    "reading": "りょういき",
+    "gloss": "领域，范围",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "この専門領域は比較的新しく、まだあまり研究が進んでいない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-90b64c83364b",
+    "lemma": "倫理",
+    "reading": "りんり",
+    "gloss": "伦理",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "バブル(注4)期の社会的倫理(注5)規範の崩壊とその後のバブル崩壊による不況の長期化によって、大人たち自身が子どもたちに対して、「伝えるべきこと」や「鍛えるべきこと」に関して自信を失ってきている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c636fecc4dfe",
+    "lemma": "若手",
+    "reading": "わかて",
+    "gloss": "青年，年轻能干的人",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "最終審査にはベテラン女優の赤野久美子や、若手個性派女優の山下由佳の名前が出て着ました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ee5d2bb813b3",
+    "lemma": "受け止める",
+    "reading": "うけとめる",
+    "gloss": "接住；阻止；理解",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "現実は一つでも、それをどう受け止めるかは当人次第なのである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-74720c86d364",
+    "lemma": "移り変わる",
+    "reading": "うつりかわる",
+    "gloss": "变迁，变化",
+    "partOfSpeech": "五段自动词",
+    "level": "G",
+    "context": "(飯田英明『「図解表現」入門』による)(注1)ビジュアル:目に見えること(注2)推移:移り変わること(注3)メッセージありき:メッセージがあった(注4)裏付け:事実であることを証明する証拠",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b3ae29949658",
+    "lemma": "抑える",
+    "reading": "おさえる",
+    "gloss": "压住；抑制；忍住",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "何とか品質は維持して価格を抑える、ということで乗り切ろうと思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a3994fd1ad65",
+    "lemma": "及ぶ",
+    "reading": "およぶ",
+    "gloss": "达到，普及；匹敌",
+    "partOfSpeech": "五段自动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-939f457d1a3c",
+    "lemma": "架ける",
+    "reading": "かける",
+    "gloss": "架上",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "かれらが架けるその橋は、専門化した科学技術を公開して市民を啓蒙(注8)するという一方通行のものであってはいけない、インタープリターには科学者がふだん忘れがちな社会への波及(注9)効果、倫理的(注10)問題、他の科学技術や学問分野との連繋(注11)の可能性なども鋭く指摘してほしい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0a57bebdcc06",
+    "lemma": "吸い上げる",
+    "reading": "すいあげる",
+    "gloss": "吸上来；吮吸，侵吞",
+    "partOfSpeech": "一段他动词",
+    "level": "G",
+    "context": "また、一般の人の科学に対する素朴な疑問の中からインタープリターが斬新(注12)な考えを吸い上げることで、科学者は思いもよらぬ発想転換のヒントを得られることも考えられる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a256b9e90f7e",
+    "lemma": "取り扱う",
+    "reading": "とりあつかう",
+    "gloss": "对待，待遇",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-43"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d1f50e300316",
+    "lemma": "取り組む",
+    "reading": "とりくむ",
+    "gloss": "相扑动作；交手，比赛；专心致志",
+    "partOfSpeech": "五段自动词",
+    "level": "G",
+    "context": "ゴミ処理の問題に関してこれから取り組むべきことは何ですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36",
+      "jlpt-2005-1-vocab-V-43"
+    ]
+  },
+  {
+    "id": "ja-n1-list-99ff61306160",
+    "lemma": "取り巻く",
+    "reading": "とりまく",
+    "gloss": "围绕，包围",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-43",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-05dd69ecdb0b",
+    "lemma": "寝かせる",
+    "reading": "ねかせる",
+    "gloss": "使……睡觉；放平，放倒",
+    "partOfSpeech": "一段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-33"
+    ]
+  },
+  {
+    "id": "ja-n1-list-f128e845c8cd",
+    "lemma": "馳せる",
+    "reading": "はせる",
+    "gloss": "驱车，策马",
+    "partOfSpeech": "一段他动词",
+    "level": "G",
+    "context": "その結果が化学・生物・核兵器の開発に加担する(注3)ことはないか、あるいはわれわれの生活ないしは地球という生態系(注4)に思いもよらぬ影響を与えることがないかに思い(注5)を馳せる機会は、必ずしも多くはない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a471ee74726c",
+    "lemma": "働きかける",
+    "reading": "はたらきかける",
+    "gloss": "推动；开始工作",
+    "partOfSpeech": "一段自他动词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-e99af7b00fa0",
+    "lemma": "張る",
+    "reading": "はる",
+    "gloss": "伸展；牵扯；拉；覆盖",
+    "partOfSpeech": "五段自他动词",
+    "level": "F",
+    "context": "A：テストの前にはもう一度おさらいして、何とかマスターするように頑張るはずである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-37d6de3b487d",
+    "lemma": "引き起こす",
+    "reading": "ひきおこす",
+    "gloss": "引起；惹起；扶起；拉起",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-708760282933",
+    "lemma": "振り払う",
+    "reading": "ふりはらう",
+    "gloss": "抖落，弹去",
+    "partOfSpeech": "五段他动词",
+    "level": "F",
+    "context": "連れの男は顔を上げようとはせず、女の腕を掴んで座らせようとするが、女はその手を振り払うと、叫んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-439df8567faa",
+    "lemma": "勝る",
+    "reading": "まさる",
+    "gloss": "优越；凌驾",
+    "partOfSpeech": "五段自动词",
+    "level": "G",
+    "context": "男：うん、でもね、ここから見える満月はこれに勝る美しさだよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-11"
+    ]
+  },
+  {
+    "id": "ja-n1-list-2af9f91be2d1",
+    "lemma": "導く",
+    "reading": "みちびく",
+    "gloss": "引导；指导；导致",
+    "partOfSpeech": "五段他动词",
+    "level": "G",
+    "context": "(注 1 リードする:導く",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-e74e618b5343",
+    "lemma": "持つ",
+    "reading": "もつ",
+    "gloss": "保存，维持，耐用",
+    "partOfSpeech": "五段自动词",
+    "level": "F",
+    "context": "持つ……担当する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-listening-I-3",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-94b9ce114d3d",
+    "lemma": "著しい",
+    "reading": "いちじるしい",
+    "gloss": "显著的；非常的，异常的",
+    "partOfSpeech": "い形容词",
+    "level": "G",
+    "context": "特に海運の発達により、船舶による輸送量の伸びには著しいものがあり、一時はトップに躍り出ました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11"
+    ]
+  },
+  {
+    "id": "ja-n1-list-dc5dcfe9ba70",
+    "lemma": "相応しい",
+    "reading": "ふさわしい",
+    "gloss": "适合的，相称的",
+    "partOfSpeech": "い形容词",
+    "level": "G",
+    "context": "公式の席では、その場にふさわしい服装が要求される。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48"
+    ],
+    "spellingVariants": [
+      "ふさわしい"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c87835ee5539",
+    "lemma": "格別",
+    "reading": "かくべつ",
+    "gloss": "特别的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-47"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0b9fbd867771",
+    "lemma": "かすか",
+    "reading": "かすか",
+    "gloss": "微微的，朦胧的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-53"
+    ]
+  },
+  {
+    "id": "ja-n1-list-9a90b6a9e28b",
+    "lemma": "簡潔",
+    "reading": "かんけつ",
+    "gloss": "简洁的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "自分の考えを①かんけつに分かりやすく②のべるためには、まず言いたいことを③かじょうがきにするといい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-2"
+    ]
+  },
+  {
+    "id": "ja-n1-list-61b9e8543e27",
+    "lemma": "寛大",
+    "reading": "かんだい",
+    "gloss": "宽大的，宽宏的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "これは、自分をやっつけた相手に対しても、寛大な態度を示したい、つまり自分の心のひろさを証明したいためであり、結局は心のひろさではなくて、心のせまさを暴露していることになる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-49215a3aa219",
+    "lemma": "厳格",
+    "reading": "げんかく",
+    "gloss": "严格的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "たとえひとを傷つけても、正しい見解を主張するのが、批評の厳格さであろうが、なかなか①この原則が守れない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-n1-list-cc813eaf4bd0",
+    "lemma": "斬新",
+    "reading": "ざんしん",
+    "gloss": "崭新的，新颖的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "また、一般の人の科学に対する素朴な疑問の中からインタープリターが斬新(注12)な考えを吸い上げることで、科学者は思いもよらぬ発想転換のヒントを得られることも考えられる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-be7dbe0c3e1a",
+    "lemma": "親密",
+    "reading": "しんみつ",
+    "gloss": "亲密的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-42"
+    ]
+  },
+  {
+    "id": "ja-n1-list-8154da0e3c32",
+    "lemma": "精密",
+    "reading": "せいみつ",
+    "gloss": "精密的，精确的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "この国では、せいみつ機械を輸出している。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-42"
+    ]
+  },
+  {
+    "id": "ja-n1-list-fd07d4952bd8",
+    "lemma": "忠実",
+    "reading": "ちゅうじつ",
+    "gloss": "忠实的，忠诚的；如实的，忠实于",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "そうである以上、「自然を再現させる」とか「自然を忠実に写す」とかいっても、それはそれを行う芸術家の「自然」をどうみるかということときり離しては、あり得ないわけです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-afe28420435a",
+    "lemma": "適正",
+    "reading": "てきせい",
+    "gloss": "恰当的，合理的，适宜的，适当的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "実際は適正な睡眠時間は人によって異なるんです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-n1-list-bf8c07d5769a",
+    "lemma": "否定的",
+    "reading": "ひていてき",
+    "gloss": "否定的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "40代、50代では約40%が「ウ」と回答しているが、「ア」の回答数と合わせて考えると、「察し合い」の会話に一番否定的なのは40代だと言えそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-n1-list-30862e173e8a",
+    "lemma": "不可欠",
+    "reading": "ふかけつ",
+    "gloss": "不可缺少的，必须的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "女：睡眠は体と脳を休ませるために不可欠なものですが、いったい何時間寝ればいいでしょうか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-n1-list-1ba099ccdc52",
+    "lemma": "不十分",
+    "reading": "ふじゅうぶん",
+    "gloss": "不够的，不完全的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-45745c0bdec0",
+    "lemma": "前向き",
+    "reading": "まえむき",
+    "gloss": "面向前方的；朝前看的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c9e0e6f9c187",
+    "lemma": "未熟",
+    "reading": "みじゅく",
+    "gloss": "生的，不成熟的；不熟练的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "わたしのごとき未熟者にこんな重要な役が果たせるでしょうか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-n1-list-2aec31c3f123",
+    "lemma": "良質",
+    "reading": "りょうしつ",
+    "gloss": "质量良好的，上等的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "つまり、①科学と社会を結びつける良質の情報が必要なのである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-79e353d6571a",
+    "lemma": "至って",
+    "reading": "いたって",
+    "gloss": "很，极",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "ことここに至っては、素人にはどうすることもできない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-f0eb9c4f33ce",
+    "lemma": "いっそ",
+    "reading": "いっそ",
+    "gloss": "宁可，索性，干脆，倒不如",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "人間関係でこんなに苦労するなら、いっそこの会社をやめてしまう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-a6db22b7f67b",
+    "lemma": "くっきり",
+    "reading": "くっきり",
+    "gloss": "特别鲜明，清楚",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "霧がかかっているので、くっきりとは見えませんが、二つの峰が見えると思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-1"
+    ]
+  },
+  {
+    "id": "ja-n1-list-47749fce4689",
+    "lemma": "若干",
+    "reading": "じゃっかん",
+    "gloss": "若干",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "幸い、2002年には若干回復の兆しを見せ、2004年に至ってはもっとも多い時に匹敵する数字となっています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10",
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-n1-list-f1aa4ca7e00e",
+    "lemma": "しょっちゅう",
+    "reading": "しょっちゅう",
+    "gloss": "经常，总是",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "しょっちゅう練習してるんでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-31"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0b81fd89eb1b",
+    "lemma": "大概",
+    "reading": "たいがい",
+    "gloss": "大概，大多",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "これがドラマなら、大概は「姉弟でお母さん!」と駆け寄って下さい」と指示される。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-7992df3e5753",
+    "lemma": "とっさ",
+    "reading": "とっさ",
+    "gloss": "瞬间，立刻",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "当時、大学生だった弟が、とっさに猫を捕まえたその時、「猫なんか構っている場合ですか!」と隊員の怒鳴り声が飛んだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-e74f20f7aeff",
+    "lemma": "ともすると",
+    "reading": "ともすると",
+    "gloss": "往往，每每，动不动",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-57"
+    ]
+  },
+  {
+    "id": "ja-n1-list-3b64e9b57378",
+    "lemma": "何より",
+    "reading": "なにより",
+    "gloss": "比什么都好，最好",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "男:でも、ま、私としては、 何よりも大人の良心に期待したいですね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-51",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b8f086004c4e",
+    "lemma": "なんだか",
+    "reading": "なんだか",
+    "gloss": "总觉得",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "お互いに大人なんだから、感情的にならずに、理性的に話し合いを進めましょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-n1-list-c99cbe9ccb1c",
+    "lemma": "何でも",
+    "reading": "なんでも",
+    "gloss": "不管什么，不管怎样",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "あの選手は子供のころ、サッカーに限らずスポーツなら何でも得意だったそうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-51"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ab53d77df92e",
+    "lemma": "ひたすら",
+    "reading": "ひたすら",
+    "gloss": "只顾，一味",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "日本の首脳が国際会議の場で、はっきりした見解や意見を言わず、ひたすら各国首脳の聞き役に回っているのも、そのような調整役を果たそうとしているのである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d49f4ca6fb26",
+    "lemma": "前もって",
+    "reading": "まえもって",
+    "gloss": "预先，事先",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "女:へえ、前もって買っておかないと、心配じゃない?",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-bdaf1b69029e",
+    "lemma": "正しく",
+    "reading": "まさしく",
+    "gloss": "的确，确实",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "彼はとくはいんとしてニュースを正しくほうどうすることにしめいかんを持っている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "ja-n1-list-d29dd2210fa6",
+    "lemma": "やけに",
+    "reading": "やけに",
+    "gloss": "很，非常，特别",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44"
+    ]
+  },
+  {
+    "id": "ja-n1-list-355972716290",
+    "lemma": "やたら",
+    "reading": "やたら",
+    "gloss": "过分，胡乱，任意",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "その上、切手の買い置きがあったはずだけれど、などとやたらにいろいろな引出しをかきまわさなくてもいいし、雨が降っていようがいまいがポストまで出かけなくてもいい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-2"
+    ]
+  },
+  {
+    "id": "ja-n1-list-ce9b8aa49f8f",
+    "lemma": "かつ",
+    "reading": "かつ",
+    "gloss": "并且，而且",
+    "partOfSpeech": "副词・接续词",
+    "level": "G",
+    "context": "男:テレビなんかでぼくの顔を知っている人は多いでしょうから、かつらをつけたり、ひげをつけたりして街に出ていろいろな人と接するんです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-listening-II-8"
+    ]
+  },
+  {
+    "id": "ja-n1-list-2c1fd3e5e61e",
+    "lemma": "だったら",
+    "reading": "だったら",
+    "gloss": "如果这样的话，那么…",
+    "partOfSpeech": "接续词",
+    "level": "F",
+    "context": "下の方だったらまだ目立たないのに。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-3"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4ef7cf332c2f",
+    "lemma": "故に",
+    "reading": "ゆえに",
+    "gloss": "（因为……）所以",
+    "partOfSpeech": "接续词",
+    "level": "G",
+    "context": "（⑤）、自分の鼻の印に気付いたが故に、鼻に触る行動が増えたことを示すといえる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-74c9dfb76b5e",
+    "lemma": "かける",
+    "reading": "かける",
+    "gloss": "刚要……，刚开始……；就要……；……途中",
+    "partOfSpeech": "接尾词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-n1-list-4267e9ebc3b9",
+    "lemma": "どころか",
+    "reading": "どころか",
+    "gloss": "哪里谈得上，非但",
+    "partOfSpeech": "接续助词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-42"
+    ]
+  },
+  {
+    "id": "ja-n1-list-86d1c81a9d83",
+    "lemma": "まみれ",
+    "reading": "まみれ",
+    "gloss": "玷污，沾满",
+    "partOfSpeech": "接尾词",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-35"
+    ]
+  },
+  {
+    "id": "ja-n1-list-5650b3766a27",
+    "lemma": "かかわらず",
+    "reading": "かかわらず",
+    "gloss": "不管，不论；尽管，虽然",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "にもかかわらず、（a）になってみれば、居ながら蕎麦屋でもすし屋でも、ためしたことはないが警察にでも出前を注文することができるというのは、じっさい愉快、痛快、喝采にあたいする。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-grammar-IV-36",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-n1-list-20dc27435f4a",
+    "lemma": "コントロール",
+    "reading": "コントロール",
+    "gloss": "控制，管理，操纵",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "(注1)姿勢制御:正しい姿勢を保つようにコントロールすること",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0dd5e6f4f047",
+    "lemma": "ショック",
+    "reading": "ショック",
+    "gloss": "冲击，打击",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "1989年に、１人の女性が一生の間に平均して何人の子供を産むかという合計特殊出生率が1.57になったときに、1.57ショックといって大騒ぎになった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-fc8540eaaf47",
+    "lemma": "スタジオ",
+    "reading": "スタジオ",
+    "gloss": "摄影室；广播室；录音室",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-52"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b46daed44749",
+    "lemma": "デジタル",
+    "reading": "デジタル",
+    "gloss": "数字式；数字化的",
+    "partOfSpeech": "名词・な形容词",
+    "level": "F",
+    "context": "男：これはわが社のデジタルカメラの販売台数を示しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-faa6e701757a",
+    "lemma": "ヒント",
+    "reading": "ヒント",
+    "gloss": "暗示，启示",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "また、一般の人の科学に対する素朴な疑問の中からインタープリターが斬新(注12)な考えを吸い上げることで、科学者は思いもよらぬ発想転換のヒントを得られることも考えられる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-n1-list-03a752b753ee",
+    "lemma": "ペース",
+    "reading": "ペース",
+    "gloss": "步伐，步调，速度",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "こちらがオープンルームと言って、市民に開放されるスペース、情報化社会に対応して、パソコンが自由に使えます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-52"
+    ]
+  },
+  {
+    "id": "ja-n1-list-b62b6f9bda9f",
+    "lemma": "マッサージ",
+    "reading": "マッサージ",
+    "gloss": "按摩",
+    "partOfSpeech": "名词・サ变他动词",
+    "level": "F",
+    "context": "救急隊員注4)の緊迫(注5)した医療用語が飛び交い、心臓マッサージが始まる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-0b76919ac464",
+    "lemma": "ラフ",
+    "reading": "ラフ",
+    "gloss": "粗糙的，粗略的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "（グラフ：内閣総理大臣官房広報室編『月刊世論調査』1993年5月号大蔵省印刷局による）",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-n1-list-90aa7c4e148d",
+    "lemma": "リクエスト",
+    "reading": "リクエスト",
+    "gloss": "要求；点播，点唱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "その後、若い人からのリクエストが増えているということです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-1993-282fd72f09a5",
+    "lemma": "倫理的",
+    "reading": "りんりてき",
+    "gloss": "与伦理道德有关的",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "かれらが架けるその橋は、専門化した科学技術を公開して市民を啓蒙(注8)するという一方通行のものであってはいけない、インタープリターには科学者がふだん忘れがちな社会への波及(注9)効果、倫理的(注10)問題、他の科学技術や学問分野との連繋(注11)の可能性なども鋭く指摘してほしい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-053461ce86d2",
+    "lemma": "成功",
+    "reading": "せいこう",
+    "gloss": "成功",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "君たちが成功するかどうかは、与えられたチャンスをどう使うかにかかっている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-52"
+    ]
+  },
+  {
+    "id": "ja-1993-9b94e941bef0",
+    "lemma": "宝石",
+    "reading": "ほうせき",
+    "gloss": "宝石",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-17"
+    ]
+  },
+  {
+    "id": "ja-1993-304624dca588",
+    "lemma": "肥料",
+    "reading": "ひりょう",
+    "gloss": "肥料",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "(注2) 堆肥: 肥料",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-18"
+    ]
+  },
+  {
+    "id": "ja-1993-5642f376afbf",
+    "lemma": "疲労",
+    "reading": "ひろう",
+    "gloss": "疲劳",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "水を飲むことで疲労が増し、胃腸にも悪い、という\"理由\"でしたが、実は根性(注)論がその背景にあったのです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-18",
+      "jlpt-2005-1-reading-III-22"
+    ]
+  },
+  {
+    "id": "ja-1993-6f7f5f42876b",
+    "lemma": "状況",
+    "reading": "じょうきょう",
+    "gloss": "情况；状况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "筆者は実験で交通状況を設定して⑤クラクション反応を求め、状況の違いによりどのようなクラクションが存在するかを分析しました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-grammar-IV-36",
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1993-fba18681418f",
+    "lemma": "環境",
+    "reading": "かんきょう",
+    "gloss": "环境",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "台風の被害にあった人々のため、一日も早い生活環境の整備を願わずにはいられない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-grammar-V-46",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-cef6dd072986",
+    "lemma": "明確",
+    "reading": "めいかく",
+    "gloss": "明确；清楚且确定",
+    "partOfSpeech": "な形容词",
+    "level": "G",
+    "context": "つまり、強い個性と明確な方針を持っているような人物は、自分の意見にこだわりすぎるため、他の意見を受け入れない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-f4b669c55756",
+    "lemma": "背景",
+    "reading": "はいけい",
+    "gloss": "背景；事情背后的条件或原因",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "水を飲むことで疲労が増し、胃腸にも悪い、という\"理由\"でしたが、実は根性(注)論がその背景にあったのです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-22"
+    ]
+  },
+  {
+    "id": "ja-1993-d01444282877",
+    "lemma": "景色",
+    "reading": "けしき",
+    "gloss": "景色",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "結局のところ、景色をろくに見なかったこととさして変わりがない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-11"
+    ]
+  },
+  {
+    "id": "ja-1993-f3fdd9a91c8d",
+    "lemma": "景気",
+    "reading": "けいき",
+    "gloss": "经济景气；生意状况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-1993-117e15fdd6f2",
+    "lemma": "伝統的",
+    "reading": "でんとうてき",
+    "gloss": "传统的",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "男:キムさん、日本の伝統的なものはお好きでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-3"
+    ]
+  },
+  {
+    "id": "ja-1993-01ad19be23a5",
+    "lemma": "レベル",
+    "reading": "レベル",
+    "gloss": "水平；程度",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "来世紀に向けて、個人レベルであれ地域社会・地球規模であれ、科学技術の進歩ゆえにいっそう複雑になっていく問題に対して、個人が判断しなくてはならない局面が増えていくことだろう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-dcb5ff87f34a",
+    "lemma": "きれい",
+    "reading": "きれい",
+    "gloss": "漂亮；干净；彻底而不留残余",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "きれいに……残らず。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-58",
+      "jlpt-2005-1-listening-I-2",
+      "jlpt-2005-1-listening-I-11"
+    ]
+  },
+  {
+    "id": "ja-1993-fea633f00f6f",
+    "lemma": "知る",
+    "reading": "しる",
+    "gloss": "知道；认识；亲身经历",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "知る……経験する。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-37",
+      "jlpt-2005-1-reading-I-4"
+    ]
+  },
+  {
+    "id": "ja-1993-abe26aa668de",
+    "lemma": "努力",
+    "reading": "どりょく",
+    "gloss": "努力",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "問1・①事態をこれ以上悪化させないためには、②軽率な行動を③避けることはもちろん、④相互の不信感を⑤取り除く努力をする必要があろう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-grammar-VI-58"
+    ]
+  },
+  {
+    "id": "ja-1993-e385e5596087",
+    "lemma": "信用",
+    "reading": "しんよう",
+    "gloss": "信任；信用",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "問2・貨幣の①偽造は、経済的取引の信用を②損なうおそれがあるため、重大な③犯罪として④厳しく⑤処罰される.",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-e7e8bc2ee954",
+    "lemma": "心臓",
+    "reading": "しんぞう",
+    "gloss": "心脏",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "問3・最近心臓などの臓器の移植をめぐる話題がよく取り上げられるが、これは人の死の①定義について、②倫理的に③微妙な問題も④絡んでおり、⑤一概に医学の進歩だといって、喜んでばかりはいられない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-cc331af1b3af",
+    "lemma": "進歩",
+    "reading": "しんぽ",
+    "gloss": "进步",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "問3・最近心臓などの臓器の移植をめぐる話題がよく取り上げられるが、これは人の死の①定義について、②倫理的に③微妙な問題も④絡んでおり、⑤一概に医学の進歩だといって、喜んでばかりはいられない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-98d1d34060c7",
+    "lemma": "被害",
+    "reading": "ひがい",
+    "gloss": "损害；灾害或事件造成的伤害",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "問5・自然災害による被害が生じたときに、医師と①かんごふを②はけんするための組織がつくられた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-46"
+    ]
+  },
+  {
+    "id": "ja-1993-f3dfb97cc88b",
+    "lemma": "組織",
+    "reading": "そしき",
+    "gloss": "组织；有结构的整体",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "問5・自然災害による被害が生じたときに、医師と①かんごふを②はけんするための組織がつくられた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1993-ebdcbcbea849",
+    "lemma": "集まり",
+    "reading": "あつまり",
+    "gloss": "聚集；集合；聚在一起的人或物",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "集まり、群れ、集団の関係を正しく表すものを一つ選びなさい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1993-f0972f9547bf",
+    "lemma": "お越し",
+    "reading": "おこし",
+    "gloss": "来访、前来的尊敬说法",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "お気を付けてお越しください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-77adb928c476",
+    "lemma": "一方で",
+    "reading": "いっぽうで",
+    "gloss": "另一方面；同时具有另一面",
+    "partOfSpeech": "连接表达",
+    "level": "F",
+    "context": "一方で、④科学者にも良質の情報が必要である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-grammar-IV-44"
+    ]
+  },
+  {
+    "id": "ja-1993-c3428aa0a47e",
+    "lemma": "に関して",
+    "reading": "にかんして",
+    "gloss": "关于；就……而言",
+    "partOfSpeech": "连接表达",
+    "level": "F",
+    "context": "今回の出版に関してご配慮をたまわり感謝にたえません。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-b079f393386c",
+    "lemma": "がてら",
+    "reading": "がてら",
+    "gloss": "做某事时顺便做另一件事",
+    "partOfSpeech": "连接表达",
+    "level": "G",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-25"
+    ]
+  },
+  {
+    "id": "ja-1993-1254503fa092",
+    "lemma": "とは",
+    "reading": "とは",
+    "gloss": "竟然……；引用事实并表示惊讶或感慨",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "このカレンダーは雑誌の付録なので、これだけを買うことはできません。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-40",
+      "jlpt-2005-1-vocab-V-45",
+      "jlpt-2005-1-vocab-VI-59",
+      "jlpt-2005-1-vocab-VII-64",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-grammar-V-48",
+      "jlpt-2005-1-grammar-VI-57",
+      "jlpt-2005-1-listening-I-3",
+      "jlpt-2005-1-listening-I-12",
+      "jlpt-2005-1-listening-II-5",
+      "jlpt-2005-1-listening-II-14",
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-1993-9f19ac8d5683",
+    "lemma": "なしに",
+    "reading": "なしに",
+    "gloss": "没有……就；未经过……",
+    "partOfSpeech": "连接表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-37"
+    ]
+  },
+  {
+    "id": "ja-1993-4fa909fba797",
+    "lemma": "のみ",
+    "reading": "のみ",
+    "gloss": "仅仅；只有",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "客観的な事実のみを示すならば表で表現すべきです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-grammar-IV-25"
+    ]
+  },
+  {
+    "id": "ja-1993-4362cb0d1491",
+    "lemma": "ずくめ",
+    "reading": "ずくめ",
+    "gloss": "尽是；全由同一类事物组成",
+    "partOfSpeech": "后缀",
+    "level": "G",
+    "context": "今年は、息子の結婚、孫の誕生と、めでたいことずくめの一年だった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-35"
+    ]
+  },
+  {
+    "id": "ja-1993-c18d8ca5c15b",
+    "lemma": "ようにも",
+    "reading": "ようにも",
+    "gloss": "即使想做也无法做到",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "強風で、家から出ようにも出られなかった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-33"
+    ]
+  },
+  {
+    "id": "ja-1993-85da526bc788",
+    "lemma": "なり",
+    "reading": "なり",
+    "gloss": "……也好……也好，列举可选做法",
+    "partOfSpeech": "连接表达",
+    "level": "G",
+    "context": "その時に自分なりに納得のいく判断を下すためには、科学に無関心・無理解を決めこんだ(注1)りせず、ふだんから科学に目を向け、科学的な考え方にふれている必要があるだろう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-grammar-IV-38",
+      "jlpt-2005-1-grammar-IV-43",
+      "jlpt-2005-1-listening-I-3",
+      "jlpt-2005-1-listening-I-9",
+      "jlpt-2005-1-listening-II-9",
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-4451b3b1888d",
+    "lemma": "てからというもの",
+    "reading": "てからというもの",
+    "gloss": "自从……以后一直有明显变化",
+    "partOfSpeech": "惯用表达",
+    "level": "G",
+    "context": "この道具を一度使ってからというもの、あまりの便利さに手放せなくなってしまった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-34"
+    ]
+  },
+  {
+    "id": "ja-1993-9ae67eee93f8",
+    "lemma": "よう",
+    "reading": "よう",
+    "gloss": "做某事的方法、方式",
+    "partOfSpeech": "后缀",
+    "level": "F",
+    "context": "日本の一般家庭では和洋折衷の献立が多いようだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-I-1",
+      "jlpt-2005-1-vocab-I-2",
+      "jlpt-2005-1-vocab-I-3",
+      "jlpt-2005-1-vocab-VI-57",
+      "jlpt-2005-1-vocab-VI-60",
+      "jlpt-2005-1-vocab-VII-64",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-grammar-IV-26",
+      "jlpt-2005-1-grammar-IV-29",
+      "jlpt-2005-1-grammar-IV-31",
+      "jlpt-2005-1-grammar-IV-33",
+      "jlpt-2005-1-grammar-V-46",
+      "jlpt-2005-1-grammar-V-54",
+      "jlpt-2005-1-grammar-VI-58",
+      "jlpt-2005-1-listening-I-3",
+      "jlpt-2005-1-listening-I-4",
+      "jlpt-2005-1-listening-I-8",
+      "jlpt-2005-1-listening-I-11",
+      "jlpt-2005-1-listening-I-13",
+      "jlpt-2005-1-listening-II-2",
+      "jlpt-2005-1-listening-II-7",
+      "jlpt-2005-1-listening-II-11",
+      "jlpt-2005-1-listening-II-12",
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-1993-e48236859a24",
+    "lemma": "はおろか",
+    "reading": "はおろか",
+    "gloss": "更不用说……；连更基本的也……",
+    "partOfSpeech": "连接表达",
+    "level": "G",
+    "context": "もうすぐ海外旅行に行くというのに切符の手配はおろか、パスポートも用意していない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-39"
+    ]
+  },
+  {
+    "id": "ja-1993-572f90304cbe",
+    "lemma": "しかない",
+    "reading": "しかない",
+    "gloss": "只能……；没有其他办法",
+    "partOfSpeech": "惯用表达",
+    "level": "F",
+    "context": "受験させるしかない",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-f835331cd0a7",
+    "lemma": "として",
+    "reading": "として",
+    "gloss": "作为……；以……身份或角度",
+    "partOfSpeech": "连接表达",
+    "level": "F",
+    "context": "残念なことに、科学者がもたらした成果は、そのままでは判断材料としては②役に立たないことが多い。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-59",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-23",
+      "jlpt-2005-1-grammar-V-51",
+      "jlpt-2005-1-grammar-VI-58",
+      "jlpt-2005-1-listening-I-2"
+    ]
+  },
+  {
+    "id": "ja-1993-0d4a6546f2d5",
+    "lemma": "パーティー",
+    "reading": "ぱーてぃー",
+    "gloss": "聚会；宴会",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "1番 パーティーをしています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38",
+      "jlpt-2005-1-listening-I-4"
+    ]
+  },
+  {
+    "id": "ja-1993-eb5c5c53f7fe",
+    "lemma": "理由",
+    "reading": "りゆう",
+    "gloss": "理由；缘由",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "その理由は何ですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-listening-II-6",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-867d0e700735",
+    "lemma": "事故",
+    "reading": "じこ",
+    "gloss": "事故",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この間、ご主人が車の事故を起こしたって言ってたけど、そのせいかなあ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36",
+      "jlpt-2005-1-vocab-VI-56",
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-b0e94e5d91fc",
+    "lemma": "起こす",
+    "reading": "おこす",
+    "gloss": "引起；造成；唤醒",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "この間、ご主人が車の事故を起こしたって言ってたけど、そのせいかなあ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-1b13f8bc82f9",
+    "lemma": "本人",
+    "reading": "ほんにん",
+    "gloss": "本人；当事人",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "それより、本人のほうなのよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1993-d1e2725d062f",
+    "lemma": "仕方",
+    "reading": "しかた",
+    "gloss": "方法；做法",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "2番 ラジオで男の人がブィへツラという国のあいさつの仕方を説明しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-1"
+    ]
+  },
+  {
+    "id": "ja-1993-6cb497b287b6",
+    "lemma": "番組",
+    "reading": "ばんぐみ",
+    "gloss": "节目",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "3番 女の人がラジオ番組でインタビューしています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-3",
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-1993-f7a53e0c3380",
+    "lemma": "苦労",
+    "reading": "くろう",
+    "gloss": "辛苦；费心",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "それをサボると、のぼる時苦労しますから。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-11"
+    ]
+  },
+  {
+    "id": "ja-1993-dd5265e7d3fc",
+    "lemma": "普段",
+    "reading": "ふだん",
+    "gloss": "平时；平常",
+    "partOfSpeech": "名词・副词",
+    "level": "F",
+    "context": "女:ふだんの心がけが大事だと言うことですね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-31",
+      "jlpt-2005-1-listening-I-14",
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-6ddd832bcd3b",
+    "lemma": "わざわざ",
+    "reading": "わざわざ",
+    "gloss": "特意；特地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "でも、わざわざ重い荷物を背負って疲れることをしにいくって言うのは......",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-3"
+    ]
+  },
+  {
+    "id": "ja-1993-4ef562580a2e",
+    "lemma": "疲れる",
+    "reading": "つかれる",
+    "gloss": "疲劳；累",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "でも、わざわざ重い荷物を背負って疲れることをしにいくって言うのは......",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-4f1240839836",
+    "lemma": "自然",
+    "reading": "しぜん",
+    "gloss": "自然；天然；自然地",
+    "partOfSpeech": "名词・な形容词・副词",
+    "level": "F",
+    "context": "やっぱり自然と一体になれるところがいいんでしょうかね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-1993-f5cce0d3149f",
+    "lemma": "発表",
+    "reading": "はっぴょう",
+    "gloss": "发表；公布",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "午後六時、気象庁発表。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-61",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-1462a7d8531e",
+    "lemma": "地方",
+    "reading": "ちほう",
+    "gloss": "地区；地方",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "東京地方の天気予報をお知らせします。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1993-4ffef8f3113a",
+    "lemma": "注意",
+    "reading": "ちゅうい",
+    "gloss": "注意；提醒",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "特に今夜半からは船舶は注意が必要です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-60",
+      "jlpt-2005-1-grammar-IV-29",
+      "jlpt-2005-1-listening-I-9"
+    ]
+  },
+  {
+    "id": "ja-1993-c255f880934a",
+    "lemma": "激しい",
+    "reading": "はげしい",
+    "gloss": "激烈；猛烈；剧烈",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "明日の午前中はかなりの強風を伴った激しい雨となるでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-90bcb9268221",
+    "lemma": "グラフ",
+    "reading": "ぐらふ",
+    "gloss": "图表；曲线图",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "5番 自動車会社の業績のグラフです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-1993-26ffb5cd8f5b",
+    "lemma": "表す",
+    "reading": "あらわす",
+    "gloss": "表示；表现；表达",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "A社の業績を表している線はどれですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-1b2b805ad5a6",
+    "lemma": "見事",
+    "reading": "みごと",
+    "gloss": "精彩；出色；完美",
+    "partOfSpeech": "な形容词・名词",
+    "level": "F",
+    "context": "この会社は長期的視野に立った、実にうまい経営をしていて、それが80年代半ばから見事に表れてきました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1993-0f5759bd0ea0",
+    "lemma": "海外",
+    "reading": "かいがい",
+    "gloss": "海外；国外",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "でも、これは工場の海外移転など、先を見越した投資のせいなんです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-59"
+    ]
+  },
+  {
+    "id": "ja-1993-1b1b5806b28b",
+    "lemma": "予定",
+    "reading": "よてい",
+    "gloss": "预定；计划；安排",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "6番 社長の今日の予定はどうなっていますか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-28",
+      "jlpt-2005-1-listening-II-1"
+    ]
+  },
+  {
+    "id": "ja-1993-6f7de8e48ace",
+    "lemma": "会議",
+    "reading": "かいぎ",
+    "gloss": "会议",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "女:朝十時からの企画会議は中止です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-58",
+      "jlpt-2005-1-grammar-IV-43"
+    ]
+  },
+  {
+    "id": "ja-1993-bc5622c208c4",
+    "lemma": "空港",
+    "reading": "くうこう",
+    "gloss": "机场",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "企画部の部長と課長が空港までお出迎えにいらっしゃいました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1993-49a48d65c2c1",
+    "lemma": "いらっしゃる",
+    "reading": "いらっしゃる",
+    "gloss": "来、去、在的尊敬说法",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "企画部の部長と課長が空港までお出迎えにいらっしゃいました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-14"
+    ]
+  },
+  {
+    "id": "ja-1993-5e92ec80e371",
+    "lemma": "予約",
+    "reading": "よやく",
+    "gloss": "预约；预订",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "女:はい、二時に[歯科医院名不確定]に予約が入れてあります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-cd3e31622e8f",
+    "lemma": "育てる",
+    "reading": "そだてる",
+    "gloss": "培育；抚养",
+    "partOfSpeech": "一段动词",
+    "level": "F",
+    "context": "8番 女の人がセピアと言う植物の育て方を説明しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-aa6dcdf6888c",
+    "lemma": "成長",
+    "reading": "せいちょう",
+    "gloss": "成长；生长",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "成長の早い植物ですから、これは毎年欠かさず行います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-1993-a80b8051b166",
+    "lemma": "簡単",
+    "reading": "かんたん",
+    "gloss": "简单；容易",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "もし、セピアをふやしたい場合は枝を切って、土にさしておくだけで、簡単に芽が出ます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-57",
+      "jlpt-2005-1-listening-II-3"
+    ]
+  },
+  {
+    "id": "ja-1993-4095a9dff2de",
+    "lemma": "国際交流",
+    "reading": "こくさいこうりゅう",
+    "gloss": "国际交流",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "9番 大学生が国際交流クラブのシャツについて相談しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-54"
+    ]
+  },
+  {
+    "id": "ja-1993-eeef861b8767",
+    "lemma": "地球",
+    "reading": "ちきゅう",
+    "gloss": "地球",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "それで、クラブのシンボルとして、地球の絵を真ん中に大きく入れたりして。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-listening-II-9"
+    ]
+  },
+  {
+    "id": "ja-1993-14b69bd6eeb0",
+    "lemma": "文字",
+    "reading": "もじ",
+    "gloss": "文字；字",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "前は文字だけにして。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-7ad3c0730279",
+    "lemma": "目立つ",
+    "reading": "めだつ",
+    "gloss": "显眼；引人注意",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "女:でも、それじゃ、名前が目立たないわね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-1993-5b93454b936f",
+    "lemma": "知らせ",
+    "reading": "しらせ",
+    "gloss": "通知；消息",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "1番 ラジオのお知らせを聞いてください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-64"
+    ]
+  },
+  {
+    "id": "ja-1993-e4e63c53a66d",
+    "lemma": "締め切り",
+    "reading": "しめきり",
+    "gloss": "截止；截止日期",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "応募の締め切りは十二月十五日です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-6"
+    ]
+  },
+  {
+    "id": "ja-1993-df2c853328f9",
+    "lemma": "招待",
+    "reading": "しょうたい",
+    "gloss": "邀请；招待",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "優勝者は京都二泊三日の旅にご招待いたします。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-37"
+    ]
+  },
+  {
+    "id": "ja-1993-37d266e0ab12",
+    "lemma": "失敗",
+    "reading": "しっぱい",
+    "gloss": "失败；失误",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "まあ、私の場合、明るいのがとりえでして、失敗しても落ち込んで暗くなると言うことがほとんどない",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-17"
+    ]
+  },
+  {
+    "id": "ja-1993-e1ba21d79b75",
+    "lemma": "活動",
+    "reading": "かつどう",
+    "gloss": "活动",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "これは中学、高校のクラブ活動を通して養われたと思いますが、大体どんな人とでも、うまくやっていける自信があります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-39"
+    ]
+  },
+  {
+    "id": "ja-1993-11bfc92caed7",
+    "lemma": "通す",
+    "reading": "とおす",
+    "gloss": "通过；贯穿；经由",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "これは中学、高校のクラブ活動を通して養われたと思いますが、大体どんな人とでも、うまくやっていける自信があります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36"
+    ]
+  },
+  {
+    "id": "ja-1993-49b34a8a3cf6",
+    "lemma": "コンサート",
+    "reading": "こんさーと",
+    "gloss": "音乐会；演唱会",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "3番 男の人と女の人がコンサートのポスターを見ながら話しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-1993-1cbe031abdde",
+    "lemma": "絶対",
+    "reading": "ぜったい",
+    "gloss": "绝对；一定",
+    "partOfSpeech": "名词・副词",
+    "level": "F",
+    "context": "女:絶対、行きたいなあ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23",
+      "jlpt-2005-1-listening-I-11",
+      "jlpt-2005-1-listening-II-3"
+    ]
+  },
+  {
+    "id": "ja-1993-b8f605046c63",
+    "lemma": "紹介",
+    "reading": "しょうかい",
+    "gloss": "介绍",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "4番 会社の説明会で会社の紹介をしています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-1993-4fddddddb6f2",
+    "lemma": "様々",
+    "reading": "さまざま",
+    "gloss": "各种各样",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "もともとは、おもちゃの専門店でしたが、遊び心を追求するために、さまざまな分野に挑戦してきました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-abf35feef6fc",
+    "lemma": "分野",
+    "reading": "ぶんや",
+    "gloss": "领域；方面",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "もともとは、おもちゃの専門店でしたが、遊び心を追求するために、さまざまな分野に挑戦してきました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-58fdb0941f36",
+    "lemma": "商品",
+    "reading": "しょうひん",
+    "gloss": "商品",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "良い商品作りを目指して、おもちゃの生産工場を建設し、同時にコンピューターのゲームソフトの開発にも着手してきました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-1993-437a172d7b13",
+    "lemma": "開発",
+    "reading": "かいはつ",
+    "gloss": "开发；研制",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "G",
+    "context": "良い商品作りを目指して、おもちゃの生産工場を建設し、同時にコンピューターのゲームソフトの開発にも着手してきました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-grammar-V-48",
+      "jlpt-2005-1-grammar-V-53"
+    ]
+  },
+  {
+    "id": "ja-1993-a4eb2ded2737",
+    "lemma": "将来",
+    "reading": "しょうらい",
+    "gloss": "将来；未来",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "将来は、ゴルフ場やスキー場などの建設にも手を広げ、海外にも生産と貿易の拠点を設けるなど、国際的なレジャー企業として事業を拡大していくつもりです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23",
+      "jlpt-2005-1-grammar-V-47"
+    ]
+  },
+  {
+    "id": "ja-1993-2fcb81e5220d",
+    "lemma": "レジャー",
+    "reading": "れじゃー",
+    "gloss": "休闲；娱乐",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "将来は、ゴルフ場やスキー場などの建設にも手を広げ、海外にも生産と貿易の拠点を設けるなど、国際的なレジャー企業として事業を拡大していくつもりです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-59"
+    ]
+  },
+  {
+    "id": "ja-1993-3ff43777da59",
+    "lemma": "事業",
+    "reading": "じぎょう",
+    "gloss": "事业；业务；经营项目",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "将来は、ゴルフ場やスキー場などの建設にも手を広げ、海外にも生産と貿易の拠点を設けるなど、国際的なレジャー企業として事業を拡大していくつもりです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-17"
+    ]
+  },
+  {
+    "id": "ja-1993-afe8aabbacac",
+    "lemma": "卒業",
+    "reading": "そつぎょう",
+    "gloss": "毕业",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "5番 ある県の高校卒業者の進学率について話しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-40"
+    ]
+  },
+  {
+    "id": "ja-1993-f3c91499f53c",
+    "lemma": "傾向",
+    "reading": "けいこう",
+    "gloss": "倾向；趋势",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "それに対して、女子の高校卒業者を見てみますと、4年制大学への進学者はわずかながら減る傾向にあります。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-57"
+    ]
+  },
+  {
+    "id": "ja-1993-e354387f3cfe",
+    "lemma": "入学",
+    "reading": "にゅうがく",
+    "gloss": "入学",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "そして、逆に、短期大学への入学者の数が徐々に上向いているんです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-65",
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-6a9f844517c4",
+    "lemma": "珍しい",
+    "reading": "めずらしい",
+    "gloss": "少见；稀奇",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "めずらしい現象だと言えるでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-59"
+    ]
+  },
+  {
+    "id": "ja-1993-08b602275aee",
+    "lemma": "全体",
+    "reading": "ぜんたい",
+    "gloss": "整体；全部",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "専門学校へ進む者は小さい増減を繰り返しながら、全体としてはやや減りつつある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-56",
+      "jlpt-2005-1-listening-I-11",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-e4ce07494ceb",
+    "lemma": "やや",
+    "reading": "やや",
+    "gloss": "稍微；略微",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "専門学校へ進む者は小さい増減を繰り返しながら、全体としてはやや減りつつある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48",
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-1993-3adac82bd9e8",
+    "lemma": "しっかり",
+    "reading": "しっかり",
+    "gloss": "牢固地；好好地；可靠地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "男:いや、それよりも、一人一人がですね、自分の仕事をしっかりやってくれたからだと思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-8"
+    ]
+  },
+  {
+    "id": "ja-1993-6d53f8abc8a6",
+    "lemma": "相手",
+    "reading": "あいて",
+    "gloss": "对方；对手；伙伴",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "女:相手のチームに怪我人が多かったと言うことはないでしょうか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-grammar-V-54",
+      "jlpt-2005-1-listening-II-2"
+    ]
+  },
+  {
+    "id": "ja-1993-16bb1d2b098c",
+    "lemma": "条件",
+    "reading": "じょうけん",
+    "gloss": "条件",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "うちも怪我人はいましたし、戦う条件は同じだったと思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15"
+    ]
+  },
+  {
+    "id": "ja-1993-3f8b7c390b04",
+    "lemma": "商売",
+    "reading": "しょうばい",
+    "gloss": "买卖；生意",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "うちは商売をやってるから、朝は早いんですよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-32"
+    ]
+  },
+  {
+    "id": "ja-1993-da12b4a6e0d9",
+    "lemma": "ゆっくり",
+    "reading": "ゆっくり",
+    "gloss": "慢慢地；从容地；充分休息地",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "女:水曜日だけは、お店が休みだから、ゆっくり起きて、九時ごろにしてるんですよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-7",
+      "jlpt-2005-1-listening-II-2"
+    ]
+  },
+  {
+    "id": "ja-1993-2fd63b6fa878",
+    "lemma": "バンド",
+    "reading": "ばんど",
+    "gloss": "乐队；带子",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "送別会って言っても、しめた感じにならなくて、バンドの演奏がよかったのかしら。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-1993-d894d4292f12",
+    "lemma": "料理",
+    "reading": "りょうり",
+    "gloss": "烹饪；菜肴",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "女:料理もなかなかのもんだったし、食べ放題って言うと、まずいものしか出さないところ、多いんだけどね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-65"
+    ]
+  },
+  {
+    "id": "ja-1993-a8be7938eb55",
+    "lemma": "なかなか",
+    "reading": "なかなか",
+    "gloss": "相当；很；不容易",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "女:料理もなかなかのもんだったし、食べ放題って言うと、まずいものしか出さないところ、多いんだけどね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36",
+      "jlpt-2005-1-vocab-V-49",
+      "jlpt-2005-1-vocab-VI-59",
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-402c81a22f10",
+    "lemma": "納得",
+    "reading": "なっとく",
+    "gloss": "理解并接受；认同",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "あれだけ飲んで食べて、あの値段なら納得だわ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1993-3037bacda164",
+    "lemma": "不便",
+    "reading": "ふべん",
+    "gloss": "不方便",
+    "partOfSpeech": "名词・な形容词",
+    "level": "F",
+    "context": "ちょっと不便だったんだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-39"
+    ]
+  },
+  {
+    "id": "ja-1993-828d4cec1f3c",
+    "lemma": "場所",
+    "reading": "ばしょ",
+    "gloss": "地点；场所",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "2場所です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-15"
+    ]
+  },
+  {
+    "id": "ja-1993-aa18b6dcd893",
+    "lemma": "健康",
+    "reading": "けんこう",
+    "gloss": "健康",
+    "partOfSpeech": "名词・な形容词",
+    "level": "F",
+    "context": "この頃、健康ブームで、健康飲料水をお飲みになる方が多いようですが、テレビのコマーシャルでよく言っている元気になるジュースと言うのは、栄養学的な見地から見れば、ありえないことです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-14"
+    ]
+  },
+  {
+    "id": "ja-1993-80c9b3e4254a",
+    "lemma": "意味",
+    "reading": "いみ",
+    "gloss": "意思；意义",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "確かに、果物をとっていない人にはビタミンCを補給することができるわけですが、普通の食生活をしている人にはあまり意味がないと思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-40",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1993-81ab1c8ac42e",
+    "lemma": "まし",
+    "reading": "まし",
+    "gloss": "较好；稍强一些",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "野菜や果物を食べていれば、健康は保たれるわけですから、はっきり言って、気分の問題であって、まあ、のどが渇いたとこに、コーラを飲むより少しまし、という感覚で飲んでいただければと思います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-24",
+      "jlpt-2005-1-vocab-III-25",
+      "jlpt-2005-1-vocab-III-26",
+      "jlpt-2005-1-vocab-III-27",
+      "jlpt-2005-1-vocab-V-48",
+      "jlpt-2005-1-vocab-VI-59",
+      "jlpt-2005-1-vocab-VII-63",
+      "jlpt-2005-1-vocab-VII-64",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-grammar-IV-36",
+      "jlpt-2005-1-listening-I-2",
+      "jlpt-2005-1-listening-I-3",
+      "jlpt-2005-1-listening-I-4",
+      "jlpt-2005-1-listening-I-8",
+      "jlpt-2005-1-listening-I-10",
+      "jlpt-2005-1-listening-I-12",
+      "jlpt-2005-1-listening-I-13",
+      "jlpt-2005-1-listening-I-14",
+      "jlpt-2005-1-listening-I-15",
+      "jlpt-2005-1-listening-II-3",
+      "jlpt-2005-1-listening-II-4",
+      "jlpt-2005-1-listening-II-5",
+      "jlpt-2005-1-listening-II-11",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-79c02cfcfb11",
+    "lemma": "授業",
+    "reading": "じゅぎょう",
+    "gloss": "授课；课",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "男の学生は明日の授業のために、何をすればいいですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-1",
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-57b8fc274f10",
+    "lemma": "英語",
+    "reading": "えいご",
+    "gloss": "英语",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "女:あ、英語の?",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-55"
+    ]
+  },
+  {
+    "id": "ja-1993-7a0063f6700e",
+    "lemma": "若い",
+    "reading": "わかい",
+    "gloss": "年轻；年纪小",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "3自分が若く見られたからです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-29",
+      "jlpt-2005-1-listening-II-4",
+      "jlpt-2005-1-listening-II-5",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-b36f8b3680eb",
+    "lemma": "意見",
+    "reading": "いけん",
+    "gloss": "意见；看法",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "二人の意見が違うのは、どんな点についてですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-9"
+    ]
+  },
+  {
+    "id": "ja-1993-ed4aaa5c0f82",
+    "lemma": "狭い",
+    "reading": "せまい",
+    "gloss": "狭窄；小",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "女:あの部屋、狭いし、雰囲気が悪いと思うんだけど。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1993-759383153c12",
+    "lemma": "感じ",
+    "reading": "かんじ",
+    "gloss": "感觉；印象",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "確かに狭いけど、値段のわりにはけっこう感じのいい部屋だと思うけど。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-listening-I-5",
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-1fa75d1bc232",
+    "lemma": "祭り",
+    "reading": "まつり",
+    "gloss": "节庆；祭典",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "7番 大家のおじいさんが金さんをお祭りに誘いに来ました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-55"
+    ]
+  },
+  {
+    "id": "ja-1993-8a2f3adf839b",
+    "lemma": "踊り",
+    "reading": "おどり",
+    "gloss": "舞蹈；跳舞",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "みこしも出るし、いろんな店も出るし、それに踊りもあるし、けっこう面白いよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-3"
+    ]
+  },
+  {
+    "id": "ja-1993-656d38fced1f",
+    "lemma": "ぜひ",
+    "reading": "ぜひ",
+    "gloss": "务必；一定；很想",
+    "partOfSpeech": "副词",
+    "level": "F",
+    "context": "よかったら、ぜひ見てやってくれないかなあ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-56"
+    ]
+  },
+  {
+    "id": "ja-1993-a44c7ba21132",
+    "lemma": "道路",
+    "reading": "どうろ",
+    "gloss": "道路",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "女:では、道路の建設に賛成の立場から、意見を言っていただきましょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-38"
+    ]
+  },
+  {
+    "id": "ja-1993-53f2cfb354f0",
+    "lemma": "立場",
+    "reading": "たちば",
+    "gloss": "立场；所处位置",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "女:では、道路の建設に賛成の立場から、意見を言っていただきましょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-2542e730a6ef",
+    "lemma": "反対",
+    "reading": "はんたい",
+    "gloss": "反对；相反",
+    "partOfSpeech": "名词・な形容词・サ变动词",
+    "level": "F",
+    "context": "私らの山に道路を作るなと、反対している人間の顔ぶれ見てごらんなさい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-grammar-V-53"
+    ]
+  },
+  {
+    "id": "ja-1993-6f1bbc728631",
+    "lemma": "暮らし",
+    "reading": "くらし",
+    "gloss": "生活；生计",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "そこに住んでいる人間の暮らしが便利になるようなことは、環境破壊だとか何とか言って頭から反対するんです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-1993-3360a52193c9",
+    "lemma": "夫婦",
+    "reading": "ふうふ",
+    "gloss": "夫妻",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "9番   ある夫婦が子供の入学試験の結果について話しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1993-e3bf3a629b89",
+    "lemma": "結果",
+    "reading": "けっか",
+    "gloss": "结果",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "9番   ある夫婦が子供の入学試験の結果について話しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1993-c84ad61b176d",
+    "lemma": "合格",
+    "reading": "ごうかく",
+    "gloss": "考试通过；合格",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "男:ああ、合格発表か。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-26"
+    ]
+  },
+  {
+    "id": "ja-1993-f07cad6c2b4e",
+    "lemma": "めでたい",
+    "reading": "めでたい",
+    "gloss": "可喜可贺；值得庆祝",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "男:まあ、めでたいなあ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-35"
+    ]
+  },
+  {
+    "id": "ja-1993-78e987c76bbe",
+    "lemma": "喜ぶ",
+    "reading": "よろこぶ",
+    "gloss": "高兴；喜悦；乐意接受",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "4夫があまり喜ばないからです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-1993-c4282091daa4",
+    "lemma": "試験",
+    "reading": "しけん",
+    "gloss": "考试；试验",
+    "partOfSpeech": "名词・サ变动词",
+    "level": "F",
+    "context": "娘は中学三年になりますが、学校で試験など、自分のいやだと思うことがあると、その前の日あたりから落ち着かず、いらいらして、妹に当たったり、何か理由をつけて学校を休んでしまいます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-26"
+    ]
+  },
+  {
+    "id": "ja-1993-83bbb0912932",
+    "lemma": "休む",
+    "reading": "やすむ",
+    "gloss": "休息；请假；不上课或班",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "女の人の娘さんがよく学校を休むほんとうの理由は何ですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-VI-55"
+    ]
+  },
+  {
+    "id": "ja-1993-e88845352db9",
+    "lemma": "言葉",
+    "reading": "ことば",
+    "gloss": "语言；词语；话语",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "12番   言葉のゲームの説明をしています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-reading-III-23",
+      "jlpt-2005-1-reading-III-24",
+      "jlpt-2005-1-grammar-VI-57"
+    ]
+  },
+  {
+    "id": "ja-1993-fd2460833058",
+    "lemma": "ゲーム",
+    "reading": "げーむ",
+    "gloss": "游戏；比赛",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "12番   言葉のゲームの説明をしています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-41"
+    ]
+  },
+  {
+    "id": "ja-1993-78279725036a",
+    "lemma": "やり方",
+    "reading": "やりかた",
+    "gloss": "做法；方法",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ゲームのやり方が分かったら、実際にやってみます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1993-a4e3057f996a",
+    "lemma": "実際",
+    "reading": "じっさい",
+    "gloss": "实际；实际上",
+    "partOfSpeech": "名词・副词",
+    "level": "F",
+    "context": "ゲームのやり方が分かったら、実際にやってみます。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1993-2c01205b05f1",
+    "lemma": "選ぶ",
+    "reading": "えらぶ",
+    "gloss": "选择",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "後で、正しい答えを選んでください。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1993-7e64da2bbd16",
+    "lemma": "始まる",
+    "reading": "はじまる",
+    "gloss": "开始",
+    "partOfSpeech": "五段动词",
+    "level": "F",
+    "context": "そうしたら、次の人は真ん中の音の「く」から始まる言葉を言います。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1993-8ed84c233a43",
+    "lemma": "カメラ",
+    "reading": "かめら",
+    "gloss": "照相机",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "1カメラ   2さくら   3なまえ   4ちから",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48",
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-1993-7ec26292414b",
+    "lemma": "名前",
+    "reading": "なまえ",
+    "gloss": "名字；名称",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "1カメラ   2さくら   3なまえ   4ちから",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-43",
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-266125ddb97f",
+    "lemma": "注文",
+    "reading": "ちゅうもん",
+    "gloss": "点单、订购",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "にもかかわらず、（a）になってみれば、居ながら蕎麦屋でもすし屋でも、ためしたことはないが警察にでも出前を注文することができるというのは、じっさい愉快、痛快、喝采にあたいする。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-65"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-2e7b3bbd65a8",
+    "lemma": "注目",
+    "reading": "ちゅうもく",
+    "gloss": "关注",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "この場合には棒グラフですから棒の長さに注目しています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-3eca9231ae5c",
+    "lemma": "洗濯",
+    "reading": "せんたく",
+    "gloss": "洗衣",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "危険はなさそうなので、ひとまず安心して、脱水が終わっているはずの洗濯物を干そうと思いました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-910be76e9414",
+    "lemma": "嗜好",
+    "reading": "しこう",
+    "gloss": "嗜好",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "女：嗜好品（しこうひん）はちょっと、普段からなれているものは好みがあるのでしょう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-14"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-a6782b9cf3b6",
+    "lemma": "利益",
+    "reading": "りえき",
+    "gloss": "利益、利润",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "政治家は国民全体の利益を考えるべきだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-39",
+      "jlpt-2005-1-grammar-VI-56"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-5c25457eac12",
+    "lemma": "返済",
+    "reading": "へんさい",
+    "gloss": "偿还",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-46"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-3d3ff2df6fe8",
+    "lemma": "結婚式",
+    "reading": "けっこんしき",
+    "gloss": "婚礼",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-37"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-bfa0cc9f25eb",
+    "lemma": "意地を張る",
+    "reading": "いじをはる",
+    "gloss": "固执己见；坚持不让步",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "つまらない意地を張るな。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-II-20"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-5fe57def525b",
+    "lemma": "というもの",
+    "reading": "というもの",
+    "gloss": "接近来的一段时间，强调期间状态一直持续",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "なぜかといえば、子供が生まれる前、そして生まれた瞬間、それから六つ七つぐらいまでのあいだに、子供は親に生きる喜びというものを十分与えつくしているのだから、というふうに言うのです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-grammar-IV-34"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-f9b9615201d4",
+    "lemma": "というか",
+    "reading": "というか",
+    "gloss": "或者说；该说是……",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "男性：始めは飛行機で行く予定だったんだけど、友達がお金がないというから、船で行くことにしたんだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-43",
+      "jlpt-2005-1-listening-II-1"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-d8d7e372c5b6",
+    "lemma": "余裕",
+    "reading": "よゆう",
+    "gloss": "余地；空闲；从容应对的能力",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "日本人社会で暮らすのに忘れてはならない三種の神器(注3)はこれで、人と話をするときは\"私なんかダメですよ\"とか、\"いつもいいようにやられてばっかり\"とか、\"失敗ばかりでそんな余裕はありません\"とかを必ず三分間に一回ぐらいはいわないとうまくいかない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-85e3074d7bee",
+    "lemma": "に至っては",
+    "reading": "にいたっては",
+    "gloss": "到了……地步；至于……",
+    "partOfSpeech": "固定表达",
+    "level": "G",
+    "context": "ことここに至っては、素人にはどうすることもできない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-10"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-681c31716253",
+    "lemma": "ばかり",
+    "reading": "ばかり",
+    "gloss": "只；尽是；刚刚等，意义由接续和语境决定",
+    "partOfSpeech": "助词",
+    "level": "F",
+    "context": "新しく来たコーチに対する彼の態度は、コーチとして認めないと言わんばかりだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-65",
+      "jlpt-2005-1-grammar-IV-29",
+      "jlpt-2005-1-grammar-IV-32",
+      "jlpt-2005-1-grammar-V-51"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-4c03b64379a4",
+    "lemma": "ものを",
+    "reading": "ものを",
+    "gloss": "本来可以……却……；表达遗憾、不满等",
+    "partOfSpeech": "接续表达",
+    "level": "G",
+    "context": "なぜかといえば、子供が生まれる前、そして生まれた瞬間、それから六つ七つぐらいまでのあいだに、子供は親に生きる喜びというものを十分与えつくしているのだから、というふうに言うのです。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-grammar-IV-30"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-bf076468b2c1",
+    "lemma": "ものだ",
+    "reading": "ものだ",
+    "gloss": "表示常理、感慨、过去惯常情形等",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57",
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-32a1397fd5b9",
+    "lemma": "ものの",
+    "reading": "ものの",
+    "gloss": "虽然……但是……",
+    "partOfSpeech": "接续表达",
+    "level": "G",
+    "context": "(井上ひさし「本の運命」による)(注1)媒介：二つのものの間に立って、関係をつけること(注2)書記言語：書かれた言葉",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-23"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-366498d0d1dd",
+    "lemma": "ことになる",
+    "reading": "ことになる",
+    "gloss": "决定形成某种安排；推论为某种结果",
+    "partOfSpeech": "固定表达",
+    "level": "F",
+    "context": "したがってこの立場では、文化のない社会は考えられないし、文化をもたない人間もいないということになる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-hlb1000-u01-92c8a29d9aa4",
+    "lemma": "いただく",
+    "reading": "いただく",
+    "gloss": "承蒙；恭敬地接受；也作吃、喝的自谦语",
+    "partOfSpeech": "五段动词・补助动词",
+    "level": "G",
+    "context": "このたび代表として国際会議にいかせていただくことになりました。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-15"
+    ]
+  },
+  {
+    "id": "ja-1994-5a0cc6c04776",
+    "lemma": "故障",
+    "reading": "こしょう",
+    "gloss": "故障；损坏",
+    "partOfSpeech": "名词・サ变",
+    "level": "F",
+    "context": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-6"
+    ]
+  },
+  {
+    "id": "ja-1994-2176ec46b07c",
+    "lemma": "制服",
+    "reading": "せいふく",
+    "gloss": "制服；校服",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "制服を着た高校生が歩いている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-41"
+    ]
+  },
+  {
+    "id": "ja-1994-80f3b5dd02da",
+    "lemma": "立つ",
+    "reading": "たつ",
+    "gloss": "处于某种地位；站立",
+    "partOfSpeech": "五段动词",
+    "level": "G",
+    "context": "人の上にたつ者は、責任ある行動を取らなければならない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-1995-70e39859279e",
+    "lemma": "状態",
+    "reading": "じょうたい",
+    "gloss": "状态；情况",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "山田さんが委員会をはなれてしまったので、彼のきかくはちゅうに浮いたじょうたいだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10",
+      "jlpt-2005-1-listening-II-11"
+    ]
+  },
+  {
+    "id": "ja-1995-82b4d917ee21",
+    "lemma": "無難",
+    "reading": "ぶなん",
+    "gloss": "稳妥；不易出错",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "ホテルのレストランへ行くなら、やはりスーツを着ていくのが無難だろう。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1995-225c16f48b9e",
+    "lemma": "周り",
+    "reading": "まわり",
+    "gloss": "周围的人；身边人",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "まわりに反対されて、留学するのをあきらめた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-12",
+      "jlpt-2005-1-listening-II-9"
+    ],
+    "spellingVariants": [
+      "まわり"
+    ]
+  },
+  {
+    "id": "ja-1995-67c0344458b9",
+    "lemma": "分ける",
+    "reading": "わける",
+    "gloss": "按标准分类；区分",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "出席者を年齢で分けると、40代がいちばん多かった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1995-6fb0aaad480a",
+    "lemma": "子供",
+    "reading": "こども",
+    "gloss": "孩子；儿童",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "この詩は子供をなくした親のせつない気持ちをつづったものである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21",
+      "jlpt-2005-1-listening-II-9",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1996-fbdac4178058",
+    "lemma": "審査",
+    "reading": "しんさ",
+    "gloss": "审查；审核",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "その仕事は趣味と実益を兼ねるような仕事なので、採用時の審査が厳しいにもかかわらず応募する人が多い。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1996-9819b3167955",
+    "lemma": "自ら",
+    "reading": "みずから",
+    "gloss": "亲自；自己",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "長年にわたる支配体制が足元から崩れはじめたのは、自らの政治的腐敗を省みなかった当然の結果であった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1996-50c5bb3de736",
+    "lemma": "習慣",
+    "reading": "しゅうかん",
+    "gloss": "习惯",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "規則正しい生活習慣を身につけることは大切だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-12"
+    ]
+  },
+  {
+    "id": "ja-1996-3f5f4cccd6d8",
+    "lemma": "活躍",
+    "reading": "かつやく",
+    "gloss": "活跃；发挥作用",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼はちょめいな小説家として長い間かつやくしてきたが、アイデアがつきてしまったと  いってそうさく活動から遠ざかっている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1996-eb7a503278af",
+    "lemma": "貴重",
+    "reading": "きちょう",
+    "gloss": "宝贵；珍贵",
+    "partOfSpeech": "な形容词",
+    "level": "F",
+    "context": "これは人類のきげんとしんかを明らかにするためのきちょうなしょうこである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-47"
+    ]
+  },
+  {
+    "id": "ja-1996-a8de8b1c7c74",
+    "lemma": "証拠",
+    "reading": "しょうこ",
+    "gloss": "证据",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "これは人類のきげんとしんかを明らかにするためのきちょうなしょうこである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14"
+    ]
+  },
+  {
+    "id": "ja-1996-7e52f7e7bc96",
+    "lemma": "運ぶ",
+    "reading": "はこぶ",
+    "gloss": "进展；事情推进",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "交渉が順調にはこぶように努力している。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1996-92c38c0d985a",
+    "lemma": "一緒",
+    "reading": "いっしょ",
+    "gloss": "一样；等同",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "自由とわがままをいっしょにしてはいけないと思う。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-11"
+    ]
+  },
+  {
+    "id": "ja-1996-ed03298264df",
+    "lemma": "甘い",
+    "reading": "あまい",
+    "gloss": "宽松；不严厉",
+    "partOfSpeech": "い形容词",
+    "level": "F",
+    "context": "山中先生より中村先生の方が採点があまい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1996-35b590e5f4a9",
+    "lemma": "丸み",
+    "reading": "まるみ",
+    "gloss": "圆润；圆弧",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "女:これなんか適度に丸みがあって、しかもすっきりしていていいんじゃない?",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-5"
+    ]
+  },
+  {
+    "id": "ja-1996-471bae1ab08f",
+    "lemma": "迷惑",
+    "reading": "めいわく",
+    "gloss": "麻烦；困扰",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ああでもない、こうでもないと迷惑をかけたあげく、あのしまつだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VII-63"
+    ]
+  },
+  {
+    "id": "ja-1997-311234c05022",
+    "lemma": "互い",
+    "reading": "たがい",
+    "gloss": "彼此；相互",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "夫婦は互いに束縛したり干渉したりしない方がいいという考え方に共鳴する人がおおくなった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1997-6feb8a085f3d",
+    "lemma": "充実",
+    "reading": "じゅうじつ",
+    "gloss": "充实；内容丰富",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "彼は前途有望な青年で、視野を広げるために外国留学し、現地で充実した毎日を送っている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8"
+    ]
+  },
+  {
+    "id": "ja-1997-196125719f75",
+    "lemma": "結ぶ",
+    "reading": "むすぶ",
+    "gloss": "缔结；建立联系；系结",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "製品のかかくをいじするためにけいやくをむすんだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-13"
+    ]
+  },
+  {
+    "id": "ja-1997-ae5849c4a3cc",
+    "lemma": "誤解",
+    "reading": "ごかい",
+    "gloss": "误解",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "人にごかいされるようなぶれいなげんどうはつつしんだ方がいい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-1997-93493322403e",
+    "lemma": "批評",
+    "reading": "ひひょう",
+    "gloss": "评论；批评作品",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "作品をひひょうする。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1997-9b8cc4a8e4a0",
+    "lemma": "圧倒",
+    "reading": "あっとう",
+    "gloss": "压倒；使折服",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "小松さんの迫力に圧倒されて、思わず同意してしまった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1997-0d6a3f1b9aaf",
+    "lemma": "一つ",
+    "reading": "ひとつ",
+    "gloss": "连一件简单的事也；一个",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "田中さんは家事が嫌いで、掃除ひとつしない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10",
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18",
+      "jlpt-2005-1-listening-I-4"
+    ]
+  },
+  {
+    "id": "ja-1997-c1ee2c0cd4e9",
+    "lemma": "見る",
+    "reading": "みる",
+    "gloss": "照看；照料；辅导",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "近所の大学生が子供の勉強をみてくれるので、助かる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-11",
+      "jlpt-2005-1-listening-II-3"
+    ]
+  },
+  {
+    "id": "ja-1997-2f66779862f4",
+    "lemma": "息子",
+    "reading": "むすこ",
+    "gloss": "儿子",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "わたしには小さくなったスーツを息子に着せてみたがだぶだぶだった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-35"
+    ]
+  },
+  {
+    "id": "ja-1997-f38937c13ecc",
+    "lemma": "遊び",
+    "reading": "あそび",
+    "gloss": "玩耍；娱乐",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "あの子はいったん遊びに出たが最後、暗くなるまでもどって来ない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-7"
+    ]
+  },
+  {
+    "id": "ja-1997-7fc6e83611c6",
+    "lemma": "元気",
+    "reading": "げんき",
+    "gloss": "健康；有精神",
+    "partOfSpeech": "形容动词",
+    "level": "C",
+    "context": "久しぶりに友人から電話がかかってきたが、元気で研究を続けているそうでうれしいかぎりだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-11"
+    ]
+  },
+  {
+    "id": "ja-1998-5a7c1bff1c08",
+    "lemma": "物事",
+    "reading": "ものごと",
+    "gloss": "事情；事物",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "伝統的な文化の枠をこえて物事を考えるのはむずかしいことだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-1998-b55da9d3e772",
+    "lemma": "磨く",
+    "reading": "みがく",
+    "gloss": "磨练；提高技艺",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "田中さんは、オリンピックの選手を志して、小さいころからコーチについて技を磨いてきた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-grammar-IV-25"
+    ]
+  },
+  {
+    "id": "ja-1998-a115c30e99e3",
+    "lemma": "陳列",
+    "reading": "ちんれつ",
+    "gloss": "陈列；展示",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "店長:うん、開店間際にバタバタするのもなんだし、金のことはおれが立ち会った方がいいだろうから、先に陳列の方を頼むよ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-1998-7bc16821a9d6",
+    "lemma": "スイッチ",
+    "reading": "スイッチ",
+    "gloss": "开关",
+    "partOfSpeech": "名词",
+    "level": "C",
+    "context": "スイッチの入れ方すら知らない人に、この装置を動かしてみろなんて、よく言えますね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1999-879219f2e9a9",
+    "lemma": "支える",
+    "reading": "ささえる",
+    "gloss": "支持；支撑",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "その小説家は、視力の①衰えに②脅かされながら小説を完成した。そして、長年彼を③支えてくれた④賢明な妻に心を⑤込めてそれをささげた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-14"
+    ]
+  },
+  {
+    "id": "ja-1999-ed31fbb483ee",
+    "lemma": "操作",
+    "reading": "そうさ",
+    "gloss": "操作",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "この機械は二人で操作しなければならない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48"
+    ]
+  },
+  {
+    "id": "ja-1999-f74f9c6537fe",
+    "lemma": "組む",
+    "reading": "くむ",
+    "gloss": "组织；编排",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "企業における外国人労働者の①たいぐうについて、雑誌が②とくしゅうを③くんだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-36",
+      "jlpt-2005-1-vocab-V-43"
+    ]
+  },
+  {
+    "id": "ja-1999-92767b16344f",
+    "lemma": "断る",
+    "reading": "ことわる",
+    "gloss": "拒绝",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "税金を①おさめるのに借金を②いらいしたが、③ぼうだいな額のために④ことわられた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1999-3f588ae8d699",
+    "lemma": "感謝",
+    "reading": "かんしゃ",
+    "gloss": "感谢",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "いつも両親にかん（しゃ）している。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-32"
+    ]
+  },
+  {
+    "id": "ja-1999-1a3e6dbf1fe6",
+    "lemma": "たくましい",
+    "reading": "たくましい",
+    "gloss": "强健；坚韧",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "彼はたくましいから、多少困難な状況にあってもやっていける。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-48"
+    ]
+  },
+  {
+    "id": "ja-1999-2d53ba2ea725",
+    "lemma": "心がける",
+    "reading": "こころがける",
+    "gloss": "留心；努力做到",
+    "partOfSpeech": "动词",
+    "level": "F",
+    "context": "仕事はできるだけ早めに始めるようにこころがけている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20"
+    ]
+  },
+  {
+    "id": "ja-1999-bb1614c47342",
+    "lemma": "次第",
+    "reading": "しだい",
+    "gloss": "取决于",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "あした何をするかはそのときの気分しだいだ。まだ決めていない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1999-ff7715afb399",
+    "lemma": "うまい",
+    "reading": "うまい",
+    "gloss": "有利；顺利",
+    "partOfSpeech": "形容词",
+    "level": "G",
+    "context": "うまいことに、有力者がわれわれの計画に賛成して援助してくれることになった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-5"
+    ]
+  },
+  {
+    "id": "ja-1999-1ec826088cae",
+    "lemma": "切る",
+    "reading": "きる",
+    "gloss": "中断；结束",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "この文は、ここできったほうがいいか、それとも次に続けたほうがいいか迷っている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-1999-6c632a38c6f6",
+    "lemma": "冗談",
+    "reading": "じょうだん",
+    "gloss": "玩笑",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "花田さんの冗談には、いつも思わず笑わせられた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-1999-c8f824d913b9",
+    "lemma": "愛情",
+    "reading": "あいじょう",
+    "gloss": "爱；感情",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "森の動物たちの映画を見て、家族の愛情に心を打たれた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-1999-93015cdfdcb0",
+    "lemma": "友達",
+    "reading": "ともだち",
+    "gloss": "朋友",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "友達の（ちゅう）こくを素直に受け入れた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-1",
+      "jlpt-2005-1-listening-II-7"
+    ]
+  },
+  {
+    "id": "ja-1999-ac6f1f407c60",
+    "lemma": "熱中",
+    "reading": "ねっちゅう",
+    "gloss": "热衷；专注",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "そういう点からいうと、仲間の目をいつも意識している日本人は、なかなか一つのことに熱中できない。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-1999-8e8021bc1026",
+    "lemma": "自身",
+    "reading": "じしん",
+    "gloss": "自身；自己",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "好調阪神で満員になった甲子園の観客5人に1人が(つまり、あなたの前後左右の誰かが、いやあなた自身かもしれない)1年のうちに亡くなり、5年で観客がゼロになるくらいの多い数である。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-4"
+    ]
+  },
+  {
+    "id": "ja-2000-3d44a858953f",
+    "lemma": "人材",
+    "reading": "じんざい",
+    "gloss": "人才",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "この会社では、現在優秀な人材を募っている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-2000-41e51eefe40c",
+    "lemma": "後悔",
+    "reading": "こうかい",
+    "gloss": "后悔",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "学生のときもっと勉強しておけばよかったと後悔している。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-49"
+    ]
+  },
+  {
+    "id": "ja-2000-33650a369521",
+    "lemma": "世界",
+    "reading": "せかい",
+    "gloss": "认知的领域；天地",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "まだまだ我々の知らないせかいがたくさんある。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-IV-37",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-listening-II-7"
+    ]
+  },
+  {
+    "id": "ja-2000-3bbf563b0b52",
+    "lemma": "調子",
+    "reading": "ちょうし",
+    "gloss": "状况；状态",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "夏は体の調子を崩しやすく、私にとっては冬の方が過ごしやすい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-6"
+    ]
+  },
+  {
+    "id": "ja-2000-8efe0021eff7",
+    "lemma": "部下",
+    "reading": "ぶか",
+    "gloss": "部下",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "店長が部下を叱っています。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-15",
+      "jlpt-2005-1-reading-II-16",
+      "jlpt-2005-1-reading-II-17",
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-2001-a1ffa9bbe49f",
+    "lemma": "緊張",
+    "reading": "きんちょう",
+    "gloss": "紧张",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "きんちょうして、胃が痛くなった。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-8",
+      "jlpt-2005-1-reading-II-9",
+      "jlpt-2005-1-reading-II-10"
+    ]
+  },
+  {
+    "id": "ja-2001-16773842656e",
+    "lemma": "データ",
+    "reading": "データ",
+    "gloss": "数据",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "このファイルに入っているデータは絶対秘密だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-III-32",
+      "jlpt-2005-1-vocab-III-33",
+      "jlpt-2005-1-vocab-III-34",
+      "jlpt-2005-1-vocab-III-35"
+    ]
+  },
+  {
+    "id": "ja-2001-ac8530256f0a",
+    "lemma": "向こう",
+    "reading": "むこう",
+    "gloss": "对方",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "交渉では、結局むこうの主張が通った。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-2"
+    ]
+  },
+  {
+    "id": "ja-2001-88a6c6e91f3b",
+    "lemma": "機会",
+    "reading": "きかい",
+    "gloss": "机会",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "わが国には機会の不平等は残っているといえる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-2001-b864a6a4edbf",
+    "lemma": "中央",
+    "reading": "ちゅうおう",
+    "gloss": "中央",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "男:ええ、一応平凡ですが、上の中央に置くという案と、ちょっと変わったところでは紙の中央に置くという案があるんですが。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-2001-3e5c28716f6a",
+    "lemma": "表現",
+    "reading": "ひょうげん",
+    "gloss": "表达",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "世間では、いま、表現教育ということが盛んに叫ばれている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-II-10",
+      "jlpt-2005-1-reading-II-11",
+      "jlpt-2005-1-reading-II-12",
+      "jlpt-2005-1-reading-II-13",
+      "jlpt-2005-1-reading-II-14",
+      "jlpt-2005-1-reading-III-24"
+    ]
+  },
+  {
+    "id": "ja-2001-3c659f5514a2",
+    "lemma": "家族",
+    "reading": "かぞく",
+    "gloss": "家人；家庭",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "しかし、そうは言っても、これは程度問題で、子供が学校から帰ってから寝るまで、食事の時を除いてずうっと自分の部屋にいる、というのでは、家族間のコミュニケーションも希薄になる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-8"
+    ]
+  },
+  {
+    "id": "ja-2001-4ff0f1dda80f",
+    "lemma": "研究",
+    "reading": "けんきゅう",
+    "gloss": "研究",
+    "partOfSpeech": "名词·サ变",
+    "level": "G",
+    "context": "ジャーナリストであろうと、官僚であろうと、ビジネスマンであろうと、研究職、法律職、教育職などの知的労働者であろうと、大学を出てからつくたいていの職業生活のかなりの部分が、調べることと書くことに費やされるはずである。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-57",
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-listening-I-13"
+    ]
+  },
+  {
+    "id": "ja-2001-6b328eb54d03",
+    "lemma": "無料",
+    "reading": "むりょう",
+    "gloss": "免费",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "無料で映画が見られるとあって、入り口の前には1時間も前から行列ができた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-10"
+    ]
+  },
+  {
+    "id": "ja-2001-90d5e37ab1e7",
+    "lemma": "お金",
+    "reading": "おかね",
+    "gloss": "钱",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "彼は、お金のためとあれば、どんな仕事でも引き受ける。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-1"
+    ]
+  },
+  {
+    "id": "ja-2001-5154b7cf78ed",
+    "lemma": "電話",
+    "reading": "でんわ",
+    "gloss": "电话；打电话",
+    "partOfSpeech": "名词·サ变",
+    "level": "F",
+    "context": "さっき田中さんから電話があって、今日の野球の試合は、天気が悪いから中止なんだって。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-43",
+      "jlpt-2005-1-vocab-VI-58",
+      "jlpt-2005-1-listening-I-15",
+      "jlpt-2005-1-listening-II-10",
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-2002-4bbacdc9473b",
+    "lemma": "幼稚園",
+    "reading": "ようちえん",
+    "gloss": "幼儿园",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ようちえんの花壇にめが出たので、子どもたちがむじゃきにかんせいをあげている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-2002-951e0ae6197a",
+    "lemma": "生きる",
+    "reading": "いきる",
+    "gloss": "发挥作用",
+    "partOfSpeech": "动词",
+    "level": "G",
+    "context": "こういう仕事をさせると、田中さんの能力がいきる。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-21"
+    ]
+  },
+  {
+    "id": "ja-2002-7c0d50672861",
+    "lemma": "おろか",
+    "reading": "おろか",
+    "gloss": "别说；不用说",
+    "partOfSpeech": "表达",
+    "level": "G",
+    "context": "腰をいためて、歩くことはおろか立つことも難しい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-53",
+      "jlpt-2005-1-grammar-IV-39"
+    ]
+  },
+  {
+    "id": "ja-2002-79bbf3b27f74",
+    "lemma": "学問",
+    "reading": "がくもん",
+    "gloss": "学问；学术",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "大学の講義やゼミナールの場を通し、折にふれ、私は学生諸君に向かって、「せっかく大学に入ったのだから、一つでも多く知的感動を味わい、学問を楽しんでほしい」と語りかけている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7"
+    ]
+  },
+  {
+    "id": "ja-2003-a7ca6966dbf2",
+    "lemma": "閲覧",
+    "reading": "えつらん",
+    "gloss": "阅览",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "図書館の閲覧室で本を読む。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-50"
+    ]
+  },
+  {
+    "id": "ja-2003-4175df0ca970",
+    "lemma": "柔らかい",
+    "reading": "やわらかい",
+    "gloss": "柔和的；温和的",
+    "partOfSpeech": "形容词",
+    "level": "G",
+    "context": "この画家の絵にはなんとも言えないやわらかい雰囲気がありますね。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-I-5"
+    ]
+  },
+  {
+    "id": "ja-2004-274f457f329a",
+    "lemma": "寂しい",
+    "reading": "さびしい",
+    "gloss": "寂寞的；冷清的",
+    "partOfSpeech": "形容词",
+    "level": "F",
+    "context": "夕方の墓地は寂しくて人影もない。幽霊が出そうだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-V-45"
+    ]
+  },
+  {
+    "id": "ja-2004-a1f241cceefb",
+    "lemma": "推測",
+    "reading": "すいそく",
+    "gloss": "推测",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "彼の言葉から(すい)そくすると、仕事はうまく行っているらしい。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-II-18"
+    ]
+  },
+  {
+    "id": "ja-2004-84a45b7f93e5",
+    "lemma": "面倒",
+    "reading": "めんどう",
+    "gloss": "照料；照顾",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ゆり子さんは、後輩の面倒をよく見てくれるやさしい人です。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-listening-II-15"
+    ]
+  },
+  {
+    "id": "ja-2004-7d782cdc5f11",
+    "lemma": "運動",
+    "reading": "うんどう",
+    "gloss": "运动；社会活动",
+    "partOfSpeech": "名词・サ变",
+    "level": "G",
+    "context": "選挙に向けて地元で運動ができなかったことが敗因だ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-VI-60",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-grammar-IV-39"
+    ]
+  },
+  {
+    "id": "ja-2004-21f359bf0b62",
+    "lemma": "いやに",
+    "reading": "いやに",
+    "gloss": "异常地；出奇地",
+    "partOfSpeech": "副词",
+    "level": "G",
+    "context": "最近いやに元気がないね。悩みでもあるの?",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-vocab-V-44"
+    ]
+  },
+  {
+    "id": "ja-2004-baab70513536",
+    "lemma": "ドア",
+    "reading": "ドア",
+    "gloss": "门",
+    "partOfSpeech": "名词",
+    "level": "F",
+    "context": "ドアのところに私のかさを置かせていただいてもいいですか。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-37",
+      "jlpt-2005-1-listening-II-11"
+    ]
+  },
+  {
+    "id": "ja-2005-facaa0365f47",
+    "lemma": "方針",
+    "reading": "ほうしん",
+    "gloss": "方针；基本方向",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "外国語教育について、政府の方針に即した計画を立てた。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-grammar-IV-27"
+    ]
+  },
+  {
+    "id": "ja-2005-60e83e465d28",
+    "lemma": "困難",
+    "reading": "こんなん",
+    "gloss": "困难",
+    "partOfSpeech": "名词／形容动词",
+    "level": "F",
+    "context": "科学が高度になり細分化したために、領域が異なれば科学者でも理解が困難な状況になってしまっている。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-I-1",
+      "jlpt-2005-1-reading-I-2",
+      "jlpt-2005-1-reading-I-3",
+      "jlpt-2005-1-reading-I-4",
+      "jlpt-2005-1-reading-I-5",
+      "jlpt-2005-1-reading-I-6",
+      "jlpt-2005-1-reading-I-7",
+      "jlpt-2005-1-reading-III-22",
+      "jlpt-2005-1-grammar-IV-40"
+    ]
+  },
+  {
+    "id": "ja-2005-ffc6f0db70c9",
+    "lemma": "芸術",
+    "reading": "げいじゅつ",
+    "gloss": "艺术",
+    "partOfSpeech": "名词",
+    "level": "G",
+    "context": "「ひと」というのは、芸術家諸君のことだ。",
+    "sourceQuestionIds": [
+      "jlpt-2005-1-reading-III-19",
+      "jlpt-2005-1-reading-III-20",
+      "jlpt-2005-1-grammar-V-49"
+    ]
+  }
+]

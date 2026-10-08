@@ -5,6 +5,20 @@ export const questionCollections = [
   { id: "jlpt-1993-1", zh: "1993 · 旧1級真题", en: "1993 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
   { id: "ja-hlb1000-n1-u01", zh: "红蓝宝书 N1 · Unit 1", en: "N1 Red & Blue · Unit 1", categories: ["vocabulary", "sentencePattern"] },
   { id: "jlpt-1994-1", zh: "1994 · 旧1級真题（部分）", en: "1994 · Old Level 1 (partial)", categories: ["vocabulary", "reading", "sentencePattern"] },
+  { id: "jlpt-1995-1", zh: "1995 · 旧1級真题（部分）", en: "1995 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-1996-1", zh: "1996 · 旧1級真题（部分）", en: "1996 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-1997-1", zh: "1997 · 旧1級真题", en: "1997 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-1998-1", zh: "1998 · 旧1級真题", en: "1998 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-1999-1", zh: "1999 · 旧1級真题", en: "1999 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2000-1", zh: "2000 · 旧1級真题（部分）", en: "2000 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2001-1", zh: "2001 · 旧1級真题", en: "2001 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2002-1", zh: "2002 · 旧1級真题", en: "2002 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2003-1", zh: "2003 · 旧1級真题", en: "2003 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2004-1", zh: "2004 · 旧1級真题", en: "2004 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2005-1", zh: "2005 · 旧1級真题", en: "2005 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2006-1", zh: "2006 · 旧1級真题", en: "2006 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2007-1", zh: "2007 · 旧1級真题", en: "2007 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2008-1", zh: "2008 · 旧1級真题", en: "2008 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
 ];
 
 export function questionInCollection(question: Question, collectionId: string): boolean {

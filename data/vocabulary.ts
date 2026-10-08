@@ -8,6 +8,20 @@ import importedVocabulary from "./jlpt-1992-vocabulary.json" with { type: "json"
 import n1Vocabulary from "./n1-2000-vocabulary.json" with { type: "json" };
 import vocabulary1993 from "./jlpt-1993-vocabulary.json" with { type: "json" };
 import vocabulary1994 from "./jlpt-1994-vocabulary.json" with { type: "json" };
+import vocabulary1995 from "./jlpt-1995-vocabulary.json" with { type: "json" };
+import vocabulary1996 from "./jlpt-1996-vocabulary.json" with { type: "json" };
+import vocabulary1997 from "./jlpt-1997-vocabulary.json" with { type: "json" };
+import vocabulary1998 from "./jlpt-1998-vocabulary.json" with { type: "json" };
+import vocabulary1999 from "./jlpt-1999-vocabulary.json" with { type: "json" };
+import vocabulary2001 from "./jlpt-2001-vocabulary.json" with { type: "json" };
+import vocabulary2002 from "./jlpt-2002-vocabulary.json" with { type: "json" };
+import vocabulary2003 from "./jlpt-2003-vocabulary.json" with { type: "json" };
+import vocabulary2004 from "./jlpt-2004-vocabulary.json" with { type: "json" };
+import vocabulary2000 from "./jlpt-2000-vocabulary.json" with { type: "json" };
+import vocabulary2005 from "./jlpt-2005-vocabulary.json" with { type: "json" };
+import vocabulary2006 from "./jlpt-2006-vocabulary.json" with { type: "json" };
+import vocabulary2007 from "./jlpt-2007-vocabulary.json" with { type: "json" };
+import vocabulary2008 from "./jlpt-2008-vocabulary.json" with { type: "json" };
 import vocabularyUnit01 from "./ja-hlb1000-n1-u01-vocabulary.json" with { type: "json" };
 import vocabularyLevelOverrides from "./vocabulary-levels.json" with { type: "json" };
 
@@ -238,6 +252,21 @@ export function vocabularyInCollection(card: VocabularyCard, source: string): bo
 mergeVocabularyCollection(sharedCards, vocabulary1993 as ImportedVocabulary[], "jlpt-1993-1");
 mergeVocabularyCollection(sharedCards, vocabularyUnit01 as ImportedVocabulary[], "ja-hlb1000-n1-u01");
 mergeVocabularyCollection(sharedCards, vocabulary1994 as ImportedVocabulary[], "jlpt-1994-1");
+mergeVocabularyCollection(sharedCards, vocabulary1995 as ImportedVocabulary[], "jlpt-1995-1");
+mergeVocabularyCollection(sharedCards, vocabulary1996 as ImportedVocabulary[], "jlpt-1996-1");
+mergeVocabularyCollection(sharedCards, vocabulary1997 as ImportedVocabulary[], "jlpt-1997-1");
+mergeVocabularyCollection(sharedCards, vocabulary1998 as ImportedVocabulary[], "jlpt-1998-1");
+mergeVocabularyCollection(sharedCards, vocabulary1999 as ImportedVocabulary[], "jlpt-1999-1");
+mergeVocabularyCollection(sharedCards, vocabulary2000 as ImportedVocabulary[], "jlpt-2000-1");
+mergeVocabularyCollection(sharedCards, vocabulary2001 as ImportedVocabulary[], "jlpt-2001-1");
+mergeVocabularyCollection(sharedCards, vocabulary2002 as ImportedVocabulary[], "jlpt-2002-1");
+mergeVocabularyCollection(sharedCards, vocabulary2003 as ImportedVocabulary[], "jlpt-2003-1");
+mergeVocabularyCollection(sharedCards, vocabulary2004 as ImportedVocabulary[], "jlpt-2004-1");
+mergeVocabularyCollection(sharedCards, vocabulary2005 as ImportedVocabulary[], "jlpt-2005-1");
+mergeVocabularyCollection(sharedCards, vocabulary2006 as ImportedVocabulary[], "jlpt-2006-1");
+mergeVocabularyCollection(sharedCards, vocabulary2007 as ImportedVocabulary[], "jlpt-2007-1");
+mergeVocabularyCollection(sharedCards, vocabulary2008 as ImportedVocabulary[], "jlpt-2008-1");
+
 // Grade the unified canonical entries without replacing IDs, terms or learning keys.
 const reviewedLevels: Record<string, string> = vocabularyLevelOverrides;
 for (const card of sharedCards) {
