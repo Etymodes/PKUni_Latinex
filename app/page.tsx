@@ -1504,7 +1504,7 @@ function PersonalSettings({ config, mode, setMode, setView, authenticated }: {
     <CommunityAvatarSettings locale={locale} authenticated={authenticated} />
     <section className="settings-panel"><div className="settings-copy"><Languages /><div><h2>{locale === "en" ? "Vocabulary check" : "词汇量测量"}</h2><p>{locale === "en" ? "Check recognition of words at your level and below." : "测量当前等级及以下词汇的识别情况。"}</p></div></div><button className="secondary-button" onClick={() => setView("vocabulary")}>{locale === "en" ? "Start a vocabulary check" : "开始测词"}<ArrowRight size={17} /></button></section>
     <section className="settings-panel support-settings">
-      <div className="settings-copy"><div><h2>Pikku <small>1.3.1</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
+      <div className="settings-copy"><div><h2>Pikku <small>1.3.2</small></h2><p>{locale === "en" ? "Share feedback or support continued development." : "欢迎反馈使用体验，或支持作者持续开发。"}</p></div></div>
       <div className="support-actions">
         <button aria-expanded={showSupport} aria-controls="author-support" onClick={() => setShowSupport(value => !value)}>{locale === "en" ? "Support the author" : "支持作者"}<span aria-hidden="true">♡</span></button>
         <a href="https://docs.qq.com/sheet/DQ3h3YWt0cE5IS1pG" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Feedback" : "意见反馈"}<ArrowRight size={17} /></a>

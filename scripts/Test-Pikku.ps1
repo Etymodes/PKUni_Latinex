@@ -1,5 +1,5 @@
-param(
-    [string]$OutputDirectory = "D:\Downloads"
+﻿param(
+    [string]$OutputDirectory = (Join-Path (Split-Path -Parent $PSScriptRoot) ".qa\checks")
 )
 
 # Keep this file ASCII-only for Windows PowerShell 5.1 compatibility.

@@ -1,0 +1,5843 @@
+[
+  {
+    "id": "jlpt-1994-1-vocab-I-1-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "経緯",
+    "targetLang": "ja",
+    "options": [
+      "けいか",
+      "きょうか",
+      "けいい",
+      "きょうい"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「けいい」。\n「経緯」读けいい，指裁判经过，不读けいか。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問1 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問1 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "裁判の経緯を見ていると、両者に譲歩の姿勢は全くなく、争いは泥沼の様相を呈している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-1-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "譲歩",
+    "targetLang": "ja",
+    "options": [
+      "じょうほ",
+      "じょうほう",
+      "じょうふ",
+      "じょうぶ"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「じょうほ」。\n「譲歩」读じょうほ，表示双方各退一步；步在此不浊化。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問1 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問1 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "裁判の経緯を見ていると、両者に譲歩の姿勢は全くなく、争いは泥沼の様相を呈している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-1-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "争い",
+    "targetLang": "ja",
+    "options": [
+      "きそい",
+      "たたかい",
+      "うばい",
+      "あらそい"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「あらそい」。\n「争い」来自争う，读あらそい；きそい对应競い。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問1 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問1 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "裁判の経緯を見ていると、両者に譲歩の姿勢は全くなく、争いは泥沼の様相を呈している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-1-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "泥沼",
+    "targetLang": "ja",
+    "options": [
+      "でいじょう",
+      "どろじょう",
+      "でいぬま",
+      "どろぬま"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「どろぬま」。\n「泥沼」读どろぬま；此处比喻争执陷入难以摆脱的局面。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問1 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問1 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "裁判の経緯を見ていると、両者に譲歩の姿勢は全くなく、争いは泥沼の様相を呈している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-1-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "様相",
+    "targetLang": "ja",
+    "options": [
+      "ようそ",
+      "ようそう",
+      "ようじょう",
+      "ようす"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「ようそう」。\n「様相」读ようそう；様相を呈する表示呈现某种状况。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問1 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問1 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "裁判の経緯を見ていると、両者に譲歩の姿勢は全くなく、争いは泥沼の様相を呈している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-2-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "故障",
+    "targetLang": "ja",
+    "options": [
+      "こしょ",
+      "こうしょ",
+      "こうしょう",
+      "こしょう"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「こしょう」。\n「故障」读こしょう，前一音节不延长，しょう为长音。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問2 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問2 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-2-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "廃棄物",
+    "targetLang": "ja",
+    "options": [
+      "はいきぶつ",
+      "はきぶつ",
+      "はっきぶつ",
+      "はつきぶつ"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「はいきぶつ」。\n「廃棄物」读はいきぶつ，没有促音；指被丢弃的物品。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問2 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問2 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-2-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "悪癖",
+    "targetLang": "ja",
+    "options": [
+      "わるくせ",
+      "わるへき",
+      "あくへき",
+      "あっくせ"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「あくへき」。\n「悪癖」的音读为あくへき；此处评价动辄报废机械的习惯。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問2 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問2 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-2-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "解消",
+    "targetLang": "ja",
+    "options": [
+      "かいしょ",
+      "かいしょう",
+      "げしょ",
+      "げしょう"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「かいしょう」。\n「解消」读かいしょう，指消除恶习，不读げしょう。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問2 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問2 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-2-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "根底",
+    "targetLang": "ja",
+    "options": [
+      "こんてい",
+      "こんでい",
+      "ねそこ",
+      "ねぞこ"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「こんてい」。\n「根底」读こんてい；根底から表示从根本上。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問2 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問2 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "機械が故障するとすぐ廃棄物扱いをする近年の悪癖を解消するには、国民の生活意識を根底から問い直す必要がある。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-3-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "気配",
+    "targetLang": "ja",
+    "options": [
+      "きはい",
+      "きばい",
+      "けはい",
+      "けばい"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「けはい」。\n「気配」读けはい；秋の気配表示秋天将至的气息。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問3 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問3 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "八月半ば、高原には早くも秋の気配が漂い始め、色とりどりの草花が夏の名残を惜しんでいた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-3-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "漂い",
+    "targetLang": "ja",
+    "options": [
+      "さまよい",
+      "ただよい",
+      "うるおい",
+      "よそおい"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「ただよい」。\n「漂い」读ただよい；気配が漂う表示某种气息弥漫。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問3 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問3 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "八月半ば、高原には早くも秋の気配が漂い始め、色とりどりの草花が夏の名残を惜しんでいた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-3-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "草花",
+    "targetLang": "ja",
+    "options": [
+      "くさか",
+      "そうか",
+      "そうはな",
+      "くさばな"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「くさばな」。\n「草花」读くさばな，花发生连浊，成为ばな。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問3 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問3 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "八月半ば、高原には早くも秋の気配が漂い始め、色とりどりの草花が夏の名残を惜しんでいた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-3-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "名残",
+    "targetLang": "ja",
+    "options": [
+      "なごり",
+      "なのこり",
+      "めいさん",
+      "めいざん"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「なごり」。\n「名残」读なごり；夏の名残を惜しむ表示留恋将逝的夏日。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問3 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問3 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "八月半ば、高原には早くも秋の気配が漂い始め、色とりどりの草花が夏の名残を惜しんでいた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-I-3-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择标注词语的正确读音。",
+    "text": "惜しんで",
+    "targetLang": "ja",
+    "options": [
+      "かなしんで",
+      "さびしんで",
+      "おしんで",
+      "あやしんで"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「おしんで」。\n「惜しんで」读おしんで，是惜しむ的て形音便。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題I 問3 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題I 問3 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "八月半ば、高原には早くも秋の気配が漂い始め、色とりどりの草花が夏の名残を惜しんでいた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-II-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词读音相同的词。",
+    "text": "負債",
+    "targetLang": "ja",
+    "options": [
+      "不在",
+      "夫妻",
+      "風習",
+      "封鎖"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「夫妻」。\n「負債」与「夫妻」都读ふさい。不在读ふざい，风俗习惯的風習读ふうしゅう。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題II (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題II (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "この会社は多額の負債に苦しんでいる。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-II-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词读音相同的词。",
+    "text": "再三",
+    "targetLang": "ja",
+    "options": [
+      "採算",
+      "最善",
+      "整然",
+      "財産"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「採算」。\n「再三」与「採算」都读さいさん；最善读さいぜん，財産读ざいさん。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題II (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題II (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "再三注意したが、彼は聞く耳を持てなかった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-II-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词读音相同的词。",
+    "text": "意地",
+    "targetLang": "ja",
+    "options": [
+      "位置",
+      "一致",
+      "維持",
+      "異議"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「維持」。\n「意地」与「維持」都读いじ；位置读いち，一致读いっち。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題II (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題II (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "こんなことで意地を張っても無駄だ。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-II-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词读音相同的词。",
+    "text": "結晶",
+    "targetLang": "ja",
+    "options": [
+      "化粧",
+      "決勝",
+      "傑作",
+      "欠席"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「決勝」。\n「結晶」与「決勝」都读けっしょう，包含促音っ。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題II (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題II (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "顕微鏡で雪の結晶を見る。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-II-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词读音相同的词。",
+    "text": "均衡",
+    "targetLang": "ja",
+    "options": [
+      "金庫",
+      "近郊",
+      "機構",
+      "緊急"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「近郊」。\n「均衡」与「近郊」都读きんこう；金庫为きんこ，機構为きこう。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題II (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題II (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "二つの勢力は均衡を保っている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-1-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "いはん",
+    "targetLang": "ja",
+    "options": [
+      "異判",
+      "異反",
+      "違判",
+      "違反"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「違反」。\n违反规则写作「違反」。四个选项须辨别違与異、反与判。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問1 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問1 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼の行為は規則いはんだと一時ひなんされたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-1-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "ひなん",
+    "targetLang": "ja",
+    "options": [
+      "避難",
+      "非難",
+      "否難",
+      "被難"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「非難」。\n因某种行为受到责难用「非難」；「避難」表示躲避灾害。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問1 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問1 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼の行為は規則いはんだと一時ひなんされたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-1-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "じじょう",
+    "targetLang": "ja",
+    "options": [
+      "時状",
+      "事状",
+      "事情",
+      "時情"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「事情」。\n「事情調査」表示调查事情经过，じじょう写作事情。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問1 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問1 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼の行為は規則いはんだと一時ひなんされたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-1-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "せいとうな",
+    "targetLang": "ja",
+    "options": [
+      "正到な",
+      "正答な",
+      "正等な",
+      "正当な"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「正当な」。\n合理合法的行为用「正当な行為」；正答是正确答案。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問1 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問1 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼の行為は規則いはんだと一時ひなんされたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-1-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "みとめられた",
+    "targetLang": "ja",
+    "options": [
+      "許められた",
+      "識められた",
+      "認められた",
+      "譲められた"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「認められた」。\nみとめる写作「認める」，本题是被动形式認められた。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問1 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問1 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼の行為は規則いはんだと一時ひなんされたが、じじょう調査の結果、むしろせいとうな行為であるとみとめられた。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-2-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "だいきぼな",
+    "targetLang": "ja",
+    "options": [
+      "大規模な",
+      "大基模な",
+      "大規漠な",
+      "大基漠な"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「大規模な」。\n「規模」表示规模，だいきぼ写作大規模，不能用基或漠。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問2 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問2 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "だいきぼなさいがいにそくざに対応できるたいせいがけんとうされている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-2-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "さいがい",
+    "targetLang": "ja",
+    "options": [
+      "砕害",
+      "災害",
+      "催害",
+      "最害"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「災害」。\nさいがい写作「災害」，災表示灾难。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問2 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問2 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "だいきぼなさいがいにそくざに対応できるたいせいがけんとうされている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-2-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "そくざに",
+    "targetLang": "ja",
+    "options": [
+      "則座に",
+      "速座に",
+      "即座に",
+      "促座に"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「即座に」。\n「即座に」表示立即，当中的即不能换成速、則或促。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問2 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問2 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "だいきぼなさいがいにそくざに対応できるたいせいがけんとうされている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-2-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "たいせい",
+    "targetLang": "ja",
+    "options": [
+      "態勢",
+      "帯製",
+      "態整",
+      "帯整"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「態勢」。\n应对灾害的准备状态写作「態勢」，与具体局势下的部署有关。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問2 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問2 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "だいきぼなさいがいにそくざに対応できるたいせいがけんとうされている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-2-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "けんとう",
+    "targetLang": "ja",
+    "options": [
+      "見当",
+      "見討",
+      "検当",
+      "検討"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「検討」。\n仔细讨论和研究用「検討」；「見当」表示估计、方向等。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問2 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問2 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "だいきぼなさいがいにそくざに対応できるたいせいがけんとうされている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-3-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "はまべ",
+    "targetLang": "ja",
+    "options": [
+      "海辺",
+      "海部",
+      "浜部",
+      "浜辺"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「浜辺」。\nはまべ写作「浜辺」；海辺通常读うみべ。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問3 (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問3 (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "夜更けのはまべにひとかげはなく、ただ、おきのぎょせんがあわい月の光にかすかに見えるだけであった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-3-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "ひとかげ",
+    "targetLang": "ja",
+    "options": [
+      "人陰",
+      "人隠",
+      "人影",
+      "人像"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「人影」。\n人影はない表示没有人的踪影，かげ写作影。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問3 (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問3 (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "夜更けのはまべにひとかげはなく、ただ、おきのぎょせんがあわい月の光にかすかに見えるだけであった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-3-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "おき",
+    "targetLang": "ja",
+    "options": [
+      "沖",
+      "浦",
+      "湾",
+      "潮"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「沖」。\n离开海岸的海面为「沖」；浦、湾、潮是不同词。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問3 (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問3 (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "夜更けのはまべにひとかげはなく、ただ、おきのぎょせんがあわい月の光にかすかに見えるだけであった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-3-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "ぎょせん",
+    "targetLang": "ja",
+    "options": [
+      "魚舟",
+      "魚船",
+      "漁舟",
+      "漁船"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「漁船」。\n从事捕鱼的船为「漁船」；漁指捕鱼活动。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問3 (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問3 (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "夜更けのはまべにひとかげはなく、ただ、おきのぎょせんがあわい月の光にかすかに見えるだけであった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-III-3-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择目标词的正确汉字写法。",
+    "text": "あわい",
+    "targetLang": "ja",
+    "options": [
+      "濃い",
+      "淡い",
+      "清い",
+      "渋い"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「淡い」。\n「淡い月の光」是淡淡的月光；濃い表示浓，与之相反。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題III 問3 (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題III 問3 (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "夜更けのはまべにひとかげはなく、ただ、おきのぎょせんがあわい月の光にかすかに見えるだけであった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-IV-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词指定部分使用相同汉字的句子。",
+    "text": "りそう：り",
+    "targetLang": "ja",
+    "options": [
+      "会社にりれきしょを送った。",
+      "夏休みにはいつもきょうりに帰ることにしている。",
+      "彼はちょうりしの免許を持っている。",
+      "この会社は主に輸出によってりじゅんをあげている。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「彼はちょうりしの免許を持っている。」。\n「理想」的り写理，与「調理師」相同；其他分别是履、里、利。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題IV (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題IV (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "青年は常にりそうを追い求めなければならない。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-IV-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词指定部分使用相同汉字的句子。",
+    "text": "そくしん：そく",
+    "targetLang": "ja",
+    "options": [
+      "彼は外国に渡ったまま、しょうそくが絶えた。",
+      "道路工事のためのそくりょうが始まった。",
+      "友人から借りていたお金の返済をさいそくされた。",
+      "始めのげんそくどおりに仕事を進めよう。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「友人から借りていたお金の返済をさいそくされた。」。\n「促進」的そく写促，与「催促」相同；消息、測量、原則的字不同。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題IV (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題IV (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "経済発展をそくしんさせる政策を優先する。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-IV-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词指定部分使用相同汉字的句子。",
+    "text": "がいとう：とう",
+    "targetLang": "ja",
+    "options": [
+      "会議の結果はこうとうで伝えることにした。",
+      "技術開発は高いレベルにとうたつしている。",
+      "歴史とでんとうを尊重する。",
+      "不景気でとうさんする会社が続出している。"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「会議の結果はこうとうで伝えることにした。」。\n「街頭」的とう写頭，与「口頭」相同；到達、伝統、倒産的字不同。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題IV (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題IV (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "選挙が近いので、がいとうで演説している。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-IV-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词指定部分使用相同汉字的句子。",
+    "text": "せいふく：せい",
+    "targetLang": "ja",
+    "options": [
+      "新しいせいとうを支持する。",
+      "このラジオはせいのうがよくて有名だ。",
+      "輸入品の価格のとうせいがゆるめられた。",
+      "裁判官はこうせいな判断を下した。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「輸入品の価格のとうせいがゆるめられた。」。\n「制服」的せい写制，与「統制」相同；政党、性能、公正的字不同。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題IV (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題IV (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "せいふくを着た高校生が歩いている。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-IV-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择与目标词指定部分使用相同汉字的句子。",
+    "text": "てんきん：きん",
+    "targetLang": "ja",
+    "options": [
+      "あまりきんちょうすると体によくない。",
+      "学校を設立したいがしきんが足りない。",
+      "研究室の図書の持ち出しはげんきんする。",
+      "彼は驚くほどきんべんな学生だ。"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「彼は驚くほどきんべんな学生だ。」。\n「転勤」的きん写勤，与「勤勉」相同；緊張、資金、厳禁的字不同。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題IV (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題IV (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "彼は本社から大阪の支店にてんきんになった。"
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "このスープは塩の（ ）がむずかしい。",
+    "targetLang": "ja",
+    "options": [
+      "場合",
+      "調子",
+      "加減",
+      "都合"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「加減」。\n塩の加減指放盐的分量与调节；場合、調子、都合不能表达这一搭配。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "田中さんの結婚パーティーは、とても（ ）だった。",
+    "targetLang": "ja",
+    "options": [
+      "なごやか",
+      "ゆるやか",
+      "おろそか",
+      "しなやか"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「なごやか」。\n「なごやか」适合描述聚会气氛融洽；ゆるやか指缓慢或平缓。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "知らない漢字でも、その部首を見て意味を（ ）できることがある。",
+    "targetLang": "ja",
+    "options": [
+      "予知",
+      "予言",
+      "推進",
+      "類推"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「類推」。\n由部首推断生字含义是「類推」；予知、予言针对尚未发生的事。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "山田さんは、今日のこの会のために、（ ）遠くから来てくださいました。",
+    "targetLang": "ja",
+    "options": [
+      "たっぷり",
+      "わざわざ",
+      "じっくり",
+      "つくづく"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「わざわざ」。\n远道为本次聚会而来，用わざわざ表达特意付出的时间和努力。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "けがをしたが、その場ですぐ（ ）処置したので、大事には至らなかった。",
+    "targetLang": "ja",
+    "options": [
+      "救援",
+      "救助",
+      "応急",
+      "応援"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「応急」。\n固定搭配「応急処置」指受伤后及时采取的应急处理。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "仕事の（ ）にほかの用事をすませました。",
+    "targetLang": "ja",
+    "options": [
+      "合間",
+      "手間",
+      "空間",
+      "仲間"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「合間」。\n「仕事の合間に」表示利用工作间隙；手間表示费的工夫。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-7",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "これは重さの割に（ ）荷物だ。",
+    "targetLang": "ja",
+    "options": [
+      "かせぐ",
+      "かさばる",
+      "かすむ",
+      "かぶれる"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「かさばる」。\n重さの割にかさばる表示相对重量而言体积大、占地方。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (7)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (7)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-8",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "最近の青少年はしっかりしているようだが、精神的に（ ）面がある。",
+    "targetLang": "ja",
+    "options": [
+      "しぶい",
+      "だるい",
+      "ゆるい",
+      "もろい"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「もろい」。\n精神的にもろい描述心理脆弱，与外表坚强形成对比。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (8)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (8)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-9",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "首相の軽率な発言で、良好であった両国の関係が（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "きずきはじめた",
+      "きたえはじめた",
+      "きしみはじめた",
+      "きざみはじめた"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「きしみはじめた」。\n関係がきしむ把摩擦声引申为关系紧张；本题为きしみはじめた。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (9)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (9)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-10",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "堀さんは（ ）が広いから、それについての専門家を紹介してもらうといい。",
+    "targetLang": "ja",
+    "options": [
+      "くち",
+      "かお",
+      "まゆ",
+      "みみ"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「かお」。\n「顔が広い」表示认识的人多，因此能介绍专家。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (10)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (10)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-11",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "非常時には、（ ）行動が必要とされる。",
+    "targetLang": "ja",
+    "options": [
+      "切実な",
+      "敏感な",
+      "迅速な",
+      "頻繁な"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「迅速な」。\n紧急情况下要求迅速な行動；敏感强调感受敏锐，頻繁强调次数多。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (11)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (11)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-12",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "年をとったせいか、何をするのも（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "まぎらわしい",
+      "なやましい",
+      "みすぼらしい",
+      "わずらわしい"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「わずらわしい」。\n年纪大后觉得做什么都麻烦，用わずらわしい；みすぼらしい形容寒酸外观。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (12)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (12)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-13",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "鈴木さんは（ ）がいいから、どんな洋服でもよく似合う。",
+    "targetLang": "ja",
+    "options": [
+      "スタイル",
+      "スマート",
+      "ストップ",
+      "スタミナ"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「スタイル」。\n「スタイルがいい」在衣服合身的语境里指身材好；スマート是形容词用法。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (13)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (13)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-14",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "人間関係でこんなに苦労するなら、（ ）この会社をやめてしまう。",
+    "targetLang": "ja",
+    "options": [
+      "いっこうに",
+      "いっしんに",
+      "いったい",
+      "いっそ"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「いっそ」。\n受不了人际关系而想干脆辞职，用いっそ表示下决心采取极端办法。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (14)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (14)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-V-15",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的词语。",
+    "text": "政府が、この問題にどう（ ）するか注目される。",
+    "targetLang": "ja",
+    "options": [
+      "対面",
+      "対比",
+      "対処",
+      "対等"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「対処」。\n问题后接「に対処する」，表示应对；対比表示比较，対面表示见面。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題V (15)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題V (15)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "たつ······ある位置に身をおく。",
+    "targetLang": "ja",
+    "options": [
+      "大阪へたつ日をお知らせください。",
+      "人の上にたつ者は、責任ある行動を取らなければならない。",
+      "この空き地には図書館がたつ予定です。",
+      "あの人は弁がたつ。"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「人の上にたつ者は、責任ある行動を取らなければならない。」。\n人の上に立つ表示居于领导地位，符合给定释义；其余涉及出发、建造和口才。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "きつい······感覚に与える刺激が強い。",
+    "targetLang": "ja",
+    "options": [
+      "仕事が遅れたので、かなり日程がきつい。",
+      "すもうのけいこがきついことはよく知られている。",
+      "あの人は一見やさしそうだが、相当きつい性格だ。",
+      "この香水は、においがかなりきつい。"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「この香水は、においがかなりきつい。」。\n香水のにおいがきつい表示气味刺激强，符合感官刺激这一义项。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "気······性質、性格。",
+    "targetLang": "ja",
+    "options": [
+      "彼はとても気が強い。",
+      "仕事をやめたら気がぬけてしまう。",
+      "彼はなかなかよく気がつく。",
+      "その仕事はあまり気が進まない。"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「彼はとても気が強い。」。\n気が強い中的気表示性情；其余分别涉及泄气、留意和意愿。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "腹······本心、意図。",
+    "targetLang": "ja",
+    "options": [
+      "あまりおかしいので、腹を抱えて笑った。",
+      "腹がへっていては、なにもできない。",
+      "あいつの腹はなかなか読めない。",
+      "昨日の失敗を思い出すと、自分で自分に腹を立てる。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「あいつの腹はなかなか読めない。」。\n腹を読む中的腹指内心意图；抱腹、饥饿和生气不符合给定义项。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "立場······判断するためのよりどころとなる基本的な考え方や知識。",
+    "targetLang": "ja",
+    "options": [
+      "予算案が否決されて、政府は苦しい立場に追い込まれた。",
+      "弁護士は依頼人の利益を守る立場にある。",
+      "教師という立場からは怒らざるをえなかった。",
+      "経済学の立場から分析している。"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「経済学の立場から分析している。」。\n経済学の立場から是从经济学的理论角度分析，符合判断所依据的知识体系。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "かれる······でてこなくなる。",
+    "targetLang": "ja",
+    "options": [
+      "この井戸は昔から水がかれたことがない。",
+      "花瓶の花がかれた。",
+      "彼は最近かれた演技ができるようになってきた。",
+      "かれた草に火がついて火事になった。"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「この井戸は昔から水がかれたことがない。」。\n井戸の水が涸れる表示水不再涌出；花草枯萎和老练演技是其他义项或同音写法。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-7",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "先······その時より後、将来。",
+    "targetLang": "ja",
+    "options": [
+      "この先は通行止めだ。",
+      "こんな成績では、先が思いやられる。",
+      "先の地震では大きな被害を受けた。",
+      "荷物の送り先をまちがえた。"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「こんな成績では、先が思いやられる。」。\n先が思いやられる是对将来的情况担忧，符合「その時より後」。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (7)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (7)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-8",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "さっぱり······あとに何も残らない様子。",
+    "targetLang": "ja",
+    "options": [
+      "山頂に立った瞬間、いままでの苦労はさっぱり消えてしまった。",
+      "仕事にはさっぱりした服装で行ったほうがいい。",
+      "暖冬でストーブの売れ行きはさっぱりだ。",
+      "暑い日はさっぱりしたものが食べたくなる。"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「山頂に立った瞬間、いままでの苦労はさっぱり消えてしまった。」。\n苦労がさっぱり消える表示辛苦完全消失、不留痕迹；其余是衣着、销路和口味的义项。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (8)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (8)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            8
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-9",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "ひびく······影響する。",
+    "targetLang": "ja",
+    "options": [
+      "卒業式の時の校長先生の言葉は胸にひびいた。",
+      "このマンションの廊下は音がひびくので、静かに歩いてください。",
+      "野菜の値上がりは、家計にひびく。",
+      "彼の画家としての評判は世界中になりひびいている。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「野菜の値上がりは、家計にひびく。」。\n値上がりが家計に響く表示涨价影响家庭收支；其他选项涉及感动、回声和声誉传播。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (9)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (9)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            8
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-vocab-VI-10",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "vocabulary",
+    "skill": "vocabulary",
+    "type": "choice",
+    "prompt": "选择符合所给词义的用例。",
+    "text": "従う······沿って進む。",
+    "targetLang": "ja",
+    "options": [
+      "国王に従って外国を訪問した。",
+      "川の流れに従って歩いていくと、森に着く。",
+      "医者の指示に従って、手術を受けることにした。",
+      "年をとるに従って、足が弱くなる。"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「川の流れに従って歩いていくと、森に着く。」。\n川の流れに従って歩く表示沿河前进，符合「沿って進む」。",
+    "shuffleOptions": false,
+    "originalNumber": "文字・語彙 問題VI (10)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "文字・語彙",
+      "questionNumber": "文字・語彙 問題VI (10)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            8
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "①「言い返すこともある」とあるが、なぜだと考えられるか。",
+    "targetLang": "ja",
+    "options": [
+      "お世辞を言われるような年頃になったから",
+      "自分の人生はもうすぐ終わりだと考えたから",
+      "老人と見られはじめたことを意識させられるから",
+      "お世辞を聞き流すのは相手に失礼だと思ったから"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「老人と見られはじめたことを意識させられるから」。\n「年轻」的恭维反而让作者意识到别人开始把他看作老人，因此反驳。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            10
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "（②）と（③）に入る組み合わせとして、最も適当なものを選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "②もう歳だ ③若い",
+      "②もう歳だ ③老人になった",
+      "②まだ若い ③若い",
+      "②まだ若い ③老人になった"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「②まだ若い ③老人になった」。\n下文说老人开始强调自己年轻，因此②填まだ若い，③填老人になった。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "④「自分」は、誰を指すか。",
+    "targetLang": "ja",
+    "options": [
+      "老人",
+      "筆者",
+      "若い人",
+      "お世辞を言う人"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「老人」。\n「自分は…と思っている老人」中，自分指各位老人自己，不是作者。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "⑤「そんな馬鹿なこと」とは、どのようなことか。",
+    "targetLang": "ja",
+    "options": [
+      "老化の進み具合は人によって異なること",
+      "精神的にも肉体的にも自分は若いと信じていること",
+      "実際の年齢通りに老けている老人が例外になること",
+      "年をとると、「若いですね」とお世辞を言われること"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「実際の年齢通りに老けている老人が例外になること」。\n指代紧接前句的推论：如果多数老人都比实际年龄年轻，那么按实际年龄衰老的人反成例外。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "筆者が⑥「（老化指数）＝（暦年齢）－（当人が思っている年齢）という方程式が成り立つ」と考えたのは、なぜか。",
+    "targetLang": "ja",
+    "options": [
+      "人によって体力の衰え方が異なるから",
+      "老化が進むほど人は若いと思いたがるから",
+      "殆どの老人が暦の年齢より若いから",
+      "年齢相応の老け方を決められないから"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「老化が進むほど人は若いと思いたがるから」。\n作者先提出越老越想认为自己年轻，再用实际年龄减自认年龄表示这种差距。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            11
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "（⑦）と（⑧）に入る組み合わせとして、最も適当なものを選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "⑦5 ⑧10",
+      "⑦10 ⑧5",
+      "⑦10 ⑧20",
+      "⑦20 ⑧10"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「⑦20 ⑧10」。\n依文中公式，70−50＝20，70−60＝10；这是作者文内定义，不能当作医学指标。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            12
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-7",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "「老化指数」によると、次のうち最も老化していると言えるのはどれか。",
+    "targetLang": "ja",
+    "options": [
+      "自分が二十歳だと思っている30歳",
+      "自分が35歳だと思っている40歳",
+      "自分が40歳だと思っている30歳",
+      "自分が45歳だと思っている40歳"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「自分が二十歳だと思っている30歳」。\n四项依次为10、5、−10、−5，按文章自定的指数，第一项最大。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (7)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (7)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            12
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-I-8",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "⑨「近頃の若者」について、筆者が最も指摘したかったことは何か。",
+    "targetLang": "ja",
+    "options": [
+      "精神的に幼児化している",
+      "精神的に老け込んでいる",
+      "若く見えるようになった",
+      "老けて見えるようになった"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「精神的に老け込んでいる」。\n末句的「他方では」引出作者强调的观点：想显得更年轻的年轻人在精神上已经老化。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題I (8)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題I (8)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            12
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "わたしももう48歳で「お若いですね」とお世辞を言われるような年頃になった。もちろん、そのようなお世辞はたいてい聞き流すが、ときには「若くないよ。昔なら人生50年、もうすぐ終わりだ」と①言い返すこともある。そのようなことを言われはじめるのは、人々にわたしが老人と見られはじめたということに過ぎないからである。\nそれは、自分が自分を見る場合にも言えることで、「自分は（②）」と思いはじめたら、それは（③）しるしなのである。実際は、若い人は「自分はまだ若い」なんて思っていないし、むしろ「もう歳だ」（注1）というようなことを言いたがる。それが老いはじめると「自分は若い」と言い出すわけで、たいていの老人は自分は実際の年齢より若く見えるし、例え若く見えなくても本当は精神的にも肉体的にも若いと信じている。④自分は実際の年齢よりも老けていると思っている老人にお目にかかったことはまだない。\nたしかに老化の進み具合は人によって異なり、年齢の進み具合と必ずしも一致しないが、殆どの老人が実際の年齢より若いということは論理的におかしな話で、それなら、実際の年齢とおりに老けている老人のほうが例外だということになってしまう。⑤そんな馬鹿なことはない。老人がそう思っているのが希望的観測に過ぎないことは明らかで、自分の状態よりさらに老けている状態を勝手に「年齢相応」と決め込み、それと自分を比較しているに過ぎない。\nつまり、老人になればなるほど自分は若いと思いたがるわけで、したがってこのことから当人の老化の程度を判定できるのではないかと私は考えている。かりに老化指数（注2）という言葉を使えば、⑥（老化指数）＝（暦年齢）（注3）－（当人が思っている年齢）という方程式が成り立つ。たとえば15歳の人が自分はもう一人前のおとなで、二十歳で通ると思っていれば老化指数はマイナス5、二十歳の人が自分は二十歳程度と思っていれば老化指数は0、40歳の人が35歳程度と思っていれば5、60歳の人が50歳程度だと思っていれば10である。ここに自分は50歳と変わらないと思っている70歳の人と、自分は60歳ぐらいには見えると思っている同じく70歳の人がいれば、老化指数は前者が（⑦）、後者が（⑧）で、前者のほうが二倍もより老化しているわけである。「近頃の若者は」なんて言うと老いた証拠と笑われるかもしれないが、⑨近頃の若者には、はたちを過ぎたばかりなのにもう「おじん」（注4）または「おばん」（注5）になったと嘆き、10代に見られたがる者がいるが、22歳の者が自分は18歳に見えると思っているとすれば老化指数は20代にして既に4である。近頃、そういう若者が多いということは、一方では若者の幼児化が言われてはいるが、他方では早くから精神的に老け込んでいる証拠ではなかろうか。\n（岸田秀「不惑の雑考」による）\n（注1）「もう歳だ」：「もう老人だ」\n（注2）老化指数：老化の程度を示す数字\n（注3）暦年齢：実際の年齢\n（注4）おじん：おじさん\n（注5）おばん：おばさん"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "①「そうですか･･････」の意味に最も近いものは、どれか。",
+    "targetLang": "ja",
+    "options": [
+      "私もそう思います",
+      "私はそう思いません",
+      "私は夜が嫌いです",
+      "私も夜が嫌いじゃありません"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「私はそう思いません」。\n男子紧接着说自己喜欢这种不祥的夜晚，因此そうですか在此并非赞同，而是与对方看法不同。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            14
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "②「この船に幽霊が出るという噂」とあるが、この噂によると幽霊はどんなときに出るか。",
+    "targetLang": "ja",
+    "options": [
+      "むし暑くて海の静かな晩",
+      "もの哀しい気分にさせる晩",
+      "海がほの白く泡立っている晩",
+      "自殺したいと思っている客がいる晩"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「むし暑くて海の静かな晩」。\n原文明确说幽灵在闷热、海面异常平静的夜晚出现。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "③「男が一人でその海を眺めている」とあるが、それは何のためか。",
+    "targetLang": "ja",
+    "options": [
+      "自殺するため",
+      "自分の右腕を探すため",
+      "幽霊が出るのを待つため",
+      "海の中にいる誰かを呼ぶため"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「自分の右腕を探すため」。\n传闻说幽灵在寻找失去的右臂；看海的目的就是寻找右臂。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "（④）に入る適当な言葉を選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "それを",
+      "それで",
+      "それに",
+      "それが"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「それが」。\n问自杀原因后，回答却说没有具体原因；それが用于引出与预期不同的回答。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "⑤「あの晩私は飛び込んだ」のは、なぜか．",
+    "targetLang": "ja",
+    "options": [
+      "借金と失恋で生きる希望をなくしたから",
+      "自分の失った右腕を探そうと思ったから",
+      "すべてを忘れて海の底で眠りたくなったから",
+      "海の中の幽霊に呼ばれたような気がしたから"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「すべてを忘れて海の底で眠りたくなったから」。\n男子描述想忘掉一切、睡在海底的心情，叙述者随后说「そうなのです」，表明认同这一动机。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            16
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」\n「そうなのです」\nため息を吐きながら、私は云った。\n「それで、⑤あの晩私は飛びこんだのです」\n私の右腕がないのに男が気づいたのは、その時だった。\n（生島治郎「暗い海暗い声」による）"
+  },
+  {
+    "id": "jlpt-1994-1-reading-II-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "次の「幽霊」について述べたもののうち、正しいものを選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "「私」が幽霊だった",
+      "甲板にいた男が幽霊だった",
+      "甲板にいた男と「私」が幽霊だった",
+      "幽霊は出てこなかった"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「「私」が幽霊だった」。\n结尾「私の右腕がない」及「私は飛びこんだ」揭示叙述者就是传闻里的幽灵。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題II (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題II (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            16
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "重苦しいほどむし暑い晩だった。\n空には星ひとつなく、海は不気味に静まりかえっている。\n私はいつものように、後甲板（注1）の方へ歩いていった。後甲板には先客が一人いた。デッキの手すりにもたれ、その男はしきりに暗い海をのぞきこんでいる。\n「今晩は」\nと私は声をかけた。\nふりかえった男の顔は骸骨（注2）のように痩せ細っていた。眼が落ちくぼみ、顔色がひどく蒼白い。\n「今晩は･･････」\n男は低くしゃがれた声でそう云うと、薄い唇をゆがめて笑った。\n私は男の隣に歩み寄って、同じように暗い海を見つめた。海はいつでも私をもの哀しい気分をさせる。海の中にいる誰かが呼んでいるような･･････。\n「いやな晩ですね」\nと私は言った。\n①「そうですか･･････」\n男は骨ばった長い指で髪の毛をかきあげた。\n「僕はこんな晩の方が好きなんですよ。なんとなく不気味で面白いじゃありませんか」\n私は変わった男だと思った。私が黙っていると、彼が問いかけてきた。\n②「この船に幽霊が出るという噂があるんですが、知っていますか？」\n「幽霊？」\nと私は訊き返した。\n「ええ。やはり僕たちみたいな客の一人が、自殺したことがあるんだそうです。こんな風に重苦しくて、風のない晩だったと云いますよ。その男はしばらく海を眺めていて、ふいに飛び込んだんです。ちょうどここから、今、僕らがこうしているところからね･･････」\n男は私の顔を覗き込むようにして、にやりと笑った。\n「あがった屍体（注3）は、右の腕がなかったそうです。スクリュウ（注4）に切られたのかもしれませんね」\n二人は暗い海にほの白く泡立っているスクリュウの後をしばらく見つめた。\n「それで、その幽霊が出るんですね」\n私の声は少しふるえているような気がした。\n「ええ、自分の失った右腕を探しているのだという噂です。こういうふうにむしむしして、海が妙に静まり返った晩、③男が一人でその海を眺めている。そして、しばらくするとふっと消えてしまうのです」\n男は自分自身をかき消すようなしぐさをした。\n「なぜ、その男が自殺したのか知っていますか？」\nと私は訊いた。\n「（④）、何の原因もないのです。金に困っているわけでもなく、失恋したわけでもなかった･･････」\n眉をひそめ、男は遠いところを見る眼つきで海を見つめた。\n「多分･･････」\nと云った男は口ごもった。\n「多分、この海を見ているうちに、何もかもいやになったのでしょうね。そして、ひきずりこまれるように、飛び込んだのでしょう。僕には、その気持ちが分かるな。こうしていると、何もかも忘れて、この海の底で眠りたくなる。あなたは、そう思いませんか？」\n私も、海を見つめた。海は暗く、静かに私を呼びかけているように思えた。\n（注2）骸骨のように痩せ細った:非常に痩せた\n（注3）屍体：死体\n（注5）私を呼びかけている:通常は「私に呼びかけている」\n「そうなのです」\nため息を吐きながら、私は云った。\n「それで、⑤あの晩私は飛びこんだのです」\n私の右腕がないのに男が気づいたのは、その時だった。\n（生島治郎「暗い海暗い声」による）"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問い] この文書で、筆者はどのようなことを言おうとしていると考えられるか\n言葉の男女の差は…",
+    "targetLang": "ja",
+    "options": [
+      "将来、残らないだろう。",
+      "今後もなくなって欲しくない。",
+      "今日では、意識されていない。",
+      "しだいに、大きくなっていくだろう。"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「今後もなくなって欲しくない。」。\n作者不主张强制维持男女用语，但珍惜使用时自然的感受及保留下来的差别，因此第二项最接近。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            16
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "（1） 言葉は時代と共に変わる。今の若い女性の中には平気で男言葉で話す人も多い。男性が語尾に「よね」をつけて話したり、女言葉に近づいてもいる。男女の言葉の差は昔に比べれば格段に少なくなっている。今の時代の男女の生き方を象徴しているのでもあるだろう。そんな中で「男言葉」「女言葉」を守ろうというのではない。時代の流れに任せてもなお自然に残る言葉は残るのではないかと思うのだ。口に出す時ちょっとした抵抗感があるかないかと言う形で。その感覚を大切にしたい。それが日本語の中の文化であり味わいであるかもしれないと思うから。\n（山根基世「日本語の味わい」による）"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問い] 「没個性化現象」は、どんな時に生じるか。",
+    "targetLang": "ja",
+    "options": [
+      "解放感が失われた時",
+      "自己規制が強まった時",
+      "匿名性が保たれている時",
+      "批判される懸念が生じた時"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「匿名性が保たれている時」。\n末句说明在别人不知道自己是谁的时候发生没个性化；匿名性降低自我约束。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            17
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "2） 旅行に出かける理由はいろいろありますが、一番の喜びは、旅先での解放感ではないでしょうか。この解放感は、自分を知っている人が誰もいないという心理に起因します。つまり、自分が恥をかいたり、失敗したり、或いは、破廉恥(注1)なことをしても、そのことで後々困ることは起こらないと思うからです。\n旅先にいる私は、家庭や職場の私ではなくて、どこの誰だか分からないような匿名(注2)性を持った、一人の人間なのです。\nこのように、自分を見つめることを忘れ、他人から批判される懸念(注3)も薄れ、恥とか罪とかによる自己規制も弱まり、いつもならしないような行動をとることを、没個性化現象と言います。こうした没個性化は、大勢の見知らぬ人々の中にいるときや群衆の中にいる時、自分が誰だか人に分からないような時に現れます。\n(渋谷昌三『心理おもしろ実験ノート』による)\n(注1)破廉恥なこと:道徳的にしてはならないこと\n(注2)匿名:名前を隠すこと\n(注3)懸念:心配"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問い] (①)～(③)には、[内側]か[外側]が入る。その組み合わせとして最も適当なものを選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "①外側 ②内側 ③外側",
+      "①外側 ②外側 ③外側",
+      "①内側 ②内側 ③内側",
+      "①内側 ②外側 ③内側"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「①外側 ②内側 ③外側」。\n作者把颜色作为人的内在体验，把形与动看作外界事件，而对它们的认识仍在内侧发生。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            18
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "（3） いうまでもなく、木々の葉の緑を見るとき、その葉には緑“色”という“物”がついているのではない。ある一定の状態の光の中で、その葉を前にしてもつ視覚的な体験のある種のあり方を、人は緑という“色”を見たと表現しているのである。\n目の前には“形”と“動き”があり、そこに人は“色”を見る。“色”は人の(①)にあるのではなくて、人の側にあるものなのだ。“色”とは、この地上で人が外界に対して持つ視覚的な対応の仕方の一例であり、それは人の内側で起こる出来事の一例なのである。それに対し、“形”や“動き”となると、そのあり方の把握は人の(②)でのことであるとはいえ、基本的には人の(③)で起こっている出来事であるといえるだろう。\n(西江雅之[色をあらわす言葉]による)"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問い] この文章の[ ]部分には、どんな内容の表現を入れることが出来るか。",
+    "targetLang": "ja",
+    "options": [
+      "獲得されない",
+      "用いられない",
+      "純粋にならない",
+      "豊かにならない"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「豊かにならない」。\n全文强调广泛而多样的使用让语言丰富；そうでなければ否定该条件，所以接豊かにならない。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            18
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "（5） 言語が豊かさを獲得するのは、小さな村落や島に、純粋に保存されることによってではなく、出来るだけ多くの異なる背景を持った人たちによって、出来るだけ多くの異なる場面で、多様な目的のために用いられることによってである。そうでなければ、ことばは[ ]。\n(田中克彦[国家語をこえて]による)"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-7",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問1] この文章の(①)に入る適当なことばを選びなさい。",
+    "targetLang": "ja",
+    "options": [
+      "強かった",
+      "特別だった",
+      "不十分だった",
+      "めずらしかった"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「強かった」。\n昔以有机体看待自然，近代才确立机械论；因此过去这种有机体观点「強かった」。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (7) 問1",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (7) 問1",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            19
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "（7） 自然現象を説明する主な仕方に、万物を生き物になぞらえて説明するやり方と、すべてを機械になぞらえて説明するやり方の二種類がある。前者を有機体論、後者を機械論という。科学の発達を大雑把に言えば、昔は自然を、世界を生き物としてとらえる考え方が(①)が、近代、１7世紀からとくに万物を機械論で説明する機械論的自然観が定着し、その中から近代科学を生み出してきて、今日にいたっている。動物や人間の身体も、機械のように見なしてかなりうまく説明がつくのである。\nしかし②昔はそうではなかった。自然万物を生きとし生けるものと見なした。生き物の方が無機物よりずっと親近感があったからである。生きて活発に動くものの方が、鈍で動かないものよりずっと印象的だったからである。\n(中山茂『宇宙の科学史』による)"
+  },
+  {
+    "id": "jlpt-1994-1-reading-III-8",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "reading",
+    "skill": "reading",
+    "type": "choice",
+    "prompt": "阅读文章，选择最符合题意的答案。",
+    "text": "[問2] ②「昔はそうではなかった」とあるが、どういうことか。\n昔は…",
+    "targetLang": "ja",
+    "options": [
+      "自然現象に関心を持たなかった。",
+      "世界を生き物として考えなかった。",
+      "人間を機械と見なすことはなかった",
+      "無機物については説明できなかった。"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「人間を機械と見なすことはなかった」。\nそう指前句将动物、人类身体视为机器；昔はそうではなかった即昔日不这样看待人类。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題III (7) 問2",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題III (7) 問2",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            19
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    },
+    "passage": "（7） 自然現象を説明する主な仕方に、万物を生き物になぞらえて説明するやり方と、すべてを機械になぞらえて説明するやり方の二種類がある。前者を有機体論、後者を機械論という。科学の発達を大雑把に言えば、昔は自然を、世界を生き物としてとらえる考え方が(①)が、近代、１7世紀からとくに万物を機械論で説明する機械論的自然観が定着し、その中から近代科学を生み出してきて、今日にいたっている。動物や人間の身体も、機械のように見なしてかなりうまく説明がつくのである。\nしかし②昔はそうではなかった。自然万物を生きとし生けるものと見なした。生き物の方が無機物よりずっと親近感があったからである。生きて活発に動くものの方が、鈍で動かないものよりずっと印象的だったからである。\n(中山茂『宇宙の科学史』による)"
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "太陽と（ ）永遠に輝いているわけではない。いつかは消え去るときがくる。",
+    "targetLang": "ja",
+    "options": [
+      "いえども",
+      "いったらば",
+      "いえばこそ",
+      "いったからには"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「いえども」。\n「といえども」表示即使是……也……；即使太阳也不会永远发光。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "彼の栄光は、厳しいレースを勝ち（ ）末に獲得したものだ。",
+    "targetLang": "ja",
+    "options": [
+      "ぬいて",
+      "ぬく",
+      "ぬいた",
+      "ぬき"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「ぬいた」。\n「Vた末に」表示经历某过程后终于；勝ち抜いた末に是战胜严酷比赛后取得荣誉。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "小さい頃、よく泥（ ）になって弟と喧嘩をしたものだ。",
+    "targetLang": "ja",
+    "options": [
+      "ずくめ",
+      "まみれ",
+      "ばかり",
+      "みずく"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「まみれ」。\n「泥まみれ」表示沾满泥巴；まみれ常接污物等不宜附着的东西。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "喫茶店で、隣の席の話を聞く（ ）聞いていたら、私の会社のことだったので驚いた。",
+    "targetLang": "ja",
+    "options": [
+      "ばかりか",
+      "のみならず",
+      "ともなしに",
+      "どころではなく"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「ともなしに」。\n「V辞书形ともなしにV」表示无意地做某事；聞くともなしに聞く是无意中听着。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "子供の頃、死については（ ）だに恐ろしかった。",
+    "targetLang": "ja",
+    "options": [
+      "考え",
+      "考えた",
+      "考えて",
+      "考える"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「考える」。\n「V辞书形だに」意为连……都；考えるだに恐ろしい是光想就害怕。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "あの時もっと頑張っていれば、と後悔してみた（ ）で、今更しようがない。",
+    "targetLang": "ja",
+    "options": [
+      "の",
+      "もの",
+      "こと",
+      "ところ"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「ところ」。\n「Vたところで」表示即使做了也无济于事；现在后悔也无用。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-7",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "あの人は話好きで、目が（ ）最後に、最低30分は放してくれない。",
+    "targetLang": "ja",
+    "options": [
+      "あったの",
+      "あったが",
+      "あうのに",
+      "あったから"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「あったが」。\n「Vたが最後」表示一旦发生前项，后果就难以避免；与他对上眼就脱不了身。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (7)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (7)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-8",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "他人を犠牲にする（ ）なしに、個人の望みを達成することは困難だと考えている人もいます。",
+    "targetLang": "ja",
+    "options": [
+      "の",
+      "こと",
+      "もの",
+      "ところ"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「こと」。\n「V辞书形ことなしに」表示不做某事而……；这里是不牺牲他人。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (8)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (8)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-9",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "あそこの家の父親は、毎日朝から酒を飲んで暴れている。息子は、仕事もせず賭け事に夢中になっている。全く、父も父（ ）子も子だ。",
+    "targetLang": "ja",
+    "options": [
+      "と",
+      "では",
+      "なら",
+      "にして"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「なら」。\n「AもAならBもBだ」把双方并列批评，意为父子都不像样。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (9)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (9)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-10",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "「考えてみます」と言われたので、了承されたと（ ）、実はそれは「お断りします」という意味だった。",
+    "targetLang": "ja",
+    "options": [
+      "思いゆえ",
+      "思っても",
+      "思ったり",
+      "思いきや"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「思いきや」。\n「と思いきや」引出与原先判断相反的事实：原以为答应，实际却是拒绝。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (10)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (10)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-11",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "この困難な任務を果たせるのは、彼（ ）おいてほかにはいない。",
+    "targetLang": "ja",
+    "options": [
+      "を",
+      "は",
+      "に",
+      "で"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「を」。\n「人をおいてほかにいない」表示除某人外没有别人，是高度评价。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (11)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (11)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-12",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "環境問題の解決策を（ ）、熱心な議論が続いている。",
+    "targetLang": "ja",
+    "options": [
+      "通じて",
+      "めぐって",
+      "まわって",
+      "こめて"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「めぐって」。\n「問題をめぐって」表示围绕某问题进行讨论；まわって不能表达这里的议题关系。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (12)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (12)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-13",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "この問題については、あなた（ ）お考えがおありでしょうが、ここのところは私の言う通りにしてください。",
+    "targetLang": "ja",
+    "options": [
+      "向きの",
+      "なみの",
+      "次第の",
+      "なりの"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「なりの」。\n「人なりの考え」表示那个人自己的想法；此处尊重对方立场后提出请求。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (13)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (13)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-14",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "その赤ん坊は、私が抱きあげたら今にも泣き（ ）ばかりの顔をした。",
+    "targetLang": "ja",
+    "options": [
+      "出す",
+      "出さ",
+      "出さん",
+      "出した"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「出さん」。\n「V未然形＋んばかり」表示几乎要……的样子；泣き出さんばかり意为像是马上要哭。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (14)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (14)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-15",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "彼はとても忙しいらしい。食事を（ ）が早いか、すぐに飛び出していった。",
+    "targetLang": "ja",
+    "options": [
+      "とる",
+      "とり",
+      "とって",
+      "とろう"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「とる」。\n「V辞书形が早いか」表示刚一……就……；食事をとるが早いか后接立刻离开的动作。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (15)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (15)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-16",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "詳しくお話を（ ）からでないと、お答えできません。",
+    "targetLang": "ja",
+    "options": [
+      "うかがい",
+      "うかがう",
+      "うかがった",
+      "うかがって"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「うかがって」。\n「Vてからでないと」表示必须先……否则不能；伺って是谦逊表达听取的て形。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (16)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (16)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-17",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "自分のことだけではなく、相手の立場に立って考えることが出来る人、それが大人という（ ）だ。",
+    "targetLang": "ja",
+    "options": [
+      "もの",
+      "ひと",
+      "ほう",
+      "ところ"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「もの」。\n「それが…というものだ」概括某概念的本质；能为别人着想才称得上大人。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (17)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (17)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-18",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "彼は読書が好きだが、読んだそば（ ）何を読んだか忘れてしまい、同じ本を何冊も買ってしまう。",
+    "targetLang": "ja",
+    "options": [
+      "で",
+      "から",
+      "に",
+      "まで"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「から」。\n「Vたそばから」表示刚做完就又……，常带反复徒劳感；刚读完就忘。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (18)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (18)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-19",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "経済問題の解決には、政府や企業の対応もさること（ ）、消費者の態度も重要な要素となる。",
+    "targetLang": "ja",
+    "options": [
+      "ながら",
+      "であり",
+      "でなく",
+      "とともに"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「ながら」。\n「AもさることながらBも」表示A固然重要，B也重要；此处强调消费者态度。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (19)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (19)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-20",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "徹夜は（ ）、せめて夜12時くらいまでは勉強したほうがいいんじゃないですか。",
+    "targetLang": "ja",
+    "options": [
+      "するほどで",
+      "するまでも",
+      "しないほどで",
+      "しないまでも"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「しないまでも」。\n「Vないまでも」表示即使不到某种程度，至少也该……；不通宵也至少学到十二点。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (20)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (20)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-21",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "とにかく事故現場をこの目で（ ）ことには、対策はたてられません。",
+    "targetLang": "ja",
+    "options": [
+      "見た",
+      "見る",
+      "見ない",
+      "見なかった"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「見ない」。\n「Vないことには」表示若不先……就无法……；不亲眼看现场便无法制订对策。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (21)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (21)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-22",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "チンパンジーは人間の模倣を（ ）のみならず、お互いに協力して共同作業をしているらしいという報告もある。",
+    "targetLang": "ja",
+    "options": [
+      "して",
+      "する",
+      "せず",
+      "しまい"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「する」。\n「普通形のみならず」表示不仅……而且……；するのみならず连接模仿与合作两种行为。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (22)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (22)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-23",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "実際に読んでみて（ ）、古典の面白さを知った。",
+    "targetLang": "ja",
+    "options": [
+      "はじめ",
+      "はじめで",
+      "はじめて",
+      "はじめると"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「はじめて」。\n「Vてみてはじめて」表示亲自尝试后才明白；实际阅读后才知道古典的趣味。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (23)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (23)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-24",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "半導体に対する需要は、ここ数年、以前（ ）もまして高まっている。",
+    "targetLang": "ja",
+    "options": [
+      "まで",
+      "から",
+      "で",
+      "に"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「に」。\n「以前にもまして」表示比以前更加；に是此固定比较表达的助词。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (24)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (24)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-25",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "お世話になった先生に頼まれた（ ）、断るわけにはいかない。",
+    "targetLang": "ja",
+    "options": [
+      "からには",
+      "からでは",
+      "までには",
+      "まででは"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「からには」。\n「Vたからには」表示既然已经……就应当承担相应责任；受恩师所托便不能拒绝。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (25)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (25)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-26",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "「これが最近書いた本ですが、あなたに差し上げますから、どうぞお読みください。」\n「はい、（ ）いただきます。」",
+    "targetLang": "ja",
+    "options": [
+      "拝見して",
+      "ご覧になって",
+      "拝見させて",
+      "ご覧にならせて"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「拝見させて」。\n「拝見させていただきます」表示承蒙允许拜读；ご覧になる是抬高对方的尊敬语，不能用于自己的动作。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (26)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (26)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            22
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-IV-27",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "「先生の奥様はどの方かご存知ですか。」\n「あそこの（ ）を召していらっしゃるご婦人です。」",
+    "targetLang": "ja",
+    "options": [
+      "年",
+      "お年",
+      "年齢",
+      "お年齢"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「お年」。\n「お年を召す」是年を取る的尊敬表达，空格填お年。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題IV (27)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題IV (27)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "帰国する日にパスポートをホテルに置き忘れてくるなんて、いかにも彼の（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "やるべきことだ",
+      "やりたいことだ",
+      "やりそうなことだ",
+      "やるらしいことだ"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「やりそうなことだ」。\n「いかにも彼のやりそうなこと」表示很像他会做的事；べき是义务，たい是愿望。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "不景気になってからというもの、長年、会社に貢献してきた人でさえ、会社を（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "やめさせるまでもない",
+      "やめられないですむ",
+      "やめさせられている",
+      "やめないではおかない"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「やめさせられている」。\n长期贡献的员工也被迫离职，用使役被动「やめさせられている」，不是主动让别人辞职。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "運転手が教えてくれたからよかったものの、もう少しで大切な卒業論文をタクシーの中に（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "忘れるところだった",
+      "忘れるところだろう",
+      "忘れないところだった",
+      "忘れるところではなかった"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「忘れるところだった」。\n「もう少しで…ところだった」表示差一点发生但最终未发生；幸亏司机提醒才没遗忘论文。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "彼が生活に困っているというから、お金を貸したのに、そのまま姿を消してしまい、今となっては（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "あきらめきれない",
+      "あきらめかねない",
+      "あきらめるまでもない",
+      "あきらめるよりほかない"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「あきらめるよりほかない」。\n借钱者消失后只好放弃，用「よりほかない」表示没有别的办法。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "慎重なあの人に限って、そんなミスを（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "おかしてばかりいる",
+      "おかすはずがない",
+      "おかさないではいられない",
+      "おかそうとしている"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「おかすはずがない」。\n「慎重なあの人に限って」后接否定预期，はずがない表示不可能犯那种错。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-V-6",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "苦難に満ちたあの人の人生は、涙なくしては（ ）。",
+    "targetLang": "ja",
+    "options": [
+      "語る",
+      "語らない",
+      "語れる",
+      "語れない"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「語れない」。\n「涙なくしては語れない」表示不流泪就无法讲述；なくしては要求后项否定可能性。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題V (6)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題V (6)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            23
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-VI-1",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "ノーベル賞を受賞したT氏は、少年時代、劣等生だったという。あの人（ ）そうなのだから、我が子が劣等生だからといって深刻に悩む必要がない。",
+    "targetLang": "ja",
+    "options": [
+      "だけが",
+      "にとって",
+      "にして",
+      "ともなると"
+    ],
+    "answer": 2,
+    "explanation": "答案：原选项 3「にして」。\n「あの人にしてそう」表示连那样的人都如此，以诺奖得主曾是差生来宽慰父母。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題VI (1)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題VI (1)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-VI-2",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "F",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "私は子供の頃から物事を決めるのが遅くて、ずっと悩んできた。たとえば、友達に旅行に誘われても、（ ）、すぐに返事をしないで、いろいろ考えているうちに時間がたってしまう。いつのまにか友達もあきらめ、旅行は取りやめになってしまい、残念に思うことが多い。",
+    "targetLang": "ja",
+    "options": [
+      "行きたくないわけではないが",
+      "行きたくないから",
+      "行きたいわけではないが",
+      "行きたいというより"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「行きたくないわけではないが」。\n说话者后悔旅行取消，说明并非不想去，而是犹豫；「行きたくないわけではないが」与后文一致。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題VI (2)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題VI (2)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-VI-3",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "これからの日本人は、国際人を目指すべきだという人もいる。しかし、日本に対する客観的な視点が欠けている人は国際人を目指す（ ）、国際という言葉を口にする資格すら疑わしいのではないか。",
+    "targetLang": "ja",
+    "options": [
+      "どころか",
+      "からして",
+      "ばかりか",
+      "ゆえに"
+    ],
+    "answer": 0,
+    "explanation": "答案：原选项 1「どころか」。\n「AどころかBすら」否定较高目标，连更低要求也达不到；不只是不能成为国际人，连谈国际的资格也成疑。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題VI (3)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題VI (3)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-VI-4",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "小さな個人商店を世界的な企業にまで成長させたH氏は、自分の人生を失敗の連続だったと語ったことがある。H氏のように失敗に耐えられる（ ）、成功は望めないということを改めて思い知らされた。",
+    "targetLang": "ja",
+    "options": [
+      "ばかりだと",
+      "ぐらいでないと",
+      "ぐらいだと",
+      "までもないと"
+    ],
+    "answer": 1,
+    "explanation": "答案：原选项 2「ぐらいでないと」。\n「失敗に耐えられるぐらいでないと」表示若没有至少承受失败的能力，便无法期待成功；ぐらい提出必要程度。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題VI (4)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題VI (4)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  },
+  {
+    "id": "jlpt-1994-1-grammar-VI-5",
+    "sourceId": "jlpt-1994",
+    "language": "ja",
+    "level": "G",
+    "category": "sentencePattern",
+    "skill": "grammar",
+    "type": "choice",
+    "prompt": "选择最适合填入空格的表达。",
+    "text": "子供の立場を考えずに、一方的に子供をしかりつける親もいる。だが、親は子供をただ（ ）。親子の関係は信頼関係に支えられているのであって、それなしには、子供は親に反発するだけである。",
+    "targetLang": "ja",
+    "options": [
+      "しからないともいえない",
+      "しかるよりほかにはしかたがない",
+      "しからないではいられない",
+      "しかればよいというものではない"
+    ],
+    "answer": 3,
+    "explanation": "答案：原选项 4「しかればよいというものではない」。\n后文强调信赖关系，因此「しかればよいというものではない」否定只要训斥就足够的想法。",
+    "shuffleOptions": false,
+    "originalNumber": "読解・文法 問題VI (5)",
+    "context": "选项保持原资料顺序：A、B、C、D 对应 1、2、3、4。目标词提示按题干与答案核对补标。",
+    "tags": [
+      "1994",
+      "JLPT",
+      "旧1級"
+    ],
+    "source": "1994 年日本语能力试验旧 1 级 · 用户提供试卷及答案",
+    "reviewStatus": "reviewed",
+    "provenance": {
+      "exam": "日本語能力試験",
+      "year": 1994,
+      "level": "旧1級",
+      "section": "読解・文法",
+      "questionNumber": "読解・文法 問題VI (5)",
+      "sourceFiles": [
+        {
+          "name": "1994日语能力考试1级真题及答案.doc",
+          "sha256": "79ba511172eac1a3de2df17eeded853cedbc7b9e9189a0ad83369506a330cd33",
+          "pages": [
+            24
+          ]
+        }
+      ],
+      "rightsStatus": "rights-unclear"
+    }
+  }
+]

@@ -46,7 +46,7 @@
 
 - 网页版：`C:\Users\kimda\Documents\PKUni_Latinex`，本地主分支已同步到 `ef79da1`。
 - 微信版：`C:\Users\kimda\Documents\Pikku_WeChat`，沿用既有 `agent/pikku-wechat-miniprogram` 和 [PR #21](https://github.com/Etymodes/PKUni_Latinex/pull/21)；用户已授权合并，实际结果以 PR 页面为准。
-- `D:\Etymodes\日语` 仅存教材、题库原始资料、解码和提取产物；此后不要在该目录克隆或开发 Pikku。
+- `D:\Etymodes\日语` 仅存资源，已完成资源归入“已处理”；工程、脚本、模型、提取产物和报告统一存 C 盘开发目录。详见 `.cursor/rules/pikku-storage.mdc`。
 - 原 D 盘开发副本已整体移入 `C:\Users\kimda\Documents\Pikku_Archives\Japanese_Workspace_20261007`，包含原 Git 历史、被忽略的构建文件和本地配置。归档不是日常开发目录。
 
 ## 本轮范围

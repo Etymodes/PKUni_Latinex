@@ -6,7 +6,7 @@
 
 ## 来源与复现
 
-- 原文件：`D:\Etymodes\日语\4-赠品-尚岸日语赠品\N1必背2000词PDF.pdf`
+- 原文件：`D:\Etymodes\日语\已处理\词汇\N1必背2000词PDF.pdf`
 - SHA-256：`2f8b65adb45c9d90a2dbcf06a75b86195e27c68c1d36227ee0212afaa54c5ac3`
 - 原文件只读，未编辑、重存或上传。
 - 使用已存在的 Python `pdfplumber` 提取；按需要用 `pypdfium2` 渲染，无新增依赖。
@@ -15,7 +15,7 @@
 
 本机已验证的 Python 位于 `C:\Users\kimda\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`。
 
-审计输出在仓库外的 `D:\Etymodes\日语\vocab-import`：
+审计输出在本机不提交 Git 的 `C:\Users\kimda\Documents\PKUni_Latinex\.qa\content-processing\vocab-import`：
 
 | 文件 | 内容 |
 | --- | --- |
