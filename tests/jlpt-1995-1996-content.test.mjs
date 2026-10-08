@@ -61,7 +61,7 @@ for (const year of [1995, 1996]) {
       }
     }
     assert.equal(manifest.inferredAnswers, 0);
-    assert.equal(manifest.publicationStatus, 'held-until-2008-import-complete');
+    assert.equal(manifest.publicationStatus, 'ready-for-release');
     assert.equal(manifest.pending.length, year === 1995 ? 2 : 1);
     for (const segment of manifest.audioAlignment) {
       const q = raw.find(q => q.id === segment.id), bytes = fs.readFileSync(new URL('../public' + q.audio.src, import.meta.url));

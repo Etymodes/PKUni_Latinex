@@ -69,6 +69,8 @@ export const jlptExamProfiles: JlptProfile[] = [
 
 // Explicitly inspected short passages; length alone cannot identify a task's reading type.
 const shortReadingIds = new Set([
+  ...[17, 18, 19, 20].map(item => `jlpt-2007-1-reading-III-${item}`),
+  ...[20, 21, 22, 23].map(item => `jlpt-2008-1-reading-III-${item}`),
   ...[15, 16, 18].map(item => `jlpt-1999-1-reading-III-${item}`),
   ...[21, 22].map(item => `jlpt-2000-1-reading-III-${item}`),
   ...[18, 19, 20].map(item => `jlpt-2001-1-reading-III-${item}`),
@@ -107,9 +109,9 @@ export function classifyJlptQuestion(question: Question): JlptTypeId | null {
   }
   const ids = sourceIds(question);
   if (question.category === "vocabulary") {
-    if (question.skill === "kanji-reading" || ids.some(id => /^jlpt-(?:199[2-9]|200[0-6])-1-vocab-I-/.test(id))) return "kanji-reading";
-    if (ids.some(id => /^jlpt-(?:199[2-9]|200[0-6])-1-vocab-III-/.test(id))) return "orthography";
-    if (isCloze(question) && (ids.some(id => /^jlpt-(?:199[2-9]|200[0-6])-1-vocab-V-/.test(id)) || ["semantic-distinction", "adverb-usage"].includes(question.skill || ""))) return "context-vocabulary";
+    if (question.skill === "kanji-reading" || ids.some(id => /^jlpt-(?:199[2-9]|200[0-8])-1-vocab-I-/.test(id))) return "kanji-reading";
+    if (ids.some(id => /^jlpt-(?:199[2-9]|200[0-8])-1-vocab-III-/.test(id))) return "orthography";
+    if (isCloze(question) && (ids.some(id => /^jlpt-(?:199[2-9]|200[0-8])-1-vocab-V-/.test(id)) || ["semantic-distinction", "adverb-usage"].includes(question.skill || ""))) return "context-vocabulary";
     // Old II tests homophones, IV same-kanji spelling, VI a defined sense's usage.
     // None is silently substituted for modern paraphrase, word formation or usage.
   }

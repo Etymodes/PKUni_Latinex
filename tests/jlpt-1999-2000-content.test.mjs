@@ -30,7 +30,7 @@ for(const year of [1999,2000]){
    for(const m of [...(q.images||[]),...(q.audio?[q.audio]:[])])assert(fs.statSync(new URL('../public'+m.src,import.meta.url)).size>1000);
    if(q.category==='listening'){assert(q.transcript.length>50);assert(!/[男女][:：]|回答|答え：|淘宝|你我日语/.test(q.text));assert.equal(classifyJlptQuestion(q),null);assert.equal(q.optionsInAudio,q.id.includes('-II-')?true:undefined);}
   }
-  assert.equal(manifest.inferredAnswers,0);assert.equal(manifest.pending.length,year===1999?0:1);assert.equal(manifest.publicationStatus,'held-until-2008-import-complete');
+  assert.equal(manifest.inferredAnswers,0);assert.equal(manifest.pending.length,year===1999?0:1);assert.equal(manifest.publicationStatus,'ready-for-release');
   for(const a of manifest.audioAlignment){const q=raw.find(q=>q.id===a.id);assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../public'+q.audio.src,import.meta.url))).digest('hex'),a.sha256);assert(a.endSeconds>a.startSeconds+15);assert(a.endSeconds<(year===1999?2553:2725));}
  });
  test(`${year}: each question links to the shared bilingual dictionary and trainer`,()=>{
