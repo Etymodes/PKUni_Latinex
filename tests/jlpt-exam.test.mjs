@@ -100,7 +100,7 @@ test("old formats are classified from inspected task evidence, not source levels
   assert.equal(classifyJlptQuestion(find("jlpt-1992-1-reading_grammar-III-1-1")), "reading-short");
   assert.equal(classifyJlptQuestion(find("jlpt-1992-1-reading_grammar-III-2-1")), null, "A statistical graph is not automatically modern information retrieval.");
   const listening = Japanese.filter(question => question.category === "listening");
-  assert.equal(listening.length, 232);
+  assert.equal(listening.length, 301);
   assert(listening.every(question => question.audio && classifyJlptQuestion(question) === null));
   assert.equal(classifyJlptQuestion(fixture("wrong-category", "reading-short", "G", { category: "vocabulary" })), null);
   assert.equal(classifyJlptQuestion(fixture("unknown-type", "invented-task")), null);
@@ -140,7 +140,7 @@ test("source occurrences allow reliable task matching without replacing canonica
 
 test("real-bank previews disclose the current gaps and keep original CFGM, media and draft annotations intact", () => {
   const before = JSON.stringify(Japanese);
-  const expected = { n3: [1, 102], n2: [35, 107], n1: [30, 101] };
+  const expected = { n3: [2, 102], n2: [35, 107], n1: [30, 101] };
   for (const profile of jlptExamProfiles) {
     const plan = buildJlptExam(bank, profile.id, () => 0), repeated = buildJlptExam(bank, profile.id, () => 0);
     assert.deepEqual([plan.totalSelected, plan.totalRequired], expected[profile.id]);
@@ -152,7 +152,7 @@ test("real-bank previews disclose the current gaps and keep original CFGM, media
     assert.equal(new Set(ids(plan.questions)).size, plan.questions.length);
     assert.equal(plan.missing.reduce((sum, item) => sum + item.missing, 0), plan.totalRequired - plan.totalSelected);
   }
-  assert.equal(buildJlptExam(bank, "n3", () => 0).questions[0].id, "ja-n4-001");
+  assert.deepEqual(buildJlptExam(bank, "n3", () => 0).questions.map(q => q.id), ["jlpt-2001-1-vocab-III-33", "ja-n4-001"]);
   assert.equal(JSON.stringify(Japanese), before);
   assert.throws(() => buildJlptExam(bank, "n9"), /Unknown JLPT structure/);
 });
