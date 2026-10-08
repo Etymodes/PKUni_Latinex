@@ -6,6 +6,8 @@ import { multilingualSeedQuestions } from "./multilingual-seeds.ts";
 import { jlpt1992Questions } from "./jlpt-1992.ts";
 import jlpt1993 from "./jlpt-1993.json" with { type: "json" };
 import jlpt1994 from "./jlpt-1994.json" with { type: "json" };
+import jlpt1995 from "./jlpt-1995.json" with { type: "json" };
+import jlpt1996 from "./jlpt-1996.json" with { type: "json" };
 import unit01 from "./ja-hlb1000-n1-u01.json" with { type: "json" };
 import { addQuestionCollections } from "./question-collections.ts";
 import type { Question } from "./questions.ts";
@@ -15,6 +17,8 @@ const combined = addQuestionCollections([...questions, ...completeQuestions, ...
   { id: "jlpt-1993-1", questions: jlpt1993 as Question[] },
   { id: "jlpt-1994-1", questions: jlpt1994 as Question[] },
   { id: "ja-hlb1000-n1-u01", questions: unit01 as Question[] },
+  { id: "jlpt-1995-1", questions: jlpt1995 as Question[] },
+  { id: "jlpt-1996-1", questions: jlpt1996 as Question[] },
 ]);
 export const studyQuestions: Question[] = combined.questions;
 export const questionAliases = combined.aliases;
