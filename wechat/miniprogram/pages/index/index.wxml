@@ -20,7 +20,7 @@
     <picker mode="selector" range="{{languages}}" range-key="label" value="{{languageIndex}}" bindchange="changeLanguage" disabled="{{busy}}">
       <view class="language-picker"><text class="muted">{{t.learning}}</text><text>{{languageLabel}}⌄</text></view>
     </picker>
-    <level-selector wx:if="{{view !== 'dictionary' && view !== 'review' && view !== 'community'}}" value="{{level}}" locale="{{locale}}" disabled="{{busy}}" bindchange="changeLevel" />
+    <level-selector wx:if="{{view !== 'dictionary' && view !== 'review' && view !== 'community' && !(examActive && examIsJlpt) && !(view === 'exam' && language === 'ja' && examFormat === 'jlpt')}}" value="{{level}}" locale="{{locale}}" disabled="{{busy}}" bindchange="changeLevel" />
   </block>
 
   <block wx:if="{{view === 'home'}}">
@@ -53,10 +53,17 @@
   </block>
   <block wx:if="{{view === 'story'}}"><view class="panel empty"><text class="section-title">{{t.story}} · {{t.comingSoon}}</text><text class="body">{{t.storySoon}}</text></view></block>
   <block wx:if="{{view === 'exam'}}">
-    <text class="section-title">{{t.randomExam}} · {{languageLabel}}</text><text class="note">{{t.examNote}}</text>
-    <view class="language-picker"><text>{{t.mixedLevels}}</text><switch checked="{{examMixed}}" bindchange="changeExamMixed" /></view>
-    <view wx:if="{{examFinished}}" class="panel"><text class="section-title">{{t.examResult}}</text><text class="body">{{t.examAnswered}} {{examAnswered}} / {{examTotal}} · {{t.examCorrect}} {{examCorrect}}</text></view>
-    <text wx:if="{{examEmpty}}" class="note">{{t.empty}}</text><button class="primary" bindtap="startExam" disabled="{{busy}}">{{t.startExam}}</button>
+    <text class="section-title">{{t.randomExam}} · {{languageLabel}}</text>
+    <view wx:if="{{language === 'ja'}}" class="filters exam-format"><button class="chip {{examFormat === 'quick' ? 'chosen' : ''}}" data-format="quick" bindtap="changeExamFormat">{{t.quickExam}}</button><button class="chip {{examFormat === 'jlpt' ? 'chosen' : ''}}" data-format="jlpt" bindtap="changeExamFormat">{{t.jlptExam}}</button></view>
+    <view wx:if="{{examFinished}}" class="panel"><text class="section-title">{{t.examResult}} {{examIsJlpt ? examProfileLabel : ''}}</text><text class="body">{{t.examAnswered}} {{examAnswered}} / {{examTotal}} · {{t.examCorrect}} {{examCorrect}}</text><block wx:if="{{examIsJlpt}}"><text class="note">{{t.jlptCountNote}}</text><view wx:for="{{examSectionResults}}" wx:key="id"><text class="body">{{item.label}}</text><text class="note">{{item.total ? t.examAnswered + ' ' + item.answered + '/' + item.total + ' · ' + t.examCorrect + ' ' + item.correct : t.jlptSkipped}}</text></view></block></view>
+    <block wx:if="{{language === 'ja' && examFormat === 'jlpt'}}">
+      <text class="note">{{t.jlptNote}}</text><view class="filters exam-profiles"><button wx:for="{{jlptProfiles}}" wx:key="id" class="chip {{examProfile === item.id ? 'chosen' : ''}}" data-profile="{{item.id}}" bindtap="changeExamProfile">{{item.label}}</button></view>
+      <text class="body">{{t.jlptCoverage}} · {{jlptTotalSelected}} / {{jlptTotalRequired}}</text><text class="note">{{t.jlptCountNote}}</text><view wx:if="{{!jlptComplete}}" class="notice">{{t.jlptIncomplete}}</view>
+      <button class="primary" bindtap="startExam" disabled="{{busy || !jlptTotalSelected}}">{{jlptComplete ? t.jlptStart : t.jlptPracticeAvailable}}</button>
+      <view wx:for="{{jlptSections}}" wx:key="id" class="panel exam-section"><text class="resource-title">{{item.label}}</text><text class="note">{{item.minutes}} {{t.jlptMinutes}} · {{t.jlptSelected}} {{item.selected}}</text><view wx:for="{{item.types}}" wx:for-item="type" wx:key="typeId" class="exam-type"><text class="body">{{type.label}}</text><text class="note">{{t.jlptAvailable}} {{type.available}} · {{t.jlptSelected}} {{type.selected}} · {{t.jlptReference}} {{type.required}} · {{t.jlptMissing}} {{type.missing}}</text></view></view>
+      <text wx:if="{{!jlptTotalSelected}}" class="note">{{t.jlptNoQuestions}}</text><button class="text-button" data-url="https://www.jlpt.jp/e/guideline/testsections.html" bindtap="copyResource">{{t.jlptOfficial}} ↗</button>
+    </block>
+    <block wx:else><text class="note">{{t.examNote}}</text><view class="language-picker"><text>{{t.mixedLevels}}</text><switch checked="{{examMixed}}" bindchange="changeExamMixed" /></view><text wx:if="{{examEmpty}}" class="note">{{t.empty}}</text><button class="primary" bindtap="startExam" disabled="{{busy}}">{{t.startExam}}</button></block>
   </block>
   <block wx:if="{{view === 'measurement'}}">
     <text class="section-title">{{t.measurement}} · {{languageLabel}}</text><text class="note">{{t.measurementNote}}</text>
@@ -92,7 +99,7 @@
   </block>
 
   <block wx:if="{{view === 'practice'}}">
-    <view wx:if="{{examActive}}" class="language-picker"><text>{{t.randomExam}} · {{examTime}}</text><button class="text-button" bindtap="finishExam">{{t.finishExam}}</button></view>
+    <view wx:if="{{examActive}}" class="panel exam-running"><text class="resource-title">{{examIsJlpt ? examProfileLabel + ' · ' + t.jlptExam : t.randomExam}} · {{examTime}}</text><block wx:if="{{examIsJlpt}}"><text class="body">{{t.jlptSection}} {{examSectionNumber}} / {{examSectionCount}} · {{examSectionTitle}}</text><text class="note">{{examQuestionType}} · {{t.jlptSectionQuestion}} {{examSectionQuestion}} / {{examSectionTotal}}</text><button wx:if="{{examSectionNumber < examSectionCount}}" class="text-button" bindtap="nextExamSection" disabled="{{busy}}">{{t.jlptNextSection}}</button></block><button class="text-button" bindtap="finishExam" disabled="{{busy}}">{{t.finishExam}}</button></view>
     <block wx:if="{{!examActive}}">
     <text wx:if="{{reviewScope}}" class="note">{{t.reviewAcrossLevels}}</text>
     <view wx:if="{{paperItems.length && !reviewScope}}" class="panel paper-selector">

@@ -30,3 +30,6 @@
 .avatar-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .shell .avatar-preset { width: 100%; min-height: 48px; padding: 8px; margin: 0; font-size: 26px; }
 .avatar-preset.chosen { outline: 2px solid #94233b; }
+
+.exam-type + .exam-type { border-top: 1rpx solid #e3ddd1; margin-top: 14rpx; padding-top: 10rpx; }
+.exam-format .chip, .exam-profiles .chip { min-width: 0; min-height: 44px; white-space: normal; }

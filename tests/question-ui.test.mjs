@@ -51,7 +51,7 @@ function harness() {
     useInterfaceText: () => text => text,
     useI18n: () => ({ copy: getCopy("zh-CN"), language: getLearningLanguage("ja") }),
     useEffect() {}, useMemo: compute => compute(), categoryName: (_copy, category) => category, levelName: (_copy, level) => level, reviewStatusLabels: {},
-    question: { type: "choice", answer: 2 }, submitted: false, selected: null, optionOrder: [0, 1, 2, 3], results: [],
+    question: { type: "choice", answer: 2 }, submitted: false, get answered() { return this.submitted; }, selected: null, optionOrder: [0, 1, 2, 3], results: [],
   };
   for (const name of ["Bookmark", "Check", "X", "CircleHelp", "CheckCircle2", "RotateCcw", "Feedback", "DistractorNotes", "Languages", "Layers3", "BookOpen", "Headphones", "TargetKicker", "Search", "ArrowLeft", "ArrowRight", "EmptyState"]) context[name] = name;
   context.setSelected = value => { context.selected = value; };

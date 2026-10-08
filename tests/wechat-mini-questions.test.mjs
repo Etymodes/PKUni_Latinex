@@ -67,7 +67,7 @@ function harness({ language = 'ja', level = 'F', account = false } = {}) {
   };
   const questions = evaluate('lib/questions.js', { './api': api, './config': { apiOrigin: 'https://pikku.qzz.io/' }, '../data/bank': bank, '../data/shared': shared, '../data/content-locale': contentLocale() }, { wx });
   const community = evaluate('lib/community.js', { './api': api, '../data/shared': shared }, { wx });
-  const study = evaluate('lib/study-modes.js', { '../data/bank': bank, '../data/shared': shared, './vocabulary': {}, '../data/content-locale': contentLocale() }, { wx });
+  const study = evaluate('lib/study-modes.js', { '../data/jlpt-exam': localeSourceLoader()('lib/jlpt-exam.ts'), '../data/bank': bank, '../data/shared': shared, './vocabulary': {}, '../data/content-locale': contentLocale() }, { wx });
   const profile = evaluate('lib/profile.js', { './api': api, '../data/shared': shared }, { wx });
   let definition;
   evaluate('pages/index/index.js', {

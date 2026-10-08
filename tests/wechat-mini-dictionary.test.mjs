@@ -24,6 +24,7 @@ async function harness() {
     showToast() {}, stopPullDownRefresh() {}, pageScrollTo() {},
   };
   const modules = new Map([
+    [path.join(miniRoot, 'data/jlpt-exam.js'), { exports: localeSourceLoader()('lib/jlpt-exam.ts') }],
     [path.join(miniRoot, 'data/dictionary.js'), { exports: dictionary }],
     [path.join(miniRoot, 'data/content-locale.js'), { exports: contentLocale() }],
     [path.join(miniRoot, 'data/bank.js'), { exports: bank }],

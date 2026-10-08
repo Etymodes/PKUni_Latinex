@@ -188,3 +188,16 @@ test("native dictionary and avatar modules exactly reproduce shared website cont
     assert.equal(native.communityAvatarText(value), avatar.communityAvatarText(value));
   }
 });
+
+
+test("generated JLPT structures and selection remain byte-for-byte equivalent to the shared planner", () => {
+  const original = source("lib/jlpt-exam.ts");
+  const generated = loadCommonJs(path.join(temporaryDirectory, "data/jlpt-exam.js"));
+  assert.deepEqual(generated.jlptExamProfiles, original.jlptExamProfiles);
+  for (const profile of original.jlptExamProfiles) {
+    const actual = generated.buildJlptExam(bank.questions, profile.id, () => 0);
+    const expected = original.buildJlptExam(bank.questions, profile.id, () => 0);
+    assert.deepEqual(actual, expected);
+    assert(actual.questions.every(question => bank.questions.includes(question)));
+  }
+});

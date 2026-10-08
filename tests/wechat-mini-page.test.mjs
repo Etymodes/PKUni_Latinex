@@ -106,7 +106,7 @@ async function harness(options = {}) {
   loadPageModule({
     'data/content-locale.js': options.contentLocale || contentLocale(), 'lib/api.js': api, 'data/bank.js': bank,
     'data/shared.js': { ...shared, questionOptionOrder: question => shared.questionOptionOrder(question, () => 0) }, 'lib/copy.js': copy,
-  }, { Page: value => { definition = value; }, wx, Math: fixedMath });
+  }, { Page: value => { definition = value; }, wx, Math: fixedMath, setTimeout: () => 1, clearTimeout() {} });
   const page = { ...definition, data: plain(definition.data), setData(update) { Object.assign(this.data, update); } };
   const refresh = page.refresh;
   let refreshing;
@@ -696,4 +696,93 @@ test('review center crosses levels only in the current language and exits cleanl
   h.page.openOrderedPractice();
   assert.equal(h.page.data.reviewScope, false);
   assert.ok(h.page.range.every(q => shared.matchesLevel(q, 'C')));
+});
+
+
+test('Japanese structure choices stay independent of account CFGM and preserve quick diagnostics', async () => {
+  for (const [level, expected] of [['C', 'n3'], ['F', 'n2'], ['G', 'n1'], ['M', 'n1']]) {
+    const guest = emptyRecord(); guest.preference = { language: 'ja', level, vocabMode: 'word' };
+    const h = await harness({ guest });
+    h.page.changeView(event({ view: 'exam' }));
+    assert.equal(h.page.data.examProfile, expected);
+    h.page.changeExamFormat(event({ format: 'jlpt' }));
+    h.page.changeExamProfile(event({ profile: 'n2' }));
+    assert.equal(h.page.data.level, level);
+    assert.deepEqual(plain(h.page.record.preference), guest.preference);
+    assert.equal(h.page.data.examProfile, 'n2');
+    assert.equal(h.calls.filter(call => call.path === '/api/preferences').length, 0);
+    h.page.startExam();
+    assert(h.page.queue.length > 0);
+    assert(h.page.queue.every(q => q.language === 'ja' && q.level === 'F'));
+    assert(h.page.queue.every(q => bank.questions.includes(q)), 'plan preserves canonical objects');
+    h.page.finishExam();
+    h.page.changeExamFormat(event({ format: 'quick' }));
+    h.page.changeExamMixed({ detail: { value: true } }); h.page.startExam();
+    assert.equal(h.page.data.examIsJlpt, false);
+    assert.equal(h.page.examPlan, null);
+    assert(h.page.queue.length > 0 && h.page.queue.length <= 9);
+    assert(h.page.examDeadline - Date.now() <= 20 * 60 * 1000);
+    h.page.finishExam();
+  }
+});
+
+test('structured runs retain question order and deadlines across locale; expiry advances only one available section', async () => {
+  const guest = emptyRecord(); guest.preference = { language: 'ja', level: 'M', vocabMode: 'word' };
+  const h = await harness({ guest });
+  // Only this isolated fixture supplies an explicitly classified modern listening task.
+  // Historical listening labels are deliberately not assumed to establish a modern subtype.
+  const listeningFixture = { ...bank.questions.find(q => q.language === 'ja' && q.category === 'listening' && q.level === 'G'), id: 'mini-jlpt-listening-fixture', skill: 'jlpt:listening-task' };
+  h.page.questions = [...bank.questions, listeningFixture];
+  h.page.changeView(event({ view: 'exam' }));
+  h.page.changeExamFormat(event({ format: 'jlpt' })); h.page.startExam();
+  assert.equal(h.page.data.examProfile, 'n1');
+  assert.equal(h.page.examSections.length, 2);
+  assert.equal(h.page.examSections[0].minutes, 110);
+  const plan = h.page.examPlan, queue = h.page.queue, deadline = h.page.examDeadline, current = h.page.activeQuestion;
+  h.page.changeLocale();
+  assert.equal(h.page.examPlan, plan); assert.equal(h.page.queue, queue); assert.equal(h.page.examDeadline, deadline); assert.equal(h.page.activeQuestion, current);
+  assert.equal(h.page.data.examSectionTitle, plan.sections[0].label.en);
+  await h.page.answer(event({ index: current.answer }));
+  h.page.onHide();
+  h.page.examDeadline = Date.now() - 48 * 60 * 60 * 1000;
+  h.page.onShow();
+  assert.equal(h.page.examSectionIndex, 1, 'hidden time expires only the section already entered');
+  assert.equal(h.page.examSections[1].minutes, 55);
+  assert.equal(h.page.data.examActive, true);
+  assert(h.page.examDeadline - Date.now() > 54 * 60 * 1000);
+  assert.equal(h.page.activeQuestion, h.page.examSections[1].questions[0]);
+  assert.ok(h.page.data.questionAudioSource);
+  assert.equal(h.page.data.visibleTranscript, '');
+  const listening = h.page.activeQuestion;
+  h.page.examDeadline = Date.now() - 1;
+  await h.page.answer(event({ index: listening.answer }));
+  assert.equal(h.page.data.examActive, false);
+  assert.equal(h.page.data.examAnswered, 1); assert.equal(h.page.data.examCorrect, 1);
+  assert.equal(h.page.record.progress[listening.id], undefined, 'expired answer never labels the next section');
+  assert.equal(h.page.data.examSectionResults.reduce((n, section) => n + section.answered, 0), 1);
+  h.page.onHide();
+});
+
+test('structured runs skip empty sections and finish a populated section without borrowing another grade', async () => {
+  const guest = emptyRecord(); guest.preference = { language: 'ja', level: 'G', vocabMode: 'word' };
+  const h = await harness({ guest });
+  // Only this isolated fixture supplies an explicitly classified modern listening task.
+  // Historical listening labels are deliberately not assumed to establish a modern subtype.
+  const listeningFixture = { ...bank.questions.find(q => q.language === 'ja' && q.category === 'listening' && q.level === 'G'), id: 'mini-jlpt-listening-fixture', skill: 'jlpt:listening-task' };
+  h.page.questions = [...bank.questions, listeningFixture];
+  h.page.changeView(event({ view: 'exam' }));
+  h.page.changeExamFormat(event({ format: 'jlpt' })); h.page.startExam();
+  const audio = h.page.examSections.find(section => section.questions.some(q => q.audio)).questions[0];
+  h.page.finishExam(); h.page.questions = [audio]; h.page.render(); h.page.startExam();
+  assert.equal(h.page.examSections.length, 1); assert.equal(h.page.examSections[0].minutes, 55);
+  assert.equal(h.page.queue.length, 1); assert.equal(h.page.activeQuestion.id, audio.id);
+  assert.equal(h.page.data.jlptComplete, false);
+  h.page.nextQuestion();
+  assert.equal(h.page.data.examFinished, true); assert.equal(h.page.data.examAnswered, 0);
+  assert(h.page.data.examSectionResults.some(section => section.total === 0));
+  h.page.changeExamProfile(event({ profile: 'n3' })); h.page.startExam();
+  assert.equal(h.page.data.examEmpty, true); assert.equal(h.page.data.examActive, false); assert.equal(h.page.queue.length, 0);
+  h.page.changeLocale();
+  assert.equal(h.page.data.examSectionNumber, 0);
+  assert.equal(h.page.data.level, 'G');
 });

@@ -146,6 +146,7 @@ const questionActions = {
       audioPlaying: false, audioError: '', audioCurrent: 0, audioDuration: 0, audioTime: '0:00', audioTotal: '0:00',
       paperQuestionIndex: Math.max(0, (this.data.paperQuestions || []).findIndex(item => question && item.id === question.id)),
       isBookmarked: question ? this.record.bookmarks.includes(question.id) : false });
+    if (this.data.examActive) this.renderExamSection();
   },
   renderQuestion() {
     if (!this.data.question || !this.activeQuestion) return;
@@ -155,7 +156,9 @@ const questionActions = {
   },
   nextQuestion() {
     if (this.data.busy) return;
+    if (this.data.examActive && Date.now() >= this.examDeadline) { this.expireExamSection(); return; }
     const index = this.data.questionIndex + 1;
+    if (this.data.examActive && this.examPlan && index >= this.examSectionEnd) { this.nextExamSection(); return; }
     if (this.data.examActive && index >= (this.queue || []).length) { this.finishExam(); return; }
     this.setData({ questionIndex: index });
     this.showQuestion(this.queue && this.queue[index]);
@@ -163,7 +166,7 @@ const questionActions = {
   },
   async answer(event) {
     if (this.data.busy || this.data.submitted || !this.data.question) return;
-    if (this.data.examActive && Date.now() >= this.examDeadline) { this.finishExam(); return; }
+    if (this.data.examActive && Date.now() >= this.examDeadline) { this.expireExamSection(); return; }
     const q = this.activeQuestion || this.data.question;
     const selected = Number(event.currentTarget.dataset.index);
     if (q.type === 'choice' && (!Number.isInteger(selected) || selected < 0 || selected >= (q.options || []).length)) return;
