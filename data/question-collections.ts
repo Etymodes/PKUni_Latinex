@@ -13,6 +13,8 @@ export const questionCollections = [
   { id: "jlpt-2000-1", zh: "2000 · 旧1級真题（部分）", en: "2000 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
   { id: "jlpt-2001-1", zh: "2001 · 旧1級真题", en: "2001 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
   { id: "jlpt-2002-1", zh: "2002 · 旧1級真题", en: "2002 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2003-1", zh: "2003 · 旧1級真题", en: "2003 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2004-1", zh: "2004 · 旧1級真题", en: "2004 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
 ];
 
 export function questionInCollection(question: Question, collectionId: string): boolean {
