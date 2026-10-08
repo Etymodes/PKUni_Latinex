@@ -9,6 +9,8 @@ export const questionCollections = [
   { id: "jlpt-1996-1", zh: "1996 · 旧1級真题（部分）", en: "1996 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
   { id: "jlpt-1997-1", zh: "1997 · 旧1級真题", en: "1997 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
   { id: "jlpt-1998-1", zh: "1998 · 旧1級真题", en: "1998 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-1999-1", zh: "1999 · 旧1級真题", en: "1999 · Old Level 1", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
+  { id: "jlpt-2000-1", zh: "2000 · 旧1級真题（部分）", en: "2000 · Old Level 1 (partial)", categories: ["vocabulary", "listening", "reading", "sentencePattern"] },
 ];
 
 export function questionInCollection(question: Question, collectionId: string): boolean {
